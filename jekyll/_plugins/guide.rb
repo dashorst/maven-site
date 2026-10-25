@@ -68,7 +68,12 @@ module MavenGuide
         doc.data['crumbs'] = crumbs + [{ 'name' => topic['title'], 'url' => "/guides/topics/#{topic['id']}.html" }]
         doc.data['menu_url'] = '/guides/index.html'
         Array(doc.data['terms']).each { |t| terms[t.to_s] << doc }
-        Array(doc.data['source']).each { |s| sources[s.to_s] << doc }
+        Array(doc.data['source']).each do |s|
+          sources[s.to_s] << doc
+          next if s.to_s.include?(':')
+          file = File.join(site.source, 'content', 'markdown', s.to_s)
+          Jekyll.logger.warn 'Guide:', "#{name}: source #{s} does not exist" unless File.exist?(file) || File.exist?("#{file}.vm")
+        end
       end
 
       site.data['guide_terms'] = terms.keys.sort_by { |t| t.downcase.sub(/\A[^a-z0-9]+/, '') }.map do |t|

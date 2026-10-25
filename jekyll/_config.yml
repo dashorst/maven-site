@@ -14,7 +14,7 @@ collections_dir: jekyll
 
 # content/ is mounted by _plugins/doxia_content.rb, not read as Jekyll pages.
 exclude: [content, src, pom.xml, README.md, Jenkinsfile, GUIDE.md, target,
-          jekyll/skin, jekyll/velocity, jekyll/Gemfile, jekyll/Gemfile.lock, jekyll/README.md, jekyll/build.sh, jekyll/publish.sh]
+          jekyll/skin, jekyll/velocity, jekyll/Gemfile, jekyll/Gemfile.lock, jekyll/README.md, jekyll/build.sh, jekyll/publish.sh, .gh-pages]
 
 markdown: CommonMark
 commonmark:

@@ -247,6 +247,9 @@ module Doxia
         el[attr] = "#{base}#{resolved}#{frag ? "##{frag}" : ''}" if path.start_with?('/') || climbs
       else
         Doxia.missing[resolved.sub(%r{\A/([^/]+/)?.*}, '/\1')] += 1
+        if item.is_a?(Jekyll::Document) && item.collection.label == 'guide' && resolved.start_with?('/guides/')
+          Jekyll.logger.warn 'Guide:', "#{item.relative_path} links to missing #{resolved}"
+        end
         el[attr] = "https://maven.apache.org#{resolved}#{frag ? "##{frag}" : ''}"
       end
     end
