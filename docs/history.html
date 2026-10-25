@@ -1,0 +1,439 @@
+<!DOCTYPE html><!--
+ | The page frame of the Apache Maven Fluido Skin 2.1.0, as the Doxia site renderer writes it
+ | for maven.apache.org. Built with Jekyll: see jekyll/README.md.
+--><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Maven Releases History – Maven</title>
+    
+    <link rel="stylesheet" href="/maven-site/css/apache-maven-fluido-2.1.0.min.css">
+    <link rel="stylesheet" href="/maven-site/css/site.css">
+    <link rel="stylesheet" href="/maven-site/css/guide.css?v=1792948498">
+    <link rel="stylesheet" href="/maven-site/css/print.css" media="print">
+    <script src="/maven-site/js/apache-maven-fluido-2.1.0.min.js"></script>
+  </head>
+  <body>
+    <div class="container-fluid container-fluid-top">
+      <header>
+        <div id="banner">
+          <div class="pull-left"><div id="bannerLeft"><h1><a href="/maven-site/index.html"><img src="/maven-site/images/apache-maven-project-light-theme.svg" style="width: 489px;height: 83px;" alt="Apache Maven"></a></h1></div></div>
+          <div class="pull-right"><div id="bannerRight"><h1><img src="/maven-site/images/logos/MavenLogoLeaf.svg" style="width: 340px;height: 83px;" alt=""></h1></div></div>
+          <div class="clear"><hr></div>
+        </div>
+
+        <div id="breadcrumbs">
+          <ul class="breadcrumb">
+            <li><a href="https://www.apache.org/">Apache</a><span class="divider">/</span></li>
+            <li><a href="/maven-site/index.html">Maven</a><span class="divider">/</span></li>
+            
+            <li class="active">Maven Releases History <a href="https://github.com/apache/maven-site/tree/master/content/markdown/docs/history.md.vm"><img src="/maven-site/images/accessories-text-editor.png" alt="Edit"></a></li>
+            <li id="publishDate" class="pull-right"><span class="divider">|</span> Last Published: 2026-10-25</li>
+            <li class="pull-right"><span class="divider">|</span> <a href="/maven-site/scm.html">Get Sources</a></li>
+            <li class="pull-right"><a href="https://maven.apache.org/download.cgi">Downloads</a></li>
+          </ul>
+        </div>
+      </header>
+      <div class="row-fluid">
+        <header id="leftColumn" class="span2">
+          
+<form class="guide-search" role="search" action="/maven-site/guides/a-z.html" data-index="/maven-site/guides/search.json" data-script="/maven-site/js/minisearch-7.2.0.js" data-oldest="3.9" data-base="/maven-site">
+  <label class="guide-search-label" for="guide-q-nav">Search the documentation</label>
+  <div class="guide-search-field">
+    <input id="guide-q-nav" name="q" type="search" autocomplete="off" spellcheck="false" placeholder="Search">
+    <kbd class="guide-search-key" aria-hidden="true">/</kbd>
+  </div>
+  
+</form>
+
+          <nav class="well sidebar-nav">
+<ul class="nav nav-list">
+  <li><a href="/maven-site/index.html">Welcome</a></li>
+  <li><a href="https://www.apache.org/licenses/">License</a></li>
+  <li class="nav-header">About Maven</li>
+  <li><a href="/maven-site/what-is-maven.html">What is Maven?</a></li>
+  <li><a href="/maven-site/install.html">Installation</a></li>
+  <li><a href="/maven-site/download.html">Downloads</a></li>
+  <li><a href="/maven-site/run.html">Use</a></li>
+  <li><a href="/maven-site/configure.html">Configure</a></li>
+  <li class="active"><a>Release Notes</a></li>
+  <li><a href="/maven-site/security.html">Security Reports</a></li>
+  <li class="nav-header">Documentation</li>
+  <li><a href="/maven-site/plugins/index.html">Maven Plugins</a></li>
+  <li><a href="/maven-site/extensions/index.html">Maven Extensions</a></li>
+  <li><a href="/maven-site/tools/index.html"><span class="icon-chevron-down"></span>Maven Tools</a>
+   <ul class="nav nav-list">
+    <li><a href="/maven-site/tools/mvnd.html">Maven Daemon</a></li>
+    <li><a href="/maven-site/tools/mvnsh.html">Maven Shell</a></li>
+    <li><a href="/maven-site/tools/mvnup.html">Maven Upgrade Tool</a></li>
+    <li><a href="/maven-site/tools/mavenwrapper.html">Maven Wrapper</a></li>
+   </ul></li>
+  <li><a href="/maven-site/doxia/index.html"><span class="icon-chevron-right"></span>Doxia</a></li>
+  <li><a href="/maven-site/guides/index.html">Guides</a></li>
+  <li><a href="/maven-site/users/index.html"><span class="icon-chevron-right"></span>User Manual</a></li>
+  <li><a href="/maven-site/repositories/index.html"><span class="icon-chevron-right"></span>Maven Repositories</a></li>
+  <li><a href="/maven-site/plugin-developers/index.html"><span class="icon-chevron-right"></span>Plugin Development</a></li>
+  <li><a href="/maven-site/developers/index.html"><span class="icon-chevron-right"></span>Contribute to Maven</a></li>
+  <li><a href="/maven-site/articles.html">Books and Resources</a></li>
+  <li class="nav-header">Community</li>
+  <li><a href="/maven-site/community.html">Community Overview</a></li>
+  <li><a href="/maven-site/project-roles.html">Project Roles</a></li>
+  <li><a href="/maven-site/guides/development/guide-helping.html">How to Contribute</a></li>
+  <li><a href="/maven-site/users/getting-help.html">Getting Help</a></li>
+  <li><a href="/maven-site/issue-management.html">Issue Management</a></li>
+  <li><a href="/maven-site/scm.html">Getting Maven Source</a></li>
+  <li><a href="/maven-site/team.html">The Maven Team</a></li>
+  <li class="nav-header">Project Documentation</li>
+  <li><a href="/maven-site/project-info.html">Project Information</a></li>
+  <li class="nav-header">Maven Projects</li>
+  <li><a href="/maven-site/ref/current">Maven</a></li>
+  <li><a href="/maven-site/archetypes/index.html">Archetypes</a></li>
+  <li><a href="/maven-site/extensions/index.html">Extensions</a></li>
+  <li><a href="/maven-site/pom/index.html">Parent POMs</a></li>
+  <li><a href="/maven-site/plugins/index.html">Plugins</a></li>
+  <li><a href="/maven-site/skins/index.html">Skins</a></li>
+  <li><a><span class="icon-chevron-down"></span>Components</a>
+   <ul class="nav nav-list">
+    <li><a href="/maven-site/archetype/index.html">Archetype</a></li>
+    <li><a href="/maven-site/resolver/index.html">Artifact Resolver</a></li>
+    <li><a href="/maven-site/doxia/index.html">Doxia</a></li>
+    <li><a href="/maven-site/maven-indexer/index.html">Indexer</a></li>
+    <li><a href="/maven-site/jxr/index.html">JXR</a></li>
+    <li><a href="/maven-site/plugin-testing/index.html">Plugin Testing</a></li>
+    <li><a href="/maven-site/plugin-tools/index.html">Plugin Tools</a></li>
+    <li><a href="/maven-site/apache-resource-bundles/index.html">Resource Bundles</a></li>
+    <li><a href="/maven-site/scm/index.html">SCM</a></li>
+    <li><a href="/maven-site/shared/index.html">Shared Components</a></li>
+    <li><a href="/maven-site/surefire/index.html">Surefire</a></li>
+    <li><a href="/maven-site/wagon/index.html">Wagon</a></li>
+   </ul></li>
+  <li class="nav-header">ASF</li>
+  <li><a href="https://www.apache.org/foundation/how-it-works.html">How Apache Works</a></li>
+  <li><a href="https://www.apache.org/foundation/">Foundation</a></li>
+  <li><a href="https://privacy.apache.org/policies/privacy-policy-public.html">Data Privacy</a></li>
+  <li><a href="https://www.apache.org/foundation/sponsorship.html">Sponsoring Apache</a></li>
+  <li><a href="https://www.apache.org/foundation/thanks.html">Thanks</a></li>
+</ul>
+          </nav>
+          <div class="well sidebar-nav">
+            <div id="poweredBy">
+              <div class="clear"></div>
+              <a href="/maven-site/" class="builtBy" target="_blank"><img class="builtBy" alt="Built by Maven" src="/maven-site/images/logos/maven-feather.png"></a>
+            </div>
+          </div>
+        </header>
+        <main id="bodyColumn" class="span10">
+          
+<h1 id="Maven_Releases_History">Maven Releases History</h1>
+<!--
+ Licensed to the Apache Software Foundation (ASF) under one
+ or more contributor license agreements.  See the NOTICE file
+ distributed with this work for additional information
+ regarding copyright ownership.  The ASF licenses this file
+ to you under the Apache License, Version 2.0 (the
+ "License"); you may not use this file except in compliance
+ with the License.  You may obtain a copy of the License at
+
+   http://www.apache.org/licenses/LICENSE-2.0
+
+ Unless required by applicable law or agreed to in writing,
+ software distributed under the License is distributed on an
+ "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ KIND, either express or implied.  See the License for the
+ specific language governing permissions and limitations
+ under the License.
+-->
+<p>The Apache Maven team maintains the last version of the last two series of GA releases.
+These are currently <strong>3.10.0</strong> and <strong>3.9.16</strong>.</p>
+<p>Older versions have reached their end of life and are no longer supported in any way.
+This means the Maven team will not provide any bug or security fixes or add new features.
+Note: Maven does not differentiate between "end of life" (EOL) and "end of support" (EOS), but only uses the term "end of life".</p>
+<p>Currently, plugins provide Maven API compatibility down to <strong>3.9.0</strong>. See <a href="/maven-site/developers/compatibility-plan.html">Maven Plugins Compatibility Plan</a> for more details.</p>
+<h2 id="Maven_4.0.2B_.28not_yet_GA.29">Maven 4.0+ (not yet GA)</h2>
+<p>Maven 4.x is a major release that includes significant improvements and changes: see <a href="/maven-site/whatsnewinmaven4.html">What's new in Maven 4?</a> article for more details.</p>
+<p>See also <a href="/maven-site/guides/mini/guide-migration-to-mvn4.html">Starting with Maven 4</a> guide to get safe upgrade instructions.</p>
+<table class="table table-striped">
+<tbody><tr><th>Release Date</th>
+<th>Version</th>
+<th>Required Java Version</th>
+<th>Links</th>
+</tr>
+<!--  release( date version announce latest-minor jdk rowspan ) -->
+<!-- The following two lines needs to be fixed in x days if the archive picks up the announcement mail. -->
+<tr><td><b>2026-09-24</b></td><td><b>4.0.0-rc-7</b></td><td rowspan="11">Java 17</td><td><b><a href="https://lists.apache.org/thread/8o5yw7yzgjq3vpcdbofq54bbd7rho42z">announce</a>, <a href="./4.0.0-rc-7/release-notes.html">release notes</a>, <a href="https://maven.apache.org/ref/4.0.0-rc-7/">reference documentation</a></b></td>
+</tr>
+<tr><td>2026-08-04</td><td>4.0.0-rc-6</td><td><a href="https://lists.apache.org/thread/l54l8pyzv6pbjdtl1w8y28yq7qngjjd2">announce</a>, <a href="./4.0.0-rc-6/release-notes.html">release notes</a>, <a href="https://maven.apache.org/ref/4.0.0-rc-6/">reference documentation</a></td>
+</tr>
+<tr><td>2025-11-13</td><td>4.0.0-rc-5</td><td><a href="https://lists.apache.org/thread/wm55nv4ylodrwfk6ck2pkxy9p94fd8xx">announce</a>, <a href="./4.0.0-rc-5/release-notes.html">release notes</a>, <a href="https://maven.apache.org/ref/4.0.0-rc-5/">reference documentation</a></td>
+</tr>
+<tr><td>2025-06-18</td><td>4.0.0-rc-4</td><td><a href="https://lists.apache.org/thread/dfhpy74vhd92r6lrsv4y59g18hhzs946">announce</a>, <a href="./4.0.0-rc-4/release-notes.html">release notes</a>, <a href="https://maven.apache.org/ref/4.0.0-rc-4/">reference documentation</a></td>
+</tr>
+<tr><td>2025-03-10</td><td>4.0.0-rc-3</td><td><a href="https://lists.apache.org/thread/x4mvlyx6py6r0wjz5hl871vlvbv6vn94">announce</a>, <a href="./4.0.0-rc-3/release-notes.html">release notes</a>, <a href="https://maven.apache.org/ref/4.0.0-rc-3/">reference documentation</a></td>
+</tr>
+<tr><td>2024-12-14</td><td>4.0.0-rc-2</td><td><a href="https://lists.apache.org/thread/82dzfcbr4nc941848k5nn988sfkz3z6t">announce</a>, <a href="./4.0.0-rc-2/release-notes.html">release notes</a>, <a href="https://maven.apache.org/ref/4.0.0-rc-2/">reference documentation</a></td>
+</tr>
+<tr><td>2024-11-28</td><td>4.0.0-rc-1</td><td><a href="https://lists.apache.org/thread/ddr4q2r642mxpg0w5h6zt2o1xkdyk0w5">announce</a>, <a href="./4.0.0-rc-1/release-notes.html">release notes</a>, <a href="https://maven.apache.org/ref/4.0.0-rc-1/">reference documentation</a></td>
+</tr>
+<tr><td>2024-10-22</td><td>4.0.0-beta-5</td><td><a href="https://lists.apache.org/thread/c1cq43y6onn144gkfmhwg82z41fb35sp">announce</a>, <a href="./4.0.0-beta-5/release-notes.html">release notes</a>, <a href="https://maven.apache.org/ref/4.0.0-beta-5/">reference documentation</a></td>
+</tr>
+<tr><td>2024-09-02</td><td>4.0.0-beta-4</td><td><a href="https://lists.apache.org/thread/b5zlnof7kh5hsmn1kyzm8mbzxhm295x6">announce</a>, <a href="./4.0.0-beta-4/release-notes.html">release notes</a>, <a href="https://maven.apache.org/ref/4.0.0-beta-4/">reference documentation</a></td>
+</tr>
+<tr><td>2024-05-22</td><td>4.0.0-beta-3</td><td><a href="https://lists.apache.org/thread/gm0oo25kdh1dh57nqsg4y2pmxo9b9qx1">announce</a>, <a href="./4.0.0-beta-3/release-notes.html">release notes</a>, <a href="https://maven.apache.org/ref/4.0.0-beta-3/">reference documentation</a></td>
+</tr>
+<tr><td>2024-03-06</td><td>4.0.0-alpha-13</td><td><a href="https://lists.apache.org/thread/p64svxy8tf5fblmlo7k2zkbblml0pbo2">announce</a>, <a href="./4.0.0-alpha-13/release-notes.html">release notes</a>, <a href="https://maven.apache.org/ref/4.0.0-alpha-13/">reference documentation</a></td>
+</tr>
+<tr><td>2024-01-12</td><td>4.0.0-alpha-12</td><td rowspan="9">Java 8</td><td><a href="https://lists.apache.org/thread/kr5ps9xgg8yhz5hxtq762pjv25jckf3z">announce</a>, <a href="./4.0.0-alpha-12/release-notes.html">release notes</a>, <a href="https://maven.apache.org/ref/4.0.0-alpha-12/">reference documentation</a></td>
+</tr>
+<tr><td>2023-12-22</td><td>4.0.0-alpha-10</td><td><a href="https://lists.apache.org/thread/8nq1mssngrol0zzotpyyll2rdm8f77ob">announce</a>, <a href="./4.0.0-alpha-10/release-notes.html">release notes</a>, <a href="https://maven.apache.org/ref/4.0.0-alpha-10/">reference documentation</a></td>
+</tr>
+<tr><td>2023-12-12</td><td>4.0.0-alpha-9</td><td><a href="https://lists.apache.org/thread/z8tyggwfdskgd78s8pljbg0kqq3bogty">announce</a>, <a href="./4.0.0-alpha-9/release-notes.html">release notes</a>, <a href="https://maven.apache.org/ref/4.0.0-alpha-9/">reference documentation</a></td>
+</tr>
+<tr><td>2023-10-20</td><td>4.0.0-alpha-8</td><td><a href="https://lists.apache.org/thread/2wctg0oy6xynlxmpg4730mkm892s6hyf">announce</a>, <a href="./4.0.0-alpha-8/release-notes.html">release notes</a>, <a href="https://maven.apache.org/ref/4.0.0-alpha-8/">reference documentation</a></td>
+</tr>
+<tr><td>2023-06-28</td><td>4.0.0-alpha-7</td><td><a href="https://lists.apache.org/thread/30jcjszl53jp1z8hzjkrnxyv3o362ngz">announce</a>, <a href="./4.0.0-alpha-7/release-notes.html">release notes</a>, <a href="https://maven.apache.org/ref/4.0.0-alpha-7/">reference documentation</a></td>
+</tr>
+<tr><td>2023-03-20</td><td>4.0.0-alpha-5</td><td><a href="https://lists.apache.org/thread/5k5g70xcbbqck6y6dy2344ol4d2qd5my">announce</a>, <a href="./4.0.0-alpha-5/release-notes.html">release notes</a>, <a href="https://maven.apache.org/ref/4.0.0-alpha-5/">reference documentation</a></td>
+</tr>
+<tr><td>2023-01-31</td><td>4.0.0-alpha-4</td><td><a href="https://lists.apache.org/thread/1pj6nqo10xddq26vyxj9p1q1s8m70bx2">announce</a>, <a href="./4.0.0-alpha-4/release-notes.html">release notes</a>, <a href="https://maven.apache.org/ref/4.0.0-alpha-4/">reference documentation</a></td>
+</tr>
+<tr><td>2022-12-15</td><td>4.0.0-alpha-3</td><td><a href="https://lists.apache.org/thread/0j63n7o3lnlz9mmk39wqh1jx5h3r7vqv">announce</a>, <a href="./4.0.0-alpha-3/release-notes.html">release notes</a>, <a href="https://maven.apache.org/ref/4.0.0-alpha-3/">reference documentation</a></td>
+</tr>
+<tr><td>2022-10-24</td><td>4.0.0-alpha-2</td><td><a href="https://lists.apache.org/thread/snnlfsk24wmdp8tp79b2k11ln34hk6ks">announce</a>, <a href="./4.0.0-alpha-2/release-notes.html">release notes</a>, <a href="https://maven.apache.org/ref/4.0.0-alpha-2/">reference documentation</a></td>
+</tr>
+</tbody></table>
+<h2 id="Maven_3.10.x.2B">Maven 3.10.x+</h2>
+<table class="table table-striped">
+<tbody><tr><th>Release Date</th>
+<th>Version</th>
+<th>Required Java Version</th>
+<th>Links</th>
+</tr>
+<!--  release( date version announce latest-minor jdk rowspan ) -->
+<!-- The following two lines needs to be fixed in x days if the archive picks up the announcement mail. -->
+<tr><td><b>2026-09-27</b></td><td><b>3.10.0</b></td><td rowspan="2">Java 8</td><td><b><a href="https://lists.apache.org/thread.html/zn01tzgl9l7sbxzs38lknhdpcovcov4h">announce</a>, <a href="./3.10.0/release-notes.html">release notes</a>, <a href="https://maven.apache.org/ref/3.10.0/">reference documentation</a></b></td>
+</tr>
+<tr><td>2026-07-09</td><td>3.10.0-rc-1</td><td><a href="https://lists.apache.org/thread/8mqy3w0yz0d1rr0t0ctsct874qb2orq9">announce</a>, <a href="./3.10.0-rc-1/release-notes.html">release notes</a>, <a href="https://maven.apache.org/ref/3.10.0-rc-1/">reference documentation</a></td>
+</tr>
+</tbody></table>
+<h2 id="Maven_3.9.x.2B">Maven 3.9.x+</h2>
+<table class="table table-striped">
+<tbody><tr><th>Release Date</th>
+<th>Version</th>
+<th>Required Java Version</th>
+<th>Links</th>
+</tr>
+<!--  release( date version announce latest-minor jdk rowspan ) -->
+<!-- The following two lines needs to be fixed in x days if the archive picks up the announcement mail. -->
+<tr><td><b>2026-05-13</b></td><td><b>3.9.16</b></td><td rowspan="17">Java 8</td><td><b><a href="https://lists.apache.org/thread/zbp1k143yrcvpc5d6w1np3d2j3c4cf1f">announce</a>, <a href="./3.9.16/release-notes.html">release notes</a>, <a href="https://maven.apache.org/ref/3.9.16/">reference documentation</a></b></td>
+</tr>
+<tr><td>2026-04-13</td><td>3.9.15</td><td><a href="https://lists.apache.org/thread/drocnrlwkq9bp1143jzcgytrqpokkqn3">announce</a>, <a href="./3.9.15/release-notes.html">release notes</a>, <a href="https://maven.apache.org/ref/3.9.15/">reference documentation</a></td>
+</tr>
+<tr><td>2026-03-12</td><td>3.9.14</td><td><a href="https://lists.apache.org/thread/jfj9y9p09db0vpmm6fz1hxo00g7s40qp">announce</a>, <a href="./3.9.14/release-notes.html">release notes</a>, <a href="https://maven.apache.org/ref/3.9.14/">reference documentation</a></td>
+</tr>
+<tr><td>2026-03-06</td><td>3.9.13</td><td><a href="https://lists.apache.org/thread/9b2vjth0sck2wkdlov3lnj6f1lyy8tlb">announce</a>, <a href="./3.9.13/release-notes.html">release notes</a>, <a href="https://maven.apache.org/ref/3.9.13/">reference documentation</a></td>
+</tr>
+<tr><td>2025-12-13</td><td>3.9.12</td><td><a href="https://lists.apache.org/thread/38xvc7olg6noop0ckr8m64s7s58v37vp">announce</a>, <a href="./3.9.12/release-notes.html">release notes</a>, <a href="https://maven.apache.org/ref/3.9.12/">reference documentation</a></td>
+</tr>
+<tr><td>2025-07-12</td><td>3.9.11</td><td><a href="https://lists.apache.org/thread/0y3rkrszh7xckxjmvrst5dk1skzpfmm6">announce</a>, <a href="./3.9.11/release-notes.html">release notes</a>, <a href="https://maven.apache.org/ref/3.9.11/">reference documentation</a></td>
+</tr>
+<tr><td>2025-06-01</td><td>3.9.10</td><td><a href="https://lists.apache.org/thread/bh8hr89omrbw19ychrklyh3rompn1hj7">announce</a>, <a href="./3.9.10/release-notes.html">release notes</a>, <a href="https://maven.apache.org/ref/3.9.10/">reference documentation</a></td>
+</tr>
+<tr><td>2024-08-17</td><td>3.9.9</td><td><a href="https://lists.apache.org/thread/ov40dkfd1snyz2pdltsr5rzhdh2xd9yh">announce</a>, <a href="./3.9.9/release-notes.html">release notes</a>, <a href="https://maven.apache.org/ref/3.9.9/">reference documentation</a></td>
+</tr>
+<tr><td>2024-06-17</td><td>3.9.8</td><td><a href="https://lists.apache.org/thread/lhpl9zqqf03rshckqrd7fb8ph0osm9qz">announce</a>, <a href="./3.9.8/release-notes.html">release notes</a>, <a href="https://maven.apache.org/ref/3.9.8/">reference documentation</a></td>
+</tr>
+<tr><td>2024-05-22</td><td>3.9.7</td><td><a href="https://lists.apache.org/thread/z540xgcjqn4fpm2x2fg3htqbr4zzgfpx">announce</a>, <a href="./3.9.7/release-notes.html">release notes</a>, <a href="https://maven.apache.org/ref/3.9.7/">reference documentation</a></td>
+</tr>
+<tr><td>2023-12-01</td><td>3.9.6</td><td><a href="https://lists.apache.org/thread/p6y4nl4k1kw4hbhkjngrj3f4doz851v6">announce</a>, <a href="./3.9.6/release-notes.html">release notes</a>, <a href="https://maven.apache.org/ref/3.9.6/">reference documentation</a></td>
+</tr>
+<tr><td>2023-10-04</td><td>3.9.5</td><td><a href="https://lists.apache.org/thread/xkq066dfsz3tql4p72m4skj1c8szspgo">announce</a>, <a href="./3.9.5/release-notes.html">release notes</a>, <a href="https://maven.apache.org/ref/3.9.5/">reference documentation</a></td>
+</tr>
+<tr><td>2023-08-03</td><td>3.9.4</td><td><a href="https://lists.apache.org/thread/8lj6byvgoo9939mt5xm0d0wsy2m5j2k9">announce</a>, <a href="./3.9.4/release-notes.html">release notes</a>, <a href="https://maven.apache.org/ref/3.9.4/">reference documentation</a></td>
+</tr>
+<tr><td>2023-06-26</td><td>3.9.3</td><td><a href="https://lists.apache.org/thread/ydxl67r7ddh6tkhckkj51j8tksd8ok0m">announce</a>, <a href="./3.9.3/release-notes.html">release notes</a>, <a href="https://maven.apache.org/ref/3.9.3/">reference documentation</a></td>
+</tr>
+<tr><td>2023-05-11</td><td>3.9.2</td><td><a href="https://lists.apache.org/thread/6bjn6hkwo612qsd9dt6qx4ob9q2q261k">announce</a>, <a href="./3.9.2/release-notes.html">release notes</a>, <a href="https://maven.apache.org/ref/3.9.2/">reference documentation</a></td>
+</tr>
+<tr><td>2023-03-14</td><td>3.9.1</td><td><a href="https://lists.apache.org/thread/ppqvkt413fpsyh0kqjcr4dl5vy3m1lgg">announce</a>, <a href="./3.9.1/release-notes.html">release notes</a>, <a href="https://maven.apache.org/ref/3.9.1/">reference documentation</a></td>
+</tr>
+<tr><td>2023-01-31</td><td>3.9.0</td><td><a href="https://lists.apache.org/thread/0tfr7t2j2ddbv4gjvxm47yohtk3dg6b3">announce</a>, <a href="./3.9.0/release-notes.html">release notes</a>, <a href="https://maven.apache.org/ref/3.9.0/">reference documentation</a></td>
+</tr>
+</tbody></table>
+<h2 id="Maven_3.8.x_and_before">Maven 3.8.x and before</h2>
+<p>Maven 3.8.9 and before has now reached its end of life and is no longer supported in any way.
+New plugin releases will require Maven 3.9.0 or later.
+The following information is made available for reference.</p>
+<table class="table table-striped">
+<tbody><tr><th>Release Date</th>
+<th>Version</th>
+<th>Required Java Version</th>
+<th>Links</th>
+</tr>
+<tr><td><b>2025-06-14</b></td><td><b>3.8.9</b></td><td rowspan="9">Java 7</td><td><b><a href="https://mail-archives.apache.org/mod_mbox/maven-announce/202506.mbox/%3C29d7124a-0853-45c4-a163-53cb66aaf9d6@apache.org%3E">announce</a>, <a href="./3.8.9/release-notes.html">release notes</a>, <a href="https://maven.apache.org/ref/3.8.9/">reference documentation</a></b></td>
+</tr>
+<tr><td>2023-03-08</td><td>3.8.8</td><td><a href="https://mail-archives.apache.org/mod_mbox/maven-announce/202303.mbox/%3C04b66b57-dc73-8765-0fce-cc72130c3026@apache.org%3E">announce</a>, <a href="./3.8.8/release-notes.html">release notes</a>, <a href="https://maven.apache.org/ref/3.8.8/">reference documentation</a></td>
+</tr>
+<tr><td>2022-12-24</td><td>3.8.7</td><td><a href="https://mail-archives.apache.org/mod_mbox/maven-announce/202212.mbox/%3C27650d65-28f1-f3d8-472d-7d1939e1c83f@apache.org%3E">announce</a>, <a href="./3.8.7/release-notes.html">release notes</a>, <a href="https://maven.apache.org/ref/3.8.7/">reference documentation</a></td>
+</tr>
+<tr><td>2022-06-06</td><td>3.8.6</td><td><a href="https://mail-archives.apache.org/mod_mbox/maven-announce/202206.mbox/%3C850c94d3-c7d3-81a3-b6e2-5b6f0d268126@apache.org%3E">announce</a>, <a href="./3.8.6/release-notes.html">release notes</a>, <a href="https://maven.apache.org/ref/3.8.6/">reference documentation</a></td>
+</tr>
+<tr><td>2022-03-05</td><td>3.8.5</td><td><a href="https://mail-archives.apache.org/mod_mbox/maven-announce/202203.mbox/%3Cb5eab336-e5ba-73bb-1c0c-d063d919ce4d@apache.org%3E">announce</a>, <a href="./3.8.5/release-notes.html">release notes</a>, <a href="https://maven.apache.org/ref/3.8.5/">reference documentation</a></td>
+</tr>
+<tr><td>2021-11-14</td><td>3.8.4</td><td><a href="https://mail-archives.apache.org/mod_mbox/maven-announce/202111.mbox/%3C55867acd-a5d4-6f42-ef39-c82a4bcd9062@apache.org%3E">announce</a>, <a href="./3.8.4/release-notes.html">release notes</a>, <a href="https://maven.apache.org/ref/3.8.4/">reference documentation</a></td>
+</tr>
+<tr><td>2021-09-27</td><td>3.8.3</td><td><a href="https://mail-archives.apache.org/mod_mbox/maven-announce/202110.mbox/%3C8bf4d8cb-6a12-4423-f913-24ca2351b325@apache.org%3E">announce</a>, <a href="./3.8.3/release-notes.html">release notes</a>, <a href="https://maven.apache.org/ref/3.8.3/">reference documentation</a></td>
+</tr>
+<tr><td>2021-08-04</td><td>3.8.2</td><td><a href="https://mail-archives.apache.org/mod_mbox/maven-announce/202108.mbox/%3C85a7a3d4-c4ae-8e1e-f5c4-832017b79ca3@apache.org%3E">announce</a>, <a href="./3.8.2/release-notes.html">release notes</a>, <a href="https://maven.apache.org/ref/3.8.2/">reference documentation</a></td>
+</tr>
+<tr><td>2021-04-04</td><td>3.8.1</td><td><a href="https://mail-archives.apache.org/mod_mbox/maven-announce/202104.mbox/%3CMailbird-0918dc43-dc18-4008-b83b-8bc8b1528177%40apache.org%3E">announce</a>, <a href="./3.8.1/release-notes.html">release notes</a>, <a href="https://maven.apache.org/ref/3.8.1/">reference documentation</a></td>
+</tr>
+<tr><td><b>2019-11-25</b></td><td><b>3.6.3</b></td><td rowspan="13">Java 7</td><td><b><a href="https://mail-archives.apache.org/mod_mbox/maven-announce/201911.mbox/%3CMailbird-b8a76b15-cad9-4f81-b834-17c4e8b4d6b8%40apache.org%3E">announce</a>, <a href="./3.6.3/release-notes.html">release notes</a>, <a href="https://maven.apache.org/ref/3.6.3/">reference documentation</a></b></td>
+</tr>
+<tr><td>2019-08-27</td><td>3.6.2</td><td><a href="https://mail-archives.apache.org/mod_mbox/maven-announce/201909.mbox/%3CCACcefgc8DBFwq5vQ7EuZNGSeBxemz6Hd_2n%3DMV9T%3DpYgdUM5EA%40mail.gmail.com%3E">announce</a>, <a href="./3.6.2/release-notes.html">release notes</a>, <a href="https://maven.apache.org/ref/3.6.2/">reference documentation</a></td>
+</tr>
+<tr><td>2019-04-04</td><td>3.6.1</td><td><a href="https://mail-archives.apache.org/mod_mbox/maven-announce/201904.mbox/%3Cop.zz6k0iklkdkhrr%40desktop-2khsk44.dynamic.ziggo.nl%3E">announce</a>, <a href="./3.6.1/release-notes.html">release notes</a>, <a href="https://maven.apache.org/ref/3.6.1/">reference documentation</a></td>
+</tr>
+<tr><td>2018-10-24</td><td>3.6.0</td><td><a href="https://mail-archives.apache.org/mod_mbox/maven-announce/201811.mbox/%3C20181101115259.168F4187BA%40minotaur.apache.org%3E">announce</a>, <a href="./3.6.0/release-notes.html">release notes</a>, <a href="https://maven.apache.org/ref/3.6.0/">reference documentation</a></td>
+</tr>
+<tr><td><b>2018-06-21</b></td><td><b>3.5.4</b></td><td><b><a href="https://mail-archives.apache.org/mod_mbox/maven-announce/201806.mbox/%3CCA%2BnPnMyX2qN9gHFH9EidAgQVvxtZt0Aux2RUEQqACJ_dZ7sw%2BA%40mail.gmail.com%3E">announce</a>, <a href="./3.5.4/release-notes.html">release notes</a>, <a href="https://maven.apache.org/ref/3.5.4/">reference documentation</a></b></td>
+</tr>
+<tr><td>2018-03-08</td><td>3.5.3</td><td><a href="https://mail-archives.apache.org/mod_mbox/maven-announce/201803.mbox/%3CCA%2BnPnMyM0sWU1yQ8Vxo3P5f8_W0F5wDgadzK99NceVrJn%2ByxAQ%40mail.gmail.com%3E">announce</a>, <a href="./3.5.3/release-notes.html">release notes</a>, <a href="https://maven.apache.org/ref/3.5.3/">reference documentation</a></td>
+</tr>
+<tr><td>2017-10-24</td><td>3.5.2</td><td><a href="https://mail-archives.apache.org/mod_mbox/maven-announce/201710.mbox/%3CCA%2BnPnMyzJ1%3DtTQ_%3DsAKnj95_2PjiE4ArUQkysyJrW%2Bpz5MEWcA%40mail.gmail.com%3E">announce</a>, <a href="./3.5.2/release-notes.html">release notes</a>, <a href="https://maven.apache.org/ref/3.5.2/">reference documentation</a></td>
+</tr>
+<tr><td>2017-04-07</td><td>3.5.0</td><td><a href="https://mail-archives.apache.org/mod_mbox/maven-announce/201704.mbox/%3CCA%2BnPnMz9C8uo0WseJjbdVtC7Sh%3DKM5uvWcOjBfW5r-WRYfMXWw%40mail.gmail.com%3E">announce</a>, <a href="./3.5.0/release-notes.html">release notes</a>, <a href="https://maven.apache.org/ref/3.5.0/">reference documentation</a></td>
+</tr>
+<tr><td>2017-03-24</td><td>3.5.0-beta-1</td><td><a href="https://mail-archives.apache.org/mod_mbox/maven-announce/201703.mbox/%3CCA%2BnPnMz1zeTkXn_2b%3DPgBDm61PLTM43zZ5fgvOSNvTqwEkfS_A%40mail.gmail.com%3E">announce</a>, <a href="./3.5.0-beta-1/release-notes.html">release notes</a>, <a href="https://maven.apache.org/ref/3.5.0-beta-1/">reference documentation</a></td>
+</tr>
+<tr><td>2017-02-28</td><td>3.5.0-alpha-1</td><td><a href="https://mail-archives.apache.org/mod_mbox/maven-announce/201703.mbox/%3CCA%2BnPnMyDmF7KAB_W89bkVjNTmpHQtv3reFA0Xm3cpYHtW1fKaA%40mail.gmail.com%3E">announce</a>, <a href="./3.5.0-alpha-1/release-notes.html">release notes</a>, <a href="https://maven.apache.org/ref/3.5.0-alpha-1/">reference documentation</a></td>
+</tr>
+<tr><td><b>2015-11-14</b></td><td><b>3.3.9</b></td><td><b><a href="https://mail-archives.apache.org/mod_mbox/maven-announce/201511.mbox/%3C20151118071117.A29D618223%40minotaur.apache.org%3E">announce</a>, <a href="./3.3.9/release-notes.html">release notes</a>, <a href="https://maven.apache.org/ref/3.3.9/">reference documentation</a></b></td>
+</tr>
+<tr><td>2015-04-28</td><td>3.3.3</td><td><a href="https://mail-archives.apache.org/mod_mbox/maven-users/201504.mbox/%3C4B6DEAE5-A0C1-40F0-A290-FAF9B67753D2%40takari.io%3E">announce</a>, <a href="./3.3.3/release-notes.html">release notes</a>, <a href="https://maven.apache.org/ref/3.3.3/">reference documentation</a></td>
+</tr>
+<tr><td>2015-03-18</td><td>3.3.1</td><td><a href="https://mail-archives.apache.org/mod_mbox/maven-users/201503.mbox/%3CC490F64B-BB4A-48F9-98DD-4352A7FAE378%40takari.io%3E">announce</a>, <a href="./3.3.1/release-notes.html">release notes</a>, <a href="https://maven.apache.org/ref/3.3.1/">reference documentation</a></td>
+</tr>
+<tr><td><b>2014-12-20</b></td><td><b>3.2.5</b></td><td rowspan="4">Java 6</td><td><b><a href="https://mail-archives.apache.org/mod_mbox/maven-users/201412.mbox/%3C4CD625DB-6BC8-4BAE-8ABA-0A185CF81596%40apache.org%3E">announce</a>, <a href="./3.2.5/release-notes.html">release notes</a>, <a href="https://maven.apache.org/ref/3.2.5/">reference documentation</a></b></td>
+</tr>
+<tr><td>2014-08-17</td><td>3.2.3</td><td><a href="https://mail-archives.apache.org/mod_mbox/maven-users/201408.mbox/%3C18823F7B-09E9-43D3-9E32-F0F3F356E844%40maven.org%3E">announce</a>, <a href="./3.2.3/release-notes.html">release notes</a>, <a href="https://maven.apache.org/ref/3.2.3/">reference documentation</a></td>
+</tr>
+<tr><td>2014-06-26</td><td>3.2.2</td><td><a href="https://mail-archives.apache.org/mod_mbox/maven-users/201406.mbox/%3CBF05670C-F811-42E0-ABBE-34A93F78BC72%40takari.io%3E">announce</a>, <a href="./3.2.2/release-notes.html">release notes</a>, <a href="https://maven.apache.org/ref/3.2.2/">reference documentation</a></td>
+</tr>
+<tr><td>2014-02-21</td><td>3.2.1</td><td><a href="https://mail-archives.apache.org/mod_mbox/maven-users/201402.mbox/%3C2828F75B-F636-478A-A958-404672FFA1C7%40takari.io%3E">announce</a>, <a href="./3.2.1/release-notes.html">release notes</a>, <a href="https://maven.apache.org/ref/3.2.1/">reference documentation</a></td>
+</tr>
+<tr><td><b>2013-10-04</b></td><td><b>3.1.1</b></td><td rowspan="17">Java 5</td><td><b><a href="https://mail-archives.apache.org/mod_mbox/maven-announce/201310.mbox/%3C0D117268-CE78-4051-9484-DE2EE770B120%40apache.org%3E">announce</a>, <a href="./3.1.1/release-notes.html">release notes</a>, <a href="https://maven.apache.org/ref/3.1.1/">reference documentation</a></b></td>
+</tr>
+<tr><td>2013-07-15</td><td>3.1.0</td><td><a href="https://mail-archives.apache.org/mod_mbox/maven-users/201307.mbox/%3C4C1F2A95-5EBB-473E-BC3F-4D3969A78421%40tesla.io%3E">announce</a>, <a href="./3.1.0/release-notes.html">release notes</a>, <a href="https://maven.apache.org/ref/3.1.0/">reference documentation</a></td>
+</tr>
+<tr><td>2013-06-10</td><td>3.1.0-alpha-1</td><td><a href="https://mail-archives.apache.org/mod_mbox/maven-users/201306.mbox/%3C2D8B1BBD-FF9E-4537-A748-857C96664161%40tesla.io%3E">announce</a>, <a href="./3.1.0-alpha-1/release-notes.html">release notes</a></td>
+</tr>
+<tr><td>2013-02-23</td><td>3.0.5</td><td><a href="https://mail-archives.apache.org/mod_mbox/maven-announce/201302.mbox/%3CCAPoyBqRwyTkiAN%2Bxc7X9sx6qLYK2z-HodTuYSfWM2N6780ST-A%40mail.gmail.com%3E">announce</a>, <a href="./3.0.5/release-notes.html">release notes</a>, <a href="https://maven.apache.org/ref/3.0.5/">reference documentation</a></td>
+</tr>
+<tr><td>2012-01-20</td><td>3.0.4</td><td><a href="https://mail-archives.apache.org/mod_mbox/maven-users/201201.mbox/%3CCAPoyBqQ8wVpf6Zn61t8s489kgZS7tZjYUT1iX7gykathC2Qrgw%40mail.gmail.com%3E">announce</a>, <a href="./3.0.4/release-notes.html">release notes</a>, <a href="https://maven.apache.org/ref/3.0.4/">reference documentation</a></td>
+</tr>
+<tr><td>2011-03-04</td><td>3.0.3</td><td><a href="https://mail-archives.apache.org/mod_mbox/maven-announce/201103.mbox/%3C4D702CE2.5090506%40apache.org%3E">announce</a>, <a href="./3.0.3/release-notes.html">release notes</a>, <a href="https://maven.apache.org/ref/3.0.3/">reference documentation</a></td>
+</tr>
+<tr><td>2011-01-12</td><td>3.0.2</td><td><a href="https://mail-archives.apache.org/mod_mbox/maven-announce/201101.mbox/%3C4D2E1D75.6090008%40apache.org%3E">announce</a>, <a href="./3.0.2/release-notes.html">release notes</a>, <a href="https://maven.apache.org/ref/3.0.2/">reference documentation</a></td>
+</tr>
+<tr><td>2010-11-26</td><td>3.0.1</td><td><a href="https://mail-archives.apache.org/mod_mbox/maven-announce/201011.mbox/%3C4CF03B77.4090508%40apache.org%3E">announce</a>, <a href="./3.0.1/release-notes.html">release notes</a>, <a href="https://maven.apache.org/ref/3.0.1/">reference documentation</a></td>
+</tr>
+<tr><td>2010-10-08</td><td>3.0</td><td><a href="https://mail-archives.apache.org/mod_mbox/maven-announce/201010.mbox/%3C4CAF1861.4030006%40apache.org%3E">announce</a>, <a href="./3.0/release-notes.html">release notes</a>, <a href="https://maven.apache.org/ref/3.0/">reference documentation</a></td>
+</tr>
+<tr><td>2010-09-02</td><td>3.0-beta-3</td><td><a href="https://mail-archives.apache.org/mod_mbox/maven-announce/201009.mbox/%3C4C802845.6070709%40apache.org%3E">announce</a>, <a href="./3.0-beta-3/release-notes.html">release notes</a></td>
+</tr>
+<tr><td>2010-08-10</td><td>3.0-beta-2</td><td><a href="https://mail-archives.apache.org/mod_mbox/maven-announce/201008.mbox/%3C4C61C9A6.7040704%40apache.org%3E">announce</a>, <a href="./3.0-beta-2/release-notes.html">release notes</a></td>
+</tr>
+<tr><td>2010-04-23</td><td>3.0-beta-1</td><td><a href="https://mail-archives.apache.org/mod_mbox/maven-announce/201004.mbox/%3C4BD19B35.80501%40apache.org%3E">announce</a>, <a href="./3.0-beta-1/release-notes.html">release notes</a></td>
+</tr>
+<tr><td>2010-04-14</td><td>3.0-alpha-7</td><td><a href="https://mail-archives.apache.org/mod_mbox/maven-announce/201003.mbox/%3C4B9D1589.7000502%40apache.org%3E">announce</a>, <a href="./3.0-alpha-7/release-notes.html">release notes</a></td>
+</tr>
+<tr><td>2010-01-10</td><td>3.0-alpha-6</td><td><a href="https://mail-archives.apache.org/mod_mbox/maven-announce/201001.mbox/%3C4B49EE7E.9030703%40apache.org%3E">announce</a>, <a href="./3.0-alpha-6/release-notes.html">release notes</a></td>
+</tr>
+<tr><td>2009-11-27</td><td>3.0-alpha-5</td><td><a href="https://mail-archives.apache.org/mod_mbox/maven-announce/200911.mbox/%3C4B0FAA1C.3060900%40apache.org%3E">announce</a>, <a href="./3.0-alpha-5/release-notes.html">release notes</a></td>
+</tr>
+<tr><td>2009-11-17</td><td>3.0-alpha-4</td><td><a href="https://mail-archives.apache.org/mod_mbox/maven-announce/200911.mbox/%3C4B0284D0.9080202%40apache.org%3E">announce</a>, <a href="./3.0-alpha-4/release-notes.html">release notes</a></td>
+</tr>
+<tr><td>2009-11-13</td><td>3.0-alpha-3</td><td><a href="https://mail-archives.apache.org/mod_mbox/maven-announce/200911.mbox/%3C4AFD52A3.80707%40apache.org%3E">announce</a>, <a href="./3.0-alpha-3/release-notes.html">release notes</a></td>
+</tr>
+</tbody></table>
+<h2 id="Maven_2">Maven 2</h2>
+<p>Maven 2.x has now reached its <a href="../maven-2.x-eol.html">end of life</a>.
+  The following <a href="/maven-site/archives/maven-2.x/index.html">Maven 2.x specific documentation</a> is archived for reference.</p>
+<table class="table table-striped">
+<tbody><tr><th>2014-02-18</th><th>End of Life</th><th></th><th>
+<a href="../maven-2.x-eol.html">EoL notes</a>,
+<a href="https://mail-archives.apache.org/mod_mbox/maven-announce/201402.mbox/%3CCA%2BnPnMwcnChz2RUgsWAF4VpPvsycXrak-4DDpQ6u9Cs2xiCCaA%40mail.gmail.com%3E">announce</a>
+</th>
+</tr>
+<tr><td>2009-11-08</td><td>2.2.1</td><td rowspan="2">Java 5</td><td><a href="https://mail-archives.apache.org/mod_mbox/maven-announce/200908.mbox/%3C4A81E6CF.605%40apache.org%3E">announce</a>, <a href="./2.2.1/release-notes.html">release notes</a>, <a href="https://maven.apache.org/ref/2.2.1/">reference documentation</a></td>
+</tr>
+<tr><td>2009-06-30</td><td>2.2.0</td><td><a href="https://mail-archives.apache.org/mod_mbox/maven-announce/200906.mbox/%3C4A4A8FC8.8040801%40apache.org%3E">announce</a>, <a href="./2.2.0/release-notes.html">release notes</a></td>
+</tr>
+<tr><td>2009-03-22</td><td>2.1.0</td><td rowspan="14">Java 1.4</td><td><a href="https://mail-archives.apache.org/mod_mbox/maven-announce/200903.mbox/%3C49C59EC1.7090706%40apache.org%3E">announce</a>, <a href="./2.1.0/release-notes.html">release notes</a></td>
+</tr>
+<tr><td>2008-09-19</td><td>2.1.0-M1</td><td><a href="https://mail-archives.apache.org/mod_mbox/maven-announce/200809.mbox/%3C48D31DA2.4000604%40apache.org%3E">announce</a></td>
+</tr>
+<tr><td>2010-02-26</td><td>2.0.11</td><td><a href="https://mail-archives.apache.org/mod_mbox/maven-announce/201002.mbox/%3C16924806-34B2-404B-A22B-0B76D4F9DD07%40apache.org%3E">announce</a>, <a href="./2.0.11/release-notes.html">release notes</a>, <a href="https://maven.apache.org/ref/2.0.11/">reference documentation</a></td>
+</tr>
+<tr><td>2009-02-18</td><td>2.0.10</td><td><a href="https://mail-archives.apache.org/mod_mbox/maven-announce/200902.mbox/%3C6d8f35410902180648r14fc7a53waaec9a36166403cf%40mail.gmail.com%3E">announce</a>, <a href="./2.0.10/release-notes.html">release notes</a></td>
+</tr>
+<tr><td>2008-04-10</td><td>2.0.9</td><td><a href="https://mail-archives.apache.org/mod_mbox/maven-announce/200804.mbox/%3C6d8f35410804100743x6085e96cv72101712cdbec434%40mail.gmail.com%3E">announce</a>, <a href="./2.0.9/release-notes.html">release notes</a></td>
+</tr>
+<tr><td>2007-11-27</td><td>2.0.8</td><td><a href="https://mail-archives.apache.org/mod_mbox/maven-announce/200711.mbox/%3C6d8f35410711271426u7945c8b1w2e4778aa5651861f%40mail.gmail.com%3E">announce</a>, <a href="./2.0.8/release-notes.html">release notes</a></td>
+</tr>
+<tr><td>2007-06-21</td><td>2.0.7</td><td><a href="https://mail-archives.apache.org/mod_mbox/maven-users/200706.mbox/%3C3B5AF748-95CA-4B2B-ABFB-5053BE4EAC90%40maven.org%3E">announce</a>, <a href="./2.0.7/release-notes.html">release notes</a></td>
+</tr>
+<tr><td>2007-04-01</td><td>2.0.6</td><td><a href="https://mail-archives.apache.org/mod_mbox/maven-users/200704.mbox/%3CA42EA48C-AB89-449F-B6A1-F73D8B3617D9%40maven.org%3E">announce</a>, <a href="./2.0.6/release-notes.html">release notes</a></td>
+</tr>
+<tr><td>2007-02-16</td><td>2.0.5</td><td><a href="https://mail-archives.apache.org/mod_mbox/maven-announce/200702.mbox/%3C0DC020CD-0334-4106-B99E-DEC7B477AC72%40apache.org%3E">announce</a>, <a href="./2.0.5/release-notes.html">release notes</a></td>
+</tr>
+<tr><td>2006-04-11</td><td>2.0.4</td><td><a href="https://mail-archives.apache.org/mod_mbox/maven-announce/200604.mbox/%3C443AF37E.5000105%40apache.org%3E">announce</a>, <a href="./2.0.4/release-notes.html">release notes</a></td>
+</tr>
+<tr><td>2006-03-28</td><td>2.0.3</td><td><a href="https://mail-archives.apache.org/mod_mbox/maven-announce/200603.mbox/%3C44294FB6.6070509%40apache.org%3E">announce</a>, <a href="./2.0.3/release-notes.html">release notes</a></td>
+</tr>
+<tr><td>2006-01-17</td><td>2.0.2</td><td><a href="https://mail-archives.apache.org/mod_mbox/maven-users/200601.mbox/%3C43CC4C09.8050800%40maven.org%3E">announce</a>, <a href="./2.0.2/release-notes.html">release notes</a></td>
+</tr>
+<tr><td>2005-12-13</td><td>2.0.1</td><td><a href="https://mail-archives.apache.org/mod_mbox/maven-users/200512.mbox/%3C439E0738.6030109%40commonjava.org%3E">announce</a>, <a href="./2.0.1/release-notes.html">release notes</a></td>
+</tr>
+<tr><td>2005-10-20</td><td>2.0</td><td><a href="https://mail-archives.apache.org/mod_mbox/maven-users/200510.mbox/%3C4356C7AF.6080901%40apache.org%3E">announce</a>, <a href="./2.0/release-notes.html">release notes</a></td>
+</tr>
+</tbody></table>
+<h2 id="Maven_1">Maven 1</h2>
+<p>Maven 1.x has now reached its <a href="../maven-1.x-eol.html">end of life</a>.
+  <a href="https://maven.apache.org/archives/maven-1.x/index.html">Maven 1.x documentation</a> is archived for reference.</p>
+<table class="table table-striped">
+<tbody><tr><th>2014-02-18</th><th>End of Life</th><th>
+<a href="../maven-1.x-eol.html">EoL announce</a>
+</th></tr>
+<tr><td>2007-06-25</td><td>1.1</td><td><a href="https://mail-archives.apache.org/mod_mbox/maven-/announce/200706.mbox/%3C262c6c680706250248m46d1b285i1792a19fb7c2b87e%40mail.gmail.com%3E">announce</a></td></tr>
+<tr><td>2007-05-12</td><td>1.1-RC-1</td><td><a href="https://mail-archives.apache.org/mod_mbox/maven-/announce/200705.mbox/%3C262c6c680705120121i5a2c1372v1a2824a4f22e496%40mail.gmail.com%3E">announce</a></td></tr>
+<tr><td>2006-08-01</td><td>1.1-beta-3</td><td><a href="https://maven.apache.org/maven-1.x/news.html">announce</a></td></tr>
+<tr><td>2005-09-12</td><td>1.1-beta-2</td><td><a href="https://mail-archives.apache.org/mod_mbox/maven-/users/200509.mbox/%3C4325192D.6090404%40apache.org%3E">announce</a></td></tr>
+<tr><td>2004-12-07</td><td>1.0.2</td><td><a href="http://jakarta.apache.org/site/news/elsewhere-2004-2ndHalf.html#20041207.1">announce</a></td></tr>
+<tr><td>2004-11-11</td><td>1.0.1</td><td><a href="http://jakarta.apache.org/site/news/elsewhere-2004-2ndHalf.html#20041111.1">announce</a></td></tr>
+<tr><td>2004-07-13</td><td>1.0</td><td><a href="http://jakarta.apache.org/site/news/elsewhere-2004-2ndHalf.html#20040713.1">announce</a></td></tr>
+<tr><td>2004-03-24</td><td>1.0-RC2</td><td><a href="http://jakarta.apache.org/site/news/elsewhere-2004-1stHalf.html#20040324.1">announce</a></td></tr>
+<tr><td>2003-09-29</td><td>1.0-RC1</td><td><a href="http://jakarta.apache.org/site/news/elsewhere-2003.html#20030929.1">announce</a></td></tr>
+<tr><td>2003-07-14</td><td>1.0-beta-10</td><td><a href="http://jakarta.apache.org/site/news/elsewhere-2003.html#20030714.1">announce</a></td></tr>
+<tr><td>2002-04-11</td><td>1.0-beta-3</td><td><a href="http://jakarta.apache.org/site/news/news-2002.html#0411.1">announce</a></td></tr>
+<tr><td>2002-03-30</td><td>1.0-beta-2</td><td><a href="http://jakarta.apache.org/site/news/news-2002.html#0330.1">announce</a></td></tr>
+</tbody></table>
+
+        </main>
+      </div>
+    </div>
+    <hr>
+    <footer>
+      <div class="container-fluid">
+        <div class="row-fluid">
+          <p>©      2002–2026 <a href="https://www.apache.org/">The Apache Software Foundation</a></p>
+          <p class="demo-note">A demonstration build of <a href="https://github.com/dashorst/maven-site/tree/diataxis-demo">dashorst/maven-site</a>, not the official Apache Maven site.</p>
+        </div>
+      </div>
+    </footer>
+    <script src="/maven-site/js/guide.js?v=1792948498" defer=""></script>
+    <script>
+    anchors.add();
+    </script>
+  
+
+</body></html>

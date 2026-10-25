@@ -1,0 +1,346 @@
+<!DOCTYPE html><!--
+ | The page frame of the Apache Maven Fluido Skin 2.1.0, as the Doxia site renderer writes it
+ | for maven.apache.org. Built with Jekyll: see jekyll/README.md.
+--><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Maven &amp; JSR-330 – Maven</title>
+    
+    <link rel="stylesheet" href="/maven-site/css/apache-maven-fluido-2.1.0.min.css">
+    <link rel="stylesheet" href="/maven-site/css/site.css">
+    <link rel="stylesheet" href="/maven-site/css/guide.css?v=1792948498">
+    <link rel="stylesheet" href="/maven-site/css/print.css" media="print">
+    <script src="/maven-site/js/apache-maven-fluido-2.1.0.min.js"></script>
+  </head>
+  <body>
+    <div class="container-fluid container-fluid-top">
+      <header>
+        <div id="banner">
+          <div class="pull-left"><div id="bannerLeft"><h1><a href="/maven-site/index.html"><img src="/maven-site/images/apache-maven-project-light-theme.svg" style="width: 489px;height: 83px;" alt="Apache Maven"></a></h1></div></div>
+          <div class="pull-right"><div id="bannerRight"><h1><img src="/maven-site/images/logos/MavenLogoLeaf.svg" style="width: 340px;height: 83px;" alt=""></h1></div></div>
+          <div class="clear"><hr></div>
+        </div>
+
+        <div id="breadcrumbs">
+          <ul class="breadcrumb">
+            <li><a href="https://www.apache.org/">Apache</a><span class="divider">/</span></li>
+            <li><a href="/maven-site/index.html">Maven</a><span class="divider">/</span></li>
+            
+            <li class="active">Maven &amp; JSR-330 <a href="https://github.com/apache/maven-site/tree/master/content/markdown/maven-jsr330.md"><img src="/maven-site/images/accessories-text-editor.png" alt="Edit"></a></li>
+            <li id="publishDate" class="pull-right"><span class="divider">|</span> Last Published: 2026-10-25</li>
+            <li class="pull-right"><span class="divider">|</span> <a href="/maven-site/scm.html">Get Sources</a></li>
+            <li class="pull-right"><a href="https://maven.apache.org/download.cgi">Downloads</a></li>
+          </ul>
+        </div>
+      </header>
+      <div class="row-fluid">
+        <header id="leftColumn" class="span2">
+          
+<form class="guide-search" role="search" action="/maven-site/guides/a-z.html" data-index="/maven-site/guides/search.json" data-script="/maven-site/js/minisearch-7.2.0.js" data-oldest="3.9" data-base="/maven-site">
+  <label class="guide-search-label" for="guide-q-nav">Search the documentation</label>
+  <div class="guide-search-field">
+    <input id="guide-q-nav" name="q" type="search" autocomplete="off" spellcheck="false" placeholder="Search">
+    <kbd class="guide-search-key" aria-hidden="true">/</kbd>
+  </div>
+  
+</form>
+
+          <nav class="well sidebar-nav">
+<ul class="nav nav-list">
+  <li><a href="/maven-site/index.html">Welcome</a></li>
+  <li><a href="https://www.apache.org/licenses/">License</a></li>
+  <li class="nav-header">About Maven</li>
+  <li><a href="/maven-site/what-is-maven.html">What is Maven?</a></li>
+  <li><a href="/maven-site/install.html">Installation</a></li>
+  <li><a href="/maven-site/download.html">Downloads</a></li>
+  <li><a href="/maven-site/run.html">Use</a></li>
+  <li><a href="/maven-site/configure.html">Configure</a></li>
+  <li><a href="/maven-site/docs/history.html">Release Notes</a></li>
+  <li><a href="/maven-site/security.html">Security Reports</a></li>
+  <li class="nav-header">Documentation</li>
+  <li><a href="/maven-site/plugins/index.html">Maven Plugins</a></li>
+  <li><a href="/maven-site/extensions/index.html">Maven Extensions</a></li>
+  <li><a href="/maven-site/tools/index.html"><span class="icon-chevron-down"></span>Maven Tools</a>
+   <ul class="nav nav-list">
+    <li><a href="/maven-site/tools/mvnd.html">Maven Daemon</a></li>
+    <li><a href="/maven-site/tools/mvnsh.html">Maven Shell</a></li>
+    <li><a href="/maven-site/tools/mvnup.html">Maven Upgrade Tool</a></li>
+    <li><a href="/maven-site/tools/mavenwrapper.html">Maven Wrapper</a></li>
+   </ul></li>
+  <li><a href="/maven-site/doxia/index.html"><span class="icon-chevron-right"></span>Doxia</a></li>
+  <li><a href="/maven-site/guides/index.html">Guides</a></li>
+  <li><a href="/maven-site/users/index.html"><span class="icon-chevron-right"></span>User Manual</a></li>
+  <li><a href="/maven-site/repositories/index.html"><span class="icon-chevron-right"></span>Maven Repositories</a></li>
+  <li><a href="/maven-site/plugin-developers/index.html"><span class="icon-chevron-down"></span>Plugin Development</a>
+   <ul class="nav nav-list">
+    <li><a href="/maven-site/guides/introduction/introduction-to-plugins.html">Introduction</a></li>
+    <li><a href="/maven-site/guides/plugin/guide-java-plugin-development.html">Your First Mojo</a></li>
+    <li><a href="/maven-site/guides/plugin/guide-java-report-plugin-development.html">Your First Report Mojo</a></li>
+    <li><a href="/maven-site/guides/development/guide-plugin-documentation.html">Writing Plugin Documentation</a></li>
+    <li><a href="/maven-site/plugin-developers/plugin-testing.html">Testing Plugins</a></li>
+    <li><a href="/maven-site/developers/mojo-api-specification.html">Mojo API</a></li>
+    <li><a href="/maven-site/maven-logging.html">Maven 3.1.x logging</a></li>
+    <li><a href="/maven-site/plugin-developers/common-bugs.html">Common Bugs and Pitfalls</a></li>
+    <li><a href="/maven-site/examples/maven-3-lifecycle-extensions.html">Maven Lifecycle Extensions</a></li>
+    <li><a href="/maven-site/plugin-developers/cookbook/plexus-plugin-upgrade.html">Plexus Javadoc to Plexus Annotations</a></li>
+    <li class="active"><a>Using JSR-330</a></li>
+    <li><a><span class="icon-chevron-down"></span>Maven 4</a>
+     <ul class="nav nav-list">
+      <li><a href="/maven-site/maven-di.html">Using Maven Dependency Injection</a></li>
+      <li><a href="/maven-site/null-annotations.html">Maven Null Annotations</a></li>
+     </ul></li>
+   </ul></li>
+  <li><a href="/maven-site/developers/index.html"><span class="icon-chevron-right"></span>Contribute to Maven</a></li>
+  <li><a href="/maven-site/articles.html">Books and Resources</a></li>
+  <li class="nav-header">Community</li>
+  <li><a href="/maven-site/community.html">Community Overview</a></li>
+  <li><a href="/maven-site/project-roles.html">Project Roles</a></li>
+  <li><a href="/maven-site/guides/development/guide-helping.html">How to Contribute</a></li>
+  <li><a href="/maven-site/users/getting-help.html">Getting Help</a></li>
+  <li><a href="/maven-site/issue-management.html">Issue Management</a></li>
+  <li><a href="/maven-site/scm.html">Getting Maven Source</a></li>
+  <li><a href="/maven-site/team.html">The Maven Team</a></li>
+  <li class="nav-header">Project Documentation</li>
+  <li><a href="/maven-site/project-info.html">Project Information</a></li>
+  <li class="nav-header">Maven Projects</li>
+  <li><a href="/maven-site/ref/current">Maven</a></li>
+  <li><a href="/maven-site/archetypes/index.html">Archetypes</a></li>
+  <li><a href="/maven-site/extensions/index.html">Extensions</a></li>
+  <li><a href="/maven-site/pom/index.html">Parent POMs</a></li>
+  <li><a href="/maven-site/plugins/index.html">Plugins</a></li>
+  <li><a href="/maven-site/skins/index.html">Skins</a></li>
+  <li><a><span class="icon-chevron-down"></span>Components</a>
+   <ul class="nav nav-list">
+    <li><a href="/maven-site/archetype/index.html">Archetype</a></li>
+    <li><a href="/maven-site/resolver/index.html">Artifact Resolver</a></li>
+    <li><a href="/maven-site/doxia/index.html">Doxia</a></li>
+    <li><a href="/maven-site/maven-indexer/index.html">Indexer</a></li>
+    <li><a href="/maven-site/jxr/index.html">JXR</a></li>
+    <li><a href="/maven-site/plugin-testing/index.html">Plugin Testing</a></li>
+    <li><a href="/maven-site/plugin-tools/index.html">Plugin Tools</a></li>
+    <li><a href="/maven-site/apache-resource-bundles/index.html">Resource Bundles</a></li>
+    <li><a href="/maven-site/scm/index.html">SCM</a></li>
+    <li><a href="/maven-site/shared/index.html">Shared Components</a></li>
+    <li><a href="/maven-site/surefire/index.html">Surefire</a></li>
+    <li><a href="/maven-site/wagon/index.html">Wagon</a></li>
+   </ul></li>
+  <li class="nav-header">ASF</li>
+  <li><a href="https://www.apache.org/foundation/how-it-works.html">How Apache Works</a></li>
+  <li><a href="https://www.apache.org/foundation/">Foundation</a></li>
+  <li><a href="https://privacy.apache.org/policies/privacy-policy-public.html">Data Privacy</a></li>
+  <li><a href="https://www.apache.org/foundation/sponsorship.html">Sponsoring Apache</a></li>
+  <li><a href="https://www.apache.org/foundation/thanks.html">Thanks</a></li>
+</ul>
+          </nav>
+          <div class="well sidebar-nav">
+            <div id="poweredBy">
+              <div class="clear"></div>
+              <a href="/maven-site/" class="builtBy" target="_blank"><img class="builtBy" alt="Built by Maven" src="/maven-site/images/logos/maven-feather.png"></a>
+            </div>
+          </div>
+        </header>
+        <main id="bodyColumn" class="span10">
+          
+<h1 id="Maven_.26_JSR-330">Maven &amp; JSR-330</h1>
+<!--
+Licensed to the Apache Software Foundation (ASF) under one
+or more contributor license agreements.  See the NOTICE file
+distributed with this work for additional information
+regarding copyright ownership.  The ASF licenses this file
+to you under the Apache License, Version 2.0 (the
+"License"); you may not use this file except in compliance
+with the License.  You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing,
+software distributed under the License is distributed on an
+"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+KIND, either express or implied.  See the License for the
+specific language governing permissions and limitations
+under the License.
+-->
+<h2 id="Why_JSR-330.3F">Why JSR-330?</h2>
+<p>Maven has a long history of using dependency injection (DI) by way of <a href="https://codehaus-plexus.github.io/plexus-containers/">Plexus</a>, so the intent of using
+<a href="https://www.jcp.org/en/jsr/detail?id=330">JSR-330</a> is to replace a custom DI mechanism (with custom Plexus <code>@Component</code>/<code>@Requirement</code> annotations) with something standard (with <code>@Named</code>/<code>@Inject</code> annotations). The implementation Maven
+uses - since 3.0-beta-3 - is named <a href="https://eclipse.org/sisu/">Sisu</a> and is based on <a href="https://code.google.com/p/google-guice/">Guice 3.x</a>, which directly supports JSR-330.</p>
+<p>If you are using <a href="https://codehaus-plexus.github.io/plexus-containers/plexus-component-annotations/">Plexus annotations and APIs</a> currently,
+there is no rush to switch and no big bang conversions are necessary: Plexus, JSR-330 and Guice APIs all happily
+co-exist within Maven's core and you can choose to use JSR-330 when you wish. There are hundreds of components
+written using the Plexus APIs.</p>
+<p>If you want to use JSR-330, you must understand that your code won't be compatible with Maven 3.0.x
+but only with Maven 3.1.0 and later. Even though JSR-330 has been available in core since Maven 3.0-beta-3, it was made available to plugins and
+extensions only in Maven 3.1.0 (see <a href="https://issues.apache.org/jira/browse/MNG-5343">MNG-5343</a> for more details).</p>
+<p>If you are interested the background of moving from Plexus to Guice and JSR-330, you can refer to the following "Plexus to Guice" articles from 2010: <a href="https://www.sonatype.com/people/2010/01/from-plexus-to-guice-1-why-guice/">part 1</a>, <a href="https://www.sonatype.com/people/2010/01/from-plexus-to-guice-2-the-guiceplexus-bridge-and-custom-bean-injection/">part 2</a> and <a href="https://www.sonatype.com/people/2010/01/from-plexus-to-guice-3-creating-a-guice-bean-extension-layer/">part 3</a>.</p>
+<p>If you are interested in migrating from Plexus Annotations to JSR-330, Sisu has a <a href="https://eclipse.dev/sisu/org.eclipse.sisu.plexus/conversion-to-jsr330.html">Plexus Migration documentation</a> that is done for you.</p>
+<h2 id="How_to_use_JSR-330">How to use JSR-330</h2>
+<p>When you use JSR-330 in Maven plugins or extensions, there are two things you need to setup in your build:</p>
+<ol>
+<li>
+<p>First you want a dependency on <code>javax.inject</code> so you can use the <code>@Inject</code>, <code>@Named</code>, and <code>@Singleton</code> annotations
+in your plugins and extensions (eventually in addition to <a href="https://codehaus-plexus.github.io/plexus-containers/plexus-component-annotations/">Plexus annotations</a>).</p>
+</li>
+<li>
+<p>Second you need to setup the <a href="https://eclipse.org/sisu/docs/api/org.eclipse.sisu.mojos/"><code>sisu-maven-plugin</code></a> to index the JSR-330 components
+you want made available to Maven. The <a href="https://eclipse.org/sisu/docs/api/org.eclipse.sisu.mojos/"><code>sisu-maven-plugin</code></a> creates its index in <code>META-INF/sisu/javax.inject.Named</code> (eventually in addition to <a href="https://codehaus-plexus.github.io/plexus-containers/plexus-component-metadata/"><code>plexus-component-metadata</code></a>).</p>
+</li>
+</ol>
+<h3 id="Implementation_Details">Implementation Details</h3>
+<p>If you take a look in that <code>META-INF/sisu/javax.inject.Named</code> file with the example from the next paragraph, you will see a list of full class names.</p>
+<p>Enumerating the implementations means that no classpath scanning is required in runtime to find them, which keeps Maven's
+startup time fast. Note that our container is configured by default to only use the index. While this keeps things fast,
+if you use JSR-330 components in dependencies that do not contain an index, those implementations will currently
+not be discovered. This is a compromise that is reasonable given Maven is a command-line tool where startup speed
+is important.</p>
+<h2 id="How_to_use_JSR-330_in_plugins">How to use JSR-330 in plugins</h2>
+<p>Let's take a look at an example plugin: If you want to look at this example project, you can find the code <a href="https://github.com/apache/maven-integration-testing/tree/master/core-it-suite/src/test/resources/mng-5382">in Maven Core ITs</a>.</p>
+<p>The POM is set up for JSR-300 as previously mentioned, with the <code>javax.inject</code> dependency and the <code>sisu-maven-plugin</code> configured to create
+the JSR-330 component index.</p>
+<p>In addition, we add classical Maven plugin dependencies
+<code>maven-plugin-api</code> and <code>maven-plugin-annotations</code> to extend the <code>AbstractMojo</code> and use the Java  Plugin Tools Annotations with associated <code>maven-plugin-plugin</code> (see <a href="https://maven.apache.org/plugin-tools/">Maven Plugin Tools</a>).</p>
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="xml"><span class="nt">&lt;project</span> <span class="na">xmlns=</span><span class="s">"http://maven.apache.org/POM/4.0.0"</span> <span class="na">xmlns:xsi=</span><span class="s">"http://www.w3.org/2001/XMLSchema-instance"</span>
+  <span class="na">xsi:schemaLocation=</span><span class="s">"http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;modelVersion&gt;</span>4.0.0<span class="nt">&lt;/modelVersion&gt;</span>
+
+  <span class="nt">&lt;groupId&gt;</span>org.apache.maven.plugins<span class="nt">&lt;/groupId&gt;</span>
+  <span class="nt">&lt;artifactId&gt;</span>maven-jsr330-plugin<span class="nt">&lt;/artifactId&gt;</span>
+  <span class="nt">&lt;version&gt;</span>0.0.1-SNAPSHOT<span class="nt">&lt;/version&gt;</span>
+  <span class="nt">&lt;packaging&gt;</span>maven-plugin<span class="nt">&lt;/packaging&gt;</span>
+
+  <span class="nt">&lt;name&gt;</span>maven-jsr330-plugin Maven Plugin<span class="nt">&lt;/name&gt;</span>
+  <span class="nt">&lt;description&gt;</span>As sample Maven Plugin that uses JSR-330 components<span class="nt">&lt;/description&gt;</span>
+
+  <span class="nt">&lt;properties&gt;</span>
+    <span class="nt">&lt;project.build.sourceEncoding&gt;</span>UTF-8<span class="nt">&lt;/project.build.sourceEncoding&gt;</span>
+    <span class="nt">&lt;mavenVersion&gt;</span>3.0.4<span class="nt">&lt;/mavenVersion&gt;</span>
+    <span class="nt">&lt;mavenPluginPluginVersion&gt;</span>3.2<span class="nt">&lt;/mavenPluginPluginVersion&gt;</span>
+  <span class="nt">&lt;/properties&gt;</span>
+
+  <span class="nt">&lt;dependencies&gt;</span>
+    <span class="nt">&lt;dependency&gt;</span>
+      <span class="nt">&lt;groupId&gt;</span>javax.inject<span class="nt">&lt;/groupId&gt;</span>
+      <span class="nt">&lt;artifactId&gt;</span>javax.inject<span class="nt">&lt;/artifactId&gt;</span>
+      <span class="nt">&lt;version&gt;</span>1<span class="nt">&lt;/version&gt;</span>
+      <span class="nt">&lt;scope&gt;</span>provided<span class="nt">&lt;/scope&gt;</span>
+    <span class="nt">&lt;/dependency&gt;</span>
+    <span class="nt">&lt;dependency&gt;</span>
+      <span class="nt">&lt;groupId&gt;</span>org.apache.maven<span class="nt">&lt;/groupId&gt;</span>
+      <span class="nt">&lt;artifactId&gt;</span>maven-plugin-api<span class="nt">&lt;/artifactId&gt;</span>
+      <span class="nt">&lt;version&gt;</span>${mavenVersion}<span class="nt">&lt;/version&gt;</span>
+      <span class="nt">&lt;scope&gt;</span>provided<span class="nt">&lt;/scope&gt;</span>
+    <span class="nt">&lt;/dependency&gt;</span>
+    <span class="nt">&lt;dependency&gt;</span>
+      <span class="nt">&lt;groupId&gt;</span>org.apache.maven.plugin-tools<span class="nt">&lt;/groupId&gt;</span>
+      <span class="nt">&lt;artifactId&gt;</span>maven-plugin-annotations<span class="nt">&lt;/artifactId&gt;</span>
+      <span class="nt">&lt;version&gt;</span>${mavenPluginPluginVersion}<span class="nt">&lt;/version&gt;</span>
+      <span class="nt">&lt;scope&gt;</span>provided<span class="nt">&lt;/scope&gt;</span>
+    <span class="nt">&lt;/dependency&gt;</span>
+    <span class="nt">&lt;dependency&gt;</span>
+      <span class="nt">&lt;groupId&gt;</span>junit<span class="nt">&lt;/groupId&gt;</span>
+      <span class="nt">&lt;artifactId&gt;</span>junit<span class="nt">&lt;/artifactId&gt;</span>
+      <span class="nt">&lt;version&gt;</span>3.8.1<span class="nt">&lt;/version&gt;</span>
+      <span class="nt">&lt;scope&gt;</span>test<span class="nt">&lt;/scope&gt;</span>
+    <span class="nt">&lt;/dependency&gt;</span>
+  <span class="nt">&lt;/dependencies&gt;</span>
+
+  <span class="nt">&lt;build&gt;</span>
+    <span class="nt">&lt;plugins&gt;</span>
+      <span class="nt">&lt;plugin&gt;</span>
+        <span class="nt">&lt;groupId&gt;</span>org.apache.maven.plugins<span class="nt">&lt;/groupId&gt;</span>
+        <span class="nt">&lt;artifactId&gt;</span>maven-plugin-plugin<span class="nt">&lt;/artifactId&gt;</span>
+        <span class="nt">&lt;version&gt;</span>${mavenPluginPluginVersion}<span class="nt">&lt;/version&gt;</span>
+        <span class="nt">&lt;configuration&gt;</span>
+          <span class="nt">&lt;skipErrorNoDescriptorsFound&gt;</span>true<span class="nt">&lt;/skipErrorNoDescriptorsFound&gt;</span>
+        <span class="nt">&lt;/configuration&gt;</span>
+        <span class="nt">&lt;executions&gt;</span>
+          <span class="nt">&lt;execution&gt;</span>
+            <span class="nt">&lt;id&gt;</span>mojo-descriptor<span class="nt">&lt;/id&gt;</span>
+            <span class="nt">&lt;goals&gt;</span>
+              <span class="nt">&lt;goal&gt;</span>descriptor<span class="nt">&lt;/goal&gt;</span>
+            <span class="nt">&lt;/goals&gt;</span>
+          <span class="nt">&lt;/execution&gt;</span>
+          <span class="nt">&lt;execution&gt;</span>
+            <span class="nt">&lt;id&gt;</span>help-goal<span class="nt">&lt;/id&gt;</span>
+            <span class="nt">&lt;goals&gt;</span>
+              <span class="nt">&lt;goal&gt;</span>helpmojo<span class="nt">&lt;/goal&gt;</span>
+            <span class="nt">&lt;/goals&gt;</span>
+          <span class="nt">&lt;/execution&gt;</span>
+        <span class="nt">&lt;/executions&gt;</span>
+      <span class="nt">&lt;/plugin&gt;</span>
+      <span class="nt">&lt;plugin&gt;</span>
+        <span class="nt">&lt;groupId&gt;</span>org.eclipse.sisu<span class="nt">&lt;/groupId&gt;</span>
+        <span class="nt">&lt;artifactId&gt;</span>sisu-maven-plugin<span class="nt">&lt;/artifactId&gt;</span>
+        <span class="nt">&lt;version&gt;</span>0.3.5<span class="nt">&lt;/version&gt;</span>
+        <span class="nt">&lt;executions&gt;</span>
+          <span class="nt">&lt;execution&gt;</span>
+            <span class="nt">&lt;id&gt;</span>generate-index<span class="nt">&lt;/id&gt;</span>
+            <span class="nt">&lt;goals&gt;</span>
+              <span class="nt">&lt;goal&gt;</span>main-index<span class="nt">&lt;/goal&gt;</span>
+            <span class="nt">&lt;/goals&gt;</span>
+          <span class="nt">&lt;/execution&gt;</span>
+        <span class="nt">&lt;/executions&gt;</span>
+      <span class="nt">&lt;/plugin&gt;</span>
+    <span class="nt">&lt;/plugins&gt;</span>
+  <span class="nt">&lt;/build&gt;</span>
+<span class="nt">&lt;/project&gt;</span>
+</code></pre></div></div>
+<p>Now let's take a look at the plugin code. You'll notice that we're using constructor injection
+which makes testing a lot easier. If you want to test your <code>Jsr330Component</code>, you do not need the container
+to instantiate the <code>Mojo</code>. In this simple case, you can actually test this plugin without using the <a href="https://maven.apache.org/plugin-testing/maven-plugin-testing-harness/index.html">plugin
+testing harness</a> because you can instantiate the <code>Jsr330Component</code> and <code>Jsr330Mojo</code> directly and wire
+everything up manually using the constructor. Constructor injection, which Plexus lacks, greatly simplifies testing.</p>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="java"><span class="kn">package</span> <span class="nn">org.apache.maven.plugins</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">javax.inject.Inject</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">org.apache.maven.plugin.AbstractMojo</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.apache.maven.plugin.MojoExecutionException</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.apache.maven.plugins.annotations.LifecyclePhase</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.apache.maven.plugins.annotations.Mojo</span><span class="o">;</span>
+
+<span class="nd">@Mojo</span><span class="o">(</span> <span class="n">name</span> <span class="o">=</span> <span class="s">"hello"</span><span class="o">,</span> <span class="n">defaultPhase</span> <span class="o">=</span> <span class="nc">LifecyclePhase</span><span class="o">.</span><span class="na">VALIDATE</span><span class="o">,</span> <span class="n">requiresProject</span> <span class="o">=</span> <span class="kc">false</span> <span class="o">)</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Jsr330Mojo</span>
+    <span class="kd">extends</span> <span class="nc">AbstractMojo</span>
+<span class="o">{</span>
+
+    <span class="kd">private</span> <span class="nc">Jsr330Component</span> <span class="n">component</span><span class="o">;</span>
+
+    <span class="nd">@Inject</span>
+    <span class="kd">public</span> <span class="nf">Jsr330Mojo</span><span class="o">(</span> <span class="nc">Jsr330Component</span> <span class="n">component</span> <span class="o">)</span>
+    <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">component</span> <span class="o">=</span> <span class="n">component</span><span class="o">;</span>    
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">execute</span><span class="o">()</span>
+        <span class="kd">throws</span> <span class="nc">MojoExecutionException</span>
+    <span class="o">{</span>    
+        <span class="c1">//</span>
+        <span class="c1">// Say hello to the world, my little constructor injected component!</span>
+        <span class="c1">//</span>
+        <span class="n">component</span><span class="o">.</span><span class="na">hello</span><span class="o">();</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+<h2 id="Lifecycle_annotations_.28JSR-250.29">Lifecycle annotations (JSR-250)</h2>
+<p>Sisu managed beans also support lifecycle annotations defined by <a href="https://jcp.org/en/jsr/detail?id=250">JSR-250</a> (for example <code>@PostConstruct</code>).
+See <a href="https://eclipse.dev/sisu/org.eclipse.sisu.inject/lifecycle.html">Sisu's lifecycle support documentation</a> for more information.</p>
+
+        </main>
+      </div>
+    </div>
+    <hr>
+    <footer>
+      <div class="container-fluid">
+        <div class="row-fluid">
+          <p>©      2002–2026 <a href="https://www.apache.org/">The Apache Software Foundation</a></p>
+          <p class="demo-note">A demonstration build of <a href="https://github.com/dashorst/maven-site/tree/diataxis-demo">dashorst/maven-site</a>, not the official Apache Maven site.</p>
+        </div>
+      </div>
+    </footer>
+    <script src="/maven-site/js/guide.js?v=1792948498" defer=""></script>
+    <script>
+    anchors.add();
+    </script>
+  
+
+</body></html>

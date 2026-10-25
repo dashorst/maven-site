@@ -1,0 +1,306 @@
+<!DOCTYPE html><!--
+ | The page frame of the Apache Maven Fluido Skin 2.1.0, as the Doxia site renderer writes it
+ | for maven.apache.org. Built with Jekyll: see jekyll/README.md.
+--><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Markdown Format Reference – Maven</title>
+    
+    <link rel="stylesheet" href="/maven-site/css/apache-maven-fluido-2.1.0.min.css">
+    <link rel="stylesheet" href="/maven-site/css/site.css">
+    <link rel="stylesheet" href="/maven-site/css/guide.css?v=1792948498">
+    <link rel="stylesheet" href="/maven-site/css/print.css" media="print">
+    <script src="/maven-site/js/apache-maven-fluido-2.1.0.min.js"></script>
+  </head>
+  <body>
+    <div class="container-fluid container-fluid-top">
+      <header>
+        <div id="banner">
+          <div class="pull-left"><div id="bannerLeft"><h1><a href="/maven-site/index.html"><img src="/maven-site/images/apache-maven-project-light-theme.svg" style="width: 489px;height: 83px;" alt="Apache Maven"></a></h1></div></div>
+          <div class="pull-right"><div id="bannerRight"><h1><img src="/maven-site/images/logos/MavenLogoLeaf.svg" style="width: 340px;height: 83px;" alt=""></h1></div></div>
+          <div class="clear"><hr></div>
+        </div>
+
+        <div id="breadcrumbs">
+          <ul class="breadcrumb">
+            <li><a href="https://www.apache.org/">Apache</a><span class="divider">/</span></li>
+            <li><a href="/maven-site/index.html">Maven</a><span class="divider">/</span></li>
+            
+            <li class="active">Markdown Format Reference <a href="https://github.com/apache/maven-site/tree/master/content/markdown/doxia/references/markdown-format.md"><img src="/maven-site/images/accessories-text-editor.png" alt="Edit"></a></li>
+            <li id="publishDate" class="pull-right"><span class="divider">|</span> Last Published: 2026-10-25</li>
+            <li class="pull-right"><span class="divider">|</span> <a href="/maven-site/scm.html">Get Sources</a></li>
+            <li class="pull-right"><a href="https://maven.apache.org/download.cgi">Downloads</a></li>
+          </ul>
+        </div>
+      </header>
+      <div class="row-fluid">
+        <header id="leftColumn" class="span2">
+          
+<form class="guide-search" role="search" action="/maven-site/guides/a-z.html" data-index="/maven-site/guides/search.json" data-script="/maven-site/js/minisearch-7.2.0.js" data-oldest="3.9" data-base="/maven-site">
+  <label class="guide-search-label" for="guide-q-nav">Search the documentation</label>
+  <div class="guide-search-field">
+    <input id="guide-q-nav" name="q" type="search" autocomplete="off" spellcheck="false" placeholder="Search">
+    <kbd class="guide-search-key" aria-hidden="true">/</kbd>
+  </div>
+  
+</form>
+
+          <nav class="well sidebar-nav">
+<ul class="nav nav-list">
+  <li><a href="/maven-site/index.html">Welcome</a></li>
+  <li><a href="https://www.apache.org/licenses/">License</a></li>
+  <li class="nav-header">About Maven</li>
+  <li><a href="/maven-site/what-is-maven.html">What is Maven?</a></li>
+  <li><a href="/maven-site/install.html">Installation</a></li>
+  <li><a href="/maven-site/download.html">Downloads</a></li>
+  <li><a href="/maven-site/run.html">Use</a></li>
+  <li><a href="/maven-site/configure.html">Configure</a></li>
+  <li><a href="/maven-site/docs/history.html">Release Notes</a></li>
+  <li><a href="/maven-site/security.html">Security Reports</a></li>
+  <li class="nav-header">Documentation</li>
+  <li><a href="/maven-site/plugins/index.html">Maven Plugins</a></li>
+  <li><a href="/maven-site/extensions/index.html">Maven Extensions</a></li>
+  <li><a href="/maven-site/tools/index.html"><span class="icon-chevron-down"></span>Maven Tools</a>
+   <ul class="nav nav-list">
+    <li><a href="/maven-site/tools/mvnd.html">Maven Daemon</a></li>
+    <li><a href="/maven-site/tools/mvnsh.html">Maven Shell</a></li>
+    <li><a href="/maven-site/tools/mvnup.html">Maven Upgrade Tool</a></li>
+    <li><a href="/maven-site/tools/mavenwrapper.html">Maven Wrapper</a></li>
+   </ul></li>
+  <li><a href="/maven-site/doxia/index.html"><span class="icon-chevron-down"></span>Doxia</a>
+   <ul class="nav nav-list">
+    <li><a href="/maven-site/doxia/overview.html">Overview</a></li>
+    <li><a href="/maven-site/doxia/downloads.html">Downloads</a></li>
+    <li><a href="/maven-site/doxia/faq.html">FAQ</a></li>
+    <li><a href="/maven-site/doxia/references/index.html"><span class="icon-chevron-down"></span>Format References</a>
+     <ul class="nav nav-list">
+      <li class="active"><a>Markdown Format</a></li>
+      <li><a href="/maven-site/doxia/references/apt-format.html"><span class="icon-chevron-right"></span>Apt Format</a></li>
+      <li><a href="/maven-site/doxia/references/fml-format.html">FML Format</a></li>
+      <li><a href="/maven-site/doxia/references/xdoc-format.html">Xdoc Format</a></li>
+     </ul></li>
+    <li><a href="/maven-site/doxia/modules/index.html">Doxia Modules Guide</a></li>
+    <li><a href="/maven-site/doxia/macros/index.html">Doxia Macros Guide</a></li>
+    <li><a href="/maven-site/doxia/issues/index.html">Issues &amp; Gotchas</a></li>
+    <li><a href="/maven-site/doxia/resources.html">External Resources</a></li>
+    <li><a href="/maven-site/doxia/developers/index.html"><span class="icon-chevron-right"></span>Developer Docs</a></li>
+    <li><a href="/maven-site/doxia/doxia/index.html">Doxia Base</a></li>
+    <li><a href="/maven-site/doxia/doxia-sitetools/index.html">Doxia Sitetools</a></li>
+    <li><a href="/maven-site/doxia/doxia-tools/index.html">Doxia Tools</a></li>
+   </ul></li>
+  <li><a href="/maven-site/guides/index.html">Guides</a></li>
+  <li><a href="/maven-site/users/index.html"><span class="icon-chevron-right"></span>User Manual</a></li>
+  <li><a href="/maven-site/repositories/index.html"><span class="icon-chevron-right"></span>Maven Repositories</a></li>
+  <li><a href="/maven-site/plugin-developers/index.html"><span class="icon-chevron-right"></span>Plugin Development</a></li>
+  <li><a href="/maven-site/developers/index.html"><span class="icon-chevron-right"></span>Contribute to Maven</a></li>
+  <li><a href="/maven-site/articles.html">Books and Resources</a></li>
+  <li class="nav-header">Community</li>
+  <li><a href="/maven-site/community.html">Community Overview</a></li>
+  <li><a href="/maven-site/project-roles.html">Project Roles</a></li>
+  <li><a href="/maven-site/guides/development/guide-helping.html">How to Contribute</a></li>
+  <li><a href="/maven-site/users/getting-help.html">Getting Help</a></li>
+  <li><a href="/maven-site/issue-management.html">Issue Management</a></li>
+  <li><a href="/maven-site/scm.html">Getting Maven Source</a></li>
+  <li><a href="/maven-site/team.html">The Maven Team</a></li>
+  <li class="nav-header">Project Documentation</li>
+  <li><a href="/maven-site/project-info.html">Project Information</a></li>
+  <li class="nav-header">Maven Projects</li>
+  <li><a href="/maven-site/ref/current">Maven</a></li>
+  <li><a href="/maven-site/archetypes/index.html">Archetypes</a></li>
+  <li><a href="/maven-site/extensions/index.html">Extensions</a></li>
+  <li><a href="/maven-site/pom/index.html">Parent POMs</a></li>
+  <li><a href="/maven-site/plugins/index.html">Plugins</a></li>
+  <li><a href="/maven-site/skins/index.html">Skins</a></li>
+  <li><a><span class="icon-chevron-down"></span>Components</a>
+   <ul class="nav nav-list">
+    <li><a href="/maven-site/archetype/index.html">Archetype</a></li>
+    <li><a href="/maven-site/resolver/index.html">Artifact Resolver</a></li>
+    <li><a href="/maven-site/doxia/index.html">Doxia</a></li>
+    <li><a href="/maven-site/maven-indexer/index.html">Indexer</a></li>
+    <li><a href="/maven-site/jxr/index.html">JXR</a></li>
+    <li><a href="/maven-site/plugin-testing/index.html">Plugin Testing</a></li>
+    <li><a href="/maven-site/plugin-tools/index.html">Plugin Tools</a></li>
+    <li><a href="/maven-site/apache-resource-bundles/index.html">Resource Bundles</a></li>
+    <li><a href="/maven-site/scm/index.html">SCM</a></li>
+    <li><a href="/maven-site/shared/index.html">Shared Components</a></li>
+    <li><a href="/maven-site/surefire/index.html">Surefire</a></li>
+    <li><a href="/maven-site/wagon/index.html">Wagon</a></li>
+   </ul></li>
+  <li class="nav-header">ASF</li>
+  <li><a href="https://www.apache.org/foundation/how-it-works.html">How Apache Works</a></li>
+  <li><a href="https://www.apache.org/foundation/">Foundation</a></li>
+  <li><a href="https://privacy.apache.org/policies/privacy-policy-public.html">Data Privacy</a></li>
+  <li><a href="https://www.apache.org/foundation/sponsorship.html">Sponsoring Apache</a></li>
+  <li><a href="https://www.apache.org/foundation/thanks.html">Thanks</a></li>
+</ul>
+          </nav>
+          <div class="well sidebar-nav">
+            <div id="poweredBy">
+              <div class="clear"></div>
+              <a href="/maven-site/" class="builtBy" target="_blank"><img class="builtBy" alt="Built by Maven" src="/maven-site/images/logos/maven-feather.png"></a>
+            </div>
+          </div>
+        </header>
+        <main id="bodyColumn" class="span10">
+          
+<!--
+Licensed to the Apache Software Foundation (ASF) under one
+or more contributor license agreements.  See the NOTICE file
+distributed with this work for additional information
+regarding copyright ownership.  The ASF licenses this file
+to you under the Apache License, Version 2.0 (the
+"License"); you may not use this file except in compliance
+with the License.  You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing,
+software distributed under the License is distributed on an
+"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+KIND, either express or implied.  See the License for the
+specific language governing permissions and limitations
+under the License.
+-->
+<h1 id="Markdown_Format_Reference">Markdown Format Reference</h1>
+<p>Markdown is the format to reach for when writing new Maven documentation. Documents live
+under <code>src/site/markdown/</code> and are read by
+<a href="https://maven.apache.org/doxia/doxia/doxia-modules/doxia-module-markdown/"><code>doxia-module-markdown</code></a>, which is included
+with <code>maven-site-plugin</code> and needs no extra dependency.</p>
+<p>This page covers what is specific to Doxia. For the language itself, read the
+<a href="https://commonmark.org/">CommonMark specification</a>.</p>
+<h2 id="Which_Markdown">Which Markdown</h2>
+<p>The module parses with <a href="https://github.com/vsch/flexmark-java">flexmark</a>, configured for
+CommonMark plus these extensions:</p>
+<table class="table table-striped">
+<thead>
+<tr>
+<th>Extension</th>
+<th>What it adds</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Tables</td>
+<td>GitHub-style pipe tables</td>
+</tr>
+<tr>
+<td>Definition lists</td>
+<td><code>Term</code> followed by <code>: definition</code></td>
+</tr>
+<tr>
+<td>Footnotes</td>
+<td><code>[^1]</code> references and definitions</td>
+</tr>
+<tr>
+<td>Abbreviations</td>
+<td><code>*[HTML]: HyperText Markup Language</code></td>
+</tr>
+<tr>
+<td>Autolink</td>
+<td>bare URLs become links</td>
+</tr>
+<tr>
+<td>Strikethrough</td>
+<td><code>~~text~~</code></td>
+</tr>
+<tr>
+<td>Wiki links</td>
+<td><code>[[page]]</code></td>
+</tr>
+<tr>
+<td>Typographic</td>
+<td>straight quotes, <code>...</code> and <code>--</code> become their typographic forms</td>
+</tr>
+<tr>
+<td>Escaped character</td>
+<td>a backslash escapes the character after it</td>
+</tr>
+</tbody>
+</table>
+<p>The typographic extension is worth knowing about: <code>"quoted"</code> renders with curly quotes and
+<code>...</code> renders as a single ellipsis character. That is normally what you want in prose, but
+it is a surprise inside a literal string, so put those in a code span.</p>
+<h2 id="Document_metadata">Document metadata</h2>
+<p>A document may open with a YAML front matter block. It must be the very first thing in the
+file — the parser only looks for it when the source begins with <code>---</code> — so a licence header
+goes below it, not above.</p>
+<div class="language-markdown highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="markdown"><span class="nn">---</span>
+<span class="na">title</span><span class="pi">:</span> <span class="s">Introduction</span>
+<span class="na">author</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="s">Jane Developer</span>
+  <span class="pi">-</span> <span class="s">jane@example.org</span>
+<span class="na">date</span><span class="pi">:</span> <span class="s">2026-08-07</span>
+<span class="nn">---</span>
+</code></pre></div></div>
+<p>Recognised keys are <code>title</code>, <code>author</code>, <code>date</code>, <code>address</code>, <code>affiliation</code>, <code>copyright</code>,
+<code>email</code>, <code>keywords</code>, <code>language</code>, <code>phone</code> and <code>subtitle</code>. The skin turns them into the
+document title and its <code>meta</code> tags; each <code>author</code> entry becomes its own
+<code>&lt;meta name="author"&gt;</code>.</p>
+<p>Without a <code>title</code>, the page's first heading is used instead. That is usually not the same
+text, so a page that means to have a distinct title should say so explicitly.</p>
+<h2 id="Macros">Macros</h2>
+<p>Doxia macros are written as an HTML comment:</p>
+<div class="language-markdown highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="markdown"><span class="c">&lt;!-- MACRO{toc|fromDepth=1|toDepth=2} --&gt;</span>
+
+<span class="c">&lt;!-- MACRO{snippet|id=example|file=src/main/resources/example.xml} --&gt;</span>
+</code></pre></div></div>
+<p>See the <a href="../macros/index.html">macros reference</a> for the ones that ship with Doxia.</p>
+<h2 id="Velocity">Velocity</h2>
+<p>A document named <code>*.md.vm</code> is run through Velocity before Doxia parses it, which lets it
+interpolate <code>${project.version}</code> and friends.</p>
+<p><strong>Velocity reads <code>##</code> as a line comment.</strong> In a <code>*.md.vm</code> document every heading below
+level one is deleted before Doxia ever sees the page, and nothing reports it. Three ways
+around it:</p>
+<ul>
+<li>
+<p>give the page no <code>.vm</code> suffix if it does not really need Velocity;</p>
+</li>
+<li>
+<p>use a setext underline for a level two heading, with a blank line before the title:</p>
+<div class="language-markdown highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="markdown"><span class="gh">Goals Overview
+--------------
+</span></code></pre></div></div>
+</li>
+<li>
+<p>wrap a deeper heading, or a whole block, in Velocity's unparsed markup:</p>
+<div class="language-markdown highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="markdown"><span class="gh">#[[### Configuring the plugin]]#</span>
+</code></pre></div></div>
+<p>This applies inside fenced code blocks too: Velocity does not know what a code block is,
+so a sample containing <code>##</code> needs the same treatment.</p>
+</li>
+</ul>
+<p>To show a reference rather than resolve it, write <code>${esc.d}{project.version}</code>. A backslash
+only works when the reference happens to resolve.</p>
+<h2 id="What_Markdown_cannot_express">What Markdown cannot express</h2>
+<p>If you are converting an existing document, these have no Markdown equivalent:</p>
+<ul>
+<li>a table caption;</li>
+<li>a second header row part way down a table — it becomes an ordinary row;</li>
+<li>a table with no header at all: Markdown requires one, so an empty header row appears;</li>
+<li><code>_emphasis_</code> directly after a word character, which Markdown does not treat as emphasis.</li>
+</ul>
+<h2 id="Converting_an_existing_document">Converting an existing document</h2>
+<p><a href="https://maven.apache.org/doxia/doxia-tools/doxia-converter/"><code>doxia-converter</code></a> converts APT, XDoc and XHTML sources to
+Markdown. Its output is a good first draft rather than a finished page; build the site
+before and after and compare the generated HTML, since the failure modes above are all
+invisible in the converted source.</p>
+
+        </main>
+      </div>
+    </div>
+    <hr>
+    <footer>
+      <div class="container-fluid">
+        <div class="row-fluid">
+          <p>©      2002–2026 <a href="https://www.apache.org/">The Apache Software Foundation</a></p>
+          <p class="demo-note">A demonstration build of <a href="https://github.com/dashorst/maven-site/tree/diataxis-demo">dashorst/maven-site</a>, not the official Apache Maven site.</p>
+        </div>
+      </div>
+    </footer>
+    <script src="/maven-site/js/guide.js?v=1792948498" defer=""></script>
+    <script>
+    anchors.add();
+    </script>
+  
+
+</body></html>

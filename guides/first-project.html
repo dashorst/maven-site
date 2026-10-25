@@ -1,0 +1,393 @@
+<!DOCTYPE html><!--
+ | The page frame of the Apache Maven Fluido Skin 2.1.0, as the Doxia site renderer writes it
+ | for maven.apache.org. Built with Jekyll: see jekyll/README.md.
+--><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Create your first project – Maven</title>
+    <meta name="description" content="Check Java and Maven, generate a project from the quickstart archetype, build it into a JAR, run its test and run the program.">
+    <link rel="stylesheet" href="/maven-site/css/apache-maven-fluido-2.1.0.min.css">
+    <link rel="stylesheet" href="/maven-site/css/site.css">
+    <link rel="stylesheet" href="/maven-site/css/guide.css?v=1792948498">
+    <link rel="stylesheet" href="/maven-site/css/print.css" media="print">
+    <script src="/maven-site/js/apache-maven-fluido-2.1.0.min.js"></script>
+  </head>
+  <body>
+    <div class="container-fluid container-fluid-top">
+      <header>
+        <div id="banner">
+          <div class="pull-left"><div id="bannerLeft"><h1><a href="/maven-site/index.html"><img src="/maven-site/images/apache-maven-project-light-theme.svg" style="width: 489px;height: 83px;" alt="Apache Maven"></a></h1></div></div>
+          <div class="pull-right"><div id="bannerRight"><h1><img src="/maven-site/images/logos/MavenLogoLeaf.svg" style="width: 340px;height: 83px;" alt=""></h1></div></div>
+          <div class="clear"><hr></div>
+        </div>
+
+        <div id="breadcrumbs">
+          <ul class="breadcrumb">
+            <li><a href="https://www.apache.org/">Apache</a><span class="divider">/</span></li>
+            <li><a href="/maven-site/index.html">Maven</a><span class="divider">/</span></li>
+            <li><a href="/maven-site/guides/index.html">Guides</a><span class="divider">/</span></li>
+            <li><a href="/maven-site/guides/topics/start.html">Getting started</a><span class="divider">/</span></li>
+            
+            <li class="active">Create your first project <a href="https://github.com/dashorst/maven-site/blob/diataxis-demo/jekyll/_guide/first-project.md"><img src="/maven-site/images/accessories-text-editor.png" alt="Edit"></a></li>
+            <li id="publishDate" class="pull-right"><span class="divider">|</span> Last Published: 2026-10-25</li>
+            <li class="pull-right"><span class="divider">|</span> <a href="/maven-site/scm.html">Get Sources</a></li>
+            <li class="pull-right"><a href="https://maven.apache.org/download.cgi">Downloads</a></li>
+          </ul>
+        </div>
+      </header>
+      <div class="row-fluid">
+        <header id="leftColumn" class="span2">
+          
+<form class="guide-search" role="search" action="/maven-site/guides/a-z.html" data-index="/maven-site/guides/search.json" data-script="/maven-site/js/minisearch-7.2.0.js" data-oldest="3.9" data-base="/maven-site">
+  <label class="guide-search-label" for="guide-q-nav">Search the documentation</label>
+  <div class="guide-search-field">
+    <input id="guide-q-nav" name="q" type="search" autocomplete="off" spellcheck="false" placeholder="Search">
+    <kbd class="guide-search-key" aria-hidden="true">/</kbd>
+  </div>
+  
+</form>
+
+          <nav class="well sidebar-nav">
+<ul class="nav nav-list">
+  <li><a href="/maven-site/index.html">Welcome</a></li>
+  <li><a href="https://www.apache.org/licenses/">License</a></li>
+  <li class="nav-header">About Maven</li>
+  <li><a href="/maven-site/what-is-maven.html">What is Maven?</a></li>
+  <li><a href="/maven-site/install.html">Installation</a></li>
+  <li><a href="/maven-site/download.html">Downloads</a></li>
+  <li><a href="/maven-site/run.html">Use</a></li>
+  <li><a href="/maven-site/configure.html">Configure</a></li>
+  <li><a href="/maven-site/docs/history.html">Release Notes</a></li>
+  <li><a href="/maven-site/security.html">Security Reports</a></li>
+  <li class="nav-header">Documentation</li>
+  <li><a href="/maven-site/plugins/index.html">Maven Plugins</a></li>
+  <li><a href="/maven-site/extensions/index.html">Maven Extensions</a></li>
+  <li><a href="/maven-site/tools/index.html"><span class="icon-chevron-down"></span>Maven Tools</a>
+   <ul class="nav nav-list">
+    <li><a href="/maven-site/tools/mvnd.html">Maven Daemon</a></li>
+    <li><a href="/maven-site/tools/mvnsh.html">Maven Shell</a></li>
+    <li><a href="/maven-site/tools/mvnup.html">Maven Upgrade Tool</a></li>
+    <li><a href="/maven-site/tools/mavenwrapper.html">Maven Wrapper</a></li>
+   </ul></li>
+  <li><a href="/maven-site/doxia/index.html"><span class="icon-chevron-right"></span>Doxia</a></li>
+  <li class="active"><a href="/maven-site/guides/index.html">Guides</a></li>
+  <li><a href="/maven-site/users/index.html"><span class="icon-chevron-right"></span>User Manual</a></li>
+  <li><a href="/maven-site/repositories/index.html"><span class="icon-chevron-right"></span>Maven Repositories</a></li>
+  <li><a href="/maven-site/plugin-developers/index.html"><span class="icon-chevron-right"></span>Plugin Development</a></li>
+  <li><a href="/maven-site/developers/index.html"><span class="icon-chevron-right"></span>Contribute to Maven</a></li>
+  <li><a href="/maven-site/articles.html">Books and Resources</a></li>
+  <li class="nav-header">Community</li>
+  <li><a href="/maven-site/community.html">Community Overview</a></li>
+  <li><a href="/maven-site/project-roles.html">Project Roles</a></li>
+  <li><a href="/maven-site/guides/development/guide-helping.html">How to Contribute</a></li>
+  <li><a href="/maven-site/users/getting-help.html">Getting Help</a></li>
+  <li><a href="/maven-site/issue-management.html">Issue Management</a></li>
+  <li><a href="/maven-site/scm.html">Getting Maven Source</a></li>
+  <li><a href="/maven-site/team.html">The Maven Team</a></li>
+  <li class="nav-header">Project Documentation</li>
+  <li><a href="/maven-site/project-info.html">Project Information</a></li>
+  <li class="nav-header">Maven Projects</li>
+  <li><a href="/maven-site/ref/current">Maven</a></li>
+  <li><a href="/maven-site/archetypes/index.html">Archetypes</a></li>
+  <li><a href="/maven-site/extensions/index.html">Extensions</a></li>
+  <li><a href="/maven-site/pom/index.html">Parent POMs</a></li>
+  <li><a href="/maven-site/plugins/index.html">Plugins</a></li>
+  <li><a href="/maven-site/skins/index.html">Skins</a></li>
+  <li><a><span class="icon-chevron-down"></span>Components</a>
+   <ul class="nav nav-list">
+    <li><a href="/maven-site/archetype/index.html">Archetype</a></li>
+    <li><a href="/maven-site/resolver/index.html">Artifact Resolver</a></li>
+    <li><a href="/maven-site/doxia/index.html">Doxia</a></li>
+    <li><a href="/maven-site/maven-indexer/index.html">Indexer</a></li>
+    <li><a href="/maven-site/jxr/index.html">JXR</a></li>
+    <li><a href="/maven-site/plugin-testing/index.html">Plugin Testing</a></li>
+    <li><a href="/maven-site/plugin-tools/index.html">Plugin Tools</a></li>
+    <li><a href="/maven-site/apache-resource-bundles/index.html">Resource Bundles</a></li>
+    <li><a href="/maven-site/scm/index.html">SCM</a></li>
+    <li><a href="/maven-site/shared/index.html">Shared Components</a></li>
+    <li><a href="/maven-site/surefire/index.html">Surefire</a></li>
+    <li><a href="/maven-site/wagon/index.html">Wagon</a></li>
+   </ul></li>
+  <li class="nav-header">ASF</li>
+  <li><a href="https://www.apache.org/foundation/how-it-works.html">How Apache Works</a></li>
+  <li><a href="https://www.apache.org/foundation/">Foundation</a></li>
+  <li><a href="https://privacy.apache.org/policies/privacy-policy-public.html">Data Privacy</a></li>
+  <li><a href="https://www.apache.org/foundation/sponsorship.html">Sponsoring Apache</a></li>
+  <li><a href="https://www.apache.org/foundation/thanks.html">Thanks</a></li>
+</ul>
+          </nav>
+          <div class="well sidebar-nav">
+            <div id="poweredBy">
+              <div class="clear"></div>
+              <a href="/maven-site/" class="builtBy" target="_blank"><img class="builtBy" alt="Built by Maven" src="/maven-site/images/logos/maven-feather.png"></a>
+            </div>
+          </div>
+        </header>
+        <main id="bodyColumn" class="span10">
+          
+
+
+
+
+<header class="guide-head">
+  <h1 id="Create_your_first_project">Create your first project</h1>
+  <p class="lead">Check Java and Maven, generate a project from the quickstart archetype, build it into a JAR, run its test and run the program.</p>
+  <p class="guide-plates"><span class="label guide-kind guide-kind--tutorial">Tutorial</span>
+    
+    <a class="guide-topic-link" href="/maven-site/guides/topics/start.html">Getting started</a></p>
+  
+  <p class="guide-version-note alert" data-since="3.9" hidden="">This page describes Maven 3.9 and later; you chose Maven <span data-chosen=""></span>.</p>
+  
+</header>
+<div class="doxia-toc"><ul><li><a href="#a1._Check_Java_and_Maven">1. Check Java and Maven</a></li><li><a href="#a2._Generate_the_project">2. Generate the project</a></li><li><a href="#a3._Look_at_the_generated_project">3. Look at the generated project</a></li><li><a href="#a4._Build_the_project">4. Build the project</a></li><li><a href="#a5._Run_the_test">5. Run the test</a></li><li><a href="#a6._Run_the_program">6. Run the program</a></li><li><a href="#Continue_with_a_dependency">Continue with a dependency</a></li></ul></div>
+<div class="guide-content">
+<p>In this tutorial you create a small Java project with Maven, build it into a JAR file, run its test and run the program. You need a terminal, an internet connection and a Java Development Kit (JDK) 17 or later.</p>
+<h2 id="a1._Check_Java_and_Maven">1. Check Java and Maven</h2>
+<p>Open a terminal and check which Java you have:</p>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="shell">java <span class="nt">-version</span>
+</code></pre></div></div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>openjdk version "21.0.12.1" 2026-08-18 LTS
+...
+</code></pre></div></div>
+<p>The project you generate in the next step is compiled for Java 17, so the version must be 17 or higher.</p>
+<p>Then check Maven:</p>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="shell">mvn <span class="nt">--version</span>
+</code></pre></div></div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Apache Maven 3.10.0 (c43a36b8d67be7e0805a411bc0898af1a51f5472)
+Maven home: /opt/apache-maven-3.10.0
+Java version: 21.0.12.1, vendor: Eclipse Adoptium, runtime: /usr/lib/jvm/temurin-21
+Default locale: en_US, platform encoding: UTF-8, time zone: Europe/Amsterdam
+OS name: "linux", version: "6.17.0", arch: "amd64", family: "unix"
+</code></pre></div></div>
+<p>The first line shows the Maven version. <code>Java version</code> shows the JDK that Maven runs on, and that JDK also compiles your code. Maven uses the JDK in the <code>JAVA_HOME</code> environment variable, or the <code>java</code> on your <code>PATH</code> when <code>JAVA_HOME</code> is not set. If it shows a version older than 17, point <code>JAVA_HOME</code> at a newer JDK. If the shell cannot find <code>mvn</code>, install Maven first as described in <a href="../install.html">Installation</a>.</p>
+<blockquote class="guide-since">
+<p><strong>Maven 4:</strong> Maven 4 itself needs Java 17 or later. With an older JDK, <code>mvn</code> stops with <code>Error: Apache Maven 4.x requires Java 17 or newer to run.</code> Maven 3.9 and 3.10 run on Java 8 and later, but this project still needs 17.</p>
+</blockquote>
+<h2 id="a2._Generate_the_project">2. Generate the project</h2>
+<p>Go to the directory where you keep your projects and run, on one line:</p>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="shell">mvn archetype:generate <span class="nt">-DgroupId</span><span class="o">=</span>com.mycompany.app <span class="nt">-DartifactId</span><span class="o">=</span>my-app <span class="nt">-DarchetypeArtifactId</span><span class="o">=</span>maven-archetype-quickstart <span class="nt">-DarchetypeVersion</span><span class="o">=</span>1.5 <span class="nt">-DinteractiveMode</span><span class="o">=</span><span class="nb">false</span>
+</code></pre></div></div>
+<p>An archetype is a project template. <code>archetype:generate</code> runs the <code>generate</code> goal of the Archetype plugin, which copies the template <code>maven-archetype-quickstart</code>, version 1.5, and fills in your <code>groupId</code> and <code>artifactId</code>. <code>-DinteractiveMode=false</code> makes it use the values on the command line instead of asking for them. Keep <code>-DarchetypeVersion=1.5</code>: without it, you get version 1.0 of the template, which generates a project for JUnit 3.</p>
+<p>The first time, Maven prints many <code>Downloading from central</code> lines. It fetches the plugins it needs from Maven Central and keeps them in its local repository, the directory <code>.m2/repository</code> in your home directory, so later runs use those copies.</p>
+<p>The run ends with:</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[INFO] Project created from Archetype in dir: /home/you/projects/my-app
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+</code></pre></div></div>
+<p>The three <code>[WARNING] Don't override file</code> lines before it are normal for this archetype.</p>
+<h2 id="a3._Look_at_the_generated_project">3. Look at the generated project</h2>
+<p>Go into the new directory:</p>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="shell"><span class="nb">cd </span>my-app
+</code></pre></div></div>
+<p>It contains:</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>my-app
+|-- .mvn
+|   |-- jvm.config
+|   `-- maven.config
+|-- pom.xml
+`-- src
+    |-- main
+    |   `-- java
+    |       `-- com
+    |           `-- mycompany
+    |               `-- app
+    |                   `-- App.java
+    `-- test
+        `-- java
+            `-- com
+                `-- mycompany
+                    `-- app
+                        `-- AppTest.java
+</code></pre></div></div>
+<p>Your code goes in <code>src/main/java</code> and your tests in <code>src/test/java</code>. Maven knows where to look because every Maven project uses the same <a href="standard-directory-layout.html">directory layout</a>. The <code>.mvn</code> directory marks the top directory of the project; its two files are empty, and are where you can put options for Maven and for the JVM it runs in.</p>
+<p><em>pom.xml</em> describes the project. It starts with the coordinates that identify the project, and two properties:</p>
+<p><em>pom.xml</em></p>
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="xml"><span class="nt">&lt;project</span> <span class="err">...</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;modelVersion&gt;</span>4.0.0<span class="nt">&lt;/modelVersion&gt;</span>
+
+  <span class="nt">&lt;groupId&gt;</span>com.mycompany.app<span class="nt">&lt;/groupId&gt;</span>
+  <span class="nt">&lt;artifactId&gt;</span>my-app<span class="nt">&lt;/artifactId&gt;</span>
+  <span class="nt">&lt;version&gt;</span>1.0-SNAPSHOT<span class="nt">&lt;/version&gt;</span>
+
+  <span class="nt">&lt;name&gt;</span>my-app<span class="nt">&lt;/name&gt;</span>
+  <span class="c">&lt;!-- FIXME change it to the project's website --&gt;</span>
+  <span class="nt">&lt;url&gt;</span>http://www.example.com<span class="nt">&lt;/url&gt;</span>
+
+  <span class="nt">&lt;properties&gt;</span>
+    <span class="nt">&lt;project.build.sourceEncoding&gt;</span>UTF-8<span class="nt">&lt;/project.build.sourceEncoding&gt;</span>
+    <span class="nt">&lt;maven.compiler.release&gt;</span>17<span class="nt">&lt;/maven.compiler.release&gt;</span>
+  <span class="nt">&lt;/properties&gt;</span>
+  ...
+<span class="nt">&lt;/project&gt;</span>
+</code></pre></div></div>
+<p><code>groupId</code>, <code>artifactId</code> and <code>version</code> together name what this project builds. A version that ends in <code>-SNAPSHOT</code> is still in development. <code>maven.compiler.release</code> sets the Java version to compile for, and <code>project.build.sourceEncoding</code> the encoding of your source files.</p>
+<p>The rest of the file has two parts. <code>&lt;dependencies&gt;</code> lists the libraries the project uses, here JUnit Jupiter for the tests. <code>&lt;build&gt;</code> contains a <code>&lt;pluginManagement&gt;</code> section that fixes the version of each plugin the build uses, so the project builds the same way whichever Maven version runs it.</p>
+<p>The program prints a greeting:</p>
+<p><em>src/main/java/com/mycompany/app/App.java</em></p>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">App</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Hello World!"</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+<p>And the test checks nothing yet:</p>
+<p><em>src/test/java/com/mycompany/app/AppTest.java</em></p>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">AppTest</span> <span class="o">{</span>
+
+    <span class="nd">@Test</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">shouldAnswerWithTrue</span><span class="o">()</span> <span class="o">{</span>
+        <span class="n">assertTrue</span><span class="o">(</span><span class="kc">true</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+<h2 id="a4._Build_the_project">4. Build the project</h2>
+<p>In the <code>my-app</code> directory, run:</p>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="shell">mvn package
+</code></pre></div></div>
+<p>Maven compiles the code, compiles and runs the test, and packages the classes into a JAR file. The output shows one line for each step, after the downloads:</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[INFO] --- resources:3.3.1:resources (default-resources) @ my-app ---
+[INFO] --- compiler:3.13.0:compile (default-compile) @ my-app ---
+[INFO] Compiling 1 source file with javac [debug release 17] to target/classes
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ my-app ---
+[INFO] --- compiler:3.13.0:testCompile (default-testCompile) @ my-app ---
+[INFO] --- surefire:3.3.0:test (default-test) @ my-app ---
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0
+[INFO] --- jar:3.4.2:jar (default-jar) @ my-app ---
+[INFO] Building jar: /home/you/projects/my-app/target/my-app-1.0-SNAPSHOT.jar
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+</code></pre></div></div>
+<p><code>package</code> is a phase of the build, not a single task: Maven runs every phase before it as well, from compiling to testing, and then makes the JAR. <a href="build-lifecycle.html">Phases, goals and plugins</a> explains how that works.</p>
+<p>Everything Maven produces goes into the <code>target</code> directory: the compiled classes in <code>target/classes</code>, the compiled tests in <code>target/test-classes</code>, the test reports in <code>target/surefire-reports</code> and the JAR, <code>target/my-app-1.0-SNAPSHOT.jar</code>.</p>
+<h2 id="a5._Run_the_test">5. Run the test</h2>
+<p>To compile and run the tests without making a JAR, run:</p>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="shell">mvn <span class="nb">test</span>
+</code></pre></div></div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[INFO] Running com.mycompany.app.AppTest
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.027 s -- in com.mycompany.app.AppTest
+...
+[INFO] BUILD SUCCESS
+</code></pre></div></div>
+<p>See what happens when a test fails. In <em>AppTest.java</em>, change <code>assertTrue(true)</code> to <code>assertTrue(false)</code> and run <code>mvn test</code> again:</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[ERROR] Failures:
+[ERROR]   AppTest.shouldAnswerWithTrue:17 expected: &lt;true&gt; but was: &lt;false&gt;
+[INFO]
+[ERROR] Tests run: 1, Failures: 1, Errors: 0, Skipped: 0
+[INFO]
+[INFO] ------------------------------------------------------------------------
+[ERROR] BUILD FAILURE
+</code></pre></div></div>
+<p>Maven stops at the first phase that fails, so <code>mvn package</code> would not make a JAR now either. Change the test back to <code>assertTrue(true)</code>.</p>
+<h2 id="a6._Run_the_program">6. Run the program</h2>
+<p>Run the <code>App</code> class from the JAR:</p>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="shell">java <span class="nt">-cp</span> target/my-app-1.0-SNAPSHOT.jar com.mycompany.app.App
+</code></pre></div></div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Hello World!
+</code></pre></div></div>
+<p>You now have a Maven project that compiles, tests and packages itself with one command.</p>
+<h2 id="Continue_with_a_dependency">Continue with a dependency</h2>
+<p>In the next tutorial, <a href="add-a-dependency.html">Add a dependency and a test</a>, you use a library from Maven Central in this project and write a real test for it. <a href="standard-directory-layout.html">Standard directory layout</a> lists the other directories a project can have, and the <a href="../guides/introduction/introduction-to-the-pom.html">Introduction to the POM</a> describes the rest of <em>pom.xml</em>.</p>
+
+</div>
+<footer class="guide-foot">
+  <h2 id="More_in_Getting_started">More in <a href="/maven-site/guides/topics/start.html">Getting started</a></h2>
+  
+  <div class="guide-foot-kinds">
+  
+    
+    
+    <section>
+      <h3 id="Tutorials">Tutorials</h3>
+      
+<ul class="guide-list">
+
+  
+  
+  <li class="is-current">
+    <strong class="guide-list-title" aria-current="page">Create your first project</strong>
+    
+    <span class="guide-list-summary">Check Java and Maven, generate a project from the quickstart archetype, build it into a JAR, run its test and run the program.</span>
+  </li>
+
+  
+  
+  <li>
+    <a class="guide-list-title" href="/maven-site/guides/add-a-dependency.html">Add a dependency and a test</a>
+    
+    <span class="guide-list-summary">Use a library from Maven Central in your project, test the code that uses it with JUnit, and see which libraries Maven brought in.</span>
+  </li>
+
+</ul>
+
+    </section>
+    
+  
+    
+    
+  
+    
+    
+    <section>
+      <h3 id="Reference">Reference</h3>
+      
+<ul class="guide-list">
+
+  
+  
+  <li>
+    <a class="guide-list-title" href="/maven-site/guides/standard-directory-layout.html">Standard directory layout</a>
+    
+    <span class="guide-list-summary">The directories and files of a Maven project, what goes in each, and which plugin reads or writes it.</span>
+  </li>
+
+</ul>
+
+    </section>
+    
+  
+    
+    
+    <section>
+      <h3 id="Explanation">Explanation</h3>
+      
+<ul class="guide-list">
+
+  
+  
+  <li>
+    <a class="guide-list-title" href="/maven-site/guides/build-lifecycle.html">Phases, goals and plugins</a>
+    
+    <span class="guide-list-summary">How Maven turns a command such as mvn package into a series of plugin goals, and why every Maven project builds with the same few commands.</span>
+  </li>
+
+</ul>
+
+    </section>
+    
+  
+  </div>
+  
+  <p class="guide-provenance">Written from <a href="/maven-site/guides/getting-started/maven-in-five-minutes.html"><code>guides/getting-started/maven-in-five-minutes.md</code></a>, <a href="/maven-site/guides/getting-started/index.html"><code>guides/getting-started/index.md</code></a>, <a href="/maven-site/install.html"><code>install.md</code></a>.</p>
+  
+</footer>
+
+        </main>
+      </div>
+    </div>
+    <hr>
+    <footer>
+      <div class="container-fluid">
+        <div class="row-fluid">
+          <p>©      2002–2026 <a href="https://www.apache.org/">The Apache Software Foundation</a></p>
+          <p class="demo-note">A demonstration build of <a href="https://github.com/dashorst/maven-site/tree/diataxis-demo">dashorst/maven-site</a>, not the official Apache Maven site.</p>
+        </div>
+      </div>
+    </footer>
+    <script src="/maven-site/js/guide.js?v=1792948498" defer=""></script>
+    <script>
+    anchors.add();
+    </script>
+  
+
+</body></html>

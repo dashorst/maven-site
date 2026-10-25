@@ -1,0 +1,276 @@
+<!DOCTYPE html><!--
+ | The page frame of the Apache Maven Fluido Skin 2.1.0, as the Doxia site renderer writes it
+ | for maven.apache.org. Built with Jekyll: see jekyll/README.md.
+--><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Naming conventions of Maven coordinates (groupId, artifactId, and version) – Maven</title>
+    
+    <link rel="stylesheet" href="/maven-site/css/apache-maven-fluido-2.1.0.min.css">
+    <link rel="stylesheet" href="/maven-site/css/site.css">
+    <link rel="stylesheet" href="/maven-site/css/guide.css?v=1792948498">
+    <link rel="stylesheet" href="/maven-site/css/print.css" media="print">
+    <script src="/maven-site/js/apache-maven-fluido-2.1.0.min.js"></script>
+  </head>
+  <body>
+    <div class="container-fluid container-fluid-top">
+      <header>
+        <div id="banner">
+          <div class="pull-left"><div id="bannerLeft"><h1><a href="/maven-site/index.html"><img src="/maven-site/images/apache-maven-project-light-theme.svg" style="width: 489px;height: 83px;" alt="Apache Maven"></a></h1></div></div>
+          <div class="pull-right"><div id="bannerRight"><h1><img src="/maven-site/images/logos/MavenLogoLeaf.svg" style="width: 340px;height: 83px;" alt=""></h1></div></div>
+          <div class="clear"><hr></div>
+        </div>
+
+        <div id="breadcrumbs">
+          <ul class="breadcrumb">
+            <li><a href="https://www.apache.org/">Apache</a><span class="divider">/</span></li>
+            <li><a href="/maven-site/index.html">Maven</a><span class="divider">/</span></li>
+            
+            <li class="active">Naming conventions of Maven coordinates (groupId, artifactId, and version) <a href="https://github.com/apache/maven-site/tree/master/content/markdown/guides/mini/guide-naming-conventions.md"><img src="/maven-site/images/accessories-text-editor.png" alt="Edit"></a></li>
+            <li id="publishDate" class="pull-right"><span class="divider">|</span> Last Published: 2026-10-25</li>
+            <li class="pull-right"><span class="divider">|</span> <a href="/maven-site/scm.html">Get Sources</a></li>
+            <li class="pull-right"><a href="https://maven.apache.org/download.cgi">Downloads</a></li>
+          </ul>
+        </div>
+      </header>
+      <div class="row-fluid">
+        <header id="leftColumn" class="span2">
+          
+<form class="guide-search" role="search" action="/maven-site/guides/a-z.html" data-index="/maven-site/guides/search.json" data-script="/maven-site/js/minisearch-7.2.0.js" data-oldest="3.9" data-base="/maven-site">
+  <label class="guide-search-label" for="guide-q-nav">Search the documentation</label>
+  <div class="guide-search-field">
+    <input id="guide-q-nav" name="q" type="search" autocomplete="off" spellcheck="false" placeholder="Search">
+    <kbd class="guide-search-key" aria-hidden="true">/</kbd>
+  </div>
+  
+</form>
+
+          <nav class="well sidebar-nav">
+<ul class="nav nav-list">
+  <li><a href="/maven-site/index.html">Welcome</a></li>
+  <li><a href="https://www.apache.org/licenses/">License</a></li>
+  <li class="nav-header">About Maven</li>
+  <li><a href="/maven-site/what-is-maven.html">What is Maven?</a></li>
+  <li><a href="/maven-site/install.html">Installation</a></li>
+  <li><a href="/maven-site/download.html">Downloads</a></li>
+  <li><a href="/maven-site/run.html">Use</a></li>
+  <li><a href="/maven-site/configure.html">Configure</a></li>
+  <li><a href="/maven-site/docs/history.html">Release Notes</a></li>
+  <li><a href="/maven-site/security.html">Security Reports</a></li>
+  <li class="nav-header">Documentation</li>
+  <li><a href="/maven-site/plugins/index.html">Maven Plugins</a></li>
+  <li><a href="/maven-site/extensions/index.html">Maven Extensions</a></li>
+  <li><a href="/maven-site/tools/index.html"><span class="icon-chevron-down"></span>Maven Tools</a>
+   <ul class="nav nav-list">
+    <li><a href="/maven-site/tools/mvnd.html">Maven Daemon</a></li>
+    <li><a href="/maven-site/tools/mvnsh.html">Maven Shell</a></li>
+    <li><a href="/maven-site/tools/mvnup.html">Maven Upgrade Tool</a></li>
+    <li><a href="/maven-site/tools/mavenwrapper.html">Maven Wrapper</a></li>
+   </ul></li>
+  <li><a href="/maven-site/doxia/index.html"><span class="icon-chevron-right"></span>Doxia</a></li>
+  <li><a href="/maven-site/guides/index.html">Guides</a></li>
+  <li><a href="/maven-site/users/index.html"><span class="icon-chevron-down"></span>User Manual</a>
+   <ul class="nav nav-list">
+    <li><a><span class="icon-chevron-down"></span>Maven Build Fundamentals</a>
+     <ul class="nav nav-list">
+      <li><a href="/maven-site/guides/getting-started/maven-in-five-minutes.html">Maven in 5 Minutes</a></li>
+      <li><a href="/maven-site/users/getting-help.html">Getting Help</a></li>
+      <li><a href="/maven-site/run-maven/index.html">Running Maven</a></li>
+     </ul></li>
+    <li><a><span class="icon-chevron-down"></span>Maven Build Config Fundamentals</a>
+     <ul class="nav nav-list">
+      <li><a href="/maven-site/guides/plugins/validation/index.html">Plugins Validation</a></li>
+      <li><a href="/maven-site/guides/mini/guide-site.html"><span class="icon-chevron-right"></span>Creating a site</a></li>
+      <li><a href="/maven-site/guides/introduction/introduction-to-archetypes.html"><span class="icon-chevron-right"></span>Archetypes</a></li>
+      <li><a href="/maven-site/guides/introduction/introduction-to-repositories.html"><span class="icon-chevron-right"></span>Repositories</a></li>
+      <li><a href="/maven-site/guides/introduction/introduction-to-profiles.html">Profiles</a></li>
+      <li><a href="/maven-site/guides/introduction/introduction-to-the-standard-directory-layout.html">Standard Directory Layout</a></li>
+      <li><a href="/maven-site/guides/introduction/introduction-to-dependency-mechanism.html"><span class="icon-chevron-right"></span>Dependency Mechanism</a></li>
+     </ul></li>
+    <li><a href="/maven-site/guides/getting-started/index.html"><span class="icon-chevron-down"></span>Getting Started Guide</a>
+     <ul class="nav nav-list">
+      <li class="active"><a>Naming Conventions</a></li>
+      <li><a href="/maven-site/guides/introduction/introduction-to-the-lifecycle.html">The Build Lifecycle</a></li>
+      <li><a href="/maven-site/guides/introduction/introduction-to-the-pom.html">The POM</a></li>
+      <li><a href="/maven-site/guides/mini/guide-configuring-plugins.html"><span class="icon-chevron-right"></span>Configuring Plugins</a></li>
+      <li><a href="/maven-site/pom.html">POM 4.0.0 Reference</a></li>
+      <li><a href="/maven-site/settings.html">Settings Reference</a></li>
+     </ul></li>
+    <li><a><span class="icon-chevron-down"></span>Maven 4</a>
+     <ul class="nav nav-list">
+      <li><a href="/maven-site/whatsnewinmaven4.html">What's new in Maven 4?</a></li>
+      <li><a href="/maven-site/guides/mini/guide-migration-to-mvn4.html">Starting with Maven 4</a></li>
+      <li><a href="/maven-site/guides/mini/guide-mixins.html">Maven Mixins</a></li>
+     </ul></li>
+    <li><a href="/maven-site/guides/mini/index.html"><span class="icon-chevron-right"></span>Guides</a></li>
+    <li><a href="/maven-site/general.html">FAQ</a></li>
+   </ul></li>
+  <li><a href="/maven-site/repositories/index.html"><span class="icon-chevron-right"></span>Maven Repositories</a></li>
+  <li><a href="/maven-site/plugin-developers/index.html"><span class="icon-chevron-right"></span>Plugin Development</a></li>
+  <li><a href="/maven-site/developers/index.html"><span class="icon-chevron-right"></span>Contribute to Maven</a></li>
+  <li><a href="/maven-site/articles.html">Books and Resources</a></li>
+  <li class="nav-header">Community</li>
+  <li><a href="/maven-site/community.html">Community Overview</a></li>
+  <li><a href="/maven-site/project-roles.html">Project Roles</a></li>
+  <li><a href="/maven-site/guides/development/guide-helping.html">How to Contribute</a></li>
+  <li><a href="/maven-site/users/getting-help.html">Getting Help</a></li>
+  <li><a href="/maven-site/issue-management.html">Issue Management</a></li>
+  <li><a href="/maven-site/scm.html">Getting Maven Source</a></li>
+  <li><a href="/maven-site/team.html">The Maven Team</a></li>
+  <li class="nav-header">Project Documentation</li>
+  <li><a href="/maven-site/project-info.html">Project Information</a></li>
+  <li class="nav-header">Maven Projects</li>
+  <li><a href="/maven-site/ref/current">Maven</a></li>
+  <li><a href="/maven-site/archetypes/index.html">Archetypes</a></li>
+  <li><a href="/maven-site/extensions/index.html">Extensions</a></li>
+  <li><a href="/maven-site/pom/index.html">Parent POMs</a></li>
+  <li><a href="/maven-site/plugins/index.html">Plugins</a></li>
+  <li><a href="/maven-site/skins/index.html">Skins</a></li>
+  <li><a><span class="icon-chevron-down"></span>Components</a>
+   <ul class="nav nav-list">
+    <li><a href="/maven-site/archetype/index.html">Archetype</a></li>
+    <li><a href="/maven-site/resolver/index.html">Artifact Resolver</a></li>
+    <li><a href="/maven-site/doxia/index.html">Doxia</a></li>
+    <li><a href="/maven-site/maven-indexer/index.html">Indexer</a></li>
+    <li><a href="/maven-site/jxr/index.html">JXR</a></li>
+    <li><a href="/maven-site/plugin-testing/index.html">Plugin Testing</a></li>
+    <li><a href="/maven-site/plugin-tools/index.html">Plugin Tools</a></li>
+    <li><a href="/maven-site/apache-resource-bundles/index.html">Resource Bundles</a></li>
+    <li><a href="/maven-site/scm/index.html">SCM</a></li>
+    <li><a href="/maven-site/shared/index.html">Shared Components</a></li>
+    <li><a href="/maven-site/surefire/index.html">Surefire</a></li>
+    <li><a href="/maven-site/wagon/index.html">Wagon</a></li>
+   </ul></li>
+  <li class="nav-header">ASF</li>
+  <li><a href="https://www.apache.org/foundation/how-it-works.html">How Apache Works</a></li>
+  <li><a href="https://www.apache.org/foundation/">Foundation</a></li>
+  <li><a href="https://privacy.apache.org/policies/privacy-policy-public.html">Data Privacy</a></li>
+  <li><a href="https://www.apache.org/foundation/sponsorship.html">Sponsoring Apache</a></li>
+  <li><a href="https://www.apache.org/foundation/thanks.html">Thanks</a></li>
+</ul>
+          </nav>
+          <div class="well sidebar-nav">
+            <div id="poweredBy">
+              <div class="clear"></div>
+              <a href="/maven-site/" class="builtBy" target="_blank"><img class="builtBy" alt="Built by Maven" src="/maven-site/images/logos/maven-feather.png"></a>
+            </div>
+          </div>
+        </header>
+        <main id="bodyColumn" class="span10">
+          
+<!--
+Licensed to the Apache Software Foundation (ASF) under one
+or more contributor license agreements.  See the NOTICE file
+distributed with this work for additional information
+regarding copyright ownership.  The ASF licenses this file
+to you under the Apache License, Version 2.0 (the
+"License"); you may not use this file except in compliance
+with the License.  You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing,
+software distributed under the License is distributed on an
+"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+KIND, either express or implied.  See the License for the
+specific language governing permissions and limitations
+under the License.
+-->
+<h1 id="Naming_convention_of_Maven_coordinates">Naming convention of Maven coordinates</h1>
+<p>So that Maven can identify and utilise any artifact (e.g. a <code>.jar</code> file), every artifact must be identifiable through a
+unique combination of three identifiers.
+This combination is called the "<a href="/maven-site/pom.html#Maven_Coordinates">Maven coordinates</a>".
+Maven coordinates consist of a project group identifier named <code>groupId</code>, an artifact identifier named <code>artifactId</code>, and
+the version identifier named <code>version</code>.</p>
+<p>This document defines the naming conventions of Maven coordinates.</p>
+<p>You should follow this convention whenever you create a new artifact.</p>
+<h2 id="Project_group_identifier">Project group identifier</h2>
+<p>When projects of the same organization are topically related, we say they belong to the same "project group".
+The <code>groupId</code> uniquely identifies a project group across all other groups.
+Each <code>groupId</code> should follow <a href="https://docs.oracle.com/javase/specs/jls/se21/html/jls-6.html#d5e8762">Java's package name rules</a>.
+This means it starts with a reversed domain name you control.</p>
+<p>Examples</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>org.apache.maven
+org.apache.commons
+com.google.guava
+</code></pre></div></div>
+<p>There are many legacy projects that do not follow this convention and instead use single word group IDs.
+However, it will be difficult to get a new single word group ID approved for inclusion in the Maven Central repository.</p>
+<p>You can create as many subgroups as you want.
+A good way to determine the granularity of the <code>groupId</code> is to look at the project group's structure.
+If there are multiple projects of the same topic or type, e.g. plugins, those may be grouped in a subgroup.
+Each subgroup should append a new identifier to the parent's <code>groupId</code>.</p>
+<p>Example</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>// Parent project group
+org.apache.maven
+
+// Subgroups
+org.apache.maven.plugins
+org.apache.maven.reporting
+</code></pre></div></div>
+<h2 id="Artifact_identifier">Artifact identifier</h2>
+<p>The <code>artifactId</code> is the name of the artifact.
+The identifiers should only consist of <em>lowercase</em> letters, digits, and hyphens.</p>
+<p>Examples</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>commons-math
+maven-clean-plugin
+</code></pre></div></div>
+<h2 id="Version_identifier">Version identifier</h2>
+<p>We recommend that the <code>version</code> follow the rules of <a href="https://semver.org/spec/v1.0.0.html">Semantic Versioning 1.0.0</a>.
+It should start with the major version, followed by the minor version and the patch version.
+All three are numeric, separated by a dot.</p>
+<p>Examples</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>1.0.0
+2.3.2
+3.5.42
+</code></pre></div></div>
+<p>You can add labels for pre-releases or build metadata after the patch version.
+Avoid using dates in those labels, because they are usually associated with unstable versions.</p>
+<p>Examples</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>// Pre-releases
+1.0.0-beta
+1.0.0-M1
+1.0.0-rc2
+
+// Build metadata
+1.2.3+dfc0c87
+2.3.4+15433
+</code></pre></div></div>
+<h3 id="Maximum_version_length">Maximum version length</h3>
+<p>Version strings are limited to <strong>256 characters</strong>. This bound prevents
+pathological inputs from causing excessive resource consumption during
+version parsing: the recursive parser can nest one frame per separator,
+and digit runs beyond 18 characters are parsed into <code>BigInteger</code> at
+quadratic cost. The limit of 256 characters is far beyond any
+real-world version identifier (the longest versions observed on Maven
+Central are around 25 characters) while keeping the nesting depth and
+numeric items small. A version string that exceeds this limit will
+cause an <code>IllegalArgumentException</code> at parse time.</p>
+<h3 id="Unstable_versions_.28SNAPSHOT.29">Unstable versions (SNAPSHOT)</h3>
+<p><code>SNAPSHOT</code>s are artifacts built in between releases.
+They may be built from a particular commit or from code that isn't even committed to the source repository.
+They are a snapshot of the project at a particular point in time, generally used for testing.
+Unlike release versions, snapshot artifacts can and do change over time.</p>
+<p>Usually the snapshot has the version of the next anticipated release followed by <code>-SNAPSHOT</code>, e.g. <code>1.0.1-SNAPSHOT</code>.</p>
+<p>Maven treats artifacts with such versions in a special way during deployment and stores them in the <code>snapshotRepository</code>
+if one is defined in the <a href="/maven-site/pom.html#Repository">POM file</a>.</p>
+
+        </main>
+      </div>
+    </div>
+    <hr>
+    <footer>
+      <div class="container-fluid">
+        <div class="row-fluid">
+          <p>©      2002–2026 <a href="https://www.apache.org/">The Apache Software Foundation</a></p>
+          <p class="demo-note">A demonstration build of <a href="https://github.com/dashorst/maven-site/tree/diataxis-demo">dashorst/maven-site</a>, not the official Apache Maven site.</p>
+        </div>
+      </div>
+    </footer>
+    <script src="/maven-site/js/guide.js?v=1792948498" defer=""></script>
+    <script>
+    anchors.add();
+    </script>
+  
+
+</body></html>

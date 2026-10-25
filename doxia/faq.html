@@ -1,0 +1,272 @@
+<!DOCTYPE html><!--
+ | The page frame of the Apache Maven Fluido Skin 2.1.0, as the Doxia site renderer writes it
+ | for maven.apache.org. Built with Jekyll: see jekyll/README.md.
+--><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Frequently Asked Questions – Maven</title>
+    
+    <link rel="stylesheet" href="/maven-site/css/apache-maven-fluido-2.1.0.min.css">
+    <link rel="stylesheet" href="/maven-site/css/site.css">
+    <link rel="stylesheet" href="/maven-site/css/guide.css?v=1792948498">
+    <link rel="stylesheet" href="/maven-site/css/print.css" media="print">
+    <script src="/maven-site/js/apache-maven-fluido-2.1.0.min.js"></script>
+  </head>
+  <body>
+    <div class="container-fluid container-fluid-top">
+      <header>
+        <div id="banner">
+          <div class="pull-left"><div id="bannerLeft"><h1><a href="/maven-site/index.html"><img src="/maven-site/images/apache-maven-project-light-theme.svg" style="width: 489px;height: 83px;" alt="Apache Maven"></a></h1></div></div>
+          <div class="pull-right"><div id="bannerRight"><h1><img src="/maven-site/images/logos/MavenLogoLeaf.svg" style="width: 340px;height: 83px;" alt=""></h1></div></div>
+          <div class="clear"><hr></div>
+        </div>
+
+        <div id="breadcrumbs">
+          <ul class="breadcrumb">
+            <li><a href="https://www.apache.org/">Apache</a><span class="divider">/</span></li>
+            <li><a href="/maven-site/index.html">Maven</a><span class="divider">/</span></li>
+            
+            <li class="active">Frequently Asked Questions <a href="https://github.com/apache/maven-site/tree/master/content/markdown/doxia/faq.md"><img src="/maven-site/images/accessories-text-editor.png" alt="Edit"></a></li>
+            <li id="publishDate" class="pull-right"><span class="divider">|</span> Last Published: 2026-10-25</li>
+            <li class="pull-right"><span class="divider">|</span> <a href="/maven-site/scm.html">Get Sources</a></li>
+            <li class="pull-right"><a href="https://maven.apache.org/download.cgi">Downloads</a></li>
+          </ul>
+        </div>
+      </header>
+      <div class="row-fluid">
+        <header id="leftColumn" class="span2">
+          
+<form class="guide-search" role="search" action="/maven-site/guides/a-z.html" data-index="/maven-site/guides/search.json" data-script="/maven-site/js/minisearch-7.2.0.js" data-oldest="3.9" data-base="/maven-site">
+  <label class="guide-search-label" for="guide-q-nav">Search the documentation</label>
+  <div class="guide-search-field">
+    <input id="guide-q-nav" name="q" type="search" autocomplete="off" spellcheck="false" placeholder="Search">
+    <kbd class="guide-search-key" aria-hidden="true">/</kbd>
+  </div>
+  
+</form>
+
+          <nav class="well sidebar-nav">
+<ul class="nav nav-list">
+  <li><a href="/maven-site/index.html">Welcome</a></li>
+  <li><a href="https://www.apache.org/licenses/">License</a></li>
+  <li class="nav-header">About Maven</li>
+  <li><a href="/maven-site/what-is-maven.html">What is Maven?</a></li>
+  <li><a href="/maven-site/install.html">Installation</a></li>
+  <li><a href="/maven-site/download.html">Downloads</a></li>
+  <li><a href="/maven-site/run.html">Use</a></li>
+  <li><a href="/maven-site/configure.html">Configure</a></li>
+  <li><a href="/maven-site/docs/history.html">Release Notes</a></li>
+  <li><a href="/maven-site/security.html">Security Reports</a></li>
+  <li class="nav-header">Documentation</li>
+  <li><a href="/maven-site/plugins/index.html">Maven Plugins</a></li>
+  <li><a href="/maven-site/extensions/index.html">Maven Extensions</a></li>
+  <li><a href="/maven-site/tools/index.html"><span class="icon-chevron-down"></span>Maven Tools</a>
+   <ul class="nav nav-list">
+    <li><a href="/maven-site/tools/mvnd.html">Maven Daemon</a></li>
+    <li><a href="/maven-site/tools/mvnsh.html">Maven Shell</a></li>
+    <li><a href="/maven-site/tools/mvnup.html">Maven Upgrade Tool</a></li>
+    <li><a href="/maven-site/tools/mavenwrapper.html">Maven Wrapper</a></li>
+   </ul></li>
+  <li><a href="/maven-site/doxia/index.html"><span class="icon-chevron-down"></span>Doxia</a>
+   <ul class="nav nav-list">
+    <li><a href="/maven-site/doxia/overview.html">Overview</a></li>
+    <li><a href="/maven-site/doxia/downloads.html">Downloads</a></li>
+    <li class="active"><a>FAQ</a></li>
+    <li><a href="/maven-site/doxia/references/index.html"><span class="icon-chevron-right"></span>Format References</a></li>
+    <li><a href="/maven-site/doxia/modules/index.html">Doxia Modules Guide</a></li>
+    <li><a href="/maven-site/doxia/macros/index.html">Doxia Macros Guide</a></li>
+    <li><a href="/maven-site/doxia/issues/index.html">Issues &amp; Gotchas</a></li>
+    <li><a href="/maven-site/doxia/resources.html">External Resources</a></li>
+    <li><a href="/maven-site/doxia/developers/index.html"><span class="icon-chevron-right"></span>Developer Docs</a></li>
+    <li><a href="/maven-site/doxia/doxia/index.html">Doxia Base</a></li>
+    <li><a href="/maven-site/doxia/doxia-sitetools/index.html">Doxia Sitetools</a></li>
+    <li><a href="/maven-site/doxia/doxia-tools/index.html">Doxia Tools</a></li>
+   </ul></li>
+  <li><a href="/maven-site/guides/index.html">Guides</a></li>
+  <li><a href="/maven-site/users/index.html"><span class="icon-chevron-right"></span>User Manual</a></li>
+  <li><a href="/maven-site/repositories/index.html"><span class="icon-chevron-right"></span>Maven Repositories</a></li>
+  <li><a href="/maven-site/plugin-developers/index.html"><span class="icon-chevron-right"></span>Plugin Development</a></li>
+  <li><a href="/maven-site/developers/index.html"><span class="icon-chevron-right"></span>Contribute to Maven</a></li>
+  <li><a href="/maven-site/articles.html">Books and Resources</a></li>
+  <li class="nav-header">Community</li>
+  <li><a href="/maven-site/community.html">Community Overview</a></li>
+  <li><a href="/maven-site/project-roles.html">Project Roles</a></li>
+  <li><a href="/maven-site/guides/development/guide-helping.html">How to Contribute</a></li>
+  <li><a href="/maven-site/users/getting-help.html">Getting Help</a></li>
+  <li><a href="/maven-site/issue-management.html">Issue Management</a></li>
+  <li><a href="/maven-site/scm.html">Getting Maven Source</a></li>
+  <li><a href="/maven-site/team.html">The Maven Team</a></li>
+  <li class="nav-header">Project Documentation</li>
+  <li><a href="/maven-site/project-info.html">Project Information</a></li>
+  <li class="nav-header">Maven Projects</li>
+  <li><a href="/maven-site/ref/current">Maven</a></li>
+  <li><a href="/maven-site/archetypes/index.html">Archetypes</a></li>
+  <li><a href="/maven-site/extensions/index.html">Extensions</a></li>
+  <li><a href="/maven-site/pom/index.html">Parent POMs</a></li>
+  <li><a href="/maven-site/plugins/index.html">Plugins</a></li>
+  <li><a href="/maven-site/skins/index.html">Skins</a></li>
+  <li><a><span class="icon-chevron-down"></span>Components</a>
+   <ul class="nav nav-list">
+    <li><a href="/maven-site/archetype/index.html">Archetype</a></li>
+    <li><a href="/maven-site/resolver/index.html">Artifact Resolver</a></li>
+    <li><a href="/maven-site/doxia/index.html">Doxia</a></li>
+    <li><a href="/maven-site/maven-indexer/index.html">Indexer</a></li>
+    <li><a href="/maven-site/jxr/index.html">JXR</a></li>
+    <li><a href="/maven-site/plugin-testing/index.html">Plugin Testing</a></li>
+    <li><a href="/maven-site/plugin-tools/index.html">Plugin Tools</a></li>
+    <li><a href="/maven-site/apache-resource-bundles/index.html">Resource Bundles</a></li>
+    <li><a href="/maven-site/scm/index.html">SCM</a></li>
+    <li><a href="/maven-site/shared/index.html">Shared Components</a></li>
+    <li><a href="/maven-site/surefire/index.html">Surefire</a></li>
+    <li><a href="/maven-site/wagon/index.html">Wagon</a></li>
+   </ul></li>
+  <li class="nav-header">ASF</li>
+  <li><a href="https://www.apache.org/foundation/how-it-works.html">How Apache Works</a></li>
+  <li><a href="https://www.apache.org/foundation/">Foundation</a></li>
+  <li><a href="https://privacy.apache.org/policies/privacy-policy-public.html">Data Privacy</a></li>
+  <li><a href="https://www.apache.org/foundation/sponsorship.html">Sponsoring Apache</a></li>
+  <li><a href="https://www.apache.org/foundation/thanks.html">Thanks</a></li>
+</ul>
+          </nav>
+          <div class="well sidebar-nav">
+            <div id="poweredBy">
+              <div class="clear"></div>
+              <a href="/maven-site/" class="builtBy" target="_blank"><img class="builtBy" alt="Built by Maven" src="/maven-site/images/logos/maven-feather.png"></a>
+            </div>
+          </div>
+        </header>
+        <main id="bodyColumn" class="span10">
+          
+<!--
+Licensed to the Apache Software Foundation (ASF) under one
+or more contributor license agreements.  See the NOTICE file
+distributed with this work for additional information
+regarding copyright ownership.  The ASF licenses this file
+to you under the Apache License, Version 2.0 (the
+"License"); you may not use this file except in compliance
+with the License.  You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing,
+software distributed under the License is distributed on an
+"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+KIND, either express or implied.  See the License for the
+specific language governing permissions and limitations
+under the License.
+-->
+<p><a id="top"></a></p>
+<h1 id="Frequently_Asked_Questions">Frequently Asked Questions</h1>
+<ol>
+<li><a href="#How_to_handle_style_in_the_APT_markup_language">How to handle style in the APT markup language?</a></li>
+<li><a href="#How_to_export_in_PDF">How to export in PDF?</a></li>
+<li><a href="#Why_XML_based_sinks_don_t_generate_nicely_formatted_documents">Why XML based sinks don't generate nicely formatted documents?</a></li>
+<li><a href="#doxia-xsd">Where are the Maven Doxia XSD schemas files?</a></li>
+<li><a href="#doxia-character-entities">How to define character entities in Doxia XML files with XSD?</a></li>
+</ol>
+<p><a id="How_to_handle_style_in_the_APT_markup_language"></a></p>
+<h3 id="How_to_handle_style_in_the_APT_markup_language.3F">How to handle style in the APT markup language?</h3>
+<p>APT does not support style. If you need more control you should use
+<a href="references/xdoc-format.html">xdoc</a> instead.</p>
+<p><a id="How_to_export_in_PDF"></a></p>
+<h3 id="How_to_export_in_PDF.3F">How to export in PDF?</h3>
+<p>Doxia no longer generates PDF. The two modules that used to do it, the iText module and the FO module, were
+removed in Doxia 2.0.0-M1, see <a href="https://issues.apache.org/jira/browse/DOXIA-630">DOXIA-630</a>.</p>
+<p>The Maven PDF Plugin, which built on those modules, was retired in March 2025. Its final release, 1.6.2, is
+still resolvable from Maven Central, but it is not maintained and the modules it depends on only exist in the
+unmaintained Doxia 1.x line.</p>
+<p><a id="Why_XML_based_sinks_don_t_generate_nicely_formatted_documents"></a></p>
+<h3 id="Why_XML_based_sinks_don.27t_generate_nicely_formatted_documents.3F">Why XML based sinks don't generate nicely formatted documents?</h3>
+<p>We decided to keep pretty printing out of the core modules. So, XML based sinks like Xdoc or XHTML are
+intentionally unformatted. You could always do this after the document generation or directly by creating a
+specialized end-user sink (see <a href="https://issues.apache.org/jira/browse/DOXIA-255">DOXIA-255</a>).</p>
+<p><a id="doxia-xsd"></a></p>
+<h3 id="Where_are_the_Maven_Doxia_XSD_schemas_files.3F">Where are the Maven Doxia XSD schemas files?</h3>
+<p>The Doxia XSD files are located here:</p>
+<p>Xdoc XSD 2.0
+: <a href="/maven-site/xsd/xdoc-2.0.xsd">https://maven.apache.org/xsd/xdoc-2.0.xsd</a></p>
+<p>FML XSD 1.0.1
+: <a href="/maven-site/xsd/fml-1.0.1.xsd">https://maven.apache.org/xsd/fml-1.0.1.xsd</a></p>
+<p>Book XSD 1.0
+: <a href="/maven-site/xsd/book-1.0.0.xsd">https://maven.apache.org/xsd/book-1.0.0.xsd</a></p>
+<p>Document XSD 1.0.1
+: <a href="/maven-site/xsd/document-1.0.1.xsd">https://maven.apache.org/xsd/document-1.0.1.xsd</a></p>
+<p>Site XSD 2.1.0
+: <a href="/maven-site/xsd/site-2.1.0.xsd">https://maven.apache.org/xsd/site-2.1.0.xsd</a></p>
+<p>Your favorite IDE probably supports XSD schema's for Xdoc and FML files. You need to specify the following:</p>
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="xml"><span class="nt">&lt;document</span> <span class="na">xmlns=</span><span class="s">"http://maven.apache.org/XDOC/2.0"</span>
+  <span class="na">xmlns:xsi=</span><span class="s">"http://www.w3.org/2001/XMLSchema-instance"</span>
+  <span class="na">xsi:schemaLocation=</span><span class="s">"http://maven.apache.org/XDOC/2.0 http://maven.apache.org/xsd/xdoc-2.0.xsd"</span><span class="nt">&gt;</span>
+  ...
+<span class="nt">&lt;/document&gt;</span>
+</code></pre></div></div>
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="xml"><span class="nt">&lt;faqs</span> <span class="na">xmlns=</span><span class="s">"http://maven.apache.org/FML/1.0.1"</span>
+  <span class="na">xmlns:xsi=</span><span class="s">"http://www.w3.org/2001/XMLSchema-instance"</span>
+  <span class="na">xsi:schemaLocation=</span><span class="s">"http://maven.apache.org/FML/1.0.1 http://maven.apache.org/xsd/fml-1.0.1.xsd"</span><span class="nt">&gt;</span>
+  ...
+<span class="nt">&lt;/faqs&gt;</span>
+</code></pre></div></div>
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="xml"><span class="nt">&lt;book</span> <span class="na">xmlns=</span><span class="s">"http://maven.apache.org/BOOK/1.0.0"</span>
+  <span class="na">xmlns:xsi=</span><span class="s">"http://www.w3.org/2001/XMLSchema-instance"</span>
+  <span class="na">xsi:schemaLocation=</span><span class="s">"http://maven.apache.org/BOOK/1.0.0 http://maven.apache.org/xsd/book-1.0.0.xsd"</span><span class="nt">&gt;</span>
+  ...
+<span class="nt">&lt;/book&gt;</span>
+</code></pre></div></div>
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="xml"><span class="nt">&lt;document</span> <span class="na">xmlns=</span><span class="s">"http://maven.apache.org/DOCUMENT/1.0.1"</span>
+  <span class="na">xmlns:xsi=</span><span class="s">"http://www.w3.org/2001/XMLSchema-instance"</span>
+  <span class="na">xsi:schemaLocation=</span><span class="s">"http://maven.apache.org/DOCUMENT/1.0.1 http://maven.apache.org/xsd/document-1.0.1.xsd"</span>
+  <span class="na">outputName=</span><span class="s">"..."</span><span class="nt">&gt;</span>
+  ...
+<span class="nt">&lt;/document&gt;</span>
+</code></pre></div></div>
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="xml"><span class="nt">&lt;site</span> <span class="na">xmlns=</span><span class="s">"http://maven.apache.org/SITE/2.1.0"</span>
+  <span class="na">xmlns:xsi=</span><span class="s">"http://www.w3.org/2001/XMLSchema-instance"</span>
+  <span class="na">xsi:schemaLocation=</span><span class="s">"http://maven.apache.org/SITE/2.1.0 https://maven.apache.org/xsd/site-2.1.0.xsd"</span><span class="nt">&gt;</span>
+  ...
+<span class="nt">&lt;/site&gt;</span>
+</code></pre></div></div>
+<p><strong>Note</strong>: for performance reasons, all XSDs/DTDs use a cache in ${java.io.tmpdir}.</p>
+<p><a id="doxia-character-entities"></a></p>
+<h3 id="How_to_define_character_entities_in_Doxia_XML_files_with_XSD.3F">How to define character entities in Doxia XML files with XSD?</h3>
+<p>Since it is not possible to define character entity references (like &amp;copy;) in XSDs (unlike DTDs), each
+XML file should have a &lt;!DOCTYPE&gt; to define the character entity set.</p>
+<p>For instance, you could add the following in your Xdoc XML files to be similar to XHTML 1.0 Transitional dtd:</p>
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="xml"><span class="cp">&lt;!DOCTYPE document [
+  &lt;!-- These are the entity sets for ISO Latin 1 characters for the XHTML --&gt;</span>
+  <span class="cp">&lt;!ENTITY % HTMLlat1 PUBLIC "-//W3C//ENTITIES Latin 1 for XHTML//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml-lat1.ent"&gt;</span>
+  %HTMLlat1;
+  <span class="c">&lt;!-- These are the entity sets for special characters for the XHTML --&gt;</span>
+  <span class="cp">&lt;!ENTITY % HTMLsymbol PUBLIC "-//W3C//ENTITIES Symbols for XHTML//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml-symbol.ent"&gt;</span>
+  %HTMLsymbol;
+  <span class="c">&lt;!-- These are the entity sets for symbol characters for the XHTML --&gt;</span>
+  <span class="cp">&lt;!ENTITY % HTMLspecial PUBLIC "-//W3C//ENTITIES Special for XHTML//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml-special.ent"&gt;</span>
+  %HTMLspecial;
+]&gt;
+<span class="nt">&lt;document</span> <span class="na">xmlns=</span><span class="s">"http://maven.apache.org/XDOC/2.0"</span>
+<span class="na">xmlns:xsi=</span><span class="s">"http://www.w3.org/2001/XMLSchema-instance"</span>
+<span class="na">xsi:schemaLocation=</span><span class="s">"http://maven.apache.org/XDOC/2.0 http://maven.apache.org/xsd/xdoc-2.0.xsd"</span><span class="nt">&gt;</span>
+...
+<span class="nt">&lt;/document&gt;</span>
+</code></pre></div></div>
+<p><strong>Note</strong>: if CDATA is used to specify entity, Doxia will replace &amp; by &amp;amp; (i.e
+"&lt;![CDATA[&amp;iexcl;]]&gt;" becomes "&amp;amp;iexcl;").</p>
+
+        </main>
+      </div>
+    </div>
+    <hr>
+    <footer>
+      <div class="container-fluid">
+        <div class="row-fluid">
+          <p>©      2002–2026 <a href="https://www.apache.org/">The Apache Software Foundation</a></p>
+          <p class="demo-note">A demonstration build of <a href="https://github.com/dashorst/maven-site/tree/diataxis-demo">dashorst/maven-site</a>, not the official Apache Maven site.</p>
+        </div>
+      </div>
+    </footer>
+    <script src="/maven-site/js/guide.js?v=1792948498" defer=""></script>
+    <script>
+    anchors.add();
+    </script>
+  
+
+</body></html>

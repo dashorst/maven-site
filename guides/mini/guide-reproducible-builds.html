@@ -1,0 +1,291 @@
+<!DOCTYPE html><!--
+ | The page frame of the Apache Maven Fluido Skin 2.1.0, as the Doxia site renderer writes it
+ | for maven.apache.org. Built with Jekyll: see jekyll/README.md.
+--><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Configuring for Reproducible Builds – Maven</title>
+    
+    <link rel="stylesheet" href="/maven-site/css/apache-maven-fluido-2.1.0.min.css">
+    <link rel="stylesheet" href="/maven-site/css/site.css">
+    <link rel="stylesheet" href="/maven-site/css/guide.css?v=1792948498">
+    <link rel="stylesheet" href="/maven-site/css/print.css" media="print">
+    <script src="/maven-site/js/apache-maven-fluido-2.1.0.min.js"></script>
+  </head>
+  <body>
+    <div class="container-fluid container-fluid-top">
+      <header>
+        <div id="banner">
+          <div class="pull-left"><div id="bannerLeft"><h1><a href="/maven-site/index.html"><img src="/maven-site/images/apache-maven-project-light-theme.svg" style="width: 489px;height: 83px;" alt="Apache Maven"></a></h1></div></div>
+          <div class="pull-right"><div id="bannerRight"><h1><img src="/maven-site/images/logos/MavenLogoLeaf.svg" style="width: 340px;height: 83px;" alt=""></h1></div></div>
+          <div class="clear"><hr></div>
+        </div>
+
+        <div id="breadcrumbs">
+          <ul class="breadcrumb">
+            <li><a href="https://www.apache.org/">Apache</a><span class="divider">/</span></li>
+            <li><a href="/maven-site/index.html">Maven</a><span class="divider">/</span></li>
+            
+            <li class="active">Configuring for Reproducible Builds <a href="https://github.com/apache/maven-site/tree/master/content/markdown/guides/mini/guide-reproducible-builds.md"><img src="/maven-site/images/accessories-text-editor.png" alt="Edit"></a></li>
+            <li id="publishDate" class="pull-right"><span class="divider">|</span> Last Published: 2026-10-25</li>
+            <li class="pull-right"><span class="divider">|</span> <a href="/maven-site/scm.html">Get Sources</a></li>
+            <li class="pull-right"><a href="https://maven.apache.org/download.cgi">Downloads</a></li>
+          </ul>
+        </div>
+      </header>
+      <div class="row-fluid">
+        <header id="leftColumn" class="span2">
+          
+<form class="guide-search" role="search" action="/maven-site/guides/a-z.html" data-index="/maven-site/guides/search.json" data-script="/maven-site/js/minisearch-7.2.0.js" data-oldest="3.9" data-base="/maven-site">
+  <label class="guide-search-label" for="guide-q-nav">Search the documentation</label>
+  <div class="guide-search-field">
+    <input id="guide-q-nav" name="q" type="search" autocomplete="off" spellcheck="false" placeholder="Search">
+    <kbd class="guide-search-key" aria-hidden="true">/</kbd>
+  </div>
+  
+</form>
+
+          <nav class="well sidebar-nav">
+<ul class="nav nav-list">
+  <li><a href="/maven-site/index.html">Welcome</a></li>
+  <li><a href="https://www.apache.org/licenses/">License</a></li>
+  <li class="nav-header">About Maven</li>
+  <li><a href="/maven-site/what-is-maven.html">What is Maven?</a></li>
+  <li><a href="/maven-site/install.html">Installation</a></li>
+  <li><a href="/maven-site/download.html">Downloads</a></li>
+  <li><a href="/maven-site/run.html">Use</a></li>
+  <li><a href="/maven-site/configure.html">Configure</a></li>
+  <li><a href="/maven-site/docs/history.html">Release Notes</a></li>
+  <li><a href="/maven-site/security.html">Security Reports</a></li>
+  <li class="nav-header">Documentation</li>
+  <li><a href="/maven-site/plugins/index.html">Maven Plugins</a></li>
+  <li><a href="/maven-site/extensions/index.html">Maven Extensions</a></li>
+  <li><a href="/maven-site/tools/index.html"><span class="icon-chevron-down"></span>Maven Tools</a>
+   <ul class="nav nav-list">
+    <li><a href="/maven-site/tools/mvnd.html">Maven Daemon</a></li>
+    <li><a href="/maven-site/tools/mvnsh.html">Maven Shell</a></li>
+    <li><a href="/maven-site/tools/mvnup.html">Maven Upgrade Tool</a></li>
+    <li><a href="/maven-site/tools/mavenwrapper.html">Maven Wrapper</a></li>
+   </ul></li>
+  <li><a href="/maven-site/doxia/index.html"><span class="icon-chevron-right"></span>Doxia</a></li>
+  <li><a href="/maven-site/guides/index.html">Guides</a></li>
+  <li><a href="/maven-site/users/index.html"><span class="icon-chevron-down"></span>User Manual</a>
+   <ul class="nav nav-list">
+    <li><a><span class="icon-chevron-down"></span>Maven Build Fundamentals</a>
+     <ul class="nav nav-list">
+      <li><a href="/maven-site/guides/getting-started/maven-in-five-minutes.html">Maven in 5 Minutes</a></li>
+      <li><a href="/maven-site/users/getting-help.html">Getting Help</a></li>
+      <li><a href="/maven-site/run-maven/index.html">Running Maven</a></li>
+     </ul></li>
+    <li><a><span class="icon-chevron-down"></span>Maven Build Config Fundamentals</a>
+     <ul class="nav nav-list">
+      <li><a href="/maven-site/guides/plugins/validation/index.html">Plugins Validation</a></li>
+      <li><a href="/maven-site/guides/mini/guide-site.html"><span class="icon-chevron-right"></span>Creating a site</a></li>
+      <li><a href="/maven-site/guides/introduction/introduction-to-archetypes.html"><span class="icon-chevron-right"></span>Archetypes</a></li>
+      <li><a href="/maven-site/guides/introduction/introduction-to-repositories.html"><span class="icon-chevron-right"></span>Repositories</a></li>
+      <li><a href="/maven-site/guides/introduction/introduction-to-profiles.html">Profiles</a></li>
+      <li><a href="/maven-site/guides/introduction/introduction-to-the-standard-directory-layout.html">Standard Directory Layout</a></li>
+      <li><a href="/maven-site/guides/introduction/introduction-to-dependency-mechanism.html"><span class="icon-chevron-right"></span>Dependency Mechanism</a></li>
+     </ul></li>
+    <li><a href="/maven-site/guides/getting-started/index.html"><span class="icon-chevron-right"></span>Getting Started Guide</a></li>
+    <li><a><span class="icon-chevron-down"></span>Maven 4</a>
+     <ul class="nav nav-list">
+      <li><a href="/maven-site/whatsnewinmaven4.html">What's new in Maven 4?</a></li>
+      <li><a href="/maven-site/guides/mini/guide-migration-to-mvn4.html">Starting with Maven 4</a></li>
+      <li><a href="/maven-site/guides/mini/guide-mixins.html">Maven Mixins</a></li>
+     </ul></li>
+    <li><a href="/maven-site/guides/mini/index.html"><span class="icon-chevron-down"></span>Guides</a>
+     <ul class="nav nav-list">
+      <li class="active"><a>Configuring for Reproducible Builds</a></li>
+      <li><a href="/maven-site/guides/mini/guide-assemblies.html">Creating Assemblies</a></li>
+      <li><a href="/maven-site/guides/mini/guide-archive-configuration.html">Configuring Archive Plugins</a></li>
+      <li><a href="/maven-site/guides/mini/guide-configuring-maven.html">Configuring Maven</a></li>
+      <li><a href="/maven-site/guides/mini/guide-generating-sources.html">Generating Sources</a></li>
+      <li><a href="/maven-site/guides/mini/guide-manifest.html">Working with Manifests</a></li>
+      <li><a href="/maven-site/guides/mini/guide-maven-classloading.html">Maven Classloading</a></li>
+      <li><a href="/maven-site/guides/mini/guide-multiple-modules.html">Using Modules (Maven 3)</a></li>
+      <li><a href="/maven-site/guides/mini/guide-multiple-subprojects-4.html">Using Subprojects (Maven 4)</a></li>
+      <li><a href="/maven-site/guides/mini/guide-releasing.html">Using Release Plugin</a></li>
+      <li><a href="/maven-site/guides/mini/guide-using-ant.html">Using Ant</a></li>
+      <li><a href="/maven-site/guides/mini/guide-using-modello.html">Using Modello</a></li>
+      <li><a href="/maven-site/guides/mini/guide-using-extensions.html">Using Extensions</a></li>
+      <li><a href="/maven-site/guides/mini/guide-building-for-different-environments.html">Building for Different Environments</a></li>
+      <li><a href="/maven-site/guides/mini/guide-using-toolchains.html">Using Toolchains</a></li>
+      <li><a href="/maven-site/guides/mini/guide-maven-ci-friendly.html">Maven CI Friendly Version</a></li>
+     </ul></li>
+    <li><a href="/maven-site/general.html">FAQ</a></li>
+   </ul></li>
+  <li><a href="/maven-site/repositories/index.html"><span class="icon-chevron-right"></span>Maven Repositories</a></li>
+  <li><a href="/maven-site/plugin-developers/index.html"><span class="icon-chevron-right"></span>Plugin Development</a></li>
+  <li><a href="/maven-site/developers/index.html"><span class="icon-chevron-right"></span>Contribute to Maven</a></li>
+  <li><a href="/maven-site/articles.html">Books and Resources</a></li>
+  <li class="nav-header">Community</li>
+  <li><a href="/maven-site/community.html">Community Overview</a></li>
+  <li><a href="/maven-site/project-roles.html">Project Roles</a></li>
+  <li><a href="/maven-site/guides/development/guide-helping.html">How to Contribute</a></li>
+  <li><a href="/maven-site/users/getting-help.html">Getting Help</a></li>
+  <li><a href="/maven-site/issue-management.html">Issue Management</a></li>
+  <li><a href="/maven-site/scm.html">Getting Maven Source</a></li>
+  <li><a href="/maven-site/team.html">The Maven Team</a></li>
+  <li class="nav-header">Project Documentation</li>
+  <li><a href="/maven-site/project-info.html">Project Information</a></li>
+  <li class="nav-header">Maven Projects</li>
+  <li><a href="/maven-site/ref/current">Maven</a></li>
+  <li><a href="/maven-site/archetypes/index.html">Archetypes</a></li>
+  <li><a href="/maven-site/extensions/index.html">Extensions</a></li>
+  <li><a href="/maven-site/pom/index.html">Parent POMs</a></li>
+  <li><a href="/maven-site/plugins/index.html">Plugins</a></li>
+  <li><a href="/maven-site/skins/index.html">Skins</a></li>
+  <li><a><span class="icon-chevron-down"></span>Components</a>
+   <ul class="nav nav-list">
+    <li><a href="/maven-site/archetype/index.html">Archetype</a></li>
+    <li><a href="/maven-site/resolver/index.html">Artifact Resolver</a></li>
+    <li><a href="/maven-site/doxia/index.html">Doxia</a></li>
+    <li><a href="/maven-site/maven-indexer/index.html">Indexer</a></li>
+    <li><a href="/maven-site/jxr/index.html">JXR</a></li>
+    <li><a href="/maven-site/plugin-testing/index.html">Plugin Testing</a></li>
+    <li><a href="/maven-site/plugin-tools/index.html">Plugin Tools</a></li>
+    <li><a href="/maven-site/apache-resource-bundles/index.html">Resource Bundles</a></li>
+    <li><a href="/maven-site/scm/index.html">SCM</a></li>
+    <li><a href="/maven-site/shared/index.html">Shared Components</a></li>
+    <li><a href="/maven-site/surefire/index.html">Surefire</a></li>
+    <li><a href="/maven-site/wagon/index.html">Wagon</a></li>
+   </ul></li>
+  <li class="nav-header">ASF</li>
+  <li><a href="https://www.apache.org/foundation/how-it-works.html">How Apache Works</a></li>
+  <li><a href="https://www.apache.org/foundation/">Foundation</a></li>
+  <li><a href="https://privacy.apache.org/policies/privacy-policy-public.html">Data Privacy</a></li>
+  <li><a href="https://www.apache.org/foundation/sponsorship.html">Sponsoring Apache</a></li>
+  <li><a href="https://www.apache.org/foundation/thanks.html">Thanks</a></li>
+</ul>
+          </nav>
+          <div class="well sidebar-nav">
+            <div id="poweredBy">
+              <div class="clear"></div>
+              <a href="/maven-site/" class="builtBy" target="_blank"><img class="builtBy" alt="Built by Maven" src="/maven-site/images/logos/maven-feather.png"></a>
+            </div>
+          </div>
+        </header>
+        <main id="bodyColumn" class="span10">
+          
+<!--
+Licensed to the Apache Software Foundation (ASF) under one
+or more contributor license agreements.  See the NOTICE file
+distributed with this work for additional information
+regarding copyright ownership.  The ASF licenses this file
+to you under the Apache License, Version 2.0 (the
+"License"); you may not use this file except in compliance
+with the License.  You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing,
+software distributed under the License is distributed on an
+"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+KIND, either express or implied.  See the License for the
+specific language governing permissions and limitations
+under the License.
+-->
+<h1 id="Configuring_for_Reproducible_Builds">Configuring for Reproducible Builds</h1>
+<h2 id="What_are_Reproducible_Builds.3F">What are Reproducible Builds?</h2>
+<p><a href="https://reproducible-builds.org/">Reproducible builds</a> are a set of software development practices that create an independently-verifiable path from source to binary code. A build is <strong>reproducible</strong> if given the same source code, build environment and build instructions, any party can recreate <strong>bit-by-bit</strong> identical copies of all specified artifacts.</p>
+<p><a href="https://github.com/jvm-repo-rebuild/reproducible-central">Reproducible Central</a> lists projects releases that have been checked as reproducible by rebuilding independently from the reference build published in Central Repository.</p>
+<h2 id="How_do_I_configure_my_Maven_build.3F">How do I configure my Maven build?</h2>
+<p>There is no Maven version prerequisite. Everything happens at plugin level:</p>
+<ol>
+<li>
+<p>Upgrade your plugins to reproducible versions: to easily detect <a href="https://maven.apache.org/plugins/maven-artifact-plugin/plugin-issues.html">required upgrades</a>, run</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mvn artifact:check-buildplan
+</code></pre></div></div>
+</li>
+<li>
+<p>Enable Reproducible Builds mode for plugins, by adding <a href="https://cwiki.apache.org/confluence/pages/viewpage.action?pageId=74682318#Reproducible/VerifiableBuilds-OutputArchiveEntriesTimestamp"><code>project.build.outputTimestamp</code> property</a> to the project's <code>pom.xml</code>:</p>
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="xml"><span class="nt">&lt;properties&gt;</span>
+  <span class="nt">&lt;project.build.outputTimestamp&gt;</span>2023-01-01T00:00:00Z<span class="nt">&lt;/project.build.outputTimestamp&gt;</span>
+<span class="nt">&lt;/properties&gt;</span>
+</code></pre></div></div>
+</li>
+</ol>
+<p>Notice: starting with Maven 3.10.0 and 4.0.0-beta-5, Reproducible Builds mode is active by default (see <a href="https://issues.apache.org/jira/browse/MNG-8258">MNG-8258</a>), without modifying project's <code>pom.xml</code>.
+Setting a value in your <code>pom.xml</code> remains useful if you want to override the inherited static default value.
+See FAQ for opt-out.</p>
+<p>You have the basics configured. The output should be mostly reproducible now.</p>
+<h2 id="How_to_test_my_Maven_build_reproducibility.3F">How to test my Maven build reproducibility?</h2>
+<p>Using <a href="https://maven.apache.org/plugins/maven-artifact-plugin/compare-mojo.html"><code>maven-artifact-plugin</code>'s <code>compare</code> goal</a>, you can easily check that the second build of your project produce the same output than an initial build:</p>
+<ol>
+<li>
+<p>build and <code>install</code> your project (don't hesitate to customize arguments to better match your project):</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mvn clean install 
+</code></pre></div></div>
+</li>
+<li>
+<p>rebuild (<code>verify</code> only, without installing) and check against the previous install:</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mvn clean verify artifact:compare
+</code></pre></div></div>
+</li>
+</ol>
+<p>Notice that this local test does NOT really prove that your build is yet reproducible by a third party, because it may still suffer from environment leaks (username, current directory, ...). But it is easy to do, and prevents basic non-reproducible issues like timestamps. Really checking reproducibility requires to rebuild from a completely different setup: this is harder to do, even if containers may ease the task.</p>
+<h3 id="Staging">Staging</h3>
+<p>If the first build is done with `deploy` to a private remote repository, the rebuild and its verification can be done by someone else referencing the staging location, like for example at Apache during votes on staged releases candidates:</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mvn verify artifact:compare -Dreference.repo=https://repository.apache.org/content/repositories/staging/
+</code></pre></div></div>
+<h2 id="How_to_fix_my_Maven_build_reproducibility.3F">How to fix my Maven build reproducibility?</h2>
+<p>If something is still not reproducible after initial setup and <a href="https://maven.apache.org/plugins/maven-artifact-plugin/plugin-issues.html">automatic check from <code>artifact:check-buildplan</code></a>:</p>
+<ol>
+<li>Use <a href="https://diffoscope.org/">diffoscope</a> to find the unstable output between builds. The <code>artifact:buildinfo</code> goal proposes a command with path to files: just copy/paste to launch.</li>
+<li>Find the plugin that generated this output.</li>
+<li>Check if a reproducible version of the plugin is available. If not, please open an issue to help plugin maintainers improving Reproducible Builds support at every plugin level.</li>
+</ol>
+<h2 id="More_Details">More Details</h2>
+<p>Reproducible Builds for Maven:</p>
+<ul>
+<li>Require <strong>no version ranges</strong> in dependencies (not strictly true with <a href="https://maveniverse.eu/blog/2026/04/17/taming-maven-version-ranges/">Maven 3.10 and <code>-Dmaven.session.versionFilter</code></a>),</li>
+<li>Generally give <strong>different results on Windows and Unix</strong> because of different newlines. (carriage return linefeed on Windows, linefeed on Unixes)</li>
+<li>Generally depend on the <strong>major version only of the JDK</strong> used to compile. (Even with source/target defined, each major JDK version changes the generated bytecode, but minor usually not, nor vendor)</li>
+</ul>
+<p>For detailed explanations, see <a href="https://s.apache.org/reproducible-builds">Maven "Reproducible/Verifiable Builds" Wiki page</a>.</p>
+<h2 id="FAQ">FAQ</h2>
+<ul>
+<li>
+<p>Q. Can the <code>project.build.outputTimestamp</code> property in <code>pom.xml</code> be updated automatically at release time?</p>
+<p>A. Yes.</p>
+<p>Details depend on your release process tooling:</p>
+<ul>
+<li>if you use <a href="https://maven.apache.org/plugins/maven-release-plugin/">maven-release-plugin</a>, you'll need <strong>version 3.0.0-M1 or later</strong>: it will automatically update the timestamp value in <code>pom.xml</code> during the release in the same commit that updates version,</li>
+<li>if you have a custom release process tooling, you'll need to add the feature to your release tooling. Notice that if you're using <code>versions-maven-plugin</code> in custom release scripts, starting with release 2.9.0, <a href="https://github.com/mojohaus/versions-maven-plugin/issues/453"><code>versions:set</code> goal updates the property</a>.</li>
+<li>instead of explicitly writing a timestamp in their <code>pom.xml</code>, some people tend to prefer using last Git commit timestamp, like <code>${git.commit.time}</code> from <a href="https://github.com/git-commit-id/git-commit-id-maven-plugin">git-commit-id-maven-plugin</a> (with <code>&lt;dateFormatTimeZone&gt;UTC&lt;/dateFormatTimeZone&gt;</code> to be independent from user's timezone).</li>
+</ul>
+</li>
+</ul>
+<p>Don't hesitate to share your questions or solutions on <a href="https://maven.apache.org/mailing-lists.html">user mailing-list</a>.</p>
+<ul>
+<li>
+<p>Q. Which additional plugins need to be updated for Reproducible Builds?</p>
+<p>A. See the list of <a href="https://maven.apache.org/plugins/maven-artifact-plugin/plugin-issues.html">required upgrades</a></p>
+</li>
+<li>
+<p>Q. Reproducible Builds is active by default on my project (from a parent POM, or using Maven 3.10+), how can I opt-out and disable it?</p>
+<p>A. We'd love to understand why you want to disable Reproducible Builds,
+but any single character value (non-numeric) will disable Reproducible Builds: <code>&lt;project.build.outputTimestamp&gt;x&lt;/project.build.outputTimestamp&gt;</code></p>
+</li>
+</ul>
+
+        </main>
+      </div>
+    </div>
+    <hr>
+    <footer>
+      <div class="container-fluid">
+        <div class="row-fluid">
+          <p>©      2002–2026 <a href="https://www.apache.org/">The Apache Software Foundation</a></p>
+          <p class="demo-note">A demonstration build of <a href="https://github.com/dashorst/maven-site/tree/diataxis-demo">dashorst/maven-site</a>, not the official Apache Maven site.</p>
+        </div>
+      </div>
+    </footer>
+    <script src="/maven-site/js/guide.js?v=1792948498" defer=""></script>
+    <script>
+    anchors.add();
+    </script>
+  
+
+</body></html>

@@ -1,0 +1,635 @@
+<!DOCTYPE html><!--
+ | The page frame of the Apache Maven Fluido Skin 2.1.0, as the Doxia site renderer writes it
+ | for maven.apache.org. Built with Jekyll: see jekyll/README.md.
+--><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Localization of Plugins – Maven</title>
+    
+    <link rel="stylesheet" href="/maven-site/css/apache-maven-fluido-2.1.0.min.css">
+    <link rel="stylesheet" href="/maven-site/css/site.css">
+    <link rel="stylesheet" href="/maven-site/css/guide.css?v=1792948498">
+    <link rel="stylesheet" href="/maven-site/css/print.css" media="print">
+    <script src="/maven-site/js/apache-maven-fluido-2.1.0.min.js"></script>
+  </head>
+  <body>
+    <div class="container-fluid container-fluid-top">
+      <header>
+        <div id="banner">
+          <div class="pull-left"><div id="bannerLeft"><h1><a href="/maven-site/index.html"><img src="/maven-site/images/apache-maven-project-light-theme.svg" style="width: 489px;height: 83px;" alt="Apache Maven"></a></h1></div></div>
+          <div class="pull-right"><div id="bannerRight"><h1><img src="/maven-site/images/logos/MavenLogoLeaf.svg" style="width: 340px;height: 83px;" alt=""></h1></div></div>
+          <div class="clear"><hr></div>
+        </div>
+
+        <div id="breadcrumbs">
+          <ul class="breadcrumb">
+            <li><a href="https://www.apache.org/">Apache</a><span class="divider">/</span></li>
+            <li><a href="/maven-site/index.html">Maven</a><span class="divider">/</span></li>
+            
+            <li class="active">Localization of Plugins <a href="https://github.com/apache/maven-site/tree/master/content/markdown/plugins/localization.md"><img src="/maven-site/images/accessories-text-editor.png" alt="Edit"></a></li>
+            <li id="publishDate" class="pull-right"><span class="divider">|</span> Last Published: 2026-10-25</li>
+            <li class="pull-right"><span class="divider">|</span> <a href="/maven-site/scm.html">Get Sources</a></li>
+            <li class="pull-right"><a href="https://maven.apache.org/download.cgi">Downloads</a></li>
+          </ul>
+        </div>
+      </header>
+      <div class="row-fluid">
+        <header id="leftColumn" class="span2">
+          
+<form class="guide-search" role="search" action="/maven-site/guides/a-z.html" data-index="/maven-site/guides/search.json" data-script="/maven-site/js/minisearch-7.2.0.js" data-oldest="3.9" data-base="/maven-site">
+  <label class="guide-search-label" for="guide-q-nav">Search the documentation</label>
+  <div class="guide-search-field">
+    <input id="guide-q-nav" name="q" type="search" autocomplete="off" spellcheck="false" placeholder="Search">
+    <kbd class="guide-search-key" aria-hidden="true">/</kbd>
+  </div>
+  
+</form>
+
+          <nav class="well sidebar-nav">
+<ul class="nav nav-list">
+  <li><a href="/maven-site/index.html">Welcome</a></li>
+  <li><a href="https://www.apache.org/licenses/">License</a></li>
+  <li class="nav-header">About Maven</li>
+  <li><a href="/maven-site/what-is-maven.html">What is Maven?</a></li>
+  <li><a href="/maven-site/install.html">Installation</a></li>
+  <li><a href="/maven-site/download.html">Downloads</a></li>
+  <li><a href="/maven-site/run.html">Use</a></li>
+  <li><a href="/maven-site/configure.html">Configure</a></li>
+  <li><a href="/maven-site/docs/history.html">Release Notes</a></li>
+  <li><a href="/maven-site/security.html">Security Reports</a></li>
+  <li class="nav-header">Documentation</li>
+  <li><a href="/maven-site/plugins/index.html">Maven Plugins</a></li>
+  <li><a href="/maven-site/extensions/index.html">Maven Extensions</a></li>
+  <li><a href="/maven-site/tools/index.html"><span class="icon-chevron-down"></span>Maven Tools</a>
+   <ul class="nav nav-list">
+    <li><a href="/maven-site/tools/mvnd.html">Maven Daemon</a></li>
+    <li><a href="/maven-site/tools/mvnsh.html">Maven Shell</a></li>
+    <li><a href="/maven-site/tools/mvnup.html">Maven Upgrade Tool</a></li>
+    <li><a href="/maven-site/tools/mavenwrapper.html">Maven Wrapper</a></li>
+   </ul></li>
+  <li><a href="/maven-site/doxia/index.html"><span class="icon-chevron-right"></span>Doxia</a></li>
+  <li><a href="/maven-site/guides/index.html">Guides</a></li>
+  <li><a href="/maven-site/users/index.html"><span class="icon-chevron-right"></span>User Manual</a></li>
+  <li><a href="/maven-site/repositories/index.html"><span class="icon-chevron-right"></span>Maven Repositories</a></li>
+  <li><a href="/maven-site/plugin-developers/index.html"><span class="icon-chevron-right"></span>Plugin Development</a></li>
+  <li><a href="/maven-site/developers/index.html"><span class="icon-chevron-right"></span>Contribute to Maven</a></li>
+  <li><a href="/maven-site/articles.html">Books and Resources</a></li>
+  <li class="nav-header">Community</li>
+  <li><a href="/maven-site/community.html">Community Overview</a></li>
+  <li><a href="/maven-site/project-roles.html">Project Roles</a></li>
+  <li><a href="/maven-site/guides/development/guide-helping.html">How to Contribute</a></li>
+  <li><a href="/maven-site/users/getting-help.html">Getting Help</a></li>
+  <li><a href="/maven-site/issue-management.html">Issue Management</a></li>
+  <li><a href="/maven-site/scm.html">Getting Maven Source</a></li>
+  <li><a href="/maven-site/team.html">The Maven Team</a></li>
+  <li class="nav-header">Project Documentation</li>
+  <li><a href="/maven-site/project-info.html">Project Information</a></li>
+  <li class="nav-header">Maven Projects</li>
+  <li><a href="/maven-site/ref/current">Maven</a></li>
+  <li><a href="/maven-site/archetypes/index.html">Archetypes</a></li>
+  <li><a href="/maven-site/extensions/index.html">Extensions</a></li>
+  <li><a href="/maven-site/pom/index.html">Parent POMs</a></li>
+  <li><a href="/maven-site/plugins/index.html">Plugins</a></li>
+  <li><a href="/maven-site/skins/index.html">Skins</a></li>
+  <li><a><span class="icon-chevron-down"></span>Components</a>
+   <ul class="nav nav-list">
+    <li><a href="/maven-site/archetype/index.html">Archetype</a></li>
+    <li><a href="/maven-site/resolver/index.html">Artifact Resolver</a></li>
+    <li><a href="/maven-site/doxia/index.html">Doxia</a></li>
+    <li><a href="/maven-site/maven-indexer/index.html">Indexer</a></li>
+    <li><a href="/maven-site/jxr/index.html">JXR</a></li>
+    <li><a href="/maven-site/plugin-testing/index.html">Plugin Testing</a></li>
+    <li><a href="/maven-site/plugin-tools/index.html">Plugin Tools</a></li>
+    <li><a href="/maven-site/apache-resource-bundles/index.html">Resource Bundles</a></li>
+    <li><a href="/maven-site/scm/index.html">SCM</a></li>
+    <li><a href="/maven-site/shared/index.html">Shared Components</a></li>
+    <li><a href="/maven-site/surefire/index.html">Surefire</a></li>
+    <li><a href="/maven-site/wagon/index.html">Wagon</a></li>
+   </ul></li>
+  <li class="nav-header">ASF</li>
+  <li><a href="https://www.apache.org/foundation/how-it-works.html">How Apache Works</a></li>
+  <li><a href="https://www.apache.org/foundation/">Foundation</a></li>
+  <li><a href="https://privacy.apache.org/policies/privacy-policy-public.html">Data Privacy</a></li>
+  <li><a href="https://www.apache.org/foundation/sponsorship.html">Sponsoring Apache</a></li>
+  <li><a href="https://www.apache.org/foundation/thanks.html">Thanks</a></li>
+</ul>
+          </nav>
+          <div class="well sidebar-nav">
+            <div id="poweredBy">
+              <div class="clear"></div>
+              <a href="/maven-site/" class="builtBy" target="_blank"><img class="builtBy" alt="Built by Maven" src="/maven-site/images/logos/maven-feather.png"></a>
+            </div>
+          </div>
+        </header>
+        <main id="bodyColumn" class="span10">
+          
+<!--
+Licensed to the Apache Software Foundation (ASF) under one
+or more contributor license agreements.  See the NOTICE file
+distributed with this work for additional information
+regarding copyright ownership.  The ASF licenses this file
+to you under the Apache License, Version 2.0 (the
+"License"); you may not use this file except in compliance
+with the License.  You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing,
+software distributed under the License is distributed on an
+"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+KIND, either express or implied.  See the License for the
+specific language governing permissions and limitations
+under the License.
+-->
+<h1 id="Localization_of_Plugins">Localization of Plugins</h1>
+<p>Most of the plugins involved with the site generation are fully internationalized. This means that adapting them to another language, a process known as localization, is very easy. All that is needed is to download a couple of properties files and start translating the texts in them. If you want to provide a patch for an unsupported language, there are detailed instructions below.</p>
+<p>For the basic site generation there are currently files for three components that needs to be localized to support a new language: Maven Site Plugin, Maven Project Info Reports Plugin and Maven Doxia Tools.</p>
+<p><strong>Note:</strong> The links to SVN below goes to the latest development code. So the files may be newer than the ones included in the latest release.</p>
+<p>In the table below you can see our localized plugins and which languages they are available in.</p>
+<table class="table table-striped">
+<thead>
+<tr>
+<th align="left">Plugin</th>
+<th align="left">ca</th>
+<th align="left">cs</th>
+<th align="left">da</th>
+<th align="left">de</th>
+<th align="left">es</th>
+<th align="left">fr</th>
+<th align="left">gl</th>
+<th align="left">hu</th>
+<th align="left">it</th>
+<th align="left">ja</th>
+<th align="left">ko</th>
+<th align="left">lt</th>
+<th align="left">nl</th>
+<th align="left">no</th>
+<th align="left">pl</th>
+<th align="left">pt</th>
+<th align="left">pt_BR</th>
+<th align="left">ru</th>
+<th align="left">sk</th>
+<th align="left">sv</th>
+<th align="left">tr</th>
+<th align="left">zh_CN</th>
+<th align="left">zh_TW</th>
+<th align="left">l10n report</th>
+<th align="left">SVN</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">Changelog</td>
+<td align="left">-</td>
+<td align="left">-</td>
+<td align="left">-</td>
+<td align="left">OK</td>
+<td align="left">-</td>
+<td align="left">-</td>
+<td align="left">-</td>
+<td align="left">-</td>
+<td align="left">-</td>
+<td align="left">-</td>
+<td align="left">-</td>
+<td align="left">-</td>
+<td align="left">-</td>
+<td align="left">-</td>
+<td align="left">-</td>
+<td align="left">-</td>
+<td align="left">-</td>
+<td align="left">-</td>
+<td align="left">-</td>
+<td align="left">OK</td>
+<td align="left">-</td>
+<td align="left">-</td>
+<td align="left">-</td>
+<td align="left"><a href="https://maven.apache.org/plugins/maven-changelog-plugin/l10n-status.html">l10n report</a></td>
+<td align="left"><a href="https://svn.apache.org/repos/asf/maven/plugins/trunk/maven-changelog-plugin/src/main/resources/">SVN</a></td>
+</tr>
+<tr>
+<td align="left">Changes</td>
+<td align="left">-</td>
+<td align="left">-</td>
+<td align="left">-</td>
+<td align="left">OK</td>
+<td align="left">-</td>
+<td align="left">OK</td>
+<td align="left">-</td>
+<td align="left">-</td>
+<td align="left">-</td>
+<td align="left">-</td>
+<td align="left">-</td>
+<td align="left">-</td>
+<td align="left">-</td>
+<td align="left">-</td>
+<td align="left">-</td>
+<td align="left">-</td>
+<td align="left">OK</td>
+<td align="left">-</td>
+<td align="left">-</td>
+<td align="left">OK</td>
+<td align="left">-</td>
+<td align="left">-</td>
+<td align="left">-</td>
+<td align="left"><a href="https://maven.apache.org/plugins/maven-changes-plugin/l10n-status.html">l10n report</a></td>
+<td align="left"><a href="https://svn.apache.org/repos/asf/maven/plugins/trunk/maven-changes-plugin/src/main/resources/">SVN</a></td>
+</tr>
+<tr>
+<td align="left">Checkstyle</td>
+<td align="left">-</td>
+<td align="left">-</td>
+<td align="left">-</td>
+<td align="left">OK</td>
+<td align="left">-</td>
+<td align="left">OK</td>
+<td align="left">-</td>
+<td align="left">-</td>
+<td align="left">-</td>
+<td align="left">-</td>
+<td align="left">-</td>
+<td align="left">-</td>
+<td align="left">-</td>
+<td align="left">-</td>
+<td align="left">-</td>
+<td align="left">-</td>
+<td align="left">OK</td>
+<td align="left">-</td>
+<td align="left">-</td>
+<td align="left">OK</td>
+<td align="left">-</td>
+<td align="left">-</td>
+<td align="left">-</td>
+<td align="left"><a href="https://maven.apache.org/plugins/maven-checkstyle-plugin/l10n-status.html">l10n report</a></td>
+<td align="left"><a href="https://svn.apache.org/repos/asf/maven/plugins/trunk/maven-checkstyle-plugin/src/main/resources/">SVN</a></td>
+</tr>
+<tr>
+<td align="left">Dependency</td>
+<td align="left">-</td>
+<td align="left">-</td>
+<td align="left">-</td>
+<td align="left">OK</td>
+<td align="left">-</td>
+<td align="left">-</td>
+<td align="left">-</td>
+<td align="left">-</td>
+<td align="left">-</td>
+<td align="left">-</td>
+<td align="left">-</td>
+<td align="left">-</td>
+<td align="left">-</td>
+<td align="left">-</td>
+<td align="left">-</td>
+<td align="left">-</td>
+<td align="left">OK</td>
+<td align="left">-</td>
+<td align="left">-</td>
+<td align="left">OK</td>
+<td align="left">-</td>
+<td align="left">-</td>
+<td align="left">-</td>
+<td align="left"><a href="https://maven.apache.org/plugins/maven-dependency-plugin/l10n-status.html">l10n report</a></td>
+<td align="left"><a href="https://svn.apache.org/repos/asf/maven/plugins/trunk/maven-dependency-plugin/src/main/resources/">SVN</a></td>
+</tr>
+<tr>
+<td align="left">DOAP</td>
+<td align="left">-</td>
+<td align="left">-</td>
+<td align="left">-</td>
+<td align="left">OK</td>
+<td align="left">OK</td>
+<td align="left">OK</td>
+<td align="left">-</td>
+<td align="left">-</td>
+<td align="left">-</td>
+<td align="left">-</td>
+<td align="left">-</td>
+<td align="left">-</td>
+<td align="left">-</td>
+<td align="left">-</td>
+<td align="left">-</td>
+<td align="left">-</td>
+<td align="left">-</td>
+<td align="left">-</td>
+<td align="left">-</td>
+<td align="left">-</td>
+<td align="left">-</td>
+<td align="left">-</td>
+<td align="left">-</td>
+<td align="left"><a href="https://maven.apache.org/plugins/maven-doap-plugin/l10n-status.html">l10n report</a></td>
+<td align="left"><a href="https://svn.apache.org/repos/asf/maven/plugins/trunk/maven-doap-plugin/src/main/resources/">SVN</a></td>
+</tr>
+<tr>
+<td align="left">Doxia Integration Tools</td>
+<td align="left">OK</td>
+<td align="left">OK</td>
+<td align="left">OK</td>
+<td align="left">OK</td>
+<td align="left">OK</td>
+<td align="left">OK</td>
+<td align="left">OK</td>
+<td align="left">OK</td>
+<td align="left">OK</td>
+<td align="left">OK</td>
+<td align="left">OK</td>
+<td align="left">OK</td>
+<td align="left">OK</td>
+<td align="left">OK</td>
+<td align="left">OK</td>
+<td align="left">OK</td>
+<td align="left">OK</td>
+<td align="left">OK</td>
+<td align="left">OK</td>
+<td align="left">OK</td>
+<td align="left">OK</td>
+<td align="left">OK</td>
+<td align="left">OK</td>
+<td align="left"><a href="https://maven.apache.org/doxia/doxia-tools/doxia-integration-tools/l10n-status.html">l10n report</a></td>
+<td align="left"><a href="https://svn.apache.org/repos/asf/maven/doxia/doxia-sitetools/trunk/doxia-integration-tools/src/main/resources/">SVN</a></td>
+</tr>
+<tr>
+<td align="left">Javadoc</td>
+<td align="left">-</td>
+<td align="left">-</td>
+<td align="left">-</td>
+<td align="left">OK</td>
+<td align="left">-</td>
+<td align="left">OK</td>
+<td align="left">-</td>
+<td align="left">-</td>
+<td align="left">-</td>
+<td align="left">-</td>
+<td align="left">-</td>
+<td align="left">-</td>
+<td align="left">OK</td>
+<td align="left">-</td>
+<td align="left">-</td>
+<td align="left">-</td>
+<td align="left">-</td>
+<td align="left">-</td>
+<td align="left">-</td>
+<td align="left">OK</td>
+<td align="left">-</td>
+<td align="left">-</td>
+<td align="left">-</td>
+<td align="left"><a href="https://maven.apache.org/plugins/maven-javadoc-plugin/l10n-status.html">l10n report</a></td>
+<td align="left"><a href="https://svn.apache.org/repos/asf/maven/plugins/trunk/maven-javadoc-plugin/src/main/resources/">SVN</a></td>
+</tr>
+<tr>
+<td align="left">JXR</td>
+<td align="left">-</td>
+<td align="left">-</td>
+<td align="left">-</td>
+<td align="left">OK</td>
+<td align="left">-</td>
+<td align="left">OK</td>
+<td align="left">-</td>
+<td align="left">-</td>
+<td align="left">-</td>
+<td align="left">-</td>
+<td align="left">-</td>
+<td align="left">-</td>
+<td align="left">-</td>
+<td align="left">-</td>
+<td align="left">-</td>
+<td align="left">-</td>
+<td align="left">-</td>
+<td align="left">-</td>
+<td align="left">-</td>
+<td align="left">OK</td>
+<td align="left">-</td>
+<td align="left">-</td>
+<td align="left">-</td>
+<td align="left"><a href="https://maven.apache.org/plugins/maven-jxr-plugin/l10n-status.html">l10n report</a></td>
+<td align="left"><a href="https://svn.apache.org/repos/asf/maven/jxr/trunk/maven-jxr-plugin/src/main/resources/">SVN</a></td>
+</tr>
+<tr>
+<td align="left">PMD</td>
+<td align="left">-</td>
+<td align="left">-</td>
+<td align="left">-</td>
+<td align="left">OK</td>
+<td align="left">-</td>
+<td align="left">OK</td>
+<td align="left">-</td>
+<td align="left">-</td>
+<td align="left">OK</td>
+<td align="left">-</td>
+<td align="left">-</td>
+<td align="left">-</td>
+<td align="left">OK</td>
+<td align="left">-</td>
+<td align="left">-</td>
+<td align="left">-</td>
+<td align="left">OK</td>
+<td align="left">-</td>
+<td align="left">-</td>
+<td align="left">OK</td>
+<td align="left">-</td>
+<td align="left">-</td>
+<td align="left">-</td>
+<td align="left"><a href="https://maven.apache.org/plugins/maven-pmd-plugin/l10n-status.html">l10n report</a></td>
+<td align="left"><a href="https://svn.apache.org/repos/asf/maven/plugins/trunk/maven-pmd-plugin/src/main/resources/">SVN</a></td>
+</tr>
+<tr>
+<td align="left">Plugin</td>
+<td align="left">-</td>
+<td align="left">-</td>
+<td align="left">-</td>
+<td align="left">OK</td>
+<td align="left">-</td>
+<td align="left">OK</td>
+<td align="left">-</td>
+<td align="left">-</td>
+<td align="left">-</td>
+<td align="left">-</td>
+<td align="left">-</td>
+<td align="left">-</td>
+<td align="left">-</td>
+<td align="left">-</td>
+<td align="left">-</td>
+<td align="left">-</td>
+<td align="left">-</td>
+<td align="left">-</td>
+<td align="left">-</td>
+<td align="left">OK</td>
+<td align="left">-</td>
+<td align="left">-</td>
+<td align="left">-</td>
+<td align="left"><a href="https://maven.apache.org/plugins/maven-plugin-plugin/l10n-status.html">l10n report</a></td>
+<td align="left"><a href="https://svn.apache.org/repos/asf/maven/plugin-tools/trunk/maven-plugin-plugin/src/main/resources/">SVN</a></td>
+</tr>
+<tr>
+<td align="left">Project Info Reports</td>
+<td align="left">-</td>
+<td align="left">OK</td>
+<td align="left">-</td>
+<td align="left">OK</td>
+<td align="left">OK</td>
+<td align="left">OK</td>
+<td align="left">OK</td>
+<td align="left">OK</td>
+<td align="left">OK</td>
+<td align="left">OK</td>
+<td align="left">OK</td>
+<td align="left">OK</td>
+<td align="left">OK</td>
+<td align="left">OK</td>
+<td align="left">OK</td>
+<td align="left">OK</td>
+<td align="left">OK</td>
+<td align="left">OK</td>
+<td align="left">OK</td>
+<td align="left">OK</td>
+<td align="left">OK</td>
+<td align="left">OK</td>
+<td align="left">OK</td>
+<td align="left"><a href="https://maven.apache.org/plugins/maven-project-info-reports-plugin/l10n-status.html">l10n report</a></td>
+<td align="left"><a href="https://svn.apache.org/repos/asf/maven/plugins/trunk/maven-project-info-reports-plugin/src/main/resources/">SVN</a></td>
+</tr>
+<tr>
+<td align="left">Surefire report</td>
+<td align="left">-</td>
+<td align="left">-</td>
+<td align="left">-</td>
+<td align="left">OK</td>
+<td align="left">-</td>
+<td align="left">-</td>
+<td align="left">-</td>
+<td align="left">-</td>
+<td align="left">-</td>
+<td align="left">-</td>
+<td align="left">-</td>
+<td align="left">-</td>
+<td align="left">-</td>
+<td align="left">-</td>
+<td align="left">-</td>
+<td align="left">-</td>
+<td align="left">-</td>
+<td align="left">-</td>
+<td align="left">-</td>
+<td align="left">OK</td>
+<td align="left">-</td>
+<td align="left">-</td>
+<td align="left">-</td>
+<td align="left"><a href="https://maven.apache.org/plugins/maven-surefire-report-plugin/l10n-status.html">l10n report</a></td>
+<td align="left"><a href="https://svn.apache.org/repos/asf/maven/surefire/trunk/maven-surefire-report-plugin/src/main/resources/">SVN</a></td>
+</tr>
+<tr>
+<td align="left">Site</td>
+<td align="left">OK</td>
+<td align="left">OK</td>
+<td align="left">OK</td>
+<td align="left">OK</td>
+<td align="left">OK</td>
+<td align="left">OK</td>
+<td align="left">OK</td>
+<td align="left">OK</td>
+<td align="left">OK</td>
+<td align="left">OK</td>
+<td align="left">OK</td>
+<td align="left">OK</td>
+<td align="left">OK</td>
+<td align="left">OK</td>
+<td align="left">OK</td>
+<td align="left">OK</td>
+<td align="left">OK</td>
+<td align="left">OK</td>
+<td align="left">OK</td>
+<td align="left">OK</td>
+<td align="left">OK</td>
+<td align="left">OK</td>
+<td align="left">OK</td>
+<td align="left"><a href="https://maven.apache.org/plugins/maven-site-plugin/l10n-status.html">l10n report</a></td>
+<td align="left"><a href="https://svn.apache.org/repos/asf/maven/plugins/trunk/maven-site-plugin/src/main/resources/">SVN</a></td>
+</tr>
+</tbody>
+</table>
+<p>Is your favourite plugin missing a localization for your language? Please help us expand the language support by following the instructions below.</p>
+<h2 id="Localizing_a_Plugin">Localizing a Plugin</h2>
+<ul>
+<li>
+<p>Check out the source code for the plugin you want to add a translation to.</p>
+</li>
+<li>
+<p>Find the resource bundles that needs to be translated. They are often found in the <code>src/main/resources</code> directory.</p>
+</li>
+<li>
+<p>Copy the basefile for the bundle, i.e. the one <strong>without</strong> a language extension. The copy should have the same name as the original file, except for the addition of a language extension. If, for example, you want to translate the Checkstyle Plugin into Spanish, you would copy <code>src/main/resources/checkstyle-report.properties</code> to <code>src/main/resources/checkstyle-report_es.properties</code>.</p>
+</li>
+<li>
+<p>Edit the new file and translate all the properties. Do not change the formating of the file, i.e. keep the current indentation and line breaks. This makes it easy to use a graphical diff tool to find missing keys in the file.</p>
+</li>
+<li>
+<p>Convert the new file so that all non-US-ASCII characters are transformed into Unicode escapes, see below for a tool that can help with this.</p>
+</li>
+<li>
+<p>Run "mvn install" for the plugin.</p>
+</li>
+<li>
+<p>Configure a project to use the latest SNAPSHOT version of the plugin you are working on. Also configure the project to produce a site in the language you are adding a translation for. For Spanish, as we used in the example above, it would look like this:</p>
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="xml">  <span class="nt">&lt;build&gt;</span>
+    <span class="nt">&lt;plugins&gt;</span>
+      <span class="nt">&lt;plugin&gt;</span>
+        <span class="nt">&lt;groupId&gt;</span>org.apache.maven.plugins<span class="nt">&lt;/groupId&gt;</span>
+        <span class="nt">&lt;artifactId&gt;</span>maven-site-plugin<span class="nt">&lt;/artifactId&gt;</span>
+        <span class="nt">&lt;configuration&gt;</span>
+          <span class="nt">&lt;locales&gt;</span>es<span class="nt">&lt;/locales&gt;</span>
+        <span class="nt">&lt;/configuration&gt;</span>
+      <span class="nt">&lt;/plugin&gt;</span>
+    <span class="nt">&lt;/plugins&gt;</span>
+  <span class="nt">&lt;/build&gt;</span>
+
+</code></pre></div></div>
+</li>
+<li>
+<p>Run "mvn site" on that project to test it.</p>
+</li>
+<li>
+<p>When you are happy with your translation, create a Pull Request for the plugin in question, with a description like this: "Add Spanish translation". Take note of the issue number.</p>
+</li>
+</ul>
+<h2 id="Tools">Tools</h2>
+<p>There is a command line tool called <strong>native2ascii</strong> that can be used to convert a text file to use Unicode-encoded characters instead of native-encoded characters. This is part of the Java SDK and you can <a href="http://java.sun.com/j2se/1.5.0/docs/tooldocs/windows/native2ascii.html">read more about it here</a>. You use it like this:</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>native2ascii checkstyle-report_es.properties checkstyle-report_es-encoded.properties
+</code></pre></div></div>
+<h3 id="Tools_to_find_out_the_charset_of_a_file">Tools to find out the charset of a file</h3>
+<ul>
+<li>Unix <code>file</code> command</li>
+<li><a href="http://cpdetector.sourceforge.net/">cpdetector</a></li>
+<li><a href="http://plugins.intellij.net/plugin/?id=24">IntelliJ IDEA ShowEncodingPlugin</a></li>
+<li><a href="http://notepad-plus.sourceforge.net/">Notepad++</a></li>
+</ul>
+<h3 id="Tools_to_write_a_file_in_a_given_charset">Tools to write a file in a given charset</h3>
+<p>Any editor like Notepad++, Eclipse, IntelliJ IDEA, ...</p>
+<h3 id="Tools_to_convert_a_file_from_one_encoding_to_another_encoding">Tools to convert a file from one encoding to another encoding</h3>
+<ul>
+<li>Unix <code>iconv</code> command</li>
+<li>Notepad++</li>
+</ul>
+<h3 id="IDE_plugins">IDE plugins</h3>
+<ul>
+<li><a href="http://propedit.sourceforge.jp/index_en.html">Properties Editor Eclipse Plugin</a></li>
+</ul>
+<h2 id="References">References</h2>
+<p>Please refer to the <a href="http://java.sun.com/javase/technologies/core/basic/intl/">Java Internationalization home page</a> for an introduction to the topic.</p>
+<p>You can also refer to this Sun FAQ: <a href="http://developers.sun.com/global/technology/standards/reference/faqs/determining-file-encoding.html">How Can I Determine the Encoding of a File?</a></p>
+
+        </main>
+      </div>
+    </div>
+    <hr>
+    <footer>
+      <div class="container-fluid">
+        <div class="row-fluid">
+          <p>©      2002–2026 <a href="https://www.apache.org/">The Apache Software Foundation</a></p>
+          <p class="demo-note">A demonstration build of <a href="https://github.com/dashorst/maven-site/tree/diataxis-demo">dashorst/maven-site</a>, not the official Apache Maven site.</p>
+        </div>
+      </div>
+    </footer>
+    <script src="/maven-site/js/guide.js?v=1792948498" defer=""></script>
+    <script>
+    anchors.add();
+    </script>
+  
+
+</body></html>

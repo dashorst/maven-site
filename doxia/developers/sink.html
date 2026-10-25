@@ -1,0 +1,299 @@
+<!DOCTYPE html><!--
+ | The page frame of the Apache Maven Fluido Skin 2.1.0, as the Doxia site renderer writes it
+ | for maven.apache.org. Built with Jekyll: see jekyll/README.md.
+--><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Doxia Developers Centre – Maven</title>
+    
+    <link rel="stylesheet" href="/maven-site/css/apache-maven-fluido-2.1.0.min.css">
+    <link rel="stylesheet" href="/maven-site/css/site.css">
+    <link rel="stylesheet" href="/maven-site/css/guide.css?v=1792948498">
+    <link rel="stylesheet" href="/maven-site/css/print.css" media="print">
+    <script src="/maven-site/js/apache-maven-fluido-2.1.0.min.js"></script>
+  </head>
+  <body>
+    <div class="container-fluid container-fluid-top">
+      <header>
+        <div id="banner">
+          <div class="pull-left"><div id="bannerLeft"><h1><a href="/maven-site/index.html"><img src="/maven-site/images/apache-maven-project-light-theme.svg" style="width: 489px;height: 83px;" alt="Apache Maven"></a></h1></div></div>
+          <div class="pull-right"><div id="bannerRight"><h1><img src="/maven-site/images/logos/MavenLogoLeaf.svg" style="width: 340px;height: 83px;" alt=""></h1></div></div>
+          <div class="clear"><hr></div>
+        </div>
+
+        <div id="breadcrumbs">
+          <ul class="breadcrumb">
+            <li><a href="https://www.apache.org/">Apache</a><span class="divider">/</span></li>
+            <li><a href="/maven-site/index.html">Maven</a><span class="divider">/</span></li>
+            
+            <li class="active">Doxia Developers Centre <a href="https://github.com/apache/maven-site/tree/master/content/markdown/doxia/developers/sink.md"><img src="/maven-site/images/accessories-text-editor.png" alt="Edit"></a></li>
+            <li id="publishDate" class="pull-right"><span class="divider">|</span> Last Published: 2026-10-25</li>
+            <li class="pull-right"><span class="divider">|</span> <a href="/maven-site/scm.html">Get Sources</a></li>
+            <li class="pull-right"><a href="https://maven.apache.org/download.cgi">Downloads</a></li>
+          </ul>
+        </div>
+      </header>
+      <div class="row-fluid">
+        <header id="leftColumn" class="span2">
+          
+<form class="guide-search" role="search" action="/maven-site/guides/a-z.html" data-index="/maven-site/guides/search.json" data-script="/maven-site/js/minisearch-7.2.0.js" data-oldest="3.9" data-base="/maven-site">
+  <label class="guide-search-label" for="guide-q-nav">Search the documentation</label>
+  <div class="guide-search-field">
+    <input id="guide-q-nav" name="q" type="search" autocomplete="off" spellcheck="false" placeholder="Search">
+    <kbd class="guide-search-key" aria-hidden="true">/</kbd>
+  </div>
+  
+</form>
+
+          <nav class="well sidebar-nav">
+<ul class="nav nav-list">
+  <li><a href="/maven-site/index.html">Welcome</a></li>
+  <li><a href="https://www.apache.org/licenses/">License</a></li>
+  <li class="nav-header">About Maven</li>
+  <li><a href="/maven-site/what-is-maven.html">What is Maven?</a></li>
+  <li><a href="/maven-site/install.html">Installation</a></li>
+  <li><a href="/maven-site/download.html">Downloads</a></li>
+  <li><a href="/maven-site/run.html">Use</a></li>
+  <li><a href="/maven-site/configure.html">Configure</a></li>
+  <li><a href="/maven-site/docs/history.html">Release Notes</a></li>
+  <li><a href="/maven-site/security.html">Security Reports</a></li>
+  <li class="nav-header">Documentation</li>
+  <li><a href="/maven-site/plugins/index.html">Maven Plugins</a></li>
+  <li><a href="/maven-site/extensions/index.html">Maven Extensions</a></li>
+  <li><a href="/maven-site/tools/index.html"><span class="icon-chevron-down"></span>Maven Tools</a>
+   <ul class="nav nav-list">
+    <li><a href="/maven-site/tools/mvnd.html">Maven Daemon</a></li>
+    <li><a href="/maven-site/tools/mvnsh.html">Maven Shell</a></li>
+    <li><a href="/maven-site/tools/mvnup.html">Maven Upgrade Tool</a></li>
+    <li><a href="/maven-site/tools/mavenwrapper.html">Maven Wrapper</a></li>
+   </ul></li>
+  <li><a href="/maven-site/doxia/index.html"><span class="icon-chevron-down"></span>Doxia</a>
+   <ul class="nav nav-list">
+    <li><a href="/maven-site/doxia/overview.html">Overview</a></li>
+    <li><a href="/maven-site/doxia/downloads.html">Downloads</a></li>
+    <li><a href="/maven-site/doxia/faq.html">FAQ</a></li>
+    <li><a href="/maven-site/doxia/references/index.html"><span class="icon-chevron-right"></span>Format References</a></li>
+    <li><a href="/maven-site/doxia/modules/index.html">Doxia Modules Guide</a></li>
+    <li><a href="/maven-site/doxia/macros/index.html">Doxia Macros Guide</a></li>
+    <li><a href="/maven-site/doxia/issues/index.html">Issues &amp; Gotchas</a></li>
+    <li><a href="/maven-site/doxia/resources.html">External Resources</a></li>
+    <li><a href="/maven-site/doxia/developers/index.html"><span class="icon-chevron-down"></span>Developer Docs</a>
+     <ul class="nav nav-list">
+      <li><a href="/maven-site/doxia/developers/modules.html">Create a Doxia Module</a></li>
+      <li><a href="/maven-site/doxia/developers/macros.html">Create a Doxia Macro</a></li>
+      <li class="active"><a>Using the Sink API</a></li>
+     </ul></li>
+    <li><a href="/maven-site/doxia/doxia/index.html">Doxia Base</a></li>
+    <li><a href="/maven-site/doxia/doxia-sitetools/index.html">Doxia Sitetools</a></li>
+    <li><a href="/maven-site/doxia/doxia-tools/index.html">Doxia Tools</a></li>
+   </ul></li>
+  <li><a href="/maven-site/guides/index.html">Guides</a></li>
+  <li><a href="/maven-site/users/index.html"><span class="icon-chevron-right"></span>User Manual</a></li>
+  <li><a href="/maven-site/repositories/index.html"><span class="icon-chevron-right"></span>Maven Repositories</a></li>
+  <li><a href="/maven-site/plugin-developers/index.html"><span class="icon-chevron-right"></span>Plugin Development</a></li>
+  <li><a href="/maven-site/developers/index.html"><span class="icon-chevron-right"></span>Contribute to Maven</a></li>
+  <li><a href="/maven-site/articles.html">Books and Resources</a></li>
+  <li class="nav-header">Community</li>
+  <li><a href="/maven-site/community.html">Community Overview</a></li>
+  <li><a href="/maven-site/project-roles.html">Project Roles</a></li>
+  <li><a href="/maven-site/guides/development/guide-helping.html">How to Contribute</a></li>
+  <li><a href="/maven-site/users/getting-help.html">Getting Help</a></li>
+  <li><a href="/maven-site/issue-management.html">Issue Management</a></li>
+  <li><a href="/maven-site/scm.html">Getting Maven Source</a></li>
+  <li><a href="/maven-site/team.html">The Maven Team</a></li>
+  <li class="nav-header">Project Documentation</li>
+  <li><a href="/maven-site/project-info.html">Project Information</a></li>
+  <li class="nav-header">Maven Projects</li>
+  <li><a href="/maven-site/ref/current">Maven</a></li>
+  <li><a href="/maven-site/archetypes/index.html">Archetypes</a></li>
+  <li><a href="/maven-site/extensions/index.html">Extensions</a></li>
+  <li><a href="/maven-site/pom/index.html">Parent POMs</a></li>
+  <li><a href="/maven-site/plugins/index.html">Plugins</a></li>
+  <li><a href="/maven-site/skins/index.html">Skins</a></li>
+  <li><a><span class="icon-chevron-down"></span>Components</a>
+   <ul class="nav nav-list">
+    <li><a href="/maven-site/archetype/index.html">Archetype</a></li>
+    <li><a href="/maven-site/resolver/index.html">Artifact Resolver</a></li>
+    <li><a href="/maven-site/doxia/index.html">Doxia</a></li>
+    <li><a href="/maven-site/maven-indexer/index.html">Indexer</a></li>
+    <li><a href="/maven-site/jxr/index.html">JXR</a></li>
+    <li><a href="/maven-site/plugin-testing/index.html">Plugin Testing</a></li>
+    <li><a href="/maven-site/plugin-tools/index.html">Plugin Tools</a></li>
+    <li><a href="/maven-site/apache-resource-bundles/index.html">Resource Bundles</a></li>
+    <li><a href="/maven-site/scm/index.html">SCM</a></li>
+    <li><a href="/maven-site/shared/index.html">Shared Components</a></li>
+    <li><a href="/maven-site/surefire/index.html">Surefire</a></li>
+    <li><a href="/maven-site/wagon/index.html">Wagon</a></li>
+   </ul></li>
+  <li class="nav-header">ASF</li>
+  <li><a href="https://www.apache.org/foundation/how-it-works.html">How Apache Works</a></li>
+  <li><a href="https://www.apache.org/foundation/">Foundation</a></li>
+  <li><a href="https://privacy.apache.org/policies/privacy-policy-public.html">Data Privacy</a></li>
+  <li><a href="https://www.apache.org/foundation/sponsorship.html">Sponsoring Apache</a></li>
+  <li><a href="https://www.apache.org/foundation/thanks.html">Thanks</a></li>
+</ul>
+          </nav>
+          <div class="well sidebar-nav">
+            <div id="poweredBy">
+              <div class="clear"></div>
+              <a href="/maven-site/" class="builtBy" target="_blank"><img class="builtBy" alt="Built by Maven" src="/maven-site/images/logos/maven-feather.png"></a>
+            </div>
+          </div>
+        </header>
+        <main id="bodyColumn" class="span10">
+          
+<!--
+Licensed to the Apache Software Foundation (ASF) under one
+or more contributor license agreements.  See the NOTICE file
+distributed with this work for additional information
+regarding copyright ownership.  The ASF licenses this file
+to you under the Apache License, Version 2.0 (the
+"License"); you may not use this file except in compliance
+with the License.  You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing,
+software distributed under the License is distributed on an
+"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+KIND, either express or implied.  See the License for the
+specific language governing permissions and limitations
+under the License.
+-->
+<h1 id="Using_the_Doxia_Sink_API">Using the Doxia Sink API</h1>
+<div class="doxia-toc"><ul><li><a href="#Transforming_documents">Transforming documents</a></li><li><a href="#Generating_documents">Generating documents</a></li><li><a href="#Passing_attributes_to_Sink_events">Passing attributes to Sink events</a></li><li><a href="#Avoid_sink.rawText.21">Avoid sink.rawText!</a></li><li><a href="#How_to_inject_javascript_code_into_HTML">How to inject javascript code into HTML</a></li><li><a href="#References">References</a></li></ul></div>
+<h2 id="Transforming_documents"><a id="Transforming_documents"></a>Transforming documents</h2>
+<p>Doxia can be used to transform an arbitrary input document to any supported output format. The following snippet shows how to use a Doxia <em>Parser</em> to transform an apt file to html:</p>
+<div class="language-unknown highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="unknown">  File userDir = new File( System.getProperty ( "user.dir" ) );
+  File inputFile = new File( userDir, "test.apt" );
+  File outputFile = new File( userDir, "test.html" );
+
+  SinkFactory sinkFactory = (SinkFactory) lookup( SinkFactory.ROLE, "html" ); // Plexus lookup
+
+  Sink sink = sinkFactory.createSink( outputFile.getParentFile(), outputFile.getName() ) );
+
+  Parser parser = (AptParser) lookup( Parser.ROLE, "apt" ); // Plexus lookup
+
+  Reader reader = ReaderFactory.newReader( inputFile, "UTF-8" );
+
+  parser.parse( reader, sink );
+</code></pre></div></div>
+<p>It is recommended that you use <a href="http://plexus.codehaus.org/">Plexus</a> to look up the parser. In principle you could instantiate the parser directly ( <code>Parser parser = new AptParser();</code> ) but then some special features like macros will not be available.</p>
+<p>You could also use the <a href="http://maven.apache.org/doxia/doxia-tools/doxia-converter/index.html">Doxia Converter Tool</a> to parse a given file/dir to another file/dir.</p>
+<h2 id="Generating_documents"><a id="Generating_documents"></a>Generating documents</h2>
+<p>The snippet below gives a simple example of how to generate a document using the Doxia Sink API.</p>
+<div class="language-unknown highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="unknown">    /**
+     * Generate a simple document and emit it
+     * into the specified sink. The sink is flushed but not closed.
+     *
+     * @param sink The sink to receive the events.
+     */
+    public static void generate( Sink sink )
+    {
+        sink.head();
+
+        sink.title();
+        sink.text( "Title" );
+        sink.title_();
+
+        sink.author();
+        sink.text( "Author" );
+        sink.author_();
+
+        sink.date();
+        sink.text( "Date" );
+        sink.date_();
+
+        sink.head_();
+
+
+        sink.body();
+
+        sink.paragraph();
+        sink.text( "A paragraph of text." );
+        sink.paragraph_();
+
+        sink.section1();
+        sink.sectionTitle1();
+        sink.text( "Section title" );
+        sink.sectionTitle1_();
+
+        sink.paragraph();
+        sink.text( "Paragraph in section." );
+        sink.paragraph_();
+
+        sink.section1_();
+
+        sink.body_();
+
+        sink.flush();
+    }
+</code></pre></div></div>
+<p>A more complete example that also shows the 'canonical' order of events to use when generating a document, can be found in the Doxia <a href="https://maven.apache.org/doxia/developers/doxia/doxia-core/xref-test/org/apache/maven/doxia/sink/SinkTestDocument.html">SinkTestDocument</a> class.</p>
+<h2 id="Passing_attributes_to_Sink_events"><a id="Passing_attributes_to_Sink_events"></a>Passing attributes to Sink events</h2>
+<p>A number of methods in the Sink API enable passing a set of attributes to many sink events. A typical use case is:</p>
+<div class="language-unknown highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="unknown">SinkEventAttributeSet atts = new SinkEventAttributeSet();
+atts.addAttribute( SinkEventAttributes.ALIGN, "center" );
+
+sink.paragraph( atts );
+</code></pre></div></div>
+<p>The kind of attributes supported depends on the event and the sink implementation. The sink API specifies a list of suggested attribute names that sinks are expected to recognize and parsers are expected to use when emitting events.</p>
+<h2 id="Avoid_sink.rawText.21"><a id="Avoid_sink.rawText.21"></a>Avoid sink.rawText!</h2>
+<p>In <strong>Doxia 1.0</strong> it was a common practice to use sink.rawText() to generate elements that were not supported by the Sink API. For example, the following snippet could be used to generate a styled HTML &lt;div&gt; block:</p>
+<div class="language-unknown highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="unknown">sink.RawText( "&lt;div style=\"cool\"&gt;" );
+sink.text( "A text with a cool style." );
+sink.rawText( "&lt;/div&gt;" );
+</code></pre></div></div>
+<p>This has a major drawback however: it only works if the receiving Sink is a HTML Sink. In other words, the above method will not work for target documents in any other format than HTML (think of the FO Sink to generate a pdf, or a LaTeX sink,...).</p>
+<p>In <strong>Doxia 1.1</strong> a new method unknown() was added to the Sink API that can be used to emit an arbitrary event without making special assumptions about the receiving Sink. Depending on the parameters, a Sink may decide whether or not to process the event, emit it as raw text, as a comment, log it, etc.</p>
+<p>The correct way to generate the above &lt;div&gt; block is now:</p>
+<div class="language-unknown highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="unknown">SinkEventAttributeSet atts = new SinkEventAttributeSet();
+atts.addAttribute( SinkEventAttributes.STYLE, "cool" );
+
+sink.unknown( "div", new Object[]{new Integer( HtmlMarkup.TAG_TYPE_START )}, atts );
+sink.text( "A text with a cool style." );
+sink.unknown( "div", new Object[]{new Integer( HtmlMarkup.TAG_TYPE_END )}, null );
+</code></pre></div></div>
+<p>Read the javadocs of the unknown() method in the <a href="https://maven.apache.org/doxia/developers/doxia/doxia-sink-api/apidocs/org/apache/maven/doxia/sink/Sink.html">Sink</a> interface and the <a href="https://maven.apache.org/doxia/developers/doxia/doxia-core/apidocs/org/apache/maven/doxia/sink/XhtmlBaseSink.html">XhtmlbaseSink</a> for information on the method parameters. Note that an arbitrary sink may be expected to ignore the unknown event completely!</p>
+<p><strong>In general, the rawText method should be avoided alltogether when emitting events into an arbitrary Sink.</strong></p>
+<h2 id="How_to_inject_javascript_code_into_HTML"><a id="How_to_inject_javascript_code_into_HTML"></a>How to inject javascript code into HTML</h2>
+<p>Related to the above, here is the correct way of injecting a javascript snippet into a Sink:</p>
+<div class="language-unknown highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="unknown">// the javascript code is emitted within a commented CDATA section
+// so we have to start with a newline and comment the CDATA closing in the end
+// note that the sink will replace the newline by the system EOL
+String javascriptCode = "\n function javascriptFunction() {...} \n //";
+
+SinkEventAttributeSet atts = new SinkEventAttributeSet();
+atts.addAttribute( SinkEventAttributes.TYPE, "text/javascript" );
+
+sink.unknown( "script", new Object[]{new Integer( HtmlMarkup.TAG_TYPE_START )}, atts );
+sink.unknown( "cdata", new Object[]{new Integer( HtmlMarkup.CDATA_TYPE ), javascriptCode }, null );
+sink.unknown( "script", new Object[]{new Integer( HtmlMarkup.TAG_TYPE_END )}, null );
+</code></pre></div></div>
+<h2 id="References"><a id="References"></a>References</h2>
+<ul>
+<li><a href="../modules/index.html">Doxia Modules Guide</a></li>
+<li><a href="../macros/index.html">Doxia Macros Guide</a></li>
+<li><a href="https://maven.apache.org/doxia/doxia/apidocs/index.html">Doxia API Reference</a></li>
+<li><a href="https://maven.apache.org/doxia/doxia-sitetools/apidocs/index.html">Doxia Sitetools API Reference</a></li>
+</ul>
+
+        </main>
+      </div>
+    </div>
+    <hr>
+    <footer>
+      <div class="container-fluid">
+        <div class="row-fluid">
+          <p>©      2002–2026 <a href="https://www.apache.org/">The Apache Software Foundation</a></p>
+          <p class="demo-note">A demonstration build of <a href="https://github.com/dashorst/maven-site/tree/diataxis-demo">dashorst/maven-site</a>, not the official Apache Maven site.</p>
+        </div>
+      </div>
+    </footer>
+    <script src="/maven-site/js/guide.js?v=1792948498" defer=""></script>
+    <script>
+    anchors.add();
+    </script>
+  
+
+</body></html>

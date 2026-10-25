@@ -1,0 +1,310 @@
+<!DOCTYPE html><!--
+ | The page frame of the Apache Maven Fluido Skin 2.1.0, as the Doxia site renderer writes it
+ | for maven.apache.org. Built with Jekyll: see jekyll/README.md.
+--><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Maven Code Style And Code Conventions – Maven</title>
+    
+    <link rel="stylesheet" href="/maven-site/css/apache-maven-fluido-2.1.0.min.css">
+    <link rel="stylesheet" href="/maven-site/css/site.css">
+    <link rel="stylesheet" href="/maven-site/css/guide.css?v=1792948498">
+    <link rel="stylesheet" href="/maven-site/css/print.css" media="print">
+    <script src="/maven-site/js/apache-maven-fluido-2.1.0.min.js"></script>
+  </head>
+  <body>
+    <div class="container-fluid container-fluid-top">
+      <header>
+        <div id="banner">
+          <div class="pull-left"><div id="bannerLeft"><h1><a href="/maven-site/index.html"><img src="/maven-site/images/apache-maven-project-light-theme.svg" style="width: 489px;height: 83px;" alt="Apache Maven"></a></h1></div></div>
+          <div class="pull-right"><div id="bannerRight"><h1><img src="/maven-site/images/logos/MavenLogoLeaf.svg" style="width: 340px;height: 83px;" alt=""></h1></div></div>
+          <div class="clear"><hr></div>
+        </div>
+
+        <div id="breadcrumbs">
+          <ul class="breadcrumb">
+            <li><a href="https://www.apache.org/">Apache</a><span class="divider">/</span></li>
+            <li><a href="/maven-site/index.html">Maven</a><span class="divider">/</span></li>
+            
+            <li class="active">Maven Code Style And Code Conventions <a href="https://github.com/apache/maven-site/tree/master/content/markdown/developers/conventions/code.md"><img src="/maven-site/images/accessories-text-editor.png" alt="Edit"></a></li>
+            <li id="publishDate" class="pull-right"><span class="divider">|</span> Last Published: 2026-10-25</li>
+            <li class="pull-right"><span class="divider">|</span> <a href="/maven-site/scm.html">Get Sources</a></li>
+            <li class="pull-right"><a href="https://maven.apache.org/download.cgi">Downloads</a></li>
+          </ul>
+        </div>
+      </header>
+      <div class="row-fluid">
+        <header id="leftColumn" class="span2">
+          
+<form class="guide-search" role="search" action="/maven-site/guides/a-z.html" data-index="/maven-site/guides/search.json" data-script="/maven-site/js/minisearch-7.2.0.js" data-oldest="3.9" data-base="/maven-site">
+  <label class="guide-search-label" for="guide-q-nav">Search the documentation</label>
+  <div class="guide-search-field">
+    <input id="guide-q-nav" name="q" type="search" autocomplete="off" spellcheck="false" placeholder="Search">
+    <kbd class="guide-search-key" aria-hidden="true">/</kbd>
+  </div>
+  
+</form>
+
+          <nav class="well sidebar-nav">
+<ul class="nav nav-list">
+  <li><a href="/maven-site/index.html">Welcome</a></li>
+  <li><a href="https://www.apache.org/licenses/">License</a></li>
+  <li class="nav-header">About Maven</li>
+  <li><a href="/maven-site/what-is-maven.html">What is Maven?</a></li>
+  <li><a href="/maven-site/install.html">Installation</a></li>
+  <li><a href="/maven-site/download.html">Downloads</a></li>
+  <li><a href="/maven-site/run.html">Use</a></li>
+  <li><a href="/maven-site/configure.html">Configure</a></li>
+  <li><a href="/maven-site/docs/history.html">Release Notes</a></li>
+  <li><a href="/maven-site/security.html">Security Reports</a></li>
+  <li class="nav-header">Documentation</li>
+  <li><a href="/maven-site/plugins/index.html">Maven Plugins</a></li>
+  <li><a href="/maven-site/extensions/index.html">Maven Extensions</a></li>
+  <li><a href="/maven-site/tools/index.html"><span class="icon-chevron-down"></span>Maven Tools</a>
+   <ul class="nav nav-list">
+    <li><a href="/maven-site/tools/mvnd.html">Maven Daemon</a></li>
+    <li><a href="/maven-site/tools/mvnsh.html">Maven Shell</a></li>
+    <li><a href="/maven-site/tools/mvnup.html">Maven Upgrade Tool</a></li>
+    <li><a href="/maven-site/tools/mavenwrapper.html">Maven Wrapper</a></li>
+   </ul></li>
+  <li><a href="/maven-site/doxia/index.html"><span class="icon-chevron-right"></span>Doxia</a></li>
+  <li><a href="/maven-site/guides/index.html">Guides</a></li>
+  <li><a href="/maven-site/users/index.html"><span class="icon-chevron-right"></span>User Manual</a></li>
+  <li><a href="/maven-site/repositories/index.html"><span class="icon-chevron-right"></span>Maven Repositories</a></li>
+  <li><a href="/maven-site/plugin-developers/index.html"><span class="icon-chevron-right"></span>Plugin Development</a></li>
+  <li><a href="/maven-site/developers/index.html"><span class="icon-chevron-down"></span>Contribute to Maven</a>
+   <ul class="nav nav-list">
+    <li><a href="/maven-site/guides/development/guide-helping.html">Guide to Helping with Maven</a></li>
+    <li class="active"><a>Code Style and Conventions</a></li>
+    <li><a href="/maven-site/developers/conventions/git.html">Git Convention</a></li>
+    <li><a href="/maven-site/developers/conventions/github.html">GitHub Convention</a></li>
+    <li><a href="/maven-site/guides/development/guide-maven-development.html"><span class="icon-chevron-right"></span>Developing Maven</a></li>
+    <li><a href="/maven-site/developers/release/index.html"><span class="icon-chevron-right"></span>Release Process</a></li>
+    <li><a href="/maven-site/developers/website/index.html"><span class="icon-chevron-right"></span>Deploy Maven Website</a></li>
+    <li><a href="/maven-site/developers/welcome-to-new-committers.html"><span class="icon-chevron-right"></span>Committers</a></li>
+   </ul></li>
+  <li><a href="/maven-site/articles.html">Books and Resources</a></li>
+  <li class="nav-header">Community</li>
+  <li><a href="/maven-site/community.html">Community Overview</a></li>
+  <li><a href="/maven-site/project-roles.html">Project Roles</a></li>
+  <li><a href="/maven-site/guides/development/guide-helping.html">How to Contribute</a></li>
+  <li><a href="/maven-site/users/getting-help.html">Getting Help</a></li>
+  <li><a href="/maven-site/issue-management.html">Issue Management</a></li>
+  <li><a href="/maven-site/scm.html">Getting Maven Source</a></li>
+  <li><a href="/maven-site/team.html">The Maven Team</a></li>
+  <li class="nav-header">Project Documentation</li>
+  <li><a href="/maven-site/project-info.html">Project Information</a></li>
+  <li class="nav-header">Maven Projects</li>
+  <li><a href="/maven-site/ref/current">Maven</a></li>
+  <li><a href="/maven-site/archetypes/index.html">Archetypes</a></li>
+  <li><a href="/maven-site/extensions/index.html">Extensions</a></li>
+  <li><a href="/maven-site/pom/index.html">Parent POMs</a></li>
+  <li><a href="/maven-site/plugins/index.html">Plugins</a></li>
+  <li><a href="/maven-site/skins/index.html">Skins</a></li>
+  <li><a><span class="icon-chevron-down"></span>Components</a>
+   <ul class="nav nav-list">
+    <li><a href="/maven-site/archetype/index.html">Archetype</a></li>
+    <li><a href="/maven-site/resolver/index.html">Artifact Resolver</a></li>
+    <li><a href="/maven-site/doxia/index.html">Doxia</a></li>
+    <li><a href="/maven-site/maven-indexer/index.html">Indexer</a></li>
+    <li><a href="/maven-site/jxr/index.html">JXR</a></li>
+    <li><a href="/maven-site/plugin-testing/index.html">Plugin Testing</a></li>
+    <li><a href="/maven-site/plugin-tools/index.html">Plugin Tools</a></li>
+    <li><a href="/maven-site/apache-resource-bundles/index.html">Resource Bundles</a></li>
+    <li><a href="/maven-site/scm/index.html">SCM</a></li>
+    <li><a href="/maven-site/shared/index.html">Shared Components</a></li>
+    <li><a href="/maven-site/surefire/index.html">Surefire</a></li>
+    <li><a href="/maven-site/wagon/index.html">Wagon</a></li>
+   </ul></li>
+  <li class="nav-header">ASF</li>
+  <li><a href="https://www.apache.org/foundation/how-it-works.html">How Apache Works</a></li>
+  <li><a href="https://www.apache.org/foundation/">Foundation</a></li>
+  <li><a href="https://privacy.apache.org/policies/privacy-policy-public.html">Data Privacy</a></li>
+  <li><a href="https://www.apache.org/foundation/sponsorship.html">Sponsoring Apache</a></li>
+  <li><a href="https://www.apache.org/foundation/thanks.html">Thanks</a></li>
+</ul>
+          </nav>
+          <div class="well sidebar-nav">
+            <div id="poweredBy">
+              <div class="clear"></div>
+              <a href="/maven-site/" class="builtBy" target="_blank"><img class="builtBy" alt="Built by Maven" src="/maven-site/images/logos/maven-feather.png"></a>
+            </div>
+          </div>
+        </header>
+        <main id="bodyColumn" class="span10">
+          
+<!--
+Licensed to the Apache Software Foundation (ASF) under one
+or more contributor license agreements.  See the NOTICE file
+distributed with this work for additional information
+regarding copyright ownership.  The ASF licenses this file
+to you under the Apache License, Version 2.0 (the
+"License"); you may not use this file except in compliance
+with the License.  You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing,
+software distributed under the License is distributed on an
+"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+KIND, either express or implied.  See the License for the
+specific language governing permissions and limitations
+under the License.
+-->
+<h1 id="Maven_Code_Style_And_Code_Conventions">Maven Code Style And Code Conventions</h1>
+<p>This document describes the rules for how the sources should be formatted in order to improve consistency, readability and maintainability.</p>
+<div class="doxia-toc"><ul><li><a href="#Generic_Code_Style_And_Convention">Generic Code Style And Convention</a></li><li><a href="#Java">Java</a><ul><li><a href="#Java_Code_Style">Java Code Style</a></li><li><a href="#Java_Code_Convention">Java Code Convention</a></li><li><a href="#Java_Code_Convention_-_import_layouts">Java Code Convention - import layouts</a></li><li><a href="#JavaDoc_Convention">JavaDoc Convention</a></li></ul></li><li><a href="#XML">XML</a><ul><li><a href="#XML_Code_Style">XML Code Style</a></li><li><a href="#Generic_XML_Code_Convention">Generic XML Code Convention</a></li><li><a href="#POM_Code_Convention">POM Code Convention</a></li><li><a href="#XDOC_Code_Convention">XDOC Code Convention</a></li><li><a href="#FML_Code_Convention">FML Code Convention</a></li></ul></li></ul></div>
+<h2 id="Generic_Code_Style_And_Convention">Generic Code Style And Convention</h2>
+<p>All working files (java, xml, others) should respect the following conventions:</p>
+<ul>
+<li><strong>License Header</strong>: Always add the current <a href="https://www.apache.org/legal/src-headers.html#headers">ASF license header</a> in all files checked into the source code repository.</li>
+<li><strong>Trailing Whitespace</strong>: No trailing whitespaces allowed.</li>
+</ul>
+<p>and the following style:</p>
+<ul>
+<li><strong>Indentation</strong>: <strong>Never</strong> use tabs!</li>
+<li><strong>Line wrapping</strong>: Always use a 120-column line width.</li>
+</ul>
+<p><strong>Note</strong>: The specific styles and conventions, listed in the next sections, can override these generic rules.</p>
+<h2 id="Java">Java</h2>
+<h3 id="Java_Code_Style">Java Code Style</h3>
+<p>Maven adopts the <a href="https://github.com/palantir/palantir-java-format">palantir Java format</a>. The code formatting of Java files is enforced by the <a href="https://github.com/diffplug/spotless/tree/main/plugin-maven">spotless-maven-plugin</a> for all projects using <a href="https://maven.apache.org/pom/maven/index.html">Maven Project Parent POM 38 or newer</a>. You can format the code by running the command <em>mvn spotless:apply</em>.</p>
+<p>You can download the code style formatter for your IDE from <a href="https://gitbox.apache.org/repos/asf?p=maven-shared-resources.git;a=tree;f=src/main/resources/config;hb=HEAD">shared-resources</a>. To format Java code, there are plugins for many IDEs on the <a href="https://github.com/palantir/palantir-java-format">palantir Java format GitHub page</a> too.</p>
+<h3 id="Java_Code_Convention">Java Code Convention</h3>
+<p>For consistency reasons, our Java code convention is mainly:</p>
+<ul>
+<li><strong>Naming</strong>: Constants (i.e. static final members) should always be in upper case. Use short, descriptive names for classes and methods.</li>
+<li><strong>Organization</strong>: Avoid using public inner classes. Prefer interfaces instead of default implementation.</li>
+<li><strong>Modifier</strong>: Avoid using final modifier on all fields and arguments. Prefer using private or protected fields instead of public fields.</li>
+<li><strong>Exceptions</strong>: Throw meaningful exceptions to make debugging and testing easier.</li>
+<li><strong>Documentation</strong>: Document public interfaces well, i.e. all non-trivial public and protected functions should include Javadoc that indicates what they do.</li>
+<li><strong>Testing</strong>: All non-trivial public classes should have corresponding unit or integration tests.</li>
+</ul>
+<h3 id="Java_Code_Convention_-_import_layouts">Java Code Convention - import layouts</h3>
+<p>For consistency reasons, Java imports should be organized as:</p>
+<ul>
+<li>import <strong>javax.</strong>*</li>
+<li>import <strong>java.</strong>*</li>
+<li>blank line</li>
+<li>import <strong>all other imports</strong></li>
+</ul>
+<p>all imports in each group should be sorted alphabetically.</p>
+<p>To ensure a package import order consistent with the layout described above, download <a href="https://gitbox.apache.org/repos/asf?p=maven-shared-resources.git;a=blob_plain;f=src/main/resources/config/maven-eclipse-importorder.txt;hb=HEAD"><code>maven-eclipse-importorder.txt</code></a>, select <em>Window &gt; Preferences</em> and navigate to <em>Java &gt; Code Style &gt; Organize Imports</em>. Click on <em>Import...</em> and select the downloaded file to change the import order.</p>
+<h3 id="JavaDoc_Convention">JavaDoc Convention</h3>
+<p>TO BE DISCUSSED</p>
+<h2 id="XML">XML</h2>
+<h3 id="XML_Code_Style">XML Code Style</h3>
+<p>The Maven style for XML files is mainly:</p>
+<ul>
+<li>
+<p><strong>Indentation</strong>: Always use 2 space indents, unless you're wrapping a new XML tags line in which case you should indent 4 spaces.</p>
+</li>
+<li>
+<p><strong>Line Breaks</strong>: Always use a new line with indentation for complex XML types and no line break for simple XML types. Always use a new line to separate XML sections or blocks, for instance:</p>
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="xml"><span class="nt">&lt;aTag&gt;</span>
+  <span class="nt">&lt;simpleType&gt;</span>This is a simple type<span class="nt">&lt;/simpleType&gt;</span>
+
+  <span class="nt">&lt;complexType&gt;</span>
+    <span class="nt">&lt;simpleType&gt;</span>This is a complex type<span class="nt">&lt;/simpleType&gt;</span>
+  <span class="nt">&lt;/complexType&gt;</span>
+<span class="nt">&lt;/aTag&gt;</span>
+</code></pre></div></div>
+<p>In some cases, adding comments could improve the readability of blocks, for instance:</p>
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="xml"><span class="c">&lt;!-- Simple XML documentation                                               --&gt;</span>
+</code></pre></div></div>
+<p>or</p>
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="xml"><span class="c">&lt;!-- ====================================================================== --&gt;</span>
+<span class="c">&lt;!-- Block documentation                                                    --&gt;</span>
+<span class="c">&lt;!-- ====================================================================== --&gt;</span>
+</code></pre></div></div>
+</li>
+</ul>
+<h3 id="Generic_XML_Code_Convention">Generic XML Code Convention</h3>
+<p>No generic code convention exists for XML files yet.</p>
+<h3 id="POM_Code_Convention">POM Code Convention</h3>
+<p>The team has <a href="https://lists.apache.org/thread/h8px5t6f3q59cnkzpj1t02wsoynr3ygk">voted</a> during the end of June 2008 to follow a specific POM convention to ordering POM elements. The consequence of this vote is that the <a href="https://maven.apache.org/ref/current/maven-model/maven.html">Maven project descriptor</a> is <strong>no more</strong> considered as the reference for the ordering.</p>
+<p>The following is the recommended ordering for all Maven POM files:</p>
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="xml"><span class="nt">&lt;project</span> <span class="na">xmlns=</span><span class="s">"http://maven.apache.org/POM/4.0.0"</span> <span class="na">xmlns:xsi=</span><span class="s">"http://www.w3.org/2001/XMLSchema-instance"</span> <span class="na">xsi:schemaLocation=</span><span class="s">"http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;modelVersion/&gt;</span>
+
+  <span class="nt">&lt;parent/&gt;</span>
+
+  <span class="nt">&lt;groupId/&gt;</span>
+  <span class="nt">&lt;artifactId/&gt;</span>
+  <span class="nt">&lt;version/&gt;</span>
+  <span class="nt">&lt;packaging/&gt;</span>
+
+  <span class="nt">&lt;name/&gt;</span>
+  <span class="nt">&lt;description/&gt;</span>
+  <span class="nt">&lt;url/&gt;</span>
+  <span class="nt">&lt;inceptionYear/&gt;</span>
+  <span class="nt">&lt;organization/&gt;</span>
+  <span class="nt">&lt;licenses/&gt;</span>
+
+  <span class="nt">&lt;developers/&gt;</span>
+  <span class="nt">&lt;contributors/&gt;</span>
+
+  <span class="nt">&lt;mailingLists/&gt;</span>
+
+  <span class="nt">&lt;prerequisites/&gt;</span>
+
+  <span class="nt">&lt;modules/&gt;</span>
+
+  <span class="nt">&lt;scm/&gt;</span>
+  <span class="nt">&lt;issueManagement/&gt;</span>
+  <span class="nt">&lt;ciManagement/&gt;</span>
+  <span class="nt">&lt;distributionManagement/&gt;</span>
+
+  <span class="nt">&lt;properties/&gt;</span>
+
+  <span class="nt">&lt;dependencyManagement/&gt;</span>
+  <span class="nt">&lt;dependencies/&gt;</span>
+
+  <span class="nt">&lt;repositories/&gt;</span>
+  <span class="nt">&lt;pluginRepositories/&gt;</span>
+
+  <span class="nt">&lt;build/&gt;</span>
+
+  <span class="nt">&lt;reporting/&gt;</span>
+
+  <span class="nt">&lt;profiles/&gt;</span>
+<span class="nt">&lt;/project&gt;</span>
+</code></pre></div></div>
+<p><strong>Comments</strong>:</p>
+<ol>
+<li>The <code>&lt;project/&gt;</code> element is always on one line.</li>
+<li>The blocks are voluntarily separated by a new line to improve the readiness.</li>
+<li>The dependencies in <code>&lt;dependencies/&gt;</code> and <code>&lt;dependencyManagement/&gt;</code> tags have no specific ordering. Developers are free to choose the ordering, but grouping dependencies by topics (like groupId i.e. <code>org.apache.maven</code>) is a good practice.</li>
+</ol>
+<h3 id="XDOC_Code_Convention">XDOC Code Convention</h3>
+<p>For consistency and readability reasons, XDOC files should respect:</p>
+<ul>
+<li><strong>Metadata</strong>: Always specify metadata in the <code>&lt;properties/&gt;</code> tag.</li>
+<li><strong>Sections</strong>: Always use a new line with indentation for <code>&lt;section/&gt;</code> tags.</li>
+</ul>
+<h3 id="FML_Code_Convention">FML Code Convention</h3>
+<p>For readability reasons, FML files should respect:</p>
+<ul>
+<li><strong>FAQ</strong>: Always use a new line with indentation for <code>&lt;faq/&gt;</code> tags.</li>
+</ul>
+<!-- * {APT} Do we need any specific APT style/convention?-->
+
+        </main>
+      </div>
+    </div>
+    <hr>
+    <footer>
+      <div class="container-fluid">
+        <div class="row-fluid">
+          <p>©      2002–2026 <a href="https://www.apache.org/">The Apache Software Foundation</a></p>
+          <p class="demo-note">A demonstration build of <a href="https://github.com/dashorst/maven-site/tree/diataxis-demo">dashorst/maven-site</a>, not the official Apache Maven site.</p>
+        </div>
+      </div>
+    </footer>
+    <script src="/maven-site/js/guide.js?v=1792948498" defer=""></script>
+    <script>
+    anchors.add();
+    </script>
+  
+
+</body></html>

@@ -1,0 +1,345 @@
+<!DOCTYPE html><!--
+ | The page frame of the Apache Maven Fluido Skin 2.1.0, as the Doxia site renderer writes it
+ | for maven.apache.org. Built with Jekyll: see jekyll/README.md.
+--><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Aggregation and inheritance – Maven</title>
+    <meta name="description" content="How a parent POM passes configuration down, how an aggregator builds modules together, and how the reactor decides the order.">
+    <link rel="stylesheet" href="/maven-site/css/apache-maven-fluido-2.1.0.min.css">
+    <link rel="stylesheet" href="/maven-site/css/site.css">
+    <link rel="stylesheet" href="/maven-site/css/guide.css?v=1792948498">
+    <link rel="stylesheet" href="/maven-site/css/print.css" media="print">
+    <script src="/maven-site/js/apache-maven-fluido-2.1.0.min.js"></script>
+  </head>
+  <body>
+    <div class="container-fluid container-fluid-top">
+      <header>
+        <div id="banner">
+          <div class="pull-left"><div id="bannerLeft"><h1><a href="/maven-site/index.html"><img src="/maven-site/images/apache-maven-project-light-theme.svg" style="width: 489px;height: 83px;" alt="Apache Maven"></a></h1></div></div>
+          <div class="pull-right"><div id="bannerRight"><h1><img src="/maven-site/images/logos/MavenLogoLeaf.svg" style="width: 340px;height: 83px;" alt=""></h1></div></div>
+          <div class="clear"><hr></div>
+        </div>
+
+        <div id="breadcrumbs">
+          <ul class="breadcrumb">
+            <li><a href="https://www.apache.org/">Apache</a><span class="divider">/</span></li>
+            <li><a href="/maven-site/index.html">Maven</a><span class="divider">/</span></li>
+            <li><a href="/maven-site/guides/index.html">Guides</a><span class="divider">/</span></li>
+            <li><a href="/maven-site/guides/topics/multi-module.html">Multi-module projects</a><span class="divider">/</span></li>
+            
+            <li class="active">Aggregation and inheritance <a href="https://github.com/dashorst/maven-site/blob/diataxis-demo/jekyll/_guide/aggregation-and-inheritance.md"><img src="/maven-site/images/accessories-text-editor.png" alt="Edit"></a></li>
+            <li id="publishDate" class="pull-right"><span class="divider">|</span> Last Published: 2026-10-25</li>
+            <li class="pull-right"><span class="divider">|</span> <a href="/maven-site/scm.html">Get Sources</a></li>
+            <li class="pull-right"><a href="https://maven.apache.org/download.cgi">Downloads</a></li>
+          </ul>
+        </div>
+      </header>
+      <div class="row-fluid">
+        <header id="leftColumn" class="span2">
+          
+<form class="guide-search" role="search" action="/maven-site/guides/a-z.html" data-index="/maven-site/guides/search.json" data-script="/maven-site/js/minisearch-7.2.0.js" data-oldest="3.9" data-base="/maven-site">
+  <label class="guide-search-label" for="guide-q-nav">Search the documentation</label>
+  <div class="guide-search-field">
+    <input id="guide-q-nav" name="q" type="search" autocomplete="off" spellcheck="false" placeholder="Search">
+    <kbd class="guide-search-key" aria-hidden="true">/</kbd>
+  </div>
+  
+</form>
+
+          <nav class="well sidebar-nav">
+<ul class="nav nav-list">
+  <li><a href="/maven-site/index.html">Welcome</a></li>
+  <li><a href="https://www.apache.org/licenses/">License</a></li>
+  <li class="nav-header">About Maven</li>
+  <li><a href="/maven-site/what-is-maven.html">What is Maven?</a></li>
+  <li><a href="/maven-site/install.html">Installation</a></li>
+  <li><a href="/maven-site/download.html">Downloads</a></li>
+  <li><a href="/maven-site/run.html">Use</a></li>
+  <li><a href="/maven-site/configure.html">Configure</a></li>
+  <li><a href="/maven-site/docs/history.html">Release Notes</a></li>
+  <li><a href="/maven-site/security.html">Security Reports</a></li>
+  <li class="nav-header">Documentation</li>
+  <li><a href="/maven-site/plugins/index.html">Maven Plugins</a></li>
+  <li><a href="/maven-site/extensions/index.html">Maven Extensions</a></li>
+  <li><a href="/maven-site/tools/index.html"><span class="icon-chevron-down"></span>Maven Tools</a>
+   <ul class="nav nav-list">
+    <li><a href="/maven-site/tools/mvnd.html">Maven Daemon</a></li>
+    <li><a href="/maven-site/tools/mvnsh.html">Maven Shell</a></li>
+    <li><a href="/maven-site/tools/mvnup.html">Maven Upgrade Tool</a></li>
+    <li><a href="/maven-site/tools/mavenwrapper.html">Maven Wrapper</a></li>
+   </ul></li>
+  <li><a href="/maven-site/doxia/index.html"><span class="icon-chevron-right"></span>Doxia</a></li>
+  <li class="active"><a href="/maven-site/guides/index.html">Guides</a></li>
+  <li><a href="/maven-site/users/index.html"><span class="icon-chevron-right"></span>User Manual</a></li>
+  <li><a href="/maven-site/repositories/index.html"><span class="icon-chevron-right"></span>Maven Repositories</a></li>
+  <li><a href="/maven-site/plugin-developers/index.html"><span class="icon-chevron-right"></span>Plugin Development</a></li>
+  <li><a href="/maven-site/developers/index.html"><span class="icon-chevron-right"></span>Contribute to Maven</a></li>
+  <li><a href="/maven-site/articles.html">Books and Resources</a></li>
+  <li class="nav-header">Community</li>
+  <li><a href="/maven-site/community.html">Community Overview</a></li>
+  <li><a href="/maven-site/project-roles.html">Project Roles</a></li>
+  <li><a href="/maven-site/guides/development/guide-helping.html">How to Contribute</a></li>
+  <li><a href="/maven-site/users/getting-help.html">Getting Help</a></li>
+  <li><a href="/maven-site/issue-management.html">Issue Management</a></li>
+  <li><a href="/maven-site/scm.html">Getting Maven Source</a></li>
+  <li><a href="/maven-site/team.html">The Maven Team</a></li>
+  <li class="nav-header">Project Documentation</li>
+  <li><a href="/maven-site/project-info.html">Project Information</a></li>
+  <li class="nav-header">Maven Projects</li>
+  <li><a href="/maven-site/ref/current">Maven</a></li>
+  <li><a href="/maven-site/archetypes/index.html">Archetypes</a></li>
+  <li><a href="/maven-site/extensions/index.html">Extensions</a></li>
+  <li><a href="/maven-site/pom/index.html">Parent POMs</a></li>
+  <li><a href="/maven-site/plugins/index.html">Plugins</a></li>
+  <li><a href="/maven-site/skins/index.html">Skins</a></li>
+  <li><a><span class="icon-chevron-down"></span>Components</a>
+   <ul class="nav nav-list">
+    <li><a href="/maven-site/archetype/index.html">Archetype</a></li>
+    <li><a href="/maven-site/resolver/index.html">Artifact Resolver</a></li>
+    <li><a href="/maven-site/doxia/index.html">Doxia</a></li>
+    <li><a href="/maven-site/maven-indexer/index.html">Indexer</a></li>
+    <li><a href="/maven-site/jxr/index.html">JXR</a></li>
+    <li><a href="/maven-site/plugin-testing/index.html">Plugin Testing</a></li>
+    <li><a href="/maven-site/plugin-tools/index.html">Plugin Tools</a></li>
+    <li><a href="/maven-site/apache-resource-bundles/index.html">Resource Bundles</a></li>
+    <li><a href="/maven-site/scm/index.html">SCM</a></li>
+    <li><a href="/maven-site/shared/index.html">Shared Components</a></li>
+    <li><a href="/maven-site/surefire/index.html">Surefire</a></li>
+    <li><a href="/maven-site/wagon/index.html">Wagon</a></li>
+   </ul></li>
+  <li class="nav-header">ASF</li>
+  <li><a href="https://www.apache.org/foundation/how-it-works.html">How Apache Works</a></li>
+  <li><a href="https://www.apache.org/foundation/">Foundation</a></li>
+  <li><a href="https://privacy.apache.org/policies/privacy-policy-public.html">Data Privacy</a></li>
+  <li><a href="https://www.apache.org/foundation/sponsorship.html">Sponsoring Apache</a></li>
+  <li><a href="https://www.apache.org/foundation/thanks.html">Thanks</a></li>
+</ul>
+          </nav>
+          <div class="well sidebar-nav">
+            <div id="poweredBy">
+              <div class="clear"></div>
+              <a href="/maven-site/" class="builtBy" target="_blank"><img class="builtBy" alt="Built by Maven" src="/maven-site/images/logos/maven-feather.png"></a>
+            </div>
+          </div>
+        </header>
+        <main id="bodyColumn" class="span10">
+          
+
+
+
+
+<header class="guide-head">
+  <h1 id="Aggregation_and_inheritance">Aggregation and inheritance</h1>
+  <p class="lead">How a parent POM passes configuration down, how an aggregator builds modules together, and how the reactor decides the order.</p>
+  <p class="guide-plates"><span class="label guide-kind guide-kind--explanation">Explanation</span>
+    
+    <a class="guide-topic-link" href="/maven-site/guides/topics/multi-module.html">Multi-module projects</a></p>
+  
+  <p class="guide-version-note alert" data-since="3.9" hidden="">This page describes Maven 3.9 and later; you chose Maven <span data-chosen=""></span>.</p>
+  
+</header>
+<div class="doxia-toc"><ul><li><a href="#Inheritance.3A_a_child_names_its_parent">Inheritance: a child names its parent</a></li><li><a href="#Where_Maven_finds_the_parent">Where Maven finds the parent</a></li><li><a href="#Aggregation.3A_an_aggregator_names_its_modules">Aggregation: an aggregator names its modules</a></li><li><a href="#One_POM_or_two">One POM or two</a></li><li><a href="#The_reactor_orders_the_build">The reactor orders the build</a></li><li><a href="#Modules_see_each_other.27s_output">Modules see each other's output</a></li><li><a href="#The_root_directory_and_the_POM_that_is_published">The root directory and the POM that is published</a></li></ul></div>
+<div class="guide-content">
+<p>A multi-module project rests on two separate relationships between POMs. Inheritance lets one POM take its configuration from another: the child names its parent. Aggregation lets one POM build other projects along with itself: the aggregator names its modules. In most projects one POM at the top does both, which is why the two are easy to mix up. They point in opposite directions, though, and each works without the other.</p>
+<h2 id="Inheritance.3A_a_child_names_its_parent">Inheritance: a child names its parent</h2>
+<p>A POM with a <code>&lt;parent&gt;</code> element starts from the parent's configuration and adds its own on top. The parent is a POM like any other, with <code>pom</code> packaging, because it produces no jar of its own.</p>
+<p><em>core/pom.xml</em></p>
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="xml"><span class="nt">&lt;parent&gt;</span>
+  <span class="nt">&lt;groupId&gt;</span>com.example.shop<span class="nt">&lt;/groupId&gt;</span>
+  <span class="nt">&lt;artifactId&gt;</span>shop<span class="nt">&lt;/artifactId&gt;</span>
+  <span class="nt">&lt;version&gt;</span>1.0-SNAPSHOT<span class="nt">&lt;/version&gt;</span>
+<span class="nt">&lt;/parent&gt;</span>
+
+<span class="nt">&lt;artifactId&gt;</span>core<span class="nt">&lt;/artifactId&gt;</span>
+</code></pre></div></div>
+<p>The child inherits the <code>groupId</code> and <code>version</code>, so it only needs an <code>artifactId</code>. It also inherits properties, <code>&lt;dependencies&gt;</code>, <code>&lt;dependencyManagement&gt;</code>, the build configuration with its plugins and <code>&lt;pluginManagement&gt;</code>, repositories, and descriptive elements such as <code>&lt;description&gt;</code>, <code>&lt;url&gt;</code>, <code>&lt;licenses&gt;</code>, <code>&lt;developers&gt;</code> and <code>&lt;scm&gt;</code>. Lists are merged: the child's dependencies are added to the parent's, and a plugin execution with the same id as one in the parent is merged with it. For plugin configuration you can change how the merge works with <code>combine.children</code> and <code>combine.self</code>, described in the <a href="../pom.html#Advanced_configuration_inheritance.3A_combine.children_and_combine.self">POM reference</a>.</p>
+<p>Some elements belong to one project only and are not inherited:</p>
+<ul>
+<li><code>artifactId</code> and <code>name</code></li>
+<li><code>packaging</code>: a child of a <code>pom</code> parent is a <code>jar</code> unless it says otherwise</li>
+<li><code>&lt;modules&gt;</code>: a child does not build its parent's modules</li>
+<li><code>&lt;profiles&gt;</code>: the profiles themselves stay in the parent, but what an active parent profile sets, such as a property, does reach the child</li>
+</ul>
+<p>URLs, including those in <code>&lt;scm&gt;</code>, are inherited with the child's <code>artifactId</code> appended: a parent with <code>&lt;url&gt;https://example.com/shop&lt;/url&gt;</code> gives <code>core</code> the URL <code>https://example.com/shop/core</code>.</p>
+<p>Inheritance is recursive. A parent can have a parent of its own, and at the top of every chain sits the <a href="https://maven.apache.org/ref/current/maven-model-builder/super-pom.html">Super POM</a>, built into Maven, which supplies Maven Central as repository and the default directory layout. The result of merging the whole chain is the effective POM, the configuration Maven really builds with. To see it for one module, run this in the root directory:</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mvn help:effective-pom -pl core
+</code></pre></div></div>
+<h2 id="Where_Maven_finds_the_parent">Where Maven finds the parent</h2>
+<p>Maven looks for the parent in three places, in this order:</p>
+<ol>
+<li>The POM at <code>&lt;relativePath&gt;</code>, which defaults to <code>../pom.xml</code>. Maven uses it only if its coordinates match those in <code>&lt;parent&gt;</code>.</li>
+<li>The local repository.</li>
+<li>The remote repositories.</li>
+</ol>
+<p>So a parent one directory up needs no <code>&lt;relativePath&gt;</code>. A parent elsewhere needs one, or Maven passes over it and looks in the repositories:</p>
+<p><em>lib/pom.xml</em></p>
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="xml"><span class="nt">&lt;parent&gt;</span>
+  <span class="nt">&lt;groupId&gt;</span>com.example<span class="nt">&lt;/groupId&gt;</span>
+  <span class="nt">&lt;artifactId&gt;</span>parent<span class="nt">&lt;/artifactId&gt;</span>
+  <span class="nt">&lt;version&gt;</span>1.0-SNAPSHOT<span class="nt">&lt;/version&gt;</span>
+  <span class="nt">&lt;relativePath&gt;</span>../parent/pom.xml<span class="nt">&lt;/relativePath&gt;</span>
+<span class="nt">&lt;/parent&gt;</span>
+</code></pre></div></div>
+<p>Without it, Maven finds another POM at <code>../pom.xml</code>, or none, and when the parent was never installed the build fails with <code>Non-resolvable parent POM</code>. An empty <code>&lt;relativePath/&gt;</code> tells Maven to skip the file system and take the parent from a repository, which is what you want for a parent from outside the project, such as an organisation-wide parent POM.</p>
+<blockquote class="guide-since">
+<p><strong>Maven 4:</strong> Maven 4 also finds the parent among the projects of the current build, so a parent that is part of the build is found even when <code>&lt;relativePath&gt;</code> does not point at it. And it can fill in the parent for you: an empty <code>&lt;parent/&gt;</code> means the POM in the directory above, and Maven reads the group id, artifact id and version from that file.</p>
+</blockquote>
+<h2 id="Aggregation.3A_an_aggregator_names_its_modules">Aggregation: an aggregator names its modules</h2>
+<p>An aggregator is a POM with <code>pom</code> packaging and a list of modules. Each <code>&lt;module&gt;</code> is the path from the aggregator's directory to a module's directory or POM file, usually the directory name.</p>
+<p><em>pom.xml</em></p>
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="xml"><span class="nt">&lt;packaging&gt;</span>pom<span class="nt">&lt;/packaging&gt;</span>
+
+<span class="nt">&lt;modules&gt;</span>
+  <span class="nt">&lt;module&gt;</span>api<span class="nt">&lt;/module&gt;</span>
+  <span class="nt">&lt;module&gt;</span>core<span class="nt">&lt;/module&gt;</span>
+  <span class="nt">&lt;module&gt;</span>app<span class="nt">&lt;/module&gt;</span>
+<span class="nt">&lt;/modules&gt;</span>
+</code></pre></div></div>
+<p>When you run Maven on the aggregator, it runs the same command on every module in one build. That is all aggregation does. The aggregator passes no configuration to its modules, and a module does not know which aggregator lists it.</p>
+<blockquote class="guide-since">
+<p><strong>Maven 4:</strong> The element is called <code>&lt;subprojects&gt;</code>, with one <code>&lt;subproject&gt;</code> per directory, in POMs with model version 4.1.0. <code>&lt;modules&gt;</code> still works there, but Maven reports it as a deprecated element and suggests <code>&lt;subprojects&gt;</code>. When a 4.1.0 POM with <code>pom</code> packaging lists neither, Maven 4 takes every direct subdirectory that has a <code>pom.xml</code> as a subproject.</p>
+</blockquote>
+<h2 id="One_POM_or_two">One POM or two</h2>
+<p>Usually the root POM is both: the modules name it as their parent, and it lists them as modules. One file then holds the shared configuration and the list of what to build, and <code>mvn verify</code> in the root directory builds everything.</p>
+<p>The two roles can be split. A project can keep its shared configuration in <code>parent/pom.xml</code>, inherited by every module through <code>&lt;relativePath&gt;../parent/pom.xml&lt;/relativePath&gt;</code>, and have a root POM that only lists <code>parent</code>, <code>lib</code> and <code>app</code> as modules. That root is then an aggregator that nothing inherits from. The other way round is common as well: a company parent POM, inherited by hundreds of projects that are each built on their own, aggregates none of them.</p>
+<h2 id="The_reactor_orders_the_build">The reactor orders the build</h2>
+<p>The part of Maven that builds several projects together is called the reactor. It collects the projects from the aggregator and its modules, recursively, sorts them so that every project comes after the projects it needs, and then builds them one by one. A project comes after:</p>
+<ul>
+<li>the modules it has as a dependency,</li>
+<li>its parent, when the parent is part of the build,</li>
+<li>modules it uses as a plugin, as a plugin's dependency or as a build extension.</li>
+</ul>
+<p>Only those relationships count. An entry in <code>&lt;dependencyManagement&gt;</code> or <code>&lt;pluginManagement&gt;</code> that names another module does not change the order. Where no relationship decides, the order of the <code>&lt;modules&gt;</code> list does. So the order in which you list modules does not matter for correctness: with the modules listed as <code>app</code>, <code>core</code>, <code>api</code>, where <code>app</code> depends on <code>core</code> and <code>core</code> on <code>api</code>, the reactor still prints:</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[INFO] Reactor Build Order:
+[INFO] 
+[INFO] shop                                                               [pom]
+[INFO] api                                                                [jar]
+[INFO] core                                                               [jar]
+[INFO] app                                                                [jar]
+</code></pre></div></div>
+<p>The parent comes first because every module inherits from it. An aggregator that is not also the parent has no relationship with its modules, and the reactor may build it last.</p>
+<p>Two modules that need each other, directly or through others, cannot be ordered. Maven stops before building with <code>The projects in the reactor contain a cyclic reference</code> and names the chain.</p>
+<h2 id="Modules_see_each_other.27s_output">Modules see each other's output</h2>
+<p>Within one build, a module that depends on another module gets that module's output from the build itself: its compiled classes, or its jar once it is packaged. Nothing has to be installed first. That only holds for the modules in the build. When you build one module on its own, Maven 3 looks for the other modules in the local repository, as it would for any dependency, and fails when they were never installed. <a href="build-part-of-a-project.html">Build part of a multi-module project</a> shows how to select modules so that what they need is in the build.</p>
+<blockquote class="guide-since">
+<p><strong>Maven 4:</strong> When Maven 4 packages a subproject, it keeps a copy of the jar in <code>.mvn/target/project-local-repo</code> in the root directory. A later build that leaves that subproject out takes the jar from there before it looks in the local repository. <code>mvn clean</code> removes the copy.</p>
+</blockquote>
+<h2 id="The_root_directory_and_the_POM_that_is_published">The root directory and the POM that is published</h2>
+<blockquote class="guide-since">
+<p><strong>Maven 4:</strong> Maven 4 needs to know the root directory of the project. It takes the nearest directory upwards with a <code>.mvn</code> subdirectory, or the directory of a POM with <code>root="true"</code> on its <code>&lt;project&gt;</code> element (model version 4.1.0). When it finds neither, it warns <code>Unable to find the root directory. Create a .mvn directory in the root directory or add the root="true" attribute on the root project's model to identify it.</code> Maven 3 accepts an empty <code>.mvn</code> directory as well.</p>
+</blockquote>
+<blockquote class="guide-since">
+<p><strong>Maven 4:</strong> The POM in your source tree is the build POM. Maven 4 installs and deploys a second POM next to it, the consumer POM, as the <code>.pom</code> file other projects read. It uses model version 4.0.0, so Maven 3 and other tools can read it, with versions that Maven 4 inferred filled in and without <code>&lt;modules&gt;</code> or <code>&lt;subprojects&gt;</code>. By default it keeps the <code>&lt;parent&gt;</code> reference. The build POM is installed and deployed too, with the classifier <code>build</code>, for example <code>app-1.0-SNAPSHOT-build.pom</code>. See <a href="../whatsnewinmaven4.html#Consumer_POM">What's new in Maven 4</a>.</p>
+</blockquote>
+
+</div>
+<footer class="guide-foot">
+  <h2 id="More_in_Multi-module_projects">More in <a href="/maven-site/guides/topics/multi-module.html">Multi-module projects</a></h2>
+  
+  <div class="guide-foot-kinds">
+  
+    
+    
+  
+    
+    
+    <section>
+      <h3 id="How-to_guides">How-to guides</h3>
+      
+<ul class="guide-list">
+
+  
+  
+  <li>
+    <a class="guide-list-title" href="/maven-site/guides/split-into-modules.html">Split a project into modules</a>
+    
+    <span class="guide-list-summary">Turn one Maven project into a parent POM with modules that depend on each other and build together from the root directory.</span>
+  </li>
+
+  
+  
+  <li>
+    <a class="guide-list-title" href="/maven-site/guides/build-part-of-a-project.html">Build part of a multi-module project</a>
+    
+    <span class="guide-list-summary">Build one module, a module with the modules it needs or with the modules that use it, leave modules out, or resume a failed build.</span>
+  </li>
+
+  
+  
+  <li>
+    <a class="guide-list-title" href="/maven-site/guides/share-configuration.html">Share dependency versions and plugin configuration</a>
+    
+    <span class="guide-list-summary">Set dependency versions, plugin versions and plugin configuration once in the parent POM, and import a BOM, so that every module uses the same.</span>
+  </li>
+
+</ul>
+
+    </section>
+    
+  
+    
+    
+    <section>
+      <h3 id="Reference">Reference</h3>
+      
+<ul class="guide-list">
+
+  
+  
+  <li>
+    <a class="guide-list-title" href="/maven-site/guides/reactor-options.html">Reactor options</a>
+    
+    <span class="guide-list-summary">The command-line options that select, order and continue the modules of a multi-module build, the project selector syntax, and the Maven line each needs.</span>
+  </li>
+
+</ul>
+
+    </section>
+    
+  
+    
+    
+    <section>
+      <h3 id="Explanation">Explanation</h3>
+      
+<ul class="guide-list">
+
+  
+  
+  <li class="is-current">
+    <strong class="guide-list-title" aria-current="page">Aggregation and inheritance</strong>
+    
+    <span class="guide-list-summary">How a parent POM passes configuration down, how an aggregator builds modules together, and how the reactor decides the order.</span>
+  </li>
+
+</ul>
+
+    </section>
+    
+  
+  </div>
+  
+  <p class="guide-provenance">Written from <a href="/maven-site/guides/introduction/introduction-to-the-pom.html"><code>guides/introduction/introduction-to-the-pom.md</code></a>, <a href="/maven-site/guides/mini/guide-multiple-modules.html"><code>guides/mini/guide-multiple-modules.md</code></a>, <a href="/maven-site/guides/mini/guide-multiple-subprojects-4.html"><code>guides/mini/guide-multiple-subprojects-4.md</code></a>, <a href="https://github.com/apache/maven/blob/master/impl/maven-core/src/site/markdown/inheritance.md"><code>maven/inheritance.md</code></a>.</p>
+  
+</footer>
+
+        </main>
+      </div>
+    </div>
+    <hr>
+    <footer>
+      <div class="container-fluid">
+        <div class="row-fluid">
+          <p>©      2002–2026 <a href="https://www.apache.org/">The Apache Software Foundation</a></p>
+          <p class="demo-note">A demonstration build of <a href="https://github.com/dashorst/maven-site/tree/diataxis-demo">dashorst/maven-site</a>, not the official Apache Maven site.</p>
+        </div>
+      </div>
+    </footer>
+    <script src="/maven-site/js/guide.js?v=1792948498" defer=""></script>
+    <script>
+    anchors.add();
+    </script>
+  
+
+</body></html>

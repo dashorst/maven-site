@@ -1,0 +1,275 @@
+<!DOCTYPE html><!--
+ | The page frame of the Apache Maven Fluido Skin 2.1.0, as the Doxia site renderer writes it
+ | for maven.apache.org. Built with Jekyll: see jekyll/README.md.
+--><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Maven 3.10.0 Release Notes – Maven</title>
+    
+    <link rel="stylesheet" href="/maven-site/css/apache-maven-fluido-2.1.0.min.css">
+    <link rel="stylesheet" href="/maven-site/css/site.css">
+    <link rel="stylesheet" href="/maven-site/css/guide.css?v=1792948498">
+    <link rel="stylesheet" href="/maven-site/css/print.css" media="print">
+    <script src="/maven-site/js/apache-maven-fluido-2.1.0.min.js"></script>
+  </head>
+  <body>
+    <div class="container-fluid container-fluid-top">
+      <header>
+        <div id="banner">
+          <div class="pull-left"><div id="bannerLeft"><h1><a href="/maven-site/index.html"><img src="/maven-site/images/apache-maven-project-light-theme.svg" style="width: 489px;height: 83px;" alt="Apache Maven"></a></h1></div></div>
+          <div class="pull-right"><div id="bannerRight"><h1><img src="/maven-site/images/logos/MavenLogoLeaf.svg" style="width: 340px;height: 83px;" alt=""></h1></div></div>
+          <div class="clear"><hr></div>
+        </div>
+
+        <div id="breadcrumbs">
+          <ul class="breadcrumb">
+            <li><a href="https://www.apache.org/">Apache</a><span class="divider">/</span></li>
+            <li><a href="/maven-site/index.html">Maven</a><span class="divider">/</span></li>
+            
+            <li class="active">Maven 3.10.0 Release Notes <a href="https://github.com/apache/maven-site/tree/master/content/markdown/docs/3.10.0/release-notes.md"><img src="/maven-site/images/accessories-text-editor.png" alt="Edit"></a></li>
+            <li id="publishDate" class="pull-right"><span class="divider">|</span> Last Published: 2026-10-25</li>
+            <li class="pull-right"><span class="divider">|</span> <a href="/maven-site/scm.html">Get Sources</a></li>
+            <li class="pull-right"><a href="https://maven.apache.org/download.cgi">Downloads</a></li>
+          </ul>
+        </div>
+      </header>
+      <div class="row-fluid">
+        <header id="leftColumn" class="span2">
+          
+<form class="guide-search" role="search" action="/maven-site/guides/a-z.html" data-index="/maven-site/guides/search.json" data-script="/maven-site/js/minisearch-7.2.0.js" data-oldest="3.9" data-base="/maven-site">
+  <label class="guide-search-label" for="guide-q-nav">Search the documentation</label>
+  <div class="guide-search-field">
+    <input id="guide-q-nav" name="q" type="search" autocomplete="off" spellcheck="false" placeholder="Search">
+    <kbd class="guide-search-key" aria-hidden="true">/</kbd>
+  </div>
+  
+</form>
+
+          <nav class="well sidebar-nav">
+<ul class="nav nav-list">
+  <li><a href="/maven-site/index.html">Welcome</a></li>
+  <li><a href="https://www.apache.org/licenses/">License</a></li>
+  <li class="nav-header">About Maven</li>
+  <li><a href="/maven-site/what-is-maven.html">What is Maven?</a></li>
+  <li><a href="/maven-site/install.html">Installation</a></li>
+  <li><a href="/maven-site/download.html">Downloads</a></li>
+  <li><a href="/maven-site/run.html">Use</a></li>
+  <li><a href="/maven-site/configure.html">Configure</a></li>
+  <li><a href="/maven-site/docs/history.html">Release Notes</a></li>
+  <li><a href="/maven-site/security.html">Security Reports</a></li>
+  <li class="nav-header">Documentation</li>
+  <li><a href="/maven-site/plugins/index.html">Maven Plugins</a></li>
+  <li><a href="/maven-site/extensions/index.html">Maven Extensions</a></li>
+  <li><a href="/maven-site/tools/index.html"><span class="icon-chevron-down"></span>Maven Tools</a>
+   <ul class="nav nav-list">
+    <li><a href="/maven-site/tools/mvnd.html">Maven Daemon</a></li>
+    <li><a href="/maven-site/tools/mvnsh.html">Maven Shell</a></li>
+    <li><a href="/maven-site/tools/mvnup.html">Maven Upgrade Tool</a></li>
+    <li><a href="/maven-site/tools/mavenwrapper.html">Maven Wrapper</a></li>
+   </ul></li>
+  <li><a href="/maven-site/doxia/index.html"><span class="icon-chevron-right"></span>Doxia</a></li>
+  <li><a href="/maven-site/guides/index.html">Guides</a></li>
+  <li><a href="/maven-site/users/index.html"><span class="icon-chevron-right"></span>User Manual</a></li>
+  <li><a href="/maven-site/repositories/index.html"><span class="icon-chevron-right"></span>Maven Repositories</a></li>
+  <li><a href="/maven-site/plugin-developers/index.html"><span class="icon-chevron-right"></span>Plugin Development</a></li>
+  <li><a href="/maven-site/developers/index.html"><span class="icon-chevron-right"></span>Contribute to Maven</a></li>
+  <li><a href="/maven-site/articles.html">Books and Resources</a></li>
+  <li class="nav-header">Community</li>
+  <li><a href="/maven-site/community.html">Community Overview</a></li>
+  <li><a href="/maven-site/project-roles.html">Project Roles</a></li>
+  <li><a href="/maven-site/guides/development/guide-helping.html">How to Contribute</a></li>
+  <li><a href="/maven-site/users/getting-help.html">Getting Help</a></li>
+  <li><a href="/maven-site/issue-management.html">Issue Management</a></li>
+  <li><a href="/maven-site/scm.html">Getting Maven Source</a></li>
+  <li><a href="/maven-site/team.html">The Maven Team</a></li>
+  <li class="nav-header">Project Documentation</li>
+  <li><a href="/maven-site/project-info.html">Project Information</a></li>
+  <li class="nav-header">Maven Projects</li>
+  <li><a href="/maven-site/ref/current">Maven</a></li>
+  <li><a href="/maven-site/archetypes/index.html">Archetypes</a></li>
+  <li><a href="/maven-site/extensions/index.html">Extensions</a></li>
+  <li><a href="/maven-site/pom/index.html">Parent POMs</a></li>
+  <li><a href="/maven-site/plugins/index.html">Plugins</a></li>
+  <li><a href="/maven-site/skins/index.html">Skins</a></li>
+  <li><a><span class="icon-chevron-down"></span>Components</a>
+   <ul class="nav nav-list">
+    <li><a href="/maven-site/archetype/index.html">Archetype</a></li>
+    <li><a href="/maven-site/resolver/index.html">Artifact Resolver</a></li>
+    <li><a href="/maven-site/doxia/index.html">Doxia</a></li>
+    <li><a href="/maven-site/maven-indexer/index.html">Indexer</a></li>
+    <li><a href="/maven-site/jxr/index.html">JXR</a></li>
+    <li><a href="/maven-site/plugin-testing/index.html">Plugin Testing</a></li>
+    <li><a href="/maven-site/plugin-tools/index.html">Plugin Tools</a></li>
+    <li><a href="/maven-site/apache-resource-bundles/index.html">Resource Bundles</a></li>
+    <li><a href="/maven-site/scm/index.html">SCM</a></li>
+    <li><a href="/maven-site/shared/index.html">Shared Components</a></li>
+    <li><a href="/maven-site/surefire/index.html">Surefire</a></li>
+    <li><a href="/maven-site/wagon/index.html">Wagon</a></li>
+   </ul></li>
+  <li class="nav-header">ASF</li>
+  <li><a href="https://www.apache.org/foundation/how-it-works.html">How Apache Works</a></li>
+  <li><a href="https://www.apache.org/foundation/">Foundation</a></li>
+  <li><a href="https://privacy.apache.org/policies/privacy-policy-public.html">Data Privacy</a></li>
+  <li><a href="https://www.apache.org/foundation/sponsorship.html">Sponsoring Apache</a></li>
+  <li><a href="https://www.apache.org/foundation/thanks.html">Thanks</a></li>
+</ul>
+          </nav>
+          <div class="well sidebar-nav">
+            <div id="poweredBy">
+              <div class="clear"></div>
+              <a href="/maven-site/" class="builtBy" target="_blank"><img class="builtBy" alt="Built by Maven" src="/maven-site/images/logos/maven-feather.png"></a>
+            </div>
+          </div>
+        </header>
+        <main id="bodyColumn" class="span10">
+          
+<!--
+Licensed to the Apache Software Foundation (ASF) under one
+or more contributor license agreements.  See the NOTICE file
+distributed with this work for additional information
+regarding copyright ownership.  The ASF licenses this file
+to you under the Apache License, Version 2.0 (the
+"License"); you may not use this file except in compliance
+with the License.  You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing,
+software distributed under the License is distributed on an
+"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+KIND, either express or implied.  See the License for the
+specific language governing permissions and limitations
+under the License.
+-->
+<h1 id="Maven_3.10.0_Release_Notes">Maven 3.10.0 Release Notes</h1>
+<p>The Apache Maven team would like to announce the release of Maven 3.10.0.</p>
+<p>Maven 3.10.0 is <a href="../../download.html">available for download</a>.</p>
+<p>The core release is independent of plugin releases. Further releases of plugins will be made separately. See the <a href="../../plugins/index.html">Plugin list</a> for more information.</p>
+<p>If you have any questions, please consult:</p>
+<ul>
+<li>the website: <a href="/maven-site/">https://maven.apache.org/</a></li>
+<li>the maven-user mailing list: <a href="https://maven.apache.org/mailing-lists.html">https://maven.apache.org/mailing-lists.html</a></li>
+<li>the reference documentation: <a href="https://maven.apache.org/ref/3.10.0/">https://maven.apache.org/ref/3.10.0/</a></li>
+</ul>
+<h2 id="Overview_About_the_Changes">Overview About the Changes</h2>
+<p>The main driver for new generation was to align Maven 3 and 4 majors versions on same Resolver version. Hence, Maven 3.10 is now using Resolver 2.0 lineage, same one that is used by Maven 4+. On the other hand, at "Maven level", changes are kept minimal, and upgrading should be pretty straightforward. Also, 3.10 received many security and other enhancements as well. Still, most of the changes happened "under the surface", end users might even be unaware of them. The key changes are listed below.</p>
+<p>Maven 3.10.0 requires Java 8 or above to run, same as the Maven 3.9.x lineage.</p>
+<h2 id="Notable_Changes_in_Maven_3.10.0">Notable Changes in Maven 3.10.0</h2>
+<h3 id="New_Features_and_Improvements">New Features and Improvements</h3>
+<ul>
+<li><a href="https://maven.apache.org/resolver/">Maven Resolver</a> 2.x (2.0.24) is used, the same lineage as in Maven 4+, which brings version range filtering,
+improved remote repository filtering, a transitive dependency manager and user-defined relocations</li>
+<li>support for user-wide extensions (in <code>~/.m2/extensions.xml</code>) and installation-wide extensions (in <code>$MAVEN_HOME/conf/extensions.xml</code>) extensions,
+in addition to the usual project-specific <code>.mvn/extensions.xml</code></li>
+<li>full <code>settings.xml</code> interpolation, including non-string values such as ports</li>
+<li><code>session.topDirectory</code>, <code>session.rootDirectory</code> and <code>project.rootDirectory</code> are promoted to regular Maven properties,
+usable in interpolation and in profile activation</li>
+<li><a href="/maven-site/guides/mini/guide-reproducible-builds.html">Reproducible Builds</a> are active by default: the Super POM now provides
+a default value for <code>project.build.outputTimestamp</code></li>
+<li>new CLI options for fine-grained update policy control: <code>-UA</code> (force artifact updates only), <code>-UM</code> (force metadata
+updates only), <code>--artifacts-update-policy=&lt;policy&gt;</code>, <code>--metadata-update-policy=&lt;policy&gt;</code></li>
+<li>a <code>&lt;server&gt;</code> in <code>settings.xml</code> can declare <code>&lt;aliases&gt;</code>, so that one set of credentials serves several server ids
+(see <a href="/maven-site/settings.html">Introduction to Settings</a>)</li>
+<li>a <code>&lt;server&gt;</code> in <code>settings.xml</code> can declare <code>&lt;repositoryOrigins&gt;</code>, to state explicitly which repository origins its
+credentials may be used with
+(see <a href="/maven-site/settings.html#Server_Repository_Origins">Server Repository Origins</a>)</li>
+<li>the reactor summary is complete again: every module is listed, including the skipped ones, and failures are reported
+last at error level, so they are easier to spot</li>
+<li>a toolchain requested by a plugin, but misconfigured, now fails the build instead of silently falling back to the JDK
+running Maven</li>
+<li><code>MAVEN_PROJECTBASEDIR</code> can be used in <code>.mvn/jvm.config</code>
+(<a href="https://github.com/apache/maven/pull/13115">#13115</a>)</li>
+<li><code>bin/mvn</code> recognizes MSYS2 and converts paths for MinGW/MSYS2 as it did for Cygwin only so far</li>
+<li>the <code>site</code> lifecycle can be dropped from the default lifecycles with the <code>maven.site.lifecycle.disabled</code>
+system property (<a href="https://github.com/apache/maven/pull/11970">#11970</a>)</li>
+<li>the time zone is part of the Maven startup banner</li>
+<li><code>maven.resolver.validation</code> provides an escape hatch for the new Resolver validation: <code>default</code> (full validation),
+<code>mild</code> (only uninterpolated placeholders) or <code>off</code> (no validation, as in Maven 3.9.x)</li>
+</ul>
+<h3 id="Security_Hardening">Security Hardening</h3>
+<ul>
+<li>credentials of a <code>settings.xml</code> server are scoped to the origin (scheme, host and port) of the repositories and
+mirrors declared with the same server id, and the server id is matched exactly, so a server entry no longer leaks
+credentials to unrelated repositories sharing an id prefix</li>
+<li>a model resolved from a repository (dependency, parent or imported BOM) contributes less to the build: restricted
+interpolation, profile activation limited to platform-derived criteria, recessive repository merging and rejection of
+<code>system</code> scoped dependencies. The <code>maven.model.dependencyInterpolation.full</code> property is available as an opt-out</li>
+<li>repositories supplied by the request or the session keep precedence over the ones declared by a resolved model</li>
+<li>artifact and metadata coordinates, relocation coordinates and legacy metadata file name tokens are validated before
+being used</li>
+</ul>
+<h3 id="New_API_and_Updates_for_Maven_Plugins">New API and Updates for Maven Plugins</h3>
+<ul>
+<li>upgrade <code>SLF4J</code> to 2.x</li>
+<li>migration from JAnsi to JLine, with the <code>MessageBuilderFactory</code> service promoted for colored message support
+(as a <a href="https://maven.apache.org/shared/maven-shared-utils/"><code>maven-shared-utils</code> styled message API</a> replacement)</li>
+<li>promote java version in <a href="https://maven.apache.org/ref/current/maven-core/apidocs/org/apache/maven/toolchain/java/JavaToolchain.html"><code>JavaToolchain</code></a></li>
+<li>model problems collected during project building are retained in <code>MavenSession.getModelProblems()</code>, so that plugins
+can inspect them and reject a build with model warnings
+(<a href="https://github.com/apache/maven/issues/8485">#8485</a>)</li>
+<li>Maven JARs carry an <code>Automatic-Module-Name</code> manifest entry</li>
+<li>the core is wired with JSR-330 annotations</li>
+</ul>
+<h2 id="Full_changelog">Full changelog</h2>
+<p>For a full list of changes, please refer to the <a href="https://github.com/apache/maven/releases/tag/maven-3.10.0">GitHub release page</a>.</p>
+<h2 id="Known_issues">Known issues</h2>
+<p>No known issues.</p>
+<h2 id="Potentially_Breaking_Core_Changes_.28if_migrating_from_3.9.x.29">Potentially Breaking Core Changes (if migrating from 3.9.x)</h2>
+<h3 id="Stricter_POM_validation">Stricter POM validation</h3>
+<p>Maven 3.10.0 raises the POM validation level: many WARNINGs from the 3.9 lineage (in fact, from the 3.1 lineage) will
+now FAIL the build. Things like duplicated dependency entries or duplicated plugin entries will not be tolerated
+anymore. This aspect was not changed since Maven 3.1 lineage, and was really time to force users to clean up their
+POMs. The checks promoted to errors for the project being built are the 3.1 level ones: duplicated plugins, invalid
+characters in a version, malformed snapshot versions and reserved or malformed repository ids. Dependencies keep being
+validated at the minimal level (and failure lead to transitive dependencies not being available).
+<code>relativePath</code> of a parent is validated as well, which no Maven 3.x version did so far.
+To temporarily disable the stricter validation add <code>-Dmaven.resolver.validation=off</code> to your Maven incovation.</p>
+<h3 id="Classpath_ordering_change">Classpath ordering change</h3>
+<p>Dependency classpath ordering changed from "pre-order" (depth-first) to "level-order" (breadth-first),
+aligning with Maven 4 behavior and Resolver 2.x defaults.</p>
+<p>To restore the previous behavior, add <code>-Daether.system.dependencyVisitor=preOrder</code> to your Maven invocation.</p>
+<h3 id="Changes_in_the_Super_POM">Changes in the Super POM</h3>
+<ul>
+<li>removed deprecated <code>release-profile</code>; each project should have its own release profile</li>
+<li>removed plugin management; each project should have its own plugin management</li>
+<li>set default values for <code>project.build.sourceEncoding</code> and <code>project.reporting.outputEncoding</code> to <code>UTF-8</code></li>
+<li>set a default value for <code>project.build.outputTimestamp</code>, which makes builds reproducible by default</li>
+</ul>
+<h3 id="Artifact_and_metadata_validation_in_Resolver">Artifact and metadata validation in Resolver</h3>
+<p>Resolver 2.x validates artifact and metadata coordinates, and rejects values that cannot be safely mapped to a
+repository layout. A build relying on non-conformant coordinates can be unblocked with <code>maven.resolver.validation</code>
+set to <code>mild</code> or <code>off</code>, but the coordinates should be fixed instead.</p>
+<h3 id="Repository_credentials_are_scoped">Repository credentials are scoped</h3>
+<p>Credentials of a <code>settings.xml</code> server are only offered to repositories and mirrors whose origin Maven could associate
+with that server id. Origins Maven cannot securely associate via id can be declared with <code>&lt;repositoryOrigins&gt;</code>, see
+<a href="/maven-site/settings.html#Server_Repository_Origins">Server Repository Origins</a>.</p>
+<h3 id="Plugin_validation">Plugin validation</h3>
+<p>Plugins and extensions used by your build are checked against Maven supported APIs and conventions: this "plugin
+validation" may report WARNINGs at the end of your build. See <a href="../../guides/plugins/validation/">plugin validation documentation</a>
+to better understand what to do when your build suffers from such warnings.</p>
+<h3 id="Reproducible_Builds">Reproducible Builds</h3>
+<p>Reproducible Builds is active by default, and with a fixed timestamp value for archive entries:
+if you rely on timestamp value for your consumption, updating timestamp value during release or even
+disabling Reproducible Builds may be a choice: see <a href="/maven-site/guides/mini/guide-reproducible-builds.html">FAQ</a>.</p>
+<h2 id="Complete_Release_Notes">Complete Release Notes</h2>
+<p>See <a href="../../docs/history.html">complete release notes for all versions</a></p>
+
+        </main>
+      </div>
+    </div>
+    <hr>
+    <footer>
+      <div class="container-fluid">
+        <div class="row-fluid">
+          <p>©      2002–2026 <a href="https://www.apache.org/">The Apache Software Foundation</a></p>
+          <p class="demo-note">A demonstration build of <a href="https://github.com/dashorst/maven-site/tree/diataxis-demo">dashorst/maven-site</a>, not the official Apache Maven site.</p>
+        </div>
+      </div>
+    </footer>
+    <script src="/maven-site/js/guide.js?v=1792948498" defer=""></script>
+    <script>
+    anchors.add();
+    </script>
+  
+
+</body></html>

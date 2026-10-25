@@ -1,0 +1,541 @@
+<!DOCTYPE html><!--
+ | The page frame of the Apache Maven Fluido Skin 2.1.0, as the Doxia site renderer writes it
+ | for maven.apache.org. Built with Jekyll: see jekyll/README.md.
+--><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Introduction to the POM – Maven</title>
+    
+    <link rel="stylesheet" href="/maven-site/css/apache-maven-fluido-2.1.0.min.css">
+    <link rel="stylesheet" href="/maven-site/css/site.css">
+    <link rel="stylesheet" href="/maven-site/css/guide.css?v=1792948498">
+    <link rel="stylesheet" href="/maven-site/css/print.css" media="print">
+    <script src="/maven-site/js/apache-maven-fluido-2.1.0.min.js"></script>
+  </head>
+  <body>
+    <div class="container-fluid container-fluid-top">
+      <header>
+        <div id="banner">
+          <div class="pull-left"><div id="bannerLeft"><h1><a href="/maven-site/index.html"><img src="/maven-site/images/apache-maven-project-light-theme.svg" style="width: 489px;height: 83px;" alt="Apache Maven"></a></h1></div></div>
+          <div class="pull-right"><div id="bannerRight"><h1><img src="/maven-site/images/logos/MavenLogoLeaf.svg" style="width: 340px;height: 83px;" alt=""></h1></div></div>
+          <div class="clear"><hr></div>
+        </div>
+
+        <div id="breadcrumbs">
+          <ul class="breadcrumb">
+            <li><a href="https://www.apache.org/">Apache</a><span class="divider">/</span></li>
+            <li><a href="/maven-site/index.html">Maven</a><span class="divider">/</span></li>
+            
+            <li class="active">Introduction to the POM <a href="https://github.com/apache/maven-site/tree/master/content/markdown/guides/introduction/introduction-to-the-pom.md"><img src="/maven-site/images/accessories-text-editor.png" alt="Edit"></a></li>
+            <li id="publishDate" class="pull-right"><span class="divider">|</span> Last Published: 2026-10-25</li>
+            <li class="pull-right"><span class="divider">|</span> <a href="/maven-site/scm.html">Get Sources</a></li>
+            <li class="pull-right"><a href="https://maven.apache.org/download.cgi">Downloads</a></li>
+          </ul>
+        </div>
+      </header>
+      <div class="row-fluid">
+        <header id="leftColumn" class="span2">
+          
+<form class="guide-search" role="search" action="/maven-site/guides/a-z.html" data-index="/maven-site/guides/search.json" data-script="/maven-site/js/minisearch-7.2.0.js" data-oldest="3.9" data-base="/maven-site">
+  <label class="guide-search-label" for="guide-q-nav">Search the documentation</label>
+  <div class="guide-search-field">
+    <input id="guide-q-nav" name="q" type="search" autocomplete="off" spellcheck="false" placeholder="Search">
+    <kbd class="guide-search-key" aria-hidden="true">/</kbd>
+  </div>
+  
+</form>
+
+          <nav class="well sidebar-nav">
+<ul class="nav nav-list">
+  <li><a href="/maven-site/index.html">Welcome</a></li>
+  <li><a href="https://www.apache.org/licenses/">License</a></li>
+  <li class="nav-header">About Maven</li>
+  <li><a href="/maven-site/what-is-maven.html">What is Maven?</a></li>
+  <li><a href="/maven-site/install.html">Installation</a></li>
+  <li><a href="/maven-site/download.html">Downloads</a></li>
+  <li><a href="/maven-site/run.html">Use</a></li>
+  <li><a href="/maven-site/configure.html">Configure</a></li>
+  <li><a href="/maven-site/docs/history.html">Release Notes</a></li>
+  <li><a href="/maven-site/security.html">Security Reports</a></li>
+  <li class="nav-header">Documentation</li>
+  <li><a href="/maven-site/plugins/index.html">Maven Plugins</a></li>
+  <li><a href="/maven-site/extensions/index.html">Maven Extensions</a></li>
+  <li><a href="/maven-site/tools/index.html"><span class="icon-chevron-down"></span>Maven Tools</a>
+   <ul class="nav nav-list">
+    <li><a href="/maven-site/tools/mvnd.html">Maven Daemon</a></li>
+    <li><a href="/maven-site/tools/mvnsh.html">Maven Shell</a></li>
+    <li><a href="/maven-site/tools/mvnup.html">Maven Upgrade Tool</a></li>
+    <li><a href="/maven-site/tools/mavenwrapper.html">Maven Wrapper</a></li>
+   </ul></li>
+  <li><a href="/maven-site/doxia/index.html"><span class="icon-chevron-right"></span>Doxia</a></li>
+  <li><a href="/maven-site/guides/index.html">Guides</a></li>
+  <li><a href="/maven-site/users/index.html"><span class="icon-chevron-down"></span>User Manual</a>
+   <ul class="nav nav-list">
+    <li><a><span class="icon-chevron-down"></span>Maven Build Fundamentals</a>
+     <ul class="nav nav-list">
+      <li><a href="/maven-site/guides/getting-started/maven-in-five-minutes.html">Maven in 5 Minutes</a></li>
+      <li><a href="/maven-site/users/getting-help.html">Getting Help</a></li>
+      <li><a href="/maven-site/run-maven/index.html">Running Maven</a></li>
+     </ul></li>
+    <li><a><span class="icon-chevron-down"></span>Maven Build Config Fundamentals</a>
+     <ul class="nav nav-list">
+      <li><a href="/maven-site/guides/plugins/validation/index.html">Plugins Validation</a></li>
+      <li><a href="/maven-site/guides/mini/guide-site.html"><span class="icon-chevron-right"></span>Creating a site</a></li>
+      <li><a href="/maven-site/guides/introduction/introduction-to-archetypes.html"><span class="icon-chevron-right"></span>Archetypes</a></li>
+      <li><a href="/maven-site/guides/introduction/introduction-to-repositories.html"><span class="icon-chevron-right"></span>Repositories</a></li>
+      <li><a href="/maven-site/guides/introduction/introduction-to-profiles.html">Profiles</a></li>
+      <li><a href="/maven-site/guides/introduction/introduction-to-the-standard-directory-layout.html">Standard Directory Layout</a></li>
+      <li><a href="/maven-site/guides/introduction/introduction-to-dependency-mechanism.html"><span class="icon-chevron-right"></span>Dependency Mechanism</a></li>
+     </ul></li>
+    <li><a href="/maven-site/guides/getting-started/index.html"><span class="icon-chevron-down"></span>Getting Started Guide</a>
+     <ul class="nav nav-list">
+      <li><a href="/maven-site/guides/mini/guide-naming-conventions.html">Naming Conventions</a></li>
+      <li><a href="/maven-site/guides/introduction/introduction-to-the-lifecycle.html">The Build Lifecycle</a></li>
+      <li class="active"><a>The POM</a></li>
+      <li><a href="/maven-site/guides/mini/guide-configuring-plugins.html"><span class="icon-chevron-right"></span>Configuring Plugins</a></li>
+      <li><a href="/maven-site/pom.html">POM 4.0.0 Reference</a></li>
+      <li><a href="/maven-site/settings.html">Settings Reference</a></li>
+     </ul></li>
+    <li><a><span class="icon-chevron-down"></span>Maven 4</a>
+     <ul class="nav nav-list">
+      <li><a href="/maven-site/whatsnewinmaven4.html">What's new in Maven 4?</a></li>
+      <li><a href="/maven-site/guides/mini/guide-migration-to-mvn4.html">Starting with Maven 4</a></li>
+      <li><a href="/maven-site/guides/mini/guide-mixins.html">Maven Mixins</a></li>
+     </ul></li>
+    <li><a href="/maven-site/guides/mini/index.html"><span class="icon-chevron-right"></span>Guides</a></li>
+    <li><a href="/maven-site/general.html">FAQ</a></li>
+   </ul></li>
+  <li><a href="/maven-site/repositories/index.html"><span class="icon-chevron-right"></span>Maven Repositories</a></li>
+  <li><a href="/maven-site/plugin-developers/index.html"><span class="icon-chevron-right"></span>Plugin Development</a></li>
+  <li><a href="/maven-site/developers/index.html"><span class="icon-chevron-right"></span>Contribute to Maven</a></li>
+  <li><a href="/maven-site/articles.html">Books and Resources</a></li>
+  <li class="nav-header">Community</li>
+  <li><a href="/maven-site/community.html">Community Overview</a></li>
+  <li><a href="/maven-site/project-roles.html">Project Roles</a></li>
+  <li><a href="/maven-site/guides/development/guide-helping.html">How to Contribute</a></li>
+  <li><a href="/maven-site/users/getting-help.html">Getting Help</a></li>
+  <li><a href="/maven-site/issue-management.html">Issue Management</a></li>
+  <li><a href="/maven-site/scm.html">Getting Maven Source</a></li>
+  <li><a href="/maven-site/team.html">The Maven Team</a></li>
+  <li class="nav-header">Project Documentation</li>
+  <li><a href="/maven-site/project-info.html">Project Information</a></li>
+  <li class="nav-header">Maven Projects</li>
+  <li><a href="/maven-site/ref/current">Maven</a></li>
+  <li><a href="/maven-site/archetypes/index.html">Archetypes</a></li>
+  <li><a href="/maven-site/extensions/index.html">Extensions</a></li>
+  <li><a href="/maven-site/pom/index.html">Parent POMs</a></li>
+  <li><a href="/maven-site/plugins/index.html">Plugins</a></li>
+  <li><a href="/maven-site/skins/index.html">Skins</a></li>
+  <li><a><span class="icon-chevron-down"></span>Components</a>
+   <ul class="nav nav-list">
+    <li><a href="/maven-site/archetype/index.html">Archetype</a></li>
+    <li><a href="/maven-site/resolver/index.html">Artifact Resolver</a></li>
+    <li><a href="/maven-site/doxia/index.html">Doxia</a></li>
+    <li><a href="/maven-site/maven-indexer/index.html">Indexer</a></li>
+    <li><a href="/maven-site/jxr/index.html">JXR</a></li>
+    <li><a href="/maven-site/plugin-testing/index.html">Plugin Testing</a></li>
+    <li><a href="/maven-site/plugin-tools/index.html">Plugin Tools</a></li>
+    <li><a href="/maven-site/apache-resource-bundles/index.html">Resource Bundles</a></li>
+    <li><a href="/maven-site/scm/index.html">SCM</a></li>
+    <li><a href="/maven-site/shared/index.html">Shared Components</a></li>
+    <li><a href="/maven-site/surefire/index.html">Surefire</a></li>
+    <li><a href="/maven-site/wagon/index.html">Wagon</a></li>
+   </ul></li>
+  <li class="nav-header">ASF</li>
+  <li><a href="https://www.apache.org/foundation/how-it-works.html">How Apache Works</a></li>
+  <li><a href="https://www.apache.org/foundation/">Foundation</a></li>
+  <li><a href="https://privacy.apache.org/policies/privacy-policy-public.html">Data Privacy</a></li>
+  <li><a href="https://www.apache.org/foundation/sponsorship.html">Sponsoring Apache</a></li>
+  <li><a href="https://www.apache.org/foundation/thanks.html">Thanks</a></li>
+</ul>
+          </nav>
+          <div class="well sidebar-nav">
+            <div id="poweredBy">
+              <div class="clear"></div>
+              <a href="/maven-site/" class="builtBy" target="_blank"><img class="builtBy" alt="Built by Maven" src="/maven-site/images/logos/maven-feather.png"></a>
+            </div>
+          </div>
+        </header>
+        <main id="bodyColumn" class="span10">
+          
+          <aside class="guide-split alert alert-info">
+            <p><strong>This page is rewritten in the <a href="/maven-site/guides/index.html">Maven guides</a></strong>, as pages that each do one job:</p>
+            <ul>
+              <li><a href="/maven-site/guides/split-into-modules.html">Split a project into modules</a> <span class="guide-list-kind">How-to</span></li>
+              <li><a href="/maven-site/guides/share-configuration.html">Share dependency versions and plugin configuration</a> <span class="guide-list-kind">How-to</span></li>
+              <li><a href="/maven-site/guides/aggregation-and-inheritance.html">Aggregation and inheritance</a> <span class="guide-list-kind">Explanation</span></li>
+            </ul>
+          </aside>
+          
+<!--
+Licensed to the Apache Software Foundation (ASF) under one
+or more contributor license agreements.  See the NOTICE file
+distributed with this work for additional information
+regarding copyright ownership.  The ASF licenses this file
+to you under the Apache License, Version 2.0 (the
+"License"); you may not use this file except in compliance
+with the License.  You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing,
+software distributed under the License is distributed on an
+"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+KIND, either express or implied.  See the License for the
+specific language governing permissions and limitations
+under the License.
+-->
+<h1 id="Introduction_to_the_POM">Introduction to the POM</h1>
+<div class="doxia-toc"><ul><li><a href="#What_is_a_POM.3F">What is a POM?</a></li><li><a href="#Super_POM">Super POM</a></li><li><a href="#Minimal_POM">Minimal POM</a></li><li><a href="#Project_Inheritance">Project Inheritance</a><ul><li><a href="#Example_1">Example 1</a></li><li><a href="#Example_2">Example 2</a></li></ul></li><li><a href="#Project_Aggregation">Project Aggregation</a><ul><li><a href="#Example_3">Example 3</a></li><li><a href="#Example_4">Example 4</a></li></ul></li><li><a href="#Project_Inheritance_vs_Project_Aggregation">Project Inheritance vs Project Aggregation</a><ul><li><a href="#Example_5">Example 5</a></li></ul></li><li><a href="#Project_Interpolation_and_Variables">Project Interpolation and Variables</a><ul><li><a href="#Available_Variables">Available Variables</a></li></ul></li></ul></div>
+<h2 id="What_is_a_POM.3F">What is a POM?</h2>
+<p>A Project Object Model or POM is the fundamental unit of work in Maven. It is an XML file that contains information about the project and configuration details used by Maven to build the project. It contains default values for most projects. Examples for this is the build directory, which is <code>target</code>; the source directory, which is <code>src/main/java</code>; the test source directory, which is <code>src/test/java</code>; and so on. When executing a task or goal, Maven looks for the POM in the current directory. It reads the POM, gets the needed configuration information, then executes the goal.</p>
+<p>Some of the configuration that can be specified in the POM are the project dependencies, the plugins or goals that can be executed, the build profiles, and so on. Other information such as the project version, description, developers, mailing lists and such can also be specified.</p>
+<p><a href="./introduction-to-the-pom.html">top</a></p>
+<h2 id="Super_POM">Super POM</h2>
+<p>The Super POM is Maven's default POM. All POMs extend the Super POM unless explicitly set, meaning the configuration specified in the Super POM is inherited by the POMs you created for your projects.</p>
+<p>You can see the <a href="https://maven.apache.org/maven-model-builder/super-pom.html">Super POM for the latest Maven 3 release</a> in Maven Core reference documentation.</p>
+<p><a href="./introduction-to-the-pom.html">top</a></p>
+<h2 id="Minimal_POM">Minimal POM</h2>
+<p>The minimum requirement for a POM are the following:</p>
+<ul>
+<li><code>project</code> root</li>
+<li><code>modelVersion</code> - should be set to 4.0.0</li>
+<li><code>groupId</code> - the id of the project's group.</li>
+<li><code>artifactId</code> - the id of the artifact (project)</li>
+<li><code>version</code> - the version of the artifact under the specified group</li>
+</ul>
+<p>Here's an example:</p>
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="xml"><span class="nt">&lt;project</span> <span class="na">xmlns=</span><span class="s">"http://maven.apache.org/POM/4.0.0"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;modelVersion&gt;</span>4.0.0<span class="nt">&lt;/modelVersion&gt;</span>
+
+  <span class="nt">&lt;groupId&gt;</span>com.mycompany.app<span class="nt">&lt;/groupId&gt;</span>
+  <span class="nt">&lt;artifactId&gt;</span>my-app<span class="nt">&lt;/artifactId&gt;</span>
+  <span class="nt">&lt;version&gt;</span>1<span class="nt">&lt;/version&gt;</span>
+<span class="nt">&lt;/project&gt;</span>
+</code></pre></div></div>
+<p>A POM requires that its groupId, artifactId, and version be configured. These three values form the project's fully qualified artifact name. This is in the form of &lt;groupId&gt;:&lt;artifactId&gt;:&lt;version&gt;. As for the example above, its fully qualified artifact name is "com.mycompany.app:my-app:1".</p>
+<p>Also, as mentioned in the <a href="#What_is_a_POM">first section</a>, if the configuration details are not specified, Maven will use their defaults. One of these default values is the packaging type. Every Maven project has a packaging type. If it is not specified in the POM, then the default value "jar" would be used.</p>
+<p>Furthermore, you can see that in the minimal POM the <em>repositories</em> were not specified. If you build your project using the minimal POM, it would inherit the <em>repositories</em> configuration in the Super POM. Therefore when Maven sees the dependencies in the minimal POM, it would know that these dependencies will be downloaded from <code>https://repo.maven.apache.org/maven2</code> which was specified in the Super POM.</p>
+<p><a href="./introduction-to-the-pom.html">top</a></p>
+<h2 id="Project_Inheritance">Project Inheritance</h2>
+<p>Elements in the POM that are merged are the following:</p>
+<ul>
+<li>dependencies</li>
+<li>developers and contributors</li>
+<li>plugin lists (including reports)</li>
+<li>plugin executions with matching ids</li>
+<li>plugin configuration</li>
+<li>resources</li>
+</ul>
+<p>The Super POM is one example of project inheritance, however you can also introduce your own parent POMs by specifying the parent element in the POM, as demonstrated in the following examples.</p>
+<h3 id="Example_1">Example 1</h3>
+<h4 id="The_Scenario">The Scenario</h4>
+<p>As an example, let us reuse our previous artifact, com.mycompany.app:my-app:1. And let us introduce another artifact, com.mycompany.app:my-module:1.</p>
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="xml"><span class="nt">&lt;project</span> <span class="na">xmlns=</span><span class="s">"http://maven.apache.org/POM/4.0.0"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;modelVersion&gt;</span>4.0.0<span class="nt">&lt;/modelVersion&gt;</span>
+
+  <span class="nt">&lt;groupId&gt;</span>com.mycompany.app<span class="nt">&lt;/groupId&gt;</span>
+  <span class="nt">&lt;artifactId&gt;</span>my-module<span class="nt">&lt;/artifactId&gt;</span>
+  <span class="nt">&lt;version&gt;</span>1<span class="nt">&lt;/version&gt;</span>
+<span class="nt">&lt;/project&gt;</span>
+</code></pre></div></div>
+<p>And let us specify their directory structure as the following:</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>.
+ |-- my-module
+ |   `-- pom.xml
+ `-- pom.xml
+</code></pre></div></div>
+<p><strong>Note:</strong> <code>my-module/pom.xml</code> is the POM of com.mycompany.app:my-module:1 while <code>pom.xml</code> is the POM of com.mycompany.app:my-app:1</p>
+<h4 id="The_Solution">The Solution</h4>
+<p>Now, if we were to turn com.mycompany.app:my-app:1 into a parent artifact of com.mycompany.app:my-module:1,we will have to modify com.mycompany.app:my-module:1's POM to the following configuration:</p>
+<p><strong>com.mycompany.app:my-module:1's POM</strong></p>
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="xml"><span class="nt">&lt;project</span> <span class="na">xmlns=</span><span class="s">"http://maven.apache.org/POM/4.0.0"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;modelVersion&gt;</span>4.0.0<span class="nt">&lt;/modelVersion&gt;</span>
+
+  <span class="nt">&lt;parent&gt;</span>
+    <span class="nt">&lt;groupId&gt;</span>com.mycompany.app<span class="nt">&lt;/groupId&gt;</span>
+    <span class="nt">&lt;artifactId&gt;</span>my-app<span class="nt">&lt;/artifactId&gt;</span>
+    <span class="nt">&lt;version&gt;</span>1<span class="nt">&lt;/version&gt;</span>
+  <span class="nt">&lt;/parent&gt;</span>
+
+  <span class="nt">&lt;groupId&gt;</span>com.mycompany.app<span class="nt">&lt;/groupId&gt;</span>
+  <span class="nt">&lt;artifactId&gt;</span>my-module<span class="nt">&lt;/artifactId&gt;</span>
+  <span class="nt">&lt;version&gt;</span>1<span class="nt">&lt;/version&gt;</span>
+<span class="nt">&lt;/project&gt;</span>
+</code></pre></div></div>
+<p>Notice that we now have an added section, the parent section. This section allows us to specify which artifact is the parent of our POM. And we do so by specifying the fully qualified artifact name of the parent POM. With this setup, our module can now inherit some of the properties of our parent POM.</p>
+<p>Alternatively, if you want the groupId or the version of your modules to be the same as their parents, you can remove the groupId or the version identity of your module in its POM.</p>
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="xml"><span class="nt">&lt;project</span> <span class="na">xmlns=</span><span class="s">"http://maven.apache.org/POM/4.0.0"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;modelVersion&gt;</span>4.0.0<span class="nt">&lt;/modelVersion&gt;</span>
+
+  <span class="nt">&lt;parent&gt;</span>
+    <span class="nt">&lt;groupId&gt;</span>com.mycompany.app<span class="nt">&lt;/groupId&gt;</span>
+    <span class="nt">&lt;artifactId&gt;</span>my-app<span class="nt">&lt;/artifactId&gt;</span>
+    <span class="nt">&lt;version&gt;</span>1<span class="nt">&lt;/version&gt;</span>
+  <span class="nt">&lt;/parent&gt;</span>
+
+  <span class="nt">&lt;artifactId&gt;</span>my-module<span class="nt">&lt;/artifactId&gt;</span>
+<span class="nt">&lt;/project&gt;</span>
+</code></pre></div></div>
+<p>This allows the module to inherit the groupId or the version of its parent POM.</p>
+<p><a href="./introduction-to-the-pom.html">top</a></p>
+<h3 id="Example_2">Example 2</h3>
+<h4 id="The_Scenario_1">The Scenario</h4>
+<p>However, that would work if the parent project was already installed in our local repository or was in that specific directory structure (parent <code>pom.xml</code> is one directory higher than that of the module's <code>pom.xml</code>).</p>
+<p>But what if the parent is not yet installed and if the directory structure is as in the following example?</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>.
+ |-- my-module
+ |   `-- pom.xml
+ `-- parent
+     `-- pom.xml
+</code></pre></div></div>
+<h4 id="The_Solution_1">The Solution</h4>
+<p>To address this directory structure (or any other directory structure), we would have to add the <code>&lt;relativePath&gt;</code> element to our parent section.</p>
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="xml"><span class="nt">&lt;project</span> <span class="na">xmlns=</span><span class="s">"http://maven.apache.org/POM/4.0.0"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;modelVersion&gt;</span>4.0.0<span class="nt">&lt;/modelVersion&gt;</span>
+
+  <span class="nt">&lt;parent&gt;</span>
+    <span class="nt">&lt;groupId&gt;</span>com.mycompany.app<span class="nt">&lt;/groupId&gt;</span>
+    <span class="nt">&lt;artifactId&gt;</span>my-app<span class="nt">&lt;/artifactId&gt;</span>
+    <span class="nt">&lt;version&gt;</span>1<span class="nt">&lt;/version&gt;</span>
+    <span class="nt">&lt;relativePath&gt;</span>../parent/pom.xml<span class="nt">&lt;/relativePath&gt;</span>
+  <span class="nt">&lt;/parent&gt;</span>
+
+  <span class="nt">&lt;artifactId&gt;</span>my-module<span class="nt">&lt;/artifactId&gt;</span>
+<span class="nt">&lt;/project&gt;</span>
+</code></pre></div></div>
+<p>As the name suggests, it's the relative path from the module's <code>pom.xml</code> to the parent's <code>pom.xml</code>.</p>
+<h2 id="Project_Aggregation">Project Aggregation</h2>
+<p>Project Aggregation is similar to <a href="#Project_Inheritance">Project Inheritance</a>. But instead of specifying the parent POM from the module, it specifies the modules from the parent POM. By doing so, the parent project now knows its modules, and if a Maven command is invoked against the parent project, that Maven command will then be executed to the parent's modules as well. To do Project Aggregation, you must do the following:</p>
+<ul>
+<li>Change the parent POMs packaging to the value "pom".</li>
+<li>Specify in the parent POM the directories of its modules (children POMs).</li>
+</ul>
+<p><a href="./introduction-to-the-pom.html">top</a></p>
+<h3 id="Example_3">Example 3</h3>
+<h4 id="The_Scenario_2">The Scenario</h4>
+<p>Given the previous original artifact POMs and directory structure:</p>
+<p><strong>com.mycompany.app:my-app:1's POM</strong></p>
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="xml"><span class="nt">&lt;project</span> <span class="na">xmlns=</span><span class="s">"http://maven.apache.org/POM/4.0.0"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;modelVersion&gt;</span>4.0.0<span class="nt">&lt;/modelVersion&gt;</span>
+
+  <span class="nt">&lt;groupId&gt;</span>com.mycompany.app<span class="nt">&lt;/groupId&gt;</span>
+  <span class="nt">&lt;artifactId&gt;</span>my-app<span class="nt">&lt;/artifactId&gt;</span>
+  <span class="nt">&lt;version&gt;</span>1<span class="nt">&lt;/version&gt;</span>
+<span class="nt">&lt;/project&gt;</span>
+</code></pre></div></div>
+<p><strong>com.mycompany.app:my-module:1's POM</strong></p>
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="xml"><span class="nt">&lt;project</span> <span class="na">xmlns=</span><span class="s">"http://maven.apache.org/POM/4.0.0"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;modelVersion&gt;</span>4.0.0<span class="nt">&lt;/modelVersion&gt;</span>
+
+  <span class="nt">&lt;groupId&gt;</span>com.mycompany.app<span class="nt">&lt;/groupId&gt;</span>
+  <span class="nt">&lt;artifactId&gt;</span>my-module<span class="nt">&lt;/artifactId&gt;</span>
+  <span class="nt">&lt;version&gt;</span>1<span class="nt">&lt;/version&gt;</span>
+<span class="nt">&lt;/project&gt;</span>
+</code></pre></div></div>
+<p><strong>directory structure</strong></p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>.
+ |-- my-module
+ |   `-- pom.xml
+ `-- pom.xml
+</code></pre></div></div>
+<h4 id="The_Solution_2">The Solution</h4>
+<p>If we are to aggregate my-module into my-app, we would only have to modify my-app.</p>
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="xml"><span class="nt">&lt;project</span> <span class="na">xmlns=</span><span class="s">"http://maven.apache.org/POM/4.0.0"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;modelVersion&gt;</span>4.0.0<span class="nt">&lt;/modelVersion&gt;</span>
+
+  <span class="nt">&lt;groupId&gt;</span>com.mycompany.app<span class="nt">&lt;/groupId&gt;</span>
+  <span class="nt">&lt;artifactId&gt;</span>my-app<span class="nt">&lt;/artifactId&gt;</span>
+  <span class="nt">&lt;version&gt;</span>1<span class="nt">&lt;/version&gt;</span>
+  <span class="nt">&lt;packaging&gt;</span>pom<span class="nt">&lt;/packaging&gt;</span>
+
+  <span class="nt">&lt;modules&gt;</span>
+    <span class="nt">&lt;module&gt;</span>my-module<span class="nt">&lt;/module&gt;</span>
+  <span class="nt">&lt;/modules&gt;</span>
+<span class="nt">&lt;/project&gt;</span>
+</code></pre></div></div>
+<p>In the revised com.mycompany.app:my-app:1, the packaging section and the modules sections were added. For the packaging, its value was set to "pom", and for the modules section, we have the element <code>&lt;module&gt;my-module&lt;/module&gt;</code>. The value of <code>&lt;module&gt;</code> is the relative path from the com.mycompany.app:my-app:1 to com.mycompany.app:my-module:1's POM (<em>by practice, we use the module's artifactId as the module directory's name</em>).</p>
+<p>Now, whenever a Maven command processes com.mycompany.app:my-app:1, that same Maven command would be ran against com.mycompany.app:my-module:1 as well. Furthermore, some commands (goals specifically) handle project aggregation differently.</p>
+<p><a href="./introduction-to-the-pom.html">top</a></p>
+<h3 id="Example_4">Example 4</h3>
+<h4 id="The_Scenario_3">The Scenario</h4>
+<p>But what if we change the directory structure to the following:</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>.
+ |-- my-module
+ |   `-- pom.xml
+ `-- parent
+     `-- pom.xml
+</code></pre></div></div>
+<p>How would the parent POM specify its modules?</p>
+<h4 id="The_Solution_3">The Solution</h4>
+<p>The answer? - the same way as Example 3, by specifying the path to the module.</p>
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="xml"><span class="nt">&lt;project</span> <span class="na">xmlns=</span><span class="s">"http://maven.apache.org/POM/4.0.0"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;modelVersion&gt;</span>4.0.0<span class="nt">&lt;/modelVersion&gt;</span>
+
+  <span class="nt">&lt;groupId&gt;</span>com.mycompany.app<span class="nt">&lt;/groupId&gt;</span>
+  <span class="nt">&lt;artifactId&gt;</span>my-app<span class="nt">&lt;/artifactId&gt;</span>
+  <span class="nt">&lt;version&gt;</span>1<span class="nt">&lt;/version&gt;</span>
+  <span class="nt">&lt;packaging&gt;</span>pom<span class="nt">&lt;/packaging&gt;</span>
+
+  <span class="nt">&lt;modules&gt;</span>
+    <span class="nt">&lt;module&gt;</span>../my-module<span class="nt">&lt;/module&gt;</span>
+  <span class="nt">&lt;/modules&gt;</span>
+<span class="nt">&lt;/project&gt;</span>
+</code></pre></div></div>
+<h2 id="Project_Inheritance_vs_Project_Aggregation">Project Inheritance vs Project Aggregation</h2>
+<p>If you have several Maven projects, and they all have similar configurations, you can refactor your projects by pulling out those similar configurations and making a parent project. Thus, all you have to do is to let your Maven projects inherit that parent project, and those configurations would then be applied to all of them.</p>
+<p>And if you have a group of projects that are built or processed together, you can create a parent project and have that parent project declare those projects as its modules. By doing so, you'd only have to build the parent and the rest will follow.</p>
+<p>But of course, you can have both Project Inheritance and Project Aggregation. Meaning, you can have your modules specify a parent project, and at the same time, have that parent project specify those Maven projects as its modules. You'd just have to apply all three rules:</p>
+<ul>
+<li>Specify in every child POM who their parent POM is.</li>
+<li>Change the parent POMs packaging to the value "pom" .</li>
+<li>Specify in the parent POM the directories of its modules (children POMs)</li>
+</ul>
+<p><a href="./introduction-to-the-pom.html">top</a></p>
+<h3 id="Example_5">Example 5</h3>
+<h4 id="The_Scenario_4">The Scenario</h4>
+<p>Given the previous original artifact POMs again,</p>
+<p><strong>com.mycompany.app:my-app:1's POM</strong></p>
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="xml"><span class="nt">&lt;project</span> <span class="na">xmlns=</span><span class="s">"http://maven.apache.org/POM/4.0.0"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;modelVersion&gt;</span>4.0.0<span class="nt">&lt;/modelVersion&gt;</span>
+
+  <span class="nt">&lt;groupId&gt;</span>com.mycompany.app<span class="nt">&lt;/groupId&gt;</span>
+  <span class="nt">&lt;artifactId&gt;</span>my-app<span class="nt">&lt;/artifactId&gt;</span>
+  <span class="nt">&lt;version&gt;</span>1<span class="nt">&lt;/version&gt;</span>
+<span class="nt">&lt;/project&gt;</span>
+</code></pre></div></div>
+<p><strong>com.mycompany.app:my-module:1's POM</strong></p>
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="xml"><span class="nt">&lt;project</span> <span class="na">xmlns=</span><span class="s">"http://maven.apache.org/POM/4.0.0"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;modelVersion&gt;</span>4.0.0<span class="nt">&lt;/modelVersion&gt;</span>
+
+  <span class="nt">&lt;groupId&gt;</span>com.mycompany.app<span class="nt">&lt;/groupId&gt;</span>
+  <span class="nt">&lt;artifactId&gt;</span>my-module<span class="nt">&lt;/artifactId&gt;</span>
+  <span class="nt">&lt;version&gt;</span>1<span class="nt">&lt;/version&gt;</span>
+<span class="nt">&lt;/project&gt;</span>
+</code></pre></div></div>
+<p>and this <strong>directory structure</strong></p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>.
+ |-- my-module
+ |   `-- pom.xml
+ `-- parent
+     `-- pom.xml
+</code></pre></div></div>
+<h4 id="The_Solution_4">The Solution</h4>
+<p>To do both project inheritance and aggregation, you only have to apply all three rules.</p>
+<p><strong>com.mycompany.app:my-app:1's POM</strong></p>
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="xml"><span class="nt">&lt;project</span> <span class="na">xmlns=</span><span class="s">"http://maven.apache.org/POM/4.0.0"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;modelVersion&gt;</span>4.0.0<span class="nt">&lt;/modelVersion&gt;</span>
+
+  <span class="nt">&lt;groupId&gt;</span>com.mycompany.app<span class="nt">&lt;/groupId&gt;</span>
+  <span class="nt">&lt;artifactId&gt;</span>my-app<span class="nt">&lt;/artifactId&gt;</span>
+  <span class="nt">&lt;version&gt;</span>1<span class="nt">&lt;/version&gt;</span>
+  <span class="nt">&lt;packaging&gt;</span>pom<span class="nt">&lt;/packaging&gt;</span>
+
+  <span class="nt">&lt;modules&gt;</span>
+    <span class="nt">&lt;module&gt;</span>../my-module<span class="nt">&lt;/module&gt;</span>
+  <span class="nt">&lt;/modules&gt;</span>
+<span class="nt">&lt;/project&gt;</span>
+</code></pre></div></div>
+<p><strong>com.mycompany.app:my-module:1's POM</strong></p>
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="xml"><span class="nt">&lt;project</span> <span class="na">xmlns=</span><span class="s">"http://maven.apache.org/POM/4.0.0"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;modelVersion&gt;</span>4.0.0<span class="nt">&lt;/modelVersion&gt;</span>
+
+  <span class="nt">&lt;parent&gt;</span>
+    <span class="nt">&lt;groupId&gt;</span>com.mycompany.app<span class="nt">&lt;/groupId&gt;</span>
+    <span class="nt">&lt;artifactId&gt;</span>my-app<span class="nt">&lt;/artifactId&gt;</span>
+    <span class="nt">&lt;version&gt;</span>1<span class="nt">&lt;/version&gt;</span>
+    <span class="nt">&lt;relativePath&gt;</span>../parent/pom.xml<span class="nt">&lt;/relativePath&gt;</span>
+  <span class="nt">&lt;/parent&gt;</span>
+
+  <span class="nt">&lt;artifactId&gt;</span>my-module<span class="nt">&lt;/artifactId&gt;</span>
+<span class="nt">&lt;/project&gt;</span>
+</code></pre></div></div>
+<p><strong>NOTE:</strong> Profile inheritance the same inheritance strategy as used for the POM itself.</p>
+<p><a href="./introduction-to-the-pom.html">top</a></p>
+<h2 id="Project_Interpolation_and_Variables">Project Interpolation and Variables</h2>
+<p>One of the practices that Maven encourages is <em>don't repeat yourself</em>. However, there are circumstances where you will need to use the same value in several different locations. To assist in ensuring the value is only specified once, Maven allows you to use both your own and pre-defined variables in the POM.</p>
+<p>For example, to access the <code>project.version</code> variable, you would reference it like so:</p>
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="xml"><span class="nt">&lt;version&gt;</span>${project.version}<span class="nt">&lt;/version&gt;</span>
+</code></pre></div></div>
+<p>One factor to note is that these variables are processed <em>after</em> inheritance as outlined above. This means that if a parent project uses a variable, then its definition in the child, not the parent, will be the one eventually used.</p>
+<h3 id="Available_Variables">Available Variables</h3>
+<h4 id="Project_Model_Variables">Project Model Variables</h4>
+<p>Any field of the model that is a single value element can be referenced as a variable. For example, <code>${project.groupId}</code>, <code>${project.version}</code>, <code>${project.build.sourceDirectory}</code> and so on. Refer to the <a href="/maven-site/pom.html">POM reference</a> to see a full list of properties.</p>
+<p>These variables are all referenced by the prefix "<code>project.</code>". You may also see references with <code>pom.</code> as the prefix, or the prefix omitted entirely - these forms are now deprecated and should not be used.</p>
+<h4 id="Special_Variables">Special Variables</h4>
+<table class="table table-striped">
+<thead>
+<tr>
+<th align="left"></th>
+<th align="left"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left"><code>project.basedir</code></td>
+<td align="left">The directory that the current project resides in.</td>
+</tr>
+<tr>
+<td align="left"><code>project.baseUri</code></td>
+<td align="left">The directory that the current project resides in, represented as an URI. <em>Since Maven 2.1.0</em></td>
+</tr>
+<tr>
+<td align="left"><code>maven.build.timestamp</code></td>
+<td align="left">The timestamp that denotes the start of the build (UTC). <em>Since Maven 2.1.0-M1</em></td>
+</tr>
+</tbody>
+</table>
+<p>The format of the build timestamp can be customized by declaring the property <code>maven.build.timestamp.format</code> as shown in the example below:</p>
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="xml"><span class="nt">&lt;project</span> <span class="na">xmlns=</span><span class="s">"http://maven.apache.org/POM/4.0.0"</span><span class="nt">&gt;</span>
+  ...
+  <span class="nt">&lt;properties&gt;</span>
+    <span class="nt">&lt;maven.build.timestamp.format&gt;</span>yyyy-MM-dd'T'HH:mm:ss'Z'<span class="nt">&lt;/maven.build.timestamp.format&gt;</span>
+  <span class="nt">&lt;/properties&gt;</span>
+  ...
+<span class="nt">&lt;/project&gt;</span>
+</code></pre></div></div>
+<p>The format pattern has to comply with the rules given in the API documentation for <a href="https://docs.oracle.com/javase/7/docs/api/java/text/SimpleDateFormat.html">SimpleDateFormat</a>. If the property is not present, the format defaults to the value already given in the example.</p>
+<h4 id="Properties">Properties</h4>
+<p>You are also able to reference any properties defined in the project as a variable. Consider the following example:</p>
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="xml"><span class="nt">&lt;project</span> <span class="na">xmlns=</span><span class="s">"http://maven.apache.org/POM/4.0.0"</span><span class="nt">&gt;</span>
+  ...
+  <span class="nt">&lt;properties&gt;</span>
+    <span class="nt">&lt;mavenVersion&gt;</span>3.0<span class="nt">&lt;/mavenVersion&gt;</span>
+  <span class="nt">&lt;/properties&gt;</span>
+
+  <span class="nt">&lt;dependencies&gt;</span>
+    <span class="nt">&lt;dependency&gt;</span>
+      <span class="nt">&lt;groupId&gt;</span>org.apache.maven<span class="nt">&lt;/groupId&gt;</span>
+      <span class="nt">&lt;artifactId&gt;</span>maven-artifact<span class="nt">&lt;/artifactId&gt;</span>
+      <span class="nt">&lt;version&gt;</span>${mavenVersion}<span class="nt">&lt;/version&gt;</span>
+    <span class="nt">&lt;/dependency&gt;</span>
+    <span class="nt">&lt;dependency&gt;</span>
+      <span class="nt">&lt;groupId&gt;</span>org.apache.maven<span class="nt">&lt;/groupId&gt;</span>
+      <span class="nt">&lt;artifactId&gt;</span>maven-core<span class="nt">&lt;/artifactId&gt;</span>
+      <span class="nt">&lt;version&gt;</span>${mavenVersion}<span class="nt">&lt;/version&gt;</span>
+    <span class="nt">&lt;/dependency&gt;</span>
+  <span class="nt">&lt;/dependencies&gt;</span>
+  ...
+<span class="nt">&lt;/project&gt;</span>
+</code></pre></div></div>
+<p><a href="./introduction-to-the-pom.html">top</a></p>
+
+        </main>
+      </div>
+    </div>
+    <hr>
+    <footer>
+      <div class="container-fluid">
+        <div class="row-fluid">
+          <p>©      2002–2026 <a href="https://www.apache.org/">The Apache Software Foundation</a></p>
+          <p class="demo-note">A demonstration build of <a href="https://github.com/dashorst/maven-site/tree/diataxis-demo">dashorst/maven-site</a>, not the official Apache Maven site.</p>
+        </div>
+      </div>
+    </footer>
+    <script src="/maven-site/js/guide.js?v=1792948498" defer=""></script>
+    <script>
+    anchors.add();
+    </script>
+  
+
+</body></html>

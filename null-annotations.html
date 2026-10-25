@@ -1,0 +1,215 @@
+<!DOCTYPE html><!--
+ | The page frame of the Apache Maven Fluido Skin 2.1.0, as the Doxia site renderer writes it
+ | for maven.apache.org. Built with Jekyll: see jekyll/README.md.
+--><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Maven Null Annotations – Maven</title>
+    
+    <link rel="stylesheet" href="/maven-site/css/apache-maven-fluido-2.1.0.min.css">
+    <link rel="stylesheet" href="/maven-site/css/site.css">
+    <link rel="stylesheet" href="/maven-site/css/guide.css?v=1792948498">
+    <link rel="stylesheet" href="/maven-site/css/print.css" media="print">
+    <script src="/maven-site/js/apache-maven-fluido-2.1.0.min.js"></script>
+  </head>
+  <body>
+    <div class="container-fluid container-fluid-top">
+      <header>
+        <div id="banner">
+          <div class="pull-left"><div id="bannerLeft"><h1><a href="/maven-site/index.html"><img src="/maven-site/images/apache-maven-project-light-theme.svg" style="width: 489px;height: 83px;" alt="Apache Maven"></a></h1></div></div>
+          <div class="pull-right"><div id="bannerRight"><h1><img src="/maven-site/images/logos/MavenLogoLeaf.svg" style="width: 340px;height: 83px;" alt=""></h1></div></div>
+          <div class="clear"><hr></div>
+        </div>
+
+        <div id="breadcrumbs">
+          <ul class="breadcrumb">
+            <li><a href="https://www.apache.org/">Apache</a><span class="divider">/</span></li>
+            <li><a href="/maven-site/index.html">Maven</a><span class="divider">/</span></li>
+            
+            <li class="active">Maven Null Annotations <a href="https://github.com/apache/maven-site/tree/master/content/markdown/null-annotations.md"><img src="/maven-site/images/accessories-text-editor.png" alt="Edit"></a></li>
+            <li id="publishDate" class="pull-right"><span class="divider">|</span> Last Published: 2026-10-25</li>
+            <li class="pull-right"><span class="divider">|</span> <a href="/maven-site/scm.html">Get Sources</a></li>
+            <li class="pull-right"><a href="https://maven.apache.org/download.cgi">Downloads</a></li>
+          </ul>
+        </div>
+      </header>
+      <div class="row-fluid">
+        <header id="leftColumn" class="span2">
+          
+<form class="guide-search" role="search" action="/maven-site/guides/a-z.html" data-index="/maven-site/guides/search.json" data-script="/maven-site/js/minisearch-7.2.0.js" data-oldest="3.9" data-base="/maven-site">
+  <label class="guide-search-label" for="guide-q-nav">Search the documentation</label>
+  <div class="guide-search-field">
+    <input id="guide-q-nav" name="q" type="search" autocomplete="off" spellcheck="false" placeholder="Search">
+    <kbd class="guide-search-key" aria-hidden="true">/</kbd>
+  </div>
+  
+</form>
+
+          <nav class="well sidebar-nav">
+<ul class="nav nav-list">
+  <li><a href="/maven-site/index.html">Welcome</a></li>
+  <li><a href="https://www.apache.org/licenses/">License</a></li>
+  <li class="nav-header">About Maven</li>
+  <li><a href="/maven-site/what-is-maven.html">What is Maven?</a></li>
+  <li><a href="/maven-site/install.html">Installation</a></li>
+  <li><a href="/maven-site/download.html">Downloads</a></li>
+  <li><a href="/maven-site/run.html">Use</a></li>
+  <li><a href="/maven-site/configure.html">Configure</a></li>
+  <li><a href="/maven-site/docs/history.html">Release Notes</a></li>
+  <li><a href="/maven-site/security.html">Security Reports</a></li>
+  <li class="nav-header">Documentation</li>
+  <li><a href="/maven-site/plugins/index.html">Maven Plugins</a></li>
+  <li><a href="/maven-site/extensions/index.html">Maven Extensions</a></li>
+  <li><a href="/maven-site/tools/index.html"><span class="icon-chevron-down"></span>Maven Tools</a>
+   <ul class="nav nav-list">
+    <li><a href="/maven-site/tools/mvnd.html">Maven Daemon</a></li>
+    <li><a href="/maven-site/tools/mvnsh.html">Maven Shell</a></li>
+    <li><a href="/maven-site/tools/mvnup.html">Maven Upgrade Tool</a></li>
+    <li><a href="/maven-site/tools/mavenwrapper.html">Maven Wrapper</a></li>
+   </ul></li>
+  <li><a href="/maven-site/doxia/index.html"><span class="icon-chevron-right"></span>Doxia</a></li>
+  <li><a href="/maven-site/guides/index.html">Guides</a></li>
+  <li><a href="/maven-site/users/index.html"><span class="icon-chevron-right"></span>User Manual</a></li>
+  <li><a href="/maven-site/repositories/index.html"><span class="icon-chevron-right"></span>Maven Repositories</a></li>
+  <li><a href="/maven-site/plugin-developers/index.html"><span class="icon-chevron-down"></span>Plugin Development</a>
+   <ul class="nav nav-list">
+    <li><a href="/maven-site/guides/introduction/introduction-to-plugins.html">Introduction</a></li>
+    <li><a href="/maven-site/guides/plugin/guide-java-plugin-development.html">Your First Mojo</a></li>
+    <li><a href="/maven-site/guides/plugin/guide-java-report-plugin-development.html">Your First Report Mojo</a></li>
+    <li><a href="/maven-site/guides/development/guide-plugin-documentation.html">Writing Plugin Documentation</a></li>
+    <li><a href="/maven-site/plugin-developers/plugin-testing.html">Testing Plugins</a></li>
+    <li><a href="/maven-site/developers/mojo-api-specification.html">Mojo API</a></li>
+    <li><a href="/maven-site/maven-logging.html">Maven 3.1.x logging</a></li>
+    <li><a href="/maven-site/plugin-developers/common-bugs.html">Common Bugs and Pitfalls</a></li>
+    <li><a href="/maven-site/examples/maven-3-lifecycle-extensions.html">Maven Lifecycle Extensions</a></li>
+    <li><a href="/maven-site/plugin-developers/cookbook/plexus-plugin-upgrade.html">Plexus Javadoc to Plexus Annotations</a></li>
+    <li><a href="/maven-site/maven-jsr330.html">Using JSR-330</a></li>
+    <li><a><span class="icon-chevron-down"></span>Maven 4</a>
+     <ul class="nav nav-list">
+      <li><a href="/maven-site/maven-di.html">Using Maven Dependency Injection</a></li>
+      <li class="active"><a>Maven Null Annotations</a></li>
+     </ul></li>
+   </ul></li>
+  <li><a href="/maven-site/developers/index.html"><span class="icon-chevron-right"></span>Contribute to Maven</a></li>
+  <li><a href="/maven-site/articles.html">Books and Resources</a></li>
+  <li class="nav-header">Community</li>
+  <li><a href="/maven-site/community.html">Community Overview</a></li>
+  <li><a href="/maven-site/project-roles.html">Project Roles</a></li>
+  <li><a href="/maven-site/guides/development/guide-helping.html">How to Contribute</a></li>
+  <li><a href="/maven-site/users/getting-help.html">Getting Help</a></li>
+  <li><a href="/maven-site/issue-management.html">Issue Management</a></li>
+  <li><a href="/maven-site/scm.html">Getting Maven Source</a></li>
+  <li><a href="/maven-site/team.html">The Maven Team</a></li>
+  <li class="nav-header">Project Documentation</li>
+  <li><a href="/maven-site/project-info.html">Project Information</a></li>
+  <li class="nav-header">Maven Projects</li>
+  <li><a href="/maven-site/ref/current">Maven</a></li>
+  <li><a href="/maven-site/archetypes/index.html">Archetypes</a></li>
+  <li><a href="/maven-site/extensions/index.html">Extensions</a></li>
+  <li><a href="/maven-site/pom/index.html">Parent POMs</a></li>
+  <li><a href="/maven-site/plugins/index.html">Plugins</a></li>
+  <li><a href="/maven-site/skins/index.html">Skins</a></li>
+  <li><a><span class="icon-chevron-down"></span>Components</a>
+   <ul class="nav nav-list">
+    <li><a href="/maven-site/archetype/index.html">Archetype</a></li>
+    <li><a href="/maven-site/resolver/index.html">Artifact Resolver</a></li>
+    <li><a href="/maven-site/doxia/index.html">Doxia</a></li>
+    <li><a href="/maven-site/maven-indexer/index.html">Indexer</a></li>
+    <li><a href="/maven-site/jxr/index.html">JXR</a></li>
+    <li><a href="/maven-site/plugin-testing/index.html">Plugin Testing</a></li>
+    <li><a href="/maven-site/plugin-tools/index.html">Plugin Tools</a></li>
+    <li><a href="/maven-site/apache-resource-bundles/index.html">Resource Bundles</a></li>
+    <li><a href="/maven-site/scm/index.html">SCM</a></li>
+    <li><a href="/maven-site/shared/index.html">Shared Components</a></li>
+    <li><a href="/maven-site/surefire/index.html">Surefire</a></li>
+    <li><a href="/maven-site/wagon/index.html">Wagon</a></li>
+   </ul></li>
+  <li class="nav-header">ASF</li>
+  <li><a href="https://www.apache.org/foundation/how-it-works.html">How Apache Works</a></li>
+  <li><a href="https://www.apache.org/foundation/">Foundation</a></li>
+  <li><a href="https://privacy.apache.org/policies/privacy-policy-public.html">Data Privacy</a></li>
+  <li><a href="https://www.apache.org/foundation/sponsorship.html">Sponsoring Apache</a></li>
+  <li><a href="https://www.apache.org/foundation/thanks.html">Thanks</a></li>
+</ul>
+          </nav>
+          <div class="well sidebar-nav">
+            <div id="poweredBy">
+              <div class="clear"></div>
+              <a href="/maven-site/" class="builtBy" target="_blank"><img class="builtBy" alt="Built by Maven" src="/maven-site/images/logos/maven-feather.png"></a>
+            </div>
+          </div>
+        </header>
+        <main id="bodyColumn" class="span10">
+          
+<!--
+Licensed to the Apache Software Foundation (ASF) under one
+or more contributor license agreements.  See the NOTICE file
+distributed with this work for additional information
+regarding copyright ownership.  The ASF licenses this file
+to you under the Apache License, Version 2.0 (the
+"License"); you may not use this file except in compliance
+with the License.  You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing,
+software distributed under the License is distributed on an
+"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+KIND, either express or implied.  See the License for the
+specific language governing permissions and limitations
+under the License.
+-->
+<h1 id="Maven_Null_Annotations">Maven Null Annotations</h1>
+<h2 id="Which_null_annotations_are_used_within_Maven.3F">Which null annotations are used within Maven?</h2>
+<p>Maven 4 provides its own annotations in <a href="https://maven.apache.org/ref/4-LATEST/api/maven-api-annotations/index.html"><code>org.apache.maven.api.annotations</code></a>.</p>
+<p>The following annotation types are relevant for dealing with <code>null</code> values:</p>
+<ol>
+<li><a href="https://maven.apache.org/ref/4-LATEST/api/maven-api-annotations/apidocs/org/apache/maven/api/annotations/Nonnull.html"><code>@Nonnull</code></a> and</li>
+<li><a href="https://maven.apache.org/ref/4-LATEST/api/maven-api-annotations/apidocs/org/apache/maven/api/annotations/Nullable.html"><code>@Nullable</code></a></li>
+</ol>
+<p>The purpose of those annotations is twofold:</p>
+<ol>
+<li>They allow static source code analysis tools to check if developers are missing null checks or passing null for method arguments annotated with <code>@Nonnull</code>.</li>
+<li>They are evaluated at run time by <a href="./maven-di.html">Maven Dependency Injection</a>.</li>
+</ol>
+<h2 id="Which_classes_are_using_those_annotations_yet.3F">Which classes are using those annotations yet?</h2>
+<p>All <a href="https://maven.apache.org/ref/4-LATEST/api/index.html">Maven 4 API modules</a> are annotated with aforementioned annotations and it is recommended for plugin developers to use those annotations in their custom Maven 4 mojos as well.</p>
+<h2 id="Which_compile_time_tools_support_those_custom_annotations">Which compile time tools support those custom annotations</h2>
+<p>Not all static source code analysis tools support custom annotations (like Maven Null annotations). The following tools/IDEs are known to work:</p>
+<ol>
+<li><a href="https://github.com/uber/NullAway">NullAway</a> does not <a href="https://github.com/uber/NullAway/wiki/Configuration#custom-nullability-annotations">require specific configuration</a> to support Maven Null annotations.</li>
+<li><a href="https://www.jetbrains.com/help/idea/annotating-source-code.html#nullability-annotations">IntelliJ IDEA</a> requires <a href="https://www.jetbrains.com/help/idea/annotating-source-code.html#configure-nullability-annotations">explicit configuration of the annotation class names</a>.</li>
+<li><a href="https://help.eclipse.org/latest/index.jsp?topic=%2Forg.eclipse.jdt.doc.user%2Ftasks%2Ftask-using_null_annotations.htm">Eclipse</a> requires <a href="https://help.eclipse.org/latest/index.jsp?topic=%2Forg.eclipse.jdt.doc.user%2Freference%2Fpreferences%2Fjava%2Fcompiler%2Fref-preferences-errors-warnings.htm&amp;anchor=null_annotation_names">explicit configuration of the annotation class names</a>.</li>
+</ol>
+<p>On the other hand some other tools don't or only partially support custom Null annotations as they rely on some built-in lists of fully qualified names (FQN) for those annotations:</p>
+<ul>
+<li><a href="https://www.sonarsource.com/products/sonarqube/#modal=sonar-summit">SonarQube</a> is having a <a href="https://github.com/SonarSource/sonar-java/blob/675fcaf6b9f8de46dbee10fcf698b1c9ab69b3e8/java-frontend/src/main/java/org/sonar/java/model/JSymbolMetadataNullabilityHelper.java#L65-L135">hardcoded list of FQNs of supported Null annotations</a>, however there seem to be partial support for <a href="https://community.sonarsource.com/t/use-custom-nonnull-nullable-annotations/38800">meta-annotations</a></li>
+<li><a href="https://spotbugs.github.io/">SpotBugs</a> is having a <a href="https://github.com/spotbugs/spotbugs/blob/be68f15193e25461c1b815e65afea841e0f9f3ca/spotbugs/src/main/java/edu/umd/cs/findbugs/ba/jsr305/TypeQualifierResolver.java#L57-L84">hardcoded list of FQNs of supported Null annotations</a></li>
+</ul>
+<h2 id="How_is_Maven_evaluating_those_annotations_at_run_time.3F">How is Maven evaluating those annotations at run time?</h2>
+<p><a href="./maven-di.html">Maven Dependency Injection</a> is checking for injections having <code>@Nullable</code> annotations and in this case won't fail if injection is not possible.
+The same applies to <a href="https://github.com/google/guice/wiki/UseNullable#supported-nullable-annotations">Google Guice</a> leveraged with <a href="https://eclipse.dev/sisu/">Sisu</a>.</p>
+<h2 id="Why_is_Maven_not_using_standard_annotations.3F">Why is Maven not using standard annotations?</h2>
+<p>There exist multiple libraries for null annotations, probably most common these days is <a href="https://jspecify.dev/">JSpecify</a> and also some dormant libraries from the past like <a href="https://jcp.org/en/jsr/detail?id=305">JSR 305</a>.
+In order to allow Maven null annotations to coexist with any other standard annotations in any version in the Maven classpath we took the decision to come up with custom annotations in our own namespace.
+That way the API does not have any 3rd party dependencies.</p>
+
+        </main>
+      </div>
+    </div>
+    <hr>
+    <footer>
+      <div class="container-fluid">
+        <div class="row-fluid">
+          <p>©      2002–2026 <a href="https://www.apache.org/">The Apache Software Foundation</a></p>
+          <p class="demo-note">A demonstration build of <a href="https://github.com/dashorst/maven-site/tree/diataxis-demo">dashorst/maven-site</a>, not the official Apache Maven site.</p>
+        </div>
+      </div>
+    </footer>
+    <script src="/maven-site/js/guide.js?v=1792948498" defer=""></script>
+    <script>
+    anchors.add();
+    </script>
+  
+
+</body></html>

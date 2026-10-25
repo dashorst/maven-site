@@ -1,0 +1,327 @@
+<!DOCTYPE html><!--
+ | The page frame of the Apache Maven Fluido Skin 2.1.0, as the Doxia site renderer writes it
+ | for maven.apache.org. Built with Jekyll: see jekyll/README.md.
+--><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Retirement Plan for Plugins – Maven</title>
+    
+    <link rel="stylesheet" href="/maven-site/css/apache-maven-fluido-2.1.0.min.css">
+    <link rel="stylesheet" href="/maven-site/css/site.css">
+    <link rel="stylesheet" href="/maven-site/css/guide.css?v=1792948498">
+    <link rel="stylesheet" href="/maven-site/css/print.css" media="print">
+    <script src="/maven-site/js/apache-maven-fluido-2.1.0.min.js"></script>
+  </head>
+  <body>
+    <div class="container-fluid container-fluid-top">
+      <header>
+        <div id="banner">
+          <div class="pull-left"><div id="bannerLeft"><h1><a href="/maven-site/index.html"><img src="/maven-site/images/apache-maven-project-light-theme.svg" style="width: 489px;height: 83px;" alt="Apache Maven"></a></h1></div></div>
+          <div class="pull-right"><div id="bannerRight"><h1><img src="/maven-site/images/logos/MavenLogoLeaf.svg" style="width: 340px;height: 83px;" alt=""></h1></div></div>
+          <div class="clear"><hr></div>
+        </div>
+
+        <div id="breadcrumbs">
+          <ul class="breadcrumb">
+            <li><a href="https://www.apache.org/">Apache</a><span class="divider">/</span></li>
+            <li><a href="/maven-site/index.html">Maven</a><span class="divider">/</span></li>
+            
+            <li class="active">Retirement Plan for Plugins <a href="https://github.com/apache/maven-site/tree/master/content/markdown/developers/retirement-plan-plugins.md"><img src="/maven-site/images/accessories-text-editor.png" alt="Edit"></a></li>
+            <li id="publishDate" class="pull-right"><span class="divider">|</span> Last Published: 2026-10-25</li>
+            <li class="pull-right"><span class="divider">|</span> <a href="/maven-site/scm.html">Get Sources</a></li>
+            <li class="pull-right"><a href="https://maven.apache.org/download.cgi">Downloads</a></li>
+          </ul>
+        </div>
+      </header>
+      <div class="row-fluid">
+        <header id="leftColumn" class="span2">
+          
+<form class="guide-search" role="search" action="/maven-site/guides/a-z.html" data-index="/maven-site/guides/search.json" data-script="/maven-site/js/minisearch-7.2.0.js" data-oldest="3.9" data-base="/maven-site">
+  <label class="guide-search-label" for="guide-q-nav">Search the documentation</label>
+  <div class="guide-search-field">
+    <input id="guide-q-nav" name="q" type="search" autocomplete="off" spellcheck="false" placeholder="Search">
+    <kbd class="guide-search-key" aria-hidden="true">/</kbd>
+  </div>
+  
+</form>
+
+          <nav class="well sidebar-nav">
+<ul class="nav nav-list">
+  <li><a href="/maven-site/index.html">Welcome</a></li>
+  <li><a href="https://www.apache.org/licenses/">License</a></li>
+  <li class="nav-header">About Maven</li>
+  <li><a href="/maven-site/what-is-maven.html">What is Maven?</a></li>
+  <li><a href="/maven-site/install.html">Installation</a></li>
+  <li><a href="/maven-site/download.html">Downloads</a></li>
+  <li><a href="/maven-site/run.html">Use</a></li>
+  <li><a href="/maven-site/configure.html">Configure</a></li>
+  <li><a href="/maven-site/docs/history.html">Release Notes</a></li>
+  <li><a href="/maven-site/security.html">Security Reports</a></li>
+  <li class="nav-header">Documentation</li>
+  <li><a href="/maven-site/plugins/index.html">Maven Plugins</a></li>
+  <li><a href="/maven-site/extensions/index.html">Maven Extensions</a></li>
+  <li><a href="/maven-site/tools/index.html"><span class="icon-chevron-down"></span>Maven Tools</a>
+   <ul class="nav nav-list">
+    <li><a href="/maven-site/tools/mvnd.html">Maven Daemon</a></li>
+    <li><a href="/maven-site/tools/mvnsh.html">Maven Shell</a></li>
+    <li><a href="/maven-site/tools/mvnup.html">Maven Upgrade Tool</a></li>
+    <li><a href="/maven-site/tools/mavenwrapper.html">Maven Wrapper</a></li>
+   </ul></li>
+  <li><a href="/maven-site/doxia/index.html"><span class="icon-chevron-right"></span>Doxia</a></li>
+  <li><a href="/maven-site/guides/index.html">Guides</a></li>
+  <li><a href="/maven-site/users/index.html"><span class="icon-chevron-right"></span>User Manual</a></li>
+  <li><a href="/maven-site/repositories/index.html"><span class="icon-chevron-right"></span>Maven Repositories</a></li>
+  <li><a href="/maven-site/plugin-developers/index.html"><span class="icon-chevron-right"></span>Plugin Development</a></li>
+  <li><a href="/maven-site/developers/index.html"><span class="icon-chevron-down"></span>Contribute to Maven</a>
+   <ul class="nav nav-list">
+    <li><a href="/maven-site/guides/development/guide-helping.html">Guide to Helping with Maven</a></li>
+    <li><a href="/maven-site/developers/conventions/code.html">Code Style and Conventions</a></li>
+    <li><a href="/maven-site/developers/conventions/git.html">Git Convention</a></li>
+    <li><a href="/maven-site/developers/conventions/github.html">GitHub Convention</a></li>
+    <li><a href="/maven-site/guides/development/guide-maven-development.html"><span class="icon-chevron-right"></span>Developing Maven</a></li>
+    <li><a href="/maven-site/developers/release/index.html"><span class="icon-chevron-right"></span>Release Process</a></li>
+    <li><a href="/maven-site/developers/website/index.html"><span class="icon-chevron-right"></span>Deploy Maven Website</a></li>
+    <li><a href="/maven-site/developers/welcome-to-new-committers.html"><span class="icon-chevron-down"></span>Committers</a>
+     <ul class="nav nav-list">
+      <li><a href="/maven-site/developers/committer-environment.html">Environment</a></li>
+      <li><a href="/maven-site/developers/committer-settings.html">Settings</a></li>
+      <li class="active"><a>Plugins Retirement Plan</a></li>
+      <li><a href="/maven-site/developers/dependency-policies.html">Maven Dependency Policies</a></li>
+      <li><a href="/maven-site/developers/compatibility-plan.html">Plugins Compatibility Plan</a></li>
+     </ul></li>
+   </ul></li>
+  <li><a href="/maven-site/articles.html">Books and Resources</a></li>
+  <li class="nav-header">Community</li>
+  <li><a href="/maven-site/community.html">Community Overview</a></li>
+  <li><a href="/maven-site/project-roles.html">Project Roles</a></li>
+  <li><a href="/maven-site/guides/development/guide-helping.html">How to Contribute</a></li>
+  <li><a href="/maven-site/users/getting-help.html">Getting Help</a></li>
+  <li><a href="/maven-site/issue-management.html">Issue Management</a></li>
+  <li><a href="/maven-site/scm.html">Getting Maven Source</a></li>
+  <li><a href="/maven-site/team.html">The Maven Team</a></li>
+  <li class="nav-header">Project Documentation</li>
+  <li><a href="/maven-site/project-info.html">Project Information</a></li>
+  <li class="nav-header">Maven Projects</li>
+  <li><a href="/maven-site/ref/current">Maven</a></li>
+  <li><a href="/maven-site/archetypes/index.html">Archetypes</a></li>
+  <li><a href="/maven-site/extensions/index.html">Extensions</a></li>
+  <li><a href="/maven-site/pom/index.html">Parent POMs</a></li>
+  <li><a href="/maven-site/plugins/index.html">Plugins</a></li>
+  <li><a href="/maven-site/skins/index.html">Skins</a></li>
+  <li><a><span class="icon-chevron-down"></span>Components</a>
+   <ul class="nav nav-list">
+    <li><a href="/maven-site/archetype/index.html">Archetype</a></li>
+    <li><a href="/maven-site/resolver/index.html">Artifact Resolver</a></li>
+    <li><a href="/maven-site/doxia/index.html">Doxia</a></li>
+    <li><a href="/maven-site/maven-indexer/index.html">Indexer</a></li>
+    <li><a href="/maven-site/jxr/index.html">JXR</a></li>
+    <li><a href="/maven-site/plugin-testing/index.html">Plugin Testing</a></li>
+    <li><a href="/maven-site/plugin-tools/index.html">Plugin Tools</a></li>
+    <li><a href="/maven-site/apache-resource-bundles/index.html">Resource Bundles</a></li>
+    <li><a href="/maven-site/scm/index.html">SCM</a></li>
+    <li><a href="/maven-site/shared/index.html">Shared Components</a></li>
+    <li><a href="/maven-site/surefire/index.html">Surefire</a></li>
+    <li><a href="/maven-site/wagon/index.html">Wagon</a></li>
+   </ul></li>
+  <li class="nav-header">ASF</li>
+  <li><a href="https://www.apache.org/foundation/how-it-works.html">How Apache Works</a></li>
+  <li><a href="https://www.apache.org/foundation/">Foundation</a></li>
+  <li><a href="https://privacy.apache.org/policies/privacy-policy-public.html">Data Privacy</a></li>
+  <li><a href="https://www.apache.org/foundation/sponsorship.html">Sponsoring Apache</a></li>
+  <li><a href="https://www.apache.org/foundation/thanks.html">Thanks</a></li>
+</ul>
+          </nav>
+          <div class="well sidebar-nav">
+            <div id="poweredBy">
+              <div class="clear"></div>
+              <a href="/maven-site/" class="builtBy" target="_blank"><img class="builtBy" alt="Built by Maven" src="/maven-site/images/logos/maven-feather.png"></a>
+            </div>
+          </div>
+        </header>
+        <main id="bodyColumn" class="span10">
+          
+<!--
+Licensed to the Apache Software Foundation (ASF) under one
+or more contributor license agreements.  See the NOTICE file
+distributed with this work for additional information
+regarding copyright ownership.  The ASF licenses this file
+to you under the Apache License, Version 2.0 (the
+"License"); you may not use this file except in compliance
+with the License.  You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing,
+software distributed under the License is distributed on an
+"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+KIND, either express or implied.  See the License for the
+specific language governing permissions and limitations
+under the License.
+-->
+<h1 id="Retirement_Plan_for_Plugins">Retirement Plan for Plugins</h1>
+<h2 id="Step_1.3A_Decide_to_retire">Step 1: Decide to retire</h2>
+<p>Propose a vote on the dev-list to retire a plugin. The vote should be open for the standard 72 hours to allow people to voice their opinions. Send a cc to the users-list. Standard Apache voting rules apply. Only PMC votes are binding.</p>
+<p>The vote must contain one or more options on how to retire the plugin. There are multiple scenarios available. Here are a couple that have been suggested:</p>
+<ol>
+<li>Repository will be archived (read only)</li>
+<li>Move to another Apache project</li>
+<li>Move to <a href="http://www.mojohaus.org">www.mojohaus.org</a> or another forge</li>
+</ol>
+<p>Here's a template for scenario A that can be used for the vote email:</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>To: "Maven Developers List" &lt;dev@maven.apache.org&gt;
+Cc: "Maven Users List" &lt;users@maven.apache.org&gt;
+Subject: [VOTE] Retire Maven Foo Plugin
+
+Hi,
+
+A paragraph giving the reasons why the plugin should be retired. Make a note of
+how long it has been since the latest release.
+
+I therefore propose that we retire maven-foo-plugin.
+
+If this vote is successful I will make one final release of the plugin, making
+it clear on the plugin site that it has been retired. After that the source code
+repository will get archived, meaning it's read only in the future.
+
+The process for retiring a plugin is described here:
+https://maven.apache.org/developers/retirement-plan-plugins.html
+
+The vote is open for 72 hours.
+
+[ ] +1 Yes, it's about time
+[ ] -1 No, because...
+</code></pre></div></div>
+<p>If the vote is successful, post the result to the dev list and cc the PMC and users list. For instance:</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>To: "Maven Developers List" &lt;dev@maven.apache.org&gt;
+Cc: "Maven Users List" &lt;users@maven.apache.org&gt;
+CC: "Maven Project Management Committee List" &lt;private@maven.apache.org&gt;
+Subject: [RESULT] [VOTE] Retire Maven Foo Plugin
+
+Hi,
+
+The vote has passed with the following result:
+
++1 (binding): &lt;&lt;list of names&gt;&gt;
++1 (non binding): &lt;&lt;list of names&gt;&gt;
+
+I will continue with the steps required to retire this plugin:
+https://maven.apache.org/developers/retirement-plan-plugins.html
+</code></pre></div></div>
+<p>If the vote passes, make one final release of the plugin (with its own standard 72h vote on source release) before it is retired. This allows us to make a clean break. The person who wants to retire a plugin is the one who does the final release. Below you will find the extra steps that you need to follow when retiring a plugin, in addition to <a href="./release/maven-project-release-procedure.html">our standard release process</a>.</p>
+<h2 id="Step_2.3A_Make_the_final_release">Step 2: Make the final release</h2>
+<ol>
+<li>
+<p>Create an issue in GitHub with the issue type "Task" and the summary "Retire this plugin", and schedule it for the final release. If the plugin includes a GitHub report in the generated site, you will need to close this issue before you make the release.</p>
+</li>
+<li>
+<p>Add the description "This is the final version of this plugin. It has been retired." to the final version in GitHub.</p>
+</li>
+<li>
+<p>Add a prominent notice on the front page of the plugin's site, informing that the plugin is retired. Suggested text:</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Note: This plugin is retired. It is no longer maintained.
+</code></pre></div></div>
+<p>If the plugin is moved elsewhere, that should also be added to the plugin's site. Suggested text:</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Note: This plugin has retired from the Apache Maven project,
+but has moved to the &lt;Organization&gt; &lt;Project&gt; project.
+</code></pre></div></div>
+</li>
+<li>
+<p>Add <code> (RETIRED)</code> at the end of <code>&lt;project&gt;</code>/<code>&lt;name&gt;</code> in the plugin's <code>pom.xml</code>. This will show up on every page of the generated site.</p>
+</li>
+<li>
+<p>Go ahead with <a href="./release/maven-project-release-procedure.html">the standard release process</a>, making sure that you follow the exceptions mentioned above regarding the site deployment.</p>
+</li>
+<li>
+<p>When updating the plugins page, move Maven Foo Plugin to under the "Retired" heading. Remove the SVN/Github and Github Issues links and add the date of retirement.</p>
+</li>
+<li>
+<p>When updating the version in GitHub, do not add Y.Z+1 and make sure you remove any future versions. This needs to be done by PMC members.</p>
+</li>
+</ol>
+<h2 id="Step_3.3A_Clean_up_after_the_release">Step 3: Clean up after the release</h2>
+<p>Everything from step 1 that changes the Git repository has to be merged <strong>before</strong> INFRA archives it in step 2. An archived Git repository is read only, so anything left behind is frozen there permanently, and correcting it costs an unarchive/fix/re-archive round trip.</p>
+<ol>
+<li>
+<p>Do Git cleanup</p>
+<ol>
+<li>Remove the <code>Jenkinsfile</code> from all branches. This will remove the project from the <code>maven-box</code> folder on <a href="https://ci-maven.apache.org/job/Maven/job/maven-box/">https://ci-maven.apache.org/job/Maven/job/maven-box/</a></li>
+<li>Remove the <code>.github</code> directory from default branch. This will remove GitHub Actions
+<ol>
+<li>Deleting the directory stops new runs but leaves the old ones and their caches behind. Delete the workflow run history and the Actions caches as well, since they are frozen with the rest of the repository and serve no purpose once nothing can run again.</li>
+</ol>
+</li>
+<li>Delete stale topic branches. Whatever survives is frozen by the archive, and a branch that still carries a <code>Jenkinsfile</code> can keep a build job alive.</li>
+<li>Update <code>.asf.yaml</code>:
+<ol>
+<li>Add " (RETIRED)" at the end of the project name.</li>
+<li>Leave <code>homepage</code> pointing at the plugin's own site. That site stays published, so the link keeps working.</li>
+<li>Remove <code>autolink_jira</code>. This stops the file claiming a Jira project that is being archived. It does not delete autolinks GitHub has already created. Ask INFRA for that.</li>
+<li>Leave <code>features.issues</code> enabled. An archived repository keeps its issues readable, so disabling the feature would hide every report, including any migrated out of Jira.</li>
+</ol>
+</li>
+<li>Replace the <code>README</code> with a short retirement notice. The file is otherwise a guide to forking the repository and opening pull requests, which is not actionable on a retired plugin. Keep it to what a visitor needs: that the plugin is retired, the last released version, a link to the plugin's site, and a link to the <a href="https://maven.apache.org/mailing-lists.html">mailing lists</a> for questions.</li>
+</ol>
+</li>
+<li>
+<p><strong>Ask INFRA to archive git repos (gitbox + github).</strong></p>
+</li>
+<li>
+<p>Cleanup references:</p>
+<ol>
+<li>When relevant, update summary pages for <a href="/maven-site/plugins/index.html">plugins</a> or <a href="/maven-site/shared/index.html">shared components</a></li>
+<li>Comment the <a href="https://ci-maven.apache.org/job/Maven/job/maven-box/job/maven-dist-tool/job/master/site/dist-tool.conf.html">dist-tool configuration</a> entry. Also comment the plugin's entry in the <code>GetPrerequisites.java</code> and <code>ListBranchesReport</code> files.</li>
+<li>Remove from <code>Source Repository</code>
+<ol>
+<li><a href="/maven-site/scm.html">https://maven.apache.org/scm.html</a> (includes the plantUML diagram)</li>
+<li><a href="https://github.com/apache/maven-sources">https://github.com/apache/maven-sources</a>, moving the entry from <code>default.xml</code> to <code>retired.xml</code> and removing the matching <code>&lt;module&gt;</code> from the aggregator pom. Both, or the aggregator build breaks for everyone who syncs the manifest.</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>
+<p>Do some PMC tasks, or ask PMC to do:</p>
+<ol>
+<li>Remove distribution from current <a href="https://dist.apache.org/repos/dist/release/maven/">dist area</a> (history remains available in <a href="https://archive.apache.org/dist/maven/">archive</a>). This needs to be done by PMC members. Remove the <code>.asc</code> and <code>.sha512</code> files as well as the archive itself. Leaving them behind publishes    a signature for a file that no longer exists.</li>
+<li>Update board report. This needs to be done by PMC members.</li>
+</ol>
+</li>
+<li>
+<p>Announce the fact that the plugin has been retired/moved on the announce and users mailing lists. Explain to people what they should do if they would like to continue development of the plugin. Example for retirement email:</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>To: announce@maven.apache.org, users@maven.apache.org
+Subject: [ANN] Retirement Maven Foo Plugin
+
+Hi,
+the Maven Foo Plugin has been retired and is no longer maintained.
+We retired it, because there was very little interest by and interaction with users over the past years.
+
+The retirement vote results can be seen here: [link to mail in mailing list archive]
+
+If you would like to continue the development of the plugin, you can fork the plugin using another groupId and artifactId.
+You also need to rename the plugin, for example from "maven-foo-plugin" to "foo-maven-plugin".
+Feel free to inform others that you continue working on the plugin in a different place.
+You can write a mail to the users mailing list for that.
+
+-The Apache Maven team
+</code></pre></div></div>
+</li>
+</ol>
+
+        </main>
+      </div>
+    </div>
+    <hr>
+    <footer>
+      <div class="container-fluid">
+        <div class="row-fluid">
+          <p>©      2002–2026 <a href="https://www.apache.org/">The Apache Software Foundation</a></p>
+          <p class="demo-note">A demonstration build of <a href="https://github.com/dashorst/maven-site/tree/diataxis-demo">dashorst/maven-site</a>, not the official Apache Maven site.</p>
+        </div>
+      </div>
+    </footer>
+    <script src="/maven-site/js/guide.js?v=1792948498" defer=""></script>
+    <script>
+    anchors.add();
+    </script>
+  
+
+</body></html>

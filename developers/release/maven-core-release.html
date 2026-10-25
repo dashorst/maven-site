@@ -1,0 +1,264 @@
+<!DOCTYPE html><!--
+ | The page frame of the Apache Maven Fluido Skin 2.1.0, as the Doxia site renderer writes it
+ | for maven.apache.org. Built with Jekyll: see jekyll/README.md.
+--><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Releasing Maven – Maven</title>
+    
+    <link rel="stylesheet" href="/maven-site/css/apache-maven-fluido-2.1.0.min.css">
+    <link rel="stylesheet" href="/maven-site/css/site.css">
+    <link rel="stylesheet" href="/maven-site/css/guide.css?v=1792948498">
+    <link rel="stylesheet" href="/maven-site/css/print.css" media="print">
+    <script src="/maven-site/js/apache-maven-fluido-2.1.0.min.js"></script>
+  </head>
+  <body>
+    <div class="container-fluid container-fluid-top">
+      <header>
+        <div id="banner">
+          <div class="pull-left"><div id="bannerLeft"><h1><a href="/maven-site/index.html"><img src="/maven-site/images/apache-maven-project-light-theme.svg" style="width: 489px;height: 83px;" alt="Apache Maven"></a></h1></div></div>
+          <div class="pull-right"><div id="bannerRight"><h1><img src="/maven-site/images/logos/MavenLogoLeaf.svg" style="width: 340px;height: 83px;" alt=""></h1></div></div>
+          <div class="clear"><hr></div>
+        </div>
+
+        <div id="breadcrumbs">
+          <ul class="breadcrumb">
+            <li><a href="https://www.apache.org/">Apache</a><span class="divider">/</span></li>
+            <li><a href="/maven-site/index.html">Maven</a><span class="divider">/</span></li>
+            
+            <li class="active">Releasing Maven <a href="https://github.com/apache/maven-site/tree/master/content/markdown/developers/release/maven-core-release.md"><img src="/maven-site/images/accessories-text-editor.png" alt="Edit"></a></li>
+            <li id="publishDate" class="pull-right"><span class="divider">|</span> Last Published: 2026-10-25</li>
+            <li class="pull-right"><span class="divider">|</span> <a href="/maven-site/scm.html">Get Sources</a></li>
+            <li class="pull-right"><a href="https://maven.apache.org/download.cgi">Downloads</a></li>
+          </ul>
+        </div>
+      </header>
+      <div class="row-fluid">
+        <header id="leftColumn" class="span2">
+          
+<form class="guide-search" role="search" action="/maven-site/guides/a-z.html" data-index="/maven-site/guides/search.json" data-script="/maven-site/js/minisearch-7.2.0.js" data-oldest="3.9" data-base="/maven-site">
+  <label class="guide-search-label" for="guide-q-nav">Search the documentation</label>
+  <div class="guide-search-field">
+    <input id="guide-q-nav" name="q" type="search" autocomplete="off" spellcheck="false" placeholder="Search">
+    <kbd class="guide-search-key" aria-hidden="true">/</kbd>
+  </div>
+  
+</form>
+
+          <nav class="well sidebar-nav">
+<ul class="nav nav-list">
+  <li><a href="/maven-site/index.html">Welcome</a></li>
+  <li><a href="https://www.apache.org/licenses/">License</a></li>
+  <li class="nav-header">About Maven</li>
+  <li><a href="/maven-site/what-is-maven.html">What is Maven?</a></li>
+  <li><a href="/maven-site/install.html">Installation</a></li>
+  <li><a href="/maven-site/download.html">Downloads</a></li>
+  <li><a href="/maven-site/run.html">Use</a></li>
+  <li><a href="/maven-site/configure.html">Configure</a></li>
+  <li><a href="/maven-site/docs/history.html">Release Notes</a></li>
+  <li><a href="/maven-site/security.html">Security Reports</a></li>
+  <li class="nav-header">Documentation</li>
+  <li><a href="/maven-site/plugins/index.html">Maven Plugins</a></li>
+  <li><a href="/maven-site/extensions/index.html">Maven Extensions</a></li>
+  <li><a href="/maven-site/tools/index.html"><span class="icon-chevron-down"></span>Maven Tools</a>
+   <ul class="nav nav-list">
+    <li><a href="/maven-site/tools/mvnd.html">Maven Daemon</a></li>
+    <li><a href="/maven-site/tools/mvnsh.html">Maven Shell</a></li>
+    <li><a href="/maven-site/tools/mvnup.html">Maven Upgrade Tool</a></li>
+    <li><a href="/maven-site/tools/mavenwrapper.html">Maven Wrapper</a></li>
+   </ul></li>
+  <li><a href="/maven-site/doxia/index.html"><span class="icon-chevron-right"></span>Doxia</a></li>
+  <li><a href="/maven-site/guides/index.html">Guides</a></li>
+  <li><a href="/maven-site/users/index.html"><span class="icon-chevron-right"></span>User Manual</a></li>
+  <li><a href="/maven-site/repositories/index.html"><span class="icon-chevron-right"></span>Maven Repositories</a></li>
+  <li><a href="/maven-site/plugin-developers/index.html"><span class="icon-chevron-right"></span>Plugin Development</a></li>
+  <li><a href="/maven-site/developers/index.html"><span class="icon-chevron-down"></span>Contribute to Maven</a>
+   <ul class="nav nav-list">
+    <li><a href="/maven-site/guides/development/guide-helping.html">Guide to Helping with Maven</a></li>
+    <li><a href="/maven-site/developers/conventions/code.html">Code Style and Conventions</a></li>
+    <li><a href="/maven-site/developers/conventions/git.html">Git Convention</a></li>
+    <li><a href="/maven-site/developers/conventions/github.html">GitHub Convention</a></li>
+    <li><a href="/maven-site/guides/development/guide-maven-development.html"><span class="icon-chevron-right"></span>Developing Maven</a></li>
+    <li><a href="/maven-site/developers/release/index.html"><span class="icon-chevron-down"></span>Release Process</a>
+     <ul class="nav nav-list">
+      <li><a href="/maven-site/developers/release/maven-project-release-procedure.html">Common Procedure</a></li>
+      <li class="active"><a>Maven Core</a></li>
+      <li><a href="/maven-site/developers/release/parent-pom-release.html">Parent POM</a></li>
+      <li><a href="/maven-site/developers/release/pmc-gpg-keys.html">GPG Keys</a></li>
+     </ul></li>
+    <li><a href="/maven-site/developers/website/index.html"><span class="icon-chevron-right"></span>Deploy Maven Website</a></li>
+    <li><a href="/maven-site/developers/welcome-to-new-committers.html"><span class="icon-chevron-right"></span>Committers</a></li>
+   </ul></li>
+  <li><a href="/maven-site/articles.html">Books and Resources</a></li>
+  <li class="nav-header">Community</li>
+  <li><a href="/maven-site/community.html">Community Overview</a></li>
+  <li><a href="/maven-site/project-roles.html">Project Roles</a></li>
+  <li><a href="/maven-site/guides/development/guide-helping.html">How to Contribute</a></li>
+  <li><a href="/maven-site/users/getting-help.html">Getting Help</a></li>
+  <li><a href="/maven-site/issue-management.html">Issue Management</a></li>
+  <li><a href="/maven-site/scm.html">Getting Maven Source</a></li>
+  <li><a href="/maven-site/team.html">The Maven Team</a></li>
+  <li class="nav-header">Project Documentation</li>
+  <li><a href="/maven-site/project-info.html">Project Information</a></li>
+  <li class="nav-header">Maven Projects</li>
+  <li><a href="/maven-site/ref/current">Maven</a></li>
+  <li><a href="/maven-site/archetypes/index.html">Archetypes</a></li>
+  <li><a href="/maven-site/extensions/index.html">Extensions</a></li>
+  <li><a href="/maven-site/pom/index.html">Parent POMs</a></li>
+  <li><a href="/maven-site/plugins/index.html">Plugins</a></li>
+  <li><a href="/maven-site/skins/index.html">Skins</a></li>
+  <li><a><span class="icon-chevron-down"></span>Components</a>
+   <ul class="nav nav-list">
+    <li><a href="/maven-site/archetype/index.html">Archetype</a></li>
+    <li><a href="/maven-site/resolver/index.html">Artifact Resolver</a></li>
+    <li><a href="/maven-site/doxia/index.html">Doxia</a></li>
+    <li><a href="/maven-site/maven-indexer/index.html">Indexer</a></li>
+    <li><a href="/maven-site/jxr/index.html">JXR</a></li>
+    <li><a href="/maven-site/plugin-testing/index.html">Plugin Testing</a></li>
+    <li><a href="/maven-site/plugin-tools/index.html">Plugin Tools</a></li>
+    <li><a href="/maven-site/apache-resource-bundles/index.html">Resource Bundles</a></li>
+    <li><a href="/maven-site/scm/index.html">SCM</a></li>
+    <li><a href="/maven-site/shared/index.html">Shared Components</a></li>
+    <li><a href="/maven-site/surefire/index.html">Surefire</a></li>
+    <li><a href="/maven-site/wagon/index.html">Wagon</a></li>
+   </ul></li>
+  <li class="nav-header">ASF</li>
+  <li><a href="https://www.apache.org/foundation/how-it-works.html">How Apache Works</a></li>
+  <li><a href="https://www.apache.org/foundation/">Foundation</a></li>
+  <li><a href="https://privacy.apache.org/policies/privacy-policy-public.html">Data Privacy</a></li>
+  <li><a href="https://www.apache.org/foundation/sponsorship.html">Sponsoring Apache</a></li>
+  <li><a href="https://www.apache.org/foundation/thanks.html">Thanks</a></li>
+</ul>
+          </nav>
+          <div class="well sidebar-nav">
+            <div id="poweredBy">
+              <div class="clear"></div>
+              <a href="/maven-site/" class="builtBy" target="_blank"><img class="builtBy" alt="Built by Maven" src="/maven-site/images/logos/maven-feather.png"></a>
+            </div>
+          </div>
+        </header>
+        <main id="bodyColumn" class="span10">
+          
+<h1 id="Releasing_Maven">Releasing Maven</h1>
+<!--
+Licensed to the Apache Software Foundation (ASF) under one
+or more contributor license agreements.  See the NOTICE file
+distributed with this work for additional information
+regarding copyright ownership.  The ASF licenses this file
+to you under the Apache License, Version 2.0 (the
+"License"); you may not use this file except in compliance
+with the License.  You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing,
+software distributed under the License is distributed on an
+"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+KIND, either express or implied.  See the License for the
+specific language governing permissions and limitations
+under the License.
+-->
+<p>Maven differs slightly in its release process due to several extra steps.</p>
+<p>The goal is to commit candidate release to svn <code>dev</code> tree <a href="https://dist.apache.org/repos/dist/dev/maven/maven-3">https://dist.apache.org/repos/dist/dev/maven/maven-3</a>/<code>$VERSION</code>. Once the vote has passed, svn move to <code>release</code> <a href="https://dist.apache.org/repos/dist/release/maven/maven-3">https://dist.apache.org/repos/dist/release/maven/maven-3</a>/<code>$VERSION</code>.</p>
+<p>The tree directory is:</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>https://dist.apache.org/repos/dist/dev/maven/maven-3/
+  `-- $VERSION/
+      |-- binaries/
+      |   |-- apache-maven-$VERSION-bin.tar.gz
+      |   |-- apache-maven-$VERSION-bin.tar.gz.asc
+      |   |-- apache-maven-$VERSION-bin.tar.gz.sha512
+      |   |-- apache-maven-$VERSION-bin.zip
+      |   |-- apache-maven-$VERSION-bin.zip.asc
+      |   `-- apache-maven-$VERSION-bin.zip.sha512
+      `-- source/ (notice: singular...)
+          |-- apache-maven-$VERSION-src.tar.gz
+          |-- apache-maven-$VERSION-src.tar.gz.asc
+          |-- apache-maven-$VERSION-src.tar.gz.sha512
+          |-- apache-maven-$VERSION-src.zip
+          |-- apache-maven-$VERSION-src.zip.asc
+          `-- apache-maven-$VERSION-src.zip.sha512
+</code></pre></div></div>
+<p>Note that the policy for failed releases is to move forward with a new
+version. The tag that produced the failed released is left in place for
+posterity. So if the release of, say, 3.2.4 fails then we move forward
+with 3.2.5.</p>
+<h2 id="Produce_Release_Candidates">Produce Release Candidates</h2>
+<p>For non-alpha/beta releases, release candidates are produced before the actual release.</p>
+<p>Checkout <a href="https://dist.apache.org/repos/dist/dev/maven/maven-3">https://dist.apache.org/repos/dist/dev/maven/maven-3</a> then create the necessary directory tree.</p>
+<p>Copy the binaries and src-tar.gz with their sha512/asc to the created directories.</p>
+<p>To produce a release candidate, follow the first seven steps only from the following procedure:</p>
+<ul>
+<li><a href="./maven-project-release-procedure.html">Maven Project Common Release Procedure</a></li>
+</ul>
+<p>The version used should be the eventual version with -RC1, -RC2, etc. appended.</p>
+<p>After producing the RC, request that the developers test the release on the list. If a regression is found, a new release candidate is rolled.</p>
+<p>After a reasonable time without regressions found, a wider audience may be polled if the release manager desires (for example, users@).</p>
+<p>Once happy with a release candidate, the full release is performed, with the final version in place.</p>
+<h2 id="Produce_the_Release">Produce the Release</h2>
+<p>To produce a final release, the same process as for standard projects is followed:</p>
+<ul>
+<li><a href="./maven-project-release-procedure.html">Maven Project Common Release Procedure</a></li>
+</ul>
+<p>Below describes the additional steps that need to be taken at the points where the website are updated in those instructions.</p>
+<h3 id="Prepare_the_Release_Notes">Prepare the Release Notes</h3>
+<p>Checkout Maven site source <a href="https://github.com/apache/maven-site.git">https://github.com/apache/maven-site.git</a>.</p>
+<p>Create the release notes:</p>
+<ul>
+<li>create <code>content/markdown/docs/$version</code></li>
+<li>create <code>content/markdown/docs/$version/release-notes.md</code> (see other versions for an example)</li>
+</ul>
+<h3 id="Stage_the_Latest_Documentation">Stage the Latest Documentation</h3>
+<p>Once the release is prepared, but before the release vote, the site needs to be staged.</p>
+<p>From the release checkout, stage the site:</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mvn -Preporting site site:stage
+mvn scm-publish:publish-scm
+</code></pre></div></div>
+<p>This will publish the Maven core site in <a href="https://maven.apache.org/ref/3-LATEST">/ref/3-LATEST</a>.</p>
+<h2 id="Complete_the_release">Complete the release</h2>
+<p>After a successful vote you should do the following steps to finish the release.</p>
+<h3 id="Add_New_Version_to_ASF_Distribution_Directory">Add New Version to ASF Distribution Directory</h3>
+<p>In addition to promoting the repository, the release archives should be
+moved to the release svnpubsub tree:</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>svn mv https://dist.apache.org/repos/dist/dev/maven/maven-3/$VERSION https://dist.apache.org/repos/dist/release/maven/maven-3 -m "Publish Maven $VERSION Distribution Archives"
+</code></pre></div></div>
+<h3 id="Update_the_DOAP_Information">Update the DOAP Information</h3>
+<p>Edit <a href="https://github.com/apache/maven/blob/master/doap_Maven.rdf">https://github.com/apache/maven/blob/master/doap_Maven.rdf</a> to list the new release.</p>
+<h3 id="Update_the_Web_Site">Update the Web Site</h3>
+<p>Checkout Maven site source <a href="https://github.com/apache/maven-site.git">https://github.com/apache/maven-site.git</a>.</p>
+<p>For 3.x: update the <code>versions3x</code>, <code>currentStableVersion</code> and <code>currentStableVersionDetails</code> properties in <code>pom.xml</code></p>
+<p>Next, update release history <code>content/markdown/docs/history.md.vm</code>.</p>
+<p>Only deploy the site once the release is present on the mirrors, and the reference documentation has been deployed to <a href="https://maven.apache.org/ref">/ref/</a>.</p>
+<h3 id="Deploy_the_Latest_Documentation_to_Target_Versioned_Location">Deploy the Latest Documentation to Target Versioned Location</h3>
+<p>The reference documentation for Maven core source code references and API docs has been staged in a previous step: now it needs to be deployed to its dedicated directory before deploying the web site pointing to the new version.</p>
+<p>This consists in copying in website svn tree the staging /ref/3-LATEST directory to final /ref/<code>$VERSION</code>.</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>svn cp https://svn.apache.org/repos/asf/maven/website/components/ref/3-LATEST https://svn.apache.org/repos/asf/maven/website/components/ref/$VERSION -m "Maven $VERSION released"
+</code></pre></div></div>
+<h2 id="Information_on_.2Fref.2Fcurrent_mechanism">Information on <code>/ref/current</code> mechanism</h2>
+<p>The redirection from <code>/ref/current</code> to actual Maven version reference is done through <code>.htaccess</code> published in site.</p>
+<h3 id="Deploying_the_Release_Website">Deploying the Release Website</h3>
+<p>Once both of the above have synced to the main site and a suitable number of mirrors, proceed to update the web site and produce the announcement.</p>
+<p>Commit your changes and then <a href="../website/deploy-maven-website.html">deploy the main Maven site</a>.</p>
+<h3 id="Remove_Old_Versions_from_ASF_Distribution_Directory">Remove Old Versions from ASF Distribution Directory</h3>
+<p>Next, any superseded releases should be removed from the above locations (after confirming that they exist in /www/archive.apache.org/dist/maven).</p>
+<h3 id="Proceed_with_Announcement">Proceed with Announcement</h3>
+<p>You can now proceed with the steps outlined after deploying the website on <a href="./maven-project-release-procedure.html">Maven Project Common Release Procedure</a></p>
+
+        </main>
+      </div>
+    </div>
+    <hr>
+    <footer>
+      <div class="container-fluid">
+        <div class="row-fluid">
+          <p>©      2002–2026 <a href="https://www.apache.org/">The Apache Software Foundation</a></p>
+          <p class="demo-note">A demonstration build of <a href="https://github.com/dashorst/maven-site/tree/diataxis-demo">dashorst/maven-site</a>, not the official Apache Maven site.</p>
+        </div>
+      </div>
+    </footer>
+    <script src="/maven-site/js/guide.js?v=1792948498" defer=""></script>
+    <script>
+    anchors.add();
+    </script>
+  
+
+</body></html>

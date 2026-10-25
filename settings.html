@@ -1,0 +1,724 @@
+<!DOCTYPE html><!--
+ | The page frame of the Apache Maven Fluido Skin 2.1.0, as the Doxia site renderer writes it
+ | for maven.apache.org. Built with Jekyll: see jekyll/README.md.
+--><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Settings Reference – Maven</title>
+    
+    <link rel="stylesheet" href="/maven-site/css/apache-maven-fluido-2.1.0.min.css">
+    <link rel="stylesheet" href="/maven-site/css/site.css">
+    <link rel="stylesheet" href="/maven-site/css/guide.css?v=1792948498">
+    <link rel="stylesheet" href="/maven-site/css/print.css" media="print">
+    <script src="/maven-site/js/apache-maven-fluido-2.1.0.min.js"></script>
+  </head>
+  <body>
+    <div class="container-fluid container-fluid-top">
+      <header>
+        <div id="banner">
+          <div class="pull-left"><div id="bannerLeft"><h1><a href="/maven-site/index.html"><img src="/maven-site/images/apache-maven-project-light-theme.svg" style="width: 489px;height: 83px;" alt="Apache Maven"></a></h1></div></div>
+          <div class="pull-right"><div id="bannerRight"><h1><img src="/maven-site/images/logos/MavenLogoLeaf.svg" style="width: 340px;height: 83px;" alt=""></h1></div></div>
+          <div class="clear"><hr></div>
+        </div>
+
+        <div id="breadcrumbs">
+          <ul class="breadcrumb">
+            <li><a href="https://www.apache.org/">Apache</a><span class="divider">/</span></li>
+            <li><a href="/maven-site/index.html">Maven</a><span class="divider">/</span></li>
+            
+            <li class="active">Settings Reference <a href="https://github.com/apache/maven-site/tree/master/content/markdown/settings.md"><img src="/maven-site/images/accessories-text-editor.png" alt="Edit"></a></li>
+            <li id="publishDate" class="pull-right"><span class="divider">|</span> Last Published: 2026-10-25</li>
+            <li class="pull-right"><span class="divider">|</span> <a href="/maven-site/scm.html">Get Sources</a></li>
+            <li class="pull-right"><a href="https://maven.apache.org/download.cgi">Downloads</a></li>
+          </ul>
+        </div>
+      </header>
+      <div class="row-fluid">
+        <header id="leftColumn" class="span2">
+          
+<form class="guide-search" role="search" action="/maven-site/guides/a-z.html" data-index="/maven-site/guides/search.json" data-script="/maven-site/js/minisearch-7.2.0.js" data-oldest="3.9" data-base="/maven-site">
+  <label class="guide-search-label" for="guide-q-nav">Search the documentation</label>
+  <div class="guide-search-field">
+    <input id="guide-q-nav" name="q" type="search" autocomplete="off" spellcheck="false" placeholder="Search">
+    <kbd class="guide-search-key" aria-hidden="true">/</kbd>
+  </div>
+  
+</form>
+
+          <nav class="well sidebar-nav">
+<ul class="nav nav-list">
+  <li><a href="/maven-site/index.html">Welcome</a></li>
+  <li><a href="https://www.apache.org/licenses/">License</a></li>
+  <li class="nav-header">About Maven</li>
+  <li><a href="/maven-site/what-is-maven.html">What is Maven?</a></li>
+  <li><a href="/maven-site/install.html">Installation</a></li>
+  <li><a href="/maven-site/download.html">Downloads</a></li>
+  <li><a href="/maven-site/run.html">Use</a></li>
+  <li><a href="/maven-site/configure.html">Configure</a></li>
+  <li><a href="/maven-site/docs/history.html">Release Notes</a></li>
+  <li><a href="/maven-site/security.html">Security Reports</a></li>
+  <li class="nav-header">Documentation</li>
+  <li><a href="/maven-site/plugins/index.html">Maven Plugins</a></li>
+  <li><a href="/maven-site/extensions/index.html">Maven Extensions</a></li>
+  <li><a href="/maven-site/tools/index.html"><span class="icon-chevron-down"></span>Maven Tools</a>
+   <ul class="nav nav-list">
+    <li><a href="/maven-site/tools/mvnd.html">Maven Daemon</a></li>
+    <li><a href="/maven-site/tools/mvnsh.html">Maven Shell</a></li>
+    <li><a href="/maven-site/tools/mvnup.html">Maven Upgrade Tool</a></li>
+    <li><a href="/maven-site/tools/mavenwrapper.html">Maven Wrapper</a></li>
+   </ul></li>
+  <li><a href="/maven-site/doxia/index.html"><span class="icon-chevron-right"></span>Doxia</a></li>
+  <li><a href="/maven-site/guides/index.html">Guides</a></li>
+  <li><a href="/maven-site/users/index.html"><span class="icon-chevron-down"></span>User Manual</a>
+   <ul class="nav nav-list">
+    <li><a><span class="icon-chevron-down"></span>Maven Build Fundamentals</a>
+     <ul class="nav nav-list">
+      <li><a href="/maven-site/guides/getting-started/maven-in-five-minutes.html">Maven in 5 Minutes</a></li>
+      <li><a href="/maven-site/users/getting-help.html">Getting Help</a></li>
+      <li><a href="/maven-site/run-maven/index.html">Running Maven</a></li>
+     </ul></li>
+    <li><a><span class="icon-chevron-down"></span>Maven Build Config Fundamentals</a>
+     <ul class="nav nav-list">
+      <li><a href="/maven-site/guides/plugins/validation/index.html">Plugins Validation</a></li>
+      <li><a href="/maven-site/guides/mini/guide-site.html"><span class="icon-chevron-right"></span>Creating a site</a></li>
+      <li><a href="/maven-site/guides/introduction/introduction-to-archetypes.html"><span class="icon-chevron-right"></span>Archetypes</a></li>
+      <li><a href="/maven-site/guides/introduction/introduction-to-repositories.html"><span class="icon-chevron-right"></span>Repositories</a></li>
+      <li><a href="/maven-site/guides/introduction/introduction-to-profiles.html">Profiles</a></li>
+      <li><a href="/maven-site/guides/introduction/introduction-to-the-standard-directory-layout.html">Standard Directory Layout</a></li>
+      <li><a href="/maven-site/guides/introduction/introduction-to-dependency-mechanism.html"><span class="icon-chevron-right"></span>Dependency Mechanism</a></li>
+     </ul></li>
+    <li><a href="/maven-site/guides/getting-started/index.html"><span class="icon-chevron-down"></span>Getting Started Guide</a>
+     <ul class="nav nav-list">
+      <li><a href="/maven-site/guides/mini/guide-naming-conventions.html">Naming Conventions</a></li>
+      <li><a href="/maven-site/guides/introduction/introduction-to-the-lifecycle.html">The Build Lifecycle</a></li>
+      <li><a href="/maven-site/guides/introduction/introduction-to-the-pom.html">The POM</a></li>
+      <li><a href="/maven-site/guides/mini/guide-configuring-plugins.html"><span class="icon-chevron-right"></span>Configuring Plugins</a></li>
+      <li><a href="/maven-site/pom.html">POM 4.0.0 Reference</a></li>
+      <li class="active"><a>Settings Reference</a></li>
+     </ul></li>
+    <li><a><span class="icon-chevron-down"></span>Maven 4</a>
+     <ul class="nav nav-list">
+      <li><a href="/maven-site/whatsnewinmaven4.html">What's new in Maven 4?</a></li>
+      <li><a href="/maven-site/guides/mini/guide-migration-to-mvn4.html">Starting with Maven 4</a></li>
+      <li><a href="/maven-site/guides/mini/guide-mixins.html">Maven Mixins</a></li>
+     </ul></li>
+    <li><a href="/maven-site/guides/mini/index.html"><span class="icon-chevron-right"></span>Guides</a></li>
+    <li><a href="/maven-site/general.html">FAQ</a></li>
+   </ul></li>
+  <li><a href="/maven-site/repositories/index.html"><span class="icon-chevron-right"></span>Maven Repositories</a></li>
+  <li><a href="/maven-site/plugin-developers/index.html"><span class="icon-chevron-right"></span>Plugin Development</a></li>
+  <li><a href="/maven-site/developers/index.html"><span class="icon-chevron-right"></span>Contribute to Maven</a></li>
+  <li><a href="/maven-site/articles.html">Books and Resources</a></li>
+  <li class="nav-header">Community</li>
+  <li><a href="/maven-site/community.html">Community Overview</a></li>
+  <li><a href="/maven-site/project-roles.html">Project Roles</a></li>
+  <li><a href="/maven-site/guides/development/guide-helping.html">How to Contribute</a></li>
+  <li><a href="/maven-site/users/getting-help.html">Getting Help</a></li>
+  <li><a href="/maven-site/issue-management.html">Issue Management</a></li>
+  <li><a href="/maven-site/scm.html">Getting Maven Source</a></li>
+  <li><a href="/maven-site/team.html">The Maven Team</a></li>
+  <li class="nav-header">Project Documentation</li>
+  <li><a href="/maven-site/project-info.html">Project Information</a></li>
+  <li class="nav-header">Maven Projects</li>
+  <li><a href="/maven-site/ref/current">Maven</a></li>
+  <li><a href="/maven-site/archetypes/index.html">Archetypes</a></li>
+  <li><a href="/maven-site/extensions/index.html">Extensions</a></li>
+  <li><a href="/maven-site/pom/index.html">Parent POMs</a></li>
+  <li><a href="/maven-site/plugins/index.html">Plugins</a></li>
+  <li><a href="/maven-site/skins/index.html">Skins</a></li>
+  <li><a><span class="icon-chevron-down"></span>Components</a>
+   <ul class="nav nav-list">
+    <li><a href="/maven-site/archetype/index.html">Archetype</a></li>
+    <li><a href="/maven-site/resolver/index.html">Artifact Resolver</a></li>
+    <li><a href="/maven-site/doxia/index.html">Doxia</a></li>
+    <li><a href="/maven-site/maven-indexer/index.html">Indexer</a></li>
+    <li><a href="/maven-site/jxr/index.html">JXR</a></li>
+    <li><a href="/maven-site/plugin-testing/index.html">Plugin Testing</a></li>
+    <li><a href="/maven-site/plugin-tools/index.html">Plugin Tools</a></li>
+    <li><a href="/maven-site/apache-resource-bundles/index.html">Resource Bundles</a></li>
+    <li><a href="/maven-site/scm/index.html">SCM</a></li>
+    <li><a href="/maven-site/shared/index.html">Shared Components</a></li>
+    <li><a href="/maven-site/surefire/index.html">Surefire</a></li>
+    <li><a href="/maven-site/wagon/index.html">Wagon</a></li>
+   </ul></li>
+  <li class="nav-header">ASF</li>
+  <li><a href="https://www.apache.org/foundation/how-it-works.html">How Apache Works</a></li>
+  <li><a href="https://www.apache.org/foundation/">Foundation</a></li>
+  <li><a href="https://privacy.apache.org/policies/privacy-policy-public.html">Data Privacy</a></li>
+  <li><a href="https://www.apache.org/foundation/sponsorship.html">Sponsoring Apache</a></li>
+  <li><a href="https://www.apache.org/foundation/thanks.html">Thanks</a></li>
+</ul>
+          </nav>
+          <div class="well sidebar-nav">
+            <div id="poweredBy">
+              <div class="clear"></div>
+              <a href="/maven-site/" class="builtBy" target="_blank"><img class="builtBy" alt="Built by Maven" src="/maven-site/images/logos/maven-feather.png"></a>
+            </div>
+          </div>
+        </header>
+        <main id="bodyColumn" class="span10">
+          
+          <aside class="guide-split alert alert-info">
+            <p><strong>This page is rewritten in the <a href="/maven-site/guides/index.html">Maven guides</a></strong>, as pages that each do one job:</p>
+            <ul>
+              <li><a href="/maven-site/guides/server-credentials.html">Store credentials for a repository</a> <span class="guide-list-kind">How-to</span></li>
+              <li><a href="/maven-site/guides/settings-files-reference.html">Configuration files and variables</a> <span class="guide-list-kind">Reference</span></li>
+              <li><a href="/maven-site/guides/configuration-files.html">Where Maven reads its configuration</a> <span class="guide-list-kind">Explanation</span></li>
+            </ul>
+          </aside>
+          
+<h1 id="Settings_Reference">Settings Reference</h1>
+<!--
+Licensed to the Apache Software Foundation (ASF) under one
+or more contributor license agreements.  See the NOTICE file
+distributed with this work for additional information
+regarding copyright ownership.  The ASF licenses this file
+to you under the Apache License, Version 2.0 (the
+"License"); you may not use this file except in compliance
+with the License.  You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing,
+software distributed under the License is distributed on an
+"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+KIND, either express or implied.  See the License for the
+specific language governing permissions and limitations
+under the License.
+-->
+<div class="doxia-toc"><ul><li><a href="#Introduction">Introduction</a><ul><li><a href="#Quick_Overview">Quick Overview</a></li></ul></li><li><a href="#Settings_Details">Settings Details</a><ul><li><a href="#Simple_Values">Simple Values</a></li><li><a href="#Plugin_Groups">Plugin Groups</a></li><li><a href="#Servers">Servers</a><ul><li><a href="#Server_Aliases">Server Aliases</a></li><li><a href="#Server_Repository_Origins">Server Repository Origins</a></li><li><a href="#Password_Encryption">Password Encryption</a></li></ul></li><li><a href="#Mirrors">Mirrors</a></li><li><a href="#Proxies">Proxies</a></li><li><a href="#Profiles">Profiles</a><ul><li><a href="#Activation">Activation</a></li><li><a href="#Properties">Properties</a></li><li><a href="#Repositories">Repositories</a></li><li><a href="#Plugin_Repositories">Plugin Repositories</a></li></ul></li><li><a href="#Active_Profiles">Active Profiles</a></li></ul></li></ul></div>
+<h2 id="Introduction">Introduction</h2>
+<h3 id="Quick_Overview">Quick Overview</h3>
+<p>The <code>settings</code> element in the <code>settings.xml</code> file contains elements used
+to define values which configure Maven execution in various ways, like
+the <code>pom.xml</code>, but should not be bundled to any specific project, or
+distributed to an audience. These include values such as the local
+repository location, alternate remote repository servers, and
+authentication information.</p>
+<p>There are two locations where a <code>settings.xml</code> file may live:</p>
+<ul>
+<li>The Maven install: <code>${maven.home}/conf/settings.xml</code></li>
+<li>A user's install: <code>${user.home}/.m2/settings.xml</code></li>
+</ul>
+<p>The former <code>settings.xml</code> is also called global settings, the latter
+<code>settings.xml</code> is referred to as user settings. If both files exist,
+their contents get merged, with the user-specific <code>settings.xml</code> being
+dominant.</p>
+<p>Tip: If you need to create user-specific settings from scratch, it's
+easiest to copy the global settings from your Maven installation to your
+<code>${user.home}/.m2</code> directory. Maven's default <code>settings.xml</code> is a
+template with comments and examples so you can quickly tweak it to match
+your needs.</p>
+<p>Here is an overview of the top elements under <code>settings</code>:</p>
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="xml"><span class="nt">&lt;settings</span> <span class="na">xmlns=</span><span class="s">"http://maven.apache.org/SETTINGS/1.2.0"</span> <span class="na">xmlns:xsi=</span><span class="s">"http://www.w3.org/2001/XMLSchema-instance"</span>
+  <span class="na">xsi:schemaLocation=</span><span class="s">"http://maven.apache.org/SETTINGS/1.2.0 https://maven.apache.org/xsd/settings-1.2.0.xsd"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;localRepository/&gt;</span>
+  <span class="nt">&lt;interactiveMode/&gt;</span>
+  <span class="nt">&lt;offline/&gt;</span>
+  <span class="nt">&lt;pluginGroups/&gt;</span>
+  <span class="nt">&lt;servers/&gt;</span>
+  <span class="nt">&lt;mirrors/&gt;</span>
+  <span class="nt">&lt;proxies/&gt;</span>
+  <span class="nt">&lt;profiles/&gt;</span>
+  <span class="nt">&lt;activeProfiles/&gt;</span>
+<span class="nt">&lt;/settings&gt;</span>
+</code></pre></div></div>
+<p>The contents of <code>settings.xml</code> can be interpolated using the
+following expressions:</p>
+<ol>
+<li><code>${user.home}</code> and all other system properties</li>
+<li><code>${env.HOME}</code> etc. for environment variables</li>
+</ol>
+<p>Note that properties defined in profiles within <code>settings.xml</code>
+cannot be used for interpolation.</p>
+<h2 id="Settings_Details">Settings Details</h2>
+<h3 id="Simple_Values">Simple Values</h3>
+<p>Half of the top-level <code>settings</code> elements are simple values,
+representing a range of values which describe elements of the build
+system that are active full-time.</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    &lt;settings xmlns="http://maven.apache.org/SETTINGS/1.2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.2.0 https://maven.apache.org/xsd/settings-1.2.0.xsd"&gt;
+      &lt;localRepository&gt;${user.home}/.m2/repository&lt;/localRepository&gt;
+      &lt;interactiveMode&gt;true&lt;/interactiveMode&gt;
+      &lt;offline&gt;false&lt;/offline&gt;
+      ...
+    &lt;/settings&gt;
+</code></pre></div></div>
+<ul>
+<li><strong>localRepository</strong>: This value is the path of this build system's
+local repository. The default value is
+<code>${user.home}/.m2/repository</code>. This element is especially useful for
+a main build server allowing all logged-in users to build from a
+common local repository.</li>
+<li><strong>interactiveMode</strong>: <code>true</code> if Maven should attempt to interact with
+the user for input, <code>false</code> if not. Defaults to <code>true</code>.</li>
+<li><strong>offline</strong>: <code>true</code> if this build system should operate in offline
+mode, defaults to <code>false</code>. This element is useful for build servers
+which cannot connect to a remote repository, either because of
+network setup or security reasons.</li>
+</ul>
+<h3 id="Plugin_Groups">Plugin Groups</h3>
+<p>This element contains a list of <code>pluginGroup</code> elements, each contains a
+groupId. The list is searched when a plugin is used and the groupId is
+not provided in the command line. This list automatically contains
+<code>org.apache.maven.plugins</code> and <code>org.codehaus.mojo</code>.</p>
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="xml"><span class="nt">&lt;settings</span> <span class="na">xmlns=</span><span class="s">"http://maven.apache.org/SETTINGS/1.2.0"</span><span class="nt">&gt;</span>
+  ...
+  <span class="nt">&lt;pluginGroups&gt;</span>
+    <span class="nt">&lt;pluginGroup&gt;</span>org.eclipse.jetty<span class="nt">&lt;/pluginGroup&gt;</span>
+  <span class="nt">&lt;/pluginGroups&gt;</span>
+  ...
+<span class="nt">&lt;/settings&gt;</span>
+</code></pre></div></div>
+<p>For example, given the above settings the Maven command line may execute
+<code>org.eclipse.jetty:jetty-maven-plugin:run</code> with the truncated command:</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    mvn jetty:run
+</code></pre></div></div>
+<h3 id="Servers">Servers</h3>
+<p>The repositories for download and deployment are defined by the
+<a href="./pom.html#Repositories"><code>repositories</code></a> and
+<a href="./pom.html#Distribution_Management"><code>distributionManagement</code></a> elements
+of the POM. However, certain settings such as <code>username</code> and <code>password</code>
+should not be distributed along with the <code>pom.xml</code>. This type of
+information should exist on the build server in the <code>settings.xml</code>.</p>
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="xml"><span class="nt">&lt;settings</span> <span class="na">xmlns=</span><span class="s">"http://maven.apache.org/SETTINGS/1.2.0"</span><span class="nt">&gt;</span>
+  ...
+  <span class="nt">&lt;servers&gt;</span>
+    <span class="nt">&lt;server&gt;</span>
+      <span class="nt">&lt;id&gt;</span>server001<span class="nt">&lt;/id&gt;</span>
+      <span class="nt">&lt;username&gt;</span>my_login<span class="nt">&lt;/username&gt;</span>
+      <span class="nt">&lt;password&gt;</span>my_password<span class="nt">&lt;/password&gt;</span>
+      <span class="nt">&lt;privateKey&gt;</span>${user.home}/.ssh/id_dsa<span class="nt">&lt;/privateKey&gt;</span>
+      <span class="nt">&lt;passphrase&gt;</span>some_passphrase<span class="nt">&lt;/passphrase&gt;</span>
+      <span class="nt">&lt;filePermissions&gt;</span>664<span class="nt">&lt;/filePermissions&gt;</span>
+      <span class="nt">&lt;directoryPermissions&gt;</span>775<span class="nt">&lt;/directoryPermissions&gt;</span>
+      <span class="nt">&lt;configuration&gt;&lt;/configuration&gt;</span>
+    <span class="nt">&lt;/server&gt;</span>
+  <span class="nt">&lt;/servers&gt;</span>
+  ...
+<span class="nt">&lt;/settings&gt;</span>
+</code></pre></div></div>
+<ul>
+<li><strong>id</strong>: This is the ID of the server <em>(not of the user to login as)</em>
+that matches the <code>id</code> element of the repository/mirror that Maven
+tries to connect to.</li>
+<li><strong>username</strong>, <strong>password</strong>: These elements appear as a pair denoting
+the login and password required to authenticate to this server.</li>
+<li><strong>privateKey</strong>, <strong>passphrase</strong>: Like the previous two elements, this
+pair specifies a path to a private key (default is
+<code>${user.home}/.ssh/id_dsa</code>) and a <code>passphrase</code>, if required. The
+<code>passphrase</code> and <code>password</code> elements may be externalized in the
+future, but for now they must be set plain-text in the
+<code>settings.xml</code> file.</li>
+<li><strong>filePermissions</strong>, <strong>directoryPermissions</strong>: When a repository
+file or directory is created on deployment, these are the
+permissions to use. The legal values of each is a three digit number
+corresponding to *nix file permissions, e.g. 664, or 775.</li>
+</ul>
+<p><em>Note:</em> If you use a private key to login to the server, make sure you
+omit the <code>&lt;password&gt;</code> element. Otherwise, the key will be ignored.</p>
+<h4 id="Server_Aliases">Server Aliases</h4>
+<p>Since Maven 3.10.0 and 4.0.0-rc-6 (settings model <code>1.3.0</code>), a server can declare a list
+of <code>aliases</code>. This is useful when the same credentials should be used for
+several repositories or mirrors with different IDs, without copying the
+whole <code>server</code> element.</p>
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="xml"><span class="nt">&lt;settings</span> <span class="na">xmlns=</span><span class="s">"http://maven.apache.org/SETTINGS/1.3.0"</span> <span class="na">xmlns:xsi=</span><span class="s">"http://www.w3.org/2001/XMLSchema-instance"</span>
+  <span class="na">xsi:schemaLocation=</span><span class="s">"http://maven.apache.org/SETTINGS/1.3.0 https://maven.apache.org/xsd/settings-1.3.0.xsd"</span><span class="nt">&gt;</span>
+  ...
+  <span class="nt">&lt;servers&gt;</span>
+    <span class="nt">&lt;server&gt;</span>
+      <span class="nt">&lt;id&gt;</span>company-releases<span class="nt">&lt;/id&gt;</span>
+      <span class="nt">&lt;username&gt;</span>my_login<span class="nt">&lt;/username&gt;</span>
+      <span class="nt">&lt;password&gt;</span>my_password<span class="nt">&lt;/password&gt;</span>
+      <span class="nt">&lt;aliases&gt;</span>
+        <span class="nt">&lt;alias&gt;</span>company-snapshots<span class="nt">&lt;/alias&gt;</span>
+        <span class="nt">&lt;alias&gt;</span>company-mirror<span class="nt">&lt;/alias&gt;</span>
+      <span class="nt">&lt;/aliases&gt;</span>
+    <span class="nt">&lt;/server&gt;</span>
+  <span class="nt">&lt;/servers&gt;</span>
+  ...
+<span class="nt">&lt;/settings&gt;</span>
+</code></pre></div></div>
+<ul>
+<li><strong>aliases</strong>: For each <code>alias</code>, Maven creates an additional <code>server</code>
+entry with the same configuration as the original one, but with the
+<code>id</code> replaced by the alias and with an empty <code>aliases</code> list.
+In the example above, the servers <code>company-releases</code>,
+<code>company-snapshots</code> and <code>company-mirror</code> are available at runtime, all use the same credentials.</li>
+</ul>
+<p>The additional servers are created in memory when the effective settings are built,
+so they are visible to Maven and plugins like any other server
+declared in <code>settings.xml</code>: you can see them with <code>mvn help:effective-settings</code>.</p>
+<p>An alias must not be empty, and it should be unique across all server IDs
+and aliases. Otherwise Maven reports a warning.</p>
+<h4 id="Server_Repository_Origins">Server Repository Origins</h4>
+<p>Since Maven 3.10.0 and 4.0.0, the credentials of a server are bound to the origins
+(scheme, host and port) of the repositories and mirrors declared with the same
+ID in <code>settings.xml</code>.</p>
+<p>When Maven starts, it takes into account only the repositories from <code>settings.xml</code> profiles
+listed in <code>&lt;activeProfiles&gt;</code> and mirrors. Repositories from other profiles, and repositories declared in a <code>pom.xml</code>
+(in <code>repositories</code>, <code>pluginRepositories</code> or <code>distributionManagement</code>), are not known at that time.
+For such a repository, Maven reports a warning, or refuses the credentials
+when <code>maven.repository.credentialScope=strict</code> is set.</p>
+<p>The binding protects your credentials: before, Maven matched credentials only by server ID, so any <code>pom.xml</code>, including
+the POM of a dependency or a parent, could declare a repository with the same ID pointing to another host and
+receive your username and password. Now, once Maven knows the hosts of a server ID, its credentials are sent only
+to them, and <code>repositoryOrigins</code> lets you add the hosts Maven cannot find by itself.</p>
+<p>For such repositories, a server (settings model <code>1.3.0</code>) can declare a list of <code>repositoryOrigins</code>
+its credentials may be used with:</p>
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="xml"><span class="nt">&lt;settings</span> <span class="na">xmlns=</span><span class="s">"http://maven.apache.org/SETTINGS/1.3.0"</span> <span class="na">xmlns:xsi=</span><span class="s">"http://www.w3.org/2001/XMLSchema-instance"</span>
+  <span class="na">xsi:schemaLocation=</span><span class="s">"http://maven.apache.org/SETTINGS/1.3.0 https://maven.apache.org/xsd/settings-1.3.0.xsd"</span><span class="nt">&gt;</span>
+  ...
+  <span class="nt">&lt;servers&gt;</span>
+    <span class="nt">&lt;server&gt;</span>
+      <span class="nt">&lt;id&gt;</span>company-releases<span class="nt">&lt;/id&gt;</span>
+      <span class="nt">&lt;username&gt;</span>my_login<span class="nt">&lt;/username&gt;</span>
+      <span class="nt">&lt;password&gt;</span>my_password<span class="nt">&lt;/password&gt;</span>
+      <span class="nt">&lt;repositoryOrigins&gt;</span>
+        <span class="nt">&lt;repositoryOrigin&gt;</span>https://repo.example.com<span class="nt">&lt;/repositoryOrigin&gt;</span>
+        <span class="nt">&lt;repositoryOrigin&gt;</span>https://mirror.example.com:8443<span class="nt">&lt;/repositoryOrigin&gt;</span>
+      <span class="nt">&lt;/repositoryOrigins&gt;</span>
+    <span class="nt">&lt;/server&gt;</span>
+  <span class="nt">&lt;/servers&gt;</span>
+  ...
+<span class="nt">&lt;/settings&gt;</span>
+</code></pre></div></div>
+<ul>
+<li><strong>repositoryOrigins</strong>: Each <code>repositoryOrigin</code> is written as <code>scheme://host</code> or
+<code>scheme://host:port</code>. It is an origin, not a full repository URL. If a path, query or fragment
+is given, Maven reports a warning and ignores it. A value without a scheme or host,
+or with user information, is reported as an error.
+The comparison is case-insensitive, and the default ports <code>80</code> (http) and <code>443</code> (https)
+are the same as no port.</li>
+</ul>
+<p>The declared origins are added to the origins Maven finds from repositories and mirrors.
+Nothing is replaced, so existing configurations keep working.
+Servers created from <a href="#Server_Aliases">aliases</a> get the same <code>repositoryOrigins</code>.</p>
+<p>When a server has at least one origin, from repositories, mirrors or <code>repositoryOrigins</code>, its credentials are
+not sent to a repository with the same ID at another origin.</p>
+<p>The binding is controlled by the <code>maven.repository.credentialScope</code> user property:</p>
+<table class="table table-striped">
+<thead>
+<tr>
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>origin</code> (default)</td>
+<td>Credentials are bound to the known origins. A server without any origin works as before, with a warning.</td>
+</tr>
+<tr>
+<td><code>strict</code></td>
+<td>Credentials are bound to the known origins. A server without any origin is not used.</td>
+</tr>
+<tr>
+<td><code>id</code></td>
+<td>Previous behavior: credentials are matched by server ID only.</td>
+</tr>
+</tbody>
+</table>
+<p>For Maven 4, <code>repositoryOrigins</code> in project settings (<code>.mvn/settings.xml</code>) are ignored with a warning,
+like credentials are, so a project cannot widen the set of hosts your credentials are sent to.</p>
+<p><em>Note:</em> The binding applies only to credentials used by Maven Resolver, for example when artifacts are downloaded
+or deployed with the <a href="https://maven.apache.org/plugins/maven-deploy-plugin/">Maven Deploy Plugin</a>. Plugins that read a server from
+<code>settings.xml</code> directly, for example the <a href="https://maven.apache.org/plugins/maven-release-plugin/">Maven Release Plugin</a> for SCM credentials,
+are not affected by it.</p>
+<h4 id="Password_Encryption">Password Encryption</h4>
+<p>Since Maven 2.1.0, server password and passphrase encryption is available and strongly encouraged:
+See details on <a href="./guides/mini/guide-encryption.html">Guide to Password Encryption</a>.</p>
+<h3 id="Mirrors">Mirrors</h3>
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="xml"><span class="nt">&lt;settings</span> <span class="na">xmlns=</span><span class="s">"http://maven.apache.org/SETTINGS/1.2.0"</span><span class="nt">&gt;</span>
+  ...
+  <span class="nt">&lt;mirrors&gt;</span>
+    <span class="nt">&lt;mirror&gt;</span>
+      <span class="nt">&lt;id&gt;</span>planetmirror.com<span class="nt">&lt;/id&gt;</span>
+      <span class="nt">&lt;name&gt;</span>PlanetMirror Australia<span class="nt">&lt;/name&gt;</span>
+      <span class="nt">&lt;url&gt;</span>http://downloads.planetmirror.com/pub/maven2<span class="nt">&lt;/url&gt;</span>
+      <span class="nt">&lt;mirrorOf&gt;</span>central<span class="nt">&lt;/mirrorOf&gt;</span>
+    <span class="nt">&lt;/mirror&gt;</span>
+  <span class="nt">&lt;/mirrors&gt;</span>
+  ...
+<span class="nt">&lt;/settings&gt;</span>
+</code></pre></div></div>
+<ul>
+<li><strong>id</strong>, <strong>name</strong>: The unique identifier and user-friendly name of
+this mirror. The <code>id</code> is used to differentiate between <code>mirror</code>
+elements and to pick the corresponding credentials from the
+<a href="#Servers"><code>&lt;servers&gt;</code></a> section when connecting to the mirror.</li>
+<li><strong>url</strong>: The base URL of this mirror. The build system will use this
+URL to connect to a repository rather than the original repository
+URL.</li>
+<li><strong>mirrorOf</strong>: The <code>id</code> of the repository that this is a mirror of.
+For example, to point to a mirror of the Maven <code>central</code> repository
+(<code>https://repo.maven.apache.org/maven2/</code>), set this element to
+<code>central</code>. More advanced mappings like <code>repo1,repo2</code> or <code>*,!inhouse</code>
+are also possible. This must not match the mirror <code>id</code>.</li>
+</ul>
+<p>For a more in-depth introduction of mirrors, please read the <a href="./guides/mini/guide-mirror-settings.html">Guide to
+Mirror Settings</a>.</p>
+<h3 id="Proxies">Proxies</h3>
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="xml"><span class="nt">&lt;settings</span> <span class="na">xmlns=</span><span class="s">"http://maven.apache.org/SETTINGS/1.2.0"</span><span class="nt">&gt;</span>
+  ...
+  <span class="nt">&lt;proxies&gt;</span>
+    <span class="nt">&lt;proxy&gt;</span>
+      <span class="nt">&lt;id&gt;</span>myproxy<span class="nt">&lt;/id&gt;</span>
+      <span class="nt">&lt;active&gt;</span>true<span class="nt">&lt;/active&gt;</span>
+      <span class="nt">&lt;protocol&gt;</span>http<span class="nt">&lt;/protocol&gt;</span>
+      <span class="nt">&lt;host&gt;</span>proxy.somewhere.com<span class="nt">&lt;/host&gt;</span>
+      <span class="nt">&lt;port&gt;</span>8080<span class="nt">&lt;/port&gt;</span>
+      <span class="nt">&lt;username&gt;</span>proxyuser<span class="nt">&lt;/username&gt;</span>
+      <span class="nt">&lt;password&gt;</span>somepassword<span class="nt">&lt;/password&gt;</span>
+      <span class="nt">&lt;nonProxyHosts&gt;</span>*.google.com|ibiblio.org<span class="nt">&lt;/nonProxyHosts&gt;</span>
+    <span class="nt">&lt;/proxy&gt;</span>
+  <span class="nt">&lt;/proxies&gt;</span>
+  ...
+<span class="nt">&lt;/settings&gt;</span>
+</code></pre></div></div>
+<ul>
+<li><strong>id</strong>: The unique identifier for this proxy. This is used to
+differentiate between <code>proxy</code> elements.</li>
+<li><strong>active</strong>: <code>true</code> if this proxy is active. This is useful for
+declaring a set of proxies, but only one may be active at a time.</li>
+<li><strong>protocol</strong>, <strong>host</strong>, <strong>port</strong>: The <code>protocol://host:port</code> of the
+proxy, separated into discrete elements.</li>
+<li><strong>username</strong>, <strong>password</strong>: These elements appear as a pair denoting
+the login and password required to authenticate to this proxy
+server.</li>
+<li><strong>nonProxyHosts</strong>: This is a list of hosts which should not be
+proxied. The delimiter of the list is the expected type of the proxy
+server; the example above is pipe delimited - comma delimited is
+also common.</li>
+</ul>
+<h3 id="Profiles">Profiles</h3>
+<p>The <code>profile</code> element in the <code>settings.xml</code> is a truncated version of
+the <code>pom.xml</code> <code>profile</code> element. It consists of the <code>activation</code>,
+<code>repositories</code>, <code>pluginRepositories</code> and <code>properties</code> elements. The
+<code>profile</code> elements only include these four elements because they
+concerns themselves with the build system as a whole (which is the role
+of the <code>settings.xml</code> file), not about individual project object model
+settings.</p>
+<p>If a profile is active from <code>settings</code>, its values will override any
+equivalently ID'd profiles in a POM or <code>profiles.xml</code> file.</p>
+<h4 id="Activation">Activation</h4>
+<p>Activations are the key of a profile. Like the POM's profiles, the power
+of a profile comes from its ability to modify some values only under
+certain circumstances; those circumstances are specified via an
+<code>activation</code> element.</p>
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="xml"><span class="nt">&lt;settings</span> <span class="na">xmlns=</span><span class="s">"http://maven.apache.org/SETTINGS/1.2.0"</span><span class="nt">&gt;</span>
+  <span class="c">&lt;!-- ... --&gt;</span>
+  <span class="nt">&lt;profiles&gt;</span>
+    <span class="nt">&lt;profile&gt;</span>
+      <span class="nt">&lt;id&gt;</span>test<span class="nt">&lt;/id&gt;</span>
+      <span class="nt">&lt;activation&gt;</span>
+        <span class="nt">&lt;activeByDefault&gt;</span>false<span class="nt">&lt;/activeByDefault&gt;</span>
+        <span class="nt">&lt;jdk&gt;</span>21<span class="nt">&lt;/jdk&gt;</span>
+        <span class="nt">&lt;os&gt;</span>
+          <span class="nt">&lt;name&gt;</span>Windows 10<span class="nt">&lt;/name&gt;</span>
+          <span class="nt">&lt;family&gt;</span>Windows<span class="nt">&lt;/family&gt;</span>
+          <span class="nt">&lt;arch&gt;</span>amd64<span class="nt">&lt;/arch&gt;</span>
+          <span class="nt">&lt;version&gt;</span>10.0.19045.5247<span class="nt">&lt;/version&gt;</span>
+        <span class="nt">&lt;/os&gt;</span>
+        <span class="nt">&lt;property&gt;</span>
+          <span class="nt">&lt;name&gt;</span>mavenVersion<span class="nt">&lt;/name&gt;</span>
+          <span class="nt">&lt;value&gt;</span>3.9.9<span class="nt">&lt;/value&gt;</span>
+        <span class="nt">&lt;/property&gt;</span>
+        <span class="nt">&lt;file&gt;</span>
+          <span class="nt">&lt;exists&gt;</span>${project.basedir}/file2.properties<span class="nt">&lt;/exists&gt;</span>
+          <span class="nt">&lt;missing&gt;</span>${project.basedir}/file1.properties<span class="nt">&lt;/missing&gt;</span>
+        <span class="nt">&lt;/file&gt;</span>
+      <span class="nt">&lt;/activation&gt;</span>
+      <span class="c">&lt;!-- ... --&gt;</span>
+    <span class="nt">&lt;/profile&gt;</span>
+  <span class="nt">&lt;/profiles&gt;</span>
+  <span class="c">&lt;!-- ... --&gt;</span>
+<span class="nt">&lt;/settings&gt;</span>
+</code></pre></div></div>
+<p>Activation occurs when all specified criteria have been met, though not
+all are required at once.</p>
+<ul>
+<li><strong>jdk</strong>: <code>activation</code> has a built in, Java-centric check in the
+<code>jdk</code> element. This will activate if the test is run under a jdk
+version number that matches the prefix given. In the above example,
+<code>21.0.1</code> will match. Ranges are also supported.
+See the
+<a href="https://maven.apache.org/enforcer/enforcer-rules/versionRanges.html">maven-enforcer-plugin</a>
+for more details about supported ranges.</li>
+<li><strong>os</strong>: The <code>os</code> element can define some operating system specific
+properties shown above. See the
+<a href="https://maven.apache.org/plugins/maven-enforcer-plugin/rules/requireOS.html">maven-enforcer-plugin</a>
+for more details about OS values.</li>
+<li><strong>property</strong>: The <code>profile</code> will activate if Maven detects a
+property (a value which can be dereferenced within the POM by
+<code>${name}</code>) of the corresponding <code>name=value</code> pair.</li>
+<li><strong>file</strong>: Finally, a given filename may activate the <code>profile</code> by
+the <code>existence</code> of a file, or if it is <code>missing</code>.</li>
+</ul>
+<p>The <code>activation</code> element is not the only way that a <code>profile</code> may be
+activated. The <code>settings.xml</code> file's <code>activeProfile</code> element may contain
+the profile's <code>id</code>. They may also be activated explicitly through the
+command line via a comma separated list after the <code>-P</code> flag (e.g.
+<code>-P test</code>).</p>
+<p><em>To see which profile will activate in a certain build, use the</em>
+<code>maven-help-plugin</code>.</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    mvn help:active-profiles
+</code></pre></div></div>
+<h4 id="Properties">Properties</h4>
+<p>Maven properties are value placeholder, like properties in Ant. Their
+values are accessible anywhere within a POM by using the notation
+<code>${X}</code>, where <code>X</code> is the property. They come in five different styles,
+all accessible from the <code>settings.xml</code> file:</p>
+<ol>
+<li><code>env.X</code>: Prefixing a variable with "env." will return the shell's
+environment variable. For example, <code>${env.PATH}</code> contains the $path
+environment variable (<code>%PATH%</code> in Windows).</li>
+<li><code>project.x</code>: A dot (.) notated path in the POM will contain the
+corresponding element's value. For example:
+<code>&lt;project&gt;&lt;version&gt;1.0&lt;/version&gt;&lt;/project&gt;</code> is accessible via
+<code>${project.version}</code>.</li>
+<li><code>settings.x</code>: A dot (.) notated path in the <code>settings.xml</code> will
+contain the corresponding element's value. For example:
+<code>&lt;settings&gt;&lt;offline&gt;false&lt;/offline&gt;&lt;/settings&gt;</code> is accessible via
+<code>${settings.offline}</code>.</li>
+<li>Java System Properties: All properties accessible via
+<code>java.lang.System.getProperties()</code> are available as POM properties,
+such as <code>${java.home}</code>.</li>
+<li><code>x</code>: Set within a &lt;properties /&gt; element or an external files, the
+value may be used as <code>${someVar}</code>.</li>
+</ol>
+<!-- -->
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="xml"><span class="nt">&lt;settings</span> <span class="na">xmlns=</span><span class="s">"http://maven.apache.org/SETTINGS/1.2.0"</span><span class="nt">&gt;</span>
+  ...
+  <span class="nt">&lt;profiles&gt;</span>
+    <span class="nt">&lt;profile&gt;</span>
+      ...
+      <span class="nt">&lt;properties&gt;</span>
+        <span class="nt">&lt;user.install&gt;</span>${user.home}/our-project<span class="nt">&lt;/user.install&gt;</span>
+      <span class="nt">&lt;/properties&gt;</span>
+      ...
+    <span class="nt">&lt;/profile&gt;</span>
+  <span class="nt">&lt;/profiles&gt;</span>
+  ...
+<span class="nt">&lt;/settings&gt;</span>
+</code></pre></div></div>
+<p>The property <code>${user.install}</code> is accessible from a POM if this profile
+is active.</p>
+<h4 id="Repositories">Repositories</h4>
+<p>Repositories are remote collections of projects from which Maven uses to
+populate the local repository of the build system. It is from this local
+repository that Maven calls it plugins and dependencies. Different
+remote repositories may contain different projects, and under the active
+profile they may be searched for a matching release or snapshot
+artifact.</p>
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="xml"><span class="nt">&lt;settings</span> <span class="na">xmlns=</span><span class="s">"http://maven.apache.org/SETTINGS/1.2.0"</span><span class="nt">&gt;</span>
+  ...
+  <span class="nt">&lt;profiles&gt;</span>
+    <span class="nt">&lt;profile&gt;</span>
+      ...
+      <span class="nt">&lt;repositories&gt;</span>
+        <span class="nt">&lt;repository&gt;</span>
+          <span class="nt">&lt;id&gt;</span>Snapshots<span class="nt">&lt;/id&gt;</span>
+          <span class="nt">&lt;name&gt;</span>Snapshots<span class="nt">&lt;/name&gt;</span>
+          <span class="nt">&lt;releases&gt;</span>
+            <span class="nt">&lt;enabled&gt;</span>false<span class="nt">&lt;/enabled&gt;</span>
+            <span class="nt">&lt;updatePolicy&gt;</span>always<span class="nt">&lt;/updatePolicy&gt;</span>
+            <span class="nt">&lt;checksumPolicy&gt;</span>warn<span class="nt">&lt;/checksumPolicy&gt;</span>
+          <span class="nt">&lt;/releases&gt;</span>
+          <span class="nt">&lt;snapshots&gt;</span>
+            <span class="nt">&lt;enabled&gt;</span>true<span class="nt">&lt;/enabled&gt;</span>
+            <span class="nt">&lt;updatePolicy&gt;</span>never<span class="nt">&lt;/updatePolicy&gt;</span>
+            <span class="nt">&lt;checksumPolicy&gt;</span>fail<span class="nt">&lt;/checksumPolicy&gt;</span>
+          <span class="nt">&lt;/snapshots&gt;</span>
+          <span class="nt">&lt;url&gt;</span>https://oss.sonatype.org/content/repositories/snapshots<span class="nt">&lt;/url&gt;</span>
+          <span class="nt">&lt;layout&gt;</span>default<span class="nt">&lt;/layout&gt;</span>
+        <span class="nt">&lt;/repository&gt;</span>
+      <span class="nt">&lt;/repositories&gt;</span>
+      <span class="nt">&lt;pluginRepositories&gt;</span>
+        <span class="nt">&lt;pluginRepository&gt;</span>
+          <span class="nt">&lt;id&gt;</span>myPluginRepo<span class="nt">&lt;/id&gt;</span>
+          <span class="nt">&lt;name&gt;</span>My Plugins repo<span class="nt">&lt;/name&gt;</span>
+          <span class="nt">&lt;releases&gt;</span>
+            <span class="nt">&lt;enabled&gt;</span>true<span class="nt">&lt;/enabled&gt;</span>
+          <span class="nt">&lt;/releases&gt;</span>
+          <span class="nt">&lt;snapshots&gt;</span>
+            <span class="nt">&lt;enabled&gt;</span>false<span class="nt">&lt;/enabled&gt;</span>
+          <span class="nt">&lt;/snapshots&gt;</span>
+          <span class="nt">&lt;url&gt;</span>https://maven-central-eu....com/maven2/<span class="nt">&lt;/url&gt;</span>
+        <span class="nt">&lt;/pluginRepository&gt;</span>
+      <span class="nt">&lt;/pluginRepositories&gt;</span>
+      ...
+    <span class="nt">&lt;/profile&gt;</span>
+  <span class="nt">&lt;/profiles&gt;</span>
+  ...
+<span class="nt">&lt;/settings&gt;</span>
+</code></pre></div></div>
+<ul>
+<li><strong>releases</strong>, <strong>snapshots</strong>: These are the policies for each type of
+artifact, Release or snapshot. With these two sets, a POM has the
+power to alter the policies for each type independent of the other
+within a single repository. For example, one may decide to enable
+only snapshot downloads, possibly for development purposes.</li>
+<li><strong>enabled</strong>: <code>true</code> or <code>false</code> for whether this repository is
+enabled for the respective type (<code>releases</code> or <code>snapshots</code>).</li>
+<li><strong>updatePolicy</strong>: This element specifies how often updates should
+attempt to occur. Maven will compare the local POM's timestamp
+(stored in a repository's maven-metadata file) to the remote. The
+choices are: <code>always</code>, <code>daily</code> (default), <code>interval:X</code> (where X is
+an integer in minutes) or <code>never</code>.</li>
+<li><strong>checksumPolicy</strong>: When Maven deploys files to the repository, it
+also deploys corresponding checksum files. Your options are to
+<code>ignore</code>, <code>fail</code>, or <code>warn</code> on missing or incorrect checksums.</li>
+<li><strong>layout</strong>: In the above description of repositories, it was
+mentioned that they all follow a common layout. This is mostly
+correct. Maven 2 has a default layout for its repositories; however,
+Maven 1.x had a different layout. Use this element to specify which
+if it is <code>default</code> or <code>legacy</code>.</li>
+</ul>
+<h4 id="Plugin_Repositories">Plugin Repositories</h4>
+<p>Repositories are home to two major types of artifacts. The first are
+artifacts that are used as dependencies of other artifacts. These are
+the majority of artifacts that reside within central. The other type of
+artifact is plugins. Maven plugins are themselves a special type of
+artifact. Because of this, plugin repositories may be separated from
+other repositories (although, I have yet to hear a convincing argument
+for doing so). In any case, the structure of the <code>pluginRepositories</code>
+element block is similar to the <code>repositories</code> element. The
+<code>pluginRepository</code> elements each specify a remote location of where
+Maven can find new plugins.</p>
+<h3 id="Active_Profiles">Active Profiles</h3>
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="xml"><span class="nt">&lt;settings</span> <span class="na">xmlns=</span><span class="s">"http://maven.apache.org/SETTINGS/1.2.0"</span><span class="nt">&gt;</span>
+  ...
+  <span class="nt">&lt;activeProfiles&gt;</span>
+    <span class="nt">&lt;activeProfile&gt;</span>env-test<span class="nt">&lt;/activeProfile&gt;</span>
+  <span class="nt">&lt;/activeProfiles&gt;</span>
+<span class="nt">&lt;/settings&gt;</span>
+</code></pre></div></div>
+<p>The final piece of the <code>settings.xml</code> puzzle is the <code>activeProfiles</code>
+element. This contains a set of <code>activeProfile</code> elements, which each
+have a value of a <code>profile</code> <code>id</code>. Any <code>profile</code> <code>id</code> defined as an
+<code>activeProfile</code> will be active, regardless of any environment settings.
+If no matching profile is found nothing will happen. For example, if
+<code>env-test</code> is an <code>activeProfile</code>, a profile in a <code>pom.xml</code> (or
+<code>profile.xml</code> with a corresponding <code>id</code> will be active. If no such
+profile is found then execution will continue as normal.</p>
+
+        </main>
+      </div>
+    </div>
+    <hr>
+    <footer>
+      <div class="container-fluid">
+        <div class="row-fluid">
+          <p>©      2002–2026 <a href="https://www.apache.org/">The Apache Software Foundation</a></p>
+          <p class="demo-note">A demonstration build of <a href="https://github.com/dashorst/maven-site/tree/diataxis-demo">dashorst/maven-site</a>, not the official Apache Maven site.</p>
+        </div>
+      </div>
+    </footer>
+    <script src="/maven-site/js/guide.js?v=1792948498" defer=""></script>
+    <script>
+    anchors.add();
+    </script>
+  
+
+</body></html>

@@ -1,0 +1,441 @@
+<!DOCTYPE html><!--
+ | The page frame of the Apache Maven Fluido Skin 2.1.0, as the Doxia site renderer writes it
+ | for maven.apache.org. Built with Jekyll: see jekyll/README.md.
+--><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Standard directory layout – Maven</title>
+    <meta name="description" content="The directories and files of a Maven project, what goes in each, and which plugin reads or writes it.">
+    <link rel="stylesheet" href="/maven-site/css/apache-maven-fluido-2.1.0.min.css">
+    <link rel="stylesheet" href="/maven-site/css/site.css">
+    <link rel="stylesheet" href="/maven-site/css/guide.css?v=1792948498">
+    <link rel="stylesheet" href="/maven-site/css/print.css" media="print">
+    <script src="/maven-site/js/apache-maven-fluido-2.1.0.min.js"></script>
+  </head>
+  <body>
+    <div class="container-fluid container-fluid-top">
+      <header>
+        <div id="banner">
+          <div class="pull-left"><div id="bannerLeft"><h1><a href="/maven-site/index.html"><img src="/maven-site/images/apache-maven-project-light-theme.svg" style="width: 489px;height: 83px;" alt="Apache Maven"></a></h1></div></div>
+          <div class="pull-right"><div id="bannerRight"><h1><img src="/maven-site/images/logos/MavenLogoLeaf.svg" style="width: 340px;height: 83px;" alt=""></h1></div></div>
+          <div class="clear"><hr></div>
+        </div>
+
+        <div id="breadcrumbs">
+          <ul class="breadcrumb">
+            <li><a href="https://www.apache.org/">Apache</a><span class="divider">/</span></li>
+            <li><a href="/maven-site/index.html">Maven</a><span class="divider">/</span></li>
+            <li><a href="/maven-site/guides/index.html">Guides</a><span class="divider">/</span></li>
+            <li><a href="/maven-site/guides/topics/start.html">Getting started</a><span class="divider">/</span></li>
+            
+            <li class="active">Standard directory layout <a href="https://github.com/dashorst/maven-site/blob/diataxis-demo/jekyll/_guide/standard-directory-layout.md"><img src="/maven-site/images/accessories-text-editor.png" alt="Edit"></a></li>
+            <li id="publishDate" class="pull-right"><span class="divider">|</span> Last Published: 2026-10-25</li>
+            <li class="pull-right"><span class="divider">|</span> <a href="/maven-site/scm.html">Get Sources</a></li>
+            <li class="pull-right"><a href="https://maven.apache.org/download.cgi">Downloads</a></li>
+          </ul>
+        </div>
+      </header>
+      <div class="row-fluid">
+        <header id="leftColumn" class="span2">
+          
+<form class="guide-search" role="search" action="/maven-site/guides/a-z.html" data-index="/maven-site/guides/search.json" data-script="/maven-site/js/minisearch-7.2.0.js" data-oldest="3.9" data-base="/maven-site">
+  <label class="guide-search-label" for="guide-q-nav">Search the documentation</label>
+  <div class="guide-search-field">
+    <input id="guide-q-nav" name="q" type="search" autocomplete="off" spellcheck="false" placeholder="Search">
+    <kbd class="guide-search-key" aria-hidden="true">/</kbd>
+  </div>
+  
+</form>
+
+          <nav class="well sidebar-nav">
+<ul class="nav nav-list">
+  <li><a href="/maven-site/index.html">Welcome</a></li>
+  <li><a href="https://www.apache.org/licenses/">License</a></li>
+  <li class="nav-header">About Maven</li>
+  <li><a href="/maven-site/what-is-maven.html">What is Maven?</a></li>
+  <li><a href="/maven-site/install.html">Installation</a></li>
+  <li><a href="/maven-site/download.html">Downloads</a></li>
+  <li><a href="/maven-site/run.html">Use</a></li>
+  <li><a href="/maven-site/configure.html">Configure</a></li>
+  <li><a href="/maven-site/docs/history.html">Release Notes</a></li>
+  <li><a href="/maven-site/security.html">Security Reports</a></li>
+  <li class="nav-header">Documentation</li>
+  <li><a href="/maven-site/plugins/index.html">Maven Plugins</a></li>
+  <li><a href="/maven-site/extensions/index.html">Maven Extensions</a></li>
+  <li><a href="/maven-site/tools/index.html"><span class="icon-chevron-down"></span>Maven Tools</a>
+   <ul class="nav nav-list">
+    <li><a href="/maven-site/tools/mvnd.html">Maven Daemon</a></li>
+    <li><a href="/maven-site/tools/mvnsh.html">Maven Shell</a></li>
+    <li><a href="/maven-site/tools/mvnup.html">Maven Upgrade Tool</a></li>
+    <li><a href="/maven-site/tools/mavenwrapper.html">Maven Wrapper</a></li>
+   </ul></li>
+  <li><a href="/maven-site/doxia/index.html"><span class="icon-chevron-right"></span>Doxia</a></li>
+  <li class="active"><a href="/maven-site/guides/index.html">Guides</a></li>
+  <li><a href="/maven-site/users/index.html"><span class="icon-chevron-right"></span>User Manual</a></li>
+  <li><a href="/maven-site/repositories/index.html"><span class="icon-chevron-right"></span>Maven Repositories</a></li>
+  <li><a href="/maven-site/plugin-developers/index.html"><span class="icon-chevron-right"></span>Plugin Development</a></li>
+  <li><a href="/maven-site/developers/index.html"><span class="icon-chevron-right"></span>Contribute to Maven</a></li>
+  <li><a href="/maven-site/articles.html">Books and Resources</a></li>
+  <li class="nav-header">Community</li>
+  <li><a href="/maven-site/community.html">Community Overview</a></li>
+  <li><a href="/maven-site/project-roles.html">Project Roles</a></li>
+  <li><a href="/maven-site/guides/development/guide-helping.html">How to Contribute</a></li>
+  <li><a href="/maven-site/users/getting-help.html">Getting Help</a></li>
+  <li><a href="/maven-site/issue-management.html">Issue Management</a></li>
+  <li><a href="/maven-site/scm.html">Getting Maven Source</a></li>
+  <li><a href="/maven-site/team.html">The Maven Team</a></li>
+  <li class="nav-header">Project Documentation</li>
+  <li><a href="/maven-site/project-info.html">Project Information</a></li>
+  <li class="nav-header">Maven Projects</li>
+  <li><a href="/maven-site/ref/current">Maven</a></li>
+  <li><a href="/maven-site/archetypes/index.html">Archetypes</a></li>
+  <li><a href="/maven-site/extensions/index.html">Extensions</a></li>
+  <li><a href="/maven-site/pom/index.html">Parent POMs</a></li>
+  <li><a href="/maven-site/plugins/index.html">Plugins</a></li>
+  <li><a href="/maven-site/skins/index.html">Skins</a></li>
+  <li><a><span class="icon-chevron-down"></span>Components</a>
+   <ul class="nav nav-list">
+    <li><a href="/maven-site/archetype/index.html">Archetype</a></li>
+    <li><a href="/maven-site/resolver/index.html">Artifact Resolver</a></li>
+    <li><a href="/maven-site/doxia/index.html">Doxia</a></li>
+    <li><a href="/maven-site/maven-indexer/index.html">Indexer</a></li>
+    <li><a href="/maven-site/jxr/index.html">JXR</a></li>
+    <li><a href="/maven-site/plugin-testing/index.html">Plugin Testing</a></li>
+    <li><a href="/maven-site/plugin-tools/index.html">Plugin Tools</a></li>
+    <li><a href="/maven-site/apache-resource-bundles/index.html">Resource Bundles</a></li>
+    <li><a href="/maven-site/scm/index.html">SCM</a></li>
+    <li><a href="/maven-site/shared/index.html">Shared Components</a></li>
+    <li><a href="/maven-site/surefire/index.html">Surefire</a></li>
+    <li><a href="/maven-site/wagon/index.html">Wagon</a></li>
+   </ul></li>
+  <li class="nav-header">ASF</li>
+  <li><a href="https://www.apache.org/foundation/how-it-works.html">How Apache Works</a></li>
+  <li><a href="https://www.apache.org/foundation/">Foundation</a></li>
+  <li><a href="https://privacy.apache.org/policies/privacy-policy-public.html">Data Privacy</a></li>
+  <li><a href="https://www.apache.org/foundation/sponsorship.html">Sponsoring Apache</a></li>
+  <li><a href="https://www.apache.org/foundation/thanks.html">Thanks</a></li>
+</ul>
+          </nav>
+          <div class="well sidebar-nav">
+            <div id="poweredBy">
+              <div class="clear"></div>
+              <a href="/maven-site/" class="builtBy" target="_blank"><img class="builtBy" alt="Built by Maven" src="/maven-site/images/logos/maven-feather.png"></a>
+            </div>
+          </div>
+        </header>
+        <main id="bodyColumn" class="span10">
+          
+
+
+
+
+<header class="guide-head">
+  <h1 id="Standard_directory_layout">Standard directory layout</h1>
+  <p class="lead">The directories and files of a Maven project, what goes in each, and which plugin reads or writes it.</p>
+  <p class="guide-plates"><span class="label guide-kind guide-kind--reference">Reference</span>
+    
+    <a class="guide-topic-link" href="/maven-site/guides/topics/start.html">Getting started</a></p>
+  
+  <p class="guide-version-note alert" data-since="3.9" hidden="">This page describes Maven 3.9 and later; you chose Maven <span data-chosen=""></span>.</p>
+  
+</header>
+<div class="doxia-toc"><ul><li><a href="#Top-level_files_and_directories">Top-level files and directories</a></li><li><a href="#Source_directories">Source directories</a></li><li><a href="#Build_output">Build output</a></li><li><a href="#Changing_a_directory">Changing a directory</a></li></ul></div>
+<div class="guide-content">
+<p>Maven expects the files of a project in fixed places, so a project only has to describe what is different about it, and anyone who knows one Maven project finds their way in another. The paths below are relative to the directory that holds <em>pom.xml</em>.</p>
+<h2 id="Top-level_files_and_directories">Top-level files and directories</h2>
+<table class="table table-striped">
+<thead>
+<tr>
+<th>Path</th>
+<th>Contents</th>
+<th>Used by</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>pom.xml</code></td>
+<td>The project's POM.</td>
+<td>Maven</td>
+</tr>
+<tr>
+<td><code>src/</code></td>
+<td>Everything the build is made from: code, resources, documentation.</td>
+<td>Plugins, see below</td>
+</tr>
+<tr>
+<td><code>target/</code></td>
+<td>Everything the build produces. <code>mvn clean</code> deletes it.</td>
+<td>Plugins, see below</td>
+</tr>
+<tr>
+<td><code>.mvn/</code></td>
+<td>Maven configuration for this project. Its location marks the root directory of the project, or of a multi-module build.</td>
+<td>Maven</td>
+</tr>
+<tr>
+<td><code>.mvn/maven.config</code></td>
+<td>Command-line options added to every <code>mvn</code> run in the project, one option per line.</td>
+<td>Maven</td>
+</tr>
+<tr>
+<td><code>.mvn/jvm.config</code></td>
+<td>Options for the JVM that Maven runs in, such as <code>-Xmx2g</code>.</td>
+<td>Maven</td>
+</tr>
+<tr>
+<td><code>.mvn/extensions.xml</code></td>
+<td>Core extensions to load before the build. See <a href="../guides/mini/guide-using-extensions.html">Using extensions</a>.</td>
+<td>Maven</td>
+</tr>
+<tr>
+<td><code>LICENSE</code>, <code>NOTICE</code>, <code>README</code></td>
+<td>Documents for people who receive the source, in any text format.</td>
+<td>Not read by Maven</td>
+</tr>
+</tbody>
+</table>
+<p>The only other directories at the top are those of the version control system, such as <code>.git</code>, and subprojects in a <a href="aggregation-and-inheritance.html">multi-module build</a>, each laid out the same way.</p>
+<blockquote class="guide-since">
+<p><strong>Maven 4:</strong> Without a <code>.mvn</code> directory, Maven 4 warns <code>Unable to find the root directory. Create a .mvn directory in the root directory or add the root="true" attribute on the root project's model to identify it.</code></p>
+</blockquote>
+<h2 id="Source_directories">Source directories</h2>
+<p>Under <code>src</code>, <code>main</code> holds what goes into the artifact and <code>test</code> what is needed only to test it. Within each, there is one directory per kind of input.</p>
+<table class="table table-striped">
+<thead>
+<tr>
+<th>Path</th>
+<th>Contents</th>
+<th>Used by</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>src/main/java</code></td>
+<td>Java source code, in directories by package.</td>
+<td><code>compiler:compile</code>, into <code>target/classes</code></td>
+</tr>
+<tr>
+<td><code>src/main/resources</code></td>
+<td>Files that go on the classpath next to the classes, such as property files. They end up in the JAR.</td>
+<td><code>resources:resources</code>, into <code>target/classes</code></td>
+</tr>
+<tr>
+<td><code>src/main/filters</code></td>
+<td>Property files with values for <a href="../guides/getting-started/index.html#How_do_I_filter_resource_files.3F">resource filtering</a>.</td>
+<td>Only when you name them in <code>&lt;build&gt;&lt;filters&gt;</code></td>
+</tr>
+<tr>
+<td><code>src/main/webapp</code></td>
+<td>The web application: <code>WEB-INF/web.xml</code>, pages, static files.</td>
+<td><code>war:war</code>, for packaging <code>war</code></td>
+</tr>
+<tr>
+<td><code>src/main/&lt;language&gt;</code></td>
+<td>Sources in another language or format, such as grammars or models.</td>
+<td>The plugin for that language</td>
+</tr>
+<tr>
+<td><code>src/test/java</code></td>
+<td>Test source code.</td>
+<td><code>compiler:testCompile</code> into <code>target/test-classes</code>, and <code>surefire:test</code></td>
+</tr>
+<tr>
+<td><code>src/test/resources</code></td>
+<td>Files on the classpath of the tests only.</td>
+<td><code>resources:testResources</code>, into <code>target/test-classes</code></td>
+</tr>
+<tr>
+<td><code>src/test/filters</code></td>
+<td>Property files for filtering the test resources.</td>
+<td>Only when you name them in <code>&lt;build&gt;&lt;filters&gt;</code></td>
+</tr>
+<tr>
+<td><code>src/it</code></td>
+<td>Integration tests, mostly of Maven plugins: one small Maven project per test.</td>
+<td><code>maven-invoker-plugin</code></td>
+</tr>
+<tr>
+<td><code>src/assembly</code></td>
+<td>Descriptors for the Assembly plugin.</td>
+<td>Only when you name them in the plugin's configuration</td>
+</tr>
+<tr>
+<td><code>src/site</code></td>
+<td>Pages and configuration of the project website.</td>
+<td><code>site:site</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="Build_output">Build output</h2>
+<table class="table table-striped">
+<thead>
+<tr>
+<th>Path</th>
+<th>Contents</th>
+<th>Written by</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>target/classes</code></td>
+<td>Compiled classes and processed resources.</td>
+<td><code>compiler:compile</code>, <code>resources:resources</code></td>
+</tr>
+<tr>
+<td><code>target/test-classes</code></td>
+<td>Compiled tests and processed test resources.</td>
+<td><code>compiler:testCompile</code>, <code>resources:testResources</code></td>
+</tr>
+<tr>
+<td><code>target/generated-sources</code></td>
+<td>Source code generated during the build, such as by annotation processors.</td>
+<td><code>compiler:compile</code> and code generators</td>
+</tr>
+<tr>
+<td><code>target/generated-test-sources</code></td>
+<td>Test source code generated during the build.</td>
+<td><code>compiler:testCompile</code> and code generators</td>
+</tr>
+<tr>
+<td><code>target/surefire-reports</code></td>
+<td>Test results, as text and XML.</td>
+<td><code>surefire:test</code></td>
+</tr>
+<tr>
+<td><code>target/&lt;artifactId&gt;-&lt;version&gt;.jar</code></td>
+<td>The packaged artifact; <code>.war</code> for packaging <code>war</code>.</td>
+<td><code>jar:jar</code>, <code>war:war</code></td>
+</tr>
+<tr>
+<td><code>target/maven-archiver</code></td>
+<td><code>pom.properties</code>, with the coordinates written into the JAR.</td>
+<td><code>jar:jar</code></td>
+</tr>
+<tr>
+<td><code>target/maven-status</code></td>
+<td>State the Compiler plugin keeps to compile only what changed.</td>
+<td><code>compiler:compile</code>, <code>compiler:testCompile</code></td>
+</tr>
+<tr>
+<td><code>target/site</code></td>
+<td>The generated website.</td>
+<td><code>site:site</code></td>
+</tr>
+<tr>
+<td><code>target/dependency</code></td>
+<td>Copies of the project's dependencies.</td>
+<td><code>dependency:copy-dependencies</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="Changing_a_directory">Changing a directory</h2>
+<p>The defaults are set in the <a href="https://maven.apache.org/ref/current/maven-model-builder/super-pom.html">Super POM</a>, which every POM inherits. A project can override them in <code>&lt;build&gt;</code>, for example to compile sources from <code>src/java</code>:</p>
+<p><em>pom.xml</em></p>
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="xml"><span class="nt">&lt;build&gt;</span>
+  <span class="nt">&lt;sourceDirectory&gt;</span>src/java<span class="nt">&lt;/sourceDirectory&gt;</span>
+<span class="nt">&lt;/build&gt;</span>
+</code></pre></div></div>
+<p>The other elements are <code>&lt;testSourceDirectory&gt;</code>, <code>&lt;resources&gt;</code>, <code>&lt;testResources&gt;</code>, <code>&lt;directory&gt;</code> for <code>target</code>, <code>&lt;outputDirectory&gt;</code> and <code>&lt;testOutputDirectory&gt;</code>; see <code>&lt;build&gt;</code> in the <a href="../pom.html#The_Build_Element_Set">POM reference</a>.</p>
+
+</div>
+<footer class="guide-foot">
+  <h2 id="More_in_Getting_started">More in <a href="/maven-site/guides/topics/start.html">Getting started</a></h2>
+  
+  <div class="guide-foot-kinds">
+  
+    
+    
+    <section>
+      <h3 id="Tutorials">Tutorials</h3>
+      
+<ul class="guide-list">
+
+  
+  
+  <li>
+    <a class="guide-list-title" href="/maven-site/guides/first-project.html">Create your first project</a>
+    
+    <span class="guide-list-summary">Check Java and Maven, generate a project from the quickstart archetype, build it into a JAR, run its test and run the program.</span>
+  </li>
+
+  
+  
+  <li>
+    <a class="guide-list-title" href="/maven-site/guides/add-a-dependency.html">Add a dependency and a test</a>
+    
+    <span class="guide-list-summary">Use a library from Maven Central in your project, test the code that uses it with JUnit, and see which libraries Maven brought in.</span>
+  </li>
+
+</ul>
+
+    </section>
+    
+  
+    
+    
+  
+    
+    
+    <section>
+      <h3 id="Reference">Reference</h3>
+      
+<ul class="guide-list">
+
+  
+  
+  <li class="is-current">
+    <strong class="guide-list-title" aria-current="page">Standard directory layout</strong>
+    
+    <span class="guide-list-summary">The directories and files of a Maven project, what goes in each, and which plugin reads or writes it.</span>
+  </li>
+
+</ul>
+
+    </section>
+    
+  
+    
+    
+    <section>
+      <h3 id="Explanation">Explanation</h3>
+      
+<ul class="guide-list">
+
+  
+  
+  <li>
+    <a class="guide-list-title" href="/maven-site/guides/build-lifecycle.html">Phases, goals and plugins</a>
+    
+    <span class="guide-list-summary">How Maven turns a command such as mvn package into a series of plugin goals, and why every Maven project builds with the same few commands.</span>
+  </li>
+
+</ul>
+
+    </section>
+    
+  
+  </div>
+  
+  <p class="guide-provenance">Written from <a href="/maven-site/guides/introduction/introduction-to-the-standard-directory-layout.html"><code>guides/introduction/introduction-to-the-standard-directory-layout.md</code></a>.</p>
+  
+</footer>
+
+        </main>
+      </div>
+    </div>
+    <hr>
+    <footer>
+      <div class="container-fluid">
+        <div class="row-fluid">
+          <p>©      2002–2026 <a href="https://www.apache.org/">The Apache Software Foundation</a></p>
+          <p class="demo-note">A demonstration build of <a href="https://github.com/dashorst/maven-site/tree/diataxis-demo">dashorst/maven-site</a>, not the official Apache Maven site.</p>
+        </div>
+      </div>
+    </footer>
+    <script src="/maven-site/js/guide.js?v=1792948498" defer=""></script>
+    <script>
+    anchors.add();
+    </script>
+  
+
+</body></html>

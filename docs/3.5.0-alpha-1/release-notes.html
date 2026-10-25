@@ -1,0 +1,363 @@
+<!DOCTYPE html><!--
+ | The page frame of the Apache Maven Fluido Skin 2.1.0, as the Doxia site renderer writes it
+ | for maven.apache.org. Built with Jekyll: see jekyll/README.md.
+--><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Release Notes – Maven 3.5.0-alpha-1 – Maven</title>
+    
+    <link rel="stylesheet" href="/maven-site/css/apache-maven-fluido-2.1.0.min.css">
+    <link rel="stylesheet" href="/maven-site/css/site.css">
+    <link rel="stylesheet" href="/maven-site/css/guide.css?v=1792948498">
+    <link rel="stylesheet" href="/maven-site/css/print.css" media="print">
+    <script src="/maven-site/js/apache-maven-fluido-2.1.0.min.js"></script>
+  </head>
+  <body>
+    <div class="container-fluid container-fluid-top">
+      <header>
+        <div id="banner">
+          <div class="pull-left"><div id="bannerLeft"><h1><a href="/maven-site/index.html"><img src="/maven-site/images/apache-maven-project-light-theme.svg" style="width: 489px;height: 83px;" alt="Apache Maven"></a></h1></div></div>
+          <div class="pull-right"><div id="bannerRight"><h1><img src="/maven-site/images/logos/MavenLogoLeaf.svg" style="width: 340px;height: 83px;" alt=""></h1></div></div>
+          <div class="clear"><hr></div>
+        </div>
+
+        <div id="breadcrumbs">
+          <ul class="breadcrumb">
+            <li><a href="https://www.apache.org/">Apache</a><span class="divider">/</span></li>
+            <li><a href="/maven-site/index.html">Maven</a><span class="divider">/</span></li>
+            
+            <li class="active">Release Notes – Maven 3.5.0-alpha-1 <a href="https://github.com/apache/maven-site/tree/master/content/markdown/docs/3.5.0-alpha-1/release-notes.md"><img src="/maven-site/images/accessories-text-editor.png" alt="Edit"></a></li>
+            <li id="publishDate" class="pull-right"><span class="divider">|</span> Last Published: 2026-10-25</li>
+            <li class="pull-right"><span class="divider">|</span> <a href="/maven-site/scm.html">Get Sources</a></li>
+            <li class="pull-right"><a href="https://maven.apache.org/download.cgi">Downloads</a></li>
+          </ul>
+        </div>
+      </header>
+      <div class="row-fluid">
+        <header id="leftColumn" class="span2">
+          
+<form class="guide-search" role="search" action="/maven-site/guides/a-z.html" data-index="/maven-site/guides/search.json" data-script="/maven-site/js/minisearch-7.2.0.js" data-oldest="3.9" data-base="/maven-site">
+  <label class="guide-search-label" for="guide-q-nav">Search the documentation</label>
+  <div class="guide-search-field">
+    <input id="guide-q-nav" name="q" type="search" autocomplete="off" spellcheck="false" placeholder="Search">
+    <kbd class="guide-search-key" aria-hidden="true">/</kbd>
+  </div>
+  
+</form>
+
+          <nav class="well sidebar-nav">
+<ul class="nav nav-list">
+  <li><a href="/maven-site/index.html">Welcome</a></li>
+  <li><a href="https://www.apache.org/licenses/">License</a></li>
+  <li class="nav-header">About Maven</li>
+  <li><a href="/maven-site/what-is-maven.html">What is Maven?</a></li>
+  <li><a href="/maven-site/install.html">Installation</a></li>
+  <li><a href="/maven-site/download.html">Downloads</a></li>
+  <li><a href="/maven-site/run.html">Use</a></li>
+  <li><a href="/maven-site/configure.html">Configure</a></li>
+  <li><a href="/maven-site/docs/history.html">Release Notes</a></li>
+  <li><a href="/maven-site/security.html">Security Reports</a></li>
+  <li class="nav-header">Documentation</li>
+  <li><a href="/maven-site/plugins/index.html">Maven Plugins</a></li>
+  <li><a href="/maven-site/extensions/index.html">Maven Extensions</a></li>
+  <li><a href="/maven-site/tools/index.html"><span class="icon-chevron-down"></span>Maven Tools</a>
+   <ul class="nav nav-list">
+    <li><a href="/maven-site/tools/mvnd.html">Maven Daemon</a></li>
+    <li><a href="/maven-site/tools/mvnsh.html">Maven Shell</a></li>
+    <li><a href="/maven-site/tools/mvnup.html">Maven Upgrade Tool</a></li>
+    <li><a href="/maven-site/tools/mavenwrapper.html">Maven Wrapper</a></li>
+   </ul></li>
+  <li><a href="/maven-site/doxia/index.html"><span class="icon-chevron-right"></span>Doxia</a></li>
+  <li><a href="/maven-site/guides/index.html">Guides</a></li>
+  <li><a href="/maven-site/users/index.html"><span class="icon-chevron-right"></span>User Manual</a></li>
+  <li><a href="/maven-site/repositories/index.html"><span class="icon-chevron-right"></span>Maven Repositories</a></li>
+  <li><a href="/maven-site/plugin-developers/index.html"><span class="icon-chevron-right"></span>Plugin Development</a></li>
+  <li><a href="/maven-site/developers/index.html"><span class="icon-chevron-right"></span>Contribute to Maven</a></li>
+  <li><a href="/maven-site/articles.html">Books and Resources</a></li>
+  <li class="nav-header">Community</li>
+  <li><a href="/maven-site/community.html">Community Overview</a></li>
+  <li><a href="/maven-site/project-roles.html">Project Roles</a></li>
+  <li><a href="/maven-site/guides/development/guide-helping.html">How to Contribute</a></li>
+  <li><a href="/maven-site/users/getting-help.html">Getting Help</a></li>
+  <li><a href="/maven-site/issue-management.html">Issue Management</a></li>
+  <li><a href="/maven-site/scm.html">Getting Maven Source</a></li>
+  <li><a href="/maven-site/team.html">The Maven Team</a></li>
+  <li class="nav-header">Project Documentation</li>
+  <li><a href="/maven-site/project-info.html">Project Information</a></li>
+  <li class="nav-header">Maven Projects</li>
+  <li><a href="/maven-site/ref/current">Maven</a></li>
+  <li><a href="/maven-site/archetypes/index.html">Archetypes</a></li>
+  <li><a href="/maven-site/extensions/index.html">Extensions</a></li>
+  <li><a href="/maven-site/pom/index.html">Parent POMs</a></li>
+  <li><a href="/maven-site/plugins/index.html">Plugins</a></li>
+  <li><a href="/maven-site/skins/index.html">Skins</a></li>
+  <li><a><span class="icon-chevron-down"></span>Components</a>
+   <ul class="nav nav-list">
+    <li><a href="/maven-site/archetype/index.html">Archetype</a></li>
+    <li><a href="/maven-site/resolver/index.html">Artifact Resolver</a></li>
+    <li><a href="/maven-site/doxia/index.html">Doxia</a></li>
+    <li><a href="/maven-site/maven-indexer/index.html">Indexer</a></li>
+    <li><a href="/maven-site/jxr/index.html">JXR</a></li>
+    <li><a href="/maven-site/plugin-testing/index.html">Plugin Testing</a></li>
+    <li><a href="/maven-site/plugin-tools/index.html">Plugin Tools</a></li>
+    <li><a href="/maven-site/apache-resource-bundles/index.html">Resource Bundles</a></li>
+    <li><a href="/maven-site/scm/index.html">SCM</a></li>
+    <li><a href="/maven-site/shared/index.html">Shared Components</a></li>
+    <li><a href="/maven-site/surefire/index.html">Surefire</a></li>
+    <li><a href="/maven-site/wagon/index.html">Wagon</a></li>
+   </ul></li>
+  <li class="nav-header">ASF</li>
+  <li><a href="https://www.apache.org/foundation/how-it-works.html">How Apache Works</a></li>
+  <li><a href="https://www.apache.org/foundation/">Foundation</a></li>
+  <li><a href="https://privacy.apache.org/policies/privacy-policy-public.html">Data Privacy</a></li>
+  <li><a href="https://www.apache.org/foundation/sponsorship.html">Sponsoring Apache</a></li>
+  <li><a href="https://www.apache.org/foundation/thanks.html">Thanks</a></li>
+</ul>
+          </nav>
+          <div class="well sidebar-nav">
+            <div id="poweredBy">
+              <div class="clear"></div>
+              <a href="/maven-site/" class="builtBy" target="_blank"><img class="builtBy" alt="Built by Maven" src="/maven-site/images/logos/maven-feather.png"></a>
+            </div>
+          </div>
+        </header>
+        <main id="bodyColumn" class="span10">
+          
+<!-- 
+Licensed to the Apache Software Foundation (ASF) under one
+or more contributor license agreements.  See the NOTICE file
+distributed with this work for additional information
+regarding copyright ownership.  The ASF licenses this file
+to you under the Apache License, Version 2.0 (the
+"License"); you may not use this file except in compliance
+with the License.  You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing,
+software distributed under the License is distributed on an
+"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+KIND, either express or implied.  See the License for the
+specific language governing permissions and limitations
+under the License.
+-->
+<h1 id="Release_Notes_.E2.80.93_Maven_3.5.0-alpha-1">Release Notes – Maven 3.5.0-alpha-1</h1>
+<p>The Apache Maven team would like to announce the release of Maven 3.5.0-alpha-1.</p>
+<div class="alert alert-error" role="alert">
+<p><b>NOTE:</b></p>
+<p>This is an <i>ALPHA</i> release. There is the potential that features may be added/removed between this release and the first GA release in the 3.5.x release line.</p>
+<p><i>Please consult the Known Issues section below before use</i></p> 
+</div>
+<p>Maven 3.5.0-alpha-1 is <a href="../../download.html">available for download</a>.</p>
+<p>Maven is a software project management and comprehension tool. Based on the concept of a project object model
+(POM), Maven can manage a project's build, reporting and documentation from a central place.</p>
+<p>The core release is independent of the plugins available. Further releases of plugins will be made separately.
+See the <a href="../../plugins/index.html">PluginList</a> for more information.</p>
+<p>We hope you enjoy using Maven! If you have any questions, please consult:</p>
+<ul>
+<li>the website: <a href="/maven-site/">http://maven.apache.org/</a></li>
+<li>the maven-user mailing list: <a href="https://maven.apache.org/mailing-lists.html">http://maven.apache.org/mailing-lists.html</a></li>
+<li>the reference documentation: <a href="https://maven.apache.org/ref/3.5.0-alpha-1/">http://maven.apache.org/ref/3.5.0-alpha-1/</a></li>
+</ul>
+<h2 id="Known_Issues">Known Issues</h2>
+<p>The following issues were identified during release testing of this <em>ALPHA</em> release but have not been deemed as release blockers:</p>
+<ul>
+<li><a href="https://issues.apache.org/jira/browse/MNG-6177">MNG-6177</a> The <code>--file</code> and <code>-f</code> option to specify a <code>pom.xml</code> to use does not work if the path includes characters that need quoting such as whitespace or <code>&amp;</code>.</li>
+<li><a href="https://issues.apache.org/jira/browse/MNG-6115">MNG-6115</a> If Maven is installed in a writable location, every build will create a new <code>lib/ext/jansi-....</code> file.</li>
+</ul>
+<h2 id="Why_not_Maven_3.4.0.3F">Why not Maven 3.4.0?</h2>
+<p>After Maven 3.3.9 was released, the Eclipse Aether project was retired and the code base was migrated to the Apache Maven project.</p>
+<p>The original goal for the 3.4.0 release was to replace Aether with the exact same code after migration to the Apache Maven project and then proceed with bug fixes to the resolver code as well as other areas of Maven.</p>
+<p>The migration of the code between the two foundations took longer than expected and as a result there were other changes committed to Maven core that were outside the scope of intent for 3.4.0.</p>
+<p>In order to refocus on the original intent for 3.4.0, the decision was taken to revert the Maven core history to the point of the 3.3.9 release and merge in the desired changes one at a time.</p>
+<p>Because there had been a lot of communication about different features being delivered and bugs fixed in Maven 3.4.0 and the new history may not contain them in the first release, the decision was taken to forever burn the 3.4.x release line.</p>
+<p>More detail on this decision can be read in the <a href="http://www.mail-archive.com/dev@maven.apache.org/msg112103.html">mailing list archive</a>.</p>
+<h2 id="Reporters_and_Contributors_of_this_release">Reporters and Contributors of this release</h2>
+<p>Bugs:</p>
+<ul>
+<li><a href="https://issues.apache.org/jira/browse/MNG-5963">MNG-5963</a> reporter: Larry Singer</li>
+<li><a href="https://issues.apache.org/jira/browse/MNG-5962">MNG-5962</a> reporter/contributor: Miriam Lee</li>
+<li><a href="https://issues.apache.org/jira/browse/MNG-5961">MNG-5961</a> reporter: Mike Drob</li>
+<li><a href="https://issues.apache.org/jira/browse/MNG-5958">MNG-5958</a> reporter: Meytal Genah, contributor: Anton Tanasenko</li>
+<li><a href="https://issues.apache.org/jira/browse/MNG-5852">MNG-5852</a> reporter: Jeffrey Alexander</li>
+<li><a href="https://issues.apache.org/jira/browse/MNG-5823">MNG-5823</a> reporter: Tobias Oberlies</li>
+<li><a href="https://issues.apache.org/jira/browse/MNG-5815">MNG-5815</a> reporter: Peter Kjær Guldbæk</li>
+<li><a href="https://issues.apache.org/jira/browse/MNG-5368">MNG-5368</a> reporter: Andrew Haines</li>
+</ul>
+<p>Improvements:</p>
+<ul>
+<li><a href="https://issues.apache.org/jira/browse/MNG-6030">MNG-6030</a> reporter: Andriy contributor: Andriy</li>
+<li><a href="https://issues.apache.org/jira/browse/MNG-5934">MNG-5934</a> reporter/contributor: Alex Henrie</li>
+<li><a href="https://issues.apache.org/jira/browse/MNG-5883">MNG-5883</a> reporter: Ben Caradoc-Davies</li>
+<li><a href="https://issues.apache.org/jira/browse/MNG-3507">MNG-3507</a> contributors: Jason Dillon, Sébastian Le Merdy</li>
+</ul>
+<p>Many thanks to all reporters and contributors for their time and support.</p>
+<h2 id="Preliminary_Testers">Preliminary Testers</h2>
+<p>Thank you also for your time and feedback.</p>
+<h2 id="Overview_about_the_changes">Overview about the changes</h2>
+<ul>
+<li>
+<p>The most obvious change you may encounter is that the console output
+has colors now <a href="https://issues.apache.org/jira/browse/MNG-3507">MNG-3507</a>, <a href="https://issues.apache.org/jira/browse/MNG-6093">MNG-6093</a>.</p>
+</li>
+<li>
+<p>The new <code>project.directory</code> special property adds support in every calculated URLs (project, SCM, site)
+for module directory name that does not match artifactId <a href="https://issues.apache.org/jira/browse/MNG-5878">MNG-5878</a></p>
+</li>
+<li>
+<p>The <code>JAVA_HOME</code> discovery has been reduced to simply check if <code>JAVA_HOME</code> is set
+or not then trying to discover via <code>which java</code>, nothing more <a href="https://issues.apache.org/jira/browse/MNG-6003">MNG-6003</a>.</p>
+</li>
+<li>
+<p>The build bootstrapping support via Apache Ant has been removed. You can now only bootstrap Maven
+build with a previous version of Maven, but not with Ant any more <a href="https://issues.apache.org/jira/browse/MNG-5904">MNG-5904</a>.</p>
+</li>
+<li>
+<p>Based on problems in using <code>M2_HOME</code> related to different Maven versions installed and
+to simplify things, the usage of <code>M2_HOME</code> has been removed and is not
+supported any more <a href="https://issues.apache.org/jira/browse/MNG-5823">MNG-5823</a>, <a href="https://issues.apache.org/jira/browse/MNG-5836">MNG-5836</a>, <a href="https://issues.apache.org/jira/browse/MNG-5607">MNG-5607</a>.</p>
+</li>
+<li>
+<p>Important change for windows users: The usage of <code>%HOME%</code> has been replaced
+with <code>%USERPROFILE%</code> <a href="https://issues.apache.org/jira/browse/MNG-6001">MNG-6001</a></p>
+</li>
+<li>
+<p>Several issues have been reported and fixed related to the <code>mvn</code> script either
+for Unix/Linux/Cygwin/Solaris or for Windows
+<a href="https://issues.apache.org/jira/browse/MNG-5815">MNG-5815</a>, <a href="https://issues.apache.org/jira/browse/MNG-5852">MNG-5852</a>, <a href="https://issues.apache.org/jira/browse/MNG-5963">MNG-5963</a>, <a href="https://issues.apache.org/jira/browse/MNG-6022">MNG-6022</a>.</p>
+</li>
+<li>
+<p>In Maven 3.3.9, we have removed bindings for maven-ejb3-plugin because it
+does not exist. We follow-up and removed the artifact handler for <code>ejb3</code>
+and the <code>par</code> lifecycle <a href="https://issues.apache.org/jira/browse/MNG-6014">MNG-6014</a>, <a href="https://issues.apache.org/jira/browse/MNG-6017">MNG-6017</a>.</p>
+</li>
+<li>
+<p>In previous Maven versions, there had been a larger problem related to
+memory usage in case of very large reactors (200-300 modules or more)
+which caused failures with out of memeory exceptions or the need to increase
+the memory settings. This problem has been fixed with <a href="https://issues.apache.org/jira/browse/MNG-6030">MNG-6030</a>.</p>
+</li>
+<li>
+<p>If you have defined a property within the <code>.mvn/maven.config</code> file,
+it was not possible to overwrite the property via command line.
+This has been fixed with <a href="https://issues.apache.org/jira/browse/MNG-6078">MNG-6078</a>.</p>
+</li>
+<li>
+<p>If you have are using <code>&lt;prerequisites&gt;..&lt;/prerequisites&gt;</code> for a non
+maven-plugin project, you will get a WARNING which looks like this:</p>
+</li>
+</ul>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[INFO] Scanning for projects...
+[WARNING] The project org.apache.maven:maven:pom:3.5.0-SNAPSHOT uses prerequisites which is only intended for maven-plugin projects but not for non maven-plugin projects. For such purposes you should use the maven-enforcer-plugin. See https://maven.apache.org/enforcer/enforcer-rules/requireMavenVersion.html
+</code></pre></div></div>
+<p>This will tell you to use maven-enforcer-plugin to check the version of Maven
+you are expecting to build your project with, instead of using <code>prerequisites</code>
+<a href="https://issues.apache.org/jira/browse/MNG-5297">MNG-5297</a>, <a href="https://issues.apache.org/jira/browse/MNG-6092">MNG-6092</a>.</p>
+<ul>
+<li>Replaced Eclipse Aether with <a href="https://maven.apache.org/resolver/">Maven Resolver</a>
+<a href="https://issues.apache.org/jira/browse/MNG-6110">MNG-6110</a>, <a href="https://issues.apache.org/jira/browse/MNG-6140">MNG-6140</a>.</li>
+</ul>
+<p>Improvements:</p>
+<p>Bugs:</p>
+<ul>
+<li><a href="https://issues.apache.org/jira/browse/MNG-5297">MNG-5297</a> - Site should tell 'prerequisites.maven is deprecated'</li>
+<li><a href="https://issues.apache.org/jira/browse/MNG-5368">MNG-5368</a> - UnsupportedOperationException thrown when version range is not correct in dependencyManagement definitions</li>
+<li><a href="https://issues.apache.org/jira/browse/MNG-5629">MNG-5629</a> - ClosedChannelException from DefaultUpdateCheckManager.read</li>
+<li><a href="https://issues.apache.org/jira/browse/MNG-5815">MNG-5815</a> - "mvn.cmd" does not indicate failure properly when using "&amp;&amp;"</li>
+<li><a href="https://issues.apache.org/jira/browse/MNG-5823">MNG-5823</a> - mvnDebug doesn't work with M2_HOME with spaces - missing quotes</li>
+<li><a href="https://issues.apache.org/jira/browse/MNG-5829">MNG-5829</a> - mvn shell script fails with syntax error on Solaris 10</li>
+<li><a href="https://issues.apache.org/jira/browse/MNG-5836">MNG-5836</a> - logging config is overridden by $M2_HOME/lib/ext/*.jar</li>
+<li><a href="https://issues.apache.org/jira/browse/MNG-5852">MNG-5852</a> - mvn shell script invokes /bin/sh but requires Bash functions</li>
+<li><a href="https://issues.apache.org/jira/browse/MNG-5958">MNG-5958</a> - java.lang.String cannot be cast to org.apache.maven.lifecycle.mapping.LifecyclePhase</li>
+<li><a href="https://issues.apache.org/jira/browse/MNG-5961">MNG-5961</a> - Maven possibly not aware of log4j2</li>
+<li><a href="https://issues.apache.org/jira/browse/MNG-5962">MNG-5962</a> - mvn.cmd fails when the current directory has spaces in between</li>
+<li><a href="https://issues.apache.org/jira/browse/MNG-5963">MNG-5963</a> - mvn.cmd does not return ERROR_CODE</li>
+<li><a href="https://issues.apache.org/jira/browse/MNG-6022">MNG-6022</a> - mvn.cmd fails if directory contains an ampersand (&amp;)</li>
+<li><a href="https://issues.apache.org/jira/browse/MNG-6053">MNG-6053</a> - Unsafe System Properties copy in MavenRepositorySystemUtils, causing NPEs</li>
+<li><a href="https://issues.apache.org/jira/browse/MNG-6105">MNG-6105</a> - properties.internal.SystemProperties.addSystemProperties() is not really thread-safe</li>
+<li><a href="https://issues.apache.org/jira/browse/MNG-6109">MNG-6109</a> - PluginDescriptor doesn't read since value of parameter</li>
+<li><a href="https://issues.apache.org/jira/browse/MNG-6117">MNG-6117</a> - ${session.parallel} not correctly set</li>
+<li><a href="https://issues.apache.org/jira/browse/MNG-6144">MNG-6144</a> - DefaultWagonManagerTest#testGetMissingJarForced() passed incorrect value</li>
+<li><a href="https://issues.apache.org/jira/browse/MNG-6166">MNG-6166</a> - mvn dependency:go-offline fails due to missing transitive dependency jdom:jdom:jar:1.1</li>
+<li><a href="https://issues.apache.org/jira/browse/MNG-6171">MNG-6171</a> - REGRESSION: WARNING about usage of a non threadsafe marked plugin is not showed anymore</li>
+<li><a href="https://issues.apache.org/jira/browse/MNG-6172">MNG-6172</a> - Precedence of command-line system property options has changed</li>
+</ul>
+<p>Dependency upgrade:</p>
+<ul>
+<li><a href="https://issues.apache.org/jira/browse/MNG-5967">MNG-5967</a> - Dependency updates</li>
+<li><a href="https://issues.apache.org/jira/browse/MNG-6110">MNG-6110</a> - Upgrade Aether to Maven Resolver</li>
+</ul>
+<p>Improvements:</p>
+<ul>
+<li><a href="https://issues.apache.org/jira/browse/MNG-5579">MNG-5579</a> - Unify error output/check logic from shell and batch scripts</li>
+<li><a href="https://issues.apache.org/jira/browse/MNG-5607">MNG-5607</a> - Don't use M2_HOME in mvn shell/command scripts anymore</li>
+<li><a href="https://issues.apache.org/jira/browse/MNG-5883">MNG-5883</a> - Silence unnecessary legacy local repository warning</li>
+<li><a href="https://issues.apache.org/jira/browse/MNG-5889">MNG-5889</a> - .mvn directory should be picked when using --file</li>
+<li><a href="https://issues.apache.org/jira/browse/MNG-5904">MNG-5904</a> - Remove the whole Ant build</li>
+<li><a href="https://issues.apache.org/jira/browse/MNG-5931">MNG-5931</a> - Fixing documentation</li>
+<li><a href="https://issues.apache.org/jira/browse/MNG-5934">MNG-5934</a> - String handling issues identified by PMD</li>
+<li><a href="https://issues.apache.org/jira/browse/MNG-5946">MNG-5946</a> - Fix links etc. in README.txt which is part of the delivery</li>
+<li><a href="https://issues.apache.org/jira/browse/MNG-5968">MNG-5968</a> - Default plugin version updates</li>
+<li><a href="https://issues.apache.org/jira/browse/MNG-5975">MNG-5975</a> - Use Java 7's SimpleDateFormat in CLIReportingUtils#formatTimestamp</li>
+<li><a href="https://issues.apache.org/jira/browse/MNG-5977">MNG-5977</a> - Improve output readability of our MavenTransferListener implementations</li>
+<li><a href="https://issues.apache.org/jira/browse/MNG-5993">MNG-5993</a> - Confusing error message in case of missing/empty artifactId and version in pluginManagement</li>
+<li><a href="https://issues.apache.org/jira/browse/MNG-6001">MNG-6001</a> - Replace %HOME% with %USERPROFILE% in mvn.cmd</li>
+<li><a href="https://issues.apache.org/jira/browse/MNG-6003">MNG-6003</a> - Drastically reduce JAVA_HOME discovery code</li>
+<li><a href="https://issues.apache.org/jira/browse/MNG-6014">MNG-6014</a> - Removing ArtifactHandler for ejb3</li>
+<li><a href="https://issues.apache.org/jira/browse/MNG-6017">MNG-6017</a> - Removing ArtifactHandler for par LifeCycle</li>
+<li><a href="https://issues.apache.org/jira/browse/MNG-6030">MNG-6030</a> - ReactorModelCache do not used effectively after maven version 3.0.5 which cause a large memory footprint</li>
+<li><a href="https://issues.apache.org/jira/browse/MNG-6032">MNG-6032</a> - WARNING during build based on absolute path in assembly-descriptor.</li>
+<li><a href="https://issues.apache.org/jira/browse/MNG-6068">MNG-6068</a> - Document default scope compile in pom XSD and reference documentation</li>
+<li><a href="https://issues.apache.org/jira/browse/MNG-6078">MNG-6078</a> - Can't overwrite properties which have been defined in .mvn/maven.config</li>
+<li><a href="https://issues.apache.org/jira/browse/MNG-6081">MNG-6081</a> - Log refactoring - Method Invocation Replaced By Variable</li>
+<li><a href="https://issues.apache.org/jira/browse/MNG-6102">MNG-6102</a> - Introduce ${maven.conf} in m2.conf</li>
+<li><a href="https://issues.apache.org/jira/browse/MNG-6145">MNG-6145</a> - Remove non-existent m2 include in component.xml</li>
+<li><a href="https://issues.apache.org/jira/browse/MNG-6146">MNG-6146</a> - Several small stylistic and spelling improvements to code and documentation</li>
+<li><a href="https://issues.apache.org/jira/browse/MNG-6147">MNG-6147</a> - MetadataResolutionResult#getGraph() contains duplicate if clause</li>
+<li><a href="https://issues.apache.org/jira/browse/MNG-6150">MNG-6150</a> - Javadoc improvements for 3.5.0</li>
+<li><a href="https://issues.apache.org/jira/browse/MNG-6163">MNG-6163</a> - Introduce CLASSWORLDS_JAR in shell startup scripts</li>
+<li><a href="https://issues.apache.org/jira/browse/MNG-6165">MNG-6165</a> - Deprecate and replace incorrectly spelled public API</li>
+</ul>
+<p>New Feature:</p>
+<ul>
+<li><a href="https://issues.apache.org/jira/browse/MNG-3507">MNG-3507</a> - ANSI color logging for improved output visibility</li>
+<li><a href="https://issues.apache.org/jira/browse/MNG-5878">MNG-5878</a> - add support for module name != artifactId in every calculated URLs (project, SCM, site): special project.directory property</li>
+<li><a href="https://issues.apache.org/jira/browse/MNG-6093">MNG-6093</a> - create a slf4j-simple provider extension that supports level color rendering Task</li>
+<li><a href="https://issues.apache.org/jira/browse/MNG-5954">MNG-5954</a> - Remove outdated maven-embedder/src/main/resources/META-INF/MANIFEST.MF</li>
+<li><a href="https://issues.apache.org/jira/browse/MNG-6106">MNG-6106</a> - Remove maven.home default value setter from m2.conf</li>
+<li><a href="https://issues.apache.org/jira/browse/MNG-6136">MNG-6136</a> - Upgrade Maven Wagon from 2.10 to 2.12</li>
+<li><a href="https://issues.apache.org/jira/browse/MNG-6137">MNG-6137</a> - Clean up duplicate dependencies caused by incomplete Wagon HTTP Provider exclusions</li>
+<li><a href="https://issues.apache.org/jira/browse/MNG-6138">MNG-6138</a> - Remove obsolete message_*.properties form maven-core</li>
+<li><a href="https://issues.apache.org/jira/browse/MNG-6140">MNG-6140</a> - update documentation's dependency graph with resolver + resolver-provider + slf4j-provider</li>
+<li><a href="https://issues.apache.org/jira/browse/MNG-6151">MNG-6151</a> - Force Push master from 737de43e392fc15a0ce366db98d70aa18b3f6c03</li>
+<li><a href="https://issues.apache.org/jira/browse/MNG-6152">MNG-6152</a> - Add a Jenkinsfile so that builds.apache.org can use multibranch pipeline</li>
+</ul>
+<p>Wishes:</p>
+<ul>
+<li><a href="https://issues.apache.org/jira/browse/MNG-2199">MNG-2199</a> - Support version ranges in parent elements</li>
+<li><a href="https://issues.apache.org/jira/browse/MNG-6088">MNG-6088</a> - after forked execution success, add an empty line</li>
+<li><a href="https://issues.apache.org/jira/browse/MNG-6092">MNG-6092</a> - warn if prerequisites.maven is used for non-plugin projects</li>
+</ul>
+<p>The full list of changes can be found in our <a href="https://issues.apache.org/jira/secure/ReleaseNote.jspa?projectId=12316922&amp;version=12339664&amp;styleName=Text">issue management system</a>.</p>
+<h2 id="Complete_Release_Notes">Complete Release Notes</h2>
+<p>See <a href="../../docs/history.html">complete release notes for all versions</a></p>
+
+        </main>
+      </div>
+    </div>
+    <hr>
+    <footer>
+      <div class="container-fluid">
+        <div class="row-fluid">
+          <p>©      2002–2026 <a href="https://www.apache.org/">The Apache Software Foundation</a></p>
+          <p class="demo-note">A demonstration build of <a href="https://github.com/dashorst/maven-site/tree/diataxis-demo">dashorst/maven-site</a>, not the official Apache Maven site.</p>
+        </div>
+      </div>
+    </footer>
+    <script src="/maven-site/js/guide.js?v=1792948498" defer=""></script>
+    <script>
+    anchors.add();
+    </script>
+  
+
+</body></html>

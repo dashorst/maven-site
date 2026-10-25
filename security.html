@@ -1,0 +1,250 @@
+<!DOCTYPE html><!--
+ | The page frame of the Apache Maven Fluido Skin 2.1.0, as the Doxia site renderer writes it
+ | for maven.apache.org. Built with Jekyll: see jekyll/README.md.
+--><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Security Reports – Maven</title>
+    
+    <link rel="stylesheet" href="/maven-site/css/apache-maven-fluido-2.1.0.min.css">
+    <link rel="stylesheet" href="/maven-site/css/site.css">
+    <link rel="stylesheet" href="/maven-site/css/guide.css?v=1792948498">
+    <link rel="stylesheet" href="/maven-site/css/print.css" media="print">
+    <script src="/maven-site/js/apache-maven-fluido-2.1.0.min.js"></script>
+  </head>
+  <body>
+    <div class="container-fluid container-fluid-top">
+      <header>
+        <div id="banner">
+          <div class="pull-left"><div id="bannerLeft"><h1><a href="/maven-site/index.html"><img src="/maven-site/images/apache-maven-project-light-theme.svg" style="width: 489px;height: 83px;" alt="Apache Maven"></a></h1></div></div>
+          <div class="pull-right"><div id="bannerRight"><h1><img src="/maven-site/images/logos/MavenLogoLeaf.svg" style="width: 340px;height: 83px;" alt=""></h1></div></div>
+          <div class="clear"><hr></div>
+        </div>
+
+        <div id="breadcrumbs">
+          <ul class="breadcrumb">
+            <li><a href="https://www.apache.org/">Apache</a><span class="divider">/</span></li>
+            <li><a href="/maven-site/index.html">Maven</a><span class="divider">/</span></li>
+            
+            <li class="active">Security Reports <a href="https://github.com/apache/maven-site/tree/master/content/markdown/security.md"><img src="/maven-site/images/accessories-text-editor.png" alt="Edit"></a></li>
+            <li id="publishDate" class="pull-right"><span class="divider">|</span> Last Published: 2026-10-25</li>
+            <li class="pull-right"><span class="divider">|</span> <a href="/maven-site/scm.html">Get Sources</a></li>
+            <li class="pull-right"><a href="https://maven.apache.org/download.cgi">Downloads</a></li>
+          </ul>
+        </div>
+      </header>
+      <div class="row-fluid">
+        <header id="leftColumn" class="span2">
+          
+<form class="guide-search" role="search" action="/maven-site/guides/a-z.html" data-index="/maven-site/guides/search.json" data-script="/maven-site/js/minisearch-7.2.0.js" data-oldest="3.9" data-base="/maven-site">
+  <label class="guide-search-label" for="guide-q-nav">Search the documentation</label>
+  <div class="guide-search-field">
+    <input id="guide-q-nav" name="q" type="search" autocomplete="off" spellcheck="false" placeholder="Search">
+    <kbd class="guide-search-key" aria-hidden="true">/</kbd>
+  </div>
+  
+</form>
+
+          <nav class="well sidebar-nav">
+<ul class="nav nav-list">
+  <li><a href="/maven-site/index.html">Welcome</a></li>
+  <li><a href="https://www.apache.org/licenses/">License</a></li>
+  <li class="nav-header">About Maven</li>
+  <li><a href="/maven-site/what-is-maven.html">What is Maven?</a></li>
+  <li><a href="/maven-site/install.html">Installation</a></li>
+  <li><a href="/maven-site/download.html">Downloads</a></li>
+  <li><a href="/maven-site/run.html">Use</a></li>
+  <li><a href="/maven-site/configure.html">Configure</a></li>
+  <li><a href="/maven-site/docs/history.html">Release Notes</a></li>
+  <li class="active"><a>Security Reports</a></li>
+  <li class="nav-header">Documentation</li>
+  <li><a href="/maven-site/plugins/index.html">Maven Plugins</a></li>
+  <li><a href="/maven-site/extensions/index.html">Maven Extensions</a></li>
+  <li><a href="/maven-site/tools/index.html"><span class="icon-chevron-down"></span>Maven Tools</a>
+   <ul class="nav nav-list">
+    <li><a href="/maven-site/tools/mvnd.html">Maven Daemon</a></li>
+    <li><a href="/maven-site/tools/mvnsh.html">Maven Shell</a></li>
+    <li><a href="/maven-site/tools/mvnup.html">Maven Upgrade Tool</a></li>
+    <li><a href="/maven-site/tools/mavenwrapper.html">Maven Wrapper</a></li>
+   </ul></li>
+  <li><a href="/maven-site/doxia/index.html"><span class="icon-chevron-right"></span>Doxia</a></li>
+  <li><a href="/maven-site/guides/index.html">Guides</a></li>
+  <li><a href="/maven-site/users/index.html"><span class="icon-chevron-right"></span>User Manual</a></li>
+  <li><a href="/maven-site/repositories/index.html"><span class="icon-chevron-right"></span>Maven Repositories</a></li>
+  <li><a href="/maven-site/plugin-developers/index.html"><span class="icon-chevron-right"></span>Plugin Development</a></li>
+  <li><a href="/maven-site/developers/index.html"><span class="icon-chevron-right"></span>Contribute to Maven</a></li>
+  <li><a href="/maven-site/articles.html">Books and Resources</a></li>
+  <li class="nav-header">Community</li>
+  <li><a href="/maven-site/community.html">Community Overview</a></li>
+  <li><a href="/maven-site/project-roles.html">Project Roles</a></li>
+  <li><a href="/maven-site/guides/development/guide-helping.html">How to Contribute</a></li>
+  <li><a href="/maven-site/users/getting-help.html">Getting Help</a></li>
+  <li><a href="/maven-site/issue-management.html">Issue Management</a></li>
+  <li><a href="/maven-site/scm.html">Getting Maven Source</a></li>
+  <li><a href="/maven-site/team.html">The Maven Team</a></li>
+  <li class="nav-header">Project Documentation</li>
+  <li><a href="/maven-site/project-info.html">Project Information</a></li>
+  <li class="nav-header">Maven Projects</li>
+  <li><a href="/maven-site/ref/current">Maven</a></li>
+  <li><a href="/maven-site/archetypes/index.html">Archetypes</a></li>
+  <li><a href="/maven-site/extensions/index.html">Extensions</a></li>
+  <li><a href="/maven-site/pom/index.html">Parent POMs</a></li>
+  <li><a href="/maven-site/plugins/index.html">Plugins</a></li>
+  <li><a href="/maven-site/skins/index.html">Skins</a></li>
+  <li><a><span class="icon-chevron-down"></span>Components</a>
+   <ul class="nav nav-list">
+    <li><a href="/maven-site/archetype/index.html">Archetype</a></li>
+    <li><a href="/maven-site/resolver/index.html">Artifact Resolver</a></li>
+    <li><a href="/maven-site/doxia/index.html">Doxia</a></li>
+    <li><a href="/maven-site/maven-indexer/index.html">Indexer</a></li>
+    <li><a href="/maven-site/jxr/index.html">JXR</a></li>
+    <li><a href="/maven-site/plugin-testing/index.html">Plugin Testing</a></li>
+    <li><a href="/maven-site/plugin-tools/index.html">Plugin Tools</a></li>
+    <li><a href="/maven-site/apache-resource-bundles/index.html">Resource Bundles</a></li>
+    <li><a href="/maven-site/scm/index.html">SCM</a></li>
+    <li><a href="/maven-site/shared/index.html">Shared Components</a></li>
+    <li><a href="/maven-site/surefire/index.html">Surefire</a></li>
+    <li><a href="/maven-site/wagon/index.html">Wagon</a></li>
+   </ul></li>
+  <li class="nav-header">ASF</li>
+  <li><a href="https://www.apache.org/foundation/how-it-works.html">How Apache Works</a></li>
+  <li><a href="https://www.apache.org/foundation/">Foundation</a></li>
+  <li><a href="https://privacy.apache.org/policies/privacy-policy-public.html">Data Privacy</a></li>
+  <li><a href="https://www.apache.org/foundation/sponsorship.html">Sponsoring Apache</a></li>
+  <li><a href="https://www.apache.org/foundation/thanks.html">Thanks</a></li>
+</ul>
+          </nav>
+          <div class="well sidebar-nav">
+            <div id="poweredBy">
+              <div class="clear"></div>
+              <a href="/maven-site/" class="builtBy" target="_blank"><img class="builtBy" alt="Built by Maven" src="/maven-site/images/logos/maven-feather.png"></a>
+            </div>
+          </div>
+        </header>
+        <main id="bodyColumn" class="span10">
+          
+<h1 id="Security_Reports">Security Reports</h1>
+<!--
+Licensed to the Apache Software Foundation (ASF) under one
+or more contributor license agreements.  See the NOTICE file
+distributed with this work for additional information
+regarding copyright ownership.  The ASF licenses this file
+to you under the Apache License, Version 2.0 (the
+"License"); you may not use this file except in compliance
+with the License.  You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing,
+software distributed under the License is distributed on an
+"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+KIND, either express or implied.  See the License for the
+specific language governing permissions and limitations
+under the License.
+-->
+<h2 id="Security_Model">Security Model</h2>
+<p>The purpose of Maven is to perform the actions defined in the supplied
+<code>pom.xml</code>, which commonly includes compiling and running the associated
+code and using plugins and dependencies downloaded from the configured
+repositories.</p>
+<p>As such, the Maven security model assumes you trust the <code>pom.xml</code> and
+the code, dependencies and repositories that are used in your build.
+If you want to use Maven to build untrusted code, it is up to you to
+provide the required isolation.</p>
+<h2 id="Security_Vulnerabilities">Security Vulnerabilities</h2>
+<p>Please note that binary patches are not produced for individual
+vulnerabilities. To obtain the binary fix for a particular vulnerability
+you should upgrade to an Apache Maven version where that vulnerability
+has been fixed.</p>
+<p>For more information about reporting vulnerabilities, see the <a href="https://www.apache.org/security/">Apache
+Security Team</a> page.</p>
+<h3 id="CVE-2021-26291_Apache_Maven_3.8.1">CVE-2021-26291 Apache Maven 3.8.1</h3>
+<p>Severity: Medium</p>
+<p>Vendor: The Apache Software Foundation</p>
+<p>Versions Affected:</p>
+<ul>
+<li>Apache Maven 3.6.3 and earlier</li>
+</ul>
+<p>Description: More and more repositories use HTTPS nowadays, but this hasn't always been the case. This means that Maven Central contains POMs with custom repositories that refer to a URL over HTTP.
+This makes downloads via such repository a target for a MITM attack.
+At the same time, developers are probably not aware that for some downloads an insecure URL is being used.
+Because uploaded POMs to Maven Central are immutable, a change for Maven was required.
+To solve this, we extended the mirror configuration with <code>&lt;blocked&gt;</code> parameter,
+and we added a new <code>external:http:*</code> mirror selector (like existing <code>external:*</code>), meaning "any external URL using HTTP".<br>
+The decision was made to block such external HTTP repositories by default: this is done by providing a mirror in the <code>conf/settings.xml</code> blocking insecure HTTP external URLs.
+Note: this is a vulnerability in case you're connectioning directly to remote repositories instead of using an artifact repository manager.</p>
+<h3 id="Maven_Dependency.2C_EAR.2C_Javadoc.2C_WAR_and_Plugin_Plugins">Maven Dependency, EAR, Javadoc, WAR and Plugin Plugins</h3>
+<p>Severity: Low</p>
+<p>Vendor: The Apache Software Foundation</p>
+<p>Versions Affected:</p>
+<ul>
+<li>Maven Dependency Plugin 3.1.0 and earlier</li>
+<li>Maven EAR Plugin 3.0.0 and earlier</li>
+<li>Maven Javadoc Plugin 2.5 to 3.0.0</li>
+<li>Maven WAR Plugin 2.1-alpha-1 to 3.2.0</li>
+<li>Maven Plugin Plugin 3.0 to 3.5.1</li>
+</ul>
+<p>Description: As part of a broader research, the Snyk Security Research Team discovered
+an arbitrary file write generic vulnerability, that can be achieved using a
+specially crafted zip (or bzip2, gzip, tar, xz, war) archive, that holds
+path traversal filenames. So when the filename gets concatenated to the
+target extraction directory, if the extraction tool used does not make
+sufficient checks, the final path ends up outside of the target directory.
+The affected plugins use plexus-archiver to unpack dependencies to disk
+and have been identified as potential triggers for exposing the vulnerability
+if dependencies are compromised.</p>
+<p>See <a href="./security-plexus-archiver.html">full description</a> for more details.</p>
+<p>Credit: This issue was identified by the Snyk Security Research Team</p>
+<h3 id="CVE-2013-0253_Apache_Maven_3.0.4">CVE-2013-0253 Apache Maven 3.0.4</h3>
+<p>Severity: Medium</p>
+<p>Vendor: The Apache Software Foundation</p>
+<p>Versions Affected:</p>
+<ul>
+<li>Apache Maven 3.0.4</li>
+<li>Apache Maven Wagon 2.1, 2.2, 2.3</li>
+</ul>
+<p>Description: Apache Maven 3.0.4 (with Apache Maven Wagon 2.1) has
+introduced a non-secure SSL mode by default. This mode disables all SSL
+certificate checking, including: host name verification , date validity,
+and certificate chain. Not validating the certificate introduces the
+possibility of a man-in-the-middle attack.</p>
+<p><a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2013-0253">CVE-2013-0253</a></p>
+<p>All users are recommended to upgrade to <a href="https://maven.apache.org/download.cgi">Apache Maven
+3.0.5</a> and Apache Maven Wagon 2.4.</p>
+<p>Credit: This issue was identified by Graham Leggett</p>
+<h3 id="CVE-2012-6153_Apache_Maven_Wagon_.3A.3A_WebDAV_Provider">CVE-2012-6153 Apache Maven Wagon :: WebDAV Provider</h3>
+<p>Severity: Medium</p>
+<p>Vendor: The Apache Software Foundation</p>
+<p>Versions Affected:</p>
+<ul>
+<li>Apache Maven Wagon WebDAV Provider 2.12 and earlier</li>
+</ul>
+<p>Description: http/conn/ssl/AbstractVerifier.java in Apache Commons HttpClient
+before 4.2.3 does not properly verify that the server hostname matches a
+domain name in the subject's Common Name (CN) or subjectAltName field of the
+X.509 certificate, which allows man-in-the-middle attackers to spoof SSL
+servers via a certificate with a subject that specifies a common name in a
+field that is not the CN field.</p>
+<p><a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2012-6153">CVE-2012-6153</a></p>
+<p>Users of this provider are recommended to upgrade to <a href="https://maven.apache.org/download.cgi">Apache Maven Wagon ::
+WebDAV Provider 3.0.0</a></p>
+
+        </main>
+      </div>
+    </div>
+    <hr>
+    <footer>
+      <div class="container-fluid">
+        <div class="row-fluid">
+          <p>©      2002–2026 <a href="https://www.apache.org/">The Apache Software Foundation</a></p>
+          <p class="demo-note">A demonstration build of <a href="https://github.com/dashorst/maven-site/tree/diataxis-demo">dashorst/maven-site</a>, not the official Apache Maven site.</p>
+        </div>
+      </div>
+    </footer>
+    <script src="/maven-site/js/guide.js?v=1792948498" defer=""></script>
+    <script>
+    anchors.add();
+    </script>
+  
+
+</body></html>

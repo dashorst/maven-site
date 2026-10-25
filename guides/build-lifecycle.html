@@ -1,0 +1,378 @@
+<!DOCTYPE html><!--
+ | The page frame of the Apache Maven Fluido Skin 2.1.0, as the Doxia site renderer writes it
+ | for maven.apache.org. Built with Jekyll: see jekyll/README.md.
+--><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Phases, goals and plugins – Maven</title>
+    <meta name="description" content="How Maven turns a command such as mvn package into a series of plugin goals, and why every Maven project builds with the same few commands.">
+    <link rel="stylesheet" href="/maven-site/css/apache-maven-fluido-2.1.0.min.css">
+    <link rel="stylesheet" href="/maven-site/css/site.css">
+    <link rel="stylesheet" href="/maven-site/css/guide.css?v=1792948498">
+    <link rel="stylesheet" href="/maven-site/css/print.css" media="print">
+    <script src="/maven-site/js/apache-maven-fluido-2.1.0.min.js"></script>
+  </head>
+  <body>
+    <div class="container-fluid container-fluid-top">
+      <header>
+        <div id="banner">
+          <div class="pull-left"><div id="bannerLeft"><h1><a href="/maven-site/index.html"><img src="/maven-site/images/apache-maven-project-light-theme.svg" style="width: 489px;height: 83px;" alt="Apache Maven"></a></h1></div></div>
+          <div class="pull-right"><div id="bannerRight"><h1><img src="/maven-site/images/logos/MavenLogoLeaf.svg" style="width: 340px;height: 83px;" alt=""></h1></div></div>
+          <div class="clear"><hr></div>
+        </div>
+
+        <div id="breadcrumbs">
+          <ul class="breadcrumb">
+            <li><a href="https://www.apache.org/">Apache</a><span class="divider">/</span></li>
+            <li><a href="/maven-site/index.html">Maven</a><span class="divider">/</span></li>
+            <li><a href="/maven-site/guides/index.html">Guides</a><span class="divider">/</span></li>
+            <li><a href="/maven-site/guides/topics/start.html">Getting started</a><span class="divider">/</span></li>
+            
+            <li class="active">Phases, goals and plugins <a href="https://github.com/dashorst/maven-site/blob/diataxis-demo/jekyll/_guide/build-lifecycle.md"><img src="/maven-site/images/accessories-text-editor.png" alt="Edit"></a></li>
+            <li id="publishDate" class="pull-right"><span class="divider">|</span> Last Published: 2026-10-25</li>
+            <li class="pull-right"><span class="divider">|</span> <a href="/maven-site/scm.html">Get Sources</a></li>
+            <li class="pull-right"><a href="https://maven.apache.org/download.cgi">Downloads</a></li>
+          </ul>
+        </div>
+      </header>
+      <div class="row-fluid">
+        <header id="leftColumn" class="span2">
+          
+<form class="guide-search" role="search" action="/maven-site/guides/a-z.html" data-index="/maven-site/guides/search.json" data-script="/maven-site/js/minisearch-7.2.0.js" data-oldest="3.9" data-base="/maven-site">
+  <label class="guide-search-label" for="guide-q-nav">Search the documentation</label>
+  <div class="guide-search-field">
+    <input id="guide-q-nav" name="q" type="search" autocomplete="off" spellcheck="false" placeholder="Search">
+    <kbd class="guide-search-key" aria-hidden="true">/</kbd>
+  </div>
+  
+</form>
+
+          <nav class="well sidebar-nav">
+<ul class="nav nav-list">
+  <li><a href="/maven-site/index.html">Welcome</a></li>
+  <li><a href="https://www.apache.org/licenses/">License</a></li>
+  <li class="nav-header">About Maven</li>
+  <li><a href="/maven-site/what-is-maven.html">What is Maven?</a></li>
+  <li><a href="/maven-site/install.html">Installation</a></li>
+  <li><a href="/maven-site/download.html">Downloads</a></li>
+  <li><a href="/maven-site/run.html">Use</a></li>
+  <li><a href="/maven-site/configure.html">Configure</a></li>
+  <li><a href="/maven-site/docs/history.html">Release Notes</a></li>
+  <li><a href="/maven-site/security.html">Security Reports</a></li>
+  <li class="nav-header">Documentation</li>
+  <li><a href="/maven-site/plugins/index.html">Maven Plugins</a></li>
+  <li><a href="/maven-site/extensions/index.html">Maven Extensions</a></li>
+  <li><a href="/maven-site/tools/index.html"><span class="icon-chevron-down"></span>Maven Tools</a>
+   <ul class="nav nav-list">
+    <li><a href="/maven-site/tools/mvnd.html">Maven Daemon</a></li>
+    <li><a href="/maven-site/tools/mvnsh.html">Maven Shell</a></li>
+    <li><a href="/maven-site/tools/mvnup.html">Maven Upgrade Tool</a></li>
+    <li><a href="/maven-site/tools/mavenwrapper.html">Maven Wrapper</a></li>
+   </ul></li>
+  <li><a href="/maven-site/doxia/index.html"><span class="icon-chevron-right"></span>Doxia</a></li>
+  <li class="active"><a href="/maven-site/guides/index.html">Guides</a></li>
+  <li><a href="/maven-site/users/index.html"><span class="icon-chevron-right"></span>User Manual</a></li>
+  <li><a href="/maven-site/repositories/index.html"><span class="icon-chevron-right"></span>Maven Repositories</a></li>
+  <li><a href="/maven-site/plugin-developers/index.html"><span class="icon-chevron-right"></span>Plugin Development</a></li>
+  <li><a href="/maven-site/developers/index.html"><span class="icon-chevron-right"></span>Contribute to Maven</a></li>
+  <li><a href="/maven-site/articles.html">Books and Resources</a></li>
+  <li class="nav-header">Community</li>
+  <li><a href="/maven-site/community.html">Community Overview</a></li>
+  <li><a href="/maven-site/project-roles.html">Project Roles</a></li>
+  <li><a href="/maven-site/guides/development/guide-helping.html">How to Contribute</a></li>
+  <li><a href="/maven-site/users/getting-help.html">Getting Help</a></li>
+  <li><a href="/maven-site/issue-management.html">Issue Management</a></li>
+  <li><a href="/maven-site/scm.html">Getting Maven Source</a></li>
+  <li><a href="/maven-site/team.html">The Maven Team</a></li>
+  <li class="nav-header">Project Documentation</li>
+  <li><a href="/maven-site/project-info.html">Project Information</a></li>
+  <li class="nav-header">Maven Projects</li>
+  <li><a href="/maven-site/ref/current">Maven</a></li>
+  <li><a href="/maven-site/archetypes/index.html">Archetypes</a></li>
+  <li><a href="/maven-site/extensions/index.html">Extensions</a></li>
+  <li><a href="/maven-site/pom/index.html">Parent POMs</a></li>
+  <li><a href="/maven-site/plugins/index.html">Plugins</a></li>
+  <li><a href="/maven-site/skins/index.html">Skins</a></li>
+  <li><a><span class="icon-chevron-down"></span>Components</a>
+   <ul class="nav nav-list">
+    <li><a href="/maven-site/archetype/index.html">Archetype</a></li>
+    <li><a href="/maven-site/resolver/index.html">Artifact Resolver</a></li>
+    <li><a href="/maven-site/doxia/index.html">Doxia</a></li>
+    <li><a href="/maven-site/maven-indexer/index.html">Indexer</a></li>
+    <li><a href="/maven-site/jxr/index.html">JXR</a></li>
+    <li><a href="/maven-site/plugin-testing/index.html">Plugin Testing</a></li>
+    <li><a href="/maven-site/plugin-tools/index.html">Plugin Tools</a></li>
+    <li><a href="/maven-site/apache-resource-bundles/index.html">Resource Bundles</a></li>
+    <li><a href="/maven-site/scm/index.html">SCM</a></li>
+    <li><a href="/maven-site/shared/index.html">Shared Components</a></li>
+    <li><a href="/maven-site/surefire/index.html">Surefire</a></li>
+    <li><a href="/maven-site/wagon/index.html">Wagon</a></li>
+   </ul></li>
+  <li class="nav-header">ASF</li>
+  <li><a href="https://www.apache.org/foundation/how-it-works.html">How Apache Works</a></li>
+  <li><a href="https://www.apache.org/foundation/">Foundation</a></li>
+  <li><a href="https://privacy.apache.org/policies/privacy-policy-public.html">Data Privacy</a></li>
+  <li><a href="https://www.apache.org/foundation/sponsorship.html">Sponsoring Apache</a></li>
+  <li><a href="https://www.apache.org/foundation/thanks.html">Thanks</a></li>
+</ul>
+          </nav>
+          <div class="well sidebar-nav">
+            <div id="poweredBy">
+              <div class="clear"></div>
+              <a href="/maven-site/" class="builtBy" target="_blank"><img class="builtBy" alt="Built by Maven" src="/maven-site/images/logos/maven-feather.png"></a>
+            </div>
+          </div>
+        </header>
+        <main id="bodyColumn" class="span10">
+          
+
+
+
+
+<header class="guide-head">
+  <h1 id="Phases.2C_goals_and_plugins">Phases, goals and plugins</h1>
+  <p class="lead">How Maven turns a command such as mvn package into a series of plugin goals, and why every Maven project builds with the same few commands.</p>
+  <p class="guide-plates"><span class="label guide-kind guide-kind--explanation">Explanation</span>
+    
+    <a class="guide-topic-link" href="/maven-site/guides/topics/start.html">Getting started</a></p>
+  
+  <p class="guide-version-note alert" data-since="3.9" hidden="">This page describes Maven 3.9 and later; you chose Maven <span data-chosen=""></span>.</p>
+  
+</header>
+<div class="doxia-toc"><ul><li><a href="#A_lifecycle_is_a_fixed_list_of_phases">A lifecycle is a fixed list of phases</a></li><li><a href="#Plugin_goals_do_the_work">Plugin goals do the work</a></li><li><a href="#The_packaging_decides_the_default_goals">The packaging decides the default goals</a></li><li><a href="#Plugins_in_the_POM_add_goals">Plugins in the POM add goals</a></li><li><a href="#Plugin_versions_belong_in_the_POM">Plugin versions belong in the POM</a></li><li><a href="#Call_verify.2C_not_integration-test">Call verify, not integration-test</a></li></ul></div>
+<div class="guide-content">
+<p>Every Maven project builds with the same commands. <code>mvn package</code> makes a JAR of a library and a WAR of a web application; <code>mvn verify</code> builds and checks either one. The person who runs the build says how far the build should go. The project decides what happens on the way there. Three ideas make that split work: the lifecycle, its phases, and the plugin goals bound to those phases.</p>
+<h2 id="A_lifecycle_is_a_fixed_list_of_phases">A lifecycle is a fixed list of phases</h2>
+<p>Maven has three lifecycles. The default lifecycle builds, tests and ships the project. The clean lifecycle removes what an earlier build produced. The site lifecycle generates the project's website.</p>
+<p>Each lifecycle is a list of phases in a fixed order. The phases of the default lifecycle that you call from the command line are:</p>
+<table class="table table-striped">
+<thead>
+<tr>
+<th>Phase</th>
+<th>What happens</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>validate</code></td>
+<td>Check that the project is complete and correct.</td>
+</tr>
+<tr>
+<td><code>compile</code></td>
+<td>Compile the source code.</td>
+</tr>
+<tr>
+<td><code>test</code></td>
+<td>Run the unit tests against the compiled code.</td>
+</tr>
+<tr>
+<td><code>package</code></td>
+<td>Package the compiled code, for example into a JAR file.</td>
+</tr>
+<tr>
+<td><code>verify</code></td>
+<td>Run integration tests and other checks on the package.</td>
+</tr>
+<tr>
+<td><code>install</code></td>
+<td>Copy the package into the local repository, for other projects on your machine.</td>
+</tr>
+<tr>
+<td><code>deploy</code></td>
+<td>Copy the package to a remote repository, for other people.</td>
+</tr>
+</tbody>
+</table>
+<p>Between these are phases such as <code>generate-sources</code>, <code>process-resources</code>, <code>test-compile</code> and <code>prepare-package</code>. The <a href="https://maven.apache.org/ref/current/maven-core/lifecycles.html">lifecycles reference</a> lists every phase of the three lifecycles.</p>
+<p>When you name a phase, Maven runs all phases before it in the same lifecycle first. That is why <code>mvn package</code> runs the tests: <code>test</code> comes before <code>package</code>, and a JAR is only made from code that passed its tests. It is also why one command is enough. <code>mvn install</code> compiles, tests, packages and verifies before it installs, so there is no need to call each step.</p>
+<p>You can name phases of different lifecycles in one command. <code>mvn clean package</code> runs the clean lifecycle up to <code>clean</code>, and then the default lifecycle up to <code>package</code>.</p>
+<h2 id="Plugin_goals_do_the_work">Plugin goals do the work</h2>
+<p>A phase is a name for a step. It does nothing by itself. The work is done by plugins: each plugin is a Java library with one or more goals, and each goal is one task. The Compiler plugin has a <code>compile</code> goal for your code and a <code>testCompile</code> goal for your tests. When a goal is bound to a phase, it runs every time the build passes that phase. A phase with no goal bound to it is skipped without notice.</p>
+<p>The build output names each goal it runs:</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[INFO] --- compiler:3.13.0:compile (default-compile) @ my-app ---
+</code></pre></div></div>
+<p>This line reads as: the <code>compile</code> goal of the plugin with prefix <code>compiler</code>, version 3.13.0, in the execution <code>default-compile</code>, for the project <code>my-app</code>.</p>
+<p>You can also run a goal on its own, with <code>prefix:goal</code> on the command line. <code>mvn dependency:tree</code> runs only the <code>tree</code> goal of the Dependency plugin, and no phases. Goals and phases mix: <code>mvn clean dependency:copy-dependencies package</code> cleans, then copies the dependencies, then runs the default lifecycle up to <code>package</code>, in that order.</p>
+<p>Options that seem to change the lifecycle usually belong to a goal. <code>-DskipTests</code> does not leave out the <code>test</code> phase; it tells the Surefire plugin's <code>test</code> goal to run no tests, and the goal logs <code>Tests are skipped.</code></p>
+<h2 id="The_packaging_decides_the_default_goals">The packaging decides the default goals</h2>
+<p>Which goals a phase runs depends first of all on the project's packaging, the <code>&lt;packaging&gt;</code> element of the POM. A project without one has packaging <code>jar</code>, and gets these goals:</p>
+<table class="table table-striped">
+<thead>
+<tr>
+<th>Phase</th>
+<th>Goal</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>process-resources</code></td>
+<td><code>resources:resources</code></td>
+</tr>
+<tr>
+<td><code>compile</code></td>
+<td><code>compiler:compile</code></td>
+</tr>
+<tr>
+<td><code>process-test-resources</code></td>
+<td><code>resources:testResources</code></td>
+</tr>
+<tr>
+<td><code>test-compile</code></td>
+<td><code>compiler:testCompile</code></td>
+</tr>
+<tr>
+<td><code>test</code></td>
+<td><code>surefire:test</code></td>
+</tr>
+<tr>
+<td><code>package</code></td>
+<td><code>jar:jar</code></td>
+</tr>
+<tr>
+<td><code>install</code></td>
+<td><code>install:install</code></td>
+</tr>
+<tr>
+<td><code>deploy</code></td>
+<td><code>deploy:deploy</code></td>
+</tr>
+</tbody>
+</table>
+<p>Packaging <code>war</code> binds the same goals, with <code>war:war</code> instead of <code>jar:jar</code>. Packaging <code>pom</code>, used for parent projects that only hold configuration, binds nothing but <code>install:install</code> and <code>deploy:deploy</code>, because there is nothing to compile. The <a href="https://maven.apache.org/ref/current/maven-core/default-bindings.html">plugin bindings reference</a> lists the bindings for every packaging.</p>
+<p>So <code>mvn package</code> means "compile, test and make a JAR" in one project and "compile, test and make a WAR" in another, and you do not need to know which before you run it.</p>
+<h2 id="Plugins_in_the_POM_add_goals">Plugins in the POM add goals</h2>
+<p>To add a step to the build, you add a plugin to the <code>&lt;build&gt;</code> section of the POM, with an execution that names the goal. This makes the build also package the source code:</p>
+<p><em>pom.xml</em></p>
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="xml"><span class="nt">&lt;build&gt;</span>
+  <span class="nt">&lt;plugins&gt;</span>
+    <span class="nt">&lt;plugin&gt;</span>
+      <span class="nt">&lt;artifactId&gt;</span>maven-source-plugin<span class="nt">&lt;/artifactId&gt;</span>
+      <span class="nt">&lt;version&gt;</span>3.4.0<span class="nt">&lt;/version&gt;</span>
+      <span class="nt">&lt;executions&gt;</span>
+        <span class="nt">&lt;execution&gt;</span>
+          <span class="nt">&lt;goals&gt;</span>
+            <span class="nt">&lt;goal&gt;</span>jar-no-fork<span class="nt">&lt;/goal&gt;</span>
+          <span class="nt">&lt;/goals&gt;</span>
+        <span class="nt">&lt;/execution&gt;</span>
+      <span class="nt">&lt;/executions&gt;</span>
+    <span class="nt">&lt;/plugin&gt;</span>
+  <span class="nt">&lt;/plugins&gt;</span>
+<span class="nt">&lt;/build&gt;</span>
+</code></pre></div></div>
+<p>A goal declares the phase it belongs to by default. <code>jar-no-fork</code> belongs to <code>package</code>, so <code>mvn package</code> now writes <code>my-app-1.0-SNAPSHOT-sources.jar</code> next to the JAR. When several goals are bound to the same phase, the goals of the packaging run first, then the goals from the POM in the order they appear there; here, <code>jar:jar</code> runs before <code>source:jar-no-fork</code>.</p>
+<p>To bind a goal to another phase, name the phase in the execution with <code>&lt;phase&gt;verify&lt;/phase&gt;</code>. A plugin can have several executions, each with its own goals, phase and configuration; <a href="../guides/mini/guide-configuring-plugins.html">Configuring plugins</a> describes them.</p>
+<h2 id="Plugin_versions_belong_in_the_POM">Plugin versions belong in the POM</h2>
+<p>The goals in the default bindings come from plugins whose version you did not choose. When the POM does not set one, Maven uses a default that belongs to the Maven release: Maven 3.9.16 builds a JAR with maven-jar-plugin 3.5.0, Maven 3.10.0 with 3.5.1. The same project can then build differently on two machines.</p>
+<p>That is why the project from the quickstart archetype lists every plugin of the default bindings, with a version, in <code>&lt;build&gt;&lt;pluginManagement&gt;</code>. Setting the versions there fixes them for every build of the project, whichever Maven runs it.</p>
+<blockquote class="guide-since">
+<p><strong>Maven 4:</strong> Maven 4 warns when a plugin of the default bindings has no version in the POM: <code>Version not locked for default bindings plugins [maven-resources-plugin, maven-compiler-plugin, ...], you should define versions in pluginManagement section of your pom.xml or parent</code>.</p>
+</blockquote>
+<h2 id="Call_verify.2C_not_integration-test">Call verify, not integration-test</h2>
+<p>The phases whose names start with <code>pre-</code>, <code>post-</code> or <code>process-</code> prepare or finish the work of the phase next to them. They produce intermediate results, and you do not normally call them.</p>
+<p>Integration tests show why. A plugin that starts a server for the tests binds a goal to <code>pre-integration-test</code>, the tests run in <code>integration-test</code>, and the server is stopped in <code>post-integration-test</code>. Reports are checked in <code>verify</code>. In Maven 3, <code>mvn integration-test</code> stops after the <code>integration-test</code> phase: the server keeps running and no report is checked. <code>mvn verify</code> runs the whole sequence, which is why it is the command to call when you want to know whether the project builds and works.</p>
+<blockquote class="guide-since">
+<p><strong>Maven 4:</strong> The default lifecycle is a tree of phases, each with a <code>before:</code> and an <code>after:</code> step, such as <code>before:compile</code> and <code>after:compile</code>. The Maven 3 names remain as aliases: <code>prepare-package</code> is <code>before:package</code>, <code>process-classes</code> is <code>after:compile</code>, <code>pre-integration-test</code> and <code>post-integration-test</code> are <code>before:integration-test</code> and <code>after:integration-test</code>. When you call a phase, Maven 4 runs its <code>after:</code> step as well. <code>mvn integration-test</code> therefore also runs <code>post-integration-test</code>, <code>mvn compile</code> also runs <code>process-classes</code>, and <code>mvn prepare-package</code> runs up to and including <code>package</code>. Maven 4 also adds phases such as <code>sources</code>, <code>resources</code> and <code>ready</code> (compiled and ready to use). The <a href="https://maven.apache.org/ref/4-LATEST/impl/maven-core/lifecycles.html">Maven 4 lifecycles reference</a> lists them.</p>
+</blockquote>
+
+</div>
+<footer class="guide-foot">
+  <h2 id="More_in_Getting_started">More in <a href="/maven-site/guides/topics/start.html">Getting started</a></h2>
+  
+  <div class="guide-foot-kinds">
+  
+    
+    
+    <section>
+      <h3 id="Tutorials">Tutorials</h3>
+      
+<ul class="guide-list">
+
+  
+  
+  <li>
+    <a class="guide-list-title" href="/maven-site/guides/first-project.html">Create your first project</a>
+    
+    <span class="guide-list-summary">Check Java and Maven, generate a project from the quickstart archetype, build it into a JAR, run its test and run the program.</span>
+  </li>
+
+  
+  
+  <li>
+    <a class="guide-list-title" href="/maven-site/guides/add-a-dependency.html">Add a dependency and a test</a>
+    
+    <span class="guide-list-summary">Use a library from Maven Central in your project, test the code that uses it with JUnit, and see which libraries Maven brought in.</span>
+  </li>
+
+</ul>
+
+    </section>
+    
+  
+    
+    
+  
+    
+    
+    <section>
+      <h3 id="Reference">Reference</h3>
+      
+<ul class="guide-list">
+
+  
+  
+  <li>
+    <a class="guide-list-title" href="/maven-site/guides/standard-directory-layout.html">Standard directory layout</a>
+    
+    <span class="guide-list-summary">The directories and files of a Maven project, what goes in each, and which plugin reads or writes it.</span>
+  </li>
+
+</ul>
+
+    </section>
+    
+  
+    
+    
+    <section>
+      <h3 id="Explanation">Explanation</h3>
+      
+<ul class="guide-list">
+
+  
+  
+  <li class="is-current">
+    <strong class="guide-list-title" aria-current="page">Phases, goals and plugins</strong>
+    
+    <span class="guide-list-summary">How Maven turns a command such as mvn package into a series of plugin goals, and why every Maven project builds with the same few commands.</span>
+  </li>
+
+</ul>
+
+    </section>
+    
+  
+  </div>
+  
+  <p class="guide-provenance">Written from <a href="/maven-site/guides/introduction/introduction-to-the-lifecycle.html"><code>guides/introduction/introduction-to-the-lifecycle.md</code></a>.</p>
+  
+</footer>
+
+        </main>
+      </div>
+    </div>
+    <hr>
+    <footer>
+      <div class="container-fluid">
+        <div class="row-fluid">
+          <p>©      2002–2026 <a href="https://www.apache.org/">The Apache Software Foundation</a></p>
+          <p class="demo-note">A demonstration build of <a href="https://github.com/dashorst/maven-site/tree/diataxis-demo">dashorst/maven-site</a>, not the official Apache Maven site.</p>
+        </div>
+      </div>
+    </footer>
+    <script src="/maven-site/js/guide.js?v=1792948498" defer=""></script>
+    <script>
+    anchors.add();
+    </script>
+  
+
+</body></html>

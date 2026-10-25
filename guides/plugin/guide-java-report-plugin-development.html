@@ -1,0 +1,566 @@
+<!DOCTYPE html><!--
+ | The page frame of the Apache Maven Fluido Skin 2.1.0, as the Doxia site renderer writes it
+ | for maven.apache.org. Built with Jekyll: see jekyll/README.md.
+--><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Guide to Developing Java Report Plugins – Maven</title>
+    
+    <link rel="stylesheet" href="/maven-site/css/apache-maven-fluido-2.1.0.min.css">
+    <link rel="stylesheet" href="/maven-site/css/site.css">
+    <link rel="stylesheet" href="/maven-site/css/guide.css?v=1792948498">
+    <link rel="stylesheet" href="/maven-site/css/print.css" media="print">
+    <script src="/maven-site/js/apache-maven-fluido-2.1.0.min.js"></script>
+  </head>
+  <body>
+    <div class="container-fluid container-fluid-top">
+      <header>
+        <div id="banner">
+          <div class="pull-left"><div id="bannerLeft"><h1><a href="/maven-site/index.html"><img src="/maven-site/images/apache-maven-project-light-theme.svg" style="width: 489px;height: 83px;" alt="Apache Maven"></a></h1></div></div>
+          <div class="pull-right"><div id="bannerRight"><h1><img src="/maven-site/images/logos/MavenLogoLeaf.svg" style="width: 340px;height: 83px;" alt=""></h1></div></div>
+          <div class="clear"><hr></div>
+        </div>
+
+        <div id="breadcrumbs">
+          <ul class="breadcrumb">
+            <li><a href="https://www.apache.org/">Apache</a><span class="divider">/</span></li>
+            <li><a href="/maven-site/index.html">Maven</a><span class="divider">/</span></li>
+            
+            <li class="active">Guide to Developing Java Report Plugins <a href="https://github.com/apache/maven-site/tree/master/content/markdown/guides/plugin/guide-java-report-plugin-development.md.vm"><img src="/maven-site/images/accessories-text-editor.png" alt="Edit"></a></li>
+            <li id="publishDate" class="pull-right"><span class="divider">|</span> Last Published: 2026-10-25</li>
+            <li class="pull-right"><span class="divider">|</span> <a href="/maven-site/scm.html">Get Sources</a></li>
+            <li class="pull-right"><a href="https://maven.apache.org/download.cgi">Downloads</a></li>
+          </ul>
+        </div>
+      </header>
+      <div class="row-fluid">
+        <header id="leftColumn" class="span2">
+          
+<form class="guide-search" role="search" action="/maven-site/guides/a-z.html" data-index="/maven-site/guides/search.json" data-script="/maven-site/js/minisearch-7.2.0.js" data-oldest="3.9" data-base="/maven-site">
+  <label class="guide-search-label" for="guide-q-nav">Search the documentation</label>
+  <div class="guide-search-field">
+    <input id="guide-q-nav" name="q" type="search" autocomplete="off" spellcheck="false" placeholder="Search">
+    <kbd class="guide-search-key" aria-hidden="true">/</kbd>
+  </div>
+  
+</form>
+
+          <nav class="well sidebar-nav">
+<ul class="nav nav-list">
+  <li><a href="/maven-site/index.html">Welcome</a></li>
+  <li><a href="https://www.apache.org/licenses/">License</a></li>
+  <li class="nav-header">About Maven</li>
+  <li><a href="/maven-site/what-is-maven.html">What is Maven?</a></li>
+  <li><a href="/maven-site/install.html">Installation</a></li>
+  <li><a href="/maven-site/download.html">Downloads</a></li>
+  <li><a href="/maven-site/run.html">Use</a></li>
+  <li><a href="/maven-site/configure.html">Configure</a></li>
+  <li><a href="/maven-site/docs/history.html">Release Notes</a></li>
+  <li><a href="/maven-site/security.html">Security Reports</a></li>
+  <li class="nav-header">Documentation</li>
+  <li><a href="/maven-site/plugins/index.html">Maven Plugins</a></li>
+  <li><a href="/maven-site/extensions/index.html">Maven Extensions</a></li>
+  <li><a href="/maven-site/tools/index.html"><span class="icon-chevron-down"></span>Maven Tools</a>
+   <ul class="nav nav-list">
+    <li><a href="/maven-site/tools/mvnd.html">Maven Daemon</a></li>
+    <li><a href="/maven-site/tools/mvnsh.html">Maven Shell</a></li>
+    <li><a href="/maven-site/tools/mvnup.html">Maven Upgrade Tool</a></li>
+    <li><a href="/maven-site/tools/mavenwrapper.html">Maven Wrapper</a></li>
+   </ul></li>
+  <li><a href="/maven-site/doxia/index.html"><span class="icon-chevron-right"></span>Doxia</a></li>
+  <li><a href="/maven-site/guides/index.html">Guides</a></li>
+  <li><a href="/maven-site/users/index.html"><span class="icon-chevron-right"></span>User Manual</a></li>
+  <li><a href="/maven-site/repositories/index.html"><span class="icon-chevron-right"></span>Maven Repositories</a></li>
+  <li><a href="/maven-site/plugin-developers/index.html"><span class="icon-chevron-down"></span>Plugin Development</a>
+   <ul class="nav nav-list">
+    <li><a href="/maven-site/guides/introduction/introduction-to-plugins.html">Introduction</a></li>
+    <li><a href="/maven-site/guides/plugin/guide-java-plugin-development.html">Your First Mojo</a></li>
+    <li class="active"><a>Your First Report Mojo</a></li>
+    <li><a href="/maven-site/guides/development/guide-plugin-documentation.html">Writing Plugin Documentation</a></li>
+    <li><a href="/maven-site/plugin-developers/plugin-testing.html">Testing Plugins</a></li>
+    <li><a href="/maven-site/developers/mojo-api-specification.html">Mojo API</a></li>
+    <li><a href="/maven-site/maven-logging.html">Maven 3.1.x logging</a></li>
+    <li><a href="/maven-site/plugin-developers/common-bugs.html">Common Bugs and Pitfalls</a></li>
+    <li><a href="/maven-site/examples/maven-3-lifecycle-extensions.html">Maven Lifecycle Extensions</a></li>
+    <li><a href="/maven-site/plugin-developers/cookbook/plexus-plugin-upgrade.html">Plexus Javadoc to Plexus Annotations</a></li>
+    <li><a href="/maven-site/maven-jsr330.html">Using JSR-330</a></li>
+    <li><a><span class="icon-chevron-down"></span>Maven 4</a>
+     <ul class="nav nav-list">
+      <li><a href="/maven-site/maven-di.html">Using Maven Dependency Injection</a></li>
+      <li><a href="/maven-site/null-annotations.html">Maven Null Annotations</a></li>
+     </ul></li>
+   </ul></li>
+  <li><a href="/maven-site/developers/index.html"><span class="icon-chevron-right"></span>Contribute to Maven</a></li>
+  <li><a href="/maven-site/articles.html">Books and Resources</a></li>
+  <li class="nav-header">Community</li>
+  <li><a href="/maven-site/community.html">Community Overview</a></li>
+  <li><a href="/maven-site/project-roles.html">Project Roles</a></li>
+  <li><a href="/maven-site/guides/development/guide-helping.html">How to Contribute</a></li>
+  <li><a href="/maven-site/users/getting-help.html">Getting Help</a></li>
+  <li><a href="/maven-site/issue-management.html">Issue Management</a></li>
+  <li><a href="/maven-site/scm.html">Getting Maven Source</a></li>
+  <li><a href="/maven-site/team.html">The Maven Team</a></li>
+  <li class="nav-header">Project Documentation</li>
+  <li><a href="/maven-site/project-info.html">Project Information</a></li>
+  <li class="nav-header">Maven Projects</li>
+  <li><a href="/maven-site/ref/current">Maven</a></li>
+  <li><a href="/maven-site/archetypes/index.html">Archetypes</a></li>
+  <li><a href="/maven-site/extensions/index.html">Extensions</a></li>
+  <li><a href="/maven-site/pom/index.html">Parent POMs</a></li>
+  <li><a href="/maven-site/plugins/index.html">Plugins</a></li>
+  <li><a href="/maven-site/skins/index.html">Skins</a></li>
+  <li><a><span class="icon-chevron-down"></span>Components</a>
+   <ul class="nav nav-list">
+    <li><a href="/maven-site/archetype/index.html">Archetype</a></li>
+    <li><a href="/maven-site/resolver/index.html">Artifact Resolver</a></li>
+    <li><a href="/maven-site/doxia/index.html">Doxia</a></li>
+    <li><a href="/maven-site/maven-indexer/index.html">Indexer</a></li>
+    <li><a href="/maven-site/jxr/index.html">JXR</a></li>
+    <li><a href="/maven-site/plugin-testing/index.html">Plugin Testing</a></li>
+    <li><a href="/maven-site/plugin-tools/index.html">Plugin Tools</a></li>
+    <li><a href="/maven-site/apache-resource-bundles/index.html">Resource Bundles</a></li>
+    <li><a href="/maven-site/scm/index.html">SCM</a></li>
+    <li><a href="/maven-site/shared/index.html">Shared Components</a></li>
+    <li><a href="/maven-site/surefire/index.html">Surefire</a></li>
+    <li><a href="/maven-site/wagon/index.html">Wagon</a></li>
+   </ul></li>
+  <li class="nav-header">ASF</li>
+  <li><a href="https://www.apache.org/foundation/how-it-works.html">How Apache Works</a></li>
+  <li><a href="https://www.apache.org/foundation/">Foundation</a></li>
+  <li><a href="https://privacy.apache.org/policies/privacy-policy-public.html">Data Privacy</a></li>
+  <li><a href="https://www.apache.org/foundation/sponsorship.html">Sponsoring Apache</a></li>
+  <li><a href="https://www.apache.org/foundation/thanks.html">Thanks</a></li>
+</ul>
+          </nav>
+          <div class="well sidebar-nav">
+            <div id="poweredBy">
+              <div class="clear"></div>
+              <a href="/maven-site/" class="builtBy" target="_blank"><img class="builtBy" alt="Built by Maven" src="/maven-site/images/logos/maven-feather.png"></a>
+            </div>
+          </div>
+        </header>
+        <main id="bodyColumn" class="span10">
+          
+<!--
+Licensed to the Apache Software Foundation (ASF) under one
+or more contributor license agreements.  See the NOTICE file
+distributed with this work for additional information
+regarding copyright ownership.  The ASF licenses this file
+to you under the Apache License, Version 2.0 (the
+"License"); you may not use this file except in compliance
+with the License.  You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing,
+software distributed under the License is distributed on an
+"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+KIND, either express or implied.  See the License for the
+specific language governing permissions and limitations
+under the License.
+-->
+<h1 id="Introduction">Introduction</h1>
+<p>This guide is intended to assist users in developing reporting plugins for Maven in Java, that will contribute to sites generated by <a href="https://maven.apache.org/plugins/maven-site-plugin/"><code>maven-site-plugin</code></a>.</p>
+<p>First and foremost, a <em>report plugin</em> is a <em>Maven plugin</em> and it is strongly advised to first read the <a href="./guide-java-plugin-development.html">Guide to Developing Java Plugins</a> to properly understand its core mechanisms.</p>
+<p>A plugin is actually not a <em>report plugin</em> in itself. But one (or several) of its goals or <em>Mojos</em> may be specialized to be invoked by <a href="https://maven.apache.org/plugins/maven-site-plugin/"><code>maven-site-plugin</code></a>, typically during the <code>site</code> build life cycle.</p>
+<p>A Maven plugin can therefore implement <em>regular</em> goals and <em>report</em> goals. The below details how to write a <em>Mojo</em> that will get invoked as a <em>report</em> by <a href="https://maven.apache.org/plugins/maven-site-plugin/"><code>maven-site-plugin</code></a>.</p>
+<h2 id="How_It_Works">How It Works</h2>
+<ol>
+<li>
+<p>A regular Maven project usually invokes <em>reporting goals</em> of a plugin by declaring such plugin in the <a href="https://maven.apache.org/plugins/maven-site-plugin/examples/configuring-reports.html"><code>&lt;reporting&gt;</code></a> section of its <code>pom.xml</code> as in the example below:</p>
+<div class="language-unknown highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="unknown">&lt;project&gt;
+  ...
+  &lt;reporting&gt;
+    &lt;plugins&gt;
+      &lt;plugin&gt;
+        &lt;groupId&gt;com.mycompany.maven&lt;/groupId&gt;
+        &lt;artifactId&gt;simple-maven-plugin&lt;/artifactId&gt;
+        &lt;version&gt;1.0-SNAPSHOT&lt;/version&gt;
+      &lt;/plugin&gt;
+    &lt;/plugins&gt;
+  &lt;/reporting&gt;
+  ...
+</code></pre></div></div>
+</li>
+<li>
+<p>When <a href="https://maven.apache.org/plugins/maven-site-plugin/"><code>maven-site-plugin</code></a> is invoked (for example with the <code>mvn site</code> command), the specified plugins are loaded and the <code>generate()</code> method of each Mojo class that implements <a href="https://maven.apache.org/shared/maven-reporting-api/apidocs/org/apache/maven/reporting/MavenReport.html"><code>MavenReport</code></a> is executed.</p>
+</li>
+<li>
+<p>The <code>generate()</code> method generates a document through Maven's <a href="https://maven.apache.org/doxia/doxia/doxia-sink-api/">Doxia Sink API</a>. This document is comprised of basic elements like title, headings, text, links, tables, etc. This is where you will put the logic of your report, assembling elements, based on the content of the Maven project.</p>
+</li>
+<li>
+<p>These document elements are passed to Doxia to generate an HTML document, which itself gets wrapped into a <a href="/maven-site/skins/">Maven Skin</a>, as specified in the projects <a href="/maven-site/guides/mini/guide-site.html"><code>./src/site/site.xml</code></a>.</p>
+</li>
+<li>
+<p>The result produces an HTML file in the <code>./target/site</code> directory of your project.</p>
+</li>
+</ol>
+<p><a href="https://maven.apache.org/doxia/doxia-sitetools/doxia-site-renderer/">More details about Doxia Site Renderer</a></p>
+<h2 id="Basic_Requirements_of_a_Report_Mojo">Basic Requirements of a Report <em>Mojo</em></h2>
+<p>Each goal or <em>Mojo</em> is implemented with a separate Java class. For a <em>Mojo</em> to become a <em>report Mojo</em>, it needs to implement <a href="https://maven.apache.org/shared/maven-reporting-api/apidocs/org/apache/maven/reporting/MavenReport.html"><code>org.apache.maven.reporting.MavenReport</code></a> (in addition to <a href="https://maven.apache.org/ref/current/apidocs/org/apache/maven/plugin/Mojo.html"><code>org.apache.maven.plugin.Mojo</code></a>).</p>
+<p>An easy way to implement both <code>Mojo</code> and <code>MavenReport</code> interfaces is to extend the <a href="https://maven.apache.org/shared/maven-reporting-impl/apidocs/org/apache/maven/reporting/AbstractMavenReport.html"><code>org.apache.maven.reporting.AbstractMavenReport</code></a> class provided by <a href="https://maven.apache.org/shared/maven-reporting-impl/"><code>maven-reporting-impl</code></a> (instead of <code>org.apache.maven.plugin.AbstractMojo</code> for a regular <em>Mojo</em>).</p>
+<p>The class will need to implement the following methods:</p>
+<ul>
+<li><code>public String getOutputPath()</code>: returns the path of the page that will be produced</li>
+<li><code>public String getOutputName()</code>: deprecated in favour of <code>getOutputPath()</code>, but still declared abstract by <code>MavenReport</code>, so it has to be implemented — delegate it to <code>getOutputPath()</code></li>
+<li><code>public String getName(Locale locale)</code>: returns the display name of the report</li>
+<li><code>public String getDescription(Locale locale)</code>: returns the description of the report</li>
+<li><code>protected void executeReport(Locale locale) throws MavenReportException</code>: produces the actual report</li>
+</ul>
+<p>To build a Maven plugin that includes <em>report Mojos</em>, the <code>pom.xml</code> of your project will need declare the project as a regular plugin, and include specific dependencies required by the report <em>Mojos</em>:</p>
+<ul>
+<li><a href="https://maven.apache.org/shared/maven-reporting-impl/dependency-info.html"><code>org.apache.maven.reporting:maven-reporting-impl</code></a></li>
+<li><a href="https://maven.apache.org/shared/maven-reporting-api/project-summary.html"><code>org.apache.maven.reporting:maven-reporting-api</code></a></li>
+</ul>
+<h2 id="A_.28Very.29_Simple_Report">A (Very) Simple Report</h2>
+<p>Let's write a very simple <em>report Mojo</em> in a very simple Maven plugin:</p>
+<ul>
+<li>Plugin's name: <strong>Simple Plugin</strong></li>
+<li>Plugin's artifact coordinates: <code>com.mycompany.maven:simple-maven-plugin:1.0-SNAPSHOT</code></li>
+<li>One goal: <strong>simple</strong></li>
+<li>One result: <code>simple-report.html</code></li>
+</ul>
+<p>Our Maven plugin project has 2 files only:</p>
+<ul>
+<li><code>./pom.xml</code></li>
+<li><code>./src/main/java/com/mycompany/maven/SimpleReport.java</code></li>
+</ul>
+<p>The below examples can be copied and pasted as a template.</p>
+<h3 id="a..2Fpom.xml">./pom.xml</h3>
+<div class="language-unknown highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="unknown">&lt;project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"&gt;
+
+    &lt;modelVersion&gt;4.0.0&lt;/modelVersion&gt;
+
+    &lt;groupId&gt;com.mycompany.maven&lt;/groupId&gt;
+    &lt;artifactId&gt;simple-maven-plugin&lt;/artifactId&gt;
+    &lt;version&gt;1.0-SNAPSHOT&lt;/version&gt;
+    &lt;packaging&gt;maven-plugin&lt;/packaging&gt;
+
+    &lt;name&gt;Simple Plugin&lt;/name&gt;
+
+    &lt;properties&gt;
+        &lt;project.build.sourceEncoding&gt;UTF-8&lt;/project.build.sourceEncoding&gt;
+        &lt;doxiaVersion&gt;2.1.0&lt;/doxiaVersion&gt;
+        &lt;doxiaSitetoolsVersion&gt;2.1.0&lt;/doxiaSitetoolsVersion&gt;
+    &lt;/properties&gt;
+
+    &lt;dependencies&gt;
+        &lt;!-- Doxia API and Doxia Sitetools --&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;org.apache.maven.doxia&lt;/groupId&gt;
+            &lt;artifactId&gt;doxia-sink-api&lt;/artifactId&gt;
+            &lt;version&gt;2.2.0&lt;/version&gt;
+        &lt;/dependency&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;org.apache.maven.doxia&lt;/groupId&gt;
+            &lt;artifactId&gt;doxia-site-renderer&lt;/artifactId&gt;
+            &lt;version&gt;${doxiaSitetoolsVersion}&lt;/version&gt;
+        &lt;/dependency&gt;
+
+        &lt;!-- reporting API --&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;org.apache.maven.reporting&lt;/groupId&gt;
+            &lt;artifactId&gt;maven-reporting-impl&lt;/artifactId&gt;
+            &lt;version&gt;4.0.0&lt;/version&gt;
+        &lt;/dependency&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;org.apache.maven.reporting&lt;/groupId&gt;
+            &lt;artifactId&gt;maven-reporting-api&lt;/artifactId&gt;
+            &lt;version&gt;4.0.0&lt;/version&gt;
+        &lt;/dependency&gt;
+
+        &lt;!-- plugin API and plugin-tools --&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;org.apache.maven&lt;/groupId&gt;
+            &lt;artifactId&gt;maven-core&lt;/artifactId&gt;
+            &lt;version&gt;3.9.11&lt;/version&gt;
+            &lt;scope&gt;provided&lt;/scope&gt;
+        &lt;/dependency&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;org.apache.maven&lt;/groupId&gt;
+            &lt;artifactId&gt;maven-plugin-api&lt;/artifactId&gt;
+            &lt;version&gt;3.9.11&lt;/version&gt;
+            &lt;scope&gt;provided&lt;/scope&gt;
+        &lt;/dependency&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;org.apache.maven.plugin-tools&lt;/groupId&gt;
+            &lt;artifactId&gt;maven-plugin-annotations&lt;/artifactId&gt;
+            &lt;version&gt;3.16.0&lt;/version&gt;
+            &lt;scope&gt;provided&lt;/scope&gt;
+        &lt;/dependency&gt;
+    &lt;/dependencies&gt;
+
+
+    &lt;build&gt;
+        &lt;plugins&gt;
+            &lt;plugin&gt;
+                &lt;artifactId&gt;maven-compiler-plugin&lt;/artifactId&gt;
+                &lt;version&gt;3.16.0&lt;/version&gt;
+            &lt;/plugin&gt;
+            &lt;plugin&gt;
+                &lt;artifactId&gt;maven-install-plugin&lt;/artifactId&gt;
+                &lt;version&gt;3.2.0&lt;/version&gt;
+            &lt;/plugin&gt;
+            &lt;plugin&gt;
+                &lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;
+                &lt;artifactId&gt;maven-plugin-plugin&lt;/artifactId&gt;
+                &lt;version&gt;3.16.0&lt;/version&gt;
+                &lt;configuration&gt;
+                    &lt;goalPrefix&gt;simple&lt;/goalPrefix&gt;
+                &lt;/configuration&gt;
+                &lt;executions&gt;
+                    &lt;execution&gt;
+                        &lt;id&gt;generated-helpmojo&lt;/id&gt;
+                        &lt;goals&gt;
+                            &lt;goal&gt;helpmojo&lt;/goal&gt;
+                        &lt;/goals&gt;
+                    &lt;/execution&gt;
+                &lt;/executions&gt;
+            &lt;/plugin&gt;
+        &lt;/plugins&gt;
+    &lt;/build&gt;
+
+&lt;/project&gt;
+</code></pre></div></div>
+<h3 id="a..2Fsrc.2Fmain.2Fjava.2Fcom.2Fmycompany.2Fmaven.2FSimpleReport.java">./src/main/java/com/mycompany/maven/SimpleReport.java</h3>
+<div class="language-unknown highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="unknown">package com.mycompany.maven;
+
+import java.util.Locale;
+
+import org.apache.maven.doxia.sink.Sink;
+import org.apache.maven.plugin.logging.Log;
+import org.apache.maven.plugins.annotations.LifecyclePhase;
+import org.apache.maven.plugins.annotations.Mojo;
+import org.apache.maven.plugins.annotations.ResolutionScope;
+import org.apache.maven.project.MavenProject;
+import org.apache.maven.reporting.AbstractMavenReport;
+import org.apache.maven.reporting.MavenReportException;
+
+/**
+ * Builds an simple report page as an example.
+ *
+ * &lt;p&gt;
+ * This example show how easy it is to build your own reporting plugin
+ * (or, for that matter, your own reporting Mojo)
+ *
+ */
+@Mojo(
+       name = "simple",
+       defaultPhase = LifecyclePhase.SITE,
+       requiresDependencyResolution = ResolutionScope.RUNTIME,
+       requiresProject = true,
+       threadSafe = true
+     )
+public class SimpleReport extends AbstractMavenReport {
+
+    /**
+     * @deprecated use {@link #getOutputPath()} instead
+     */
+    @Override
+    @Deprecated
+    public String getOutputName() {
+        return getOutputPath();
+    }
+
+    @Override
+    public String getOutputPath() {
+        // This report will generate simple-report.html when invoked in a project with `mvn site`
+        return "simple-report";
+    }
+
+    public String getName(Locale locale) {
+        // Name of the report when listed in the project-reports.html page of a project
+        return "Simple Report";
+    }
+
+    public String getDescription(Locale locale) {
+        // Description of the report when listed in the project-reports.html page of a project
+        return "This simple report is a very simple report that does nothing but "
+        + "shows off Maven's wonderful reporting capabilities.";
+    }
+
+    @Override
+    protected void executeReport(Locale locale) throws MavenReportException {
+
+        // Get the logger
+        Log logger = getLog();
+
+        // Some info
+        logger.info("Generating " + getOutputPath() + ".html"
+                + " for " + project.getName() + " " + project.getVersion());
+
+        // Get the Maven Doxia Sink, which will be used to generate the
+        // various elements of the document
+        Sink mainSink = getSink();
+        if (mainSink == null) {
+            throw new MavenReportException("Could not get the Doxia sink");
+        }
+
+        // Page title
+        mainSink.head();
+        mainSink.title();
+        mainSink.text("Simple Report for " + project.getName() + " " + project.getVersion());
+        mainSink.title_();
+        mainSink.head_();
+
+        mainSink.body();
+
+        // Heading 1
+        mainSink.section1();
+        mainSink.sectionTitle1();
+        mainSink.text("Simple Report for " + project.getName() + " " + project.getVersion());
+        mainSink.sectionTitle1_();
+
+        // Content
+        mainSink.paragraph();
+        mainSink.text("This page provides simple information, like its location: ");
+        mainSink.text(project.getBasedir().getAbsolutePath());
+        mainSink.paragraph_();
+
+        // Close
+        mainSink.section1_();
+        mainSink.body_();
+
+    }
+
+}
+</code></pre></div></div>
+<h3 id="Building_the_Simple_Plugin">Building the Simple Plugin</h3>
+<p>Building the plugin is done by executing the below command in the root directory of the plugin project:</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ mvn install
+</code></pre></div></div>
+<p>This command will:</p>
+<ul>
+<li>compile your code</li>
+<li>produces the plugin JAR artifact (<code>./target/simple-maven-plugin-1.0-SNAPSHOT.jar</code>)</li>
+<li>copy the artifact to your local repository so that it can be "consumed" by other projects (which is the purpose of a plugin, right?).</li>
+</ul>
+<p>To make sure everything went well and is properly declared, you can now execute the below command in any other Maven project directory:</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ mvn com.mycompany.maven:simple-maven-plugin:1.0-SNAPSHOT:help
+
+[INFO] --- simple-maven-plugin:1.0-SNAPSHOT:help (default-cli) @ hardware-connectors ---
+[INFO] Simple Plugin 1.0-SNAPSHOT
+
+
+This plugin has 2 goals:
+
+simple:help
+  Display help information on simple-maven-plugin.
+  Call mvn simple:help -Ddetail=true -Dgoal=&lt;goal-name&gt; to display parameter
+  details.
+
+simple:simple
+  Builds an simple report page as an example.
+  This example show how easy it is to build your own reporting plugin (or, for
+  that matter, your own reporting Mojo)
+
+
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+</code></pre></div></div>
+<h3 id="Invoking_the_Simple_Plugin">Invoking the Simple Plugin</h3>
+<p>To invoke the <em>report Mojo</em> of our plugin in another Maven project, we just need to declare the plugin in the <a href="https://maven.apache.org/plugins/maven-site-plugin/examples/configuring-reports.html"><code>&lt;reporting&gt;</code></a> section of its <code>pom.xml</code> as in the example below:</p>
+<div class="language-unknown highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="unknown">&lt;project&gt;
+  ...
+  &lt;reporting&gt;
+    &lt;plugins&gt;
+      &lt;plugin&gt;
+        &lt;groupId&gt;com.mycompany.maven&lt;/groupId&gt;
+        &lt;artifactId&gt;simple-maven-plugin&lt;/artifactId&gt;
+        &lt;version&gt;1.0-SNAPSHOT&lt;/version&gt;
+      &lt;/plugin&gt;
+    &lt;/plugins&gt;
+  &lt;/reporting&gt;
+  ...
+&lt;/project&gt;
+</code></pre></div></div>
+<p>Note: When no specific report is specified, all of the <em>Mojos</em> in the plugin, that are declared as "reporting" will be executed. <a href="https://maven.apache.org/plugins/maven-site-plugin/examples/configuring-reports.html">More information about configuring reports</a>.</p>
+<h2 id="More_Information">More Information</h2>
+<h3 id="The_Doxia_Sink_API">The Doxia Sink API</h3>
+<p>In your <code>executeReport()</code> method, you will leverage the <a href="https://maven.apache.org/doxia/doxia/doxia-sink-api/">Doxia Sink API</a> to add elements to the report document.</p>
+<p>You will use the <a href="https://maven.apache.org/doxia/doxia/doxia-sink-api/apidocs/org/apache/maven/doxia/sink/Sink.html"><code>Sink</code></a> object associated to the report:</p>
+<div class="language-unknown highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="unknown">Sink sink = getSink();
+</code></pre></div></div>
+<p>This object allows you to append new elements to the report document (initially empty). Unlike some DOM manipulation APIs, you cannot insert elements in already existing elements, or remove elements.</p>
+<p>The elements that you append to the document will look familiar if you have basic knowledge of HTML. Most of the elements have opening and closing tags, like <code>sink.body()</code> (opening) and <code>sink.body_()</code> (closing).</p>
+<ul>
+<li><code>sink.head()</code> and <code>sink.head_()</code></li>
+<li><code>sink.paragraph()</code> and <code>sink.paragraph_()</code></li>
+<li><code>sink.section1()</code> and <code>sink.section1_()</code></li>
+<li><code>sink.bold()</code> and <code>sink.bold_()</code></li>
+<li>etc.</li>
+</ul>
+<p><strong>Do not forget to close elements!</strong></p>
+<p>At the very least, a document should include the following:</p>
+<ul>
+<li>Head and title (<code>sink.head()</code> and <code>sink.title()</code>)</li>
+<li>Body (<code>sink.body()</code>)</li>
+<li>Section 1 with title (<code>sink.section1()</code> and <code>sink.sectionTitle1()</code>)</li>
+</ul>
+<p>The <a href="https://maven.apache.org/doxia/doxia/doxia-sink-api/apidocs/org/apache/maven/doxia/sink/Sink.html"><code>Sink</code></a> object allows you to add raw text with the <em>rawText()</em> method. More precisely, it allows you to add raw HTML code into the document for full flexibility. However, you should limit the usage of this method as you may add elements that are not supported by non-HTML renderers, i.e. any Doxia Sink other than the XHTML5 one.</p>
+<p>The Doxia Sink API allows you to specify <a href="https://maven.apache.org/doxia/doxia/doxia-sink-api/apidocs/org/apache/maven/doxia/sink/SinkEventAttributes.html"><em>SinkEventAttributes</em></a> to each element, i.e. HTML properties, notably the class and the ID of an object, which allows for easy customization with an appropriate CSS (either provided by the specified Maven Skin, or by the project itself).</p>
+<h3 id="Creating_more_than_one_document">Creating more than one document</h3>
+<p>You may need to create not just one HTML file, but several of them (like Javadoc produces one HTML file for each Java class). To do so, you will need to get a new <em>Sink</em> for each HTML file you need to produce. This is achieved by using the <a href="https://maven.apache.org/doxia/doxia/doxia-sink-api/apidocs/org/apache/maven/doxia/sink/SinkFactory.html"><code>SinkFactory</code></a> object that you can easily obtain with the <a href="https://maven.apache.org/shared/maven-reporting-impl/apidocs/org/apache/maven/reporting/AbstractMavenReport.html#getSinkFactory.28.29"><code>getSinkFactory()</code></a> method of your <a href="https://maven.apache.org/shared/maven-reporting-impl/apidocs/org/apache/maven/reporting/AbstractMavenReport.html"><code>AbstractMavenReport</code></a> instance, as in the example below.</p>
+<div class="language-unknown highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="unknown">public class SimpleReport extends AbstractMavenReport {
+
+  ...
+
+  /**
+   * Where the HTML pages of the report will be created.
+   */
+  @Parameter( defaultValue = "${project.reporting.outputDirectory}", property = "outputDirectory", required = true )
+  private File outputDirectory;
+
+  ...
+
+  @Override
+  protected void executeReport(Locale locale) throws MavenReportException {
+
+    ...
+
+    // Create a new sink
+    String pageFilename = "other-report.html";
+    Sink otherSink;
+    try {
+      otherSink = getSinkFactory().createSink(outputDirectory, pageFilename);
+    } catch (IOException e) {
+      throw new MavenReportException("Could not create sink for " + pageFilename + " in " + outputDirectory.getAbsolutePath(), e);
+    }
+
+    // Create the "other" report
+    otherSink.head();
+    otherSink.title();
+    otherSink.text("The Other Report");
+    ...
+</code></pre></div></div>
+<p>The above example will create a <code>other-report.html</code> HTML file along with <code>simple-report.html</code>.</p>
+<p>Note: Despite the fact that you will be creating additional HTML files, the Velocity variable <code>$currentFilePath</code> passed to the <code>site.vm</code> script of the Maven Skin will keep the path of the original report (that is, the result of your <em>getOutputPath()</em> method). <a href="https://maven.apache.org/doxia/doxia-sitetools/doxia-site-renderer/">More information about the Velocity variables</a>.</p>
+<h2 id="Resources">Resources</h2>
+<ol>
+<li><a href="./guide-java-plugin-development.html">Guide to Developing Java Plugins</a>: Starting point, since a reporting plugin is a plugin...</li>
+<li><a href="https://maven.apache.org/shared/maven-reporting-api/">Maven Reporting API</a>: The Reporting API to implement when a Mojo provides reporting for site.</li>
+<li><a href="https://maven.apache.org/shared/maven-reporting-impl/">Maven Reporting Implementation</a>: Base implementation of both Reporting API and Plugin API.</li>
+<li><a href="https://maven.apache.org/doxia/doxia/doxia-sink-api/">Doxia Sink API</a>: API to generate content.</li>
+</ol>
+
+        </main>
+      </div>
+    </div>
+    <hr>
+    <footer>
+      <div class="container-fluid">
+        <div class="row-fluid">
+          <p>©      2002–2026 <a href="https://www.apache.org/">The Apache Software Foundation</a></p>
+          <p class="demo-note">A demonstration build of <a href="https://github.com/dashorst/maven-site/tree/diataxis-demo">dashorst/maven-site</a>, not the official Apache Maven site.</p>
+        </div>
+      </div>
+    </footer>
+    <script src="/maven-site/js/guide.js?v=1792948498" defer=""></script>
+    <script>
+    anchors.add();
+    </script>
+  
+
+</body></html>

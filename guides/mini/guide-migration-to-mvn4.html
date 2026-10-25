@@ -1,0 +1,472 @@
+<!DOCTYPE html><!--
+ | The page frame of the Apache Maven Fluido Skin 2.1.0, as the Doxia site renderer writes it
+ | for maven.apache.org. Built with Jekyll: see jekyll/README.md.
+--><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Starting with Maven 4 – Maven</title>
+    
+    <link rel="stylesheet" href="/maven-site/css/apache-maven-fluido-2.1.0.min.css">
+    <link rel="stylesheet" href="/maven-site/css/site.css">
+    <link rel="stylesheet" href="/maven-site/css/guide.css?v=1792948498">
+    <link rel="stylesheet" href="/maven-site/css/print.css" media="print">
+    <script src="/maven-site/js/apache-maven-fluido-2.1.0.min.js"></script>
+  </head>
+  <body>
+    <div class="container-fluid container-fluid-top">
+      <header>
+        <div id="banner">
+          <div class="pull-left"><div id="bannerLeft"><h1><a href="/maven-site/index.html"><img src="/maven-site/images/apache-maven-project-light-theme.svg" style="width: 489px;height: 83px;" alt="Apache Maven"></a></h1></div></div>
+          <div class="pull-right"><div id="bannerRight"><h1><img src="/maven-site/images/logos/MavenLogoLeaf.svg" style="width: 340px;height: 83px;" alt=""></h1></div></div>
+          <div class="clear"><hr></div>
+        </div>
+
+        <div id="breadcrumbs">
+          <ul class="breadcrumb">
+            <li><a href="https://www.apache.org/">Apache</a><span class="divider">/</span></li>
+            <li><a href="/maven-site/index.html">Maven</a><span class="divider">/</span></li>
+            
+            <li class="active">Starting with Maven 4 <a href="https://github.com/apache/maven-site/tree/master/content/markdown/guides/mini/guide-migration-to-mvn4.md"><img src="/maven-site/images/accessories-text-editor.png" alt="Edit"></a></li>
+            <li id="publishDate" class="pull-right"><span class="divider">|</span> Last Published: 2026-10-25</li>
+            <li class="pull-right"><span class="divider">|</span> <a href="/maven-site/scm.html">Get Sources</a></li>
+            <li class="pull-right"><a href="https://maven.apache.org/download.cgi">Downloads</a></li>
+          </ul>
+        </div>
+      </header>
+      <div class="row-fluid">
+        <header id="leftColumn" class="span2">
+          
+<form class="guide-search" role="search" action="/maven-site/guides/a-z.html" data-index="/maven-site/guides/search.json" data-script="/maven-site/js/minisearch-7.2.0.js" data-oldest="3.9" data-base="/maven-site">
+  <label class="guide-search-label" for="guide-q-nav">Search the documentation</label>
+  <div class="guide-search-field">
+    <input id="guide-q-nav" name="q" type="search" autocomplete="off" spellcheck="false" placeholder="Search">
+    <kbd class="guide-search-key" aria-hidden="true">/</kbd>
+  </div>
+  
+</form>
+
+          <nav class="well sidebar-nav">
+<ul class="nav nav-list">
+  <li><a href="/maven-site/index.html">Welcome</a></li>
+  <li><a href="https://www.apache.org/licenses/">License</a></li>
+  <li class="nav-header">About Maven</li>
+  <li><a href="/maven-site/what-is-maven.html">What is Maven?</a></li>
+  <li><a href="/maven-site/install.html">Installation</a></li>
+  <li><a href="/maven-site/download.html">Downloads</a></li>
+  <li><a href="/maven-site/run.html">Use</a></li>
+  <li><a href="/maven-site/configure.html">Configure</a></li>
+  <li><a href="/maven-site/docs/history.html">Release Notes</a></li>
+  <li><a href="/maven-site/security.html">Security Reports</a></li>
+  <li class="nav-header">Documentation</li>
+  <li><a href="/maven-site/plugins/index.html">Maven Plugins</a></li>
+  <li><a href="/maven-site/extensions/index.html">Maven Extensions</a></li>
+  <li><a href="/maven-site/tools/index.html"><span class="icon-chevron-down"></span>Maven Tools</a>
+   <ul class="nav nav-list">
+    <li><a href="/maven-site/tools/mvnd.html">Maven Daemon</a></li>
+    <li><a href="/maven-site/tools/mvnsh.html">Maven Shell</a></li>
+    <li><a href="/maven-site/tools/mvnup.html">Maven Upgrade Tool</a></li>
+    <li><a href="/maven-site/tools/mavenwrapper.html">Maven Wrapper</a></li>
+   </ul></li>
+  <li><a href="/maven-site/doxia/index.html"><span class="icon-chevron-right"></span>Doxia</a></li>
+  <li><a href="/maven-site/guides/index.html">Guides</a></li>
+  <li><a href="/maven-site/users/index.html"><span class="icon-chevron-down"></span>User Manual</a>
+   <ul class="nav nav-list">
+    <li><a><span class="icon-chevron-down"></span>Maven Build Fundamentals</a>
+     <ul class="nav nav-list">
+      <li><a href="/maven-site/guides/getting-started/maven-in-five-minutes.html">Maven in 5 Minutes</a></li>
+      <li><a href="/maven-site/users/getting-help.html">Getting Help</a></li>
+      <li><a href="/maven-site/run-maven/index.html">Running Maven</a></li>
+     </ul></li>
+    <li><a><span class="icon-chevron-down"></span>Maven Build Config Fundamentals</a>
+     <ul class="nav nav-list">
+      <li><a href="/maven-site/guides/plugins/validation/index.html">Plugins Validation</a></li>
+      <li><a href="/maven-site/guides/mini/guide-site.html"><span class="icon-chevron-right"></span>Creating a site</a></li>
+      <li><a href="/maven-site/guides/introduction/introduction-to-archetypes.html"><span class="icon-chevron-right"></span>Archetypes</a></li>
+      <li><a href="/maven-site/guides/introduction/introduction-to-repositories.html"><span class="icon-chevron-right"></span>Repositories</a></li>
+      <li><a href="/maven-site/guides/introduction/introduction-to-profiles.html">Profiles</a></li>
+      <li><a href="/maven-site/guides/introduction/introduction-to-the-standard-directory-layout.html">Standard Directory Layout</a></li>
+      <li><a href="/maven-site/guides/introduction/introduction-to-dependency-mechanism.html"><span class="icon-chevron-right"></span>Dependency Mechanism</a></li>
+     </ul></li>
+    <li><a href="/maven-site/guides/getting-started/index.html"><span class="icon-chevron-right"></span>Getting Started Guide</a></li>
+    <li><a><span class="icon-chevron-down"></span>Maven 4</a>
+     <ul class="nav nav-list">
+      <li><a href="/maven-site/whatsnewinmaven4.html">What's new in Maven 4?</a></li>
+      <li class="active"><a>Starting with Maven 4</a></li>
+      <li><a href="/maven-site/guides/mini/guide-mixins.html">Maven Mixins</a></li>
+     </ul></li>
+    <li><a href="/maven-site/guides/mini/index.html"><span class="icon-chevron-right"></span>Guides</a></li>
+    <li><a href="/maven-site/general.html">FAQ</a></li>
+   </ul></li>
+  <li><a href="/maven-site/repositories/index.html"><span class="icon-chevron-right"></span>Maven Repositories</a></li>
+  <li><a href="/maven-site/plugin-developers/index.html"><span class="icon-chevron-right"></span>Plugin Development</a></li>
+  <li><a href="/maven-site/developers/index.html"><span class="icon-chevron-right"></span>Contribute to Maven</a></li>
+  <li><a href="/maven-site/articles.html">Books and Resources</a></li>
+  <li class="nav-header">Community</li>
+  <li><a href="/maven-site/community.html">Community Overview</a></li>
+  <li><a href="/maven-site/project-roles.html">Project Roles</a></li>
+  <li><a href="/maven-site/guides/development/guide-helping.html">How to Contribute</a></li>
+  <li><a href="/maven-site/users/getting-help.html">Getting Help</a></li>
+  <li><a href="/maven-site/issue-management.html">Issue Management</a></li>
+  <li><a href="/maven-site/scm.html">Getting Maven Source</a></li>
+  <li><a href="/maven-site/team.html">The Maven Team</a></li>
+  <li class="nav-header">Project Documentation</li>
+  <li><a href="/maven-site/project-info.html">Project Information</a></li>
+  <li class="nav-header">Maven Projects</li>
+  <li><a href="/maven-site/ref/current">Maven</a></li>
+  <li><a href="/maven-site/archetypes/index.html">Archetypes</a></li>
+  <li><a href="/maven-site/extensions/index.html">Extensions</a></li>
+  <li><a href="/maven-site/pom/index.html">Parent POMs</a></li>
+  <li><a href="/maven-site/plugins/index.html">Plugins</a></li>
+  <li><a href="/maven-site/skins/index.html">Skins</a></li>
+  <li><a><span class="icon-chevron-down"></span>Components</a>
+   <ul class="nav nav-list">
+    <li><a href="/maven-site/archetype/index.html">Archetype</a></li>
+    <li><a href="/maven-site/resolver/index.html">Artifact Resolver</a></li>
+    <li><a href="/maven-site/doxia/index.html">Doxia</a></li>
+    <li><a href="/maven-site/maven-indexer/index.html">Indexer</a></li>
+    <li><a href="/maven-site/jxr/index.html">JXR</a></li>
+    <li><a href="/maven-site/plugin-testing/index.html">Plugin Testing</a></li>
+    <li><a href="/maven-site/plugin-tools/index.html">Plugin Tools</a></li>
+    <li><a href="/maven-site/apache-resource-bundles/index.html">Resource Bundles</a></li>
+    <li><a href="/maven-site/scm/index.html">SCM</a></li>
+    <li><a href="/maven-site/shared/index.html">Shared Components</a></li>
+    <li><a href="/maven-site/surefire/index.html">Surefire</a></li>
+    <li><a href="/maven-site/wagon/index.html">Wagon</a></li>
+   </ul></li>
+  <li class="nav-header">ASF</li>
+  <li><a href="https://www.apache.org/foundation/how-it-works.html">How Apache Works</a></li>
+  <li><a href="https://www.apache.org/foundation/">Foundation</a></li>
+  <li><a href="https://privacy.apache.org/policies/privacy-policy-public.html">Data Privacy</a></li>
+  <li><a href="https://www.apache.org/foundation/sponsorship.html">Sponsoring Apache</a></li>
+  <li><a href="https://www.apache.org/foundation/thanks.html">Thanks</a></li>
+</ul>
+          </nav>
+          <div class="well sidebar-nav">
+            <div id="poweredBy">
+              <div class="clear"></div>
+              <a href="/maven-site/" class="builtBy" target="_blank"><img class="builtBy" alt="Built by Maven" src="/maven-site/images/logos/maven-feather.png"></a>
+            </div>
+          </div>
+        </header>
+        <main id="bodyColumn" class="span10">
+          
+<h1 id="Starting_with_Maven_4">Starting with Maven 4</h1>
+<!--
+Licensed to the Apache Software Foundation (ASF) under one
+or more contributor license agreements.  See the NOTICE file
+distributed with this work for additional information
+regarding copyright ownership.  The ASF licenses this file
+to you under the Apache License, Version 2.0 (the
+"License"); you may not use this file except in compliance
+with the License.  You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing,
+software distributed under the License is distributed on an
+"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+KIND, either express or implied.  See the License for the
+specific language governing permissions and limitations
+under the License.
+-->
+<p>Maven 4 introduces several updates and improvements (see <a href="/maven-site/whatsnewinmaven4.html">"What's new in Maven 4?"</a>).
+Some of them are backwards compatible with Maven 3, but some require changes of your build environment or Maven project.
+This page offers help for users who want to build their projects with Maven 4 (and check with RCs that everything is fine).</p>
+<p>In short, the general suggestion for the migration is to do it in three steps:</p>
+<ol>
+<li><strong>prepare</strong>: Meet the prerequisites with latest Maven 3</li>
+<li><strong>test</strong>: Build in parallel with Maven 4 (<a href="/maven-site/docs/history.html">latest RC of Maven 4</a>) and do minimal Maven 3-compatible fixes (report us if anything is unexpected)</li>
+<li><strong>migrate</strong>: Drop Maven 3 and introduce optional Maven 4 features (see also <a href="/maven-site/tools/mvnup.html">Maven Upgrade Tool</a>)</li>
+</ol>
+<p>If you run into any issues, please don't hesitate to contact the <a href="https://maven.apache.org/mailing-lists.html">users mailing list</a>.
+The Maven team is interested in all your migration experiences - either good or bad!</p>
+<p>Many OSS projects have already published releases to <a href="https://central.sonatype.com/search?q=l%3Abuild">Maven Central with Maven 4 RC</a>: it's time to check that latest Maven 4 RC works for you before we release the long awaited Maven 4.0.0.</p>
+<p><strong>Notes</strong>:</p>
+<ul>
+<li>This page will constantly be updated  to contain changes, but also to integrate feedback of the community and their experience when upgrading to Maven 4 (RC).
+This means it will still receive updates after Maven 4 (RC or final) has been released.</li>
+<li>Since Maven 4.0.0-rc-4, Maven ships with a built-in migration tool for "step 3 -- migrate" (see <a href="/maven-site/tools/mvnup.html">Maven Upgrade Tool</a>), doing most of the steps needed to benefit from optional Maven 4 specific features.</li>
+<li>This guide does not contain information about how to update plugins to use the new Maven 4 plugin API.
+We plan to create a separate guide for this when we'll work on Maven 4.1: for now, we focus on using Maven 4.0.x (RC) with classical Maven 3 plugins.</li>
+</ul>
+<p><strong>Table of content</strong></p>
+<div class="doxia-toc"><ul><li><a href="#Step_1_--_prepare.3A_Maven_3_Prerequisites">Step 1 -- prepare: Maven 3 Prerequisites</a><ul><li><a href="#Use_latest_version_of_Maven_3.9">Use latest version of Maven 3.9</a></li><li><a href="#Upgrade_plugins_to_their_latest_Maven_3_version">Upgrade plugins to their latest Maven 3 version</a></li></ul></li><li><a href="#Step_2_--_test.3A_Minimal_Updates_for_Maven_4">Step 2 -- test: Minimal Updates for Maven 4</a><ul><li><a href="#Upgrade_build_environment_to_support_Java_17">Upgrade build environment to support Java 17</a></li><li><a href="#Install_and_use_Maven_4">Install and use Maven 4</a></li><li><a href="#Update_few_necessary_plugins_to_Maven_4_version">Update few necessary plugins to Maven 4 version</a></li></ul></li><li><a href="#Troubleshooting_and_required_changes_if_situation_applies">Troubleshooting and required changes if situation applies</a><ul><li><a href="#Fix_plugin_misconfigurations">Fix plugin misconfigurations</a><ul><li><a href="#Duplicate_plugin_declaration">Duplicate plugin declaration</a></li></ul></li><li><a href="#Replace_removed_directory_properties">Replace removed directory properties</a></li><li><a href="#Replace_plugin_bindings_to_pre-_and_post-_lifecycle_phase">Replace plugin bindings to pre- and post- lifecycle phase</a></li></ul></li><li><a href="#Step_3_--_migrate.3A_Drop_Maven_3.2C_use_Optional_Maven_4_features">Step 3 -- migrate: Drop Maven 3, use Optional Maven 4 features</a><ul><li><a href="#Changed_default_values">Changed default values</a><ul><li><a href="#Install.2Fdeploy_at_end_of_build_.28breaking_change.29">Install/deploy at end of build (breaking change)</a></li></ul></li><li><a href="#Use_POM_model_version_4.1.0">Use POM model version 4.1.0</a><ul><li><a href="#Define_project.27s_root_directory">Define project's root directory</a></li><li><a href="#Use_.3Csubprojects.3E_instead_of_.3Cmodules.3E">Use &lt;subprojects&gt; instead of &lt;modules&gt;</a></li><li><a href="#Automatic_versioning_in_multi_subprojects_setups">Automatic versioning in multi subprojects setups</a></li><li><a href="#CI-friendly_variables_without_flatten-maven-plugin">CI-friendly variables without flatten-maven-plugin</a></li><li><a href="#Using_BOM_packaging">Using BOM packaging</a></li></ul></li><li><a href="#Use_the_new_all_and_each_life_cycle_phases">Use the new all and each life cycle phases</a></li><li><a href="#New_way_to_declare_source_directories">New way to declare source directories</a></li></ul></li></ul></div>
+<h2 id="Step_1_--_prepare.3A_Maven_3_Prerequisites">Step 1 -- prepare: Maven 3 Prerequisites</h2>
+<p>This guide assumes that your environment and project meets the following prerequisites.
+If they don't, please make sure they do before continuing with this guide.</p>
+<h3 id="Use_latest_version_of_Maven_3.9">Use latest version of Maven 3.9</h3>
+<p>This guide assumes that the project to be migrated was successfully built using the <a href="/maven-site/docs/history.html">latest version of Maven 3</a>.</p>
+<h3 id="Upgrade_plugins_to_their_latest_Maven_3_version">Upgrade plugins to their latest Maven 3 version</h3>
+<p>Similar to the previous prerequisite, the guides assumes that you are using the latest Maven 3 plugin version of all your plugins.</p>
+<p>Do not upgrade yet to a plugin version which requires Maven 4!
+Be aware of this, if you use tools that can automate updates.</p>
+<p>You can use the <a href="https://www.mojohaus.org/versions/versions-maven-plugin/examples/display-plugin-updates.html">versions-maven-plugin's <code>display-plugin-updates</code> goal</a> to see which are the latest available versions of the plugins you use.</p>
+<p>The following example shows the output of the <a href="https://www.mojohaus.org/versions/versions-maven-plugin/">Versions Maven Plugin</a> in a project using the outdated version 3.12.0 of the Maven Compiler Plugin.
+As you can see, it shows that 3.14.0 is the best Maven 3 compatible update, while versions 4.0.0-beta-1 and 4.0.0-beta-2 require Maven 4 versions, not yet for the current step.</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[INFO] The following plugin updates are available:
+[INFO]   maven-compiler-plugin ............................ 3.12.0 -&gt; 3.14.0
+[INFO]
+[INFO] All plugins have a version specified.
+[INFO]
+[INFO] Project requires minimum Maven version for build of: 3.9
+[INFO] Plugins require minimum Maven version of: 3.6.3
+[INFO]
+[INFO] No plugins require a newer version of Maven than specified by the pom.
+[INFO]
+[INFO] Require Maven 4.0.0-beta-3 to use the following plugin updates:
+[INFO]   maven-compiler-plugin ...................... 3.12.0 -&gt; 4.0.0-beta-1
+[INFO]
+[INFO] Require Maven 4.0.0-rc-2 to use the following plugin updates:
+[INFO]   maven-compiler-plugin ...................... 3.12.0 -&gt; 4.0.0-beta-2
+</code></pre></div></div>
+<h2 id="Step_2_--_test.3A_Minimal_Updates_for_Maven_4">Step 2 -- test: Minimal Updates for Maven 4</h2>
+<p>You need to do the following steps to be able to use Maven 4.</p>
+<h3 id="Upgrade_build_environment_to_support_Java_17">Upgrade build environment to support Java 17</h3>
+<p>Maven 4 requires Java 17 to be run.
+This means the build environment (locally but also your CI environment) needs to provide a JDK that supports Java 17.
+Either install one to your machine or use a container providing one.</p>
+<p><strong>Note</strong>: Maven 3 can also be executed with Java 17.
+So you should prepare your build environment as soon as possible to have a solid, project independent base for further migration.</p>
+<h3 id="Install_and_use_Maven_4">Install and use Maven 4</h3>
+<p>After you have upgraded your build environment to support Java 17, you also need to provide Maven 4.
+See the information <a href="https://maven.apache.org/download.cgi">where to download</a> and <a href="/maven-site/install.html">how to install</a> Maven 4 for further information.</p>
+<p>Places where you might have to configure Maven 4 usage aside installation:</p>
+<ul>
+<li><a href="https://maven.apache.org/tools/wrapper/index.html">Maven Wrapper</a>'s <code>maven-wrapper.properties</code> file.</li>
+<li><a href="https://maven.apache.org/enforcer/enforcer-rules/requireMavenVersion.html">Required Maven version</a> rule of the Maven enforcer plugin.</li>
+<li>Your own CI/CD configuration scripts or pipelines.</li>
+</ul>
+<h3 id="Update_few_necessary_plugins_to_Maven_4_version">Update few necessary plugins to Maven 4 version</h3>
+<p>If there is a dedicated Maven 4 version for used plugins, you should evaluate updating to such a version.
+You can use the <a href="https://www.mojohaus.org/versions/versions-maven-plugin/examples/display-plugin-updates.html">Versions Maven Plugin's <code>display-plugin-updates</code> goal</a> to check for updates.</p>
+<p><strong>Note</strong>: Maven 4 aims to support all Maven 3.9 compatible plugins that do not use old Maven 2 APIs. This is why we promote upgrading to latest release, and to Maven 4 specific release only when a plugin requires definitively a Maven 4-specific update (bugfix or feature. TODO: list the few known plugins requiring 4.x, either to benefit from new features like Compiler, or fix bugs that cannot be fixed with Maven 3)</p>
+<h2 id="Troubleshooting_and_required_changes_if_situation_applies">Troubleshooting and required changes if situation applies</h2>
+<p>The following changes are in general not required by all projects, but might apply to yours.</p>
+<h3 id="Fix_plugin_misconfigurations">Fix plugin misconfigurations</h3>
+<p>There are several misconfigurations in the project's POM declaration that result in warnings when using Maven 3.9.
+While your build should not throw any warnings at all, the following ones needs to be fixed as they will fail the build in Maven 4.</p>
+<p><strong>Notes</strong>:</p>
+<ul>
+<li>The <a href="/maven-site/guides/mini/guide-configuring-plugins.html">plugin configuration guide</a> contains general information, how plugins are correctly declared and configured.</li>
+<li>For analysing wrong build behavior, it might help to use the new <code>--fail-on-severity</code> parameter, paired with <code>WARN</code> as an argument, to fail your build when a warning occurs.</li>
+</ul>
+<h4 id="Duplicate_plugin_declaration">Duplicate plugin declaration</h4>
+<p>A plugin must only be declared once.
+Defining it multiple times results the following log message.</p>
+<blockquote>
+<p>'build.plugins.plugin.(groupId:artifactId)' must be unique but found duplicate declaration of plugin [plugin-name] ...</p>
+</blockquote>
+<p>To fix this, remove the duplicated configuration.</p>
+<h3 id="Replace_removed_directory_properties">Replace removed directory properties</h3>
+<p>Maven 4 introduces new public properties dedicated to point to the root and top directory of (multi-subproject) project.
+You can now use <code>${project.rootDirectory}</code>, <code>${session.topDirectory}</code>, <code>${session.rootDirectory}</code> when declaring paths.
+See the <a href="https://maven.apache.org/ref/4-LATEST/maven-compat-modules/maven-model-builder/#model-interpolation">Maven Model Builder interpolation reference</a> for more details.</p>
+<p>At the same time, several (especially internal) properties are deprecated or removed.
+This includes the following properties:</p>
+<ul>
+<li><code>executionRootDirectory</code></li>
+<li><code>multiModuleProjectDirectory</code></li>
+</ul>
+<h3 id="Replace_plugin_bindings_to_pre-_and_post-_lifecycle_phase">Replace plugin bindings to <code>pre-</code> and <code>post-</code> lifecycle phase</h3>
+<p>In Maven 3, <code>integration-test</code>, <code>clean</code> and <code>test</code> <a href="https://maven.apache.org/ref/3-LATEST/maven-core/lifecycles.html">lifecycle phases</a> have <code>pre-</code> and <code>post-</code> phases.
+In Maven 4 those phases are removed in favor of new <code>before:</code> and <code>after:</code> phases, available for <a href="https://maven.apache.org/ref/4-LATEST/maven-impl-modules/maven-core/lifecycles.html">all lifecycle phases</a>.</p>
+<p>Update your plugin executions that bind to a <code>pre-integration-test</code> or <code>post-integration-test</code> phase with the corresponding <code>before:integration-test</code> or <code>after:integration-test</code> phases.</p>
+<h2 id="Step_3_--_migrate.3A_Drop_Maven_3.2C_use_Optional_Maven_4_features">Step 3 -- migrate: Drop Maven 3, use Optional Maven 4 features</h2>
+<p>In this step, we'll update your project's <code>pom.xml</code> to benefit from new Maven 4 features that are not available in Maven 3:
+by applying required changes, you won't be able to build your project with Maven 3 any more.</p>
+<p>Notice that <a href="/maven-site/whatsnewinmaven4.html#Consumer_POM">Maven 4 Consumer POM</a> will automatically be triggered, which makes sure the
+output of your project can still be used by any tool, be it Maven 3 or other build tools: only <strong>building</strong> your project from <code>pom.xml</code>
+in your source control (aka. <em>Build POM</em>) requires Maven 4.</p>
+<h3 id="Changed_default_values">Changed default values</h3>
+<h4 id="Install.2Fdeploy_at_end_of_build_.28breaking_change.29">Install/deploy at end of build (breaking change)</h4>
+<p>Both, the Maven Install Plugin and the Maven Deploy Plugin, have changed default values for their behavior, about when to install respectively deploy.
+The default values for <code>installAtEnd</code> and <code>deployAtEnd</code> are set to <code>true</code> in Maven 4.
+They now reflect the desired behavior for the majority of the Maven builds.
+If you manually set these values to <code>true</code> before, you can remove the explicit declaration and inherit the same behavior from the new default values now.</p>
+<p>If your build relies on the old default value (<code>false</code>), you have to add it to your plugin configuration now.
+But in most cases, a build that requires the values to be <code>false</code> means that these settings hide a configuration error.
+We suggest to analyse the build configuration after migration.</p>
+<h3 id="Use_POM_model_version_4.1.0">Use POM model version 4.1.0</h3>
+<p>Using POM model version 4.1.0 is not required with Maven 4.0.0.
+It is only required, for using new POM features like <code>root</code>-attribute, BOM packaging types, optional profiles and others.</p>
+<p>Model version 4.1.0 (or higher) will be required in future versions of Maven.
+It's suggested to migrate your project to Maven 4 without any POM changes that require model version 4.1.0 first.
+After you have successfully done this, include wanted features step by step.</p>
+<h4 id="Define_project.27s_root_directory">Define project's root directory</h4>
+<p>It is highly recommended to define the project's root directory.
+While the definition is not enforced with Maven 4.0.0, it might be in the future.
+Some new Maven 4 features, for example the <code>${project.rootDirectory}</code>property, do require it.</p>
+<p>When the root directory is not defined, the following warning is displayed:</p>
+<blockquote>
+<p>[WARNING] Unable to find the root directory. Create a .mvn directory in the root directory or add the root="true" attribute on the root project's model to identify it.</p>
+</blockquote>
+<p>As written in the warning, there are two ways to define the project's root directory:</p>
+<ol>
+<li>Create a <code>.mvn</code> directory in the root directory.
+From Maven's perspective, the directory can be empty, but some version control systems do not check in an empty directory.
+Therefore, placing an empty file inside (or a Maven <a href="/maven-site/configure.html">configuration files</a>) works around this.
+Using the <code>.mvn</code> directory is already possible with Maven 3.</li>
+<li>Set the <code>root</code> attribute in your parent POM to <code>true</code>.
+The <code>root</code> attribute is a new attribute of model version 4.1.0 and therefore can only be used with Maven 4.
+Note: That is also the cause, why this topic is listed in the model version 4.1.0 section.</li>
+</ol>
+<h4 id="Use_.3Csubprojects.3E_instead_of_.3Cmodules.3E">Use <code>&lt;subprojects&gt;</code> instead of <code>&lt;modules&gt;</code></h4>
+<p>In Maven 4 subprojects are no longer called modules, to avoid confusion between <em>Maven modules</em> and <em>Java Modules</em> introduced in Java 9.
+While the <code>&lt;modules&gt;</code> element is still supported, it was marked as deprecated in model version 4.1.0 and will get removed in a future version.
+So you should replace it with the new <code>&lt;subprojects&gt;</code> element instead.</p>
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="xml"><span class="c">&lt;!-- Requires model version 4.0.0 (Maven 3, deprecated in model version 4.1.0) --&gt;</span>
+ <span class="nt">&lt;modules&gt;</span>
+     <span class="nt">&lt;module&gt;</span>moduleA<span class="nt">&lt;/module&gt;</span>
+     <span class="nt">&lt;module&gt;</span>moduleB<span class="nt">&lt;/module&gt;</span>
+ <span class="nt">&lt;/modules&gt;</span>
+
+<span class="c">&lt;!-- Requires model version 4.1.0 (Maven 4) --&gt;</span>
+ <span class="nt">&lt;subprojects&gt;</span>
+     <span class="nt">&lt;subproject&gt;</span>moduleA<span class="nt">&lt;/subproject&gt;</span>
+     <span class="nt">&lt;subproject&gt;</span>moduleB<span class="nt">&lt;/subproject&gt;</span>
+ <span class="nt">&lt;/subprojects&gt;</span>
+</code></pre></div></div>
+<h4 id="Automatic_versioning_in_multi_subprojects_setups">Automatic versioning in multi subprojects setups</h4>
+<p>Maven 4 contains a lot of improvements for projects which contain subprojects.
+Those include automatic version detection of the parent and project own dependencies, and automatic detection of parent groupId and artifactId.</p>
+<p>Using Maven 3 with model version 4.0.0, you need to declare those.
+While the parent's version always must be hardcoded, you can use the <code>${project.version}</code> property to declare another subproject as a dependency.
+Using Maven 4 and model version 4.1.0, those definitions are optional: they are automatically inferred from content on disk.</p>
+<p>The following example of a <code>pom.xml</code> shows the associated part for a subproject called "subprojectB".
+This subproject declares its parent and the dependency to "subprojectA", which is also a subproject in the same multi subproject setup.</p>
+<p>In Maven 3 with model version 4.0.0 such a declaration looks like the following.</p>
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="xml"><span class="nt">&lt;project</span> <span class="na">xmlns=</span><span class="s">"http://maven.apache.org/POM/4.0.0"</span>
+         <span class="na">xmlns:xsi=</span><span class="s">"http://www.w3.org/2001/XMLSchema-instance"</span>
+         <span class="na">xsi:schemaLocation=</span><span class="s">"http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"</span><span class="nt">&gt;</span>
+   
+   <span class="nt">&lt;modelVersion&gt;</span>4.0.0<span class="nt">&lt;/modelVersion&gt;</span>
+   <span class="nt">&lt;artifactId&gt;</span>subprojectB<span class="nt">&lt;/artifactId&gt;</span>
+   
+   <span class="nt">&lt;parent&gt;</span>
+      <span class="c">&lt;!-- The parent groupId and artifactId must be "hardcoded" --&gt;</span>
+      <span class="nt">&lt;groupId&gt;</span>demo.maven<span class="nt">&lt;/groupId&gt;</span>
+      <span class="nt">&lt;artifactId&gt;</span>theParentProjecct<span class="nt">&lt;/artifactId&gt;</span>
+      <span class="c">&lt;!-- The parents' version must be "hardcoded" --&gt;</span>
+      <span class="nt">&lt;version&gt;</span>0.0.1-SNAPSHOT<span class="nt">&lt;/version&gt;</span>
+   <span class="nt">&lt;/parent&gt;</span>
+   
+   <span class="nt">&lt;dependencies&gt;</span>
+      <span class="nt">&lt;dependency&gt;</span>
+         <span class="nt">&lt;groupId&gt;</span>demo.maven<span class="nt">&lt;/groupId&gt;</span>
+         <span class="nt">&lt;artifactId&gt;</span>subprojectA<span class="nt">&lt;/artifactId&gt;</span>
+         <span class="c">&lt;!-- The subproject dependency version declaration can make use of the project.version property--&gt;</span>
+         <span class="nt">&lt;version&gt;</span>${project.version}<span class="nt">&lt;/version&gt;</span>
+      <span class="nt">&lt;/dependency&gt;</span>
+   <span class="nt">&lt;/dependencies&gt;</span>
+   
+   <span class="c">&lt;!-- other declarations --&gt;</span>
+<span class="nt">&lt;/project&gt;</span>
+</code></pre></div></div>
+<p>In Maven 4 and model version 4.1.0, the version declarations and parent coordinates are not needed anymore.</p>
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="xml"><span class="nt">&lt;project</span> <span class="na">xmlns=</span><span class="s">"http://maven.apache.org/POM/4.1.0"</span>
+         <span class="na">xmlns:xsi=</span><span class="s">"http://www.w3.org/2001/XMLSchema-instance"</span>
+         <span class="na">xsi:schemaLocation=</span><span class="s">"http://maven.apache.org/POM/4.1.0 http://maven.apache.org/xsd/maven-4.1.0.xsd"</span><span class="nt">&gt;</span>
+   
+   <span class="nt">&lt;modelVersion&gt;</span>4.1.0<span class="nt">&lt;/modelVersion&gt;</span>
+   <span class="nt">&lt;artifactId&gt;</span>subprojectB<span class="nt">&lt;/artifactId&gt;</span>
+   
+   <span class="nt">&lt;parent/&gt;</span>
+   
+   <span class="nt">&lt;dependencies&gt;</span>
+      <span class="nt">&lt;dependency&gt;</span>
+         <span class="nt">&lt;groupId&gt;</span>demo.maven<span class="nt">&lt;/groupId&gt;</span>
+         <span class="nt">&lt;artifactId&gt;</span>subprojectA<span class="nt">&lt;/artifactId&gt;</span>
+      <span class="nt">&lt;/dependency&gt;</span>
+   <span class="nt">&lt;/dependencies&gt;</span>
+   
+   <span class="c">&lt;!-- other declarations --&gt;</span>
+<span class="nt">&lt;/project&gt;</span>
+</code></pre></div></div>
+<h4 id="CI-friendly_variables_without_flatten-maven-plugin">CI-friendly variables without flatten-maven-plugin</h4>
+<p>Maven partially supports <a href="/maven-site/guides/mini/guide-maven-ci-friendly.html">CI-friendly variables</a> (like <code>${revision}</code>) since version 3.5.0.
+Thanks to the improved dependency resolution of project own dependencies in multi subprojects setups they are now fully supported if you rely on the automatic versioning as described in the section above.
+This also means that you don't need the <a href="https://www.mojohaus.org/flatten-maven-plugin/">flatten-maven-plugin</a> to <code>install</code> and <code>deploy</code> anymore.</p>
+<h4 id="Using_BOM_packaging">Using BOM packaging</h4>
+<p>Maven 4 introduces a dedicated <code>bom</code> packaging type to provide a <a href="/maven-site/guides/introduction/introduction-to-dependency-mechanism.html#bill-of-materials-bom-poms">Bill of Materials BOM POM</a>.
+This now differentiates between parent POMs and dependency-managing BOM POMs.
+The new type is only available as a build POM in Model Version 4.1.0 and later, but Maven generates a full Maven 3
+compatible consumer POM during the build.</p>
+<p>The following code snippet shows an example for a BOM POM using the new <code>&lt;packaging&gt;</code> type.</p>
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="xml"><span class="nt">&lt;project</span> <span class="na">xmlns=</span><span class="s">"http://maven.apache.org/POM/4.1.0"</span>
+         <span class="na">xmlns:xsi=</span><span class="s">"http://www.w3.org/2001/XMLSchema-instance"</span>
+         <span class="na">xsi:schemaLocation=</span><span class="s">"http://maven.apache.org/POM/4.1.0 http://maven.apache.org/xsd/maven-4.1.0.xsd"</span><span class="nt">&gt;</span>
+
+    <span class="nt">&lt;modelVersion&gt;</span>4.1.0<span class="nt">&lt;/modelVersion&gt;</span>
+    <span class="nt">&lt;groupId&gt;</span>demo.maven<span class="nt">&lt;/groupId&gt;</span>
+    <span class="nt">&lt;artifactId&gt;</span>maven4-example-bom<span class="nt">&lt;/artifactId&gt;</span>
+    <span class="nt">&lt;version&gt;</span>1.0.0<span class="nt">&lt;/version&gt;</span>
+
+    <span class="nt">&lt;packaging&gt;</span>bom<span class="nt">&lt;/packaging&gt;</span>
+
+    <span class="nt">&lt;dependencyManagement&gt;</span>
+        <span class="nt">&lt;dependencies&gt;</span>
+            <span class="nt">&lt;dependency&gt;</span>
+                <span class="nt">&lt;groupId&gt;</span>dev.some.group<span class="nt">&lt;/groupId&gt;</span>
+                <span class="nt">&lt;artifactId&gt;</span>someArtifact<span class="nt">&lt;/artifactId&gt;</span>
+                <span class="nt">&lt;version&gt;</span>1.2.3<span class="nt">&lt;/version&gt;</span>
+            <span class="nt">&lt;/dependency&gt;</span>
+            <span class="nt">&lt;dependency&gt;</span>
+                <span class="nt">&lt;groupId&gt;</span>dev.some.other<span class="nt">&lt;/groupId&gt;</span>
+                <span class="nt">&lt;artifactId&gt;</span>somethingElse<span class="nt">&lt;/artifactId&gt;</span>
+                <span class="nt">&lt;version&gt;</span>3.1.5<span class="nt">&lt;/version&gt;</span>
+            <span class="nt">&lt;/dependency&gt;</span>
+        <span class="nt">&lt;/dependencies&gt;</span>
+    <span class="nt">&lt;/dependencyManagement&gt;</span>
+<span class="nt">&lt;/project&gt;</span>
+</code></pre></div></div>
+<h3 id="Use_the_new_all_and_each_life_cycle_phases">Use the new <code>all</code> and <code>each</code> life cycle phases</h3>
+<p>Maven 4 introduces several new <a href="https://maven.apache.org/ref/4-LATEST/maven-impl-modules/maven-core/lifecycles.html">lifecycle phases</a> — <code>all</code>, <code>each</code>, <code>before:all</code>, <code>after:all</code>, <code>before:each</code>, and <code>after:each</code>.
+They give users finer control over plugin execution, particularly in multi-project and concurrent builds.
+If you want to execute a plugin before/after all or each of your (sub-)projects, consider to use them.</p>
+<h3 id="New_way_to_declare_source_directories">New way to declare source directories</h3>
+<p>Maven 3 has two explicitly named XML elements (<code>&lt;sourceDirectory&gt;</code> and <code>&lt;testSourceDirectory&gt;</code>) to declare the root directories of source code, as shown below:</p>
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="xml"><span class="nt">&lt;project&gt;</span>
+  <span class="nt">&lt;build&gt;</span>
+    <span class="nt">&lt;sourceDirectory&gt;</span>my-custom-dir/foo<span class="nt">&lt;/sourceDirectory&gt;</span>
+    <span class="nt">&lt;testSourceDirectory&gt;</span>my-custom-dir/bar<span class="nt">&lt;/testSourceDirectory&gt;</span>
+  <span class="nt">&lt;/build&gt;</span>
+<span class="nt">&lt;/project&gt;</span>
+</code></pre></div></div>
+<p>Maven 4 introduces the new <code>&lt;sources&gt;</code> element for this.
+This makes source directory declarations more flexible for future improvements like Java Modules.
+When migrate to Maven 4, you should use the new element.</p>
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="xml"><span class="nt">&lt;project&gt;</span>
+  <span class="nt">&lt;build&gt;</span>
+    <span class="nt">&lt;sources&gt;</span>
+      <span class="nt">&lt;source&gt;</span>
+        <span class="nt">&lt;scope&gt;</span>main<span class="nt">&lt;/scope&gt;</span>
+        <span class="nt">&lt;directory&gt;</span>my-custom-dir/foo<span class="nt">&lt;/directory&gt;</span>
+      <span class="nt">&lt;/source&gt;</span>
+      <span class="nt">&lt;source&gt;</span>
+        <span class="nt">&lt;scope&gt;</span>test<span class="nt">&lt;/scope&gt;</span>
+        <span class="nt">&lt;directory&gt;</span>my-custom-dir/bar<span class="nt">&lt;/directory&gt;</span>
+      <span class="nt">&lt;/source&gt;</span>
+    <span class="nt">&lt;/sources&gt;</span>
+  <span class="nt">&lt;/build&gt;</span>
+<span class="nt">&lt;/project&gt;</span>
+</code></pre></div></div>
+
+        </main>
+      </div>
+    </div>
+    <hr>
+    <footer>
+      <div class="container-fluid">
+        <div class="row-fluid">
+          <p>©      2002–2026 <a href="https://www.apache.org/">The Apache Software Foundation</a></p>
+          <p class="demo-note">A demonstration build of <a href="https://github.com/dashorst/maven-site/tree/diataxis-demo">dashorst/maven-site</a>, not the official Apache Maven site.</p>
+        </div>
+      </div>
+    </footer>
+    <script src="/maven-site/js/guide.js?v=1792948498" defer=""></script>
+    <script>
+    anchors.add();
+    </script>
+  
+
+</body></html>

@@ -1,0 +1,236 @@
+<!DOCTYPE html><!--
+ | The page frame of the Apache Maven Fluido Skin 2.1.0, as the Doxia site renderer writes it
+ | for maven.apache.org. Built with Jekyll: see jekyll/README.md.
+--><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Release Notes – Maven 3.5.4 – Maven</title>
+    
+    <link rel="stylesheet" href="/maven-site/css/apache-maven-fluido-2.1.0.min.css">
+    <link rel="stylesheet" href="/maven-site/css/site.css">
+    <link rel="stylesheet" href="/maven-site/css/guide.css?v=1792948498">
+    <link rel="stylesheet" href="/maven-site/css/print.css" media="print">
+    <script src="/maven-site/js/apache-maven-fluido-2.1.0.min.js"></script>
+  </head>
+  <body>
+    <div class="container-fluid container-fluid-top">
+      <header>
+        <div id="banner">
+          <div class="pull-left"><div id="bannerLeft"><h1><a href="/maven-site/index.html"><img src="/maven-site/images/apache-maven-project-light-theme.svg" style="width: 489px;height: 83px;" alt="Apache Maven"></a></h1></div></div>
+          <div class="pull-right"><div id="bannerRight"><h1><img src="/maven-site/images/logos/MavenLogoLeaf.svg" style="width: 340px;height: 83px;" alt=""></h1></div></div>
+          <div class="clear"><hr></div>
+        </div>
+
+        <div id="breadcrumbs">
+          <ul class="breadcrumb">
+            <li><a href="https://www.apache.org/">Apache</a><span class="divider">/</span></li>
+            <li><a href="/maven-site/index.html">Maven</a><span class="divider">/</span></li>
+            
+            <li class="active">Release Notes – Maven 3.5.4 <a href="https://github.com/apache/maven-site/tree/master/content/markdown/docs/3.5.4/release-notes.md"><img src="/maven-site/images/accessories-text-editor.png" alt="Edit"></a></li>
+            <li id="publishDate" class="pull-right"><span class="divider">|</span> Last Published: 2026-10-25</li>
+            <li class="pull-right"><span class="divider">|</span> <a href="/maven-site/scm.html">Get Sources</a></li>
+            <li class="pull-right"><a href="https://maven.apache.org/download.cgi">Downloads</a></li>
+          </ul>
+        </div>
+      </header>
+      <div class="row-fluid">
+        <header id="leftColumn" class="span2">
+          
+<form class="guide-search" role="search" action="/maven-site/guides/a-z.html" data-index="/maven-site/guides/search.json" data-script="/maven-site/js/minisearch-7.2.0.js" data-oldest="3.9" data-base="/maven-site">
+  <label class="guide-search-label" for="guide-q-nav">Search the documentation</label>
+  <div class="guide-search-field">
+    <input id="guide-q-nav" name="q" type="search" autocomplete="off" spellcheck="false" placeholder="Search">
+    <kbd class="guide-search-key" aria-hidden="true">/</kbd>
+  </div>
+  
+</form>
+
+          <nav class="well sidebar-nav">
+<ul class="nav nav-list">
+  <li><a href="/maven-site/index.html">Welcome</a></li>
+  <li><a href="https://www.apache.org/licenses/">License</a></li>
+  <li class="nav-header">About Maven</li>
+  <li><a href="/maven-site/what-is-maven.html">What is Maven?</a></li>
+  <li><a href="/maven-site/install.html">Installation</a></li>
+  <li><a href="/maven-site/download.html">Downloads</a></li>
+  <li><a href="/maven-site/run.html">Use</a></li>
+  <li><a href="/maven-site/configure.html">Configure</a></li>
+  <li><a href="/maven-site/docs/history.html">Release Notes</a></li>
+  <li><a href="/maven-site/security.html">Security Reports</a></li>
+  <li class="nav-header">Documentation</li>
+  <li><a href="/maven-site/plugins/index.html">Maven Plugins</a></li>
+  <li><a href="/maven-site/extensions/index.html">Maven Extensions</a></li>
+  <li><a href="/maven-site/tools/index.html"><span class="icon-chevron-down"></span>Maven Tools</a>
+   <ul class="nav nav-list">
+    <li><a href="/maven-site/tools/mvnd.html">Maven Daemon</a></li>
+    <li><a href="/maven-site/tools/mvnsh.html">Maven Shell</a></li>
+    <li><a href="/maven-site/tools/mvnup.html">Maven Upgrade Tool</a></li>
+    <li><a href="/maven-site/tools/mavenwrapper.html">Maven Wrapper</a></li>
+   </ul></li>
+  <li><a href="/maven-site/doxia/index.html"><span class="icon-chevron-right"></span>Doxia</a></li>
+  <li><a href="/maven-site/guides/index.html">Guides</a></li>
+  <li><a href="/maven-site/users/index.html"><span class="icon-chevron-right"></span>User Manual</a></li>
+  <li><a href="/maven-site/repositories/index.html"><span class="icon-chevron-right"></span>Maven Repositories</a></li>
+  <li><a href="/maven-site/plugin-developers/index.html"><span class="icon-chevron-right"></span>Plugin Development</a></li>
+  <li><a href="/maven-site/developers/index.html"><span class="icon-chevron-right"></span>Contribute to Maven</a></li>
+  <li><a href="/maven-site/articles.html">Books and Resources</a></li>
+  <li class="nav-header">Community</li>
+  <li><a href="/maven-site/community.html">Community Overview</a></li>
+  <li><a href="/maven-site/project-roles.html">Project Roles</a></li>
+  <li><a href="/maven-site/guides/development/guide-helping.html">How to Contribute</a></li>
+  <li><a href="/maven-site/users/getting-help.html">Getting Help</a></li>
+  <li><a href="/maven-site/issue-management.html">Issue Management</a></li>
+  <li><a href="/maven-site/scm.html">Getting Maven Source</a></li>
+  <li><a href="/maven-site/team.html">The Maven Team</a></li>
+  <li class="nav-header">Project Documentation</li>
+  <li><a href="/maven-site/project-info.html">Project Information</a></li>
+  <li class="nav-header">Maven Projects</li>
+  <li><a href="/maven-site/ref/current">Maven</a></li>
+  <li><a href="/maven-site/archetypes/index.html">Archetypes</a></li>
+  <li><a href="/maven-site/extensions/index.html">Extensions</a></li>
+  <li><a href="/maven-site/pom/index.html">Parent POMs</a></li>
+  <li><a href="/maven-site/plugins/index.html">Plugins</a></li>
+  <li><a href="/maven-site/skins/index.html">Skins</a></li>
+  <li><a><span class="icon-chevron-down"></span>Components</a>
+   <ul class="nav nav-list">
+    <li><a href="/maven-site/archetype/index.html">Archetype</a></li>
+    <li><a href="/maven-site/resolver/index.html">Artifact Resolver</a></li>
+    <li><a href="/maven-site/doxia/index.html">Doxia</a></li>
+    <li><a href="/maven-site/maven-indexer/index.html">Indexer</a></li>
+    <li><a href="/maven-site/jxr/index.html">JXR</a></li>
+    <li><a href="/maven-site/plugin-testing/index.html">Plugin Testing</a></li>
+    <li><a href="/maven-site/plugin-tools/index.html">Plugin Tools</a></li>
+    <li><a href="/maven-site/apache-resource-bundles/index.html">Resource Bundles</a></li>
+    <li><a href="/maven-site/scm/index.html">SCM</a></li>
+    <li><a href="/maven-site/shared/index.html">Shared Components</a></li>
+    <li><a href="/maven-site/surefire/index.html">Surefire</a></li>
+    <li><a href="/maven-site/wagon/index.html">Wagon</a></li>
+   </ul></li>
+  <li class="nav-header">ASF</li>
+  <li><a href="https://www.apache.org/foundation/how-it-works.html">How Apache Works</a></li>
+  <li><a href="https://www.apache.org/foundation/">Foundation</a></li>
+  <li><a href="https://privacy.apache.org/policies/privacy-policy-public.html">Data Privacy</a></li>
+  <li><a href="https://www.apache.org/foundation/sponsorship.html">Sponsoring Apache</a></li>
+  <li><a href="https://www.apache.org/foundation/thanks.html">Thanks</a></li>
+</ul>
+          </nav>
+          <div class="well sidebar-nav">
+            <div id="poweredBy">
+              <div class="clear"></div>
+              <a href="/maven-site/" class="builtBy" target="_blank"><img class="builtBy" alt="Built by Maven" src="/maven-site/images/logos/maven-feather.png"></a>
+            </div>
+          </div>
+        </header>
+        <main id="bodyColumn" class="span10">
+          
+<!-- 
+Licensed to the Apache Software Foundation (ASF) under one
+or more contributor license agreements.  See the NOTICE file
+distributed with this work for additional information
+regarding copyright ownership.  The ASF licenses this file
+to you under the Apache License, Version 2.0 (the
+"License"); you may not use this file except in compliance
+with the License.  You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing,
+software distributed under the License is distributed on an
+"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+KIND, either express or implied.  See the License for the
+specific language governing permissions and limitations
+under the License.
+-->
+<h1 id="Release_Notes_.E2.80.93_Maven_3.5.4">Release Notes – Maven 3.5.4</h1>
+<p>The Apache Maven team would like to announce the release of Maven 3.5.4</p>
+<p>Maven 3.5.4 is <a href="../../download.html">available for download</a>.</p>
+<p>Maven is a software project management and comprehension tool. Based on the concept of a project object model (POM), Maven can manage a project's build, reporting and documentation from a central place.</p>
+<p>The core release is independent of the plugins available. Further releases of plugins will be made separately. See the <a href="../../plugins/index.html">PluginList</a> for more information.</p>
+<p>We hope you enjoy using Maven! If you have any questions, please consult:</p>
+<ul>
+<li>the website: <a href="/maven-site/">https://maven.apache.org/</a></li>
+<li>the maven-user mailing list: <a href="https://maven.apache.org/mailing-lists.html">https://maven.apache.org/mailing-lists.html</a></li>
+<li>the reference documentation: <a href="https://maven.apache.org/ref/3.5.4/">https://maven.apache.org/ref/3.5.4/</a></li>
+</ul>
+<h2 id="Reporters_and_Contributors_of_this_release">Reporters and Contributors of this release</h2>
+<p>We really value the contributions of these non committers, so this section is focused on those individuals. Descriptions of the issues fixed can be found at the <a href="#Details">end of these release notes</a>.</p>
+<p>Bugs:</p>
+<ul>
+<li><a href="https://issues.apache.org/jira/browse/MNG-6370">MNG-6370</a> reporter and contributor: Sylwester Lachiewicz</li>
+<li><a href="https://issues.apache.org/jira/browse/MNG-6382">MNG-6382</a> reporter: Falko Modler</li>
+<li><a href="https://issues.apache.org/jira/browse/MNG-6388">MNG-6388</a> reporter: Mike Kelly</li>
+<li><a href="https://issues.apache.org/jira/browse/MNG-6410">MNG-6410</a> reporter and contributor: Łukasz Dywicki</li>
+</ul>
+<p>Improvements:</p>
+<ul>
+<li><a href="https://issues.apache.org/jira/browse/MNG-5756">MNG-5756</a> reporter: Jarkko Rantavuori contributor: eis</li>
+<li><a href="https://issues.apache.org/jira/browse/MNG-5940">MNG-5940</a> contributor: Florian Brunner</li>
+<li><a href="https://issues.apache.org/jira/browse/MNG-6411">MNG-6411</a> reporter and contributor: Łukasz Dywicki</li>
+</ul>
+<p>Dependency Upgrades:</p>
+<ul>
+<li><a href="https://issues.apache.org/jira/browse/MNG-6344">MNG-6344</a> reporter and contributor: Sylwester Lachiewicz</li>
+</ul>
+<p>Many thanks to all reporters and contributors for their time and support.</p>
+<h2 id="Preliminary_Testers">Preliminary Testers</h2>
+<p>Thank you also for your time and feedback.</p>
+<h2 id="Known_Issues">Known Issues</h2>
+<p>At the time of release, there are no known regressions introduced by this release</p>
+<h2 id="Overview_about_the_changes">Overview about the changes</h2>
+<p>This release is primarily aimed to resolve the two regressions introduced in the 3.5.3 release, specifically <a href="https://issues.apache.org/jira/browse/MNG-6372">MNG-6372</a> and <a href="https://issues.apache.org/jira/browse/MNG-6388">MNG-6388</a>.</p>
+<p>There are some additional minor improvements, the most notable of which is:</p>
+<ul>
+<li>The Maven Super POM changes the default execution of the <code>maven-source-plugin</code> <code>jar</code> goal into <code>jar-no-fork</code> which should resolve some issues complex projects had running releases.</li>
+</ul>
+<h2 id="The_detailed_issue_list"><a href="#Details">The detailed issue list</a></h2>
+<h3 id="Bugs">Bugs</h3>
+<ul>
+<li><a href="https://issues.apache.org/jira/browse/MNG-6370">MNG-6370</a> <code>ConcurrencyDependencyGraph#getNumberOfBuilds()</code> does not remove finished projects from unfinished ones</li>
+<li><a href="https://issues.apache.org/jira/browse/MNG-6372">MNG-6372</a> On Windows Maven can output spurious ANSI escapes such as <code>[0m [0m</code></li>
+<li><a href="https://issues.apache.org/jira/browse/MNG-6382">MNG-6382</a> JANSI fails frequently with <code>NumberFormatException</code> when building in parallel</li>
+<li><a href="https://issues.apache.org/jira/browse/MNG-6386">MNG-6386</a> <code>${project.baseUri}</code> is not a valid URI (according to RFC 3986)</li>
+<li><a href="https://issues.apache.org/jira/browse/MNG-6388">MNG-6388</a> Error Fetching Artifacts: "<code>[B cannot be cast to java.lang.String</code>"</li>
+<li><a href="https://issues.apache.org/jira/browse/MNG-6403">MNG-6403</a> <code>Artifact#VERSION_FILE_PATTERN</code> does not escape period between date and time</li>
+<li><a href="https://issues.apache.org/jira/browse/MNG-6410">MNG-6410</a> Add <code>groupId</code> to <code>--resume-from</code> suggestion if <code>artifactId</code> is not unique in reactor</li>
+</ul>
+<h3 id="Improvements">Improvements</h3>
+<ul>
+<li><a href="https://issues.apache.org/jira/browse/MNG-5756">MNG-5756</a> Java home output in <code>mvn -v</code> is misleading</li>
+<li><a href="https://issues.apache.org/jira/browse/MNG-5940">MNG-5940</a> Change the <code>maven-source-plugin</code> <code>jar</code> goal into <code>jar-no-fork</code> in Maven Super POM</li>
+<li><a href="https://issues.apache.org/jira/browse/MNG-6362">MNG-6362</a> Add documentation information for GitHub</li>
+<li><a href="https://issues.apache.org/jira/browse/MNG-6363">MNG-6363</a> Remove secret thread configuration property from code</li>
+<li><a href="https://issues.apache.org/jira/browse/MNG-6364">MNG-6364</a> Enhanced <code>Jenkinsfile</code> to test Core with JDK 9</li>
+<li><a href="https://issues.apache.org/jira/browse/MNG-6411">MNG-6411</a> Improve readability of project list returned when <code>--resume-from</code> option value is invalid</li>
+</ul>
+<h3 id="Tasks">Tasks</h3>
+<ul>
+<li><a href="https://issues.apache.org/jira/browse/MNG-6377">MNG-6377</a> switch from Git-WIP to Gitbox</li>
+</ul>
+<h3 id="Dependency_upgrades">Dependency upgrades</h3>
+<ul>
+<li><a href="https://issues.apache.org/jira/browse/MNG-6344">MNG-6344</a> Upgrade Guice to 4.2.0</li>
+<li><a href="https://issues.apache.org/jira/browse/MNG-6423">MNG-6423</a> Upgrade to Wagon 3.1.0</li>
+</ul>
+<p>The full list of changes can be found in our <a href="https://issues.apache.org/jira/secure/ReleaseNote.jspa?projectId=12316922&amp;version=12342826">issue management system</a>.</p>
+<h2 id="Complete_Release_Notes">Complete Release Notes</h2>
+<p>See <a href="../../docs/history.html">complete release notes for all versions</a></p>
+
+        </main>
+      </div>
+    </div>
+    <hr>
+    <footer>
+      <div class="container-fluid">
+        <div class="row-fluid">
+          <p>©      2002–2026 <a href="https://www.apache.org/">The Apache Software Foundation</a></p>
+          <p class="demo-note">A demonstration build of <a href="https://github.com/dashorst/maven-site/tree/diataxis-demo">dashorst/maven-site</a>, not the official Apache Maven site.</p>
+        </div>
+      </div>
+    </footer>
+    <script src="/maven-site/js/guide.js?v=1792948498" defer=""></script>
+    <script>
+    anchors.add();
+    </script>
+  
+
+</body></html>

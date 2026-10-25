@@ -1,0 +1,308 @@
+<!DOCTYPE html><!--
+ | The page frame of the Apache Maven Fluido Skin 2.1.0, as the Doxia site renderer writes it
+ | for maven.apache.org. Built with Jekyll: see jekyll/README.md.
+--><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Use a repository manager as a mirror – Maven</title>
+    <meta name="description" content="Send every download through your organisation's repository manager instead of Maven Central and the repositories projects declare.">
+    <link rel="stylesheet" href="/maven-site/css/apache-maven-fluido-2.1.0.min.css">
+    <link rel="stylesheet" href="/maven-site/css/site.css">
+    <link rel="stylesheet" href="/maven-site/css/guide.css?v=1792948498">
+    <link rel="stylesheet" href="/maven-site/css/print.css" media="print">
+    <script src="/maven-site/js/apache-maven-fluido-2.1.0.min.js"></script>
+  </head>
+  <body>
+    <div class="container-fluid container-fluid-top">
+      <header>
+        <div id="banner">
+          <div class="pull-left"><div id="bannerLeft"><h1><a href="/maven-site/index.html"><img src="/maven-site/images/apache-maven-project-light-theme.svg" style="width: 489px;height: 83px;" alt="Apache Maven"></a></h1></div></div>
+          <div class="pull-right"><div id="bannerRight"><h1><img src="/maven-site/images/logos/MavenLogoLeaf.svg" style="width: 340px;height: 83px;" alt=""></h1></div></div>
+          <div class="clear"><hr></div>
+        </div>
+
+        <div id="breadcrumbs">
+          <ul class="breadcrumb">
+            <li><a href="https://www.apache.org/">Apache</a><span class="divider">/</span></li>
+            <li><a href="/maven-site/index.html">Maven</a><span class="divider">/</span></li>
+            <li><a href="/maven-site/guides/index.html">Guides</a><span class="divider">/</span></li>
+            <li><a href="/maven-site/guides/topics/configure.html">Configure Maven</a><span class="divider">/</span></li>
+            
+            <li class="active">Use a repository manager as a mirror <a href="https://github.com/dashorst/maven-site/blob/diataxis-demo/jekyll/_guide/mirror-settings.md"><img src="/maven-site/images/accessories-text-editor.png" alt="Edit"></a></li>
+            <li id="publishDate" class="pull-right"><span class="divider">|</span> Last Published: 2026-10-25</li>
+            <li class="pull-right"><span class="divider">|</span> <a href="/maven-site/scm.html">Get Sources</a></li>
+            <li class="pull-right"><a href="https://maven.apache.org/download.cgi">Downloads</a></li>
+          </ul>
+        </div>
+      </header>
+      <div class="row-fluid">
+        <header id="leftColumn" class="span2">
+          
+<form class="guide-search" role="search" action="/maven-site/guides/a-z.html" data-index="/maven-site/guides/search.json" data-script="/maven-site/js/minisearch-7.2.0.js" data-oldest="3.9" data-base="/maven-site">
+  <label class="guide-search-label" for="guide-q-nav">Search the documentation</label>
+  <div class="guide-search-field">
+    <input id="guide-q-nav" name="q" type="search" autocomplete="off" spellcheck="false" placeholder="Search">
+    <kbd class="guide-search-key" aria-hidden="true">/</kbd>
+  </div>
+  
+</form>
+
+          <nav class="well sidebar-nav">
+<ul class="nav nav-list">
+  <li><a href="/maven-site/index.html">Welcome</a></li>
+  <li><a href="https://www.apache.org/licenses/">License</a></li>
+  <li class="nav-header">About Maven</li>
+  <li><a href="/maven-site/what-is-maven.html">What is Maven?</a></li>
+  <li><a href="/maven-site/install.html">Installation</a></li>
+  <li><a href="/maven-site/download.html">Downloads</a></li>
+  <li><a href="/maven-site/run.html">Use</a></li>
+  <li><a href="/maven-site/configure.html">Configure</a></li>
+  <li><a href="/maven-site/docs/history.html">Release Notes</a></li>
+  <li><a href="/maven-site/security.html">Security Reports</a></li>
+  <li class="nav-header">Documentation</li>
+  <li><a href="/maven-site/plugins/index.html">Maven Plugins</a></li>
+  <li><a href="/maven-site/extensions/index.html">Maven Extensions</a></li>
+  <li><a href="/maven-site/tools/index.html"><span class="icon-chevron-down"></span>Maven Tools</a>
+   <ul class="nav nav-list">
+    <li><a href="/maven-site/tools/mvnd.html">Maven Daemon</a></li>
+    <li><a href="/maven-site/tools/mvnsh.html">Maven Shell</a></li>
+    <li><a href="/maven-site/tools/mvnup.html">Maven Upgrade Tool</a></li>
+    <li><a href="/maven-site/tools/mavenwrapper.html">Maven Wrapper</a></li>
+   </ul></li>
+  <li><a href="/maven-site/doxia/index.html"><span class="icon-chevron-right"></span>Doxia</a></li>
+  <li class="active"><a href="/maven-site/guides/index.html">Guides</a></li>
+  <li><a href="/maven-site/users/index.html"><span class="icon-chevron-right"></span>User Manual</a></li>
+  <li><a href="/maven-site/repositories/index.html"><span class="icon-chevron-right"></span>Maven Repositories</a></li>
+  <li><a href="/maven-site/plugin-developers/index.html"><span class="icon-chevron-right"></span>Plugin Development</a></li>
+  <li><a href="/maven-site/developers/index.html"><span class="icon-chevron-right"></span>Contribute to Maven</a></li>
+  <li><a href="/maven-site/articles.html">Books and Resources</a></li>
+  <li class="nav-header">Community</li>
+  <li><a href="/maven-site/community.html">Community Overview</a></li>
+  <li><a href="/maven-site/project-roles.html">Project Roles</a></li>
+  <li><a href="/maven-site/guides/development/guide-helping.html">How to Contribute</a></li>
+  <li><a href="/maven-site/users/getting-help.html">Getting Help</a></li>
+  <li><a href="/maven-site/issue-management.html">Issue Management</a></li>
+  <li><a href="/maven-site/scm.html">Getting Maven Source</a></li>
+  <li><a href="/maven-site/team.html">The Maven Team</a></li>
+  <li class="nav-header">Project Documentation</li>
+  <li><a href="/maven-site/project-info.html">Project Information</a></li>
+  <li class="nav-header">Maven Projects</li>
+  <li><a href="/maven-site/ref/current">Maven</a></li>
+  <li><a href="/maven-site/archetypes/index.html">Archetypes</a></li>
+  <li><a href="/maven-site/extensions/index.html">Extensions</a></li>
+  <li><a href="/maven-site/pom/index.html">Parent POMs</a></li>
+  <li><a href="/maven-site/plugins/index.html">Plugins</a></li>
+  <li><a href="/maven-site/skins/index.html">Skins</a></li>
+  <li><a><span class="icon-chevron-down"></span>Components</a>
+   <ul class="nav nav-list">
+    <li><a href="/maven-site/archetype/index.html">Archetype</a></li>
+    <li><a href="/maven-site/resolver/index.html">Artifact Resolver</a></li>
+    <li><a href="/maven-site/doxia/index.html">Doxia</a></li>
+    <li><a href="/maven-site/maven-indexer/index.html">Indexer</a></li>
+    <li><a href="/maven-site/jxr/index.html">JXR</a></li>
+    <li><a href="/maven-site/plugin-testing/index.html">Plugin Testing</a></li>
+    <li><a href="/maven-site/plugin-tools/index.html">Plugin Tools</a></li>
+    <li><a href="/maven-site/apache-resource-bundles/index.html">Resource Bundles</a></li>
+    <li><a href="/maven-site/scm/index.html">SCM</a></li>
+    <li><a href="/maven-site/shared/index.html">Shared Components</a></li>
+    <li><a href="/maven-site/surefire/index.html">Surefire</a></li>
+    <li><a href="/maven-site/wagon/index.html">Wagon</a></li>
+   </ul></li>
+  <li class="nav-header">ASF</li>
+  <li><a href="https://www.apache.org/foundation/how-it-works.html">How Apache Works</a></li>
+  <li><a href="https://www.apache.org/foundation/">Foundation</a></li>
+  <li><a href="https://privacy.apache.org/policies/privacy-policy-public.html">Data Privacy</a></li>
+  <li><a href="https://www.apache.org/foundation/sponsorship.html">Sponsoring Apache</a></li>
+  <li><a href="https://www.apache.org/foundation/thanks.html">Thanks</a></li>
+</ul>
+          </nav>
+          <div class="well sidebar-nav">
+            <div id="poweredBy">
+              <div class="clear"></div>
+              <a href="/maven-site/" class="builtBy" target="_blank"><img class="builtBy" alt="Built by Maven" src="/maven-site/images/logos/maven-feather.png"></a>
+            </div>
+          </div>
+        </header>
+        <main id="bodyColumn" class="span10">
+          
+
+
+
+
+<header class="guide-head">
+  <h1 id="Use_a_repository_manager_as_a_mirror">Use a repository manager as a mirror</h1>
+  <p class="lead">Send every download through your organisation's repository manager instead of Maven Central and the repositories projects declare.</p>
+  <p class="guide-plates"><span class="label guide-kind guide-kind--howto">How-to</span>
+    
+    <a class="guide-topic-link" href="/maven-site/guides/topics/configure.html">Configure Maven</a></p>
+  
+  <p class="guide-version-note alert" data-since="3.9" hidden="">This page describes Maven 3.9 and later; you chose Maven <span data-chosen=""></span>.</p>
+  
+</header>
+<div class="doxia-toc"><ul><li><a href="#Add_the_mirror_to_your_settings">Add the mirror to your settings</a></li><li><a href="#Check_that_Maven_uses_the_mirror">Check that Maven uses the mirror</a></li><li><a href="#Leave_a_repository_out_of_the_mirror">Leave a repository out of the mirror</a></li><li><a href="#Repositories_that_use_plain_HTTP">Repositories that use plain HTTP</a></li><li><a href="#Replace_only_Maven_Central">Replace only Maven Central</a></li></ul></div>
+<div class="guide-content">
+<p>You need this when your organisation runs a <a href="../repository-management.html">repository manager</a>, such as Nexus, Artifactory or Reposilite, and builds should download through it instead of reaching Maven Central and other repositories directly. The repository manager caches what it downloads, so a build gets it from the local network, and keeps working when an outside repository is slow or gone.</p>
+<h2 id="Add_the_mirror_to_your_settings">Add the mirror to your settings</h2>
+<p>Ask the administrators of the repository manager for the URL of the repository that combines the outside repositories, often called a group or virtual repository. Add it as a mirror to your user settings:</p>
+<p><em>~/.m2/settings.xml</em></p>
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="xml"><span class="nt">&lt;settings&gt;</span>
+  <span class="nt">&lt;mirrors&gt;</span>
+    <span class="nt">&lt;mirror&gt;</span>
+      <span class="nt">&lt;id&gt;</span>company-repository<span class="nt">&lt;/id&gt;</span>
+      <span class="nt">&lt;name&gt;</span>Company repository manager<span class="nt">&lt;/name&gt;</span>
+      <span class="nt">&lt;url&gt;</span>https://repo.example.com/repository/maven-public/<span class="nt">&lt;/url&gt;</span>
+      <span class="nt">&lt;mirrorOf&gt;</span>external:*<span class="nt">&lt;/mirrorOf&gt;</span>
+    <span class="nt">&lt;/mirror&gt;</span>
+  <span class="nt">&lt;/mirrors&gt;</span>
+<span class="nt">&lt;/settings&gt;</span>
+</code></pre></div></div>
+<ul>
+<li><code>id</code> is a name you choose. Maven shows it in its output, and it is the id under which you store credentials for the repository manager.</li>
+<li><code>url</code> replaces the URL of every repository the mirror applies to.</li>
+<li><code>mirrorOf</code> says which repositories the mirror replaces. <code>external:*</code> replaces Central and every repository a POM declares, except repositories on <code>localhost</code> and <code>file:</code> repositories, which are usually test fixtures or local copies. <code>*</code> replaces those as well. <a href="settings-files-reference.html#mirrorOf_patterns">Configuration files and variables</a> lists all patterns.</li>
+</ul>
+<p>A mirror replaces a repository completely. Maven does not fall back to the original URL when the mirror does not have an artifact, so the repository manager has to proxy every repository your builds need.</p>
+<h2 id="Check_that_Maven_uses_the_mirror">Check that Maven uses the mirror</h2>
+<p>Download lines name the mirror instead of <code>central</code>. Artifacts already in your local repository are not downloaded again, so to see the lines, run a build with an empty local repository:</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mvn -Dmaven.repo.local=/tmp/mirror-check dependency:resolve
+</code></pre></div></div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[INFO] Downloading from company-repository: https://repo.example.com/repository/maven-public/org/apache/commons/commons-lang3/3.17.0/commons-lang3-3.17.0.pom
+</code></pre></div></div>
+<p>When the mirror cannot be reached, the error lists the repositories Maven had available. <code>central</code> is no longer among them:</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[ERROR] No plugin found for prefix 'dependency' in the current project and in the plugin groups [org.apache.maven.plugins, org.codehaus.mojo] available from the repositories [local (/tmp/mirror-check), company-repository (https://repo.example.com/repository/maven-public/)]
+</code></pre></div></div>
+<p>If the repository manager answers with <code>401</code> or <code>Unauthorized</code>, it requires a login. Store it under the mirror's id, as described in <a href="server-credentials.html">Store credentials for a repository</a>.</p>
+<h2 id="Leave_a_repository_out_of_the_mirror">Leave a repository out of the mirror</h2>
+<p>To let one repository bypass the mirror, add its id with an exclamation mark, without spaces:</p>
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="xml"><span class="nt">&lt;mirrorOf&gt;</span>external:*,!partner-releases<span class="nt">&lt;/mirrorOf&gt;</span>
+</code></pre></div></div>
+<p>Maven then connects to <code>partner-releases</code> at the URL in the POM.</p>
+<p>To send one repository to a different mirror, add a second mirror whose <code>mirrorOf</code> names that repository's id. A mirror that names the id exactly is chosen over a wildcard mirror, whatever their order in the file.</p>
+<h2 id="Repositories_that_use_plain_HTTP">Repositories that use plain HTTP</h2>
+<p>Maven refuses to download from repositories with an <code>http://</code> URL, except on <code>localhost</code>. A POM that declares such a repository fails with an error from the built-in <code>maven-default-http-blocker</code> mirror:</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Could not transfer artifact com.example:lib-http:pom:1.0 from/to maven-default-http-blocker (http://0.0.0.0/): Blocked mirror for repositories: [insecure (http://repo.partner.example/, default, releases+snapshots)]
+</code></pre></div></div>
+<p>A mirror in your user settings whose <code>mirrorOf</code> matches that repository, such as <code>external:*</code>, takes precedence over the blocker, so the download goes through your repository manager instead. Excluding the repository with <code>!</code> hands it back to the blocker.</p>
+<h2 id="Replace_only_Maven_Central">Replace only Maven Central</h2>
+<blockquote class="guide-since">
+<p><strong>Maven 3.10 and 4:</strong> The environment variable <code>MAVEN_REPO_CENTRAL</code>, or the property <code>maven.repo.central</code>, changes the URL Maven uses for Central, without a mirror. Repositories declared in POMs are still used directly. Maven 3.9 ignores both.</p>
+</blockquote>
+
+</div>
+<footer class="guide-foot">
+  <h2 id="More_in_Configure_Maven">More in <a href="/maven-site/guides/topics/configure.html">Configure Maven</a></h2>
+  
+  <div class="guide-foot-kinds">
+  
+    
+    
+  
+    
+    
+    <section>
+      <h3 id="How-to_guides">How-to guides</h3>
+      
+<ul class="guide-list">
+
+  
+  
+  <li class="is-current">
+    <strong class="guide-list-title" aria-current="page">Use a repository manager as a mirror</strong>
+    
+    <span class="guide-list-summary">Send every download through your organisation's repository manager instead of Maven Central and the repositories projects declare.</span>
+  </li>
+
+  
+  
+  <li>
+    <a class="guide-list-title" href="/maven-site/guides/proxy-settings.html">Connect through an HTTP proxy</a>
+    
+    <span class="guide-list-summary">Make Maven download through the HTTP proxy your network requires, with a login if the proxy asks for one and exceptions for internal hosts.</span>
+  </li>
+
+  
+  
+  <li>
+    <a class="guide-list-title" href="/maven-site/guides/server-credentials.html">Store credentials for a repository</a>
+    
+    <span class="guide-list-summary">Give Maven the username and password for a repository it downloads from or deploys to, matched to the repository by id.</span>
+  </li>
+
+  
+  
+  <li>
+    <a class="guide-list-title" href="/maven-site/guides/encrypt-passwords.html">Encrypt passwords in settings.xml</a>
+    
+    <span class="guide-list-summary">Replace the plain passwords of servers and proxies in settings.xml with encrypted values, with a master password on Maven 3 or mvnenc on Maven 4.</span>
+  </li>
+
+</ul>
+
+    </section>
+    
+  
+    
+    
+    <section>
+      <h3 id="Reference">Reference</h3>
+      
+<ul class="guide-list">
+
+  
+  
+  <li>
+    <a class="guide-list-title" href="/maven-site/guides/settings-files-reference.html">Configuration files and variables</a>
+    
+    <span class="guide-list-summary">Every file and environment variable Maven reads its configuration from, with location, scope and Maven line, and the patterns of mirrorOf.</span>
+  </li>
+
+</ul>
+
+    </section>
+    
+  
+    
+    
+    <section>
+      <h3 id="Explanation">Explanation</h3>
+      
+<ul class="guide-list">
+
+  
+  
+  <li>
+    <a class="guide-list-title" href="/maven-site/guides/configuration-files.html">Where Maven reads its configuration</a>
+    
+    <span class="guide-list-summary">Why Maven splits its configuration between the project and the machine, which files and variables each side uses, and how they combine.</span>
+  </li>
+
+</ul>
+
+    </section>
+    
+  
+  </div>
+  
+  <p class="guide-provenance">Written from <a href="/maven-site/guides/mini/guide-mirror-settings.html"><code>guides/mini/guide-mirror-settings.md</code></a>, <a href="/maven-site/guides/mini/guide-configuring-maven.html"><code>guides/mini/guide-configuring-maven.md</code></a>, <a href="/maven-site/repository-management.html"><code>repository-management.md</code></a>.</p>
+  
+</footer>
+
+        </main>
+      </div>
+    </div>
+    <hr>
+    <footer>
+      <div class="container-fluid">
+        <div class="row-fluid">
+          <p>©      2002–2026 <a href="https://www.apache.org/">The Apache Software Foundation</a></p>
+          <p class="demo-note">A demonstration build of <a href="https://github.com/dashorst/maven-site/tree/diataxis-demo">dashorst/maven-site</a>, not the official Apache Maven site.</p>
+        </div>
+      </div>
+    </footer>
+    <script src="/maven-site/js/guide.js?v=1792948498" defer=""></script>
+    <script>
+    anchors.add();
+    </script>
+  
+
+</body></html>

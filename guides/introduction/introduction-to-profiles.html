@@ -1,0 +1,792 @@
+<!DOCTYPE html><!--
+ | The page frame of the Apache Maven Fluido Skin 2.1.0, as the Doxia site renderer writes it
+ | for maven.apache.org. Built with Jekyll: see jekyll/README.md.
+--><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Introduction to Build Profiles – Maven</title>
+    
+    <link rel="stylesheet" href="/maven-site/css/apache-maven-fluido-2.1.0.min.css">
+    <link rel="stylesheet" href="/maven-site/css/site.css">
+    <link rel="stylesheet" href="/maven-site/css/guide.css?v=1792948498">
+    <link rel="stylesheet" href="/maven-site/css/print.css" media="print">
+    <script src="/maven-site/js/apache-maven-fluido-2.1.0.min.js"></script>
+  </head>
+  <body>
+    <div class="container-fluid container-fluid-top">
+      <header>
+        <div id="banner">
+          <div class="pull-left"><div id="bannerLeft"><h1><a href="/maven-site/index.html"><img src="/maven-site/images/apache-maven-project-light-theme.svg" style="width: 489px;height: 83px;" alt="Apache Maven"></a></h1></div></div>
+          <div class="pull-right"><div id="bannerRight"><h1><img src="/maven-site/images/logos/MavenLogoLeaf.svg" style="width: 340px;height: 83px;" alt=""></h1></div></div>
+          <div class="clear"><hr></div>
+        </div>
+
+        <div id="breadcrumbs">
+          <ul class="breadcrumb">
+            <li><a href="https://www.apache.org/">Apache</a><span class="divider">/</span></li>
+            <li><a href="/maven-site/index.html">Maven</a><span class="divider">/</span></li>
+            
+            <li class="active">Introduction to Build Profiles <a href="https://github.com/apache/maven-site/tree/master/content/markdown/guides/introduction/introduction-to-profiles.md"><img src="/maven-site/images/accessories-text-editor.png" alt="Edit"></a></li>
+            <li id="publishDate" class="pull-right"><span class="divider">|</span> Last Published: 2026-10-25</li>
+            <li class="pull-right"><span class="divider">|</span> <a href="/maven-site/scm.html">Get Sources</a></li>
+            <li class="pull-right"><a href="https://maven.apache.org/download.cgi">Downloads</a></li>
+          </ul>
+        </div>
+      </header>
+      <div class="row-fluid">
+        <header id="leftColumn" class="span2">
+          
+<form class="guide-search" role="search" action="/maven-site/guides/a-z.html" data-index="/maven-site/guides/search.json" data-script="/maven-site/js/minisearch-7.2.0.js" data-oldest="3.9" data-base="/maven-site">
+  <label class="guide-search-label" for="guide-q-nav">Search the documentation</label>
+  <div class="guide-search-field">
+    <input id="guide-q-nav" name="q" type="search" autocomplete="off" spellcheck="false" placeholder="Search">
+    <kbd class="guide-search-key" aria-hidden="true">/</kbd>
+  </div>
+  
+</form>
+
+          <nav class="well sidebar-nav">
+<ul class="nav nav-list">
+  <li><a href="/maven-site/index.html">Welcome</a></li>
+  <li><a href="https://www.apache.org/licenses/">License</a></li>
+  <li class="nav-header">About Maven</li>
+  <li><a href="/maven-site/what-is-maven.html">What is Maven?</a></li>
+  <li><a href="/maven-site/install.html">Installation</a></li>
+  <li><a href="/maven-site/download.html">Downloads</a></li>
+  <li><a href="/maven-site/run.html">Use</a></li>
+  <li><a href="/maven-site/configure.html">Configure</a></li>
+  <li><a href="/maven-site/docs/history.html">Release Notes</a></li>
+  <li><a href="/maven-site/security.html">Security Reports</a></li>
+  <li class="nav-header">Documentation</li>
+  <li><a href="/maven-site/plugins/index.html">Maven Plugins</a></li>
+  <li><a href="/maven-site/extensions/index.html">Maven Extensions</a></li>
+  <li><a href="/maven-site/tools/index.html"><span class="icon-chevron-down"></span>Maven Tools</a>
+   <ul class="nav nav-list">
+    <li><a href="/maven-site/tools/mvnd.html">Maven Daemon</a></li>
+    <li><a href="/maven-site/tools/mvnsh.html">Maven Shell</a></li>
+    <li><a href="/maven-site/tools/mvnup.html">Maven Upgrade Tool</a></li>
+    <li><a href="/maven-site/tools/mavenwrapper.html">Maven Wrapper</a></li>
+   </ul></li>
+  <li><a href="/maven-site/doxia/index.html"><span class="icon-chevron-right"></span>Doxia</a></li>
+  <li><a href="/maven-site/guides/index.html">Guides</a></li>
+  <li><a href="/maven-site/users/index.html"><span class="icon-chevron-down"></span>User Manual</a>
+   <ul class="nav nav-list">
+    <li><a><span class="icon-chevron-down"></span>Maven Build Fundamentals</a>
+     <ul class="nav nav-list">
+      <li><a href="/maven-site/guides/getting-started/maven-in-five-minutes.html">Maven in 5 Minutes</a></li>
+      <li><a href="/maven-site/users/getting-help.html">Getting Help</a></li>
+      <li><a href="/maven-site/run-maven/index.html">Running Maven</a></li>
+     </ul></li>
+    <li><a><span class="icon-chevron-down"></span>Maven Build Config Fundamentals</a>
+     <ul class="nav nav-list">
+      <li><a href="/maven-site/guides/plugins/validation/index.html">Plugins Validation</a></li>
+      <li><a href="/maven-site/guides/mini/guide-site.html"><span class="icon-chevron-right"></span>Creating a site</a></li>
+      <li><a href="/maven-site/guides/introduction/introduction-to-archetypes.html"><span class="icon-chevron-right"></span>Archetypes</a></li>
+      <li><a href="/maven-site/guides/introduction/introduction-to-repositories.html"><span class="icon-chevron-right"></span>Repositories</a></li>
+      <li class="active"><a>Profiles</a></li>
+      <li><a href="/maven-site/guides/introduction/introduction-to-the-standard-directory-layout.html">Standard Directory Layout</a></li>
+      <li><a href="/maven-site/guides/introduction/introduction-to-dependency-mechanism.html"><span class="icon-chevron-right"></span>Dependency Mechanism</a></li>
+     </ul></li>
+    <li><a href="/maven-site/guides/getting-started/index.html"><span class="icon-chevron-right"></span>Getting Started Guide</a></li>
+    <li><a><span class="icon-chevron-down"></span>Maven 4</a>
+     <ul class="nav nav-list">
+      <li><a href="/maven-site/whatsnewinmaven4.html">What's new in Maven 4?</a></li>
+      <li><a href="/maven-site/guides/mini/guide-migration-to-mvn4.html">Starting with Maven 4</a></li>
+      <li><a href="/maven-site/guides/mini/guide-mixins.html">Maven Mixins</a></li>
+     </ul></li>
+    <li><a href="/maven-site/guides/mini/index.html"><span class="icon-chevron-right"></span>Guides</a></li>
+    <li><a href="/maven-site/general.html">FAQ</a></li>
+   </ul></li>
+  <li><a href="/maven-site/repositories/index.html"><span class="icon-chevron-right"></span>Maven Repositories</a></li>
+  <li><a href="/maven-site/plugin-developers/index.html"><span class="icon-chevron-right"></span>Plugin Development</a></li>
+  <li><a href="/maven-site/developers/index.html"><span class="icon-chevron-right"></span>Contribute to Maven</a></li>
+  <li><a href="/maven-site/articles.html">Books and Resources</a></li>
+  <li class="nav-header">Community</li>
+  <li><a href="/maven-site/community.html">Community Overview</a></li>
+  <li><a href="/maven-site/project-roles.html">Project Roles</a></li>
+  <li><a href="/maven-site/guides/development/guide-helping.html">How to Contribute</a></li>
+  <li><a href="/maven-site/users/getting-help.html">Getting Help</a></li>
+  <li><a href="/maven-site/issue-management.html">Issue Management</a></li>
+  <li><a href="/maven-site/scm.html">Getting Maven Source</a></li>
+  <li><a href="/maven-site/team.html">The Maven Team</a></li>
+  <li class="nav-header">Project Documentation</li>
+  <li><a href="/maven-site/project-info.html">Project Information</a></li>
+  <li class="nav-header">Maven Projects</li>
+  <li><a href="/maven-site/ref/current">Maven</a></li>
+  <li><a href="/maven-site/archetypes/index.html">Archetypes</a></li>
+  <li><a href="/maven-site/extensions/index.html">Extensions</a></li>
+  <li><a href="/maven-site/pom/index.html">Parent POMs</a></li>
+  <li><a href="/maven-site/plugins/index.html">Plugins</a></li>
+  <li><a href="/maven-site/skins/index.html">Skins</a></li>
+  <li><a><span class="icon-chevron-down"></span>Components</a>
+   <ul class="nav nav-list">
+    <li><a href="/maven-site/archetype/index.html">Archetype</a></li>
+    <li><a href="/maven-site/resolver/index.html">Artifact Resolver</a></li>
+    <li><a href="/maven-site/doxia/index.html">Doxia</a></li>
+    <li><a href="/maven-site/maven-indexer/index.html">Indexer</a></li>
+    <li><a href="/maven-site/jxr/index.html">JXR</a></li>
+    <li><a href="/maven-site/plugin-testing/index.html">Plugin Testing</a></li>
+    <li><a href="/maven-site/plugin-tools/index.html">Plugin Tools</a></li>
+    <li><a href="/maven-site/apache-resource-bundles/index.html">Resource Bundles</a></li>
+    <li><a href="/maven-site/scm/index.html">SCM</a></li>
+    <li><a href="/maven-site/shared/index.html">Shared Components</a></li>
+    <li><a href="/maven-site/surefire/index.html">Surefire</a></li>
+    <li><a href="/maven-site/wagon/index.html">Wagon</a></li>
+   </ul></li>
+  <li class="nav-header">ASF</li>
+  <li><a href="https://www.apache.org/foundation/how-it-works.html">How Apache Works</a></li>
+  <li><a href="https://www.apache.org/foundation/">Foundation</a></li>
+  <li><a href="https://privacy.apache.org/policies/privacy-policy-public.html">Data Privacy</a></li>
+  <li><a href="https://www.apache.org/foundation/sponsorship.html">Sponsoring Apache</a></li>
+  <li><a href="https://www.apache.org/foundation/thanks.html">Thanks</a></li>
+</ul>
+          </nav>
+          <div class="well sidebar-nav">
+            <div id="poweredBy">
+              <div class="clear"></div>
+              <a href="/maven-site/" class="builtBy" target="_blank"><img class="builtBy" alt="Built by Maven" src="/maven-site/images/logos/maven-feather.png"></a>
+            </div>
+          </div>
+        </header>
+        <main id="bodyColumn" class="span10">
+          
+<!--
+Licensed to the Apache Software Foundation (ASF) under one
+or more contributor license agreements.  See the NOTICE file
+distributed with this work for additional information
+regarding copyright ownership.  The ASF licenses this file
+to you under the Apache License, Version 2.0 (the
+"License"); you may not use this file except in compliance
+with the License.  You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing,
+software distributed under the License is distributed on an
+"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+KIND, either express or implied.  See the License for the
+specific language governing permissions and limitations
+under the License.
+-->
+<h1 id="Introduction_to_Build_Profiles">Introduction to Build Profiles</h1>
+<div class="doxia-toc"><ul><li><a href="#What_are_the_different_types_of_profile.3F_Where_is_each_defined.3F">What are the different types of profile? Where is each defined?</a></li><li><a href="#Profile_Inheritance">Profile Inheritance</a></li><li><a href="#How_can_a_profile_be_triggered.3F_How_does_this_vary_according_to_the_type_of_profile_being_used.3F">How can a profile be triggered? How does this vary according to the type of profile being used?</a><ul><li><a href="#Details_on_profile_activation">Details on profile activation</a><ul><li><a href="#Explicit_profile_activation">Explicit profile activation</a></li><li><a href="#Implicit_profile_activation">Implicit profile activation</a><ul><li><a href="#Active_by_default">Active by default</a></li><li><a href="#JDK">JDK</a></li><li><a href="#OS">OS</a></li><li><a href="#Properties">Properties</a><ul><li><a href="#System_or_CLI_user_property">System or CLI user property</a></li><li><a href="#Packaging_property">Packaging property</a></li></ul></li><li><a href="#Files">Files</a></li></ul></li><li><a href="#Multiple_conditions">Multiple conditions</a></li><li><a href="#Cascading_profile_activation">Cascading profile activation</a></li></ul></li><li><a href="#Deactivating_a_profile">Deactivating a profile</a></li></ul></li><li><a href="#Which_areas_of_a_POM_can_be_customized_by_each_type_of_profile.3F_Why.3F">Which areas of a POM can be customized by each type of profile? Why?</a><ul><li><a href="#Profiles_in_external_files">Profiles in external files</a></li><li><a href="#Profiles_in_POMs">Profiles in POMs</a><ul><li><a href="#Examples">Examples</a></li></ul></li><li><a href="#POM_elements_outside_.3Cprofiles.3E">POM elements outside &lt;profiles&gt;</a></li></ul></li><li><a href="#Profile_Order">Profile Order</a></li><li><a href="#Profile_Pitfalls">Profile Pitfalls</a><ul><li><a href="#External_Properties">External Properties</a></li><li><a href="#Incomplete_Specification_of_a_Natural_Profile_Set">Incomplete Specification of a Natural Profile Set</a></li></ul></li><li><a href="#How_can_I_tell_which_profiles_are_in_effect_during_a_build.3F">How can I tell which profiles are in effect during a build?</a></li><li><a href="#Naming_Conventions">Naming Conventions</a></li></ul></div>
+<p>Apache Maven goes to great lengths to ensure that builds are portable. Among other things, this means allowing build configuration inside the POM, avoiding <strong>all</strong> filesystem references (in inheritance, dependencies, and other places), and leaning much more heavily on the local repository to store the metadata needed to make this possible.</p>
+<p>However, sometimes portability is not entirely possible. Under certain conditions, plugins may need to be configured with local filesystem paths. Under other circumstances, a slightly different dependency set will be required, and the project's artifact name may need to be adjusted slightly. And at still other times, you may even need to include a whole plugin in the build lifecycle depending on the detected build environment.</p>
+<p>To address these circumstances, Maven supports build profiles. Profiles are specified using a subset of the elements available in the POM itself (plus one extra section), and are triggered in any of a variety of ways. They modify the POM at build time, and are meant to be used in complementary sets to give equivalent-but-different parameters for a set of target environments (providing, for example, the path of the appserver root in the development, testing, and production environments). As such, profiles can easily lead to differing build results from different members of your team. However, used properly, profiles can be used while still preserving project portability. This will also minimize the use of <code>-f</code> option of maven which allows user to create another POM with different parameters or configuration to build which makes it more maintainable since it is running with one POM only.</p>
+<h2 id="What_are_the_different_types_of_profile.3F_Where_is_each_defined.3F">What are the different types of profile? Where is each defined?</h2>
+<ul>
+<li>
+<p>Per Project</p>
+<p>- Defined in the POM itself <code>(pom.xml)</code>.</p>
+</li>
+<li>
+<p>Per User</p>
+<p>- Defined in the <a href="https://maven.apache.org/ref/current/maven-settings/settings.html">Maven-settings</a> <code>(%USER_HOME%/.m2/settings.xml)</code>.</p>
+</li>
+<li>
+<p>Global</p>
+<p>- Defined in the <a href="https://maven.apache.org/ref/current/maven-settings/settings.html">global Maven-settings</a> <code>(${maven.home}/conf/settings.xml)</code>.</p>
+</li>
+</ul>
+<h2 id="Profile_Inheritance">Profile Inheritance</h2>
+<p>The profiles are not inherited by child POMs. Instead, they are resolved very early by the <a href="https://maven.apache.org/ref/current/maven-model-builder/">Maven Model Builder</a> and only the effects of active profiles are inherited (e.g. the plugins defined in the profile). Implicit profile activation only has an effect on the surrounding profile container but never on any other profile (even if it has the same id).</p>
+<h2 id="How_can_a_profile_be_triggered.3F_How_does_this_vary_according_to_the_type_of_profile_being_used.3F">How can a profile be triggered? How does this vary according to the type of profile being used?</h2>
+<p>A profile can be activated in several ways:</p>
+<ul>
+<li>Explicitly</li>
+<li>Implicitly, based on
+<ul>
+<li>JDK version</li>
+<li>Operating system</li>
+<li>system or CLI user properties</li>
+<li>packaging properties</li>
+<li>presence of files</li>
+</ul>
+</li>
+</ul>
+<p>Refer to the sections below for details.</p>
+<h3 id="Details_on_profile_activation">Details on profile activation</h3>
+<h4 id="Explicit_profile_activation">Explicit profile activation</h4>
+<p>Profiles can be explicitly specified using the <code>-P</code> command line flag.</p>
+<p>This flag is followed by a comma-delimited list of profile IDs to use. The profile(s) specified in the option are activated in addition to any profiles which are activated by their activation configuration or the <code>&lt;activeProfiles&gt;</code> section in <code>settings.xml</code>. From Maven 4 onward, Maven will refuse to activate or deactivate a profile that cannot be resolved. To prevent this, prefix the profile identifier with an <code>?</code>, marking it as optional:</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mvn groupId:artifactId:goal -P profile-1,profile-2,?profile-3
+</code></pre></div></div>
+<p>Profiles can be activated in the Maven settings, via the <code>&lt;activeProfiles&gt;</code> section. This section takes a list of <code>&lt;activeProfile&gt;</code> elements, each containing a profile-id inside.</p>
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="xml"><span class="nt">&lt;settings&gt;</span>
+  ...
+  <span class="nt">&lt;activeProfiles&gt;</span>
+    <span class="nt">&lt;activeProfile&gt;</span>profile-1<span class="nt">&lt;/activeProfile&gt;</span>
+  <span class="nt">&lt;/activeProfiles&gt;</span>
+  ...
+<span class="nt">&lt;/settings&gt;</span>
+</code></pre></div></div>
+<p>Profiles listed in the <code>&lt;activeProfiles&gt;</code> tag would be activated by default every time a project use it.</p>
+<p>Profiles can also be active by default using a configuration like the following in a POM:</p>
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="xml"><span class="nt">&lt;profiles&gt;</span>
+  <span class="nt">&lt;profile&gt;</span>
+    <span class="nt">&lt;id&gt;</span>profile-1<span class="nt">&lt;/id&gt;</span>
+    <span class="nt">&lt;activation&gt;</span>
+      <span class="nt">&lt;activeByDefault&gt;</span>true<span class="nt">&lt;/activeByDefault&gt;</span>
+    <span class="nt">&lt;/activation&gt;</span>
+    ...
+  <span class="nt">&lt;/profile&gt;</span>
+<span class="nt">&lt;/profiles&gt;</span>
+</code></pre></div></div>
+<p>This profile will automatically be active for all builds unless another profile in the same POM is activated using one of the previously described methods. All profiles that are active by default are automatically deactivated when a profile in the POM is activated on the command line or through its activation config.</p>
+<h4 id="Implicit_profile_activation">Implicit profile activation</h4>
+<p>Profiles can be automatically triggered based on the state of the build environment.
+These triggers are specified via an <code>&lt;activation&gt;</code> section in the profile.
+The implicit profile activation only refers to the container profile (and not to profiles in other modules with the same id).
+The activation occurs when all the specified criteria have been met.</p>
+<h5 id="Active_by_default">Active by default</h5>
+<p>Boolean flag which determines if the profile is active by default. Is <code>false</code> by default.
+This flag is only evaluated if no other profile is explicitly activated via command line, <code>settings.xml</code> or activated through some other activator. Otherwise, it has no effect.</p>
+<p>Example to set a profile active by default.</p>
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="xml"><span class="nt">&lt;profiles&gt;</span>
+  <span class="nt">&lt;profile&gt;</span>
+    <span class="nt">&lt;activation&gt;</span>
+      <span class="nt">&lt;activeByDefault&gt;</span>true<span class="nt">&lt;/activeByDefault&gt;</span>
+    <span class="nt">&lt;/activation&gt;</span>
+    ...
+  <span class="nt">&lt;/profile&gt;</span>
+<span class="nt">&lt;/profiles&gt;</span>
+</code></pre></div></div>
+<p><strong>Note for resolver configuration:</strong> When configuring <a href="../mini/guide-resolver-transport.html#system-level">Maven Resolver</a> low-level options (<code>aether.*</code> system properties) in a <code>settings.xml</code> profile, <code>&lt;activeByDefault&gt;true&lt;/activeByDefault&gt;</code> does <strong>not</strong> suffice -- the resolver session is built before profile activation conditions are evaluated. List the profile id under <code>&lt;activeProfiles&gt;</code> (or pass <code>-P &lt;id&gt;</code>) instead.</p>
+<h5 id="JDK">JDK</h5>
+<p>The following configuration will trigger the profile when the JDK's version <em>starts with</em> <code>1.4</code> (for example <code>1.4.0_08</code>, <code>1.4.2_07</code>, <code>1.4</code>), in particular it <em>won't be active</em> for <strong>newer</strong> versions like <code>1.8</code> or <code>11</code>:</p>
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="xml"><span class="nt">&lt;profiles&gt;</span>
+  <span class="nt">&lt;profile&gt;</span>
+    <span class="nt">&lt;activation&gt;</span>
+      <span class="nt">&lt;jdk&gt;</span>1.4<span class="nt">&lt;/jdk&gt;</span>
+    <span class="nt">&lt;/activation&gt;</span>
+    ...
+  <span class="nt">&lt;/profile&gt;</span>
+<span class="nt">&lt;/profiles&gt;</span>
+</code></pre></div></div>
+<p><a href="https://maven.apache.org/enforcer/enforcer-rules/versionRanges.html">Ranges</a> can also be used. Range values must start with either <code>[</code> or <code>(</code>.
+The following honours versions <code>1.3</code>, <code>1.4</code>, and <code>1.5</code>.</p>
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="xml"><span class="nt">&lt;profiles&gt;</span>
+  <span class="nt">&lt;profile&gt;</span>
+    <span class="nt">&lt;activation&gt;</span>
+      <span class="nt">&lt;jdk&gt;</span>[1.3,1.6)<span class="nt">&lt;/jdk&gt;</span>
+    <span class="nt">&lt;/activation&gt;</span>
+    ...
+  <span class="nt">&lt;/profile&gt;</span>
+<span class="nt">&lt;/profiles&gt;</span>
+</code></pre></div></div>
+<p><em>Note:</em> The value ranges match if the JDK version used for running Maven is between the lower and upper bounds (either inclusive or exclusive).
+An upper bound such as <code>,1.5]</code> likely does not include most releases of 1.5, since they will have an additional "patch" release such as <code>_05</code> that is not taken into consideration in the above range.</p>
+<p>If the range does not start with <code>[</code> or <code>(</code>, the value is interpreted as a vendor prefix.
+A prefix is negated if the value starts with <code>!</code>.
+(Negated) prefix values match if the JDK version used for running Maven starts/doesn't start with the given prefix (excluding the potentially leading <code>!</code>).
+The following profile would be active, when any <code>zulu64</code> JDK is used.</p>
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="xml"><span class="nt">&lt;profiles&gt;</span>
+  <span class="nt">&lt;profile&gt;</span>
+    <span class="nt">&lt;activation&gt;</span>
+      <span class="nt">&lt;jdk&gt;</span>zulu64<span class="nt">&lt;/jdk&gt;</span>
+    <span class="nt">&lt;/activation&gt;</span>
+    ...
+  <span class="nt">&lt;/profile&gt;</span>
+<span class="nt">&lt;/profiles&gt;</span>
+</code></pre></div></div>
+<h5 id="OS">OS</h5>
+<p>This next one will activate based on the detected operating system. See the <a href="https://maven.apache.org/enforcer/enforcer-rules/requireOS.html">Maven Enforcer Plugin</a> for more details about OS values.</p>
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="xml"><span class="nt">&lt;profiles&gt;</span>
+  <span class="nt">&lt;profile&gt;</span>
+    <span class="nt">&lt;activation&gt;</span>
+      <span class="nt">&lt;os&gt;</span>
+        <span class="nt">&lt;name&gt;</span>Windows XP<span class="nt">&lt;/name&gt;</span>
+        <span class="nt">&lt;family&gt;</span>Windows<span class="nt">&lt;/family&gt;</span>
+        <span class="nt">&lt;arch&gt;</span>x86<span class="nt">&lt;/arch&gt;</span>
+        <span class="nt">&lt;version&gt;</span>5.1.2600<span class="nt">&lt;/version&gt;</span>
+      <span class="nt">&lt;/os&gt;</span>
+    <span class="nt">&lt;/activation&gt;</span>
+    ...
+  <span class="nt">&lt;/profile&gt;</span>
+<span class="nt">&lt;/profiles&gt;</span>
+</code></pre></div></div>
+<p>The values are interpreted as Strings and are matched against the <a href="https://docs.oracle.com/javase/tutorial/essential/environment/sysprop.html">Java System properties</a> <code>os.name</code>, <code>os.arch</code>, <code>os.version</code> and the family being derived from those.</p>
+<p>Each value can be prefixed with <code>!</code> to negate the matching. The values match if they are (not) equal to the actual String value (<strong>case insensitive</strong>). All given OS conditions must match for the profile to be considered for activation.</p>
+<p>Since <a href="https://issues.apache.org/jira/browse/MNG-5726">Maven 3.9.7</a> the value for <code>version</code> may be prefixed with <code>regex:</code>. In that case <a href="https://docs.oracle.com/javase/tutorial/essential/regex/">regular pattern matching</a> is applied for the version matching and applied against the <strong>lower case</strong> <code>os.version</code> value.</p>
+<p>The actual OS values which need to match the given values are emitted when executing <code>mvn --version</code>.
+See the maven-enforcer-plugin's <a href="https://maven.apache.org/enforcer/enforcer-rules/requireOS.html">Require OS Rule</a> for more details about OS values.</p>
+<h5 id="Properties">Properties</h5>
+<p>The <code>profile</code> will activate if Maven detects a system property or CLI user property (a value which can be dereferenced within the POM by <code>${name}</code>) of the corresponding <code>name=value</code> pair, and it matches the given value (if given).
+Since Maven 3.9.0 one can also evaluate the <code>&lt;packaging value&gt;</code> of the pom via property name <code>packaging</code>.</p>
+<h6 id="System_or_CLI_user_property">System or CLI user property</h6>
+<p>The <code>profile</code> will activate if Maven detects a system property or CLI user property (a value which can be dereferenced within the POM by <code>${name}</code>)
+of the corresponding <code>name=value</code> pair, and it matches the given value (if given).</p>
+<p>The profile below will be activated when the system property <code>debug</code> is specified with any value:</p>
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="xml"><span class="nt">&lt;profiles&gt;</span>
+  <span class="nt">&lt;profile&gt;</span>
+    <span class="nt">&lt;activation&gt;</span>
+      <span class="nt">&lt;property&gt;</span>
+        <span class="nt">&lt;name&gt;</span>debug<span class="nt">&lt;/name&gt;</span>
+      <span class="nt">&lt;/property&gt;</span>
+    <span class="nt">&lt;/activation&gt;</span>
+    ...
+  <span class="nt">&lt;/profile&gt;</span>
+<span class="nt">&lt;/profiles&gt;</span>
+</code></pre></div></div>
+<p>The following profile will be activated when the system property <code>debug</code> is not defined at all:</p>
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="xml"><span class="nt">&lt;profiles&gt;</span>
+  <span class="nt">&lt;profile&gt;</span>
+    <span class="nt">&lt;activation&gt;</span>
+      <span class="nt">&lt;property&gt;</span>
+        <span class="nt">&lt;name&gt;</span>!debug<span class="nt">&lt;/name&gt;</span>
+      <span class="nt">&lt;/property&gt;</span>
+    <span class="nt">&lt;/activation&gt;</span>
+    ...
+  <span class="nt">&lt;/profile&gt;</span>
+<span class="nt">&lt;/profiles&gt;</span>
+</code></pre></div></div>
+<p>The following profile will be activated when the system property <code>debug</code> is defined with no value, or is defined with the value <code>true</code>.</p>
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="xml"><span class="nt">&lt;profiles&gt;</span>
+  <span class="nt">&lt;profile&gt;</span>
+    <span class="nt">&lt;activation&gt;</span>
+      <span class="nt">&lt;property&gt;</span>
+        <span class="nt">&lt;name&gt;</span>debug<span class="nt">&lt;/name&gt;</span>
+        <span class="nt">&lt;value&gt;</span>true<span class="nt">&lt;/value&gt;</span>
+      <span class="nt">&lt;/property&gt;</span>
+    <span class="nt">&lt;/activation&gt;</span>
+    ...
+  <span class="nt">&lt;/profile&gt;</span>
+<span class="nt">&lt;/profiles&gt;</span>
+</code></pre></div></div>
+<p>To activate this you would type one of those on the command line:</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mvn groupId:artifactId:goal -Ddebug
+mvn groupId:artifactId:goal -Ddebug=true
+</code></pre></div></div>
+<p>The following profile will be activated when the system property <code>debug</code> is not defined, or is defined with a value which is not <code>true</code>.</p>
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="xml"><span class="nt">&lt;profiles&gt;</span>
+  <span class="nt">&lt;profile&gt;</span>
+    <span class="nt">&lt;activation&gt;</span>
+      <span class="nt">&lt;property&gt;</span>
+        <span class="nt">&lt;name&gt;</span>debug<span class="nt">&lt;/name&gt;</span>
+        <span class="nt">&lt;value&gt;</span>!true<span class="nt">&lt;/value&gt;</span>
+      <span class="nt">&lt;/property&gt;</span>
+    <span class="nt">&lt;/activation&gt;</span>
+    ...
+  <span class="nt">&lt;/profile&gt;</span>
+<span class="nt">&lt;/profiles&gt;</span>
+</code></pre></div></div>
+<p>To activate this you would type one of those on the command line:</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mvn groupId:artifactId:goal
+mvn groupId:artifactId:goal -Ddebug=false
+</code></pre></div></div>
+<p>The next example will trigger the profile when the system property <code>environment</code> is specified with the value <code>test</code>:</p>
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="xml"><span class="nt">&lt;profiles&gt;</span>
+  <span class="nt">&lt;profile&gt;</span>
+    <span class="nt">&lt;activation&gt;</span>
+      <span class="nt">&lt;property&gt;</span>
+        <span class="nt">&lt;name&gt;</span>environment<span class="nt">&lt;/name&gt;</span>
+        <span class="nt">&lt;value&gt;</span>test<span class="nt">&lt;/value&gt;</span>
+      <span class="nt">&lt;/property&gt;</span>
+    <span class="nt">&lt;/activation&gt;</span>
+    ...
+  <span class="nt">&lt;/profile&gt;</span>
+<span class="nt">&lt;/profiles&gt;</span>
+</code></pre></div></div>
+<p>To activate this you would type this on the command line:</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mvn groupId:artifactId:goal -Denvironment=test
+</code></pre></div></div>
+<p>Profiles in the POM can also be activated based on properties from active profiles from the <code>settings.xml</code>.</p>
+<p><strong>Note</strong>: Environment variables like <code>FOO</code> are available as properties of the form <code>env.FOO</code>. Further note that environment variable names are normalized to all upper-case on Windows.</p>
+<h6 id="Packaging_property">Packaging property</h6>
+<p>Since Maven 3.9.0 one can also evaluate the POM's packaging value by referencing property <code>packaging</code>. This is only useful where the profile activation is defined in a common parent POM which is reused among multiple Maven projects. The next example will trigger the profile when a project with packaging <code>war</code> is built:</p>
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="xml"><span class="nt">&lt;profiles&gt;</span>
+  <span class="nt">&lt;profile&gt;</span>
+    <span class="nt">&lt;activation&gt;</span>
+      <span class="nt">&lt;property&gt;</span>
+        <span class="nt">&lt;name&gt;</span>packaging<span class="nt">&lt;/name&gt;</span>
+        <span class="nt">&lt;value&gt;</span>war<span class="nt">&lt;/value&gt;</span>
+      <span class="nt">&lt;/property&gt;</span>
+    <span class="nt">&lt;/activation&gt;</span>
+    ...
+  <span class="nt">&lt;/profile&gt;</span>
+<span class="nt">&lt;/profiles&gt;</span>
+</code></pre></div></div>
+<h5 id="Files">Files</h5>
+<p>A given filename may activate the <code>profile</code> by the <code>existence</code> of a file, or if it is <code>missing</code>.
+<strong>NOTE</strong>: Interpolation for this element is limited to <code>${project.basedir}</code>, System properties, and request properties.</p>
+<p>This example will trigger the profile when the generated file <code>target/generated-sources/axistools/wsdl2java/org/apache/maven</code> is missing.</p>
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="xml"><span class="nt">&lt;profiles&gt;</span>
+  <span class="nt">&lt;profile&gt;</span>
+    <span class="nt">&lt;activation&gt;</span>
+      <span class="nt">&lt;file&gt;</span>
+        <span class="nt">&lt;missing&gt;</span>target/generated-sources/axistools/wsdl2java/org/apache/maven<span class="nt">&lt;/missing&gt;</span>
+      <span class="nt">&lt;/file&gt;</span>
+    <span class="nt">&lt;/activation&gt;</span>
+    ...
+  <span class="nt">&lt;/profile&gt;</span>
+<span class="nt">&lt;/profiles&gt;</span>
+</code></pre></div></div>
+<p>The tags <code>&lt;exists&gt;</code> and <code>&lt;missing&gt;</code> can be interpolated. Supported variables are system properties like <code>${user.home}</code> and environment variables like <code>${env.HOME}</code>. Please note that properties and values defined in the POM itself are not available for interpolation here, e.g. the above example activator cannot use <code>${project.build.directory}</code> but needs to hard-code the path <code>target</code>.</p>
+<h4 id="Multiple_conditions">Multiple conditions</h4>
+<p>Different implicit activation types can be combined in one profile. The profile is then only active if all conditions are met. Using the same type more than once in the same profile is not supported (<a href="https://issues.apache.org/jira/browse/MNG-5909">MNG-5909</a>, <a href="https://issues.apache.org/jira/browse/MNG-3328">MNG-3328</a>).</p>
+<h4 id="Cascading_profile_activation">Cascading profile activation</h4>
+<p><em>Since Maven 4.1.</em></p>
+<p>When a POM profile is activated and defines <code>&lt;properties&gt;</code>, those properties are immediately available to trigger the activation of other profiles in the same POM. Maven iterates through the remaining inactive profiles until no new profiles are activated (a fixed-point is reached). This is called <strong>cascading profile activation</strong>.</p>
+<p>This allows building chains or groups of profiles where one profile acts as a trigger that enables a set of related profiles, eliminating the need for external scripts, wrapper POMs, or duplicating activation conditions.</p>
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="xml"><span class="nt">&lt;profiles&gt;</span>
+  <span class="c">&lt;!-- Activated by -Dstart.cascade=true --&gt;</span>
+  <span class="nt">&lt;profile&gt;</span>
+    <span class="nt">&lt;id&gt;</span>trigger<span class="nt">&lt;/id&gt;</span>
+    <span class="nt">&lt;activation&gt;</span>
+      <span class="nt">&lt;condition&gt;</span>${start.cascade} == 'true'<span class="nt">&lt;/condition&gt;</span>
+    <span class="nt">&lt;/activation&gt;</span>
+    <span class="nt">&lt;properties&gt;</span>
+      <span class="nt">&lt;enable.checks&gt;</span>true<span class="nt">&lt;/enable.checks&gt;</span>
+    <span class="nt">&lt;/properties&gt;</span>
+  <span class="nt">&lt;/profile&gt;</span>
+  <span class="c">&lt;!-- Automatically activated when trigger sets enable.checks --&gt;</span>
+  <span class="nt">&lt;profile&gt;</span>
+    <span class="nt">&lt;id&gt;</span>run-checkstyle<span class="nt">&lt;/id&gt;</span>
+    <span class="nt">&lt;activation&gt;</span>
+      <span class="nt">&lt;condition&gt;</span>${enable.checks} == 'true'<span class="nt">&lt;/condition&gt;</span>
+    <span class="nt">&lt;/activation&gt;</span>
+    <span class="c">&lt;!-- checkstyle plugin configuration --&gt;</span>
+  <span class="nt">&lt;/profile&gt;</span>
+  <span class="nt">&lt;profile&gt;</span>
+    <span class="nt">&lt;id&gt;</span>run-spotbugs<span class="nt">&lt;/id&gt;</span>
+    <span class="nt">&lt;activation&gt;</span>
+      <span class="nt">&lt;condition&gt;</span>${enable.checks} == 'true'<span class="nt">&lt;/condition&gt;</span>
+    <span class="nt">&lt;/activation&gt;</span>
+    <span class="c">&lt;!-- spotbugs plugin configuration --&gt;</span>
+  <span class="nt">&lt;/profile&gt;</span>
+<span class="nt">&lt;/profiles&gt;</span>
+</code></pre></div></div>
+<p>Running <code>mvn validate -Dstart.cascade=true</code> activates <code>trigger</code>, which sets <code>enable.checks=true</code>, which in turn cascades to activate both <code>run-checkstyle</code> and <code>run-spotbugs</code>.</p>
+<p>Cascading also works with the traditional <code>&lt;property&gt;</code> activation element:</p>
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="xml"><span class="nt">&lt;profiles&gt;</span>
+  <span class="nt">&lt;profile&gt;</span>
+    <span class="nt">&lt;id&gt;</span>quality<span class="nt">&lt;/id&gt;</span>
+    <span class="nt">&lt;activation&gt;</span>
+      <span class="nt">&lt;property&gt;</span>
+        <span class="nt">&lt;name&gt;</span>quality<span class="nt">&lt;/name&gt;</span>
+        <span class="nt">&lt;value&gt;</span>true<span class="nt">&lt;/value&gt;</span>
+      <span class="nt">&lt;/property&gt;</span>
+    <span class="nt">&lt;/activation&gt;</span>
+    <span class="nt">&lt;properties&gt;</span>
+      <span class="nt">&lt;run.checkstyle&gt;</span>true<span class="nt">&lt;/run.checkstyle&gt;</span>
+      <span class="nt">&lt;run.spotbugs&gt;</span>true<span class="nt">&lt;/run.spotbugs&gt;</span>
+    <span class="nt">&lt;/properties&gt;</span>
+  <span class="nt">&lt;/profile&gt;</span>
+  <span class="nt">&lt;profile&gt;</span>
+    <span class="nt">&lt;id&gt;</span>checkstyle<span class="nt">&lt;/id&gt;</span>
+    <span class="nt">&lt;activation&gt;</span>
+      <span class="nt">&lt;property&gt;</span>
+        <span class="nt">&lt;name&gt;</span>run.checkstyle<span class="nt">&lt;/name&gt;</span>
+        <span class="nt">&lt;value&gt;</span>true<span class="nt">&lt;/value&gt;</span>
+      <span class="nt">&lt;/property&gt;</span>
+    <span class="nt">&lt;/activation&gt;</span>
+    <span class="c">&lt;!-- checkstyle configuration --&gt;</span>
+  <span class="nt">&lt;/profile&gt;</span>
+  <span class="nt">&lt;profile&gt;</span>
+    <span class="nt">&lt;id&gt;</span>spotbugs<span class="nt">&lt;/id&gt;</span>
+    <span class="nt">&lt;activation&gt;</span>
+      <span class="nt">&lt;property&gt;</span>
+        <span class="nt">&lt;name&gt;</span>run.spotbugs<span class="nt">&lt;/name&gt;</span>
+        <span class="nt">&lt;value&gt;</span>true<span class="nt">&lt;/value&gt;</span>
+      <span class="nt">&lt;/property&gt;</span>
+    <span class="nt">&lt;/activation&gt;</span>
+    <span class="c">&lt;!-- spotbugs configuration --&gt;</span>
+  <span class="nt">&lt;/profile&gt;</span>
+<span class="nt">&lt;/profiles&gt;</span>
+</code></pre></div></div>
+<p>Important notes about cascading activation:</p>
+<ul>
+<li><strong>POM profiles only</strong>: Cascading activation only applies to profiles defined in the POM, not in <code>settings.xml</code>. Properties contributed by cascading are never visible to settings profiles.</li>
+<li><strong>Property priority</strong>: User properties (from <code>-D</code> flags) and system properties always take precedence over properties contributed by cascading. Cascading cannot override explicitly set values.</li>
+<li><strong>No circular dependencies</strong>: If profile A sets a property that activates profile B, and B sets a property that would activate A, this is harmless — A is already active and won't be re-evaluated.</li>
+<li><strong>Ordering</strong>: Profiles are evaluated in POM declaration order during each iteration. The activation order may matter if multiple profiles set the same property to different values.</li>
+</ul>
+<h3 id="Deactivating_a_profile">Deactivating a profile</h3>
+<p>One or more profiles can be deactivated using the command line by prefixing their identifier with either the character '!' or '-' as shown below.</p>
+<p><strong>Note</strong> that <code>!</code> needs to be escaped with <code>\</code> or quoted in Bash, ZSH and other shells as it has <a href="https://www.gnu.org/software/bash/manual/html_node/Event-Designators.html">a special meaning</a>. Also there is a known bug with command line option values starting with <code>-</code> (<a href="https://issues.apache.org/jira/browse/CLI-309">CLI-309</a>), therefore it is recommended to use it with the syntax <code>-P=-profilename</code>.</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mvn groupId:artifactId:goal -P !profile-1,!profile-2,!?profile-3
+</code></pre></div></div>
+<p>or</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mvn groupId:artifactId:goal -P=-profile-1,-profile-2,-?profile-3
+</code></pre></div></div>
+<p>This can be used to deactivate profiles marked as activeByDefault or profiles that would otherwise be activated through their activation config.</p>
+<h2 id="Which_areas_of_a_POM_can_be_customized_by_each_type_of_profile.3F_Why.3F">Which areas of a POM can be customized by each type of profile? Why?</h2>
+<p>Now that we've talked about where to specify profiles, and how to activate them, it will be useful to talk about <em>what</em> you can specify in a profile. As with the other aspects of profile configuration, this answer is not straightforward.</p>
+<p>Depending on where you choose to configure your profile, you will have access to varying POM configuration options.</p>
+<h3 id="Profiles_in_external_files">Profiles in external files</h3>
+<p>Profiles specified in external files (i.e in <code>settings.xml</code> or <code>profiles.xml</code>) are not portable in the strictest sense. Anything that seems to stand a high chance of changing the result of the build is restricted to the inline profiles in the POM. Things like repository lists could simply be a proprietary repository of approved artifacts, and won't change the outcome of the build. Therefore, you will only be able to modify the <code>&lt;repositories&gt;</code> and <code>&lt;pluginRepositories&gt;</code> sections, plus an extra <code>&lt;properties&gt;</code> section.</p>
+<p>The <code>&lt;properties&gt;</code> section allows you to specify free-form key-value pairs which will be included in the interpolation process for the POM. This allows you to specify a plugin configuration in the form of <code>${profile.provided.path}</code>.</p>
+<h3 id="Profiles_in_POMs">Profiles in POMs</h3>
+<p>On the other hand, if your profiles can be reasonably specified <em>inside</em> the POM, you have many more options. The trade-off, of course, is that you can only modify <em>that</em> project and its sub-modules. Since these profiles are specified inline, and therefore have a better chance of preserving portability, it's reasonable to say you can add more information to them without the risk of that information being unavailable to other users.</p>
+<p>Profiles specified in the POM can modify <a href="https://maven.apache.org/ref/current/maven-model/maven.html">the following POM elements</a>:</p>
+<ul>
+<li><code>&lt;repositories&gt;</code></li>
+<li><code>&lt;pluginRepositories&gt;</code></li>
+<li><code>&lt;dependencies&gt;</code></li>
+<li><code>&lt;plugins&gt;</code></li>
+<li><code>&lt;properties&gt;</code></li>
+<li><code>&lt;modules&gt;</code></li>
+<li><code>&lt;reports&gt;</code></li>
+<li><code>&lt;reporting&gt;</code></li>
+<li><code>&lt;dependencyManagement&gt;</code></li>
+<li><code>&lt;distributionManagement&gt;</code></li>
+<li>the following subset of the <code>&lt;build&gt;</code> element:
+<ul>
+<li><code>&lt;defaultGoal&gt;</code></li>
+<li><code>&lt;resources&gt;</code></li>
+<li><code>&lt;testResources&gt;</code></li>
+<li><code>&lt;directory&gt;</code></li>
+<li><code>&lt;finalName&gt;</code></li>
+<li><code>&lt;filters&gt;</code></li>
+<li><code>&lt;pluginManagement&gt;</code></li>
+<li><code>&lt;plugins&gt;</code></li>
+</ul>
+</li>
+</ul>
+<p><em>Note</em>: A profile which tries to modify other elements of the <code>&lt;build&gt;</code> element is invalid and will fail the build with a "malformed POM" error.</p>
+<h4 id="Examples">Examples</h4>
+<p>The following example defines a profile to execute the <a href="https://maven.apache.org/plugins/maven-invoker-plugin/">Maven Invoker Plugin</a>:</p>
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="xml"><span class="nt">&lt;profile&gt;</span>
+  <span class="nt">&lt;id&gt;</span>run-its<span class="nt">&lt;/id&gt;</span>
+  <span class="nt">&lt;build&gt;</span>
+    <span class="nt">&lt;plugins&gt;</span>
+      <span class="nt">&lt;plugin&gt;</span>
+        <span class="nt">&lt;groupId&gt;</span>org.apache.maven.plugins<span class="nt">&lt;/groupId&gt;</span>
+        <span class="nt">&lt;artifactId&gt;</span>maven-invoker-plugin<span class="nt">&lt;/artifactId&gt;</span>
+        <span class="nt">&lt;configuration&gt;</span>
+          <span class="nt">&lt;goals&gt;</span>
+            <span class="nt">&lt;goal&gt;</span>clean<span class="nt">&lt;/goal&gt;</span>
+            <span class="nt">&lt;goal&gt;</span>package<span class="nt">&lt;/goal&gt;</span>
+          <span class="nt">&lt;/goals&gt;</span>
+        <span class="nt">&lt;/configuration&gt;</span>
+        <span class="nt">&lt;executions&gt;</span>
+          <span class="nt">&lt;execution&gt;</span>
+            <span class="nt">&lt;id&gt;</span>integration-test<span class="nt">&lt;/id&gt;</span>
+            <span class="nt">&lt;goals&gt;</span>
+              <span class="nt">&lt;goal&gt;</span>install<span class="nt">&lt;/goal&gt;</span>
+              <span class="nt">&lt;goal&gt;</span>integration-test<span class="nt">&lt;/goal&gt;</span>
+            <span class="nt">&lt;/goals&gt;</span>
+          <span class="nt">&lt;/execution&gt;</span>
+        <span class="nt">&lt;/executions&gt;</span>
+      <span class="nt">&lt;/plugin&gt;</span>
+    <span class="nt">&lt;/plugins&gt;</span>
+  <span class="nt">&lt;/build&gt;</span>
+<span class="nt">&lt;/profile&gt;</span>
+</code></pre></div></div>
+<h3 id="POM_elements_outside_.3Cprofiles.3E">POM elements outside &lt;profiles&gt;</h3>
+<p>We don't allow modification of some POM elements outside of POM-profiles because these runtime modifications will not be distributed when the POM is deployed to the repository system, making that person's build of that project completely unique from others. While you can do this to some extent with the options given for external profiles, the danger is limited. Another reason is that this POM info is sometimes being reused from the parent POM.</p>
+<p>External files such as <code>settings.xml</code> and <code>profiles.xml</code> also do not support elements outside the POM-profiles. Let us take this scenario for elaboration. When the effective POM is deployed to a remote repository, any person can pickup its info out of the repository and use it to build a Maven project directly. Now, imagine that if we can set profiles in dependencies, which is very important to a build, or in any other elements outside POM-profiles in <code>settings.xml</code> then most probably we cannot expect someone else to use that POM from the repository and be able to build it. And we have to also think about how to share the <code>settings.xml</code> with others. Note that too many files to configure are very confusing and very hard to maintain. Bottom line is that since this is build data, it should be in the POM.</p>
+<h2 id="Profile_Order">Profile Order</h2>
+<p>All profile elements in a POM from active profiles overwrite the global elements with the same name of the POM or extend those in case of collections. In case multiple profiles are active in the same POM or external file, the ones which are defined <strong>later</strong> take precedence over the ones defined <strong>earlier</strong> (independent of their profile id and activation order).</p>
+<p>Example:</p>
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="xml"><span class="nt">&lt;project</span> <span class="na">xmlns=</span><span class="s">"http://maven.apache.org/POM/4.0.0"</span><span class="nt">&gt;</span>
+  ...
+  <span class="nt">&lt;repositories&gt;</span>
+    <span class="nt">&lt;repository&gt;</span>
+      <span class="nt">&lt;id&gt;</span>global-repo<span class="nt">&lt;/id&gt;</span>
+      ...
+    <span class="nt">&lt;/repository&gt;</span>
+  <span class="nt">&lt;/repositories&gt;</span>
+  ...
+  <span class="nt">&lt;profiles&gt;</span>
+    <span class="nt">&lt;profile&gt;</span>
+      <span class="nt">&lt;id&gt;</span>profile-1<span class="nt">&lt;/id&gt;</span>
+      <span class="nt">&lt;activation&gt;</span>
+        <span class="nt">&lt;activeByDefault&gt;</span>true<span class="nt">&lt;/activeByDefault&gt;</span>
+      <span class="nt">&lt;/activation&gt;</span>
+      <span class="nt">&lt;repositories&gt;</span>
+        <span class="nt">&lt;repository&gt;</span>
+          <span class="nt">&lt;id&gt;</span>profile-1-repo<span class="nt">&lt;/id&gt;</span>
+          ...
+        <span class="nt">&lt;/repository&gt;</span>
+      <span class="nt">&lt;/repositories&gt;</span>
+    <span class="nt">&lt;/profile&gt;</span>
+    <span class="nt">&lt;profile&gt;</span>
+      <span class="nt">&lt;id&gt;</span>profile-2<span class="nt">&lt;/id&gt;</span>
+      <span class="nt">&lt;activation&gt;</span>
+        <span class="nt">&lt;activeByDefault&gt;</span>true<span class="nt">&lt;/activeByDefault&gt;</span>
+      <span class="nt">&lt;/activation&gt;</span>
+      <span class="nt">&lt;repositories&gt;</span>
+        <span class="nt">&lt;repository&gt;</span>
+          <span class="nt">&lt;id&gt;</span>profile-2-repo<span class="nt">&lt;/id&gt;</span>
+          ...
+        <span class="nt">&lt;/repository&gt;</span>
+      <span class="nt">&lt;/repositories&gt;</span>
+    <span class="nt">&lt;/profile&gt;</span>
+    ...
+  <span class="nt">&lt;/profiles&gt;</span>
+  ...
+<span class="nt">&lt;/project&gt;</span>
+</code></pre></div></div>
+<p>This leads to the repository list: <code>profile-2-repo, profile-1-repo, global-repo</code>.</p>
+<h2 id="Profile_Pitfalls">Profile Pitfalls</h2>
+<p>We've already mentioned the fact that adding profiles to your build has the potential to break portability for your project. We've even gone so far as to highlight circumstances where profiles are likely to break project portability. However, it's worth reiterating those points as part of a more coherent discussion about some pitfalls to avoid when using profiles.</p>
+<p>There are two main problem areas to keep in mind when using profiles. First are external properties, usually used in plugin configurations. These pose the risk of breaking portability in your project. The other, more subtle area is the incomplete specification of a natural set of profiles.</p>
+<h3 id="External_Properties">External Properties</h3>
+<p>External property definition concerns any property value defined outside the <code>pom.xml</code> but not defined in a corresponding profile inside it. The most obvious usage of properties in the POM is in plugin configuration. While it is certainly possible to break project portability without properties, these critters can have subtle effects that cause builds to fail. For example, specifying appserver paths in a profile that is specified in the <code>settings.xml</code> may cause your integration test plugin to fail when another user on the team attempts to build without a similar <code>settings.xml</code>. Consider the following <code>pom.xml</code> snippet for a web application project:</p>
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="xml"><span class="nt">&lt;project</span> <span class="na">xmlns=</span><span class="s">"http://maven.apache.org/POM/4.0.0"</span><span class="nt">&gt;</span>
+  ...
+  <span class="nt">&lt;build&gt;</span>
+    <span class="nt">&lt;plugins&gt;</span>
+      <span class="nt">&lt;plugin&gt;</span>
+        <span class="nt">&lt;groupId&gt;</span>org.myco.plugins<span class="nt">&lt;/groupId&gt;</span>
+        <span class="nt">&lt;artifactId&gt;</span>spiffy-integrationTest-plugin<span class="nt">&lt;/artifactId&gt;</span>
+        <span class="nt">&lt;version&gt;</span>1.0<span class="nt">&lt;/version&gt;</span>
+        <span class="nt">&lt;configuration&gt;</span>
+          <span class="nt">&lt;appserverHome&gt;</span>${appserver.home}<span class="nt">&lt;/appserverHome&gt;</span>
+        <span class="nt">&lt;/configuration&gt;</span>
+      <span class="nt">&lt;/plugin&gt;</span>
+      ...
+    <span class="nt">&lt;/plugins&gt;</span>
+  <span class="nt">&lt;/build&gt;</span>
+  ...
+<span class="nt">&lt;/project&gt;</span>
+</code></pre></div></div>
+<p>Now, in your local <code>${user.home}/.m2/settings.xml</code>, you have:</p>
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="xml"><span class="nt">&lt;settings&gt;</span>
+  ...
+  <span class="nt">&lt;profiles&gt;</span>
+    <span class="nt">&lt;profile&gt;</span>
+      <span class="nt">&lt;id&gt;</span>appserverConfig<span class="nt">&lt;/id&gt;</span>
+      <span class="nt">&lt;properties&gt;</span>
+        <span class="nt">&lt;appserver.home&gt;</span>/path/to/appserver<span class="nt">&lt;/appserver.home&gt;</span>
+      <span class="nt">&lt;/properties&gt;</span>
+    <span class="nt">&lt;/profile&gt;</span>
+  <span class="nt">&lt;/profiles&gt;</span>
+
+  <span class="nt">&lt;activeProfiles&gt;</span>
+    <span class="nt">&lt;activeProfile&gt;</span>appserverConfig<span class="nt">&lt;/activeProfile&gt;</span>
+  <span class="nt">&lt;/activeProfiles&gt;</span>
+  ...
+<span class="nt">&lt;/settings&gt;</span>
+</code></pre></div></div>
+<p>When you build the <strong>integration-test</strong> lifecycle phase, your integration tests pass, since the path you've provided allows the test plugin to install and test this web application.</p>
+<p><em>However</em>, when your colleague attempts to build to <strong>integration-test</strong>, his build fails spectacularly, complaining that it cannot resolve the plugin configuration parameter <code>&lt;appserverHome&gt;</code>, or worse, that the value of that parameter - literally <code>${appserver.home}</code> - is invalid (if it warns you at all).</p>
+<p>Congratulations, your project is now non-portable. Inlining this profile in your <code>pom.xml</code> can help alleviate this, with the obvious drawback that each project hierarchy (allowing for the effects of inheritance) now have to specify this information. Since Maven provides good support for project inheritance, it's possible to stick this sort of configuration in the <code>&lt;pluginManagement&gt;</code> section of a team-level POM or similar, and simply inherit the paths.</p>
+<p>Another, less attractive answer might be standardization of development environments. However, this will tend to compromise the productivity gain that Maven is capable of providing.</p>
+<h3 id="Incomplete_Specification_of_a_Natural_Profile_Set">Incomplete Specification of a Natural Profile Set</h3>
+<p>In addition to the above portability-breaker, it's easy to fail to cover all cases with your profiles. When you do this, you're usually leaving one of your target environments high and dry. Let's take the example <code>pom.xml</code> snippet from above one more time:</p>
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="xml"><span class="nt">&lt;project</span> <span class="na">xmlns=</span><span class="s">"http://maven.apache.org/POM/4.0.0"</span><span class="nt">&gt;</span>
+  ...
+  <span class="nt">&lt;build&gt;</span>
+    <span class="nt">&lt;plugins&gt;</span>
+      <span class="nt">&lt;plugin&gt;</span>
+        <span class="nt">&lt;groupId&gt;</span>org.myco.plugins<span class="nt">&lt;/groupId&gt;</span>
+        <span class="nt">&lt;artifactId&gt;</span>spiffy-integrationTest-plugin<span class="nt">&lt;/artifactId&gt;</span>
+        <span class="nt">&lt;version&gt;</span>1.0<span class="nt">&lt;/version&gt;</span>
+        <span class="nt">&lt;configuration&gt;</span>
+          <span class="nt">&lt;appserverHome&gt;</span>${appserver.home}<span class="nt">&lt;/appserverHome&gt;</span>
+        <span class="nt">&lt;/configuration&gt;</span>
+      <span class="nt">&lt;/plugin&gt;</span>
+      ...
+    <span class="nt">&lt;/plugins&gt;</span>
+  <span class="nt">&lt;/build&gt;</span>
+  ...
+<span class="nt">&lt;/project&gt;</span>
+</code></pre></div></div>
+<p>Now, consider the following profile, which would be specified inline in the <code>pom.xml</code>:</p>
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="xml"><span class="nt">&lt;project</span> <span class="na">xmlns=</span><span class="s">"http://maven.apache.org/POM/4.0.0"</span><span class="nt">&gt;</span>
+  ...
+  <span class="nt">&lt;profiles&gt;</span>
+    <span class="nt">&lt;profile&gt;</span>
+      <span class="nt">&lt;id&gt;</span>appserverConfig-dev<span class="nt">&lt;/id&gt;</span>
+      <span class="nt">&lt;activation&gt;</span>
+        <span class="nt">&lt;property&gt;</span>
+          <span class="nt">&lt;name&gt;</span>env<span class="nt">&lt;/name&gt;</span>
+          <span class="nt">&lt;value&gt;</span>dev<span class="nt">&lt;/value&gt;</span>
+        <span class="nt">&lt;/property&gt;</span>
+      <span class="nt">&lt;/activation&gt;</span>
+      <span class="nt">&lt;properties&gt;</span>
+        <span class="nt">&lt;appserver.home&gt;</span>/path/to/dev/appserver<span class="nt">&lt;/appserver.home&gt;</span>
+      <span class="nt">&lt;/properties&gt;</span>
+    <span class="nt">&lt;/profile&gt;</span>
+
+    <span class="nt">&lt;profile&gt;</span>
+      <span class="nt">&lt;id&gt;</span>appserverConfig-dev-2<span class="nt">&lt;/id&gt;</span>
+      <span class="nt">&lt;activation&gt;</span>
+        <span class="nt">&lt;property&gt;</span>
+          <span class="nt">&lt;name&gt;</span>env<span class="nt">&lt;/name&gt;</span>
+          <span class="nt">&lt;value&gt;</span>dev-2<span class="nt">&lt;/value&gt;</span>
+        <span class="nt">&lt;/property&gt;</span>
+      <span class="nt">&lt;/activation&gt;</span>
+      <span class="nt">&lt;properties&gt;</span>
+        <span class="nt">&lt;appserver.home&gt;</span>/path/to/another/dev/appserver2<span class="nt">&lt;/appserver.home&gt;</span>
+      <span class="nt">&lt;/properties&gt;</span>
+    <span class="nt">&lt;/profile&gt;</span>
+  <span class="nt">&lt;/profiles&gt;</span>
+  ..
+<span class="nt">&lt;/project&gt;</span>
+</code></pre></div></div>
+<p>This profile looks quite similar to the one from the last example, with a few important exceptions: it's plainly geared toward a development environment, a new profile named <code>appserverConfig-dev-2</code> is added and it has an activation section that will trigger its inclusion when the system properties contain "env=dev" for a profile named <code>appserverConfig-dev</code> and "env=dev-2" for a profile named <code>appserverConfig-dev-2</code>. So, executing:</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mvn -Denv=dev-2 integration-test
+</code></pre></div></div>
+<p>will result in a successful build, applying the properties given by profile named <code>appserverConfig-dev-2</code>. And when we execute</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mvn -Denv=dev integration-test
+</code></pre></div></div>
+<p>it will result in a successful build applying the properties given by the profile named <code>appserverConfig-dev</code>. However, executing:</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mvn -Denv=production integration-test
+</code></pre></div></div>
+<p>will not do a successful build. Why? Because, the resulting non-interpolated literal value of <code>${appserver.home}</code> will not be a valid path for deploying and testing your web application. We haven't considered the case for the production environment when writing our profiles. The "production" environment (env=production), along with "test" and possibly even "local" constitute a natural set of target environments for which we may want to build the integration-test lifecycle phase. The incomplete specification of this natural set means we have effectively limited our valid target environments to the development environment. Your teammates - and probably your manager - will not see the humor in this. When you construct profiles to handle cases such as these, be sure to address the entire set of target permutations.</p>
+<p>As a quick aside, it's possible for user-specific profiles to act in a similar way. This means that profiles for handling different environments which are keyed to the user can act up when the team adds a new developer. While I suppose this <em>could</em> act as useful training for the newbie, it just wouldn't be nice to throw them to the wolves in this way. Again, be sure to think of the <em>whole</em> set of profiles.</p>
+<h2 id="How_can_I_tell_which_profiles_are_in_effect_during_a_build.3F">How can I tell which profiles are in effect during a build?</h2>
+<p>Determining active profiles will help the user to know what particular profiles has been executed during a build. We can use the <a href="https://maven.apache.org/plugins/maven-help-plugin/">Maven Help Plugin</a> to tell what profiles are in effect during a build.</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mvn help:active-profiles
+</code></pre></div></div>
+<p>Let us have some small samples that will help us to understand more on the <em>active-profiles</em> goal of that plugin.</p>
+<p>From the last example of profiles in the <code>pom.xml</code>, you'll notice that there are two profiles named <code>appserverConfig-dev</code> and <code>appserverConfig-dev-2</code> which has been given different values for properties. If we go ahead and execute:</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mvn help:active-profiles -Denv=dev
+</code></pre></div></div>
+<p>The result will be a bulleted list of the id of the profile with an activation property of "env=dev" together with the source where it was declared. See sample below.</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>The following profiles are active:
+
+ - appserverConfig-dev (source: pom)
+</code></pre></div></div>
+<p>Now if we have a profile declared in <code>settings.xml</code> (refer to the sample of profile in <code>settings.xml</code>) and that have been set to be an active profile and execute:</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mvn help:active-profiles
+</code></pre></div></div>
+<p>The result should be something like this</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>The following profiles are active:
+
+ - appserverConfig (source: settings.xml)
+</code></pre></div></div>
+<p>Even though we don't have an activation property, a profile has been listed as active. Why? Like we mentioned before, a profile that has been set as an active profile in the <code>settings.xml</code> is automatically activated.</p>
+<p>Now if we have something like a profile in the <code>settings.xml</code> that has been set as an active profile and also triggered a profile in the POM. Which profile do you think will have an effect on the build?</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mvn help:active-profiles -P appserverConfig-dev
+</code></pre></div></div>
+<p>This will list the activated profiles:</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>The following profiles are active:
+
+ - appserverConfig-dev (source: pom)
+ - appserverConfig (source: settings.xml)
+</code></pre></div></div>
+<p>Even though it listed the two active profiles, we are not sure which one of them has been applied. To see the effect on the build execute:</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mvn help:effective-pom -P appserverConfig-dev
+</code></pre></div></div>
+<p>This will print the effective POM for this build configuration out to the console. Take note that profiles in the <code>settings.xml</code> takes higher priority than profiles in the POM. So the profile that has been applied here is <code>appserverConfig</code> not <code>appserverConfig-dev</code>.</p>
+<p>If you want to redirect the output from the plugin to a file called <code>effective-pom.xml</code>, use the command-line option <code>-Doutput=effective-pom.xml</code>.</p>
+<h2 id="Naming_Conventions">Naming Conventions</h2>
+<p>By now you've noticed that profiles are a natural way of addressing the problem of different build configuration requirements for different target environments. Above, we discussed the concept of a "natural set" of profiles to address this situation, and the importance of considering the whole set of profiles that will be required.</p>
+<p>However, the question of how to organize and manage the evolution of that set is non-trivial as well. Just as a good developer strives to write self-documenting code, it's important that your profile id's give a hint to their intended use. One good way to do this is to use the common system property trigger as part of the name for the profile. This might result in names like <strong>env-dev</strong>, <strong>env-test</strong>, and <strong>env-prod</strong> for profiles that are triggered by the system property <strong>env</strong>. Such a system leaves a highly intuitive hint on how to activate a build targeted at a particular environment. Thus, to activate a build for the test environment, you need to activate <strong>env-test</strong> by issuing:</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mvn -Denv=test &lt;phase&gt;
+</code></pre></div></div>
+<p>The right command-line option can be had by simply substituting "=" for "-" in the profile id.</p>
+
+        </main>
+      </div>
+    </div>
+    <hr>
+    <footer>
+      <div class="container-fluid">
+        <div class="row-fluid">
+          <p>©      2002–2026 <a href="https://www.apache.org/">The Apache Software Foundation</a></p>
+          <p class="demo-note">A demonstration build of <a href="https://github.com/dashorst/maven-site/tree/diataxis-demo">dashorst/maven-site</a>, not the official Apache Maven site.</p>
+        </div>
+      </div>
+    </footer>
+    <script src="/maven-site/js/guide.js?v=1792948498" defer=""></script>
+    <script>
+    anchors.add();
+    </script>
+  
+
+</body></html>

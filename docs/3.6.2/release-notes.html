@@ -1,0 +1,265 @@
+<!DOCTYPE html><!--
+ | The page frame of the Apache Maven Fluido Skin 2.1.0, as the Doxia site renderer writes it
+ | for maven.apache.org. Built with Jekyll: see jekyll/README.md.
+--><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Release Notes – Maven 3.6.2 – Maven</title>
+    
+    <link rel="stylesheet" href="/maven-site/css/apache-maven-fluido-2.1.0.min.css">
+    <link rel="stylesheet" href="/maven-site/css/site.css">
+    <link rel="stylesheet" href="/maven-site/css/guide.css?v=1792948498">
+    <link rel="stylesheet" href="/maven-site/css/print.css" media="print">
+    <script src="/maven-site/js/apache-maven-fluido-2.1.0.min.js"></script>
+  </head>
+  <body>
+    <div class="container-fluid container-fluid-top">
+      <header>
+        <div id="banner">
+          <div class="pull-left"><div id="bannerLeft"><h1><a href="/maven-site/index.html"><img src="/maven-site/images/apache-maven-project-light-theme.svg" style="width: 489px;height: 83px;" alt="Apache Maven"></a></h1></div></div>
+          <div class="pull-right"><div id="bannerRight"><h1><img src="/maven-site/images/logos/MavenLogoLeaf.svg" style="width: 340px;height: 83px;" alt=""></h1></div></div>
+          <div class="clear"><hr></div>
+        </div>
+
+        <div id="breadcrumbs">
+          <ul class="breadcrumb">
+            <li><a href="https://www.apache.org/">Apache</a><span class="divider">/</span></li>
+            <li><a href="/maven-site/index.html">Maven</a><span class="divider">/</span></li>
+            
+            <li class="active">Release Notes – Maven 3.6.2 <a href="https://github.com/apache/maven-site/tree/master/content/markdown/docs/3.6.2/release-notes.md"><img src="/maven-site/images/accessories-text-editor.png" alt="Edit"></a></li>
+            <li id="publishDate" class="pull-right"><span class="divider">|</span> Last Published: 2026-10-25</li>
+            <li class="pull-right"><span class="divider">|</span> <a href="/maven-site/scm.html">Get Sources</a></li>
+            <li class="pull-right"><a href="https://maven.apache.org/download.cgi">Downloads</a></li>
+          </ul>
+        </div>
+      </header>
+      <div class="row-fluid">
+        <header id="leftColumn" class="span2">
+          
+<form class="guide-search" role="search" action="/maven-site/guides/a-z.html" data-index="/maven-site/guides/search.json" data-script="/maven-site/js/minisearch-7.2.0.js" data-oldest="3.9" data-base="/maven-site">
+  <label class="guide-search-label" for="guide-q-nav">Search the documentation</label>
+  <div class="guide-search-field">
+    <input id="guide-q-nav" name="q" type="search" autocomplete="off" spellcheck="false" placeholder="Search">
+    <kbd class="guide-search-key" aria-hidden="true">/</kbd>
+  </div>
+  
+</form>
+
+          <nav class="well sidebar-nav">
+<ul class="nav nav-list">
+  <li><a href="/maven-site/index.html">Welcome</a></li>
+  <li><a href="https://www.apache.org/licenses/">License</a></li>
+  <li class="nav-header">About Maven</li>
+  <li><a href="/maven-site/what-is-maven.html">What is Maven?</a></li>
+  <li><a href="/maven-site/install.html">Installation</a></li>
+  <li><a href="/maven-site/download.html">Downloads</a></li>
+  <li><a href="/maven-site/run.html">Use</a></li>
+  <li><a href="/maven-site/configure.html">Configure</a></li>
+  <li><a href="/maven-site/docs/history.html">Release Notes</a></li>
+  <li><a href="/maven-site/security.html">Security Reports</a></li>
+  <li class="nav-header">Documentation</li>
+  <li><a href="/maven-site/plugins/index.html">Maven Plugins</a></li>
+  <li><a href="/maven-site/extensions/index.html">Maven Extensions</a></li>
+  <li><a href="/maven-site/tools/index.html"><span class="icon-chevron-down"></span>Maven Tools</a>
+   <ul class="nav nav-list">
+    <li><a href="/maven-site/tools/mvnd.html">Maven Daemon</a></li>
+    <li><a href="/maven-site/tools/mvnsh.html">Maven Shell</a></li>
+    <li><a href="/maven-site/tools/mvnup.html">Maven Upgrade Tool</a></li>
+    <li><a href="/maven-site/tools/mavenwrapper.html">Maven Wrapper</a></li>
+   </ul></li>
+  <li><a href="/maven-site/doxia/index.html"><span class="icon-chevron-right"></span>Doxia</a></li>
+  <li><a href="/maven-site/guides/index.html">Guides</a></li>
+  <li><a href="/maven-site/users/index.html"><span class="icon-chevron-right"></span>User Manual</a></li>
+  <li><a href="/maven-site/repositories/index.html"><span class="icon-chevron-right"></span>Maven Repositories</a></li>
+  <li><a href="/maven-site/plugin-developers/index.html"><span class="icon-chevron-right"></span>Plugin Development</a></li>
+  <li><a href="/maven-site/developers/index.html"><span class="icon-chevron-right"></span>Contribute to Maven</a></li>
+  <li><a href="/maven-site/articles.html">Books and Resources</a></li>
+  <li class="nav-header">Community</li>
+  <li><a href="/maven-site/community.html">Community Overview</a></li>
+  <li><a href="/maven-site/project-roles.html">Project Roles</a></li>
+  <li><a href="/maven-site/guides/development/guide-helping.html">How to Contribute</a></li>
+  <li><a href="/maven-site/users/getting-help.html">Getting Help</a></li>
+  <li><a href="/maven-site/issue-management.html">Issue Management</a></li>
+  <li><a href="/maven-site/scm.html">Getting Maven Source</a></li>
+  <li><a href="/maven-site/team.html">The Maven Team</a></li>
+  <li class="nav-header">Project Documentation</li>
+  <li><a href="/maven-site/project-info.html">Project Information</a></li>
+  <li class="nav-header">Maven Projects</li>
+  <li><a href="/maven-site/ref/current">Maven</a></li>
+  <li><a href="/maven-site/archetypes/index.html">Archetypes</a></li>
+  <li><a href="/maven-site/extensions/index.html">Extensions</a></li>
+  <li><a href="/maven-site/pom/index.html">Parent POMs</a></li>
+  <li><a href="/maven-site/plugins/index.html">Plugins</a></li>
+  <li><a href="/maven-site/skins/index.html">Skins</a></li>
+  <li><a><span class="icon-chevron-down"></span>Components</a>
+   <ul class="nav nav-list">
+    <li><a href="/maven-site/archetype/index.html">Archetype</a></li>
+    <li><a href="/maven-site/resolver/index.html">Artifact Resolver</a></li>
+    <li><a href="/maven-site/doxia/index.html">Doxia</a></li>
+    <li><a href="/maven-site/maven-indexer/index.html">Indexer</a></li>
+    <li><a href="/maven-site/jxr/index.html">JXR</a></li>
+    <li><a href="/maven-site/plugin-testing/index.html">Plugin Testing</a></li>
+    <li><a href="/maven-site/plugin-tools/index.html">Plugin Tools</a></li>
+    <li><a href="/maven-site/apache-resource-bundles/index.html">Resource Bundles</a></li>
+    <li><a href="/maven-site/scm/index.html">SCM</a></li>
+    <li><a href="/maven-site/shared/index.html">Shared Components</a></li>
+    <li><a href="/maven-site/surefire/index.html">Surefire</a></li>
+    <li><a href="/maven-site/wagon/index.html">Wagon</a></li>
+   </ul></li>
+  <li class="nav-header">ASF</li>
+  <li><a href="https://www.apache.org/foundation/how-it-works.html">How Apache Works</a></li>
+  <li><a href="https://www.apache.org/foundation/">Foundation</a></li>
+  <li><a href="https://privacy.apache.org/policies/privacy-policy-public.html">Data Privacy</a></li>
+  <li><a href="https://www.apache.org/foundation/sponsorship.html">Sponsoring Apache</a></li>
+  <li><a href="https://www.apache.org/foundation/thanks.html">Thanks</a></li>
+</ul>
+          </nav>
+          <div class="well sidebar-nav">
+            <div id="poweredBy">
+              <div class="clear"></div>
+              <a href="/maven-site/" class="builtBy" target="_blank"><img class="builtBy" alt="Built by Maven" src="/maven-site/images/logos/maven-feather.png"></a>
+            </div>
+          </div>
+        </header>
+        <main id="bodyColumn" class="span10">
+          
+<!-- 
+Licensed to the Apache Software Foundation (ASF) under one
+or more contributor license agreements.  See the NOTICE file
+distributed with this work for additional information
+regarding copyright ownership.  The ASF licenses this file
+to you under the Apache License, Version 2.0 (the
+"License"); you may not use this file except in compliance
+with the License.  You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing,
+software distributed under the License is distributed on an
+"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+KIND, either express or implied.  See the License for the
+specific language governing permissions and limitations
+under the License.
+-->
+<h1 id="Release_Notes_.E2.80.93_Maven_3.6.2">Release Notes – Maven 3.6.2</h1>
+<p>The Apache Maven team would like to announce the release of Maven 3.6.2.</p>
+<p>Maven 3.6.2 is <a href="../../download.html">available for download</a>.</p>
+<p>Maven is a software project management and comprehension tool. Based on the concept of a project object model (POM), Maven can manage a project's build, reporting, and documentation from a central place.</p>
+<p>The core release is independent of plugin releases. Further releases of plugins will be made separately. See the <a href="../../plugins/index.html">PluginList</a> for more information.</p>
+<p>If you have any questions, please consult:</p>
+<ul>
+<li>the website: <a href="/maven-site/">https://maven.apache.org/</a></li>
+<li>the maven-user mailing list: <a href="https://maven.apache.org/mailing-lists.html">https://maven.apache.org/mailing-lists.html</a></li>
+<li>the reference documentation: <a href="https://maven.apache.org/ref/3.6.2/">https://maven.apache.org/ref/3.6.2/</a></li>
+</ul>
+<h2 id="Reporters_and_Contributors_of_this_release">Reporters and Contributors of this release</h2>
+<p>We really value the contributions of these non committers, so this section is
+focused on those individuals. Descriptions of the issues fixed can be found at
+the <a href="#Details">end of these release notes</a>.</p>
+<p>Issue Reporters of this release: Benoit GUERIN, Christian Schulte, Elliotte Rusty Harold, Falko Modler, Francesco Chicchiriccò, Guillaume Nodet, guofei, Joseph Walton, Louis Mills, Mark Derricutt, Mark McKelvy, Mickael Istria, Nicolas Echegut, Nicolas Radde, Raphael Rösch, Ray Tsang, Robert Thornton, Rohan Padhye, Sergey Chernov, Stefan Oehme, Thibaud Lepretre, zhb.</p>
+<p>Code Contributors of this release: Guillaume Nodet, Mickael Istria, Ray Tsang, Stefan Oehme, Joseph Walton, Bo Zhang, AElMehdi, Christian Schulte, Mao Shuai, MartinKanters, Sergey Chernov, Jesse Glick.</p>
+<p>Many thanks to all reporters and contributors for their time and support.</p>
+<p>(Please send an email to the dev list if we missed anyone).</p>
+<h2 id="Overview_about_the_changes">Overview about the changes</h2>
+<ul>
+<li>
+<p>This release focuses mostly performance improvements, better memory footprint, and less CPU usage.</p>
+</li>
+<li>
+<p>We are continuing to convert Maven Core to use JSR 330 annotations instead of Plexus (still not finished, see <a href="https://issues.apache.org/jira/browse/MNG-5577">MNG-5577</a>).</p>
+</li>
+<li>
+<p>New support for 'release' qualifier (see <a href="https://issues.apache.org/jira/browse/MNG-6655">MNG-6655</a>).</p>
+</li>
+<li>
+<p>The toolchain.xml file supports environment variables (see <a href="https://issues.apache.org/jira/browse/MNG-6665">MNG-6665</a>).</p>
+</li>
+</ul>
+<h2 id="The_detailed_issue_list">The detailed issue list<a href="#Details"></a></h2>
+<p>Sub-task</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    [MNG-6680] - Convert Maven Settings Builder to JSR 330
+    [MNG-6685] - Convert Maven Model Builder to JSR 330
+    [MNG-6686] - Convert Maven Embedder to JSR 330
+</code></pre></div></div>
+<p>Bug</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    [MNG-6375] - NullPointerException when pom.xml has incomplete XML tag
+    [MNG-6626] - NullPointerException in DefaultExceptionHandler
+    [MNG-6629] - DefaultModelValidator.validateId is inefficient
+    [MNG-6630] - ComparableVersion.parseVersion is inefficient
+    [MNG-6631] - DefaultArtifactVersion.parseVersion is inefficient
+    [MNG-6632] - ArtifactHandlerManager.getArtifactHandler is inefficient
+    [MNG-6633] - ExcludesArtifactFilter is a memory hog
+    [MNG-6636] - NPE on reporting convertion (DefaultReportingConverter) when inheritance of with no reports
+    [MNG-6639] - Child inherit.append.path attributes not defined in Maven POM XSD
+    [MNG-6642] - Tycho-based modules do not build with 3.6.1 (works with 3.6.0)
+    [MNG-6643] - Version comparison CLI does not work anymore
+    [MNG-6644] - NPE in DefaultReportingConverter when reports has no InputLocation (using polyglot Maven)
+    [MNG-6647] - NPE in DefaultReportingConverter (when reports injected by Repaint IO maven-tiles)
+    [MNG-6653] - DefaultProjectBuildingRequest copy constructor does not copy all fields
+    [MNG-6668] - Model location handling uses too much memory
+    [MNG-6669] - Tycho cannot resolve project dependencies
+    [MNG-6700] - Equal compile source roots are added multiple times
+    [MNG-6703] - DefaultUrlNormalizer doesn't normalize all relative URIs
+    [MNG-6704] - MavenRepositorySystemUtils.newSession() misses assignment
+    [MNG-6707] - Maven XML parser does not accept '&gt;' in XML processing instructions
+    [MNG-6712] - Downgrade maven-resolver:1.4.0 to 1.3.3
+    [MNG-6713] - Fix ExclusionArtifactFilter to respect wildcard
+    [MNG-6716] - relative testSourceDirectory on macos throw duplicate class error
+    [MNG-6720] - MultiThreadedBuilder: wait for parallel running projects when using --fail-fast
+    [MNG-6723] - MavenProject.getParentFile() not set when using ProjectBuilder.build(List&lt;File&gt;, ...)
+</code></pre></div></div>
+<p>Improvement</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    [MNG-6069] - Migrate to non deprecated parts of Commons CLI
+    [MNG-6638] - Prevent reparsing POMs in MavenMetadataSource
+    [MNG-6655] - Add support for "release" qualifier
+    [MNG-6665] - toolchain.xml file should support environment variables
+    [MNG-6667] - Hint at Maven upgrade requirement when trying to build a pom.xml with a newer modelVersion
+    [MNG-6675] - Make Resolver debug log messages for projects and plugins consistent
+    [MNG-6695] - Improve speed in collection merging
+    [MNG-6696] - Speed improvements while parsing big reactor projects
+    [MNG-6697] - Add a fast interpolator not using reflection
+    [MNG-6698] - Lazily compute the ManagedVersionMap
+    [MNG-6701] - Document maven.repo.local system property
+    [MNG-6702] - Improve DefaultModelValidator performance
+    [MNG-6705] - Speep up Artifact version check and Parent interpolation
+    [MNG-6718] - Upgrade Plexus Utils to 3.2.1
+    [MNG-6729] - StringSearchModelInterpolator introspects objects from Java API
+    [MNG-6747] - Generalize 'resume from' message when build reactor fails
+</code></pre></div></div>
+<p>Test</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    [MNG-6535] - Improve test coverage of org.apache.maven.model.path.DefaultUrlNormalizer
+</code></pre></div></div>
+<p>Task</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    [MNG-6681] - improve documentation: dependency type = file classifier(optional)+extension + additional hints on dependency features
+</code></pre></div></div>
+<p>Dependency upgrade</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    [MNG-6549] - Remove unused transitive dependencies of Guava
+    [MNG-6627] - upgrade plexus-component-metadata to 2.0.0 to get reproducible META-INF/plexus/components.xml
+    [MNG-6646] - Upgrade maven-assembly-plugin to 3.1.1
+    [MNG-6671] - Upgrade Modello to 1.11
+    [MNG-6674] - Upgrade Wagon to 3.3.3
+    [MNG-6738] - Upgrade maven-resolver to 1.4.1
+</code></pre></div></div>
+<p>The full list of changes can be found in our <a href="https://issues.apache.org/jira/secure/ReleaseNote.jspa?projectId=12316922&amp;version=12345234">issue management system</a>.</p>
+<h2 id="Complete_Release_Notes">Complete Release Notes</h2>
+<p>See <a href="../../docs/history.html">complete release notes for all versions</a></p>
+
+        </main>
+      </div>
+    </div>
+    <hr>
+    <footer>
+      <div class="container-fluid">
+        <div class="row-fluid">
+          <p>©      2002–2026 <a href="https://www.apache.org/">The Apache Software Foundation</a></p>
+          <p class="demo-note">A demonstration build of <a href="https://github.com/dashorst/maven-site/tree/diataxis-demo">dashorst/maven-site</a>, not the official Apache Maven site.</p>
+        </div>
+      </div>
+    </footer>
+    <script src="/maven-site/js/guide.js?v=1792948498" defer=""></script>
+    <script>
+    anchors.add();
+    </script>
+  
+
+</body></html>

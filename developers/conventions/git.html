@@ -1,0 +1,279 @@
+<!DOCTYPE html><!--
+ | The page frame of the Apache Maven Fluido Skin 2.1.0, as the Doxia site renderer writes it
+ | for maven.apache.org. Built with Jekyll: see jekyll/README.md.
+--><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Maven Git Convention – Maven</title>
+    
+    <link rel="stylesheet" href="/maven-site/css/apache-maven-fluido-2.1.0.min.css">
+    <link rel="stylesheet" href="/maven-site/css/site.css">
+    <link rel="stylesheet" href="/maven-site/css/guide.css?v=1792948498">
+    <link rel="stylesheet" href="/maven-site/css/print.css" media="print">
+    <script src="/maven-site/js/apache-maven-fluido-2.1.0.min.js"></script>
+  </head>
+  <body>
+    <div class="container-fluid container-fluid-top">
+      <header>
+        <div id="banner">
+          <div class="pull-left"><div id="bannerLeft"><h1><a href="/maven-site/index.html"><img src="/maven-site/images/apache-maven-project-light-theme.svg" style="width: 489px;height: 83px;" alt="Apache Maven"></a></h1></div></div>
+          <div class="pull-right"><div id="bannerRight"><h1><img src="/maven-site/images/logos/MavenLogoLeaf.svg" style="width: 340px;height: 83px;" alt=""></h1></div></div>
+          <div class="clear"><hr></div>
+        </div>
+
+        <div id="breadcrumbs">
+          <ul class="breadcrumb">
+            <li><a href="https://www.apache.org/">Apache</a><span class="divider">/</span></li>
+            <li><a href="/maven-site/index.html">Maven</a><span class="divider">/</span></li>
+            
+            <li class="active">Maven Git Convention <a href="https://github.com/apache/maven-site/tree/master/content/markdown/developers/conventions/git.md"><img src="/maven-site/images/accessories-text-editor.png" alt="Edit"></a></li>
+            <li id="publishDate" class="pull-right"><span class="divider">|</span> Last Published: 2026-10-25</li>
+            <li class="pull-right"><span class="divider">|</span> <a href="/maven-site/scm.html">Get Sources</a></li>
+            <li class="pull-right"><a href="https://maven.apache.org/download.cgi">Downloads</a></li>
+          </ul>
+        </div>
+      </header>
+      <div class="row-fluid">
+        <header id="leftColumn" class="span2">
+          
+<form class="guide-search" role="search" action="/maven-site/guides/a-z.html" data-index="/maven-site/guides/search.json" data-script="/maven-site/js/minisearch-7.2.0.js" data-oldest="3.9" data-base="/maven-site">
+  <label class="guide-search-label" for="guide-q-nav">Search the documentation</label>
+  <div class="guide-search-field">
+    <input id="guide-q-nav" name="q" type="search" autocomplete="off" spellcheck="false" placeholder="Search">
+    <kbd class="guide-search-key" aria-hidden="true">/</kbd>
+  </div>
+  
+</form>
+
+          <nav class="well sidebar-nav">
+<ul class="nav nav-list">
+  <li><a href="/maven-site/index.html">Welcome</a></li>
+  <li><a href="https://www.apache.org/licenses/">License</a></li>
+  <li class="nav-header">About Maven</li>
+  <li><a href="/maven-site/what-is-maven.html">What is Maven?</a></li>
+  <li><a href="/maven-site/install.html">Installation</a></li>
+  <li><a href="/maven-site/download.html">Downloads</a></li>
+  <li><a href="/maven-site/run.html">Use</a></li>
+  <li><a href="/maven-site/configure.html">Configure</a></li>
+  <li><a href="/maven-site/docs/history.html">Release Notes</a></li>
+  <li><a href="/maven-site/security.html">Security Reports</a></li>
+  <li class="nav-header">Documentation</li>
+  <li><a href="/maven-site/plugins/index.html">Maven Plugins</a></li>
+  <li><a href="/maven-site/extensions/index.html">Maven Extensions</a></li>
+  <li><a href="/maven-site/tools/index.html"><span class="icon-chevron-down"></span>Maven Tools</a>
+   <ul class="nav nav-list">
+    <li><a href="/maven-site/tools/mvnd.html">Maven Daemon</a></li>
+    <li><a href="/maven-site/tools/mvnsh.html">Maven Shell</a></li>
+    <li><a href="/maven-site/tools/mvnup.html">Maven Upgrade Tool</a></li>
+    <li><a href="/maven-site/tools/mavenwrapper.html">Maven Wrapper</a></li>
+   </ul></li>
+  <li><a href="/maven-site/doxia/index.html"><span class="icon-chevron-right"></span>Doxia</a></li>
+  <li><a href="/maven-site/guides/index.html">Guides</a></li>
+  <li><a href="/maven-site/users/index.html"><span class="icon-chevron-right"></span>User Manual</a></li>
+  <li><a href="/maven-site/repositories/index.html"><span class="icon-chevron-right"></span>Maven Repositories</a></li>
+  <li><a href="/maven-site/plugin-developers/index.html"><span class="icon-chevron-right"></span>Plugin Development</a></li>
+  <li><a href="/maven-site/developers/index.html"><span class="icon-chevron-down"></span>Contribute to Maven</a>
+   <ul class="nav nav-list">
+    <li><a href="/maven-site/guides/development/guide-helping.html">Guide to Helping with Maven</a></li>
+    <li><a href="/maven-site/developers/conventions/code.html">Code Style and Conventions</a></li>
+    <li class="active"><a>Git Convention</a></li>
+    <li><a href="/maven-site/developers/conventions/github.html">GitHub Convention</a></li>
+    <li><a href="/maven-site/guides/development/guide-maven-development.html"><span class="icon-chevron-right"></span>Developing Maven</a></li>
+    <li><a href="/maven-site/developers/release/index.html"><span class="icon-chevron-right"></span>Release Process</a></li>
+    <li><a href="/maven-site/developers/website/index.html"><span class="icon-chevron-right"></span>Deploy Maven Website</a></li>
+    <li><a href="/maven-site/developers/welcome-to-new-committers.html"><span class="icon-chevron-right"></span>Committers</a></li>
+   </ul></li>
+  <li><a href="/maven-site/articles.html">Books and Resources</a></li>
+  <li class="nav-header">Community</li>
+  <li><a href="/maven-site/community.html">Community Overview</a></li>
+  <li><a href="/maven-site/project-roles.html">Project Roles</a></li>
+  <li><a href="/maven-site/guides/development/guide-helping.html">How to Contribute</a></li>
+  <li><a href="/maven-site/users/getting-help.html">Getting Help</a></li>
+  <li><a href="/maven-site/issue-management.html">Issue Management</a></li>
+  <li><a href="/maven-site/scm.html">Getting Maven Source</a></li>
+  <li><a href="/maven-site/team.html">The Maven Team</a></li>
+  <li class="nav-header">Project Documentation</li>
+  <li><a href="/maven-site/project-info.html">Project Information</a></li>
+  <li class="nav-header">Maven Projects</li>
+  <li><a href="/maven-site/ref/current">Maven</a></li>
+  <li><a href="/maven-site/archetypes/index.html">Archetypes</a></li>
+  <li><a href="/maven-site/extensions/index.html">Extensions</a></li>
+  <li><a href="/maven-site/pom/index.html">Parent POMs</a></li>
+  <li><a href="/maven-site/plugins/index.html">Plugins</a></li>
+  <li><a href="/maven-site/skins/index.html">Skins</a></li>
+  <li><a><span class="icon-chevron-down"></span>Components</a>
+   <ul class="nav nav-list">
+    <li><a href="/maven-site/archetype/index.html">Archetype</a></li>
+    <li><a href="/maven-site/resolver/index.html">Artifact Resolver</a></li>
+    <li><a href="/maven-site/doxia/index.html">Doxia</a></li>
+    <li><a href="/maven-site/maven-indexer/index.html">Indexer</a></li>
+    <li><a href="/maven-site/jxr/index.html">JXR</a></li>
+    <li><a href="/maven-site/plugin-testing/index.html">Plugin Testing</a></li>
+    <li><a href="/maven-site/plugin-tools/index.html">Plugin Tools</a></li>
+    <li><a href="/maven-site/apache-resource-bundles/index.html">Resource Bundles</a></li>
+    <li><a href="/maven-site/scm/index.html">SCM</a></li>
+    <li><a href="/maven-site/shared/index.html">Shared Components</a></li>
+    <li><a href="/maven-site/surefire/index.html">Surefire</a></li>
+    <li><a href="/maven-site/wagon/index.html">Wagon</a></li>
+   </ul></li>
+  <li class="nav-header">ASF</li>
+  <li><a href="https://www.apache.org/foundation/how-it-works.html">How Apache Works</a></li>
+  <li><a href="https://www.apache.org/foundation/">Foundation</a></li>
+  <li><a href="https://privacy.apache.org/policies/privacy-policy-public.html">Data Privacy</a></li>
+  <li><a href="https://www.apache.org/foundation/sponsorship.html">Sponsoring Apache</a></li>
+  <li><a href="https://www.apache.org/foundation/thanks.html">Thanks</a></li>
+</ul>
+          </nav>
+          <div class="well sidebar-nav">
+            <div id="poweredBy">
+              <div class="clear"></div>
+              <a href="/maven-site/" class="builtBy" target="_blank"><img class="builtBy" alt="Built by Maven" src="/maven-site/images/logos/maven-feather.png"></a>
+            </div>
+          </div>
+        </header>
+        <main id="bodyColumn" class="span10">
+          
+<!--
+Licensed to the Apache Software Foundation (ASF) under one
+or more contributor license agreements.  See the NOTICE file
+distributed with this work for additional information
+regarding copyright ownership.  The ASF licenses this file
+to you under the Apache License, Version 2.0 (the
+"License"); you may not use this file except in compliance
+with the License.  You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing,
+software distributed under the License is distributed on an
+"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+KIND, either express or implied.  See the License for the
+specific language governing permissions and limitations
+under the License.
+-->
+<h1 id="Maven_Git_Convention">Maven Git Convention</h1>
+<p>This document describes how developers should use Git.</p>
+<h2 id="Git_Configuration">Git Configuration</h2>
+<h3 id="For_contributors_who_are_not_committers">For contributors who are not committers</h3>
+<p>Apache git repositories are at <code>git://git.apache.org</code>. However, the ASF uses clones on <a href="https://www.github.com">GitHub</a> to make it easier for people to contribute changes via pull requests.</p>
+<p>To contribute to a Maven component that is maintained in git, please follow these steps:</p>
+<ol>
+<li>Make a fork of the official ASF clone from GitHub. For example, <code>https://github.com/apache/maven-scm</code>.</li>
+<li>Make a branch named after your GitHub issue. This is not <em>required</em>, but it makes it easier for Maven committers to keep track of your contribution.</li>
+<li>Make your changes. As always, unit or integration tests make it much easier for us to accept your changes.</li>
+<li>Make a pull request to pull your changes to the official clone.</li>
+</ol>
+<h3 id="For_committers">For committers</h3>
+<p>Committers may, of course, commit directly to the ASF repositories. For complex changes, you may find it valuable to make a pull request at GitHub to make it easier to collaborate with others.</p>
+<h3 id="Commit_Message_Template">Commit Message Template</h3>
+<p>Commits should be focused on one issue at a time, because that makes it easier for others to review the commit.</p>
+<p>While not mandatory, we will appreciate signed commits.</p>
+<p>If the changes is linked to an issue, the commit message should use this template:</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Issue #1 &lt;&lt;Title from GitHub issue&gt;&gt;
+
+o Comments
+</code></pre></div></div>
+<p>Where:</p>
+<ul>
+<li><strong>Submitted by</strong> only needs to be specified when a patch is being applied for a non-committer.</li>
+<li><strong>Comments</strong> some optional words about the solution.</li>
+</ul>
+<p>eg:</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Issue #123456 Add the foo to the bar
+Submitted by: Baz Bazman
+
+o Applied without change
+</code></pre></div></div>
+<h2 id="Review_policy">Review policy</h2>
+<p>The Maven project has no strict review policy, but the following practices established:</p>
+<ul>
+<li><em>Commit Then Review (CTR)</em> for trivial/simple changes</li>
+<li><em>Review Then Commit (RTC)</em> for complex changes and changes against release branches of past releases (e.g. <code>maven-3.8.x</code> branch)</li>
+</ul>
+<p>Committers are invited to also request reviews for trivial changes, because every review can increase code quality.</p>
+<h2 id="Apply_User_Patch">Apply User Patch</h2>
+<p>To keep the history of contributions clear, the committer should usually apply the patch without any <strong>major</strong> modifications, and then create his or her own commits for further modifications. However, committers should never commit code to a live branch which is not suitable to release. If a contribution requires significant work to make it useful, commit it to a branch, fix it up, and merge the branch.</p>
+<p>If the user created a pull request, the committer is responsible for closing that pull request. You do this by adding a note to a commit message:</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Closes #NNN.
+</code></pre></div></div>
+<p>where NNN is the number of the pull request.</p>
+<h2 id="Edit_Commit_Message">Edit Commit Message</h2>
+<p>to edit last commit comment:</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ git commit --amend -m "new comment"
+</code></pre></div></div>
+<h2 id="Workflow">Workflow</h2>
+<p>Workflow for svn folks is something like :</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ git pull
+$ hack hack hack
+$ git push
+// fails, because someone else has already pushed to master
+$ git pull
+// this creates some merges
+$ git push
+</code></pre></div></div>
+<p>A more quiet workflow :</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ git pull
+$ hack hack hack
+$ git push
+// fails, because someone else has already pushed to master
+$ git fetch
+// this moves 'origin/master'
+$ git rebase origin/master
+// this reapplies your local changes on top of origin/master
+$ git push
+</code></pre></div></div>
+<h2 id="Other_useful_Git_commands_while_developing">Other useful Git commands while developing</h2>
+<p>If you've done a chunk of work, and you would like to ditch your changes and start from scratch use this command to revert to the original checkout:</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ git checkout .
+</code></pre></div></div>
+<p>TODO .gitignore</p>
+<h3 id="power-git_checkout">power-git checkout</h3>
+<p>This checkout is typical for highly experienced git users, and may serve as inspiration for others; as usual the best way to learn is by doing. Sample shown for maven-surefire</p>
+<p>Go to <a href="https://github.com/apache/maven-surefire">https://github.com/apache/maven-surefire</a> and fork surefire to your own GitHub account.</p>
+<p>Starting with nothing (no existing clone)</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git clone https://github.com/&lt;youraccount&gt;/maven-surefire.git
+git remote add asfgithub https://github.com/apache/maven-surefire.git
+git config --add remote.asfgithub.fetch "+refs/pull/*/head:refs/remotes/asfgithub/pr/*"
+git fetch --all
+</code></pre></div></div>
+<p>(You may consider adding --global to the git config statement above to always fetch pull requests for any remote named "asfgithub")</p>
+<p>In this setup, running "git push" will normally push to your personal GitHub account. Furthermore, all pull requests from GitHub are also fetched to your local clone, use</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>gitk --all
+</code></pre></div></div>
+<p>to try to make some sense of it all. This is an important command to understand! (gitk may need to be installed additionally)</p>
+<p>gitk also has a quite excellent context menu that is far more context sensitive than most people realize at first impression. Right-clicking on a commit in a GitHub pull-request will allow you to cherry-pick straight in the gui.</p>
+<p>If you're working on the master branch, you can do stuff like this:</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git push # your github account
+git push apache # the authoritative apache repo
+</code></pre></div></div>
+<p>Using your GitHub account as a storage for half-finished work is excellent if you switch between multiple computers, always push to GitHub before leaving your current computer and start by pulling at the next computer.</p>
+<p>To merge a pull request</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git merge pr/10 # merge pull request number 10 from asf@github into master
+git push apache # upload to apache
+</code></pre></div></div>
+<p>Or if you're comfortable rebasing;</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+git checkout pr/10
+git rebase apache/master
+git push apache
+</code></pre></div></div>
+
+        </main>
+      </div>
+    </div>
+    <hr>
+    <footer>
+      <div class="container-fluid">
+        <div class="row-fluid">
+          <p>©      2002–2026 <a href="https://www.apache.org/">The Apache Software Foundation</a></p>
+          <p class="demo-note">A demonstration build of <a href="https://github.com/dashorst/maven-site/tree/diataxis-demo">dashorst/maven-site</a>, not the official Apache Maven site.</p>
+        </div>
+      </div>
+    </footer>
+    <script src="/maven-site/js/guide.js?v=1792948498" defer=""></script>
+    <script>
+    anchors.add();
+    </script>
+  
+
+</body></html>

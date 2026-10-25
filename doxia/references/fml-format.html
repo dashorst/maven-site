@@ -1,0 +1,242 @@
+<!DOCTYPE html><!--
+ | The page frame of the Apache Maven Fluido Skin 2.1.0, as the Doxia site renderer writes it
+ | for maven.apache.org. Built with Jekyll: see jekyll/README.md.
+--><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>The FML (FAQ Markup Language) format – Maven</title>
+    
+    <link rel="stylesheet" href="/maven-site/css/apache-maven-fluido-2.1.0.min.css">
+    <link rel="stylesheet" href="/maven-site/css/site.css">
+    <link rel="stylesheet" href="/maven-site/css/guide.css?v=1792948498">
+    <link rel="stylesheet" href="/maven-site/css/print.css" media="print">
+    <script src="/maven-site/js/apache-maven-fluido-2.1.0.min.js"></script>
+  </head>
+  <body>
+    <div class="container-fluid container-fluid-top">
+      <header>
+        <div id="banner">
+          <div class="pull-left"><div id="bannerLeft"><h1><a href="/maven-site/index.html"><img src="/maven-site/images/apache-maven-project-light-theme.svg" style="width: 489px;height: 83px;" alt="Apache Maven"></a></h1></div></div>
+          <div class="pull-right"><div id="bannerRight"><h1><img src="/maven-site/images/logos/MavenLogoLeaf.svg" style="width: 340px;height: 83px;" alt=""></h1></div></div>
+          <div class="clear"><hr></div>
+        </div>
+
+        <div id="breadcrumbs">
+          <ul class="breadcrumb">
+            <li><a href="https://www.apache.org/">Apache</a><span class="divider">/</span></li>
+            <li><a href="/maven-site/index.html">Maven</a><span class="divider">/</span></li>
+            
+            <li class="active">The FML (FAQ Markup Language) format <a href="https://github.com/apache/maven-site/tree/master/content/markdown/doxia/references/fml-format.md"><img src="/maven-site/images/accessories-text-editor.png" alt="Edit"></a></li>
+            <li id="publishDate" class="pull-right"><span class="divider">|</span> Last Published: 2026-10-25</li>
+            <li class="pull-right"><span class="divider">|</span> <a href="/maven-site/scm.html">Get Sources</a></li>
+            <li class="pull-right"><a href="https://maven.apache.org/download.cgi">Downloads</a></li>
+          </ul>
+        </div>
+      </header>
+      <div class="row-fluid">
+        <header id="leftColumn" class="span2">
+          
+<form class="guide-search" role="search" action="/maven-site/guides/a-z.html" data-index="/maven-site/guides/search.json" data-script="/maven-site/js/minisearch-7.2.0.js" data-oldest="3.9" data-base="/maven-site">
+  <label class="guide-search-label" for="guide-q-nav">Search the documentation</label>
+  <div class="guide-search-field">
+    <input id="guide-q-nav" name="q" type="search" autocomplete="off" spellcheck="false" placeholder="Search">
+    <kbd class="guide-search-key" aria-hidden="true">/</kbd>
+  </div>
+  
+</form>
+
+          <nav class="well sidebar-nav">
+<ul class="nav nav-list">
+  <li><a href="/maven-site/index.html">Welcome</a></li>
+  <li><a href="https://www.apache.org/licenses/">License</a></li>
+  <li class="nav-header">About Maven</li>
+  <li><a href="/maven-site/what-is-maven.html">What is Maven?</a></li>
+  <li><a href="/maven-site/install.html">Installation</a></li>
+  <li><a href="/maven-site/download.html">Downloads</a></li>
+  <li><a href="/maven-site/run.html">Use</a></li>
+  <li><a href="/maven-site/configure.html">Configure</a></li>
+  <li><a href="/maven-site/docs/history.html">Release Notes</a></li>
+  <li><a href="/maven-site/security.html">Security Reports</a></li>
+  <li class="nav-header">Documentation</li>
+  <li><a href="/maven-site/plugins/index.html">Maven Plugins</a></li>
+  <li><a href="/maven-site/extensions/index.html">Maven Extensions</a></li>
+  <li><a href="/maven-site/tools/index.html"><span class="icon-chevron-down"></span>Maven Tools</a>
+   <ul class="nav nav-list">
+    <li><a href="/maven-site/tools/mvnd.html">Maven Daemon</a></li>
+    <li><a href="/maven-site/tools/mvnsh.html">Maven Shell</a></li>
+    <li><a href="/maven-site/tools/mvnup.html">Maven Upgrade Tool</a></li>
+    <li><a href="/maven-site/tools/mavenwrapper.html">Maven Wrapper</a></li>
+   </ul></li>
+  <li><a href="/maven-site/doxia/index.html"><span class="icon-chevron-down"></span>Doxia</a>
+   <ul class="nav nav-list">
+    <li><a href="/maven-site/doxia/overview.html">Overview</a></li>
+    <li><a href="/maven-site/doxia/downloads.html">Downloads</a></li>
+    <li><a href="/maven-site/doxia/faq.html">FAQ</a></li>
+    <li><a href="/maven-site/doxia/references/index.html"><span class="icon-chevron-down"></span>Format References</a>
+     <ul class="nav nav-list">
+      <li><a href="/maven-site/doxia/references/markdown-format.html">Markdown Format</a></li>
+      <li><a href="/maven-site/doxia/references/apt-format.html"><span class="icon-chevron-right"></span>Apt Format</a></li>
+      <li class="active"><a>FML Format</a></li>
+      <li><a href="/maven-site/doxia/references/xdoc-format.html">Xdoc Format</a></li>
+     </ul></li>
+    <li><a href="/maven-site/doxia/modules/index.html">Doxia Modules Guide</a></li>
+    <li><a href="/maven-site/doxia/macros/index.html">Doxia Macros Guide</a></li>
+    <li><a href="/maven-site/doxia/issues/index.html">Issues &amp; Gotchas</a></li>
+    <li><a href="/maven-site/doxia/resources.html">External Resources</a></li>
+    <li><a href="/maven-site/doxia/developers/index.html"><span class="icon-chevron-right"></span>Developer Docs</a></li>
+    <li><a href="/maven-site/doxia/doxia/index.html">Doxia Base</a></li>
+    <li><a href="/maven-site/doxia/doxia-sitetools/index.html">Doxia Sitetools</a></li>
+    <li><a href="/maven-site/doxia/doxia-tools/index.html">Doxia Tools</a></li>
+   </ul></li>
+  <li><a href="/maven-site/guides/index.html">Guides</a></li>
+  <li><a href="/maven-site/users/index.html"><span class="icon-chevron-right"></span>User Manual</a></li>
+  <li><a href="/maven-site/repositories/index.html"><span class="icon-chevron-right"></span>Maven Repositories</a></li>
+  <li><a href="/maven-site/plugin-developers/index.html"><span class="icon-chevron-right"></span>Plugin Development</a></li>
+  <li><a href="/maven-site/developers/index.html"><span class="icon-chevron-right"></span>Contribute to Maven</a></li>
+  <li><a href="/maven-site/articles.html">Books and Resources</a></li>
+  <li class="nav-header">Community</li>
+  <li><a href="/maven-site/community.html">Community Overview</a></li>
+  <li><a href="/maven-site/project-roles.html">Project Roles</a></li>
+  <li><a href="/maven-site/guides/development/guide-helping.html">How to Contribute</a></li>
+  <li><a href="/maven-site/users/getting-help.html">Getting Help</a></li>
+  <li><a href="/maven-site/issue-management.html">Issue Management</a></li>
+  <li><a href="/maven-site/scm.html">Getting Maven Source</a></li>
+  <li><a href="/maven-site/team.html">The Maven Team</a></li>
+  <li class="nav-header">Project Documentation</li>
+  <li><a href="/maven-site/project-info.html">Project Information</a></li>
+  <li class="nav-header">Maven Projects</li>
+  <li><a href="/maven-site/ref/current">Maven</a></li>
+  <li><a href="/maven-site/archetypes/index.html">Archetypes</a></li>
+  <li><a href="/maven-site/extensions/index.html">Extensions</a></li>
+  <li><a href="/maven-site/pom/index.html">Parent POMs</a></li>
+  <li><a href="/maven-site/plugins/index.html">Plugins</a></li>
+  <li><a href="/maven-site/skins/index.html">Skins</a></li>
+  <li><a><span class="icon-chevron-down"></span>Components</a>
+   <ul class="nav nav-list">
+    <li><a href="/maven-site/archetype/index.html">Archetype</a></li>
+    <li><a href="/maven-site/resolver/index.html">Artifact Resolver</a></li>
+    <li><a href="/maven-site/doxia/index.html">Doxia</a></li>
+    <li><a href="/maven-site/maven-indexer/index.html">Indexer</a></li>
+    <li><a href="/maven-site/jxr/index.html">JXR</a></li>
+    <li><a href="/maven-site/plugin-testing/index.html">Plugin Testing</a></li>
+    <li><a href="/maven-site/plugin-tools/index.html">Plugin Tools</a></li>
+    <li><a href="/maven-site/apache-resource-bundles/index.html">Resource Bundles</a></li>
+    <li><a href="/maven-site/scm/index.html">SCM</a></li>
+    <li><a href="/maven-site/shared/index.html">Shared Components</a></li>
+    <li><a href="/maven-site/surefire/index.html">Surefire</a></li>
+    <li><a href="/maven-site/wagon/index.html">Wagon</a></li>
+   </ul></li>
+  <li class="nav-header">ASF</li>
+  <li><a href="https://www.apache.org/foundation/how-it-works.html">How Apache Works</a></li>
+  <li><a href="https://www.apache.org/foundation/">Foundation</a></li>
+  <li><a href="https://privacy.apache.org/policies/privacy-policy-public.html">Data Privacy</a></li>
+  <li><a href="https://www.apache.org/foundation/sponsorship.html">Sponsoring Apache</a></li>
+  <li><a href="https://www.apache.org/foundation/thanks.html">Thanks</a></li>
+</ul>
+          </nav>
+          <div class="well sidebar-nav">
+            <div id="poweredBy">
+              <div class="clear"></div>
+              <a href="/maven-site/" class="builtBy" target="_blank"><img class="builtBy" alt="Built by Maven" src="/maven-site/images/logos/maven-feather.png"></a>
+            </div>
+          </div>
+        </header>
+        <main id="bodyColumn" class="span10">
+          
+<!--
+Licensed to the Apache Software Foundation (ASF) under one
+or more contributor license agreements.  See the NOTICE file
+distributed with this work for additional information
+regarding copyright ownership.  The ASF licenses this file
+to you under the Apache License, Version 2.0 (the
+"License"); you may not use this file except in compliance
+with the License.  You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing,
+software distributed under the License is distributed on an
+"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+KIND, either express or implied.  See the License for the
+specific language governing permissions and limitations
+under the License.
+-->
+<h1 id="The_FML_format">The FML format</h1>
+<h2 id="Overview">Overview</h2>
+<p>An 'fml' (FAQ Markup Language) is an XML document conforming to a small and simple set of tags. The format was first used in the <a href="http://maven.apache.org/maven-1.x/">Maven 1</a>, version of the <a href="http://maven.apache.org/maven-1.x/plugins/faq/">FAQ plugin</a>.</p>
+<h2 id="The_FML_format_1">The FML format</h2>
+<p>Below the root element <code>faqs</code> there are one or more <code>part</code> elements. Each <code>part</code> element has a <code>title</code> and contains one or more <code>faq</code> elements. Each <code>faq</code> element has a <code>question</code> and an <code>answer</code> element. The contents of <code>title</code>, <code>question</code> and <code>answer</code> are parsed with the <a href="xdoc-format.html">XDoc parser</a>. The full documentation is available in the annotated <a href="/maven-site/xsd/fml-1.0.1.xsd">fml-1.0.1.xsd</a> schema.</p>
+<h2 id="FML_Sample">FML Sample</h2>
+<p>The following is a sample FML document:</p>
+<div class="language-unknown highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="unknown">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;faqs xmlns="http://maven.apache.org/FML/1.0.1"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/FML/1.0.1 http://maven.apache.org/xsd/fml-1.0.1.xsd"
+  title="Frequently Asked Questions"
+  toplink="false"&gt;
+
+  &lt;part id="general"&gt;
+    &lt;title&gt;General&lt;/title&gt;
+
+    &lt;faq id="whats-foo"&gt;
+      &lt;question&gt;
+        What is Foo?
+      &lt;/question&gt;
+      &lt;answer&gt;
+        &lt;p&gt;some markup goes here&lt;/p&gt;
+
+        &lt;source&gt;some source code&lt;/source&gt;
+
+        &lt;p&gt;some markup goes here&lt;/p&gt;
+      &lt;/answer&gt;
+    &lt;/faq&gt;
+
+    &lt;faq id="whats-bar"&gt;
+      &lt;question&gt;
+        What is Bar?
+      &lt;/question&gt;
+      &lt;answer&gt;
+        &lt;p&gt;some markup goes here&lt;/p&gt;
+      &lt;/answer&gt;
+    &lt;/faq&gt;
+  &lt;/part&gt;
+
+  &lt;part id="install"&gt;
+
+    &lt;title&gt;Installation&lt;/title&gt;
+
+    &lt;faq id="how-install"&gt;
+      &lt;question&gt;
+        How do I install Foo?
+      &lt;/question&gt;
+      &lt;answer&gt;
+        &lt;p&gt;some markup goes here&lt;/p&gt;
+      &lt;/answer&gt;
+    &lt;/faq&gt;
+
+  &lt;/part&gt;
+
+&lt;/faqs&gt;
+</code></pre></div></div>
+<h2 id="Validation">Validation</h2>
+<p>Doxia is able to validate your fml files as described <a href="https://maven.apache.org/doxia/doxia/doxia-modules/doxia-module-fml/using-fml-xsd.html">here</a>.</p>
+
+        </main>
+      </div>
+    </div>
+    <hr>
+    <footer>
+      <div class="container-fluid">
+        <div class="row-fluid">
+          <p>©      2002–2026 <a href="https://www.apache.org/">The Apache Software Foundation</a></p>
+          <p class="demo-note">A demonstration build of <a href="https://github.com/dashorst/maven-site/tree/diataxis-demo">dashorst/maven-site</a>, not the official Apache Maven site.</p>
+        </div>
+      </div>
+    </footer>
+    <script src="/maven-site/js/guide.js?v=1792948498" defer=""></script>
+    <script>
+    anchors.add();
+    </script>
+  
+
+</body></html>

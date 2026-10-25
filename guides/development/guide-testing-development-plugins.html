@@ -1,0 +1,271 @@
+<!DOCTYPE html><!--
+ | The page frame of the Apache Maven Fluido Skin 2.1.0, as the Doxia site renderer writes it
+ | for maven.apache.org. Built with Jekyll: see jekyll/README.md.
+--><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Guide to Testing Development Versions of Plugins – Maven</title>
+    
+    <link rel="stylesheet" href="/maven-site/css/apache-maven-fluido-2.1.0.min.css">
+    <link rel="stylesheet" href="/maven-site/css/site.css">
+    <link rel="stylesheet" href="/maven-site/css/guide.css?v=1792948498">
+    <link rel="stylesheet" href="/maven-site/css/print.css" media="print">
+    <script src="/maven-site/js/apache-maven-fluido-2.1.0.min.js"></script>
+  </head>
+  <body>
+    <div class="container-fluid container-fluid-top">
+      <header>
+        <div id="banner">
+          <div class="pull-left"><div id="bannerLeft"><h1><a href="/maven-site/index.html"><img src="/maven-site/images/apache-maven-project-light-theme.svg" style="width: 489px;height: 83px;" alt="Apache Maven"></a></h1></div></div>
+          <div class="pull-right"><div id="bannerRight"><h1><img src="/maven-site/images/logos/MavenLogoLeaf.svg" style="width: 340px;height: 83px;" alt=""></h1></div></div>
+          <div class="clear"><hr></div>
+        </div>
+
+        <div id="breadcrumbs">
+          <ul class="breadcrumb">
+            <li><a href="https://www.apache.org/">Apache</a><span class="divider">/</span></li>
+            <li><a href="/maven-site/index.html">Maven</a><span class="divider">/</span></li>
+            
+            <li class="active">Guide to Testing Development Versions of Plugins <a href="https://github.com/apache/maven-site/tree/master/content/markdown/guides/development/guide-testing-development-plugins.md"><img src="/maven-site/images/accessories-text-editor.png" alt="Edit"></a></li>
+            <li id="publishDate" class="pull-right"><span class="divider">|</span> Last Published: 2026-10-25</li>
+            <li class="pull-right"><span class="divider">|</span> <a href="/maven-site/scm.html">Get Sources</a></li>
+            <li class="pull-right"><a href="https://maven.apache.org/download.cgi">Downloads</a></li>
+          </ul>
+        </div>
+      </header>
+      <div class="row-fluid">
+        <header id="leftColumn" class="span2">
+          
+<form class="guide-search" role="search" action="/maven-site/guides/a-z.html" data-index="/maven-site/guides/search.json" data-script="/maven-site/js/minisearch-7.2.0.js" data-oldest="3.9" data-base="/maven-site">
+  <label class="guide-search-label" for="guide-q-nav">Search the documentation</label>
+  <div class="guide-search-field">
+    <input id="guide-q-nav" name="q" type="search" autocomplete="off" spellcheck="false" placeholder="Search">
+    <kbd class="guide-search-key" aria-hidden="true">/</kbd>
+  </div>
+  
+</form>
+
+          <nav class="well sidebar-nav">
+<ul class="nav nav-list">
+  <li><a href="/maven-site/index.html">Welcome</a></li>
+  <li><a href="https://www.apache.org/licenses/">License</a></li>
+  <li class="nav-header">About Maven</li>
+  <li><a href="/maven-site/what-is-maven.html">What is Maven?</a></li>
+  <li><a href="/maven-site/install.html">Installation</a></li>
+  <li><a href="/maven-site/download.html">Downloads</a></li>
+  <li><a href="/maven-site/run.html">Use</a></li>
+  <li><a href="/maven-site/configure.html">Configure</a></li>
+  <li><a href="/maven-site/docs/history.html">Release Notes</a></li>
+  <li><a href="/maven-site/security.html">Security Reports</a></li>
+  <li class="nav-header">Documentation</li>
+  <li><a href="/maven-site/plugins/index.html">Maven Plugins</a></li>
+  <li><a href="/maven-site/extensions/index.html">Maven Extensions</a></li>
+  <li><a href="/maven-site/tools/index.html"><span class="icon-chevron-down"></span>Maven Tools</a>
+   <ul class="nav nav-list">
+    <li><a href="/maven-site/tools/mvnd.html">Maven Daemon</a></li>
+    <li><a href="/maven-site/tools/mvnsh.html">Maven Shell</a></li>
+    <li><a href="/maven-site/tools/mvnup.html">Maven Upgrade Tool</a></li>
+    <li><a href="/maven-site/tools/mavenwrapper.html">Maven Wrapper</a></li>
+   </ul></li>
+  <li><a href="/maven-site/doxia/index.html"><span class="icon-chevron-right"></span>Doxia</a></li>
+  <li><a href="/maven-site/guides/index.html">Guides</a></li>
+  <li><a href="/maven-site/users/index.html"><span class="icon-chevron-right"></span>User Manual</a></li>
+  <li><a href="/maven-site/repositories/index.html"><span class="icon-chevron-right"></span>Maven Repositories</a></li>
+  <li><a href="/maven-site/plugin-developers/index.html"><span class="icon-chevron-right"></span>Plugin Development</a></li>
+  <li><a href="/maven-site/developers/index.html"><span class="icon-chevron-down"></span>Contribute to Maven</a>
+   <ul class="nav nav-list">
+    <li><a href="/maven-site/guides/development/guide-helping.html">Guide to Helping with Maven</a></li>
+    <li><a href="/maven-site/developers/conventions/code.html">Code Style and Conventions</a></li>
+    <li><a href="/maven-site/developers/conventions/git.html">Git Convention</a></li>
+    <li><a href="/maven-site/developers/conventions/github.html">GitHub Convention</a></li>
+    <li><a href="/maven-site/guides/development/guide-maven-development.html"><span class="icon-chevron-down"></span>Developing Maven</a>
+     <ul class="nav nav-list">
+      <li><a href="/maven-site/guides/development/guide-building-maven.html">Building Maven</a></li>
+      <li class="active"><a>Testing Development Plugins</a></li>
+      <li><a href="/maven-site/guides/development/guide-testing-releases.html">Testing Staged Releases</a></li>
+      <li><a href="/maven-site/guides/development/guide-committer-school.html">Becoming Committer</a></li>
+     </ul></li>
+    <li><a href="/maven-site/developers/release/index.html"><span class="icon-chevron-right"></span>Release Process</a></li>
+    <li><a href="/maven-site/developers/website/index.html"><span class="icon-chevron-right"></span>Deploy Maven Website</a></li>
+    <li><a href="/maven-site/developers/welcome-to-new-committers.html"><span class="icon-chevron-right"></span>Committers</a></li>
+   </ul></li>
+  <li><a href="/maven-site/articles.html">Books and Resources</a></li>
+  <li class="nav-header">Community</li>
+  <li><a href="/maven-site/community.html">Community Overview</a></li>
+  <li><a href="/maven-site/project-roles.html">Project Roles</a></li>
+  <li><a href="/maven-site/guides/development/guide-helping.html">How to Contribute</a></li>
+  <li><a href="/maven-site/users/getting-help.html">Getting Help</a></li>
+  <li><a href="/maven-site/issue-management.html">Issue Management</a></li>
+  <li><a href="/maven-site/scm.html">Getting Maven Source</a></li>
+  <li><a href="/maven-site/team.html">The Maven Team</a></li>
+  <li class="nav-header">Project Documentation</li>
+  <li><a href="/maven-site/project-info.html">Project Information</a></li>
+  <li class="nav-header">Maven Projects</li>
+  <li><a href="/maven-site/ref/current">Maven</a></li>
+  <li><a href="/maven-site/archetypes/index.html">Archetypes</a></li>
+  <li><a href="/maven-site/extensions/index.html">Extensions</a></li>
+  <li><a href="/maven-site/pom/index.html">Parent POMs</a></li>
+  <li><a href="/maven-site/plugins/index.html">Plugins</a></li>
+  <li><a href="/maven-site/skins/index.html">Skins</a></li>
+  <li><a><span class="icon-chevron-down"></span>Components</a>
+   <ul class="nav nav-list">
+    <li><a href="/maven-site/archetype/index.html">Archetype</a></li>
+    <li><a href="/maven-site/resolver/index.html">Artifact Resolver</a></li>
+    <li><a href="/maven-site/doxia/index.html">Doxia</a></li>
+    <li><a href="/maven-site/maven-indexer/index.html">Indexer</a></li>
+    <li><a href="/maven-site/jxr/index.html">JXR</a></li>
+    <li><a href="/maven-site/plugin-testing/index.html">Plugin Testing</a></li>
+    <li><a href="/maven-site/plugin-tools/index.html">Plugin Tools</a></li>
+    <li><a href="/maven-site/apache-resource-bundles/index.html">Resource Bundles</a></li>
+    <li><a href="/maven-site/scm/index.html">SCM</a></li>
+    <li><a href="/maven-site/shared/index.html">Shared Components</a></li>
+    <li><a href="/maven-site/surefire/index.html">Surefire</a></li>
+    <li><a href="/maven-site/wagon/index.html">Wagon</a></li>
+   </ul></li>
+  <li class="nav-header">ASF</li>
+  <li><a href="https://www.apache.org/foundation/how-it-works.html">How Apache Works</a></li>
+  <li><a href="https://www.apache.org/foundation/">Foundation</a></li>
+  <li><a href="https://privacy.apache.org/policies/privacy-policy-public.html">Data Privacy</a></li>
+  <li><a href="https://www.apache.org/foundation/sponsorship.html">Sponsoring Apache</a></li>
+  <li><a href="https://www.apache.org/foundation/thanks.html">Thanks</a></li>
+</ul>
+          </nav>
+          <div class="well sidebar-nav">
+            <div id="poweredBy">
+              <div class="clear"></div>
+              <a href="/maven-site/" class="builtBy" target="_blank"><img class="builtBy" alt="Built by Maven" src="/maven-site/images/logos/maven-feather.png"></a>
+            </div>
+          </div>
+        </header>
+        <main id="bodyColumn" class="span10">
+          
+<!--
+Licensed to the Apache Software Foundation (ASF) under one
+or more contributor license agreements.  See the NOTICE file
+distributed with this work for additional information
+regarding copyright ownership.  The ASF licenses this file
+to you under the Apache License, Version 2.0 (the
+"License"); you may not use this file except in compliance
+with the License.  You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing,
+software distributed under the License is distributed on an
+"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+KIND, either express or implied.  See the License for the
+specific language governing permissions and limitations
+under the License.
+-->
+<h1 id="Guide_to_Testing_Development_Versions_of_Plugins">Guide to Testing Development Versions of Plugins</h1>
+<h2 id="Why_would_I_want_to_do_this.3F">Why would I want to do this?</h2>
+<p>If a bug you are encountering has been reported as fixed but not yet released, you can confirm that it has been fixed for you.
+Or perhaps you just like to live on the bleeding edge.</p>
+<p>You are highly encouraged to join the development list for the project and provide your feedback, or help promote release of the plugin in question.</p>
+<p><em>Note:</em> This is <strong>not</strong> recommended as an everyday or in production practice!
+Snapshots are for testing purposes only and are not official releases.
+For more information, see <a href="http://www.apache.org/dev/release.html#what">the Releases FAQ</a>.</p>
+<h2 id="How_do_I_do_this.3F">How do I do this?</h2>
+<p>Development versions of Maven plugins are periodically published to the repository: <a href="https://repository.apache.org/snapshots/">https://repository.apache.org/snapshots/</a>.</p>
+<p><em>Note:</em> Currently, this is not done automatically by our continuous integration setup.
+This is coming soon.</p>
+<p>Other sites may publish their own - for example, the MojoHaus project hosts theirs at <a href="https://oss.sonatype.org/content/repositories/snapshots/">https://oss.sonatype.org/content/repositories/snapshots/</a></p>
+<p>The first step is to include this in your project:</p>
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="xml"><span class="nt">&lt;project</span> <span class="na">xmlns=</span><span class="s">"http://maven.apache.org/POM/4.0.0"</span><span class="nt">&gt;</span>
+  ...
+  <span class="nt">&lt;pluginRepositories&gt;</span>
+    <span class="nt">&lt;pluginRepository&gt;</span>
+      <span class="nt">&lt;id&gt;</span>apache.snapshots<span class="nt">&lt;/id&gt;</span>
+      <span class="nt">&lt;url&gt;</span>https://repository.apache.org/snapshots/<span class="nt">&lt;/url&gt;</span>
+    <span class="nt">&lt;/pluginRepository&gt;</span>
+  <span class="nt">&lt;/pluginRepositories&gt;</span>
+  ...
+<span class="nt">&lt;/project&gt;</span>
+</code></pre></div></div>
+<p>After this is included, there are three ways to use the updated versions:</p>
+<ul>
+<li>
+<p>Set the appropriate version in the plugin, eg <code>2.0.1-SNAPSHOT</code></p>
+</li>
+<li>
+<p>If you have not specified a version, use the <code>-U</code> switch to update plugins for the given Maven run</p>
+</li>
+<li>
+<p>You can have Maven automatically check for updates on a given interval, for example:</p>
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="xml"><span class="nt">&lt;project</span> <span class="na">xmlns=</span><span class="s">"http://maven.apache.org/POM/4.0.0"</span><span class="nt">&gt;</span>
+  ...
+  <span class="nt">&lt;pluginRepositories&gt;</span>
+    <span class="nt">&lt;pluginRepository&gt;</span>
+      <span class="nt">&lt;id&gt;</span>apache.snapshots<span class="nt">&lt;/id&gt;</span>
+      <span class="nt">&lt;url&gt;</span>https://repository.apache.org/snapshots/<span class="nt">&lt;/url&gt;</span>
+      <span class="nt">&lt;snapshots&gt;</span>
+          <span class="nt">&lt;enabled&gt;</span>true<span class="nt">&lt;/enabled&gt;</span>
+          <span class="nt">&lt;updatePolicy&gt;</span>interval:15<span class="nt">&lt;/updatePolicy&gt;</span>
+      <span class="nt">&lt;/snapshots&gt;</span>
+    <span class="nt">&lt;/pluginRepository&gt;</span>
+  <span class="nt">&lt;/pluginRepositories&gt;</span>
+  ...
+<span class="nt">&lt;/project&gt;</span>
+
+</code></pre></div></div>
+</li>
+</ul>
+<p><em>Note:</em> These last two techniques mean that <em>every</em> plugin will be updated to the latest snapshot version.</p>
+<p>The development version will stop being used if the <code>&lt;pluginRepository&gt;</code> element is removed from your POM and the version is set back to the release version.
+If you are using the command line or an unspecified version, you will also need to remove the version from the local repository.</p>
+<h2 id="Using_Settings_without_Modifying_the_Project">Using Settings without Modifying the Project</h2>
+<p>If you are using the goals from the command line on a number of projects, you should include this in your <code>settings.xml</code> file instead.</p>
+<p>You need to modify your <code>${user.home}/.m2/settings.xml</code> file to include two new profiles and then when you need access to the plugin snapshots use <code>-Papache</code>.
+The profile only needs to be enabled once so that the plugins can be downloaded into you local repository.
+Once in your local repository Maven can successfully resolve the dependencies and the profile no longer needs to be activated.</p>
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="xml"><span class="nt">&lt;settings&gt;</span>
+  ...
+  <span class="nt">&lt;profiles&gt;</span>
+    <span class="nt">&lt;profile&gt;</span>
+      <span class="nt">&lt;id&gt;</span>apache<span class="nt">&lt;/id&gt;</span>
+      <span class="nt">&lt;pluginRepositories&gt;</span>
+        <span class="nt">&lt;pluginRepository&gt;</span>
+          <span class="nt">&lt;id&gt;</span>apache.snapshots<span class="nt">&lt;/id&gt;</span>
+          <span class="nt">&lt;name&gt;</span>Maven Plugin Snapshots<span class="nt">&lt;/name&gt;</span>
+          <span class="nt">&lt;url&gt;</span>https://repository.apache.org/snapshots/<span class="nt">&lt;/url&gt;</span>
+          <span class="nt">&lt;releases&gt;</span>
+            <span class="nt">&lt;enabled&gt;</span>false<span class="nt">&lt;/enabled&gt;</span>
+          <span class="nt">&lt;/releases&gt;</span>
+          <span class="nt">&lt;snapshots&gt;</span>
+            <span class="nt">&lt;enabled&gt;</span>true<span class="nt">&lt;/enabled&gt;</span>
+          <span class="nt">&lt;/snapshots&gt;</span>
+        <span class="nt">&lt;/pluginRepository&gt;</span>
+      <span class="nt">&lt;/pluginRepositories&gt;</span>
+    <span class="nt">&lt;/profile&gt;</span>
+  <span class="nt">&lt;/profiles&gt;</span>
+  ...
+<span class="nt">&lt;/settings&gt;</span>
+</code></pre></div></div>
+<p>When invoking Maven for Apache profile, do it like this:</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mvn -Papache &lt;phase|goal&gt;
+</code></pre></div></div>
+<h2 id="Using_a_Repository_Manager">Using a Repository Manager</h2>
+<p>In addition to the above you may want to use a repository manager so that you can retain the builds you have been using.
+For information on this technique, see the <a href="./guide-testing-releases.html">Guide to Testing Staged Releases</a>.</p>
+<h2 id="How_do_I_make_changes_to_the_source_and_test_development_versions_of_the_plugins.3F">How do I make changes to the source and test development versions of the plugins?</h2>
+<p>For information on this, see the <a href="./guide-maven-development.html">Guide to Maven Development</a>.</p>
+
+        </main>
+      </div>
+    </div>
+    <hr>
+    <footer>
+      <div class="container-fluid">
+        <div class="row-fluid">
+          <p>©      2002–2026 <a href="https://www.apache.org/">The Apache Software Foundation</a></p>
+          <p class="demo-note">A demonstration build of <a href="https://github.com/dashorst/maven-site/tree/diataxis-demo">dashorst/maven-site</a>, not the official Apache Maven site.</p>
+        </div>
+      </div>
+    </footer>
+    <script src="/maven-site/js/guide.js?v=1792948498" defer=""></script>
+    <script>
+    anchors.add();
+    </script>
+  
+
+</body></html>

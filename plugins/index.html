@@ -1,0 +1,934 @@
+<!DOCTYPE html><!--
+ | The page frame of the Apache Maven Fluido Skin 2.1.0, as the Doxia site renderer writes it
+ | for maven.apache.org. Built with Jekyll: see jekyll/README.md.
+--><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Available Plugins – Maven</title>
+    
+    <link rel="stylesheet" href="/maven-site/css/apache-maven-fluido-2.1.0.min.css">
+    <link rel="stylesheet" href="/maven-site/css/site.css">
+    <link rel="stylesheet" href="/maven-site/css/guide.css?v=1792948498">
+    <link rel="stylesheet" href="/maven-site/css/print.css" media="print">
+    <script src="/maven-site/js/apache-maven-fluido-2.1.0.min.js"></script>
+  </head>
+  <body>
+    <div class="container-fluid container-fluid-top">
+      <header>
+        <div id="banner">
+          <div class="pull-left"><div id="bannerLeft"><h1><a href="/maven-site/index.html"><img src="/maven-site/images/apache-maven-project-light-theme.svg" style="width: 489px;height: 83px;" alt="Apache Maven"></a></h1></div></div>
+          <div class="pull-right"><div id="bannerRight"><h1><img src="/maven-site/images/logos/MavenLogoLeaf.svg" style="width: 340px;height: 83px;" alt=""></h1></div></div>
+          <div class="clear"><hr></div>
+        </div>
+
+        <div id="breadcrumbs">
+          <ul class="breadcrumb">
+            <li><a href="https://www.apache.org/">Apache</a><span class="divider">/</span></li>
+            <li><a href="/maven-site/index.html">Maven</a><span class="divider">/</span></li>
+            
+            <li class="active">Available Plugins <a href="https://github.com/apache/maven-site/tree/master/content/markdown/plugins/index.md"><img src="/maven-site/images/accessories-text-editor.png" alt="Edit"></a></li>
+            <li id="publishDate" class="pull-right"><span class="divider">|</span> Last Published: 2026-10-25</li>
+            <li class="pull-right"><span class="divider">|</span> <a href="/maven-site/scm.html">Get Sources</a></li>
+            <li class="pull-right"><a href="https://maven.apache.org/download.cgi">Downloads</a></li>
+          </ul>
+        </div>
+      </header>
+      <div class="row-fluid">
+        <header id="leftColumn" class="span2">
+          
+<form class="guide-search" role="search" action="/maven-site/guides/a-z.html" data-index="/maven-site/guides/search.json" data-script="/maven-site/js/minisearch-7.2.0.js" data-oldest="3.9" data-base="/maven-site">
+  <label class="guide-search-label" for="guide-q-nav">Search the documentation</label>
+  <div class="guide-search-field">
+    <input id="guide-q-nav" name="q" type="search" autocomplete="off" spellcheck="false" placeholder="Search">
+    <kbd class="guide-search-key" aria-hidden="true">/</kbd>
+  </div>
+  
+</form>
+
+          <nav class="well sidebar-nav">
+<ul class="nav nav-list">
+  <li><a href="/maven-site/index.html">Welcome</a></li>
+  <li><a href="https://www.apache.org/licenses/">License</a></li>
+  <li class="nav-header">About Maven</li>
+  <li><a href="/maven-site/what-is-maven.html">What is Maven?</a></li>
+  <li><a href="/maven-site/install.html">Installation</a></li>
+  <li><a href="/maven-site/download.html">Downloads</a></li>
+  <li><a href="/maven-site/run.html">Use</a></li>
+  <li><a href="/maven-site/configure.html">Configure</a></li>
+  <li><a href="/maven-site/docs/history.html">Release Notes</a></li>
+  <li><a href="/maven-site/security.html">Security Reports</a></li>
+  <li class="nav-header">Documentation</li>
+  <li class="active"><a>Maven Plugins</a></li>
+  <li><a href="/maven-site/extensions/index.html">Maven Extensions</a></li>
+  <li><a href="/maven-site/tools/index.html"><span class="icon-chevron-down"></span>Maven Tools</a>
+   <ul class="nav nav-list">
+    <li><a href="/maven-site/tools/mvnd.html">Maven Daemon</a></li>
+    <li><a href="/maven-site/tools/mvnsh.html">Maven Shell</a></li>
+    <li><a href="/maven-site/tools/mvnup.html">Maven Upgrade Tool</a></li>
+    <li><a href="/maven-site/tools/mavenwrapper.html">Maven Wrapper</a></li>
+   </ul></li>
+  <li><a href="/maven-site/doxia/index.html"><span class="icon-chevron-right"></span>Doxia</a></li>
+  <li><a href="/maven-site/guides/index.html">Guides</a></li>
+  <li><a href="/maven-site/users/index.html"><span class="icon-chevron-right"></span>User Manual</a></li>
+  <li><a href="/maven-site/repositories/index.html"><span class="icon-chevron-right"></span>Maven Repositories</a></li>
+  <li><a href="/maven-site/plugin-developers/index.html"><span class="icon-chevron-right"></span>Plugin Development</a></li>
+  <li><a href="/maven-site/developers/index.html"><span class="icon-chevron-right"></span>Contribute to Maven</a></li>
+  <li><a href="/maven-site/articles.html">Books and Resources</a></li>
+  <li class="nav-header">Community</li>
+  <li><a href="/maven-site/community.html">Community Overview</a></li>
+  <li><a href="/maven-site/project-roles.html">Project Roles</a></li>
+  <li><a href="/maven-site/guides/development/guide-helping.html">How to Contribute</a></li>
+  <li><a href="/maven-site/users/getting-help.html">Getting Help</a></li>
+  <li><a href="/maven-site/issue-management.html">Issue Management</a></li>
+  <li><a href="/maven-site/scm.html">Getting Maven Source</a></li>
+  <li><a href="/maven-site/team.html">The Maven Team</a></li>
+  <li class="nav-header">Project Documentation</li>
+  <li><a href="/maven-site/project-info.html">Project Information</a></li>
+  <li class="nav-header">Maven Projects</li>
+  <li><a href="/maven-site/ref/current">Maven</a></li>
+  <li><a href="/maven-site/archetypes/index.html">Archetypes</a></li>
+  <li><a href="/maven-site/extensions/index.html">Extensions</a></li>
+  <li><a href="/maven-site/pom/index.html">Parent POMs</a></li>
+  <li class="active"><a>Plugins</a></li>
+  <li><a href="/maven-site/skins/index.html">Skins</a></li>
+  <li><a><span class="icon-chevron-down"></span>Components</a>
+   <ul class="nav nav-list">
+    <li><a href="/maven-site/archetype/index.html">Archetype</a></li>
+    <li><a href="/maven-site/resolver/index.html">Artifact Resolver</a></li>
+    <li><a href="/maven-site/doxia/index.html">Doxia</a></li>
+    <li><a href="/maven-site/maven-indexer/index.html">Indexer</a></li>
+    <li><a href="/maven-site/jxr/index.html">JXR</a></li>
+    <li><a href="/maven-site/plugin-testing/index.html">Plugin Testing</a></li>
+    <li><a href="/maven-site/plugin-tools/index.html">Plugin Tools</a></li>
+    <li><a href="/maven-site/apache-resource-bundles/index.html">Resource Bundles</a></li>
+    <li><a href="/maven-site/scm/index.html">SCM</a></li>
+    <li><a href="/maven-site/shared/index.html">Shared Components</a></li>
+    <li><a href="/maven-site/surefire/index.html">Surefire</a></li>
+    <li><a href="/maven-site/wagon/index.html">Wagon</a></li>
+   </ul></li>
+  <li class="nav-header">ASF</li>
+  <li><a href="https://www.apache.org/foundation/how-it-works.html">How Apache Works</a></li>
+  <li><a href="https://www.apache.org/foundation/">Foundation</a></li>
+  <li><a href="https://privacy.apache.org/policies/privacy-policy-public.html">Data Privacy</a></li>
+  <li><a href="https://www.apache.org/foundation/sponsorship.html">Sponsoring Apache</a></li>
+  <li><a href="https://www.apache.org/foundation/thanks.html">Thanks</a></li>
+</ul>
+          </nav>
+          <div class="well sidebar-nav">
+            <div id="poweredBy">
+              <div class="clear"></div>
+              <a href="/maven-site/" class="builtBy" target="_blank"><img class="builtBy" alt="Built by Maven" src="/maven-site/images/logos/maven-feather.png"></a>
+            </div>
+          </div>
+        </header>
+        <main id="bodyColumn" class="span10">
+          
+<!--
+Licensed to the Apache Software Foundation (ASF) under one
+or more contributor license agreements.  See the NOTICE file
+distributed with this work for additional information
+regarding copyright ownership.  The ASF licenses this file
+to you under the Apache License, Version 2.0 (the
+"License"); you may not use this file except in compliance
+with the License.  You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing,
+software distributed under the License is distributed on an
+"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+KIND, either express or implied.  See the License for the
+specific language governing permissions and limitations
+under the License.
+-->
+<h1 id="Available_Plugins">Available Plugins</h1>
+<p>Maven is - at its heart - a plugin execution framework; all work is done by plugins. Looking for a specific goal to execute? This page lists the core plugins and others. There are the build and the reporting plugins:</p>
+<ul>
+<li><strong>Build plugins</strong> will be executed during the build and they should be configured in the <code>&lt;build/&gt;</code> element from the POM.</li>
+<li><strong>Reporting plugins</strong> will be executed during the site generation and they should be configured in the <code>&lt;reporting/&gt;</code> element from the POM. Because the result of a Reporting plugin is part of the generated site, Reporting plugins should be both internationalized and localized. You can read more about the <a href="./localization.html">localization of our plugins</a> and how you can help.</li>
+</ul>
+<h2 id="Supported_By_The_Maven_Project">Supported By The Maven Project</h2>
+<p>To see the most up-to-date list browse the Maven repository, specifically the <a href="https://repo.maven.apache.org/maven2/org/apache/maven/plugins/"><code>org/apache/maven/plugins</code></a> subdirectory. <em>(Plugins are organized according to a directory structure that resembles the standard Java package naming convention)</em></p>
+<!-- TODO: the repository manager should be able to produce a page like this. Ensure all descriptions are in the POM of these plugins.-->
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+<!-- The release dates in this table must follow the ISO-8601 standard: yyyy-MM-dd-->
+<!-- See https://maven.apache.org/guides/development/guide-documentation-style.html-->
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+<table class="table table-striped">
+<thead>
+<tr>
+<th align="left"><strong>Plugin</strong></th>
+<th align="left"><strong>Type</strong>*</th>
+<th align="left"><strong>Version</strong></th>
+<th align="left"><strong>Release Date</strong></th>
+<th align="left"><strong>Description</strong></th>
+<th align="left"><strong>Source Repository</strong></th>
+<th align="left"><strong>Issue Tracking</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left"><strong>Core plugins</strong></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"><strong>Plugins corresponding to default core phases (ie. clean, compile). They may have multiple goals as well.</strong></td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left"><a href="https://maven.apache.org/plugins/maven-clean-plugin/"> <code>clean</code></a></td>
+<td align="left">B</td>
+<td align="left">3.5.0</td>
+<td align="left">2025-05-27</td>
+<td align="left">Clean up after the build.</td>
+<td align="left"><a href="https://gitbox.apache.org/repos/asf/maven-clean-plugin.git">Git</a> / <a href="https://github.com/apache/maven-clean-plugin/">GitHub</a></td>
+<td align="left"><a href="https://github.com/apache/maven-clean-plugin/issues">GitHub Issues</a></td>
+</tr>
+<tr>
+<td align="left"><a href="https://maven.apache.org/plugins/maven-clean-plugin-4.x/"> <code>clean 4.x</code></a></td>
+<td align="left">B</td>
+<td align="left">4.0.0-beta-3</td>
+<td align="left">2026-10-12</td>
+<td align="left">Clean up after the build.</td>
+<td align="left"><a href="https://gitbox.apache.org/repos/asf/maven-clean-plugin.git">Git</a> / <a href="https://github.com/apache/maven-clean-plugin/">GitHub</a></td>
+<td align="left"><a href="https://github.com/apache/maven-clean-plugin/issues">GitHub Issues</a></td>
+</tr>
+<tr>
+<td align="left"><a href="https://maven.apache.org/plugins/maven-compiler-plugin/"> <code>compiler</code></a></td>
+<td align="left">B</td>
+<td align="left">3.16.0</td>
+<td align="left">2026-08-30</td>
+<td align="left">Compiles Java sources.</td>
+<td align="left"><a href="https://gitbox.apache.org/repos/asf/maven-compiler-plugin.git">Git</a> / <a href="https://github.com/apache/maven-compiler-plugin/">GitHub</a></td>
+<td align="left"><a href="https://github.com/apache/maven-compiler-plugin/issues">GitHub Issues</a></td>
+</tr>
+<tr>
+<td align="left"><a href="https://maven.apache.org/plugins/maven-compiler-plugin-4.x/"> <code>compiler 4.x</code></a></td>
+<td align="left">B</td>
+<td align="left">4.0.0-beta-5</td>
+<td align="left">2026-08-26</td>
+<td align="left">Compiles Java sources, with <a href="https://cwiki.apache.org/confluence/spaces/MAVEN/pages/393677487/Full+Java+Modules+Support+-+Current+State">Maven 4 Java Modules support</a>.</td>
+<td align="left"><a href="https://gitbox.apache.org/repos/asf/maven-compiler-plugin.git">Git</a> / <a href="https://github.com/apache/maven-compiler-plugin/">GitHub</a></td>
+<td align="left"><a href="https://github.com/apache/maven-compiler-plugin/issues">GitHub Issues</a></td>
+</tr>
+<tr>
+<td align="left"><a href="https://maven.apache.org/plugins/maven-deploy-plugin/"> <code>deploy</code></a></td>
+<td align="left">B</td>
+<td align="left">3.2.0</td>
+<td align="left">2026-09-11</td>
+<td align="left">Deploy the built artifact to the remote repository.</td>
+<td align="left"><a href="https://gitbox.apache.org/repos/asf/maven-deploy-plugin.git">Git</a> / <a href="https://github.com/apache/maven-deploy-plugin/">GitHub</a></td>
+<td align="left"><a href="https://github.com/apache/maven-deploy-plugin/issues">GitHub Issues</a></td>
+</tr>
+<tr>
+<td align="left"><a href="https://maven.apache.org/plugins/maven-deploy-plugin-4.x/"> <code>deploy 4.x</code></a></td>
+<td align="left">B</td>
+<td align="left">4.0.0-beta-3</td>
+<td align="left">2026-09-11</td>
+<td align="left">Deploy the built artifact to the remote repository.</td>
+<td align="left"><a href="https://gitbox.apache.org/repos/asf/maven-deploy-plugin.git">Git</a> / <a href="https://github.com/apache/maven-deploy-plugin/">GitHub</a></td>
+<td align="left"><a href="https://github.com/apache/maven-deploy-plugin/issues">GitHub Issues</a></td>
+</tr>
+<tr>
+<td align="left"><a href="https://maven.apache.org/surefire/maven-failsafe-plugin/"> <code>failsafe</code></a></td>
+<td align="left">B</td>
+<td align="left">3.6.0</td>
+<td align="left">2026-08-31</td>
+<td align="left">Run the JUnit integration tests in an isolated classloader.</td>
+<td align="left"><a href="https://gitbox.apache.org/repos/asf/maven-surefire.git">Git</a> / <a href="https://github.com/apache/maven-surefire/">GitHub</a></td>
+<td align="left"><a href="https://github.com/apache/maven-surefire/issues">GitHub Issues</a></td>
+</tr>
+<tr>
+<td align="left"><a href="https://maven.apache.org/plugins/maven-install-plugin/"> <code>install</code></a></td>
+<td align="left">B</td>
+<td align="left">3.2.0</td>
+<td align="left">2026-09-11</td>
+<td align="left">Install the built artifact into the local repository.</td>
+<td align="left"><a href="https://gitbox.apache.org/repos/asf/maven-install-plugin.git">Git</a> / <a href="https://github.com/apache/maven-install-plugin/">GitHub</a></td>
+<td align="left"><a href="https://github.com/apache/maven-install-plugin/issues">GitHub Issues</a></td>
+</tr>
+<tr>
+<td align="left"><a href="https://maven.apache.org/plugins/maven-install-plugin-4.x/"> <code>install 4.x</code></a></td>
+<td align="left">B</td>
+<td align="left">4.0.0-beta-3</td>
+<td align="left">2026-09-11</td>
+<td align="left">Install the built artifact into the local repository.</td>
+<td align="left"><a href="https://gitbox.apache.org/repos/asf/maven-install-plugin.git">Git</a> / <a href="https://github.com/apache/maven-install-plugin/">GitHub</a></td>
+<td align="left"><a href="https://github.com/apache/maven-install-plugin/issues">GitHub Issues</a></td>
+</tr>
+<tr>
+<td align="left"><a href="https://maven.apache.org/plugins/maven-resources-plugin/"> <code>resources</code></a></td>
+<td align="left">B</td>
+<td align="left">3.5.0</td>
+<td align="left">2026-03-02</td>
+<td align="left">Copy the resources to the output directory for including in the JAR.</td>
+<td align="left"><a href="https://gitbox.apache.org/repos/asf/maven-resources-plugin.git">Git</a> / <a href="https://github.com/apache/maven-resources-plugin/">GitHub</a></td>
+<td align="left"><a href="https://github.com/apache/maven-resources-plugin/issues">GitHub Issues</a></td>
+</tr>
+<tr>
+<td align="left"><a href="https://maven.apache.org/plugins/maven-resources-plugin-4.x/"> <code>resources 4.x</code></a></td>
+<td align="left">B</td>
+<td align="left">4.0.0-beta-2</td>
+<td align="left">2026-10-12</td>
+<td align="left">Copy the resources to the output directory for including in the JAR.</td>
+<td align="left"><a href="https://gitbox.apache.org/repos/asf/maven-resources-plugin.git">Git</a> / <a href="https://github.com/apache/maven-resources-plugin/">GitHub</a></td>
+<td align="left"><a href="https://github.com/apache/maven-resources-plugin/issues">GitHub Issues</a></td>
+</tr>
+<tr>
+<td align="left"><a href="https://maven.apache.org/plugins/maven-site-plugin/"> <code>site</code></a></td>
+<td align="left">B</td>
+<td align="left">3.22.0</td>
+<td align="left">2026-05-20</td>
+<td align="left">Generate a site for the current project.</td>
+<td align="left"><a href="https://gitbox.apache.org/repos/asf/maven-site-plugin.git">Git</a> / <a href="https://github.com/apache/maven-site-plugin/">GitHub</a></td>
+<td align="left"><a href="https://github.com/apache/maven-site-plugin/issues">GitHub Issues</a></td>
+</tr>
+<tr>
+<td align="left"><a href="https://maven.apache.org/surefire/maven-surefire-plugin/"> <code>surefire</code></a></td>
+<td align="left">B</td>
+<td align="left">3.6.0</td>
+<td align="left">2026-08-31</td>
+<td align="left">Run the JUnit unit tests in an isolated classloader.</td>
+<td align="left"><a href="https://gitbox.apache.org/repos/asf/maven-surefire.git">Git</a> / <a href="https://github.com/apache/maven-surefire/">GitHub</a></td>
+<td align="left"><a href="https://github.com/apache/maven-surefire/issues">GitHub Issues</a></td>
+</tr>
+<tr>
+<td align="left"><strong>Packaging types/tools</strong></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"><strong>These plugins relate to packaging respective artifact types.</strong></td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left"><a href="https://maven.apache.org/plugins/maven-ear-plugin/"> <code>ear</code></a></td>
+<td align="left">B</td>
+<td align="left">3.4.0</td>
+<td align="left">2025-06-16</td>
+<td align="left">Generate an EAR from the current project.</td>
+<td align="left"><a href="https://gitbox.apache.org/repos/asf/maven-ear-plugin.git">Git</a> / <a href="https://github.com/apache/maven-ear-plugin/">GitHub</a></td>
+<td align="left"><a href="https://github.com/apache/maven-ear-plugin/issues">GitHub Issues</a></td>
+</tr>
+<tr>
+<td align="left"><a href="https://maven.apache.org/plugins/maven-ejb-plugin/"> <code>ejb</code></a></td>
+<td align="left">B</td>
+<td align="left">3.3.0</td>
+<td align="left">2025-11-16</td>
+<td align="left">Build an EJB (and optional client) from the current project.</td>
+<td align="left"><a href="https://gitbox.apache.org/repos/asf/maven-ejb-plugin.git">Git</a> / <a href="https://github.com/apache/maven-ejb-plugin/">GitHub</a></td>
+<td align="left"><a href="https://github.com/apache/maven-ejb-plugin/issues">GitHub Issues</a></td>
+</tr>
+<tr>
+<td align="left"><a href="https://maven.apache.org/plugins/maven-jar-plugin/"> <code>jar</code></a></td>
+<td align="left">B</td>
+<td align="left">3.5.1</td>
+<td align="left">2026-07-19</td>
+<td align="left">Build a JAR from the current project.</td>
+<td align="left"><a href="https://gitbox.apache.org/repos/asf/maven-jar-plugin.git">Git</a> / <a href="https://github.com/apache/maven-jar-plugin/">GitHub</a></td>
+<td align="left"><a href="https://github.com/apache/maven-jar-plugin/issues">GitHub Issues</a></td>
+</tr>
+<tr>
+<td align="left"><a href="https://maven.apache.org/plugins/maven-rar-plugin/"> <code>rar</code></a></td>
+<td align="left">B</td>
+<td align="left">3.1.0</td>
+<td align="left">2025-11-15</td>
+<td align="left">Build a RAR from the current project.</td>
+<td align="left"><a href="https://gitbox.apache.org/repos/asf/maven-rar-plugin.git">Git</a> / <a href="https://github.com/apache/maven-rar-plugin/">GitHub</a></td>
+<td align="left"><a href="https://github.com/apache/maven-rar-plugin/issues">GitHub Issues</a></td>
+</tr>
+<tr>
+<td align="left"><a href="https://maven.apache.org/plugins/maven-war-plugin/"> <code>war</code></a></td>
+<td align="left">B</td>
+<td align="left">3.5.1</td>
+<td align="left">2025-11-24</td>
+<td align="left">Build a WAR from the current project.</td>
+<td align="left"><a href="https://gitbox.apache.org/repos/asf/maven-war-plugin.git">Git</a> / <a href="https://github.com/apache/maven-war-plugin/">GitHub</a></td>
+<td align="left"><a href="https://github.com/apache/maven-war-plugin/issues">GitHub Issues</a></td>
+</tr>
+<tr>
+<td align="left"><a href="https://maven.apache.org/plugins/maven-acr-plugin/"> <code>app-client/acr</code></a></td>
+<td align="left">B</td>
+<td align="left">3.2.0</td>
+<td align="left">2025-11-25</td>
+<td align="left">Build a JavaEE application client from the current project.</td>
+<td align="left"><a href="https://gitbox.apache.org/repos/asf/maven-acr-plugin.git">Git</a> / <a href="https://github.com/apache/maven-acr-plugin/">GitHub</a></td>
+<td align="left"><a href="https://github.com/apache/maven-acr-plugin/issues">GitHub Issues</a></td>
+</tr>
+<tr>
+<td align="left"><a href="https://maven.apache.org/plugins/maven-shade-plugin/"> <code>shade</code></a></td>
+<td align="left">B</td>
+<td align="left">3.6.2</td>
+<td align="left">2026-03-02</td>
+<td align="left">Build an Uber-JAR from the current project, including dependencies.</td>
+<td align="left"><a href="https://gitbox.apache.org/repos/asf/maven-shade-plugin.git">Git</a> / <a href="https://github.com/apache/maven-shade-plugin/">GitHub</a></td>
+<td align="left"><a href="https://github.com/apache/maven-shade-plugin/issues">GitHub Issues</a></td>
+</tr>
+<tr>
+<td align="left"><a href="https://maven.apache.org/plugins/maven-source-plugin/"> <code>source</code></a></td>
+<td align="left">B</td>
+<td align="left">3.4.0</td>
+<td align="left">2025-11-22</td>
+<td align="left">Build a source-JAR from the current project.</td>
+<td align="left"><a href="https://gitbox.apache.org/repos/asf/maven-source-plugin.git">Git</a> / <a href="https://github.com/apache/maven-source-plugin/">GitHub</a></td>
+<td align="left"><a href="https://github.com/apache/maven-source-plugin/issues">GitHub Issues</a></td>
+</tr>
+<tr>
+<td align="left"><a href="https://maven.apache.org/plugins/maven-jlink-plugin/"> <code>jlink</code></a></td>
+<td align="left">B</td>
+<td align="left">3.3.0</td>
+<td align="left">2026-03-09</td>
+<td align="left">Build Java Run Time Image.</td>
+<td align="left"><a href="https://gitbox.apache.org/repos/asf/maven-jlink-plugin.git">Git</a> / <a href="https://github.com/apache/maven-jlink-plugin/">GitHub</a></td>
+<td align="left"><a href="https://github.com/apache/maven-jlink-plugin/issues">GitHub Issues</a></td>
+</tr>
+<tr>
+<td align="left"><a href="https://maven.apache.org/plugins/maven-jmod-plugin/"> <code>jmod</code></a></td>
+<td align="left">B</td>
+<td align="left">3.0.0</td>
+<td align="left">2025-12-22</td>
+<td align="left">Build Java JMod files.</td>
+<td align="left"><a href="https://gitbox.apache.org/repos/asf/maven-jmod-plugin.git">Git</a> / <a href="https://github.com/apache/maven-jmod-plugin/">GitHub</a></td>
+<td align="left"><a href="https://github.com/apache/maven-jmod-plugin/issues">GitHub Issues</a></td>
+</tr>
+<tr>
+<td align="left"><strong>Reporting plugins</strong></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"><strong>Plugins which generate reports, are configured as reports in the POM and run under the site generation lifecycle.</strong></td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left"><a href="https://maven.apache.org/plugins/maven-changelog-plugin/"> <code>changelog</code></a></td>
+<td align="left">R</td>
+<td align="left">3.0.0-M2</td>
+<td align="left">2026-05-19</td>
+<td align="left">Generate a list of recent changes from your SCM.</td>
+<td align="left"><a href="https://gitbox.apache.org/repos/asf/maven-changelog-plugin.git">Git</a> / <a href="https://github.com/apache/maven-changelog-plugin/">GitHub</a></td>
+<td align="left"><a href="https://github.com/apache/maven-changelog-plugin/issues">GitHub Issues</a></td>
+</tr>
+<tr>
+<td align="left"><a href="https://maven.apache.org/plugins/maven-changes-plugin/"> <code>changes</code></a></td>
+<td align="left">B+R</td>
+<td align="left">3.0.0-M3</td>
+<td align="left">2025-05-12</td>
+<td align="left">Generate a report from an issue tracker or a change document.</td>
+<td align="left"><a href="https://gitbox.apache.org/repos/asf/maven-changes-plugin.git">Git</a> / <a href="https://github.com/apache/maven-changes-plugin/">GitHub</a></td>
+<td align="left"><a href="https://github.com/apache/maven-changes-plugin/issues">GitHub Issues</a></td>
+</tr>
+<tr>
+<td align="left"><a href="https://maven.apache.org/plugins/maven-checkstyle-plugin/"> <code>checkstyle</code></a></td>
+<td align="left">B+R</td>
+<td align="left">3.6.0</td>
+<td align="left">2024-10-22</td>
+<td align="left">Generate a Checkstyle report.</td>
+<td align="left"><a href="https://gitbox.apache.org/repos/asf/maven-checkstyle-plugin.git">Git</a> / <a href="https://github.com/apache/maven-checkstyle-plugin/">GitHub</a></td>
+<td align="left"><a href="https://github.com/apache/maven-checkstyle-plugin/issues">GitHub Issues</a></td>
+</tr>
+<tr>
+<td align="left"><a href="https://maven.apache.org/plugins/maven-doap-plugin/"> <code>doap</code></a></td>
+<td align="left">B</td>
+<td align="left">3.0.0-M2</td>
+<td align="left">2026-09-26</td>
+<td align="left">Generate a Description of a Project (DOAP) file from a POM.</td>
+<td align="left"><a href="https://gitbox.apache.org/repos/asf/maven-doap-plugin.git">Git</a> / <a href="https://github.com/apache/maven-doap-plugin/">GitHub</a></td>
+<td align="left"><a href="https://github.com/apache/maven-doap-plugin/issues">GitHub Issues</a></td>
+</tr>
+<tr>
+<td align="left"><a href="https://maven.apache.org/plugins/maven-javadoc-plugin/"> <code>javadoc</code></a></td>
+<td align="left">B+R</td>
+<td align="left">3.12.0</td>
+<td align="left">2025-09-16</td>
+<td align="left">Generate Javadoc for the project.</td>
+<td align="left"><a href="https://gitbox.apache.org/repos/asf/maven-javadoc-plugin.git">Git</a> / <a href="https://github.com/apache/maven-javadoc-plugin/">GitHub</a></td>
+<td align="left"><a href="https://github.com/apache/maven-javadoc-plugin/issues">GitHub Issues</a></td>
+</tr>
+<tr>
+<td align="left"><a href="https://maven.apache.org/plugins/maven-jdeps-plugin/"> <code>jdeps</code></a></td>
+<td align="left">B</td>
+<td align="left">3.2.0</td>
+<td align="left">2025-12-28</td>
+<td align="left">Run JDK's JDeps tool on the project.</td>
+<td align="left"><a href="https://gitbox.apache.org/repos/asf/maven-jdeps-plugin.git">Git</a> / <a href="https://github.com/apache/maven-jdeps-plugin/">GitHub</a></td>
+<td align="left"><a href="https://github.com/apache/maven-jdeps-plugin/issues">GitHub Issues</a></td>
+</tr>
+<tr>
+<td align="left"><a href="https://maven.apache.org/jxr/maven-jxr-plugin/"> <code>jxr</code></a></td>
+<td align="left">R</td>
+<td align="left">3.6.0</td>
+<td align="left">2024-10-22</td>
+<td align="left">Generate a source cross reference.</td>
+<td align="left"><a href="https://gitbox.apache.org/repos/asf/maven-jxr.git">Git</a> / <a href="https://github.com/apache/maven-jxr/">GitHub</a></td>
+<td align="left"><a href="https://github.com/apache/maven-jxr/issues">GitHub Issues</a></td>
+</tr>
+<tr>
+<td align="left"><a href="https://maven.apache.org/plugins/maven-pmd-plugin/"> <code>pmd</code></a></td>
+<td align="left">B+R</td>
+<td align="left">3.28.0</td>
+<td align="left">2025-10-07</td>
+<td align="left">Generate a PMD/CPD report.</td>
+<td align="left"><a href="https://gitbox.apache.org/repos/asf/maven-pmd-plugin.git">Git</a> / <a href="https://github.com/apache/maven-pmd-plugin/">GitHub</a></td>
+<td align="left"><a href="https://github.com/apache/maven-pmd-plugin/issues">GitHub Issues</a></td>
+</tr>
+<tr>
+<td align="left"><a href="https://maven.apache.org/plugin-tools/maven-plugin-report-plugin/"> <code>plugin-report</code></a></td>
+<td align="left">R</td>
+<td align="left">3.16.0</td>
+<td align="left">2026-09-06</td>
+<td align="left">Create a plugin documentation for any mojos found in the source tree.</td>
+<td align="left"><a href="https://gitbox.apache.org/repos/asf/maven-plugin-tools.git">Git</a> / <a href="https://github.com/apache/maven-plugin-tools/">GitHub</a></td>
+<td align="left"><a href="https://github.com/apache/maven-plugin-tools/issues">GitHub Issues</a></td>
+</tr>
+<tr>
+<td align="left"><a href="https://maven.apache.org/plugins/maven-project-info-reports-plugin/"> <code>project-info-reports</code></a></td>
+<td align="left">R</td>
+<td align="left">3.9.0</td>
+<td align="left">2025-02-23</td>
+<td align="left">Generate standard project reports.</td>
+<td align="left"><a href="https://gitbox.apache.org/repos/asf/maven-project-info-reports-plugin.git">Git</a> / <a href="https://github.com/apache/maven-project-info-reports-plugin/">GitHub</a></td>
+<td align="left"><a href="https://github.com/apache/maven-project-info-reports-plugin/issues">GitHub Issues</a></td>
+</tr>
+<tr>
+<td align="left"><a href="https://maven.apache.org/surefire/maven-surefire-report-plugin/"> <code>surefire-report</code></a></td>
+<td align="left">R</td>
+<td align="left">3.6.0</td>
+<td align="left">2026-08-31</td>
+<td align="left">Generate a report based on the results of unit tests.</td>
+<td align="left"><a href="https://gitbox.apache.org/repos/asf/maven-surefire.git">Git</a> / <a href="https://github.com/apache/maven-surefire/">GitHub</a></td>
+<td align="left"><a href="https://github.com/apache/maven-surefire/issues">GitHub Issues</a></td>
+</tr>
+<tr>
+<td align="left"><strong>Tools</strong></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"><strong>These are miscellaneous tools available through Maven by default.</strong></td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left"><a href="https://maven.apache.org/plugins/maven-antrun-plugin/"> <code>antrun</code></a></td>
+<td align="left">B</td>
+<td align="left">3.2.0</td>
+<td align="left">2025-10-17</td>
+<td align="left">Run a set of ant tasks from a phase of the build.</td>
+<td align="left"><a href="https://gitbox.apache.org/repos/asf/maven-antrun-plugin.git">Git</a> / <a href="https://github.com/apache/maven-antrun-plugin/">GitHub</a></td>
+<td align="left"><a href="https://github.com/apache/maven-antrun-plugin/issues">GitHub Issues</a></td>
+</tr>
+<tr>
+<td align="left"><a href="https://maven.apache.org/plugins/maven-artifact-plugin/"> <code>artifact</code></a></td>
+<td align="left">B</td>
+<td align="left">3.7.0</td>
+<td align="left">2026-09-15</td>
+<td align="left">Manage Reproducible Builds tasks about artifacts.</td>
+<td align="left"><a href="https://gitbox.apache.org/repos/asf/maven-artifact-plugin.git">Git</a> / <a href="https://github.com/apache/maven-artifact-plugin/">GitHub</a></td>
+<td align="left"><a href="https://github.com/apache/maven-artifact-plugin/issues">GitHub Issues</a></td>
+</tr>
+<tr>
+<td align="left"><a href="https://maven.apache.org/archetype/maven-archetype-plugin/"> <code>archetype</code></a></td>
+<td align="left">B</td>
+<td align="left">3.4.1</td>
+<td align="left">2025-10-03</td>
+<td align="left">Generate a skeleton project structure from an archetype.</td>
+<td align="left"><a href="https://gitbox.apache.org/repos/asf/maven-archetype.git">Git</a> / <a href="https://github.com/apache/maven-archetype/">GitHub</a></td>
+<td align="left"><a href="https://github.com/apache/maven-archetype/issues">GitHub Issues</a></td>
+</tr>
+<tr>
+<td align="left"><a href="https://maven.apache.org/plugins/maven-assembly-plugin/"> <code>assembly</code></a></td>
+<td align="left">B</td>
+<td align="left">3.8.0</td>
+<td align="left">2025-11-22</td>
+<td align="left">Build an assembly (distribution) of sources and/or binaries.</td>
+<td align="left"><a href="https://gitbox.apache.org/repos/asf/maven-assembly-plugin.git">Git</a> / <a href="https://github.com/apache/maven-assembly-plugin/">GitHub</a></td>
+<td align="left"><a href="https://github.com/apache/maven-assembly-plugin/issues">GitHub Issues</a></td>
+</tr>
+<tr>
+<td align="left"><a href="https://maven.apache.org/plugins/maven-dependency-plugin/"> <code>dependency</code></a></td>
+<td align="left">B+R</td>
+<td align="left">3.11.0</td>
+<td align="left">2026-05-24</td>
+<td align="left">Dependency manipulation (copy, unpack) and analysis.</td>
+<td align="left"><a href="https://gitbox.apache.org/repos/asf/maven-dependency-plugin.git">Git</a> / <a href="https://github.com/apache/maven-dependency-plugin/">GitHub</a></td>
+<td align="left"><a href="https://github.com/apache/maven-dependency-plugin/issues">GitHub Issues</a></td>
+</tr>
+<tr>
+<td align="left"><a href="https://maven.apache.org/enforcer/maven-enforcer-plugin/"> <code>enforcer</code></a></td>
+<td align="left">B</td>
+<td align="left">3.6.3</td>
+<td align="left">2026-05-15</td>
+<td align="left">Environmental constraint checking (Maven Version, JDK etc), User Custom Rule Execution.</td>
+<td align="left"><a href="https://gitbox.apache.org/repos/asf/maven-enforcer.git">Git</a> / <a href="https://github.com/apache/maven-enforcer/">GitHub</a></td>
+<td align="left"><a href="https://github.com/apache/maven-enforcer/issues">GitHub Issues</a></td>
+</tr>
+<tr>
+<td align="left"><a href="https://maven.apache.org/plugins/maven-gpg-plugin/"> <code>gpg</code></a></td>
+<td align="left">B</td>
+<td align="left">3.2.8</td>
+<td align="left">2025-06-28</td>
+<td align="left">Create signatures for the artifacts and poms.</td>
+<td align="left"><a href="https://gitbox.apache.org/repos/asf/maven-gpg-plugin.git">Git</a> / <a href="https://github.com/apache/maven-gpg-plugin/">GitHub</a></td>
+<td align="left"><a href="https://github.com/apache/maven-gpg-plugin/issues">GitHub Issues</a></td>
+</tr>
+<tr>
+<td align="left"><a href="https://maven.apache.org/plugins/maven-help-plugin/"> <code>help</code></a></td>
+<td align="left">B</td>
+<td align="left">3.5.2</td>
+<td align="left">2026-06-30</td>
+<td align="left">Get information about the working environment for the project.</td>
+<td align="left"><a href="https://gitbox.apache.org/repos/asf/maven-help-plugin.git">Git</a> / <a href="https://github.com/apache/maven-help-plugin/">GitHub</a></td>
+<td align="left"><a href="https://github.com/apache/maven-help-plugin/issues">GitHub Issues</a></td>
+</tr>
+<tr>
+<td align="left"><a href="https://maven.apache.org/plugins/maven-invoker-plugin/"> <code>invoker</code></a></td>
+<td align="left">B+R</td>
+<td align="left">3.10.1</td>
+<td align="left">2026-05-02</td>
+<td align="left">Run a set of Maven projects and verify the output.</td>
+<td align="left"><a href="https://gitbox.apache.org/repos/asf/maven-invoker-plugin.git">Git</a> / <a href="https://github.com/apache/maven-invoker-plugin/">GitHub</a></td>
+<td align="left"><a href="https://github.com/apache/maven-invoker-plugin/issues">GitHub Issues</a></td>
+</tr>
+<tr>
+<td align="left"><a href="https://maven.apache.org/plugins/maven-jarsigner-plugin/"> <code>jarsigner</code></a></td>
+<td align="left">B</td>
+<td align="left">3.1.0</td>
+<td align="left">2024-09-03</td>
+<td align="left">Signs or verifies project artifacts.</td>
+<td align="left"><a href="https://gitbox.apache.org/repos/asf/maven-jarsigner-plugin.git">Git</a> / <a href="https://github.com/apache/maven-jarsigner-plugin/">GitHub</a></td>
+<td align="left"><a href="https://github.com/apache/maven-jarsigner-plugin/issues">GitHub Issues</a></td>
+</tr>
+<tr>
+<td align="left"><a href="https://maven.apache.org/plugins/maven-jdeprscan-plugin/"> <code>jdeprscan</code></a></td>
+<td align="left">B</td>
+<td align="left">3.0.0</td>
+<td align="left">2025-12-22</td>
+<td align="left">Run JDK's JDeprScan tool on the project.</td>
+<td align="left"><a href="https://gitbox.apache.org/repos/asf/maven-jdeprscan-plugin.git">Git</a> / <a href="https://github.com/apache/maven-jdeprscan-plugin/">GitHub</a></td>
+<td align="left"><a href="https://github.com/apache/maven-jdeprscan-plugin/issues">GitHub Issues</a></td>
+</tr>
+<tr>
+<td align="left"><a href="https://maven.apache.org/plugin-tools/maven-plugin-plugin/"> <code>plugin</code></a></td>
+<td align="left">B</td>
+<td align="left">3.16.0</td>
+<td align="left">2026-09-06</td>
+<td align="left">Create a Maven plugin descriptor for any mojos found in the source tree, to include in the JAR.</td>
+<td align="left"><a href="https://gitbox.apache.org/repos/asf/maven-plugin-tools.git">Git</a> / <a href="https://github.com/apache/maven-plugin-tools/">GitHub</a></td>
+<td align="left"><a href="https://github.com/apache/maven-plugin-tools/issues">GitHub Issues</a></td>
+</tr>
+<tr>
+<td align="left"><a href="https://maven.apache.org/plugins/maven-release-plugin/"> <code>release</code></a></td>
+<td align="left">B</td>
+<td align="left">3.3.1</td>
+<td align="left">2025-12-09</td>
+<td align="left">Release the current project - updating the POM and tagging in the SCM.</td>
+<td align="left"><a href="https://gitbox.apache.org/repos/asf/maven-release.git">Git</a> / <a href="https://github.com/apache/maven-release/">GitHub</a></td>
+<td align="left"><a href="https://github.com/apache/maven-release/issues">GitHub Issues</a></td>
+</tr>
+<tr>
+<td align="left"><a href="https://maven.apache.org/plugins/maven-remote-resources-plugin/"> <code>remote-resources</code></a></td>
+<td align="left">B</td>
+<td align="left">3.3.0</td>
+<td align="left">2024-12-30</td>
+<td align="left">Copy remote resources to the output directory for inclusion in the artifact.</td>
+<td align="left"><a href="https://gitbox.apache.org/repos/asf/maven-remote-resources-plugin.git">Git</a> / <a href="https://github.com/apache/maven-remote-resources-plugin/">GitHub</a></td>
+<td align="left"><a href="https://github.com/apache/maven-remote-resources-plugin/issues">GitHub Issues</a></td>
+</tr>
+<tr>
+<td align="left"><a href="https://maven.apache.org/scm/maven-scm-plugin/"> <code>scm</code></a></td>
+<td align="left">B</td>
+<td align="left">2.2.1</td>
+<td align="left">2025-09-19</td>
+<td align="left">Execute SCM commands for the current project.</td>
+<td align="left"><a href="https://gitbox.apache.org/repos/asf/maven-scm.git">Git</a> / <a href="https://github.com/apache/maven-scm/">GitHub</a></td>
+<td align="left"><a href="https://github.com/apache/maven-scm/issues">GitHub Issues</a></td>
+</tr>
+<tr>
+<td align="left"><a href="https://maven.apache.org/plugins/maven-scm-publish-plugin/"> <code>scm-publish</code></a></td>
+<td align="left">B</td>
+<td align="left">3.3.0</td>
+<td align="left">2024-06-16</td>
+<td align="left">Publish your Maven website to a scm location.</td>
+<td align="left"><a href="https://gitbox.apache.org/repos/asf/maven-scm-publish-plugin.git">Git</a> / <a href="https://github.com/apache/maven-scm-publish-plugin/">GitHub</a></td>
+<td align="left"><a href="https://github.com/apache/maven-scm-publish-plugin/issues">GitHub Issues</a></td>
+</tr>
+<tr>
+<td align="left"><a href="https://maven.apache.org/plugins/maven-scripting-plugin/"> <code>scripting</code></a></td>
+<td align="left">B</td>
+<td align="left">3.1.0</td>
+<td align="left">2025-12-22</td>
+<td align="left">The Maven Scripting Plugin wraps the Scripting API according to JSR223.</td>
+<td align="left"><a href="https://gitbox.apache.org/repos/asf/maven-scripting-plugin.git">Git</a> / <a href="https://github.com/apache/maven-scripting-plugin/">GitHub</a></td>
+<td align="left"><a href="https://github.com/apache/maven-scripting-plugin/issues">GitHub Issues</a></td>
+</tr>
+<tr>
+<td align="left"><a href="https://maven.apache.org/plugins/maven-toolchains-plugin/"> <code>toolchains</code></a></td>
+<td align="left">B</td>
+<td align="left">3.3.0</td>
+<td align="left">2026-07-21</td>
+<td align="left">Allows to share configuration across plugins.</td>
+<td align="left"><a href="https://gitbox.apache.org/repos/asf/maven-toolchains-plugin.git">Git</a> / <a href="https://github.com/apache/maven-toolchains-plugin/">GitHub</a></td>
+<td align="left"><a href="https://github.com/apache/maven-toolchains-plugin/issues">GitHub Issues</a></td>
+</tr>
+<tr>
+<td align="left"><a href="https://maven.apache.org/tools/wrapper/maven-wrapper-plugin/"> <code>wrapper</code></a></td>
+<td align="left">B</td>
+<td align="left">3.3.4</td>
+<td align="left">2025-09-08</td>
+<td align="left">Download and unpack the maven wrapper distribution</td>
+<td align="left"><a href="https://gitbox.apache.org/repos/asf/maven-wrapper-plugin.git">Git</a> / <a href="https://github.com/apache/maven-wrapper/">GitHub</a></td>
+<td align="left"><a href="https://github.com/apache/maven-wrapper/issues">GitHub Issues</a></td>
+</tr>
+</tbody>
+</table>
+<p>* <strong>B</strong>uild or <strong>R</strong>eporting plugin</p>
+<p>There are also some sandbox plugins into our <a href="https://svn.apache.org/repos/asf/maven/sandbox/trunk/plugins">source repository</a>.</p>
+<p>Previous archived versions of plugins reference documentations are <a href="https://maven.apache.org/plugins-archives/">located here</a>.</p>
+<h2 id="Retired">Retired</h2>
+<table class="table table-striped">
+<thead>
+<tr>
+<th align="left"><strong>Plugin</strong></th>
+<th align="left"><strong>Type</strong>*</th>
+<th align="left"><strong>Version</strong></th>
+<th align="left"><strong>Retired Date</strong></th>
+<th align="left"><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left"><a href="https://maven.apache.org/plugins/maven-ant-plugin/"> <code>ant</code></a></td>
+<td align="left">B</td>
+<td align="left">2.4</td>
+<td align="left">2019-06-02</td>
+<td align="left">Generate an Ant build file for the project.</td>
+</tr>
+<tr>
+<td align="left"><a href="https://maven.apache.org/plugins/maven-docck-plugin/"> <code>docck</code></a></td>
+<td align="left">B</td>
+<td align="left">1.2</td>
+<td align="left">2023-10-22</td>
+<td align="left">Documentation checker plugin.</td>
+</tr>
+<tr>
+<td align="left"><a href="https://maven.apache.org/plugins/maven-eclipse-plugin/"> <code>eclipse</code></a></td>
+<td align="left">B</td>
+<td align="left">2.10</td>
+<td align="left">2015-10-07</td>
+<td align="left">Generate an Eclipse project files for the current project.</td>
+</tr>
+<tr>
+<td align="left"><a href="https://maven.apache.org/plugins/maven-idea-plugin/"> <code>idea</code></a></td>
+<td align="left">B</td>
+<td align="left">2.2.1</td>
+<td align="left">2013-07-26</td>
+<td align="left">Create/update an IDEA workspace for the current project (individual modules are created as IDEA modules)</td>
+</tr>
+<tr>
+<td align="left"><a href="https://maven.apache.org/plugins/maven-linkcheck-plugin/"> <code>linkcheck</code></a></td>
+<td align="left">R</td>
+<td align="left">1.2</td>
+<td align="left">2025-09-16</td>
+<td align="left">Generate a Linkcheck report of your project's documentation.</td>
+</tr>
+<tr>
+<td align="left"><a href="https://maven.apache.org/plugins/maven-one-plugin/"> <code>one</code></a></td>
+<td align="left">B</td>
+<td align="left">1.3</td>
+<td align="left">2013-07-30</td>
+<td align="left">A plugin for interacting with legacy Maven 1.x repositories and builds.</td>
+</tr>
+<tr>
+<td align="left"><a href="https://maven.apache.org/plugins/maven-patch-plugin/"> <code>patch</code></a></td>
+<td align="left">B</td>
+<td align="left">1.3</td>
+<td align="left">2024-12-10</td>
+<td align="left">Use the gnu patch tool to apply patch files to source code.</td>
+</tr>
+<tr>
+<td align="left"><a href="https://maven.apache.org/plugins/maven-pdf-plugin/"> <code>pdf</code></a></td>
+<td align="left">B</td>
+<td align="left">1.6.2</td>
+<td align="left">2025-03-04</td>
+<td align="left">Generate a PDF version of your project's documentation.</td>
+</tr>
+<tr>
+<td align="left"><a href="https://maven.apache.org/plugins/maven-reactor-plugin/"> <code>reactor</code></a></td>
+<td align="left">B</td>
+<td align="left">1.1</td>
+<td align="left">2014-03-24</td>
+<td align="left">Build a subset of interdependent projects in a reactor (Maven 2 only).</td>
+</tr>
+<tr>
+<td align="left"><a href="https://maven.apache.org/plugins/maven-repository-plugin/"> <code>repository</code></a></td>
+<td align="left">B</td>
+<td align="left">2.4</td>
+<td align="left">2019-04-30</td>
+<td align="left">Plugin to help with repository-based tasks.</td>
+</tr>
+<tr>
+<td align="left"><a href="https://maven.apache.org/plugins/maven-stage-plugin/"> <code>stage</code></a></td>
+<td align="left">B</td>
+<td align="left">1.0</td>
+<td align="left">2025-11-29</td>
+<td align="left">Assists with release staging and promotion.</td>
+</tr>
+<tr>
+<td align="left"><a href="https://maven.apache.org/plugins/maven-verifier-plugin/"> <code>verifier</code></a></td>
+<td align="left">B</td>
+<td align="left">1.1</td>
+<td align="left">2025-11-29</td>
+<td align="left">Useful for integration tests - verifies the existence of certain conditions.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="Outside_The_Maven_Land">Outside The Maven Land</h2>
+<h3 id="At_MojoHaus_.28formerly_known_as_codehaus.org.29">At MojoHaus (formerly known as <a id="codehaus.org"></a>codehaus.org)</h3>
+<p>There are also <a href="https://www.mojohaus.org/plugins.html">many plug-ins</a> available at the <a href="https://github.com/mojohaus">MojoHaus</a> project at GitHub.</p>
+<p>Here are a few common ones:</p>
+<table class="table table-striped">
+<thead>
+<tr>
+<th align="left"><strong>Plugin</strong> (see <a href="https://www.mojohaus.org/plugins.html">complete list with version</a>)</th>
+<th align="left"><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left"><a href="https://www.mojohaus.org/animal-sniffer/animal-sniffer-maven-plugin/"> <code>animal-sniffer</code></a></td>
+<td align="left">Build signatures of APIs (JDK for example) and checks your classes against them.</td>
+</tr>
+<tr>
+<td align="left"><a href="https://www.mojohaus.org/build-helper-maven-plugin/"> <code>build-helper</code></a></td>
+<td align="left">Attach extra artifacts and source directories to build.</td>
+</tr>
+<tr>
+<td align="left"><a href="https://www.mojohaus.org/buildplan-maven-plugin/"> <code>buildplan</code></a></td>
+<td align="left">Inspect the lifecycle of your build.</td>
+</tr>
+<tr>
+<td align="left"><a href="https://www.mojohaus.org/castor-maven-plugin/"> <code>castor</code></a></td>
+<td align="left">Generate sources from an XSD using Castor.</td>
+</tr>
+<tr>
+<td align="left"><a href="https://www.mojohaus.org/clirr-maven-plugin/"> <code>clirr</code></a></td>
+<td align="left">Compare binaries or sources for compatibility using Clirr</td>
+</tr>
+<tr>
+<td align="left"><a href="https://www.mojohaus.org/javacc-maven-plugin/"> <code>javacc</code></a></td>
+<td align="left">Generate sources from a JavaCC grammar.</td>
+</tr>
+<tr>
+<td align="left"><a href="https://www.mojohaus.org/jdepend-maven-plugin/"> <code>jdepend</code></a></td>
+<td align="left">Generate a report on code metrics using JDepend.</td>
+</tr>
+<tr>
+<td align="left"><a href="https://maven-nar.github.io/"> <code>nar-maven-plugin</code></a></td>
+<td align="left">Compiles C, C++, Fortran for different architectures.</td>
+</tr>
+<tr>
+<td align="left"><a href="https://www.mojohaus.org/maven-native/native-maven-plugin/"> <code>native</code></a></td>
+<td align="left">Compiles C and C++ code with native compilers.</td>
+</tr>
+<tr>
+<td align="left"><a href="https://www.mojohaus.org/sql-maven-plugin/"> <code>sql</code></a></td>
+<td align="left">Executes SQL scripts from files or inline.</td>
+</tr>
+<tr>
+<td align="left"><a href="https://www.mojohaus.org/taglist-maven-plugin/"> <code>taglist</code></a></td>
+<td align="left">Generate a list of tasks based on tags in your code.</td>
+</tr>
+<tr>
+<td align="left"><a href="https://www.mojohaus.org/versions-maven-plugin/"> <code>versions</code></a></td>
+<td align="left">Manage versions of your project, its modules, dependencies and plugins.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="Misc">Misc</h3>
+<p>A number of other projects provide their own Maven plugins. This includes:</p>
+<table class="table table-striped">
+<thead>
+<tr>
+<th align="left"><strong>Plugin</strong></th>
+<th align="left"><strong>Maintainer</strong></th>
+<th align="left"><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left"><a href="https://codehaus-cargo.github.io/"> <code>cargo</code></a></td>
+<td align="left"><a href="https://codehaus-cargo.github.io/">Cargo Project</a></td>
+<td align="left">Start/stop/configure J2EE containers and deploy to them.</td>
+</tr>
+<tr>
+<td align="left"><a href="https://confluence.atlassian.com/display/CLOVER/Clover-for-Maven+2"> <code>clover</code></a></td>
+<td align="left"><a href="https://www.atlassian.com/software/clover/">Atlassian Clover</a></td>
+<td align="left">Generate a Clover report.</td>
+</tr>
+<tr>
+<td align="left"><a href="https://www.eclipse.org/jetty/documentation/current/jetty-maven-plugin.html"> <code>jetty</code></a></td>
+<td align="left"><a href="https://www.eclipse.org/jetty/">Jetty Project</a></td>
+<td align="left">Jetty Run a Jetty container for rapid webapp development.</td>
+</tr>
+<tr>
+<td align="left"><a href="http://www.triemax.com/products/jalopy/manual/plugin-maven.html"> <code>jalopy</code></a></td>
+<td align="left"><a href="http://www.triemax.com/">Triemax</a></td>
+<td align="left">Use Jalopy to format your source code.</td>
+</tr>
+<tr>
+<td align="left"><a href="https://creadur.apache.org/rat/"> <code>rat</code></a></td>
+<td align="left"><a href="https://creadur.apache.org/">Apache Creadur Project</a></td>
+<td align="left">Release Audit Tool (RAT) to verify files.</td>
+</tr>
+<tr>
+<td align="left"><a href="https://geronimo.apache.org/maven/genesis/plugins/tools-maven-plugin/index.html"> <code>Genesis Plugins</code></a></td>
+<td align="left"><a href="https://geronimo.apache.org/">Apache Geronimo Project</a></td>
+<td align="left">Verify legal files in artifacts.</td>
+</tr>
+<tr>
+<td align="left"><a href="https://tomcat.apache.org/maven-plugin.html"> <code>Apache Tomcat</code></a></td>
+<td align="left"><a href="https://tomcat.apache.org/maven-plugin.html">Apache Tomcat Project</a></td>
+<td align="left">Run an Apache Tomcat container for rapid webapp development.</td>
+</tr>
+<tr>
+<td align="left"><a href="https://dependency-check.github.io/DependencyCheck/"> <code>OWASP dependency-check</code></a></td>
+<td align="left"><a href="https://www.owasp.org/index.php/OWASP_Dependency_Check">OWASP Dependency-check Project</a></td>
+<td align="left">Run OWASP Dependency-Check, a utility that identifies project dependencies and checks if there are any known, publicly disclosed, vulnerabilities.</td>
+</tr>
+<tr>
+<td align="left"><a href="https://github.com/CycloneDX/cyclonedx-maven-plugin"> <code>CycloneDX</code></a></td>
+<td align="left"><a href="https://cyclonedx.org/">CycloneDX Project</a></td>
+<td align="left">Generate Software Bill of Materials (SBOM) in CycloneDX format.</td>
+</tr>
+<tr>
+<td align="left"><a href="https://www.simplify4u.org/pgpverify-maven-plugin/"> <code>pgpverify</code></a></td>
+<td align="left"><a href="https://www.simplify4u.org/">Simplify4U</a></td>
+<td align="left">Verify PGP signature of all project dependencies.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="Resources">Resources</h2>
+<ol>
+<li><a href="../guides/mini/guide-configuring-plugins.html">Guide to Configuring Plugins</a></li>
+</ol>
+
+        </main>
+      </div>
+    </div>
+    <hr>
+    <footer>
+      <div class="container-fluid">
+        <div class="row-fluid">
+          <p>©      2002–2026 <a href="https://www.apache.org/">The Apache Software Foundation</a></p>
+          <p class="demo-note">A demonstration build of <a href="https://github.com/dashorst/maven-site/tree/diataxis-demo">dashorst/maven-site</a>, not the official Apache Maven site.</p>
+        </div>
+      </div>
+    </footer>
+    <script src="/maven-site/js/guide.js?v=1792948498" defer=""></script>
+    <script>
+    anchors.add();
+    </script>
+  
+
+</body></html>

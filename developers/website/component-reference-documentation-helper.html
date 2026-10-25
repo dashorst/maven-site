@@ -1,0 +1,292 @@
+<!DOCTYPE html><!--
+ | The page frame of the Apache Maven Fluido Skin 2.1.0, as the Doxia site renderer writes it
+ | for maven.apache.org. Built with Jekyll: see jekyll/README.md.
+--><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>component-reference-documentation-helper – Maven</title>
+    
+    <link rel="stylesheet" href="/maven-site/css/apache-maven-fluido-2.1.0.min.css">
+    <link rel="stylesheet" href="/maven-site/css/site.css">
+    <link rel="stylesheet" href="/maven-site/css/guide.css?v=1792948498">
+    <link rel="stylesheet" href="/maven-site/css/print.css" media="print">
+    <script src="/maven-site/js/apache-maven-fluido-2.1.0.min.js"></script>
+  </head>
+  <body>
+    <div class="container-fluid container-fluid-top">
+      <header>
+        <div id="banner">
+          <div class="pull-left"><div id="bannerLeft"><h1><a href="/maven-site/index.html"><img src="/maven-site/images/apache-maven-project-light-theme.svg" style="width: 489px;height: 83px;" alt="Apache Maven"></a></h1></div></div>
+          <div class="pull-right"><div id="bannerRight"><h1><img src="/maven-site/images/logos/MavenLogoLeaf.svg" style="width: 340px;height: 83px;" alt=""></h1></div></div>
+          <div class="clear"><hr></div>
+        </div>
+
+        <div id="breadcrumbs">
+          <ul class="breadcrumb">
+            <li><a href="https://www.apache.org/">Apache</a><span class="divider">/</span></li>
+            <li><a href="/maven-site/index.html">Maven</a><span class="divider">/</span></li>
+            
+            <li class="active">component-reference-documentation-helper <a href="https://github.com/apache/maven-site/tree/master/content/markdown/developers/website/component-reference-documentation-helper.md"><img src="/maven-site/images/accessories-text-editor.png" alt="Edit"></a></li>
+            <li id="publishDate" class="pull-right"><span class="divider">|</span> Last Published: 2026-10-25</li>
+            <li class="pull-right"><span class="divider">|</span> <a href="/maven-site/scm.html">Get Sources</a></li>
+            <li class="pull-right"><a href="https://maven.apache.org/download.cgi">Downloads</a></li>
+          </ul>
+        </div>
+      </header>
+      <div class="row-fluid">
+        <header id="leftColumn" class="span2">
+          
+<form class="guide-search" role="search" action="/maven-site/guides/a-z.html" data-index="/maven-site/guides/search.json" data-script="/maven-site/js/minisearch-7.2.0.js" data-oldest="3.9" data-base="/maven-site">
+  <label class="guide-search-label" for="guide-q-nav">Search the documentation</label>
+  <div class="guide-search-field">
+    <input id="guide-q-nav" name="q" type="search" autocomplete="off" spellcheck="false" placeholder="Search">
+    <kbd class="guide-search-key" aria-hidden="true">/</kbd>
+  </div>
+  
+</form>
+
+          <nav class="well sidebar-nav">
+<ul class="nav nav-list">
+  <li><a href="/maven-site/index.html">Welcome</a></li>
+  <li><a href="https://www.apache.org/licenses/">License</a></li>
+  <li class="nav-header">About Maven</li>
+  <li><a href="/maven-site/what-is-maven.html">What is Maven?</a></li>
+  <li><a href="/maven-site/install.html">Installation</a></li>
+  <li><a href="/maven-site/download.html">Downloads</a></li>
+  <li><a href="/maven-site/run.html">Use</a></li>
+  <li><a href="/maven-site/configure.html">Configure</a></li>
+  <li><a href="/maven-site/docs/history.html">Release Notes</a></li>
+  <li><a href="/maven-site/security.html">Security Reports</a></li>
+  <li class="nav-header">Documentation</li>
+  <li><a href="/maven-site/plugins/index.html">Maven Plugins</a></li>
+  <li><a href="/maven-site/extensions/index.html">Maven Extensions</a></li>
+  <li><a href="/maven-site/tools/index.html"><span class="icon-chevron-down"></span>Maven Tools</a>
+   <ul class="nav nav-list">
+    <li><a href="/maven-site/tools/mvnd.html">Maven Daemon</a></li>
+    <li><a href="/maven-site/tools/mvnsh.html">Maven Shell</a></li>
+    <li><a href="/maven-site/tools/mvnup.html">Maven Upgrade Tool</a></li>
+    <li><a href="/maven-site/tools/mavenwrapper.html">Maven Wrapper</a></li>
+   </ul></li>
+  <li><a href="/maven-site/doxia/index.html"><span class="icon-chevron-right"></span>Doxia</a></li>
+  <li><a href="/maven-site/guides/index.html">Guides</a></li>
+  <li><a href="/maven-site/users/index.html"><span class="icon-chevron-right"></span>User Manual</a></li>
+  <li><a href="/maven-site/repositories/index.html"><span class="icon-chevron-right"></span>Maven Repositories</a></li>
+  <li><a href="/maven-site/plugin-developers/index.html"><span class="icon-chevron-right"></span>Plugin Development</a></li>
+  <li><a href="/maven-site/developers/index.html"><span class="icon-chevron-down"></span>Contribute to Maven</a>
+   <ul class="nav nav-list">
+    <li><a href="/maven-site/guides/development/guide-helping.html">Guide to Helping with Maven</a></li>
+    <li><a href="/maven-site/developers/conventions/code.html">Code Style and Conventions</a></li>
+    <li><a href="/maven-site/developers/conventions/git.html">Git Convention</a></li>
+    <li><a href="/maven-site/developers/conventions/github.html">GitHub Convention</a></li>
+    <li><a href="/maven-site/guides/development/guide-maven-development.html"><span class="icon-chevron-right"></span>Developing Maven</a></li>
+    <li><a href="/maven-site/developers/release/index.html"><span class="icon-chevron-right"></span>Release Process</a></li>
+    <li><a href="/maven-site/developers/website/index.html"><span class="icon-chevron-down"></span>Deploy Maven Website</a>
+     <ul class="nav nav-list">
+      <li><a href="/maven-site/developers/website/deploy-component-reference-documentation.html">Components Documentation</a></li>
+      <li class="active"><a>Component Helper</a></li>
+      <li><a href="/maven-site/logoupdate.html">New logos for Maven</a></li>
+     </ul></li>
+    <li><a href="/maven-site/developers/welcome-to-new-committers.html"><span class="icon-chevron-right"></span>Committers</a></li>
+   </ul></li>
+  <li><a href="/maven-site/articles.html">Books and Resources</a></li>
+  <li class="nav-header">Community</li>
+  <li><a href="/maven-site/community.html">Community Overview</a></li>
+  <li><a href="/maven-site/project-roles.html">Project Roles</a></li>
+  <li><a href="/maven-site/guides/development/guide-helping.html">How to Contribute</a></li>
+  <li><a href="/maven-site/users/getting-help.html">Getting Help</a></li>
+  <li><a href="/maven-site/issue-management.html">Issue Management</a></li>
+  <li><a href="/maven-site/scm.html">Getting Maven Source</a></li>
+  <li><a href="/maven-site/team.html">The Maven Team</a></li>
+  <li class="nav-header">Project Documentation</li>
+  <li><a href="/maven-site/project-info.html">Project Information</a></li>
+  <li class="nav-header">Maven Projects</li>
+  <li><a href="/maven-site/ref/current">Maven</a></li>
+  <li><a href="/maven-site/archetypes/index.html">Archetypes</a></li>
+  <li><a href="/maven-site/extensions/index.html">Extensions</a></li>
+  <li><a href="/maven-site/pom/index.html">Parent POMs</a></li>
+  <li><a href="/maven-site/plugins/index.html">Plugins</a></li>
+  <li><a href="/maven-site/skins/index.html">Skins</a></li>
+  <li><a><span class="icon-chevron-down"></span>Components</a>
+   <ul class="nav nav-list">
+    <li><a href="/maven-site/archetype/index.html">Archetype</a></li>
+    <li><a href="/maven-site/resolver/index.html">Artifact Resolver</a></li>
+    <li><a href="/maven-site/doxia/index.html">Doxia</a></li>
+    <li><a href="/maven-site/maven-indexer/index.html">Indexer</a></li>
+    <li><a href="/maven-site/jxr/index.html">JXR</a></li>
+    <li><a href="/maven-site/plugin-testing/index.html">Plugin Testing</a></li>
+    <li><a href="/maven-site/plugin-tools/index.html">Plugin Tools</a></li>
+    <li><a href="/maven-site/apache-resource-bundles/index.html">Resource Bundles</a></li>
+    <li><a href="/maven-site/scm/index.html">SCM</a></li>
+    <li><a href="/maven-site/shared/index.html">Shared Components</a></li>
+    <li><a href="/maven-site/surefire/index.html">Surefire</a></li>
+    <li><a href="/maven-site/wagon/index.html">Wagon</a></li>
+   </ul></li>
+  <li class="nav-header">ASF</li>
+  <li><a href="https://www.apache.org/foundation/how-it-works.html">How Apache Works</a></li>
+  <li><a href="https://www.apache.org/foundation/">Foundation</a></li>
+  <li><a href="https://privacy.apache.org/policies/privacy-policy-public.html">Data Privacy</a></li>
+  <li><a href="https://www.apache.org/foundation/sponsorship.html">Sponsoring Apache</a></li>
+  <li><a href="https://www.apache.org/foundation/thanks.html">Thanks</a></li>
+</ul>
+          </nav>
+          <div class="well sidebar-nav">
+            <div id="poweredBy">
+              <div class="clear"></div>
+              <a href="/maven-site/" class="builtBy" target="_blank"><img class="builtBy" alt="Built by Maven" src="/maven-site/images/logos/maven-feather.png"></a>
+            </div>
+          </div>
+        </header>
+        <main id="bodyColumn" class="span10">
+          
+<h2 id="Preparing_Component_Release_Documentation">Preparing Component Release Documentation</h2>
+<!--
+Licensed to the Apache Software Foundation (ASF) under one
+or more contributor license agreements.  See the NOTICE file
+distributed with this work for additional information
+regarding copyright ownership.  The ASF licenses this file
+to you under the Apache License, Version 2.0 (the
+"License"); you may not use this file except in compliance
+with the License.  You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing,
+software distributed under the License is distributed on an
+"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+KIND, either express or implied.  See the License for the
+specific language governing permissions and limitations
+under the License.
+-->
+<p>select component category, then type artifact id and version to generate svn commands:</p>
+<table class="table table-striped">
+<tbody><tr><td>
+<a id="Component_category"></a>
+<p style="margin:10px 0;font-weight:bold;line-height:40px;color:inherit;font-size:24.5px;">Component category</p>
+<ul>
+<li><a href="?core">core</a></li>
+<li><a href="?shared">shared components</a></li>
+<li><a href="?plugins">plugins</a></li>
+<li><a href="?pom">poms</a></li>
+<li><a href="?resolver">resolver</a></li>
+<li><a href="?skins">skins</a></li>
+<li><a href="?extensions">extensions</a></li>
+<li><a href="?tools">tools</a></li>
+<li><a href="?doxia">Doxia</a></li>
+<li><a href="?doxia-sitetools">Doxia Sitetools</a></li>
+<li><a href="?doxia-tools">Doxia Tools</a></li>
+<li><a href="?others">others</a></li>
+</ul>
+</td><td>
+<a id="Component_information"></a>
+<p style="margin:10px 0;font-weight:bold;line-height:40px;color:inherit;font-size:24.5px;">Component information</p>
+<div>directory (~artifact id): <input type="text" name="artifactId" id="artifactId" style="vertical-align: baseline"></div>
+<div>version: <input type="text" name="version" id="version" style="vertical-align: baseline"></div>
+<div id="v4x-box"><b>4.x</b> version suffix: <input type="checkbox" id="v4x" style="vertical-align: baseline"></div>
+<div><br><button onclick="instructions()">Publish instructions</button></div>
+</td></tr>
+<tr><td colspan="3">
+<a id="Instructions_to_publish_component_release_documentation"></a>
+<p style="margin:10px 0;font-weight:bold;line-height:40px;color:inherit;font-size:24.5px;">Instructions to publish component release documentation</p>
+<pre id="svnmucc">svnmucc -m "Publish ${artifactId} ${version} documentation" \
+  -U https://svn.apache.org/repos/asf/maven/website/components \
+  cp HEAD ${category}-archives/${artifactId}-LATEST${vSuffix} ${category}-archives/${artifactId}-${version} \
+  rm ${category}/${artifactId}${vSuffix} \
+  cp HEAD ${category}-archives/${artifactId}-LATEST${vSuffix} ${category}/${artifactId}${vSuffix}</pre>
+<p>When using windows, replace the <code>\</code> with <code>^</code> to ensure correct multiline command execution.</p>
+</td></tr>
+<tr><td colspan="2"><iframe id="index-page" src="" width="100%" height="300px"></iframe></td>
+<td>archives directory<br>
+<iframe id="archives" src="" width="100%" height="300px"></iframe>
+</td>
+</tr>
+</tbody></table>
+<script type="text/javascript"><![CDATA[
+function selectCategory(index, archive) {
+  var indexPage = document.getElementById('index-page');
+  var linkIndexPage = document.getElementById('link-index-page');
+  var archives = document.getElementById('archives');
+  var indexUrl = index ? ('https://maven.apache.org/' + index) : '';
+  indexPage.setAttribute('src', indexUrl);
+  archives.setAttribute('src', 'https://maven.apache.org/' + archive + '?C=M;O=D');
+  instructions();
+}
+
+function escapeRegExp(string) {
+    return string.replace(/([.*+?^=!:${}()|\[\]\/\\])/g, "\\$1");
+}
+function replaceAll(string, find, replace) {
+  return string.replace(new RegExp(escapeRegExp(find), 'g'), replace);
+}
+
+function instructions() {
+  var category = document.location.search.substring(1);
+  var artifactId = document.getElementById('artifactId').value;
+  var version = document.getElementById('version').value;
+  var v4x = document.getElementById('v4x').checked;
+  var v4xBox = document.getElementById('v4x-box');
+  var svnmucc = svnmuccTemplate;
+  if (category == "core") {
+    artifactId = "Maven";
+    svnmucc = svnmucc.substring(0, svnmucc.indexOf("  rm "));
+    svnmucc = replaceAll(svnmucc, '${artifactId}-LATEST', '3-LATEST');
+    svnmucc = replaceAll(svnmucc, '${category}-archives', 'ref');
+    svnmucc = replaceAll(svnmucc, '${artifactId}-${version} \\', '${version}\n\n');
+    v4x = false;
+    v4xBox.style.display = 'none';
+  }
+  if (category.indexOf("doxia") == 0 && category != "doxia-tools") {
+    document.getElementById('artifactId').value = category;
+  }
+  if (category == "resolver" || category == "others" || category == "doxia" || category == "doxia-sitetools") {
+    // category directory is based on artifactId
+    svnmucc = replaceAll(svnmucc, '${category}/${artifactId}', '${artifactId}');
+    svnmucc = replaceAll(svnmucc, '${category}', '${artifactId}');
+  }
+  svnmucc = replaceAll(svnmucc, '${category}', category);
+  if (artifactId) {
+    svnmucc = replaceAll(svnmucc, '${artifactId}', artifactId);
+  }
+  if (version) {
+    svnmucc = replaceAll(svnmucc, '${version}', version);
+  }
+  if (v4x) {
+    svnmucc = replaceAll(svnmucc, '${vSuffix}', '-4.x');
+  } else {
+    svnmucc = replaceAll(svnmucc, '${vSuffix}', '');
+  }
+  document.getElementById('svnmucc').innerHTML = svnmucc;
+}
+
+var category = document.location.search.substring(1);
+var svnmuccTemplate = document.getElementById('svnmucc').innerHTML;
+
+if (category == "core") {
+  selectCategory('docs/history.html', 'ref/');
+} else if (category.indexOf("doxia") == 0) {
+  selectCategory('doxia/' + category + '/', 'doxia/' + category + '-archives/');
+} else if (category == "others") {
+  selectCategory('', 'components/');
+} else if (category != "") {
+  selectCategory(category + '/', category+'-archives/');
+}
+//]]></script>
+
+        </main>
+      </div>
+    </div>
+    <hr>
+    <footer>
+      <div class="container-fluid">
+        <div class="row-fluid">
+          <p>©      2002–2026 <a href="https://www.apache.org/">The Apache Software Foundation</a></p>
+          <p class="demo-note">A demonstration build of <a href="https://github.com/dashorst/maven-site/tree/diataxis-demo">dashorst/maven-site</a>, not the official Apache Maven site.</p>
+        </div>
+      </div>
+    </footer>
+    <script src="/maven-site/js/guide.js?v=1792948498" defer=""></script>
+    <script>
+    anchors.add();
+    </script>
+  
+
+</body></html>

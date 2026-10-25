@@ -1,0 +1,458 @@
+<!DOCTYPE html><!--
+ | The page frame of the Apache Maven Fluido Skin 2.1.0, as the Doxia site renderer writes it
+ | for maven.apache.org. Built with Jekyll: see jekyll/README.md.
+--><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Reactor options – Maven</title>
+    <meta name="description" content="The command-line options that select, order and continue the modules of a multi-module build, the project selector syntax, and the Maven line each needs.">
+    <link rel="stylesheet" href="/maven-site/css/apache-maven-fluido-2.1.0.min.css">
+    <link rel="stylesheet" href="/maven-site/css/site.css">
+    <link rel="stylesheet" href="/maven-site/css/guide.css?v=1792948498">
+    <link rel="stylesheet" href="/maven-site/css/print.css" media="print">
+    <script src="/maven-site/js/apache-maven-fluido-2.1.0.min.js"></script>
+  </head>
+  <body>
+    <div class="container-fluid container-fluid-top">
+      <header>
+        <div id="banner">
+          <div class="pull-left"><div id="bannerLeft"><h1><a href="/maven-site/index.html"><img src="/maven-site/images/apache-maven-project-light-theme.svg" style="width: 489px;height: 83px;" alt="Apache Maven"></a></h1></div></div>
+          <div class="pull-right"><div id="bannerRight"><h1><img src="/maven-site/images/logos/MavenLogoLeaf.svg" style="width: 340px;height: 83px;" alt=""></h1></div></div>
+          <div class="clear"><hr></div>
+        </div>
+
+        <div id="breadcrumbs">
+          <ul class="breadcrumb">
+            <li><a href="https://www.apache.org/">Apache</a><span class="divider">/</span></li>
+            <li><a href="/maven-site/index.html">Maven</a><span class="divider">/</span></li>
+            <li><a href="/maven-site/guides/index.html">Guides</a><span class="divider">/</span></li>
+            <li><a href="/maven-site/guides/topics/multi-module.html">Multi-module projects</a><span class="divider">/</span></li>
+            
+            <li class="active">Reactor options <a href="https://github.com/dashorst/maven-site/blob/diataxis-demo/jekyll/_guide/reactor-options.md"><img src="/maven-site/images/accessories-text-editor.png" alt="Edit"></a></li>
+            <li id="publishDate" class="pull-right"><span class="divider">|</span> Last Published: 2026-10-25</li>
+            <li class="pull-right"><span class="divider">|</span> <a href="/maven-site/scm.html">Get Sources</a></li>
+            <li class="pull-right"><a href="https://maven.apache.org/download.cgi">Downloads</a></li>
+          </ul>
+        </div>
+      </header>
+      <div class="row-fluid">
+        <header id="leftColumn" class="span2">
+          
+<form class="guide-search" role="search" action="/maven-site/guides/a-z.html" data-index="/maven-site/guides/search.json" data-script="/maven-site/js/minisearch-7.2.0.js" data-oldest="3.9" data-base="/maven-site">
+  <label class="guide-search-label" for="guide-q-nav">Search the documentation</label>
+  <div class="guide-search-field">
+    <input id="guide-q-nav" name="q" type="search" autocomplete="off" spellcheck="false" placeholder="Search">
+    <kbd class="guide-search-key" aria-hidden="true">/</kbd>
+  </div>
+  
+</form>
+
+          <nav class="well sidebar-nav">
+<ul class="nav nav-list">
+  <li><a href="/maven-site/index.html">Welcome</a></li>
+  <li><a href="https://www.apache.org/licenses/">License</a></li>
+  <li class="nav-header">About Maven</li>
+  <li><a href="/maven-site/what-is-maven.html">What is Maven?</a></li>
+  <li><a href="/maven-site/install.html">Installation</a></li>
+  <li><a href="/maven-site/download.html">Downloads</a></li>
+  <li><a href="/maven-site/run.html">Use</a></li>
+  <li><a href="/maven-site/configure.html">Configure</a></li>
+  <li><a href="/maven-site/docs/history.html">Release Notes</a></li>
+  <li><a href="/maven-site/security.html">Security Reports</a></li>
+  <li class="nav-header">Documentation</li>
+  <li><a href="/maven-site/plugins/index.html">Maven Plugins</a></li>
+  <li><a href="/maven-site/extensions/index.html">Maven Extensions</a></li>
+  <li><a href="/maven-site/tools/index.html"><span class="icon-chevron-down"></span>Maven Tools</a>
+   <ul class="nav nav-list">
+    <li><a href="/maven-site/tools/mvnd.html">Maven Daemon</a></li>
+    <li><a href="/maven-site/tools/mvnsh.html">Maven Shell</a></li>
+    <li><a href="/maven-site/tools/mvnup.html">Maven Upgrade Tool</a></li>
+    <li><a href="/maven-site/tools/mavenwrapper.html">Maven Wrapper</a></li>
+   </ul></li>
+  <li><a href="/maven-site/doxia/index.html"><span class="icon-chevron-right"></span>Doxia</a></li>
+  <li class="active"><a href="/maven-site/guides/index.html">Guides</a></li>
+  <li><a href="/maven-site/users/index.html"><span class="icon-chevron-right"></span>User Manual</a></li>
+  <li><a href="/maven-site/repositories/index.html"><span class="icon-chevron-right"></span>Maven Repositories</a></li>
+  <li><a href="/maven-site/plugin-developers/index.html"><span class="icon-chevron-right"></span>Plugin Development</a></li>
+  <li><a href="/maven-site/developers/index.html"><span class="icon-chevron-right"></span>Contribute to Maven</a></li>
+  <li><a href="/maven-site/articles.html">Books and Resources</a></li>
+  <li class="nav-header">Community</li>
+  <li><a href="/maven-site/community.html">Community Overview</a></li>
+  <li><a href="/maven-site/project-roles.html">Project Roles</a></li>
+  <li><a href="/maven-site/guides/development/guide-helping.html">How to Contribute</a></li>
+  <li><a href="/maven-site/users/getting-help.html">Getting Help</a></li>
+  <li><a href="/maven-site/issue-management.html">Issue Management</a></li>
+  <li><a href="/maven-site/scm.html">Getting Maven Source</a></li>
+  <li><a href="/maven-site/team.html">The Maven Team</a></li>
+  <li class="nav-header">Project Documentation</li>
+  <li><a href="/maven-site/project-info.html">Project Information</a></li>
+  <li class="nav-header">Maven Projects</li>
+  <li><a href="/maven-site/ref/current">Maven</a></li>
+  <li><a href="/maven-site/archetypes/index.html">Archetypes</a></li>
+  <li><a href="/maven-site/extensions/index.html">Extensions</a></li>
+  <li><a href="/maven-site/pom/index.html">Parent POMs</a></li>
+  <li><a href="/maven-site/plugins/index.html">Plugins</a></li>
+  <li><a href="/maven-site/skins/index.html">Skins</a></li>
+  <li><a><span class="icon-chevron-down"></span>Components</a>
+   <ul class="nav nav-list">
+    <li><a href="/maven-site/archetype/index.html">Archetype</a></li>
+    <li><a href="/maven-site/resolver/index.html">Artifact Resolver</a></li>
+    <li><a href="/maven-site/doxia/index.html">Doxia</a></li>
+    <li><a href="/maven-site/maven-indexer/index.html">Indexer</a></li>
+    <li><a href="/maven-site/jxr/index.html">JXR</a></li>
+    <li><a href="/maven-site/plugin-testing/index.html">Plugin Testing</a></li>
+    <li><a href="/maven-site/plugin-tools/index.html">Plugin Tools</a></li>
+    <li><a href="/maven-site/apache-resource-bundles/index.html">Resource Bundles</a></li>
+    <li><a href="/maven-site/scm/index.html">SCM</a></li>
+    <li><a href="/maven-site/shared/index.html">Shared Components</a></li>
+    <li><a href="/maven-site/surefire/index.html">Surefire</a></li>
+    <li><a href="/maven-site/wagon/index.html">Wagon</a></li>
+   </ul></li>
+  <li class="nav-header">ASF</li>
+  <li><a href="https://www.apache.org/foundation/how-it-works.html">How Apache Works</a></li>
+  <li><a href="https://www.apache.org/foundation/">Foundation</a></li>
+  <li><a href="https://privacy.apache.org/policies/privacy-policy-public.html">Data Privacy</a></li>
+  <li><a href="https://www.apache.org/foundation/sponsorship.html">Sponsoring Apache</a></li>
+  <li><a href="https://www.apache.org/foundation/thanks.html">Thanks</a></li>
+</ul>
+          </nav>
+          <div class="well sidebar-nav">
+            <div id="poweredBy">
+              <div class="clear"></div>
+              <a href="/maven-site/" class="builtBy" target="_blank"><img class="builtBy" alt="Built by Maven" src="/maven-site/images/logos/maven-feather.png"></a>
+            </div>
+          </div>
+        </header>
+        <main id="bodyColumn" class="span10">
+          
+
+
+
+
+<header class="guide-head">
+  <h1 id="Reactor_options">Reactor options</h1>
+  <p class="lead">The command-line options that select, order and continue the modules of a multi-module build, the project selector syntax, and the Maven line each needs.</p>
+  <p class="guide-plates"><span class="label guide-kind guide-kind--reference">Reference</span>
+    
+    <a class="guide-topic-link" href="/maven-site/guides/topics/multi-module.html">Multi-module projects</a></p>
+  
+  <p class="guide-version-note alert" data-since="3.9" hidden="">This page describes Maven 3.9 and later; you chose Maven <span data-chosen=""></span>.</p>
+  
+</header>
+<div class="doxia-toc"><ul><li><a href="#Selecting_modules">Selecting modules</a></li><li><a href="#Project_selectors">Project selectors</a></li><li><a href="#Failures">Failures</a></li><li><a href="#Parallel_builds">Parallel builds</a></li></ul></div>
+<div class="guide-content">
+<p>These options change which modules of a multi-module build Maven builds, from where, and what happens when one fails. Without them, Maven builds the project in the current directory and all its modules. The complete list of command-line options is in the <a href="https://maven.apache.org/ref/current/maven-embedder/cli.html">CLI options reference</a>; <code>mvn --help</code> prints it for the Maven you run. <a href="build-part-of-a-project.html">Build part of a multi-module project</a> shows the common combinations.</p>
+<h2 id="Selecting_modules">Selecting modules</h2>
+<table class="table table-striped">
+<thead>
+<tr>
+<th>Option</th>
+<th>Long form</th>
+<th>Effect</th>
+<th>Maven</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://maven.apache.org/ref/current/maven-embedder/cli.html"><code>-pl</code></a></td>
+<td><code>--projects</code></td>
+<td>Builds only the listed modules, a comma-separated list of <a href="#Project_selectors">project selectors</a>. Modules they need come from the local repository unless they are selected too; Maven 4 looks in <code>.mvn/target/project-local-repo</code> first.</td>
+<td>3.9, 3.10, 4.0</td>
+</tr>
+<tr>
+<td><a href="https://maven.apache.org/ref/current/maven-embedder/cli.html"><code>-am</code></a></td>
+<td><code>--also-make</code></td>
+<td>Adds the modules the selected ones depend on, directly or indirectly, and their parents.</td>
+<td>3.9, 3.10, 4.0</td>
+</tr>
+<tr>
+<td><a href="https://maven.apache.org/ref/current/maven-embedder/cli.html"><code>-amd</code></a></td>
+<td><code>--also-make-dependents</code></td>
+<td>Adds the modules that depend on the selected ones, directly or indirectly.</td>
+<td>3.9, 3.10, 4.0</td>
+</tr>
+<tr>
+<td><a href="https://maven.apache.org/ref/current/maven-embedder/cli.html"><code>-rf</code></a></td>
+<td><code>--resume-from</code></td>
+<td>Takes one project selector and leaves out every module that comes before it in the build order.</td>
+<td>3.9, 3.10, 4.0</td>
+</tr>
+<tr>
+<td><a href="https://maven.apache.org/ref/current/maven-embedder/cli.html"><code>-r</code></a></td>
+<td><code>--resume</code></td>
+<td>Builds only the modules that failed or were skipped in the previous build, as recorded in <code>target/resume.properties</code> of the root directory.</td>
+<td>4.0</td>
+</tr>
+<tr>
+<td><a href="https://maven.apache.org/ref/current/maven-embedder/cli.html"><code>-N</code></a></td>
+<td><code>--non-recursive</code></td>
+<td>Builds the POM in the current directory without its modules. With <code>-pl</code> on Maven 4: selects an aggregator without its subprojects.</td>
+<td>3.9, 3.10, 4.0</td>
+</tr>
+<tr>
+<td><a href="https://maven.apache.org/ref/current/maven-embedder/cli.html"><code>-f</code></a></td>
+<td><code>--file</code></td>
+<td>Starts from another POM file, or the <code>pom.xml</code> in another directory, as if Maven ran there.</td>
+<td>3.9, 3.10, 4.0</td>
+</tr>
+</tbody>
+</table>
+<p><code>-am</code> and <code>-amd</code> without <code>-pl</code> select nothing extra on Maven 3. On Maven 4 they apply to the project in the current directory, and reach the whole project even when you start in a subproject's directory.</p>
+<p>Maven 3 does not know <code>-r</code> and stops with <code>Unrecognized option: -r</code>. The CLI options reference describes the latest Maven 3 release; Maven 4 lists <code>-r</code> in <code>mvn --help</code>.</p>
+<h2 id="Project_selectors">Project selectors</h2>
+<p><code>-pl</code> takes a comma-separated list of selectors, <code>-rf</code> takes one. Each selector names one module of the build.</p>
+<table class="table table-striped">
+<thead>
+<tr>
+<th>Selector</th>
+<th>Selects</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>path</td>
+<td>the module in that directory, relative to the current directory</td>
+<td><code>core</code>, <code>services/billing</code>, <code>./core</code></td>
+</tr>
+<tr>
+<td><code>:artifactId</code></td>
+<td>the module with that artifact id</td>
+<td><code>:core</code></td>
+</tr>
+<tr>
+<td><code>groupId:artifactId</code></td>
+<td>the module with that group and artifact id</td>
+<td><code>com.example.shop:core</code></td>
+</tr>
+</tbody>
+</table>
+<p>A selector without a colon is always a path. When the directory name differs from the artifact id, the artifact id alone does not select the module: write it with a colon in front.</p>
+<p>Prefixes go before the selector:</p>
+<table class="table table-striped">
+<thead>
+<tr>
+<th>Prefix</th>
+<th>Meaning</th>
+<th>Example</th>
+<th>Maven</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>!</code> or <code>-</code></td>
+<td>exclude the module from the build</td>
+<td><code>-pl '!app'</code>, <code>-pl -app</code></td>
+<td>3.9, 3.10, 4.0</td>
+</tr>
+<tr>
+<td><code>+</code></td>
+<td>select the module; the same as no prefix</td>
+<td><code>-pl +core</code></td>
+<td>3.9, 3.10, 4.0</td>
+</tr>
+<tr>
+<td><code>?</code></td>
+<td>do not fail when no module matches; goes after <code>!</code>, <code>-</code> or <code>+</code></td>
+<td><code>-pl '?docs'</code>, <code>-pl '!?docs'</code></td>
+<td>4.0</td>
+</tr>
+</tbody>
+</table>
+<p>Quote selectors with <code>!</code> or <code>?</code> in the shell: Bash treats <code>!</code> as a history command and <code>?</code> as a wildcard.</p>
+<p>A selector that matches no module stops the build before anything is built. Maven 3 reports <code>Could not find the selected project in the reactor: docs</code>, Maven 4 <code>The requested required projects docs do not exist.</code> Maven 3 reports <code>?docs</code> the same way, as it does not know the <code>?</code> prefix.</p>
+<p>Selecting or excluding an aggregator differs between the lines:</p>
+<table class="table table-striped">
+<thead>
+<tr>
+<th>Selector on an aggregator <code>services</code> with subprojects <code>billing</code> and <code>shipping</code></th>
+<th>Maven 3.9, 3.10</th>
+<th>Maven 4.0</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>-pl services</code></td>
+<td><code>services</code></td>
+<td><code>services</code>, <code>billing</code>, <code>shipping</code></td>
+</tr>
+<tr>
+<td><code>-pl services -N</code></td>
+<td>fails: <code>-N</code> leaves only the root project in the build</td>
+<td><code>services</code></td>
+</tr>
+<tr>
+<td><code>-pl '!services'</code></td>
+<td>everything except <code>services</code></td>
+<td>everything except <code>services</code>, <code>billing</code> and <code>shipping</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="Failures">Failures</h2>
+<table class="table table-striped">
+<thead>
+<tr>
+<th>Option</th>
+<th>Long form</th>
+<th>When a module fails</th>
+<th>Exit status</th>
+<th>Maven</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://maven.apache.org/ref/current/maven-embedder/cli.html"><code>-ff</code></a></td>
+<td><code>--fail-fast</code></td>
+<td>Stops; all modules after it are skipped. The default.</td>
+<td>failure</td>
+<td>3.9, 3.10, 4.0</td>
+</tr>
+<tr>
+<td><a href="https://maven.apache.org/ref/current/maven-embedder/cli.html"><code>-fae</code></a></td>
+<td><code>--fail-at-end</code></td>
+<td>Skips only the modules that depend on the failed one and builds the rest.</td>
+<td>failure</td>
+<td>3.9, 3.10, 4.0</td>
+</tr>
+<tr>
+<td><a href="https://maven.apache.org/ref/current/maven-embedder/cli.html"><code>-fn</code></a></td>
+<td><code>--fail-never</code></td>
+<td>Builds all other modules, including those that depend on the failed one.</td>
+<td>success, although the log ends with <code>BUILD FAILURE</code></td>
+<td>3.9, 3.10, 4.0</td>
+</tr>
+</tbody>
+</table>
+<p>With <code>-fn</code>, a module that depends on the failed module is built against whatever version of it Maven can find, such as an older one in the local repository.</p>
+<p>After a failure, Maven 3 prints the command to resume with, <code>mvn &lt;args&gt; -rf :core</code>. Maven 4 prints <code>mvn [args] -r</code>, and its <code>target/resume.properties</code> lists the failed and skipped modules. After a successful build, Maven 4 deletes that file.</p>
+<h2 id="Parallel_builds">Parallel builds</h2>
+<table class="table table-striped">
+<thead>
+<tr>
+<th>Option</th>
+<th>Long form</th>
+<th>Effect</th>
+<th>Maven</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://maven.apache.org/ref/current/maven-embedder/cli.html"><code>-T</code></a></td>
+<td><code>--threads</code></td>
+<td>Builds modules that do not depend on each other at the same time. Takes a thread count, <code>-T 4</code>, or a count per CPU core with <code>C</code>, <code>-T 1C</code>.</td>
+<td>3.9, 3.10, 4.0</td>
+</tr>
+</tbody>
+</table>
+<p>The order of the modules still holds: a module starts only after the modules it depends on are finished. Maven logs <code>Using the MultiThreadedBuilder implementation with a thread count of 4</code>.</p>
+
+</div>
+<footer class="guide-foot">
+  <h2 id="More_in_Multi-module_projects">More in <a href="/maven-site/guides/topics/multi-module.html">Multi-module projects</a></h2>
+  
+  <div class="guide-foot-kinds">
+  
+    
+    
+  
+    
+    
+    <section>
+      <h3 id="How-to_guides">How-to guides</h3>
+      
+<ul class="guide-list">
+
+  
+  
+  <li>
+    <a class="guide-list-title" href="/maven-site/guides/split-into-modules.html">Split a project into modules</a>
+    
+    <span class="guide-list-summary">Turn one Maven project into a parent POM with modules that depend on each other and build together from the root directory.</span>
+  </li>
+
+  
+  
+  <li>
+    <a class="guide-list-title" href="/maven-site/guides/build-part-of-a-project.html">Build part of a multi-module project</a>
+    
+    <span class="guide-list-summary">Build one module, a module with the modules it needs or with the modules that use it, leave modules out, or resume a failed build.</span>
+  </li>
+
+  
+  
+  <li>
+    <a class="guide-list-title" href="/maven-site/guides/share-configuration.html">Share dependency versions and plugin configuration</a>
+    
+    <span class="guide-list-summary">Set dependency versions, plugin versions and plugin configuration once in the parent POM, and import a BOM, so that every module uses the same.</span>
+  </li>
+
+</ul>
+
+    </section>
+    
+  
+    
+    
+    <section>
+      <h3 id="Reference">Reference</h3>
+      
+<ul class="guide-list">
+
+  
+  
+  <li class="is-current">
+    <strong class="guide-list-title" aria-current="page">Reactor options</strong>
+    
+    <span class="guide-list-summary">The command-line options that select, order and continue the modules of a multi-module build, the project selector syntax, and the Maven line each needs.</span>
+  </li>
+
+</ul>
+
+    </section>
+    
+  
+    
+    
+    <section>
+      <h3 id="Explanation">Explanation</h3>
+      
+<ul class="guide-list">
+
+  
+  
+  <li>
+    <a class="guide-list-title" href="/maven-site/guides/aggregation-and-inheritance.html">Aggregation and inheritance</a>
+    
+    <span class="guide-list-summary">How a parent POM passes configuration down, how an aggregator builds modules together, and how the reactor decides the order.</span>
+  </li>
+
+</ul>
+
+    </section>
+    
+  
+  </div>
+  
+  <p class="guide-provenance">Written from <a href="/maven-site/guides/mini/guide-multiple-modules.html"><code>guides/mini/guide-multiple-modules.md</code></a>, <a href="/maven-site/guides/mini/guide-multiple-subprojects-4.html"><code>guides/mini/guide-multiple-subprojects-4.md</code></a>.</p>
+  
+</footer>
+
+        </main>
+      </div>
+    </div>
+    <hr>
+    <footer>
+      <div class="container-fluid">
+        <div class="row-fluid">
+          <p>©      2002–2026 <a href="https://www.apache.org/">The Apache Software Foundation</a></p>
+          <p class="demo-note">A demonstration build of <a href="https://github.com/dashorst/maven-site/tree/diataxis-demo">dashorst/maven-site</a>, not the official Apache Maven site.</p>
+        </div>
+      </div>
+    </footer>
+    <script src="/maven-site/js/guide.js?v=1792948498" defer=""></script>
+    <script>
+    anchors.add();
+    </script>
+  
+
+</body></html>

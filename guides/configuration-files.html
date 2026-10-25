@@ -1,0 +1,317 @@
+<!DOCTYPE html><!--
+ | The page frame of the Apache Maven Fluido Skin 2.1.0, as the Doxia site renderer writes it
+ | for maven.apache.org. Built with Jekyll: see jekyll/README.md.
+--><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Where Maven reads its configuration – Maven</title>
+    <meta name="description" content="Why Maven splits its configuration between the project and the machine, which files and variables each side uses, and how they combine.">
+    <link rel="stylesheet" href="/maven-site/css/apache-maven-fluido-2.1.0.min.css">
+    <link rel="stylesheet" href="/maven-site/css/site.css">
+    <link rel="stylesheet" href="/maven-site/css/guide.css?v=1792948498">
+    <link rel="stylesheet" href="/maven-site/css/print.css" media="print">
+    <script src="/maven-site/js/apache-maven-fluido-2.1.0.min.js"></script>
+  </head>
+  <body>
+    <div class="container-fluid container-fluid-top">
+      <header>
+        <div id="banner">
+          <div class="pull-left"><div id="bannerLeft"><h1><a href="/maven-site/index.html"><img src="/maven-site/images/apache-maven-project-light-theme.svg" style="width: 489px;height: 83px;" alt="Apache Maven"></a></h1></div></div>
+          <div class="pull-right"><div id="bannerRight"><h1><img src="/maven-site/images/logos/MavenLogoLeaf.svg" style="width: 340px;height: 83px;" alt=""></h1></div></div>
+          <div class="clear"><hr></div>
+        </div>
+
+        <div id="breadcrumbs">
+          <ul class="breadcrumb">
+            <li><a href="https://www.apache.org/">Apache</a><span class="divider">/</span></li>
+            <li><a href="/maven-site/index.html">Maven</a><span class="divider">/</span></li>
+            <li><a href="/maven-site/guides/index.html">Guides</a><span class="divider">/</span></li>
+            <li><a href="/maven-site/guides/topics/configure.html">Configure Maven</a><span class="divider">/</span></li>
+            
+            <li class="active">Where Maven reads its configuration <a href="https://github.com/dashorst/maven-site/blob/diataxis-demo/jekyll/_guide/configuration-files.md"><img src="/maven-site/images/accessories-text-editor.png" alt="Edit"></a></li>
+            <li id="publishDate" class="pull-right"><span class="divider">|</span> Last Published: 2026-10-25</li>
+            <li class="pull-right"><span class="divider">|</span> <a href="/maven-site/scm.html">Get Sources</a></li>
+            <li class="pull-right"><a href="https://maven.apache.org/download.cgi">Downloads</a></li>
+          </ul>
+        </div>
+      </header>
+      <div class="row-fluid">
+        <header id="leftColumn" class="span2">
+          
+<form class="guide-search" role="search" action="/maven-site/guides/a-z.html" data-index="/maven-site/guides/search.json" data-script="/maven-site/js/minisearch-7.2.0.js" data-oldest="3.9" data-base="/maven-site">
+  <label class="guide-search-label" for="guide-q-nav">Search the documentation</label>
+  <div class="guide-search-field">
+    <input id="guide-q-nav" name="q" type="search" autocomplete="off" spellcheck="false" placeholder="Search">
+    <kbd class="guide-search-key" aria-hidden="true">/</kbd>
+  </div>
+  
+</form>
+
+          <nav class="well sidebar-nav">
+<ul class="nav nav-list">
+  <li><a href="/maven-site/index.html">Welcome</a></li>
+  <li><a href="https://www.apache.org/licenses/">License</a></li>
+  <li class="nav-header">About Maven</li>
+  <li><a href="/maven-site/what-is-maven.html">What is Maven?</a></li>
+  <li><a href="/maven-site/install.html">Installation</a></li>
+  <li><a href="/maven-site/download.html">Downloads</a></li>
+  <li><a href="/maven-site/run.html">Use</a></li>
+  <li><a href="/maven-site/configure.html">Configure</a></li>
+  <li><a href="/maven-site/docs/history.html">Release Notes</a></li>
+  <li><a href="/maven-site/security.html">Security Reports</a></li>
+  <li class="nav-header">Documentation</li>
+  <li><a href="/maven-site/plugins/index.html">Maven Plugins</a></li>
+  <li><a href="/maven-site/extensions/index.html">Maven Extensions</a></li>
+  <li><a href="/maven-site/tools/index.html"><span class="icon-chevron-down"></span>Maven Tools</a>
+   <ul class="nav nav-list">
+    <li><a href="/maven-site/tools/mvnd.html">Maven Daemon</a></li>
+    <li><a href="/maven-site/tools/mvnsh.html">Maven Shell</a></li>
+    <li><a href="/maven-site/tools/mvnup.html">Maven Upgrade Tool</a></li>
+    <li><a href="/maven-site/tools/mavenwrapper.html">Maven Wrapper</a></li>
+   </ul></li>
+  <li><a href="/maven-site/doxia/index.html"><span class="icon-chevron-right"></span>Doxia</a></li>
+  <li class="active"><a href="/maven-site/guides/index.html">Guides</a></li>
+  <li><a href="/maven-site/users/index.html"><span class="icon-chevron-right"></span>User Manual</a></li>
+  <li><a href="/maven-site/repositories/index.html"><span class="icon-chevron-right"></span>Maven Repositories</a></li>
+  <li><a href="/maven-site/plugin-developers/index.html"><span class="icon-chevron-right"></span>Plugin Development</a></li>
+  <li><a href="/maven-site/developers/index.html"><span class="icon-chevron-right"></span>Contribute to Maven</a></li>
+  <li><a href="/maven-site/articles.html">Books and Resources</a></li>
+  <li class="nav-header">Community</li>
+  <li><a href="/maven-site/community.html">Community Overview</a></li>
+  <li><a href="/maven-site/project-roles.html">Project Roles</a></li>
+  <li><a href="/maven-site/guides/development/guide-helping.html">How to Contribute</a></li>
+  <li><a href="/maven-site/users/getting-help.html">Getting Help</a></li>
+  <li><a href="/maven-site/issue-management.html">Issue Management</a></li>
+  <li><a href="/maven-site/scm.html">Getting Maven Source</a></li>
+  <li><a href="/maven-site/team.html">The Maven Team</a></li>
+  <li class="nav-header">Project Documentation</li>
+  <li><a href="/maven-site/project-info.html">Project Information</a></li>
+  <li class="nav-header">Maven Projects</li>
+  <li><a href="/maven-site/ref/current">Maven</a></li>
+  <li><a href="/maven-site/archetypes/index.html">Archetypes</a></li>
+  <li><a href="/maven-site/extensions/index.html">Extensions</a></li>
+  <li><a href="/maven-site/pom/index.html">Parent POMs</a></li>
+  <li><a href="/maven-site/plugins/index.html">Plugins</a></li>
+  <li><a href="/maven-site/skins/index.html">Skins</a></li>
+  <li><a><span class="icon-chevron-down"></span>Components</a>
+   <ul class="nav nav-list">
+    <li><a href="/maven-site/archetype/index.html">Archetype</a></li>
+    <li><a href="/maven-site/resolver/index.html">Artifact Resolver</a></li>
+    <li><a href="/maven-site/doxia/index.html">Doxia</a></li>
+    <li><a href="/maven-site/maven-indexer/index.html">Indexer</a></li>
+    <li><a href="/maven-site/jxr/index.html">JXR</a></li>
+    <li><a href="/maven-site/plugin-testing/index.html">Plugin Testing</a></li>
+    <li><a href="/maven-site/plugin-tools/index.html">Plugin Tools</a></li>
+    <li><a href="/maven-site/apache-resource-bundles/index.html">Resource Bundles</a></li>
+    <li><a href="/maven-site/scm/index.html">SCM</a></li>
+    <li><a href="/maven-site/shared/index.html">Shared Components</a></li>
+    <li><a href="/maven-site/surefire/index.html">Surefire</a></li>
+    <li><a href="/maven-site/wagon/index.html">Wagon</a></li>
+   </ul></li>
+  <li class="nav-header">ASF</li>
+  <li><a href="https://www.apache.org/foundation/how-it-works.html">How Apache Works</a></li>
+  <li><a href="https://www.apache.org/foundation/">Foundation</a></li>
+  <li><a href="https://privacy.apache.org/policies/privacy-policy-public.html">Data Privacy</a></li>
+  <li><a href="https://www.apache.org/foundation/sponsorship.html">Sponsoring Apache</a></li>
+  <li><a href="https://www.apache.org/foundation/thanks.html">Thanks</a></li>
+</ul>
+          </nav>
+          <div class="well sidebar-nav">
+            <div id="poweredBy">
+              <div class="clear"></div>
+              <a href="/maven-site/" class="builtBy" target="_blank"><img class="builtBy" alt="Built by Maven" src="/maven-site/images/logos/maven-feather.png"></a>
+            </div>
+          </div>
+        </header>
+        <main id="bodyColumn" class="span10">
+          
+
+
+
+
+<header class="guide-head">
+  <h1 id="Where_Maven_reads_its_configuration">Where Maven reads its configuration</h1>
+  <p class="lead">Why Maven splits its configuration between the project and the machine, which files and variables each side uses, and how they combine.</p>
+  <p class="guide-plates"><span class="label guide-kind guide-kind--explanation">Explanation</span>
+    
+    <a class="guide-topic-link" href="/maven-site/guides/topics/configure.html">Configure Maven</a></p>
+  
+  <p class="guide-version-note alert" data-since="3.9" hidden="">This page describes Maven 3.9 and later; you chose Maven <span data-chosen=""></span>.</p>
+  
+</header>
+<div class="doxia-toc"><ul><li><a href="#The_project_describes_the_build.2C_the_machine_describes_the_environment">The project describes the build, the machine describes the environment</a></li><li><a href="#Installation_and_user_settings">Installation and user settings</a></li><li><a href="#Options_for_the_mvn_command.3A_.mvn.2Fmaven.config_and_MAVEN_ARGS">Options for the mvn command: .mvn/maven.config and MAVEN_ARGS</a></li><li><a href="#Options_for_the_JVM.3A_.mvn.2Fjvm.config_and_MAVEN_OPTS">Options for the JVM: .mvn/jvm.config and MAVEN_OPTS</a></li><li><a href="#Extensions.3A_.mvn.2Fextensions.xml">Extensions: .mvn/extensions.xml</a></li><li><a href="#How_Maven_finds_the_.mvn_directory">How Maven finds the .mvn directory</a></li><li><a href="#Maven_4_properties_files">Maven 4 properties files</a></li></ul></div>
+<div class="guide-content">
+<p>Maven reads its configuration from two sides. The project side lives in the project's directory and in version control: the POM and the files in the <em>.mvn</em> directory. It is the same for everyone who builds the project. The machine side lives in your home directory, the Maven installation and the environment: <em>settings.xml</em> and a few environment variables. It describes this machine and this person: where artifacts come from, how the network is reached, and which credentials to use.</p>
+<h2 id="The_project_describes_the_build.2C_the_machine_describes_the_environment">The project describes the build, the machine describes the environment</h2>
+<p>A POM says what the project is and how it is built: its coordinates, dependencies, plugins and the repositories it deploys to. Everyone who checks out the project gets the same POM, and the POM is deployed with the artifact, so other builds read it too. That rules out anything that differs per machine or that must stay private. A password in a POM is published with every release.</p>
+<p><em>settings.xml</em> holds exactly those things: the repository manager your company mirrors Central through, the proxy your network requires, the usernames and passwords for your repositories, and the location of your local repository. None of it changes what the project is. Two developers with different settings build the same artifact.</p>
+<p>The split also works the other way: settings cannot add project information. There is no way to set <code>&lt;organization&gt;</code> or <code>&lt;distributionManagement&gt;</code> for all projects from <em>settings.xml</em>. Information that every project of a company shares belongs in a parent POM, see <a href="share-configuration.html">Share configuration between projects</a>.</p>
+<h2 id="Installation_and_user_settings">Installation and user settings</h2>
+<p>Maven reads two <em>settings.xml</em> files:</p>
+<ul>
+<li>the installation settings, <em>conf/settings.xml</em> in the Maven installation, for everyone who uses that installation;</li>
+<li>the user settings, <em>~/.m2/settings.xml</em>, for you.</li>
+</ul>
+<p>Neither has to exist. Maven merges them into one set of effective settings. Lists such as <code>&lt;mirrors&gt;</code>, <code>&lt;servers&gt;</code> and <code>&lt;proxies&gt;</code> are combined, the user's entries first. An entry with the same <code>id</code> in both files is taken from the user file, and so is a single value such as <code>&lt;localRepository&gt;</code>. <code>mvn help:effective-settings</code> prints the result, with passwords replaced by <code>***</code>.</p>
+<p>The <em>settings.xml</em> that ships with Maven consists of comments and examples, with one exception: a mirror named <code>maven-default-http-blocker</code> that blocks repositories reached over plain HTTP. It appears in the effective settings of a fresh installation. If you point Maven at another installation file with <code>-gs</code>, that mirror is gone.</p>
+<blockquote class="guide-since">
+<p><strong>Maven 4:</strong> The global settings are called installation settings, and the option to replace the file is <code>-is</code> (<code>-gs</code> still works, with a deprecation warning). Maven 4 also reads project settings from <em>.mvn/settings.xml</em>. They rank between the user and the installation settings, and they cannot hold <code>&lt;localRepository&gt;</code> or credentials: Maven drops a <code>&lt;username&gt;</code> or <code>&lt;password&gt;</code> there and reports it as a warning that only shows with <code>-e</code>.</p>
+</blockquote>
+<h2 id="Options_for_the_mvn_command.3A_.mvn.2Fmaven.config_and_MAVEN_ARGS">Options for the mvn command: .mvn/maven.config and MAVEN_ARGS</h2>
+<p>Options you would otherwise type on every <code>mvn</code> command can live in two places. <em>.mvn/maven.config</em> belongs to the project. It holds one option per line, and lines starting with <code>#</code> are comments:</p>
+<p><em>.mvn/maven.config</em></p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code># Settings every build of this project needs
+--fail-at-end
+-Dsurefire.failIfNoSpecifiedTests=false
+</code></pre></div></div>
+<p>Each line is one argument. <code>-Da=1 -Db=2</code> on a single line sets the property <code>a</code> to <code>1 -Db=2</code>.</p>
+<p>The environment variable <code>MAVEN_ARGS</code> is the machine's counterpart: its options are added to every <code>mvn</code> command before the ones you type. Options on the command line win: <code>-Dname=value</code> on the command line overrides the same property from <em>maven.config</em>.</p>
+<h2 id="Options_for_the_JVM.3A_.mvn.2Fjvm.config_and_MAVEN_OPTS">Options for the JVM: .mvn/jvm.config and MAVEN_OPTS</h2>
+<p>Maven itself is a Java program, and some settings concern the JVM it runs in, such as the heap size. <em>.mvn/jvm.config</em> holds JVM options for the project; several options may share a line. <code>MAVEN_OPTS</code> holds them for the machine. The shell script <code>~/.mavenrc</code>, which <code>mvn</code> runs before it starts Java, is the usual place to set <code>MAVEN_OPTS</code> for all your builds; setting <code>MAVEN_SKIP_RC</code> skips it.</p>
+<p>When both set the same option, the later one counts. Maven 3 places <em>jvm.config</em> before <code>MAVEN_OPTS</code>, so <code>MAVEN_OPTS</code> wins.</p>
+<blockquote class="guide-since">
+<p><strong>Maven 4:</strong> <code>MAVEN_OPTS</code> comes first and <em>jvm.config</em> wins. Lines in <em>jvm.config</em> may contain <code>#</code> comments; Maven 3 passes a <code>#</code> to Java, which then fails with <code>Could not find or load main class #</code>.</p>
+</blockquote>
+<h2 id="Extensions.3A_.mvn.2Fextensions.xml">Extensions: .mvn/extensions.xml</h2>
+<p>Some extensions change how Maven itself works, for example a build cache or another way to resolve artifacts. They have to be loaded before Maven reads the POM, so the POM cannot declare them. They go in <em>.mvn/extensions.xml</em>, and Maven downloads them and their dependencies like any other artifact:</p>
+<p><em>.mvn/extensions.xml</em></p>
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="xml"><span class="nt">&lt;extensions&gt;</span>
+  <span class="nt">&lt;extension&gt;</span>
+    <span class="nt">&lt;groupId&gt;</span>org.apache.maven.extensions<span class="nt">&lt;/groupId&gt;</span>
+    <span class="nt">&lt;artifactId&gt;</span>maven-build-cache-extension<span class="nt">&lt;/artifactId&gt;</span>
+    <span class="nt">&lt;version&gt;</span>1.3.0<span class="nt">&lt;/version&gt;</span>
+  <span class="nt">&lt;/extension&gt;</span>
+<span class="nt">&lt;/extensions&gt;</span>
+</code></pre></div></div>
+<blockquote class="guide-since">
+<p><strong>Maven 3.10 and 4:</strong> Extensions can also be configured for the user in <em>~/.m2/extensions.xml</em> and for the installation in <em>conf/extensions.xml</em>. When the same extension appears in several files, the project file wins over the user file, and the user file over the installation file. Maven 3.9 reads only <em>.mvn/extensions.xml</em>.</p>
+</blockquote>
+<h2 id="How_Maven_finds_the_.mvn_directory">How Maven finds the .mvn directory</h2>
+<p>The <em>.mvn</em> directory sits in the top directory of the project. Maven starts in the current directory and walks up until it finds a directory that contains <em>.mvn</em>; the files in it apply even when you run Maven from a subdirectory. That is also how a multi-module build finds its root, see <a href="aggregation-and-inheritance.html">Aggregation and inheritance</a>.</p>
+<h2 id="Maven_4_properties_files">Maven 4 properties files</h2>
+<p>Maven 4 adds files for properties that would otherwise go on the command line as <code>-D</code>:</p>
+<ul>
+<li><em>maven-user.properties</em> sets user properties, the ones <code>-D</code> sets. Maven reads it from <em>~/.m2</em> and from <em>.mvn</em>. A property in the project file overrides the same property in the user file, and <code>-D</code> on the command line overrides both.</li>
+<li><em>maven-system.properties</em> sets Java system properties, from the same two directories.</li>
+</ul>
+<p>The installation's own <em>conf/maven-system.properties</em> defines where Maven looks for everything else: <code>maven.user.conf</code> is <em>~/.m2</em>, <code>maven.project.conf</code> is <em>.mvn</em> and <code>maven.installation.conf</code> is <em>conf</em>, and the paths of <em>settings.xml</em>, <em>toolchains.xml</em> and <em>extensions.xml</em> are built from those three. Maven 3 ignores these files.</p>
+<p><a href="settings-files-reference.html">Configuration files and variables</a> lists every file and variable with its location and the Maven lines that read it.</p>
+
+</div>
+<footer class="guide-foot">
+  <h2 id="More_in_Configure_Maven">More in <a href="/maven-site/guides/topics/configure.html">Configure Maven</a></h2>
+  
+  <div class="guide-foot-kinds">
+  
+    
+    
+  
+    
+    
+    <section>
+      <h3 id="How-to_guides">How-to guides</h3>
+      
+<ul class="guide-list">
+
+  
+  
+  <li>
+    <a class="guide-list-title" href="/maven-site/guides/mirror-settings.html">Use a repository manager as a mirror</a>
+    
+    <span class="guide-list-summary">Send every download through your organisation's repository manager instead of Maven Central and the repositories projects declare.</span>
+  </li>
+
+  
+  
+  <li>
+    <a class="guide-list-title" href="/maven-site/guides/proxy-settings.html">Connect through an HTTP proxy</a>
+    
+    <span class="guide-list-summary">Make Maven download through the HTTP proxy your network requires, with a login if the proxy asks for one and exceptions for internal hosts.</span>
+  </li>
+
+  
+  
+  <li>
+    <a class="guide-list-title" href="/maven-site/guides/server-credentials.html">Store credentials for a repository</a>
+    
+    <span class="guide-list-summary">Give Maven the username and password for a repository it downloads from or deploys to, matched to the repository by id.</span>
+  </li>
+
+  
+  
+  <li>
+    <a class="guide-list-title" href="/maven-site/guides/encrypt-passwords.html">Encrypt passwords in settings.xml</a>
+    
+    <span class="guide-list-summary">Replace the plain passwords of servers and proxies in settings.xml with encrypted values, with a master password on Maven 3 or mvnenc on Maven 4.</span>
+  </li>
+
+</ul>
+
+    </section>
+    
+  
+    
+    
+    <section>
+      <h3 id="Reference">Reference</h3>
+      
+<ul class="guide-list">
+
+  
+  
+  <li>
+    <a class="guide-list-title" href="/maven-site/guides/settings-files-reference.html">Configuration files and variables</a>
+    
+    <span class="guide-list-summary">Every file and environment variable Maven reads its configuration from, with location, scope and Maven line, and the patterns of mirrorOf.</span>
+  </li>
+
+</ul>
+
+    </section>
+    
+  
+    
+    
+    <section>
+      <h3 id="Explanation">Explanation</h3>
+      
+<ul class="guide-list">
+
+  
+  
+  <li class="is-current">
+    <strong class="guide-list-title" aria-current="page">Where Maven reads its configuration</strong>
+    
+    <span class="guide-list-summary">Why Maven splits its configuration between the project and the machine, which files and variables each side uses, and how they combine.</span>
+  </li>
+
+</ul>
+
+    </section>
+    
+  
+  </div>
+  
+  <p class="guide-provenance">Written from <a href="/maven-site/configure.html"><code>configure.md</code></a>, <a href="/maven-site/guides/mini/guide-configuring-maven.html"><code>guides/mini/guide-configuring-maven.md</code></a>, <a href="/maven-site/settings.html"><code>settings.md</code></a>, <a href="/maven-site/whatsnewinmaven4.html"><code>whatsnewinmaven4.md</code></a>.</p>
+  
+</footer>
+
+        </main>
+      </div>
+    </div>
+    <hr>
+    <footer>
+      <div class="container-fluid">
+        <div class="row-fluid">
+          <p>©      2002–2026 <a href="https://www.apache.org/">The Apache Software Foundation</a></p>
+          <p class="demo-note">A demonstration build of <a href="https://github.com/dashorst/maven-site/tree/diataxis-demo">dashorst/maven-site</a>, not the official Apache Maven site.</p>
+        </div>
+      </div>
+    </footer>
+    <script src="/maven-site/js/guide.js?v=1792948498" defer=""></script>
+    <script>
+    anchors.add();
+    </script>
+  
+
+</body></html>

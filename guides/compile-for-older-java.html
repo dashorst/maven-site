@@ -1,0 +1,356 @@
+<!DOCTYPE html><!--
+ | The page frame of the Apache Maven Fluido Skin 2.1.0, as the Doxia site renderer writes it
+ | for maven.apache.org. Built with Jekyll: see jekyll/README.md.
+--><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Compile for an older Java version – Maven</title>
+    <meta name="description" content="Build classes that run on an older Java than the JDK you build with, check them against that Java's API, and run the tests on it.">
+    <link rel="stylesheet" href="/maven-site/css/apache-maven-fluido-2.1.0.min.css">
+    <link rel="stylesheet" href="/maven-site/css/site.css">
+    <link rel="stylesheet" href="/maven-site/css/guide.css?v=1792948498">
+    <link rel="stylesheet" href="/maven-site/css/print.css" media="print">
+    <script src="/maven-site/js/apache-maven-fluido-2.1.0.min.js"></script>
+  </head>
+  <body>
+    <div class="container-fluid container-fluid-top">
+      <header>
+        <div id="banner">
+          <div class="pull-left"><div id="bannerLeft"><h1><a href="/maven-site/index.html"><img src="/maven-site/images/apache-maven-project-light-theme.svg" style="width: 489px;height: 83px;" alt="Apache Maven"></a></h1></div></div>
+          <div class="pull-right"><div id="bannerRight"><h1><img src="/maven-site/images/logos/MavenLogoLeaf.svg" style="width: 340px;height: 83px;" alt=""></h1></div></div>
+          <div class="clear"><hr></div>
+        </div>
+
+        <div id="breadcrumbs">
+          <ul class="breadcrumb">
+            <li><a href="https://www.apache.org/">Apache</a><span class="divider">/</span></li>
+            <li><a href="/maven-site/index.html">Maven</a><span class="divider">/</span></li>
+            <li><a href="/maven-site/guides/index.html">Guides</a><span class="divider">/</span></li>
+            <li><a href="/maven-site/guides/topics/jdk.html">JDKs and toolchains</a><span class="divider">/</span></li>
+            
+            <li class="active">Compile for an older Java version <a href="https://github.com/dashorst/maven-site/blob/diataxis-demo/jekyll/_guide/compile-for-older-java.md"><img src="/maven-site/images/accessories-text-editor.png" alt="Edit"></a></li>
+            <li id="publishDate" class="pull-right"><span class="divider">|</span> Last Published: 2026-10-25</li>
+            <li class="pull-right"><span class="divider">|</span> <a href="/maven-site/scm.html">Get Sources</a></li>
+            <li class="pull-right"><a href="https://maven.apache.org/download.cgi">Downloads</a></li>
+          </ul>
+        </div>
+      </header>
+      <div class="row-fluid">
+        <header id="leftColumn" class="span2">
+          
+<form class="guide-search" role="search" action="/maven-site/guides/a-z.html" data-index="/maven-site/guides/search.json" data-script="/maven-site/js/minisearch-7.2.0.js" data-oldest="3.9" data-base="/maven-site">
+  <label class="guide-search-label" for="guide-q-nav">Search the documentation</label>
+  <div class="guide-search-field">
+    <input id="guide-q-nav" name="q" type="search" autocomplete="off" spellcheck="false" placeholder="Search">
+    <kbd class="guide-search-key" aria-hidden="true">/</kbd>
+  </div>
+  
+</form>
+
+          <nav class="well sidebar-nav">
+<ul class="nav nav-list">
+  <li><a href="/maven-site/index.html">Welcome</a></li>
+  <li><a href="https://www.apache.org/licenses/">License</a></li>
+  <li class="nav-header">About Maven</li>
+  <li><a href="/maven-site/what-is-maven.html">What is Maven?</a></li>
+  <li><a href="/maven-site/install.html">Installation</a></li>
+  <li><a href="/maven-site/download.html">Downloads</a></li>
+  <li><a href="/maven-site/run.html">Use</a></li>
+  <li><a href="/maven-site/configure.html">Configure</a></li>
+  <li><a href="/maven-site/docs/history.html">Release Notes</a></li>
+  <li><a href="/maven-site/security.html">Security Reports</a></li>
+  <li class="nav-header">Documentation</li>
+  <li><a href="/maven-site/plugins/index.html">Maven Plugins</a></li>
+  <li><a href="/maven-site/extensions/index.html">Maven Extensions</a></li>
+  <li><a href="/maven-site/tools/index.html"><span class="icon-chevron-down"></span>Maven Tools</a>
+   <ul class="nav nav-list">
+    <li><a href="/maven-site/tools/mvnd.html">Maven Daemon</a></li>
+    <li><a href="/maven-site/tools/mvnsh.html">Maven Shell</a></li>
+    <li><a href="/maven-site/tools/mvnup.html">Maven Upgrade Tool</a></li>
+    <li><a href="/maven-site/tools/mavenwrapper.html">Maven Wrapper</a></li>
+   </ul></li>
+  <li><a href="/maven-site/doxia/index.html"><span class="icon-chevron-right"></span>Doxia</a></li>
+  <li class="active"><a href="/maven-site/guides/index.html">Guides</a></li>
+  <li><a href="/maven-site/users/index.html"><span class="icon-chevron-right"></span>User Manual</a></li>
+  <li><a href="/maven-site/repositories/index.html"><span class="icon-chevron-right"></span>Maven Repositories</a></li>
+  <li><a href="/maven-site/plugin-developers/index.html"><span class="icon-chevron-right"></span>Plugin Development</a></li>
+  <li><a href="/maven-site/developers/index.html"><span class="icon-chevron-right"></span>Contribute to Maven</a></li>
+  <li><a href="/maven-site/articles.html">Books and Resources</a></li>
+  <li class="nav-header">Community</li>
+  <li><a href="/maven-site/community.html">Community Overview</a></li>
+  <li><a href="/maven-site/project-roles.html">Project Roles</a></li>
+  <li><a href="/maven-site/guides/development/guide-helping.html">How to Contribute</a></li>
+  <li><a href="/maven-site/users/getting-help.html">Getting Help</a></li>
+  <li><a href="/maven-site/issue-management.html">Issue Management</a></li>
+  <li><a href="/maven-site/scm.html">Getting Maven Source</a></li>
+  <li><a href="/maven-site/team.html">The Maven Team</a></li>
+  <li class="nav-header">Project Documentation</li>
+  <li><a href="/maven-site/project-info.html">Project Information</a></li>
+  <li class="nav-header">Maven Projects</li>
+  <li><a href="/maven-site/ref/current">Maven</a></li>
+  <li><a href="/maven-site/archetypes/index.html">Archetypes</a></li>
+  <li><a href="/maven-site/extensions/index.html">Extensions</a></li>
+  <li><a href="/maven-site/pom/index.html">Parent POMs</a></li>
+  <li><a href="/maven-site/plugins/index.html">Plugins</a></li>
+  <li><a href="/maven-site/skins/index.html">Skins</a></li>
+  <li><a><span class="icon-chevron-down"></span>Components</a>
+   <ul class="nav nav-list">
+    <li><a href="/maven-site/archetype/index.html">Archetype</a></li>
+    <li><a href="/maven-site/resolver/index.html">Artifact Resolver</a></li>
+    <li><a href="/maven-site/doxia/index.html">Doxia</a></li>
+    <li><a href="/maven-site/maven-indexer/index.html">Indexer</a></li>
+    <li><a href="/maven-site/jxr/index.html">JXR</a></li>
+    <li><a href="/maven-site/plugin-testing/index.html">Plugin Testing</a></li>
+    <li><a href="/maven-site/plugin-tools/index.html">Plugin Tools</a></li>
+    <li><a href="/maven-site/apache-resource-bundles/index.html">Resource Bundles</a></li>
+    <li><a href="/maven-site/scm/index.html">SCM</a></li>
+    <li><a href="/maven-site/shared/index.html">Shared Components</a></li>
+    <li><a href="/maven-site/surefire/index.html">Surefire</a></li>
+    <li><a href="/maven-site/wagon/index.html">Wagon</a></li>
+   </ul></li>
+  <li class="nav-header">ASF</li>
+  <li><a href="https://www.apache.org/foundation/how-it-works.html">How Apache Works</a></li>
+  <li><a href="https://www.apache.org/foundation/">Foundation</a></li>
+  <li><a href="https://privacy.apache.org/policies/privacy-policy-public.html">Data Privacy</a></li>
+  <li><a href="https://www.apache.org/foundation/sponsorship.html">Sponsoring Apache</a></li>
+  <li><a href="https://www.apache.org/foundation/thanks.html">Thanks</a></li>
+</ul>
+          </nav>
+          <div class="well sidebar-nav">
+            <div id="poweredBy">
+              <div class="clear"></div>
+              <a href="/maven-site/" class="builtBy" target="_blank"><img class="builtBy" alt="Built by Maven" src="/maven-site/images/logos/maven-feather.png"></a>
+            </div>
+          </div>
+        </header>
+        <main id="bodyColumn" class="span10">
+          
+
+
+
+
+<header class="guide-head">
+  <h1 id="Compile_for_an_older_Java_version">Compile for an older Java version</h1>
+  <p class="lead">Build classes that run on an older Java than the JDK you build with, check them against that Java's API, and run the tests on it.</p>
+  <p class="guide-plates"><span class="label guide-kind guide-kind--howto">How-to</span>
+    
+    <a class="guide-topic-link" href="/maven-site/guides/topics/jdk.html">JDKs and toolchains</a></p>
+  
+  <p class="guide-version-note alert" data-since="3.9" hidden="">This page describes Maven 3.9 and later; you chose Maven <span data-chosen=""></span>.</p>
+  
+</header>
+<div class="doxia-toc"><ul><li><a href="#Set_the_release">Set the release</a></li><li><a href="#Why_source_and_target_are_not_enough">Why source and target are not enough</a></li><li><a href="#Run_the_tests_on_the_older_Java">Run the tests on the older Java</a></li><li><a href="#UnsupportedClassVersionError">UnsupportedClassVersionError</a></li></ul></div>
+<div class="guide-content">
+<p>Use this when your code has to run on an older Java than the JDK you build with, for example a library that still supports Java 8 while you build on JDK 21. The compiler of a newer JDK can do this by itself; you only need a second JDK to run the tests on the older Java.</p>
+<h2 id="Set_the_release">Set the release</h2>
+<p>Set the <code>maven.compiler.release</code> property to the oldest Java version the code must run on:</p>
+<p><em>pom.xml</em></p>
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="xml"><span class="nt">&lt;properties&gt;</span>
+  <span class="nt">&lt;maven.compiler.release&gt;</span>8<span class="nt">&lt;/maven.compiler.release&gt;</span>
+<span class="nt">&lt;/properties&gt;</span>
+</code></pre></div></div>
+<p>Or set it in the configuration of the compiler plugin, which has the same effect:</p>
+<p><em>pom.xml</em></p>
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="xml"><span class="nt">&lt;plugin&gt;</span>
+  <span class="nt">&lt;groupId&gt;</span>org.apache.maven.plugins<span class="nt">&lt;/groupId&gt;</span>
+  <span class="nt">&lt;artifactId&gt;</span>maven-compiler-plugin<span class="nt">&lt;/artifactId&gt;</span>
+  <span class="nt">&lt;version&gt;</span>3.16.0<span class="nt">&lt;/version&gt;</span>
+  <span class="nt">&lt;configuration&gt;</span>
+    <span class="nt">&lt;release&gt;</span>8<span class="nt">&lt;/release&gt;</span>
+  <span class="nt">&lt;/configuration&gt;</span>
+<span class="nt">&lt;/plugin&gt;</span>
+</code></pre></div></div>
+<p>The compiler plugin passes it to <code>javac</code> as <code>--release 8</code>, and the build log shows it:</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[INFO] Compiling 1 source file with javac [debug release 8] to target/classes
+</code></pre></div></div>
+<p>Use the plain version number, <code>8</code>; with <code>1.8</code> the compiler stops with <code>release version 1.8 not supported</code>. The <code>javac</code> of JDK 21 adds warnings that <code>source value 8 is obsolete and will be removed in a future release</code>; they do not stop the build. A JDK supports only a limited number of older releases: the <code>javac</code> of JDK 21 accepts <code>8</code> but stops with <code>release version 7 not supported</code> for <code>7</code>. For a release your JDK no longer supports, build with an older JDK as in <a href="build-with-another-jdk.html">Build with a different JDK than Maven runs on</a>.</p>
+<p>To see which Java version a class was compiled for, read its class file version with <code>javap</code> from the <code>target/classes</code> directory:</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>javap -v com/example/Greeter.class | grep major
+</code></pre></div></div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  major version: 52
+</code></pre></div></div>
+<table class="table table-striped">
+<thead>
+<tr>
+<th>Java</th>
+<th>8</th>
+<th>11</th>
+<th>17</th>
+<th>21</th>
+<th>25</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Major version</td>
+<td>52</td>
+<td>55</td>
+<td>61</td>
+<td>65</td>
+<td>69</td>
+</tr>
+</tbody>
+</table>
+<h2 id="Why_source_and_target_are_not_enough">Why source and target are not enough</h2>
+<p>The older <code>maven.compiler.source</code> and <code>maven.compiler.target</code> properties set the language level and the class file version, but the code is still compiled against the class library of the JDK that runs the compiler. Code that calls a method the older Java does not have compiles without an error:</p>
+<p><em>src/main/java/com/example/Greeter.java</em></p>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="java"><span class="kd">public</span> <span class="nc">String</span> <span class="nf">greet</span><span class="o">(</span><span class="nc">String</span> <span class="n">name</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">name</span><span class="o">.</span><span class="na">isBlank</span><span class="o">())</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="s">"Hello"</span><span class="o">;</span>
+    <span class="o">}</span>
+    <span class="k">return</span> <span class="s">"Hello, "</span> <span class="o">+</span> <span class="n">name</span><span class="o">;</span>
+<span class="o">}</span>
+</code></pre></div></div>
+<p>With <code>source</code> and <code>target</code> 8 on JDK 21, the build succeeds with a warning that <code>bootstrap class path not set in conjunction with -source 8</code>. The class says it is for Java 8, and fails only when Java 8 runs it:</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Exception in thread "main" java.lang.NoSuchMethodError: java.lang.String.isBlank()Z
+	at com.example.Greeter.greet(Greeter.java:5)
+</code></pre></div></div>
+<p>With <code>release</code> 8, the compiler checks the code against the Java 8 API and the build fails where the problem is:</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[ERROR] /home/me/my-app/src/main/java/com/example/Greeter.java:[5,17] cannot find symbol
+[ERROR]   symbol:   method isBlank()
+[ERROR]   location: variable name of type java.lang.String
+</code></pre></div></div>
+<p>Replace <code>source</code> and <code>target</code> with <code>release</code>. When none of the three is set, the compiler plugin compiles with <code>source</code> and <code>target</code> 1.8.</p>
+<h2 id="Run_the_tests_on_the_older_Java">Run the tests on the older Java</h2>
+<p><code>release</code> proves that the code compiles against the older API, not that it behaves the same on the older runtime. To run the tests on Java 8, describe a Java 8 JDK in <em>~/.m2/toolchains.xml</em>:</p>
+<p><em>~/.m2/toolchains.xml</em></p>
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="xml"><span class="nt">&lt;toolchains&gt;</span>
+  <span class="nt">&lt;toolchain&gt;</span>
+    <span class="nt">&lt;type&gt;</span>jdk<span class="nt">&lt;/type&gt;</span>
+    <span class="nt">&lt;provides&gt;</span>
+      <span class="nt">&lt;version&gt;</span>1.8<span class="nt">&lt;/version&gt;</span>
+    <span class="nt">&lt;/provides&gt;</span>
+    <span class="nt">&lt;configuration&gt;</span>
+      <span class="nt">&lt;jdkHome&gt;</span>/opt/jdk/temurin-8<span class="nt">&lt;/jdkHome&gt;</span>
+    <span class="nt">&lt;/configuration&gt;</span>
+  <span class="nt">&lt;/toolchain&gt;</span>
+<span class="nt">&lt;/toolchains&gt;</span>
+</code></pre></div></div>
+<p>and give Surefire that JDK with <code>jdkToolchain</code>:</p>
+<p><em>pom.xml</em></p>
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="xml"><span class="nt">&lt;plugin&gt;</span>
+  <span class="nt">&lt;groupId&gt;</span>org.apache.maven.plugins<span class="nt">&lt;/groupId&gt;</span>
+  <span class="nt">&lt;artifactId&gt;</span>maven-surefire-plugin<span class="nt">&lt;/artifactId&gt;</span>
+  <span class="nt">&lt;version&gt;</span>3.6.0<span class="nt">&lt;/version&gt;</span>
+  <span class="nt">&lt;configuration&gt;</span>
+    <span class="nt">&lt;jdkToolchain&gt;</span>
+      <span class="nt">&lt;version&gt;</span>1.8<span class="nt">&lt;/version&gt;</span>
+    <span class="nt">&lt;/jdkToolchain&gt;</span>
+  <span class="nt">&lt;/configuration&gt;</span>
+<span class="nt">&lt;/plugin&gt;</span>
+</code></pre></div></div>
+<p>The code is compiled by the JDK Maven runs on and tested on Java 8:</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[INFO] Compiling 1 source file with javac [debug release 8] to target/classes
+...
+[INFO] Toolchain in maven-surefire-plugin: JDK[/opt/jdk/temurin-8]
+</code></pre></div></div>
+<p><code>jdkToolchain</code> needs Surefire 3.0.0-M5 or later and is matched against <em>toolchains.xml</em> only. The version in it must match the <code>&lt;version&gt;</code> of the entry exactly, here <code>1.8</code>; use a range such as <code>[1.8,9)</code> to accept any Java 8 entry. Failsafe has the same parameter for integration tests. The test libraries must run on Java 8 as well: JUnit 6 needs Java 17, so tests on Java 8 use JUnit 5.</p>
+<p>To run the whole build on the older JDK instead, compiler included, select it for the module with the toolchains plugin as in <a href="build-with-another-jdk.html">Build with a different JDK than Maven runs on</a>. With a Java 8 toolchain, the compiler plugin passes <code>-source</code> and <code>-target</code> instead of <code>--release</code>, because the <code>javac</code> of JDK 8 has no <code>--release</code> option; it compiles against the Java 8 class library either way.</p>
+<h2 id="UnsupportedClassVersionError">UnsupportedClassVersionError</h2>
+<p>A class compiled for a newer Java than the one that runs it does not load:</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Exception in thread "main" java.lang.UnsupportedClassVersionError: com/example/Greeter has been compiled by a more recent version of the Java Runtime (class file version 61.0), this version of the Java Runtime only recognizes class file versions up to 52.0
+</code></pre></div></div>
+<p>The class was compiled for Java 17 (61) and run on Java 8 (52). Lower <code>release</code> to the version that runs the code, or run it on a newer Java. When the class in the message belongs to a dependency, that dependency needs a newer Java than your release, and you need an older version of it.</p>
+
+</div>
+<footer class="guide-foot">
+  <h2 id="More_in_JDKs_and_toolchains">More in <a href="/maven-site/guides/topics/jdk.html">JDKs and toolchains</a></h2>
+  
+  <div class="guide-foot-kinds">
+  
+    
+    
+  
+    
+    
+    <section>
+      <h3 id="How-to_guides">How-to guides</h3>
+      
+<ul class="guide-list">
+
+  
+  
+  <li>
+    <a class="guide-list-title" href="/maven-site/guides/build-with-another-jdk.html">Build with a different JDK than Maven runs on</a>
+    
+    <span class="guide-list-summary">Compile, test and package a project with a JDK of your choice while Maven itself keeps running on the JDK in JAVA_HOME.</span>
+  </li>
+
+  
+  
+  <li class="is-current">
+    <strong class="guide-list-title" aria-current="page">Compile for an older Java version</strong>
+    
+    <span class="guide-list-summary">Build classes that run on an older Java than the JDK you build with, check them against that Java's API, and run the tests on it.</span>
+  </li>
+
+</ul>
+
+    </section>
+    
+  
+    
+    
+    <section>
+      <h3 id="Reference">Reference</h3>
+      
+<ul class="guide-list">
+
+  
+  
+  <li>
+    <a class="guide-list-title" href="/maven-site/guides/toolchains-xml.html">toolchains.xml</a>
+    
+    <span class="guide-list-summary">Where Maven reads toolchains.xml, the elements of a JDK toolchain, how a requirement matches an entry, and which plugins use the selected toolchain.</span>
+  </li>
+
+</ul>
+
+    </section>
+    
+  
+    
+    
+    <section>
+      <h3 id="Explanation">Explanation</h3>
+      
+<ul class="guide-list">
+
+  
+  
+  <li>
+    <a class="guide-list-title" href="/maven-site/guides/toolchains.html">Toolchains and the JDK Maven runs on</a>
+    
+    <span class="guide-list-summary">Why Maven keeps the JDK it runs on apart from the JDK that compiles and tests your code, how plugins find that JDK, and how it differs from release.</span>
+  </li>
+
+</ul>
+
+    </section>
+    
+  
+  </div>
+  
+  <p class="guide-provenance">Written from <a href="/maven-site/guides/mini/guide-using-toolchains.html"><code>guides/mini/guide-using-toolchains.md</code></a>.</p>
+  
+</footer>
+
+        </main>
+      </div>
+    </div>
+    <hr>
+    <footer>
+      <div class="container-fluid">
+        <div class="row-fluid">
+          <p>©      2002–2026 <a href="https://www.apache.org/">The Apache Software Foundation</a></p>
+          <p class="demo-note">A demonstration build of <a href="https://github.com/dashorst/maven-site/tree/diataxis-demo">dashorst/maven-site</a>, not the official Apache Maven site.</p>
+        </div>
+      </div>
+    </footer>
+    <script src="/maven-site/js/guide.js?v=1792948498" defer=""></script>
+    <script>
+    anchors.add();
+    </script>
+  
+
+</body></html>

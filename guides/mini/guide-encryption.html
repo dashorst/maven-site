@@ -1,0 +1,346 @@
+<!DOCTYPE html><!--
+ | The page frame of the Apache Maven Fluido Skin 2.1.0, as the Doxia site renderer writes it
+ | for maven.apache.org. Built with Jekyll: see jekyll/README.md.
+--><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Password Encryption – Maven</title>
+    
+    <link rel="stylesheet" href="/maven-site/css/apache-maven-fluido-2.1.0.min.css">
+    <link rel="stylesheet" href="/maven-site/css/site.css">
+    <link rel="stylesheet" href="/maven-site/css/guide.css?v=1792948498">
+    <link rel="stylesheet" href="/maven-site/css/print.css" media="print">
+    <script src="/maven-site/js/apache-maven-fluido-2.1.0.min.js"></script>
+  </head>
+  <body>
+    <div class="container-fluid container-fluid-top">
+      <header>
+        <div id="banner">
+          <div class="pull-left"><div id="bannerLeft"><h1><a href="/maven-site/index.html"><img src="/maven-site/images/apache-maven-project-light-theme.svg" style="width: 489px;height: 83px;" alt="Apache Maven"></a></h1></div></div>
+          <div class="pull-right"><div id="bannerRight"><h1><img src="/maven-site/images/logos/MavenLogoLeaf.svg" style="width: 340px;height: 83px;" alt=""></h1></div></div>
+          <div class="clear"><hr></div>
+        </div>
+
+        <div id="breadcrumbs">
+          <ul class="breadcrumb">
+            <li><a href="https://www.apache.org/">Apache</a><span class="divider">/</span></li>
+            <li><a href="/maven-site/index.html">Maven</a><span class="divider">/</span></li>
+            
+            <li class="active"><a id="PasswordEncryption"></a>Password Encryption <a href="https://github.com/apache/maven-site/tree/master/content/markdown/guides/mini/guide-encryption.md"><img src="/maven-site/images/accessories-text-editor.png" alt="Edit"></a></li>
+            <li id="publishDate" class="pull-right"><span class="divider">|</span> Last Published: 2026-10-25</li>
+            <li class="pull-right"><span class="divider">|</span> <a href="/maven-site/scm.html">Get Sources</a></li>
+            <li class="pull-right"><a href="https://maven.apache.org/download.cgi">Downloads</a></li>
+          </ul>
+        </div>
+      </header>
+      <div class="row-fluid">
+        <header id="leftColumn" class="span2">
+          
+<form class="guide-search" role="search" action="/maven-site/guides/a-z.html" data-index="/maven-site/guides/search.json" data-script="/maven-site/js/minisearch-7.2.0.js" data-oldest="3.9" data-base="/maven-site">
+  <label class="guide-search-label" for="guide-q-nav">Search the documentation</label>
+  <div class="guide-search-field">
+    <input id="guide-q-nav" name="q" type="search" autocomplete="off" spellcheck="false" placeholder="Search">
+    <kbd class="guide-search-key" aria-hidden="true">/</kbd>
+  </div>
+  
+</form>
+
+          <nav class="well sidebar-nav">
+<ul class="nav nav-list">
+  <li><a href="/maven-site/index.html">Welcome</a></li>
+  <li><a href="https://www.apache.org/licenses/">License</a></li>
+  <li class="nav-header">About Maven</li>
+  <li><a href="/maven-site/what-is-maven.html">What is Maven?</a></li>
+  <li><a href="/maven-site/install.html">Installation</a></li>
+  <li><a href="/maven-site/download.html">Downloads</a></li>
+  <li><a href="/maven-site/run.html">Use</a></li>
+  <li><a href="/maven-site/configure.html">Configure</a></li>
+  <li><a href="/maven-site/docs/history.html">Release Notes</a></li>
+  <li><a href="/maven-site/security.html">Security Reports</a></li>
+  <li class="nav-header">Documentation</li>
+  <li><a href="/maven-site/plugins/index.html">Maven Plugins</a></li>
+  <li><a href="/maven-site/extensions/index.html">Maven Extensions</a></li>
+  <li><a href="/maven-site/tools/index.html"><span class="icon-chevron-down"></span>Maven Tools</a>
+   <ul class="nav nav-list">
+    <li><a href="/maven-site/tools/mvnd.html">Maven Daemon</a></li>
+    <li><a href="/maven-site/tools/mvnsh.html">Maven Shell</a></li>
+    <li><a href="/maven-site/tools/mvnup.html">Maven Upgrade Tool</a></li>
+    <li><a href="/maven-site/tools/mavenwrapper.html">Maven Wrapper</a></li>
+   </ul></li>
+  <li><a href="/maven-site/doxia/index.html"><span class="icon-chevron-right"></span>Doxia</a></li>
+  <li><a href="/maven-site/guides/index.html">Guides</a></li>
+  <li><a href="/maven-site/users/index.html"><span class="icon-chevron-down"></span>User Manual</a>
+   <ul class="nav nav-list">
+    <li><a><span class="icon-chevron-down"></span>Maven Build Fundamentals</a>
+     <ul class="nav nav-list">
+      <li><a href="/maven-site/guides/getting-started/maven-in-five-minutes.html">Maven in 5 Minutes</a></li>
+      <li><a href="/maven-site/users/getting-help.html">Getting Help</a></li>
+      <li><a href="/maven-site/run-maven/index.html">Running Maven</a></li>
+     </ul></li>
+    <li><a><span class="icon-chevron-down"></span>Maven Build Config Fundamentals</a>
+     <ul class="nav nav-list">
+      <li><a href="/maven-site/guides/plugins/validation/index.html">Plugins Validation</a></li>
+      <li><a href="/maven-site/guides/mini/guide-site.html"><span class="icon-chevron-right"></span>Creating a site</a></li>
+      <li><a href="/maven-site/guides/introduction/introduction-to-archetypes.html"><span class="icon-chevron-right"></span>Archetypes</a></li>
+      <li><a href="/maven-site/guides/introduction/introduction-to-repositories.html"><span class="icon-chevron-down"></span>Repositories</a>
+       <ul class="nav nav-list">
+        <li><a href="/maven-site/guides/mini/guide-3rd-party-jars-local.html">Install to Local</a></li>
+        <li><a href="/maven-site/guides/mini/guide-3rd-party-jars-remote.html">Deploy to Remote</a></li>
+        <li><a href="/maven-site/repository-management.html">Repository Management</a></li>
+        <li><a href="/maven-site/guides/mini/guide-multiple-repositories.html">Using Multiple Repositories</a></li>
+        <li><a href="/maven-site/guides/mini/guide-large-scale-centralized-deployments.html">Large Scale Centralized Deployments</a></li>
+        <li><a href="/maven-site/guides/mini/guide-mirror-settings.html">Mirror Settings</a></li>
+        <li><a href="/maven-site/guides/mini/guide-deployment-security-settings.html"><span class="icon-chevron-down"></span>Deployment and Security Settings</a>
+         <ul class="nav nav-list">
+          <li class="active"><a>Encrypting Passwords (Maven 3)</a></li>
+          <li><a href="/maven-site/guides/mini/guide-encryption-4.html">Encrypting Passwords (Maven 4)</a></li>
+         </ul></li>
+        <li><a href="/maven-site/guides/mini/guide-proxies.html">Using Proxies</a></li>
+        <li><a href="/maven-site/guides/mini/guide-repository-ssl.html">Authenticated HTTPS</a></li>
+        <li><a href="/maven-site/guides/mini/guide-resolver-transport.html">Resolver Transport</a></li>
+        <li><a href="/maven-site/guides/mini/guide-http-settings.html">Advanced Wagon HTTP Configuration</a></li>
+        <li><a href="/maven-site/guides/mini/guide-wagon-providers.html">Alternative Wagon Providers</a></li>
+        <li><a href="/maven-site/guides/mini/guide-relocation.html">Relocation</a></li>
+       </ul></li>
+      <li><a href="/maven-site/guides/introduction/introduction-to-profiles.html">Profiles</a></li>
+      <li><a href="/maven-site/guides/introduction/introduction-to-the-standard-directory-layout.html">Standard Directory Layout</a></li>
+      <li><a href="/maven-site/guides/introduction/introduction-to-dependency-mechanism.html"><span class="icon-chevron-right"></span>Dependency Mechanism</a></li>
+     </ul></li>
+    <li><a href="/maven-site/guides/getting-started/index.html"><span class="icon-chevron-right"></span>Getting Started Guide</a></li>
+    <li><a><span class="icon-chevron-down"></span>Maven 4</a>
+     <ul class="nav nav-list">
+      <li><a href="/maven-site/whatsnewinmaven4.html">What's new in Maven 4?</a></li>
+      <li><a href="/maven-site/guides/mini/guide-migration-to-mvn4.html">Starting with Maven 4</a></li>
+      <li><a href="/maven-site/guides/mini/guide-mixins.html">Maven Mixins</a></li>
+     </ul></li>
+    <li><a href="/maven-site/guides/mini/index.html"><span class="icon-chevron-right"></span>Guides</a></li>
+    <li><a href="/maven-site/general.html">FAQ</a></li>
+   </ul></li>
+  <li><a href="/maven-site/repositories/index.html"><span class="icon-chevron-right"></span>Maven Repositories</a></li>
+  <li><a href="/maven-site/plugin-developers/index.html"><span class="icon-chevron-right"></span>Plugin Development</a></li>
+  <li><a href="/maven-site/developers/index.html"><span class="icon-chevron-right"></span>Contribute to Maven</a></li>
+  <li><a href="/maven-site/articles.html">Books and Resources</a></li>
+  <li class="nav-header">Community</li>
+  <li><a href="/maven-site/community.html">Community Overview</a></li>
+  <li><a href="/maven-site/project-roles.html">Project Roles</a></li>
+  <li><a href="/maven-site/guides/development/guide-helping.html">How to Contribute</a></li>
+  <li><a href="/maven-site/users/getting-help.html">Getting Help</a></li>
+  <li><a href="/maven-site/issue-management.html">Issue Management</a></li>
+  <li><a href="/maven-site/scm.html">Getting Maven Source</a></li>
+  <li><a href="/maven-site/team.html">The Maven Team</a></li>
+  <li class="nav-header">Project Documentation</li>
+  <li><a href="/maven-site/project-info.html">Project Information</a></li>
+  <li class="nav-header">Maven Projects</li>
+  <li><a href="/maven-site/ref/current">Maven</a></li>
+  <li><a href="/maven-site/archetypes/index.html">Archetypes</a></li>
+  <li><a href="/maven-site/extensions/index.html">Extensions</a></li>
+  <li><a href="/maven-site/pom/index.html">Parent POMs</a></li>
+  <li><a href="/maven-site/plugins/index.html">Plugins</a></li>
+  <li><a href="/maven-site/skins/index.html">Skins</a></li>
+  <li><a><span class="icon-chevron-down"></span>Components</a>
+   <ul class="nav nav-list">
+    <li><a href="/maven-site/archetype/index.html">Archetype</a></li>
+    <li><a href="/maven-site/resolver/index.html">Artifact Resolver</a></li>
+    <li><a href="/maven-site/doxia/index.html">Doxia</a></li>
+    <li><a href="/maven-site/maven-indexer/index.html">Indexer</a></li>
+    <li><a href="/maven-site/jxr/index.html">JXR</a></li>
+    <li><a href="/maven-site/plugin-testing/index.html">Plugin Testing</a></li>
+    <li><a href="/maven-site/plugin-tools/index.html">Plugin Tools</a></li>
+    <li><a href="/maven-site/apache-resource-bundles/index.html">Resource Bundles</a></li>
+    <li><a href="/maven-site/scm/index.html">SCM</a></li>
+    <li><a href="/maven-site/shared/index.html">Shared Components</a></li>
+    <li><a href="/maven-site/surefire/index.html">Surefire</a></li>
+    <li><a href="/maven-site/wagon/index.html">Wagon</a></li>
+   </ul></li>
+  <li class="nav-header">ASF</li>
+  <li><a href="https://www.apache.org/foundation/how-it-works.html">How Apache Works</a></li>
+  <li><a href="https://www.apache.org/foundation/">Foundation</a></li>
+  <li><a href="https://privacy.apache.org/policies/privacy-policy-public.html">Data Privacy</a></li>
+  <li><a href="https://www.apache.org/foundation/sponsorship.html">Sponsoring Apache</a></li>
+  <li><a href="https://www.apache.org/foundation/thanks.html">Thanks</a></li>
+</ul>
+          </nav>
+          <div class="well sidebar-nav">
+            <div id="poweredBy">
+              <div class="clear"></div>
+              <a href="/maven-site/" class="builtBy" target="_blank"><img class="builtBy" alt="Built by Maven" src="/maven-site/images/logos/maven-feather.png"></a>
+            </div>
+          </div>
+        </header>
+        <main id="bodyColumn" class="span10">
+          
+          <aside class="guide-split alert alert-info">
+            <p><strong>This page is rewritten in the <a href="/maven-site/guides/index.html">Maven guides</a></strong>, as pages that each do one job:</p>
+            <ul>
+              <li><a href="/maven-site/guides/encrypt-passwords.html">Encrypt passwords in settings.xml</a> <span class="guide-list-kind">How-to</span></li>
+            </ul>
+          </aside>
+          
+<!--
+Licensed to the Apache Software Foundation (ASF) under one
+or more contributor license agreements.  See the NOTICE file
+distributed with this work for additional information
+regarding copyright ownership.  The ASF licenses this file
+to you under the Apache License, Version 2.0 (the
+"License"); you may not use this file except in compliance
+with the License.  You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing,
+software distributed under the License is distributed on an
+"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+KIND, either express or implied.  See the License for the
+specific language governing permissions and limitations
+under the License.
+-->
+<h1 id="Password_Encryption"><a id="Password_Encryption"></a>Password Encryption</h1>
+<p>(If you're working with Maven 4, please refer to the <a href="./guide-encryption-4.html">Maven 4 edition of this guide</a>)</p>
+<div class="doxia-toc"><ul><li><a href="#Introduction">Introduction</a></li><li><a href="#How_to_create_a_master_password">How to create a master password</a></li><li><a href="#How_to_encrypt_server_passwords">How to encrypt server passwords</a></li><li><a href="#How_to_keep_the_master_password_on_removable_drive">How to keep the master password on removable drive</a></li><li><a href="#Tips">Tips</a><ul><li><a href="#Escaping_curly-brace_literals_in_your_password_.28Since.3A_Maven_2.2.0.29">Escaping curly-brace literals in your password (Since: Maven 2.2.0)</a></li><li><a href="#Password_Security">Password Security</a></li><li><a href="#Password_Escaping_on_different_platforms">Password Escaping on different platforms</a></li><li><a href="#Prompting_for_Password">Prompting for Password</a></li></ul></li></ul></div>
+<h2 id="Introduction">Introduction</h2>
+<p>Maven supports server password encryption. The main use case, addressed by this solution is:</p>
+<ul>
+<li>multiple users share the same build machine (server, CI box)</li>
+<li>some users have the privilege to deploy Maven artifacts to repositories, some don't.
+<ul>
+<li>this applies to any server operations, requiring authorization, not only deployment</li>
+</ul>
+</li>
+<li><code>settings.xml</code> is shared between users</li>
+</ul>
+<p>The implemented solution adds the following capabilities:</p>
+<ul>
+<li>authorized users have an additional <code>settings-security.xml</code> file in their <code>${user.home}/.m2</code> directory
+<ul>
+<li>this file either contains encrypted <strong>master password</strong>, used to encrypt other passwords</li>
+<li>or it can contain a <strong>relocation</strong> - reference to another file, possibly on removable storage</li>
+<li>this password is created first via CLI for now</li>
+</ul>
+</li>
+<li>server entries in the <code>settings.xml</code> have passwords and/or keystore passphrases encrypted
+<ul>
+<li>for now - this is done via CLI <strong>after</strong> master password has been created and stored in appropriate location</li>
+</ul>
+</li>
+</ul>
+<p><strong>Important:</strong> The password encryption provided by Maven 3.x is <em>obfuscation-grade</em> (it relies on a single-hash key derivation and provides no authenticated encryption). It is useful to keep secrets out of logs and screenshots, but it will not resist a determined attacker with access to the encrypted values. It is not a substitute for proper secrets management: keep restrictive file permissions on your <code>settings.xml</code> (e.g. <code>chmod 600</code>), prefer a secrets vault or your CI/CD secret store, or move to <a href="./guide-encryption-4.html">Maven 4</a> for stronger protection.</p>
+<h2 id="How_to_create_a_master_password">How to create a master password</h2>
+<p>Use the following command line:</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mvn --encrypt-master-password &lt;password&gt;
+</code></pre></div></div>
+<p><em>Note:</em> Since Maven 3.2.1 the password argument should no longer be used (see <a href="#Tips">Tips</a> below for more information). Maven will prompt for the password. Earlier versions of Maven will not prompt for a password, so it must be typed on the command-line in plaintext.</p>
+<p>This command will produce an encrypted version of the password, something like</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>{jSMOWnoPFgsHVpMvz5VrIt5kRbzGpI8u+9EF1iFQyJQ=}
+</code></pre></div></div>
+<p>Store this password in the <code>${user.home}/.m2/settings-security.xml</code>; it should look like</p>
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="xml"><span class="nt">&lt;settingsSecurity&gt;</span>
+  <span class="nt">&lt;master&gt;</span>{jSMOWnoPFgsHVpMvz5VrIt5kRbzGpI8u+9EF1iFQyJQ=}<span class="nt">&lt;/master&gt;</span>
+<span class="nt">&lt;/settingsSecurity&gt;</span>
+</code></pre></div></div>
+<p><em>The encrypted version of the master password is encrypted with a <a href="https://github.com/apache/maven/blob/fe25a2627c1dafeb44188dad9f45dfd5fe965a98/maven-embedder/src/main/java/org/apache/maven/cli/MavenCli.java#L856">hardcoded key</a>, so please treat it as if the password is stored in the file in plain text.</em></p>
+<p>When this is done, you can start encrypting existing server passwords.</p>
+<h2 id="How_to_encrypt_server_passwords">How to encrypt server passwords</h2>
+<p>You have to use the following command line:</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mvn --encrypt-password &lt;password&gt;
+</code></pre></div></div>
+<p>_Note:_Just like <code>--encrypt-master-password</code> the password argument should no longer be used since Maven 3.2.1 (see <a href="#Tips">Tips below for more information.</a>).</p>
+<p>This command produces an encrypted version of it, something like</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>{COQLCE6DU6GtcS5P=}
+</code></pre></div></div>
+<p>Copy and paste it into the servers section of your <code>settings.xml</code> file. This will look like:</p>
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="xml"><span class="nt">&lt;settings&gt;</span>
+...
+  <span class="nt">&lt;servers&gt;</span>
+...
+    <span class="nt">&lt;server&gt;</span>
+      <span class="nt">&lt;id&gt;</span>my.server<span class="nt">&lt;/id&gt;</span>
+      <span class="nt">&lt;username&gt;</span>foo<span class="nt">&lt;/username&gt;</span>
+      <span class="nt">&lt;password&gt;</span>{COQLCE6DU6GtcS5P=}<span class="nt">&lt;/password&gt;</span>
+    <span class="nt">&lt;/server&gt;</span>
+...
+  <span class="nt">&lt;/servers&gt;</span>
+...
+<span class="nt">&lt;/settings&gt;</span>
+</code></pre></div></div>
+<p>Please note that password can contain any information outside of the curly brackets, so that the following will still work:</p>
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="xml"><span class="nt">&lt;settings&gt;</span>
+...
+  <span class="nt">&lt;servers&gt;</span>
+...
+    <span class="nt">&lt;server&gt;</span>
+      <span class="nt">&lt;id&gt;</span>my.server<span class="nt">&lt;/id&gt;</span>
+      <span class="nt">&lt;username&gt;</span>foo<span class="nt">&lt;/username&gt;</span>
+      <span class="nt">&lt;password&gt;</span>Oleg reset this password on 2009-03-11, expires on 2009-04-11 {COQLCE6DU6GtcS5P=}<span class="nt">&lt;/password&gt;</span>
+    <span class="nt">&lt;/server&gt;</span>
+...
+  <span class="nt">&lt;/servers&gt;</span>
+...
+<span class="nt">&lt;/settings&gt;</span>
+</code></pre></div></div>
+<p>Then you can use, say, deploy plugin, to write to this server:</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mvn deploy:deploy-file -Durl=https://maven.corp.com/repo \
+                       -DrepositoryId=my.server \
+                       -Dfile=your-artifact-1.0.jar \
+</code></pre></div></div>
+<h2 id="How_to_keep_the_master_password_on_removable_drive">How to keep the master password on removable drive</h2>
+<p>Create the master password exactly as described above, and store it on a removable drive, for instance on OSX, my USB drive mounts as <code>/Volumes/mySecureUsb</code>, so I store</p>
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="xml"><span class="nt">&lt;settingsSecurity&gt;</span>
+  <span class="nt">&lt;master&gt;</span>{jSMOWnoPFgsHVpMvz5VrIt5kRbzGpI8u+9EF1iFQyJQ=}<span class="nt">&lt;/master&gt;</span>
+<span class="nt">&lt;/settingsSecurity&gt;</span>
+</code></pre></div></div>
+<p>in the file <code>/Volumes/mySecureUsb/secure/settings-security.xml</code></p>
+<p>And then I create <code>${user.home}/.m2/settings-security.xml</code> with the following content:</p>
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="xml"><span class="nt">&lt;settingsSecurity&gt;</span>
+  <span class="nt">&lt;relocation&gt;</span>/Volumes/mySecureUsb/secure/settings-security.xml<span class="nt">&lt;/relocation&gt;</span>
+<span class="nt">&lt;/settingsSecurity&gt;</span>
+</code></pre></div></div>
+<p>This assures that encryption only works when the USB drive is mounted by the OS. This addresses a use case where only certain people are authorized to deploy and are issued these devices.</p>
+<h2 id="Tips">Tips</h2>
+<h3 id="Escaping_curly-brace_literals_in_your_password_.28Since.3A_Maven_2.2.0.29">Escaping curly-brace literals in your password <em>(Since: Maven 2.2.0)</em></h3>
+<p>At times, you might find that your password (or the encrypted form of it) contains '{' or '}' as a literal value. If you added such a password as-is to your settings.xml file, you would find that Maven does strange things with it. Specifically, Maven treats all the characters preceding the '{' literal, and all the characters after the '}' literal, as comments. Obviously, this is not the behavior you want. What you really need is a way of <strong>escaping</strong> the curly-brace literals in your password.</p>
+<p>You can do this with the widely used '\' escape character. If your password looks like this:</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>jSMOWnoPFgsHVpMvz5VrIt5kRbzGpI8u+{EF1iFQyJQ=
+</code></pre></div></div>
+<p>Then, the value you would add to your settings.xml looks like this:</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>{jSMOWnoPFgsHVpMvz5VrIt5kRbzGpI8u+\{EF1iFQyJQ=}
+</code></pre></div></div>
+<h3 id="Password_Security">Password Security</h3>
+<p>Editing <code>settings.xml</code> and running the above commands can still leave your password stored locally in plaintext. You may want to check the following locations:</p>
+<ul>
+<li>Shell history (e.g. by running <code>history</code>). You may want to clear your history after encrypting the above passwords</li>
+<li>Editor caches (e.g. <code>~/.viminfo</code>)</li>
+</ul>
+<p>Also note that the encrypted passwords can be decrypted by someone that has the master password and settings security file. Keep this file secure (or stored separately) if you expect the possibility that the <code>settings.xml</code> file may be retrieved.</p>
+<h3 id="Password_Escaping_on_different_platforms">Password Escaping on different platforms</h3>
+<p>On some platforms it might be necessary to quote the password if it contains special characters like <code>%</code>, <code>!</code>, <code>$</code>, etc. For example on Windows you have to be careful about things like the following:</p>
+<p>The following example will not work on Windows:</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mvn --encrypt-master-password a!$%^b
+</code></pre></div></div>
+<p>whereas the following will work on Windows:</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mvn --encrypt-master-password "a!$%^b"
+</code></pre></div></div>
+<p>If you are on a linux/unix platform you should use single quotes for the above master password. Otherwise the master password will not work (caused by the dollar sign and the exclamation mark).</p>
+<h3 id="Prompting_for_Password">Prompting for Password</h3>
+<p>In Maven before version 3.2.1 you have to give the password on the command line as an argument which means you might need to escape your password. In addition usually the shell stores the full history of commands you have entered, therefore anyone with access to your computer could restore the password from the shell`s history.</p>
+<p>Starting with Maven 3.2.1, the password is an optional argument. If you omit the password, you will be prompted for it which prevents all the issues mentioned above.</p>
+<p>We strongly recommend using Maven 3.2.1 and above to prevent problems with escaping special characters and of course security issues related to bash history or environment issues in relationship with the password.</p>
+
+        </main>
+      </div>
+    </div>
+    <hr>
+    <footer>
+      <div class="container-fluid">
+        <div class="row-fluid">
+          <p>©      2002–2026 <a href="https://www.apache.org/">The Apache Software Foundation</a></p>
+          <p class="demo-note">A demonstration build of <a href="https://github.com/dashorst/maven-site/tree/diataxis-demo">dashorst/maven-site</a>, not the official Apache Maven site.</p>
+        </div>
+      </div>
+    </footer>
+    <script src="/maven-site/js/guide.js?v=1792948498" defer=""></script>
+    <script>
+    anchors.add();
+    </script>
+  
+
+</body></html>
