@@ -1,0 +1,18 @@
+{% comment %}
+The search: a combobox over /guides/search.json, run by js/guide.js. It finds guide pages
+and their sections first, then every other page of the site. Without JavaScript the form
+opens the A-Z index. Pass size="large" for the guide's front page.
+{% endcomment %}
+<form class="guide-search{% if include.size == 'large' %} guide-search--large{% endif %}" role="search" action="{{ site.baseurl }}/guides/a-z.html" data-index="{{ site.baseurl }}/guides/search.json" data-script="{{ site.baseurl }}/js/minisearch-7.2.0.js" data-oldest="{{ site.data.guide_oldest }}" data-base="{{ site.baseurl }}">
+  <label class="guide-search-label" for="guide-q{{ include.id }}">Search the documentation</label>
+  <div class="guide-search-field">
+    <input id="guide-q{{ include.id }}" name="q" type="search" autocomplete="off" spellcheck="false" placeholder="{% if include.size == 'large' %}A task, a setting, an option or an element{% else %}Search{% endif %}">
+    <kbd class="guide-search-key" aria-hidden="true">/</kbd>
+  </div>
+  {% if include.size == 'large' %}
+  <p class="guide-search-hint"><label>For <select name="v" data-guide-version>
+    <option value="">every version</option>
+    {% for line in site.data.releases.lines %}<option value="{{ line.series }}">Maven {{ line.series }}{% if line.status == 'upcoming' %} (not yet released){% endif %}</option>{% endfor %}
+  </select></label></p>
+  {% endif %}
+</form>

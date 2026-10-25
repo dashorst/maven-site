@@ -1,0 +1,10 @@
+# The demonstration build of maven.apache.org with Jekyll; see jekyll/README.md.
+source "https://rubygems.org"
+
+gem "jekyll", "4.4.1"
+gem "nokogiri"
+gem "webrick"
+
+group :jekyll_plugins do
+  gem "jekyll-commonmark"
+end

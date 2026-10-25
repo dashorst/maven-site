@@ -1,0 +1,41 @@
+---
+layout: default
+---
+{% comment %} A page of the user guide (jekyll/_guide/), see GUIDE.md. {% endcomment %}
+{% assign topic = site.data.guide.topics | where: "id", page.topic | first %}
+{% assign kind = site.data.guide.kinds | where: "id", page.type | first %}
+{% assign line = site.data.releases.lines | where: "series", page.since | first %}
+<header class="guide-head">
+  <h1>{{ page.title }}</h1>
+  <p class="lead">{{ page.summary }}</p>
+  <p class="guide-plates"><span class="label guide-kind guide-kind--{{ page.type }}">{{ kind.label }}</span>
+    {% if line.status == 'upcoming' %}<span class="label label-warning guide-since">Maven {{ page.since }}, not yet released</span>{% elsif page.since != site.data.guide_oldest %}<span class="label guide-since">Maven {{ page.since }} and later</span>{% endif %}
+    <a class="guide-topic-link" href="{{ site.baseurl }}/guides/topics/{{ topic.id }}.html">{{ topic.title }}</a></p>
+  {% if line.status == 'upcoming' %}
+  <p class="guide-upcoming">Maven {{ page.since }} is not released yet. This page describes {{ line.version }}, and details may change before the release.</p>
+  {% else %}
+  <p class="guide-version-note alert" data-since="{{ page.since }}" hidden>This page describes Maven {{ page.since }} and later; you chose Maven <span data-chosen></span>.</p>
+  {% endif %}
+</header>
+<!-- MACRO{toc|fromDepth=2|toDepth=2} -->
+<div class="guide-content">
+{{ content }}
+</div>
+<footer class="guide-foot">
+  <h2>More in <a href="{{ site.baseurl }}/guides/topics/{{ topic.id }}.html">{{ topic.title }}</a></h2>
+  {% assign siblings = site.guide | where: "topic", page.topic %}
+  <div class="guide-foot-kinds">
+  {% for k in site.data.guide.kinds %}
+    {% assign pages = siblings | where: "type", k.id | sort: "order", "last" %}
+    {% if pages.size > 0 %}
+    <section>
+      <h3>{{ k.title }}</h3>
+      {% include guide-list.html pages=pages current=page.url %}
+    </section>
+    {% endif %}
+  {% endfor %}
+  </div>
+  {% if page.source %}
+  <p class="guide-provenance">Written from {% for s in page.source %}{% if s contains ':' %}{% assign parts = s | split: ':' %}<a href="https://github.com/{{ parts[0] }}/blob/master/{{ parts[1] }}"><code>{{ parts[0] | remove: 'apache/' }}/{{ parts[1] | split: '/' | last }}</code></a>{% else %}{% assign html = s | replace: '.md', '.html' %}<a href="{{ site.baseurl }}/{{ html }}"><code>{{ s }}</code></a>{% endif %}{% unless forloop.last %}, {% endunless %}{% endfor %}.</p>
+  {% endif %}
+</footer>

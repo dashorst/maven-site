@@ -1,0 +1,64 @@
+---
+layout: default
+title: Maven guides
+permalink: /guides/index.html
+summary: Using and configuring Apache Maven, by topic, with tutorials, how-to guides, reference and explanation.
+---
+{% assign released = site.data.releases.lines | where_exp: "l", "l.status != 'upcoming'" | map: "series" %}
+<header class="guide-head guide-head--front">
+  <h1>Maven guides</h1>
+  <p class="lead">Using and configuring Apache Maven {{ released | join: " and " }}{% if site.data.guide_upcoming %}, and what the upcoming Maven {{ site.data.guide_upcoming.series }} changes{% endif %}.</p>
+  {% include guide-search.html size="large" id="-front" %}
+</header>
+
+<p class="guide-demo alert alert-info">A demonstration: four topics of the Maven documentation, rewritten as separate tutorials, how-to guides, reference and explanation pages, so that each page does one job and search can find the section that answers a question. The search covers the whole site. The pages these were written from are still there, and say which pages replace them. See <a href="https://github.com/dashorst/maven-site/blob/diataxis-demo/GUIDE.md">GUIDE.md</a> for how the guide is written.</p>
+
+<section class="guide-group" id="start">
+  <h2>Start here</h2>
+  <p class="guide-group-intro">Lessons that take you from an empty directory to a tested, packaged project.</p>
+  {% assign tutorials = site.guide | where: "type", "tutorial" | sort: "order", "last" %}
+  <ol class="guide-route">
+  {% for doc in tutorials %}
+    <li><a class="guide-list-title" href="{{ site.baseurl }}{{ doc.url }}">{{ doc.title }}</a>
+      <span class="guide-list-summary">{{ doc.summary }}</span></li>
+  {% endfor %}
+  </ol>
+</section>
+
+<section class="guide-group" id="topics">
+  <h2>Topics</h2>
+  <p class="guide-group-intro">Each topic gathers its tutorials, how-to guides, reference and explanation on one page.</p>
+  <ul class="guide-list guide-topics">
+  {% for t in site.data.guide.topics %}
+    {% assign n = site.guide | where: "topic", t.id %}
+    <li><a class="guide-list-title" href="{{ site.baseurl }}/guides/topics/{{ t.id }}.html">{{ t.title }}</a>
+      <span class="guide-list-kind">{{ n.size }} pages</span>
+      <span class="guide-list-summary">{{ t.summary }}</span></li>
+  {% endfor %}
+  </ul>
+  {% assign kind_links = '' | split: '' %}{% for k in site.data.guide.kinds %}{% capture a %}<a href="{{ site.baseurl }}{{ k.url }}">{{ k.title | downcase }}</a>{% endcapture %}{% assign kind_links = kind_links | push: a %}{% endfor %}
+  <p class="guide-kinds-line">Or list every page of one kind: {{ kind_links | join: ", " }}.</p>
+</section>
+
+<section class="guide-group" id="lookup">
+  <h2>Look it up</h2>
+  <ul class="guide-list">
+    <li><a class="guide-list-title" href="{{ site.baseurl }}/guides/a-z.html">A–Z index</a>
+      <span class="guide-list-summary">Every file, element, option and plugin the guide explains, and every page by title.</span></li>
+    <li><a class="guide-list-title" href="{{ site.baseurl }}/pom.html">POM reference</a>
+      <span class="guide-list-summary">Every element of <code>pom.xml</code>.</span></li>
+    <li><a class="guide-list-title" href="{{ site.baseurl }}/settings.html">Settings reference</a>
+      <span class="guide-list-summary">Every element of <code>settings.xml</code>.</span></li>
+    <li><a class="guide-list-title" href="https://maven.apache.org/ref/current/maven-embedder/cli.html">Command-line options</a>
+      <span class="guide-list-summary">Every option of <code>mvn</code>, generated from the Maven source of each release.</span></li>
+    <li><a class="guide-list-title" href="https://maven.apache.org/ref/current/maven-core/lifecycles.html">Lifecycles</a>
+      <span class="guide-list-summary">The phases of the default, clean and site lifecycles, generated from the Maven source.</span></li>
+    <li><a class="guide-list-title" href="{{ site.baseurl }}/plugins/index.html">Plugins</a>
+      <span class="guide-list-summary">The plugins of the Maven project, each with its goals and parameters.</span></li>
+  </ul>
+</section>
+
+<section class="guide-group" id="everything">
+  <h2>All other documentation</h2>
+  <p>The rest of the documentation is not rewritten yet: the <a href="{{ site.baseurl }}/guides/categories.html">documentation by category</a>, the <a href="{{ site.baseurl }}/guides/mini/index.html">mini guides</a> and the <a href="{{ site.baseurl }}/users/index.html">user manual</a>. The search above finds those pages too.</p>
+</section>

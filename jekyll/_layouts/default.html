@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<!--
+ | The page frame of the Apache Maven Fluido Skin 2.1.0, as the Doxia site renderer writes it
+ | for maven.apache.org. Built with Jekyll: see jekyll/README.md.
+-->
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{{ page.title | strip_html }} – Maven</title>
+    {% if page.summary %}<meta name="description" content="{{ page.summary | strip_html | escape }}" />{% endif %}
+    <link rel="stylesheet" href="{{ site.baseurl }}/css/apache-maven-fluido-2.1.0.min.css" />
+    <link rel="stylesheet" href="{{ site.baseurl }}/css/site.css" />
+    <link rel="stylesheet" href="{{ site.baseurl }}/css/guide.css?v={{ site.time | date: '%s' }}" />
+    <link rel="stylesheet" href="{{ site.baseurl }}/css/print.css" media="print" />
+    <script src="{{ site.baseurl }}/js/apache-maven-fluido-2.1.0.min.js"></script>
+  </head>
+  <body>
+    <div class="container-fluid container-fluid-top">
+      <header>
+        <div id="banner">
+          <div class="pull-left"><div id="bannerLeft"><h1><a href="{{ site.baseurl }}/index.html"><img src="{{ site.baseurl }}/images/apache-maven-project-light-theme.svg" style="width: 489px;height: 83px;" alt="Apache Maven" /></a></h1></div></div>
+          <div class="pull-right"><div id="bannerRight"><h1><img src="{{ site.baseurl }}/images/logos/MavenLogoLeaf.svg" style="width: 340px;height: 83px;" alt="" /></h1></div></div>
+          <div class="clear"><hr/></div>
+        </div>
+
+        <div id="breadcrumbs">
+          <ul class="breadcrumb">
+            <li><a href="https://www.apache.org/">Apache</a><span class="divider">/</span></li>
+            <li><a href="{{ site.baseurl }}/index.html">Maven</a><span class="divider">/</span></li>
+            {% for crumb in page.crumbs %}<li><a href="{{ site.baseurl }}{{ crumb.url }}">{{ crumb.name }}</a><span class="divider">/</span></li>
+            {% endfor %}
+            <li class="active">{{ page.title }}{% if page.doxia_source %} <a href="{{ site.edit.content }}/{{ page.doxia_source }}"><img src="{{ site.baseurl }}/images/accessories-text-editor.png" alt="Edit" /></a>{% elsif page.collection == 'guide' %} <a href="{{ site.edit.guide }}/{{ site.collections_dir }}/{{ page.relative_path }}"><img src="{{ site.baseurl }}/images/accessories-text-editor.png" alt="Edit" /></a>{% endif %}</li>
+            <li id="publishDate" class="pull-right"><span class="divider">|</span> Last Published: {{ site.time | date: '%Y-%m-%d' }}</li>
+            <li class="pull-right"><span class="divider">|</span> <a href="{{ site.baseurl }}/scm.html">Get Sources</a></li>
+            <li class="pull-right"><a href="https://maven.apache.org/download.cgi">Downloads</a></li>
+          </ul>
+        </div>
+      </header>
+      <div class="row-fluid">
+        <header id="leftColumn" class="span2">
+          {% include guide-search.html id="-nav" %}
+          <nav class="well sidebar-nav">
+{% maven_menu %}
+          </nav>
+          <div class="well sidebar-nav">
+            <div id="poweredBy">
+              <div class="clear"></div>
+              <a href="https://maven.apache.org/" class="builtBy" target="_blank"><img class="builtBy" alt="Built by Maven" src="{{ site.baseurl }}/images/logos/maven-feather.png" /></a>
+            </div>
+          </div>
+        </header>
+        <main id="bodyColumn" class="span10">
+          {% if page.split_into %}
+          <aside class="guide-split alert alert-info">
+            <p><strong>This page is rewritten in the <a href="{{ site.baseurl }}/guides/index.html">Maven guides</a></strong>, as pages that each do one job:</p>
+            <ul>{% for doc in page.split_into %}{% assign kind = site.data.guide.kinds | where: "id", doc.type | first %}
+              <li><a href="{{ site.baseurl }}{{ doc.url }}">{{ doc.title }}</a> <span class="guide-list-kind">{{ kind.label }}</span></li>{% endfor %}
+            </ul>
+          </aside>
+          {% endif %}
+{{ content }}
+        </main>
+      </div>
+    </div>
+    <hr/>
+    <footer>
+      <div class="container-fluid">
+        <div class="row-fluid">
+          <p>©      2002–{{ site.time | date: '%Y' }} <a href="https://www.apache.org/">The Apache Software Foundation</a></p>
+          <p class="demo-note">A demonstration build of <a href="https://github.com/dashorst/maven-site/tree/diataxis-demo">dashorst/maven-site</a>, not the official Apache Maven site.</p>
+        </div>
+      </div>
+    </footer>
+    <script src="{{ site.baseurl }}/js/guide.js?v={{ site.time | date: '%s' }}" defer></script>
+    <script>
+    anchors.add();
+    </script>
+  </body>
+</html>

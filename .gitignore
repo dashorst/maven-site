@@ -8,3 +8,10 @@ test-output
 .idea
 .DS_Store
 .factorypath
+# the Jekyll build, see jekyll/README.md
+jekyll/.velocity
+jekyll/.velocity-lib
+jekyll/.bundle
+jekyll/.bundle-cache
+_site
+.jekyll-cache
