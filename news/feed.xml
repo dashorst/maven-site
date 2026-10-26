@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Apache Maven news</title>
+  <link href="https://maven.apache.org/maven-site/news/index.html"/>
+  <link rel="self" href="https://maven.apache.org/maven-site/news/feed.xml"/>
+  <id>https://maven.apache.org/news/</id>
+  <updated>2026-10-13T00:00:00+00:00</updated>
+  <entry>
+    <title>New in the docs: POM Validation Tool (mvnval)</title>
+    <link href="https://maven.apache.org/maven-site/docs/plugins/mvnval.html"/>
+    <id>https://maven.apache.org/news/#2026-10-13-new-in-the-docs-pom-validation-tool-mvnval</id>
+    <updated>2026-10-13T00:00:00+00:00</updated>
+    <summary>mvnval checks POM files and reports every problem it finds, without running a build. Unlike mvn validate it does not stop at the first error, and its raw mode works offline. The page says it ships with Maven 4.1.0.</summary>
+    <author><name>Apache Maven</name></author>
+  </entry>
+  <entry>
+    <title>Maven 3.10.0</title>
+    <link href="https://maven.apache.org/maven-site/downloads/releases/3.10.0.html"/>
+    <id>https://maven.apache.org/news/#2026-09-27-maven-3-10-0</id>
+    <updated>2026-09-27T00:00:00+00:00</updated>
+    <summary>Maven 3 moves to Resolver 2.x, the same lineage Maven 4 uses. Reproducible builds are on by default, and server credentials in settings.xml are now scoped to the repositories and mirrors that declare them. It still runs on Java 8.</summary>
+    <author><name>Apache Maven</name></author>
+  </entry>
+  <entry>
+    <title>Maven 4.0.0-rc-7</title>
+    <link href="https://maven.apache.org/maven-site/downloads/releases/4.0.0-rc-7.html"/>
+    <id>https://maven.apache.org/news/#2026-09-24-maven-4-0-0-rc-7</id>
+    <updated>2026-09-24T00:00:00+00:00</updated>
+    <summary>This release candidate is expected to be the last before Maven 4.0.0 GA. It contains a large number of bug fixes and improvements since rc-6, including fixes to the upgrade tool mvnup. Maven 4 needs Java 17 to run.</summary>
+    <author><name>Apache Maven</name></author>
+  </entry>
+  <entry>
+    <title>Maven 4.0.0-rc-6</title>
+    <link href="https://maven.apache.org/maven-site/downloads/releases/4.0.0-rc-6.html"/>
+    <id>https://maven.apache.org/news/#2026-08-04-maven-4-0-0-rc-6</id>
+    <updated>2026-08-04T00:00:00+00:00</updated>
+    <summary>All known issues reported for rc-5 are fixed, including the macOS Gatekeeper problem with the JLine native library. Servers in settings.xml can declare aliases, and the default resolver transport is now Apache HttpClient.</summary>
+    <author><name>Apache Maven</name></author>
+  </entry>
+  <entry>
+    <title>Maven 3.10.0-rc-1</title>
+    <link href="https://maven.apache.org/maven-site/downloads/releases/3.10.0-rc-1.html"/>
+    <id>https://maven.apache.org/news/#2026-07-09-maven-3-10-0-rc-1</id>
+    <updated>2026-07-09T00:00:00+00:00</updated>
+    <summary>The first release candidate of Maven 3.10 uses Resolver 2.x, turns on reproducible builds by default and allows user-wide and installation-wide extensions. Dependency classpath ordering changes from depth-first to breadth-first, as in Maven 4.</summary>
+    <author><name>Apache Maven</name></author>
+  </entry>
+  <entry>
+    <title>A new Maven logo</title>
+    <link href="https://maven.apache.org/maven-site/community/project/logos.html"/>
+    <id>https://maven.apache.org/news/#2026-06-07-a-new-maven-logo</id>
+    <updated>2026-06-07T00:00:00+00:00</updated>
+    <summary>The logo page now shows the new Maven logo received from the ASF, in SVG and PNG. There is no version for a dark background yet.</summary>
+    <author><name>Apache Maven</name></author>
+  </entry>
+  <entry>
+    <title>Maven 3.9.16</title>
+    <link href="https://maven.apache.org/maven-site/downloads/releases/3.9.16.html"/>
+    <id>https://maven.apache.org/news/#2026-05-13-maven-3-9-16</id>
+    <updated>2026-05-13T00:00:00+00:00</updated>
+    <summary>Regression fixes and other improvements from 3.9.15. Plugin prefix resolution no longer always forces a metadata download. All 3.9.x users are advised to upgrade.</summary>
+    <author><name>Apache Maven</name></author>
+  </entry>
+  <entry>
+    <title>Maven 3.9.15</title>
+    <link href="https://maven.apache.org/maven-site/downloads/releases/3.9.15.html"/>
+    <id>https://maven.apache.org/news/#2026-04-13-maven-3-9-15</id>
+    <updated>2026-04-13T00:00:00+00:00</updated>
+    <summary>Upgrades plexus-utils to 3.6.1 to get rid of a CVE, and makes colored console output work on Java 26 and later. All 3.9.x users are advised to upgrade.</summary>
+    <author><name>Apache Maven</name></author>
+  </entry>
+  <entry>
+    <title>Two options for a new Maven logo</title>
+    <link href="https://maven.apache.org/maven-site/community/project/logo-vote.html"/>
+    <id>https://maven.apache.org/news/#2026-04-04-two-options-for-a-new-maven-logo</id>
+    <updated>2026-04-04T00:00:00+00:00</updated>
+    <summary>A page shows the two logo options that were put to a vote.</summary>
+    <author><name>Apache Maven</name></author>
+  </entry>
+  <entry>
+    <title>Maven 3.9.14</title>
+    <link href="https://maven.apache.org/maven-site/downloads/releases/3.9.14.html"/>
+    <id>https://maven.apache.org/news/#2026-03-12-maven-3-9-14</id>
+    <updated>2026-03-12T00:00:00+00:00</updated>
+    <summary>A quick fix for the one known issue in 3.9.13. All 3.9.x users are advised to upgrade.</summary>
+    <author><name>Apache Maven</name></author>
+  </entry>
+  <entry>
+    <title>Maven 3.9.13</title>
+    <link href="https://maven.apache.org/maven-site/downloads/releases/3.9.13.html"/>
+    <id>https://maven.apache.org/news/#2026-03-06-maven-3-9-13</id>
+    <updated>2026-03-06T00:00:00+00:00</updated>
+    <summary>Mostly bug and regression fixes for user-reported problems. Resolver 1.9.27 undoes the parallel PUT change from 1.9.25, because many repository managers struggled with concurrent requests, and treats HTTP 410 like 404.</summary>
+    <author><name>Apache Maven</name></author>
+  </entry>
+  <entry>
+    <title>New in the docs: Maven null annotations</title>
+    <link href="https://maven.apache.org/maven-site/extend/plugins/null-annotations.html"/>
+    <id>https://maven.apache.org/news/#2026-02-20-new-in-the-docs-maven-null-annotations</id>
+    <updated>2026-02-20T00:00:00+00:00</updated>
+    <summary>Maven 4 has its own @Nonnull and @Nullable annotations. All Maven 4 API modules use them, and Maven DI checks them at run time. The page lists which analysis tools and IDEs support them.</summary>
+    <author><name>Apache Maven</name></author>
+  </entry>
+  <entry>
+    <title>Maven 3.9.12</title>
+    <link href="https://maven.apache.org/maven-site/downloads/releases/3.9.12.html"/>
+    <id>https://maven.apache.org/news/#2025-12-13-maven-3-9-12</id>
+    <updated>2025-12-13T00:00:00+00:00</updated>
+    <summary>Removes the Guice warnings on JDK 25 and later, and checks a plugin&apos;s Java version requirement before it runs, with a clear error message. Resolver 1.9.25 refines locking for parallel builds.</summary>
+    <author><name>Apache Maven</name></author>
+  </entry>
+  <entry>
+    <title>Stage and Verifier plugins retired</title>
+    <link href="https://maven.apache.org/maven-site/docs/plugins/available-plugins.html"/>
+    <id>https://maven.apache.org/news/#2025-11-29-stage-and-verifier-plugins-retired</id>
+    <updated>2025-11-29T00:00:00+00:00</updated>
+    <summary>The Stage plugin (last version 1.0) assisted with release staging and promotion. The Verifier plugin (last version 1.1) verified conditions in integration tests. Both are now in the Retired list.</summary>
+    <author><name>Apache Maven</name></author>
+  </entry>
+  <entry>
+    <title>Maven logos to follow the ASF oak leaf</title>
+    <link href="https://maven.apache.org/maven-site/community/project/logos.html"/>
+    <id>https://maven.apache.org/news/#2025-11-14-maven-logos-to-follow-the-asf-oak-leaf</id>
+    <updated>2025-11-14T00:00:00+00:00</updated>
+    <summary>In September 2025 the ASF announced a new logo, the oak leaf, replacing the feather. The page lists every Maven logo that has to be redrawn as a result.</summary>
+    <author><name>Apache Maven</name></author>
+  </entry>
+  <entry>
+    <title>Maven 4.0.0-rc-5</title>
+    <link href="https://maven.apache.org/maven-site/downloads/releases/4.0.0-rc-5.html"/>
+    <id>https://maven.apache.org/news/#2025-11-13-maven-4-0-0-rc-5</id>
+    <updated>2025-11-13T00:00:00+00:00</updated>
+    <summary>Consumer POM flattening is off by default and becomes an opt-in feature, because it could cause problems when computing the dependency tree. Configuration files now use UTF-8.</summary>
+    <author><name>Apache Maven</name></author>
+  </entry>
+  <entry>
+    <title>New in the docs: Maven Mixins (Maven 4.1)</title>
+    <link href="https://maven.apache.org/maven-site/docs/maven-4/mixins.html"/>
+    <id>https://maven.apache.org/news/#2025-09-20-new-in-the-docs-maven-mixins-maven-4-1</id>
+    <updated>2025-09-20T00:00:00+00:00</updated>
+    <summary>Mixins will let a POM take shared configuration from several sources instead of a single parent. The page documents this planned Maven 4.1 feature.</summary>
+    <author><name>Apache Maven</name></author>
+  </entry>
+  <entry>
+    <title>Linkcheck plugin retired</title>
+    <link href="https://maven.apache.org/maven-site/docs/plugins/available-plugins.html"/>
+    <id>https://maven.apache.org/news/#2025-09-16-linkcheck-plugin-retired</id>
+    <updated>2025-09-16T00:00:00+00:00</updated>
+    <summary>The Linkcheck plugin (last version 1.2) generated a Linkcheck report of a project&apos;s documentation. It is now in the Retired list.</summary>
+    <author><name>Apache Maven</name></author>
+  </entry>
+  <entry>
+    <title>New in the docs: Maven Shell (mvnsh)</title>
+    <link href="https://maven.apache.org/maven-site/docs/plugins/mvnsh.html"/>
+    <id>https://maven.apache.org/news/#2025-09-08-new-in-the-docs-maven-shell-mvnsh</id>
+    <updated>2025-09-08T00:00:00+00:00</updated>
+    <summary>Maven Shell keeps one Maven process running while the shell is open, so builds skip booting Java and Maven each time. It is built in since Maven 4.0.0 and is a technical preview that may change.</summary>
+    <author><name>Apache Maven</name></author>
+  </entry>
+  <entry>
+    <title>New in the docs: Maven Upgrade Tool (mvnup)</title>
+    <link href="https://maven.apache.org/maven-site/docs/plugins/mvnup.html"/>
+    <id>https://maven.apache.org/news/#2025-07-30-new-in-the-docs-maven-upgrade-tool-mvnup</id>
+    <updated>2025-07-30T00:00:00+00:00</updated>
+    <summary>mvnup upgrades pom.xml files for Maven 4 with a check and apply workflow. It ships with Maven 4 from 4.0.0-rc-4 on, so there is nothing extra to install.</summary>
+    <author><name>Apache Maven</name></author>
+  </entry>
+</feed>
