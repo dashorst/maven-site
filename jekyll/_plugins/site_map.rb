@@ -179,7 +179,14 @@ module SiteMap
             nxt = idx ? internal[idx + 1] : nil
             doc.data['nav'] = { 'primary' => true, 'section' => s['id'], 'group' => g['id'], 'title' => item['title'],
                                 'prev' => prev && prev.slice('title', 'url'), 'next' => nxt && nxt.slice('title', 'url') }
-            doc.data['facts'] = item['facts']
+            # The first page of a section is its overview, like the generated ones: no page facts,
+            # only its contents in the rail.
+            if item['url'] == s['url']
+              doc.data['facts'] = nil
+              doc.data['rail'] = true
+            else
+              doc.data['facts'] = item['facts']
+            end
           end
         end
       end

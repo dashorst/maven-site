@@ -32,7 +32,7 @@ Everything works without JavaScript; js/search.js only makes the search answer a
 {{ content }}
   </main>
   {%- else %}
-  <div class="frame{% if show_group %} has-group{% endif %}{% unless page.facts %} no-rail{% endunless %}">
+  <div class="frame{% if show_group %} has-group{% endif %}{% unless page.facts or page.rail %} no-rail{% endunless %}">
     {%- if show_group %}
     <nav class="group-nav" aria-labelledby="group-nav-title">
       <p class="up"><a href="{{ site.baseurl }}{{ section.url }}"><svg aria-hidden="true" viewBox="0 0 16 16" width="14" height="14"><path d="M10 3.5L5.5 8l4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>All of {{ section.title }}</a></p>
@@ -56,9 +56,11 @@ Everything works without JavaScript; js/search.js only makes the search answer a
       </nav>
       {%- endif %}
     </main>
-    {%- if page.facts %}
+    {%- if page.facts or page.rail %}
     <aside class="rail">
+      {%- if page.facts %}
       {% include facts.html %}
+      {%- endif %}
       <nav id="on-this-page" aria-label="On this page"></nav>
     </aside>
     {%- endif %}
