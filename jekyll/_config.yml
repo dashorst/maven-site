@@ -4,6 +4,8 @@
 # The source is the repository root, so the pages in content/ are read where they are;
 # everything Jekyll adds lives in jekyll/. See jekyll/README.md.
 title: Maven
+# Shows the strip under the header saying this is a proposal, not the official site.
+specimen: true
 url: https://maven.apache.org
 baseurl: ""
 
