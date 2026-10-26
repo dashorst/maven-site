@@ -1,5 +1,6 @@
 # A demonstration: maven.apache.org built with Jekyll instead of the Doxia site renderer,
-# with a user guide split by kind (tutorials, how-to guides, reference, explanation).
+# restructured into five sections (Docs, Downloads, News, Extend, Community) with a user
+# guide split by kind (tutorials, how-to guides, reference, explanation).
 # The source is the repository root, so the pages in content/ are read where they are;
 # everything Jekyll adds lives in jekyll/. See jekyll/README.md.
 title: Maven
@@ -13,7 +14,7 @@ plugins_dir: jekyll/_plugins
 collections_dir: jekyll
 
 # content/ is mounted by _plugins/doxia_content.rb, not read as Jekyll pages.
-exclude: [content, src, pom.xml, README.md, Jenkinsfile, GUIDE.md, target,
+exclude: [content, src, pom.xml, README.md, Jenkinsfile, GUIDE.md, PRODUCT.md, DESIGN.md, CONTENT-FIXES.md, .impeccable, target,
           jekyll/skin, jekyll/velocity, jekyll/Gemfile, jekyll/Gemfile.lock, jekyll/README.md, jekyll/build.sh, jekyll/publish.sh, .gh-pages]
 
 markdown: CommonMark
@@ -39,8 +40,4 @@ defaults:
     values:
       layout: guide
 
-# The category index of the Doxia site gives its URL to the guide's front page.
-doxia_moved:
-  /guides/index.html: /guides/categories.html
-menu_labels:
-  /guides/index.html: Guides
+# The structure of the site is in _data/site_map.yml, see _plugins/site_map.rb.

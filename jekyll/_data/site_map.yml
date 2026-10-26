@@ -1,0 +1,386 @@
+# The structure of the site: five sections, each a list of groups, each a list of pages in
+# reading order. _plugins/site_map.rb gives every page its URL here, writes a redirect page at
+# its old URL, and builds the navigation, the landing pages and the search index from this file.
+#
+# A page is one of:
+#   guide: <name>      a page of the user guide in jekyll/_guide/
+#   src: <path>        a page of Maven's site, relative to content/markdown/ (or xdoc/<file> in content/xdoc/)
+#   href: <url>        a page outside this build
+# with
+#   title: the label in the navigation (defaults to the page's own title)
+#   slug: the file name of the new URL (defaults to the source file name)
+#   url: a URL of its own instead of /<section>/<group>/<slug>.html
+#   replaces: Maven pages this guide page replaces; their old URLs redirect to it
+#
+# Pages of content/ that appear nowhere here keep their old URL and are listed by the build.
+
+sections:
+  - id: docs
+    title: Docs
+    summary: Using Maven to build your projects, from a first project to multi-module builds, repositories, toolchains and Maven 4.
+    groups:
+      - id: get-started
+        title: Get started
+        summary: Install Maven, build a first project and learn the few ideas everything else rests on.
+        pages:
+          - guide: first-project
+            replaces: [guides/getting-started/maven-in-five-minutes.md]
+          - guide: add-a-dependency
+          - { src: install.md.vm, title: Install Maven, slug: install }
+          - { src: guides/getting-started/windows-prerequisites.md, title: Maven on Windows, slug: windows }
+          - { src: what-is-maven.md, title: What is Maven? }
+          - { src: background/philosophy-of-maven.md, title: Philosophy of Maven }
+          - guide: build-lifecycle
+            title: Phases, goals and plugins
+            replaces: [guides/introduction/introduction-to-the-lifecycle.md]
+          - guide: standard-directory-layout
+            replaces: [guides/introduction/introduction-to-the-standard-directory-layout.md]
+          - { src: guides/introduction/introduction-to-the-pom.md, title: The POM explained, slug: the-pom }
+          - { src: run-maven/index.md, title: Build an existing project, slug: build-a-project }
+          - { src: guides/getting-started/index.md, title: Getting started questions and answers, slug: questions-and-answers }
+
+      - id: configure
+        title: Configure Maven
+        summary: settings.xml, maven.config and jvm.config, proxies, credentials and profiles.
+        pages:
+          - guide: configuration-files
+            title: "Configuration files: settings.xml, maven.config, jvm.config"
+            replaces: [configure.md, guides/mini/guide-configuring-maven.md]
+          - guide: proxy-settings
+            title: Configure a proxy
+            replaces: [guides/mini/guide-proxies.md]
+          - guide: server-credentials
+            title: Store server credentials
+            replaces: [guides/mini/guide-deployment-security-settings.md]
+          - guide: encrypt-passwords
+            replaces: [guides/mini/guide-encryption.md, guides/mini/guide-encryption-4.md]
+          - guide: settings-files-reference
+            title: Settings files reference
+          - { src: guides/introduction/introduction-to-profiles.md, title: Build profiles explained, slug: profiles }
+          - { src: guides/mini/guide-building-for-different-environments.md, title: Build for different environments, slug: different-environments }
+          - { src: examples/injecting-properties-via-settings.md, title: Inject POM properties via settings.xml, slug: properties-from-settings }
+
+      - id: dependencies
+        title: Dependencies and repositories
+        summary: How Maven finds the libraries you use, and how to point it at your own repositories.
+        pages:
+          - { src: guides/introduction/introduction-to-dependency-mechanism.md, title: How dependencies work, slug: how-dependencies-work }
+          - { src: guides/introduction/introduction-to-optional-and-excludes-dependencies.md, title: Optional dependencies and exclusions, slug: optional-and-exclusions }
+          - { src: guides/introduction/introduction-to-repositories.md, title: Repositories explained, slug: repositories }
+          - guide: mirror-settings
+            title: Use a mirror or repository manager (Nexus, Artifactory)
+            replaces: [guides/mini/guide-mirror-settings.md]
+          - { src: repository-management.md, title: Why use a repository manager, slug: repository-manager }
+          - { src: guides/mini/guide-multiple-repositories.md, title: Use several repositories, slug: several-repositories }
+          - { src: guides/mini/guide-3rd-party-jars-local.md, title: Install a third-party JAR locally, slug: third-party-jar-local }
+          - { src: guides/mini/guide-3rd-party-jars-remote.md, title: Deploy a third-party JAR to a remote repository, slug: third-party-jar-remote }
+          - { src: guides/mini/guide-repository-ssl.md, title: Authenticated HTTPS repositories, slug: https-repositories }
+          - { src: guides/mini/guide-resolver-transport.md, title: Resolver transport, slug: resolver-transport }
+          - { src: guides/mini/guide-http-settings.md, title: HTTP options of the Wagon transport, slug: wagon-http }
+          - { src: guides/mini/guide-wagon-providers.md, title: Alternative Wagon providers, slug: wagon-providers }
+          - { src: guides/mini/guide-large-scale-centralized-deployments.md, title: Large centralized deployments, slug: centralized-deployments }
+          - { src: guides/mini/guide-naming-conventions.md, title: Naming your coordinates, slug: naming-coordinates }
+
+      - id: multi-module
+        title: Multi-module projects
+        summary: Split a build into modules, build part of it, and share configuration between modules.
+        pages:
+          - guide: aggregation-and-inheritance
+          - guide: split-into-modules
+          - guide: build-part-of-a-project
+          - guide: share-configuration
+            title: Share configuration between modules
+          - guide: reactor-options
+            title: Reactor options reference
+          - { src: guides/mini/guide-multiple-modules.md, title: Modules in Maven 3, slug: modules-maven-3 }
+          - { src: guides/mini/guide-multiple-subprojects-4.md, title: Subprojects in Maven 4, slug: subprojects-maven-4 }
+          - { src: guides/mini/guide-maven-ci-friendly.md, title: CI-friendly versions, slug: ci-friendly-versions }
+
+      - id: java-versions
+        title: Java versions and toolchains
+        summary: Compile for an older Java, or build with a different JDK than the one Maven runs on.
+        pages:
+          - guide: toolchains
+            title: Toolchains explained
+            replaces: [guides/mini/guide-using-toolchains.md]
+          - guide: build-with-another-jdk
+            title: Build with another JDK
+          - guide: compile-for-older-java
+          - guide: toolchains-xml
+            title: toolchains.xml reference
+
+      - id: plugins
+        title: Plugins, extensions and tools
+        summary: The plugins and extensions that do the work of a build, how to configure them, and the tools around Maven.
+        pages:
+          - { src: plugins/index.md, title: Available plugins, slug: available-plugins }
+          - { src: extensions/index.md, title: Available extensions, slug: available-extensions }
+          - { src: guides/mini/guide-configuring-plugins.md, title: Configure plugins, slug: configure-plugins }
+          - { src: guides/introduction/introduction-to-plugin-prefix-mapping.md.vm, title: Plugin prefixes, slug: plugin-prefixes }
+          - { src: guides/mini/guide-default-execution-ids.md, title: Default executions, slug: default-executions }
+          - { src: guides/mini/guide-using-extensions.md, title: Use extensions, slug: use-extensions }
+          - { src: guides/plugins/validation/index.md, title: Plugin validation warnings, slug: plugin-validation }
+          - { src: tools/index.md, title: Maven tools, slug: tools }
+          - { src: tools/mvnd.md, title: Maven Daemon (mvnd), slug: mvnd }
+          - { src: tools/mavenwrapper.md, title: Maven Wrapper, slug: wrapper }
+          - { src: tools/mvnsh.md, title: Maven Shell, slug: mvnsh }
+          - { src: tools/mvnup.md, title: Maven Upgrade Tool (mvnup), slug: mvnup }
+          - { src: tools/mvnval.md, title: POM Validation Tool (mvnval), slug: mvnval }
+
+      - id: recipes
+        title: Build recipes
+        summary: Common jobs in a build, from generated sources and fat JARs to reproducible builds and releases.
+        pages:
+          - { src: guides/mini/guide-generating-sources.md, title: Generate sources, slug: generate-sources }
+          - { src: guides/mini/guide-archive-configuration.md, title: Configure archives, slug: archives }
+          - { src: guides/mini/guide-manifest.md, title: Work with manifests, slug: manifests }
+          - { src: guides/mini/guide-assemblies.md, title: Create assemblies and fat JARs, slug: assemblies }
+          - { src: guides/mini/guide-attached-tests.md, title: Attached tests, slug: attached-tests }
+          - { src: guides/mini/guide-reproducible-builds.md, title: Reproducible builds, slug: reproducible-builds }
+          - { src: guides/mini/guide-releasing.md, title: Version and release your own project, slug: release-your-project }
+          - { src: code-quality-management.md, title: Code quality tools, slug: code-quality }
+          - { src: guides/mini/guide-using-ant.md, title: Use Ant, slug: ant }
+          - { src: guides/mini/guide-using-modello.md, title: Use Modello, slug: modello }
+          - { src: guides/mini/guide-using-one-source-directory.md, title: When you can't use the conventions, slug: without-conventions }
+
+      - id: site
+        title: Project site
+        summary: Generate a documentation site for your project and write its pages in Markdown or another format.
+        pages:
+          - { src: guides/mini/guide-site.md, title: Create a project site, slug: create-a-site }
+          - { src: doxia/references/index.md, title: Write pages in Markdown, APT, FML or Xdoc, slug: markup-formats }
+          - { src: doxia/references/markdown-format.md, title: Markdown format, slug: markdown }
+          - { src: doxia/references/apt-format.md, title: APT format, slug: apt }
+          - { src: doxia/references/doxia-apt.md, title: Doxia's APT enhancements, slug: doxia-apt }
+          - { src: doxia/references/fml-format.md, title: FML format, slug: fml }
+          - { src: doxia/references/xdoc-format.md, title: Xdoc format, slug: xdoc }
+          - { src: guides/mini/guide-snippet-macro.md, title: Snippet macro, slug: snippet-macro }
+          - { src: doxia/macros/index.md, title: All Doxia macros, slug: macros }
+          - { src: skins/index.md, title: Choose a skin, slug: skins }
+
+      - id: maven-4
+        title: Maven 4
+        summary: What changes in Maven 4 and how to move a build to it.
+        pages:
+          - { src: whatsnewinmaven4.md, title: What's new in Maven 4, slug: whats-new }
+          - { src: guides/mini/guide-migration-to-mvn4.md, title: Start with Maven 4 (migration), slug: migrate }
+          - { src: guides/mini/guide-mixins.md, title: Mixins (Maven 4.1), slug: mixins }
+
+      - id: reference
+        title: Reference
+        summary: The POM, the settings, the command line and the build lifecycle in full.
+        pages:
+          - { src: pom.md, title: POM reference, slug: pom }
+          - { src: settings.md, title: Settings reference, slug: settings }
+          - { src: run.md, title: "Command line: running Maven", slug: command-line }
+          - { src: guides/mini/guide-maven-classloading.md, title: Maven classloading, slug: classloading }
+          - { src: reference/maven-classloading.md, title: Classloading in Maven core, slug: classloading-core }
+          - { src: glossary.md, title: Glossary }
+          - { src: guides/mini/guide-bash-m2-completion.md, title: Bash completion, slug: bash-completion }
+          - { url: /docs/reference/a-z.html, title: A–Z index }
+
+      - id: help
+        title: Help
+        summary: Frequently asked questions, books and where to ask.
+        pages:
+          - { src: general.md, title: FAQ, slug: faq }
+          - { src: faq-unoffical.md, title: Unofficial FAQ, slug: unofficial-faq }
+          - { src: users/getting-help.md, title: Ask for help, slug: getting-help }
+          - { src: articles.md, title: Books and resources, slug: books-and-resources }
+
+  - id: downloads
+    title: Downloads
+    summary: Maven itself, the notes for every release, and security reports.
+    groups:
+      - id: download
+        title: Download
+        summary: The current, previous and preview releases of Maven.
+        pages:
+          - { src: xdoc/download.xml.vm, title: Download Maven, url: /downloads/index.html }
+      - id: releases
+        title: Releases
+        summary: What changed in each version, and when each line reached its end of life.
+        pages:
+          - { src: release-notes-all.md.vm, title: Release notes, slug: release-notes }
+          - { src: docs/history.md.vm, title: Release history, slug: history }
+          - { src: maven-2.x-eol.md, title: "End of life: Maven 2.x", slug: eol-maven-2 }
+          - { src: maven-1.x-eol.md, title: "End of life: Maven 1.x", slug: eol-maven-1 }
+      - id: security
+        title: Security
+        summary: Known vulnerabilities and the versions that fix them.
+        pages:
+          - { src: security.md, title: Security reports, url: /security.html }
+          - { src: security-plexus-archiver.md, title: Zip Slip vulnerability, slug: zip-slip }
+
+  - id: news
+    title: News
+    summary: Releases, new tools, Maven 4 milestones, security advisories and plugin retirements, newest first.
+    groups: []
+
+  - id: extend
+    title: Extend
+    summary: Write plugins and extensions, publish to Maven Central, and build on Maven's repository format and site tooling.
+    groups:
+      - id: plugins
+        title: Write a plugin or extension
+        summary: From a first Mojo to testing, documenting and the Maven 4 API.
+        pages:
+          - { src: guides/introduction/introduction-to-plugins.md, title: Introduction to plugin development, slug: introduction }
+          - { src: guides/plugin/guide-java-plugin-development.md.vm, title: Your first plugin (Mojo), slug: first-plugin }
+          - { src: guides/plugin/guide-java-report-plugin-development.md.vm, title: Your first report plugin, slug: first-report-plugin }
+          - { src: guides/development/guide-plugin-documentation.md.vm, title: Document your plugin, slug: document }
+          - { src: plugin-developers/plugin-testing.md, title: Test your plugin, slug: test }
+          - { src: plugin-developers/common-bugs.md, title: Common bugs and pitfalls, slug: common-bugs }
+          - { src: developers/mojo-api-specification.md, title: Mojo API specification, slug: mojo-api }
+          - { src: maven-logging.md, title: Logging in plugins, slug: logging }
+          - { src: maven-di.md, title: Dependency injection (Maven 4), slug: dependency-injection }
+          - { src: maven-jsr330.md, title: JSR-330, slug: jsr-330 }
+          - { src: null-annotations.md, title: Null annotations, slug: null-annotations }
+          - { src: plugin-developers/cookbook/plexus-plugin-upgrade.md, title: Upgrade from Plexus Javadoc tags, slug: plexus-annotations }
+          - { src: examples/maven-3-lifecycle-extensions.md.vm, title: Lifecycle extensions example, slug: lifecycle-extensions }
+          - { src: plugin-developers/cookbook/index.md, title: Extensions cookbook, slug: cookbook }
+          - { src: plugins/localization.md, title: Plugin localization, slug: localization }
+          - { src: maven-conventions.md, title: Maven conventions, slug: conventions }
+      - id: archetypes
+        title: Archetypes
+        summary: Project templates, and how to make your own.
+        pages:
+          - { src: guides/introduction/introduction-to-archetypes.md, title: Introduction to archetypes, slug: introduction }
+          - { src: guides/mini/guide-creating-archetypes.md, title: Create an archetype, slug: create }
+      - id: central
+        title: Publish to Maven Central
+        summary: Put your library in Maven Central and keep its metadata right.
+        pages:
+          - { src: repository/index.md, title: Maven Central explained, slug: maven-central }
+          - { src: repository/guide-central-repository-upload.md, title: Upload your artifacts, slug: upload }
+          - { src: repository/central-metadata.md, title: Fix or improve metadata, slug: fix-metadata }
+          - { src: project-faq.md, title: Project metadata FAQ, slug: metadata-faq }
+          - { src: repository/central-index.md, title: Central index, slug: central-index }
+          - { src: repository/layout.md, title: Central's directory layout, slug: layout }
+          - { src: guides/mini/guide-relocation.md, title: Relocate an artifact, slug: relocation }
+      - id: repository-format
+        title: "Repository format: layout and metadata files"
+        summary: How repositories store artifacts and metadata, for anyone building tools on them.
+        pages:
+          - { src: repositories/index.md, title: Repositories overview, slug: overview }
+          - { src: repositories/artifacts.md, title: Artifacts, slug: artifacts }
+          - { src: repositories/dependencies.md, title: Dependencies, slug: dependencies }
+          - { src: repositories/metadata.md, title: maven-metadata.xml, slug: metadata }
+          - { src: repositories/layout.md, title: Directory layout, slug: layout }
+          - { src: repositories/local.md, title: Local repository, slug: local }
+          - { src: repositories/remote.md, title: Remote repositories, slug: remote }
+      - id: doxia
+        title: "Doxia and skins: site tooling"
+        summary: The framework behind Maven sites, and how to extend it.
+        pages:
+          - { src: doxia/index.md.vm, title: Doxia, slug: doxia }
+          - { src: doxia/overview.md, title: Doxia overview, slug: overview }
+          - { src: doxia/modules/index.md, title: Doxia modules, slug: modules }
+          - { src: doxia/developers/index.md, title: Doxia developers, slug: developers }
+          - { src: doxia/developers/modules.md.vm, title: Write a Doxia module, slug: write-a-module }
+          - { src: doxia/developers/macros.md, title: Write a Doxia macro, slug: write-a-macro }
+          - { src: doxia/developers/sink.md, title: Use the Sink API, slug: sink-api }
+          - { src: doxia/doxia-tools/index.md, title: Doxia tools, slug: tools }
+          - { src: doxia/issues/index.md, title: Doxia issues and gotchas, slug: issues }
+          - { src: doxia/faq.md, title: Doxia FAQ, slug: faq }
+          - { src: doxia/downloads.md, title: Doxia releases, slug: releases }
+          - { src: doxia/resources.md, title: Doxia resources, slug: resources }
+          - { src: doxia/scm.md, title: Doxia sources, slug: sources }
+      - id: building-blocks
+        title: Building blocks
+        summary: Shared components, parent POMs and the other Maven projects.
+        pages:
+          - { src: shared/index.md, title: Shared components, slug: shared-components }
+          - { src: pom/index.md, title: Parent POMs, slug: parent-poms }
+          - { href: "https://maven.apache.org/ref/current/", title: Maven core reference }
+          - { href: "https://maven.apache.org/resolver/", title: Maven Resolver }
+          - { href: "https://maven.apache.org/surefire/", title: Surefire }
+          - { href: "https://maven.apache.org/wagon/", title: Wagon }
+
+  - id: community
+    title: Community
+    summary: Where to ask, how to contribute to Maven itself, and how the project works.
+    groups:
+      - id: talk
+        title: Talk to us
+        summary: Mailing lists, Slack and the issue trackers.
+        pages:
+          - { src: community.md, title: Community overview, slug: overview }
+          - { url: /docs/help/getting-help.html, title: Mailing lists and Slack }
+          - { src: issue-management.md, title: Issue tracking, slug: issues }
+      - id: contribute
+        title: Contribute to Maven
+        summary: Get the sources, build Maven, and the conventions a change follows.
+        pages:
+          - { src: guides/development/guide-helping.md, title: How to help, slug: how-to-help }
+          - { src: scm.md, title: Get the sources, slug: sources }
+          - { src: guides/development/guide-building-maven.md, title: Build Maven, slug: build-maven }
+          - { src: guides/development/guide-maven-development.md, title: Develop Maven, slug: develop-maven }
+          - { src: developers/conventions/code.md, title: Code style, slug: code-style }
+          - { src: developers/conventions/git.md, title: Git conventions, slug: git }
+          - { src: developers/conventions/github.md, title: GitHub conventions, slug: github }
+          - { src: guides/development/guide-documentation-style.md, title: Documentation style, slug: documentation-style }
+          - { src: guides/development/guide-testing-development-plugins.md, title: Test development versions of plugins, slug: test-development-plugins }
+          - { src: guides/development/guide-testing-releases.md, title: Test staged releases, slug: test-staged-releases }
+      - id: committers
+        title: Committers
+        summary: Becoming a committer, and what a committer sets up.
+        pages:
+          - { src: guides/development/guide-committer-school.md, title: Become a committer, slug: become-a-committer }
+          - { src: developers/welcome-to-new-committers.md, title: Welcome, new committers, slug: welcome }
+          - { src: guides/mini/guide-new-committers.md, title: Guide for new committers, slug: guide }
+          - { src: developers/committer-environment.md, title: Committer environment, slug: environment }
+          - { src: developers/committer-settings.md, title: Committer settings, slug: settings }
+      - id: releasing
+        title: Release Apache Maven components
+        summary: How Maven core, plugins and parent POMs are released.
+        pages:
+          - { src: developers/release/index.md, title: How Apache Maven releases work, slug: overview }
+          - { src: developers/release/maven-project-release-procedure.md, title: Release a plugin or component, step by step, slug: procedure }
+          - { src: developers/release/maven-core-release.md, title: Release Maven core, slug: maven-core }
+          - { src: developers/release/parent-pom-release.md, title: Release a parent POM, slug: parent-pom }
+          - { src: developers/release/pmc-gpg-keys.md, title: GPG keys, slug: gpg-keys }
+      - id: website
+        title: Maven website
+        summary: How this site and the component sites are built and published.
+        pages:
+          - { src: developers/website/index.md, title: The Maven website, slug: overview }
+          - { src: developers/website/website-overview.md, title: How the sites fit together, slug: sites }
+          - { src: developers/website/deploy-maven-website.md, title: Deploy the website, slug: deploy }
+          - { src: developers/website/deploy-component-reference-documentation.md, title: Component reference documentation, slug: component-docs }
+          - { src: developers/website/component-reference-documentation-helper.md, title: Component documentation helper, slug: component-docs-helper }
+      - id: policies
+        title: Policies
+        summary: How plugins are retired, which dependencies Maven may use, and what stays compatible.
+        pages:
+          - { src: developers/retirement-plan-plugins.md, title: Plugin retirement plan, slug: plugin-retirement }
+          - { src: developers/dependency-policies.md, title: Dependency policies, slug: dependencies }
+          - { src: developers/compatibility-plan.md, title: Compatibility plan, slug: compatibility }
+      - id: project
+        title: The project
+        summary: Who runs Maven, its history, and its logos.
+        pages:
+          - { src: project-roles.md, title: Project roles, slug: roles }
+          - { href: "https://maven.apache.org/team.html", title: The team }
+          - { src: about.md, title: About Maven, slug: about }
+          - { src: testimonials.md, title: Testimonials, slug: testimonials }
+          - { src: background/history-of-maven.md, title: History of Maven, slug: history }
+          - { src: logoupdate.md, title: Logos, slug: logos }
+          - { src: logovote.md, title: The logo vote, slug: logo-vote }
+          - { src: resource/branding/actioncards.md, title: Action cards, slug: action-cards }
+          - { src: aether.md, title: "Archive: the Aether import plan", slug: aether }
+          - { src: archives/maven-2.x/index.md, title: "Archive: Maven 2", slug: maven-2 }
+          - { src: archives/maven-2.x/maven-2.1-architectural-goals.md, title: "Archive: Maven 2.1 goals", slug: maven-2-1-goals }
+
+# Old pages with no page of their own any more: the URL redirects to this place.
+redirects:
+  /index.html: /index.html
+  /guides/index.html: /docs/index.html
+  /guides/categories.html: /docs/index.html
+  /guides/mini/index.html: /docs/index.html
+  /users/index.html: /docs/index.html
+  /examples/index.html: /docs/index.html
+  /plugin-developers/index.html: /extend/index.html
+  /developers/index.html: /community/index.html
+  /download.html: /downloads/index.html
+  /guides/a-z.html: /docs/reference/a-z.html

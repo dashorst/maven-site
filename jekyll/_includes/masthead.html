@@ -1,0 +1,21 @@
+{%- comment -%} The header of every page: the wordmark, the five sections, search, and the Apache Software Foundation. {%- endcomment -%}
+<header class="masthead">
+  <div class="masthead-inner">
+  <a class="brand" href="{{ site.baseurl }}/index.html" aria-label="Maven, home">{% include wordmark.html %}</a>
+  <nav class="tabs" aria-label="Sections">
+    <ul>
+      {%- for s in site.data.nav_tree %}
+      <li><a href="{{ site.baseurl }}{{ s.url }}"{% if page.nav.section == s.id %} aria-current="{% if page.url == s.url %}page{% else %}true{% endif %}"{% endif %}>{{ s.title }}</a></li>
+      {%- endfor %}
+    </ul>
+  </nav>
+  <form class="search" role="search" action="{{ site.baseurl }}/search.html" method="get" data-index="{{ site.baseurl }}/search.json" data-script="{{ site.baseurl }}/js/minisearch-7.2.0.js">
+    <label class="visually-hidden" for="q">Search the documentation</label>
+    <div class="search-field">
+      <svg class="search-icon" aria-hidden="true" viewBox="0 0 16 16" width="16" height="16"><circle cx="7" cy="7" r="5" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M11 11l3.5 3.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+      <input id="q" name="q" type="search" autocomplete="off" spellcheck="false" placeholder="Search the docs">
+    </div>
+  </form>
+  <a class="asf" href="https://www.apache.org/"><img class="asf-leaf" src="{{ site.baseurl }}/images/oakleaf.svg" width="14" height="22" alt=""><span>Apache</span></a>
+  </div>
+</header>

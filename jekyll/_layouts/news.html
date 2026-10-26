@@ -1,0 +1,19 @@
+---
+layout: default
+---
+{%- comment -%} News, newest first, from _data/news.yml. Every entry links to the page it is about. {%- endcomment -%}
+{%- assign kinds = "release:Release,tool:Tool,maven4:Maven 4,security:Security,plugins:Plugins,project:Project" | split: "," -%}
+<h1>News</h1>
+<p class="lead">{{ page.summary }} <a href="{{ site.baseurl }}/news/feed.xml">Follow the feed</a>.</p>
+<ol class="news">
+{%- for n in site.data.news %}
+  {%- assign label = n.kind -%}
+  {%- for k in kinds %}{% assign kv = k | split: ":" %}{% if kv[0] == n.kind %}{% assign label = kv[1] %}{% endif %}{% endfor %}
+  <li class="news-item" id="{{ n.date | date: '%Y-%m-%d' }}-{{ n.title | slugify }}">
+    <p class="news-meta"><time datetime="{{ n.date | date: '%Y-%m-%d' }}">{{ n.date | date: '%-d %B %Y' }}</time> <span class="news-kind news-kind--{{ n.kind }}">{{ label }}</span></p>
+    <h2>{% if n.url %}<a href="{{ site.baseurl }}{{ n.url }}">{{ n.title }}</a>{% else %}{{ n.title }}{% endif %}</h2>
+    <p>{{ n.text }}</p>
+  </li>
+{%- endfor %}
+</ol>
+<p class="fine">Dates of releases come from the <a href="{{ site.baseurl }}{{ site.data.src_urls['docs/history.md.vm'] }}">release history</a> and retirements from the <a href="{{ site.baseurl }}{{ site.data.src_urls['plugins/index.md'] }}">plugin list</a>. Entries marked “New in the docs” are dated by the day the page appeared on this site.</p>

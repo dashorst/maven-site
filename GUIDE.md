@@ -1,6 +1,6 @@
 # Writing the Maven guides
 
-The guides live in `jekyll/_guide/`, one Markdown file per page, and are published under `/guides/`. Every page has one job, one of the four kinds below, and belongs to one topic. Readers find pages through search, through the topic pages that gather a topic's pages of every kind, and through the A–Z index. All three are built from the front matter, so the front matter is part of the content.
+The guides live in `jekyll/_guide/`, one Markdown file per page. Every page has one job, one of the four kinds below. A page gets its place in the site from `jekyll/_data/site_map.yml`: the group it is listed in, and its URL, `/docs/<group>/<name>.html`. A page that is in no group is reported by the build. Readers find pages through the group lists, through search and through the A–Z index; search and the index are built from the front matter, so the front matter is part of the content.
 
 The pages are plain Markdown with YAML front matter and relative links. Jekyll builds them here, but nothing in them depends on Jekyll; the Doxia Markdown module reads the same files.
 
@@ -22,13 +22,13 @@ source: [guides/mini/guide-mirror-settings.md, guides/mini/guide-configuring-mav
 
 - **title**: what the page is about, in the reader's words. How-to guides start with a verb ("Encrypt server passwords", "Build part of a multi-module project"); reference pages name the thing described ("settings.xml elements", "Reactor options"); explanation pages name the subject ("Where Maven reads its configuration"); tutorials name what the reader builds ("Create your first project").
 - **type**: `tutorial`, `howto`, `reference` or `explanation`.
-- **topic**: one of the ids in `jekyll/_data/guide.yml`.
+- **topic**: the subject the page belongs to, as an id: `start`, `configure`, `multi-module`, `jdk`. Where the page appears is set in `site_map.yml`, not here.
 - **summary**: one sentence, at most about 25 words, saying what the reader gets from the page. It is shown in listings and search results.
 - **since**: the oldest release line the page is correct for, as a quoted string: `"3.9"`, `"3.10"` or `"4.0"`. See [Versions](#versions).
 - **terms**: the files, POM and settings elements, command-line options, properties and plugins the page explains, written as the reader types them: `settings.xml`, `<mirrorOf>`, `-pl`, `maven.compiler.release`, `maven-toolchains-plugin`. They feed the A–Z index and rank highest in search after the title, so list the ones a reader would look up, not every element that appears in passing.
 - **keywords**: words a reader may search for that are not in the title or summary: synonyms, product names, terms from Gradle or other tools, the error message they are seeing.
-- **order**: position within the topic and kind, lowest first. Tutorials are read in this order.
-- **source**: what the page was written from. A path under `content/markdown/` for a page of this site (`guides/mini/guide-using-toolchains.md`), or `apache/<repository>:<path>` for documentation in another repository (`apache/maven:impl/maven-core/src/site/markdown/inheritance.md`). The page it names shows a notice that links to the pages written from it, and the page's foot links back.
+- **order**: position among pages on the same subject, lowest first. Tutorials are read in this order. The order in the navigation is the order in `site_map.yml`.
+- **source**: what the page was written from. A path under `content/markdown/` for a page of this site (`guides/mini/guide-using-toolchains.md`), or `apache/<repository>:<path>` for documentation in another repository (`apache/maven:impl/maven-core/src/site/markdown/inheritance.md`). When a guide page takes the place of a Maven page, list that page under `replaces` in `site_map.yml`; its URL then redirects to the guide page.
 
 ## The four kinds
 
@@ -63,5 +63,5 @@ When a single paragraph differs between the lines, keep one page and mark the pa
 - Commands are complete and run from the directory the text says. Show the output only where the reader needs to recognise it.
 - Every command and configuration on a page is run on the lines in its `since` before the page is published: Maven 3.9.16 and 3.10.0, and 4.0.0-rc-7 for pages and notes about Maven 4.
 - Headings in the page are `##` and `###`; the page title is the only `#` and comes from the front matter. Sections at `##` level appear in "On this page" and as search results of their own, so give them headings a reader would search for.
-- The layout lists the other pages of the topic under every page, so do not end a page with a list of related pages; link in the text where a link helps.
-- Link to other guide pages relatively, `mirror-settings.html`, to a section with `#Heading_text` in the form Doxia gives headings (spaces become `_`, other characters `.XX`). Link to the rest of the site relatively as well, `../settings.html#Mirrors`.
+- The layout lists the other pages of the group beside and under every page, with the previous and next page, so do not end a page with a list of related pages; link in the text where a link helps.
+- Link to other guide pages relatively, as if the guide were published under `/guides/`: `mirror-settings.html`, to a section with `#Heading_text` in the form Doxia gives headings (spaces become `_`, other characters `.XX`). Link to the rest of the site with the URLs it has on maven.apache.org, relatively as well, `../settings.html#Mirrors`. The build points every link at the page's new place.

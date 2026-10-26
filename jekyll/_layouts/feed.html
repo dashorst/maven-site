@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Apache Maven news</title>
+  <link href="{{ site.url }}{{ site.baseurl }}/news/index.html"/>
+  <link rel="self" href="{{ site.url }}{{ site.baseurl }}/news/feed.xml"/>
+  <id>{{ site.url }}/news/</id>
+  <updated>{{ site.data.news[0].date | date_to_xmlschema }}</updated>
+  {%- for n in site.data.news limit: 20 %}
+  <entry>
+    <title>{{ n.title | xml_escape }}</title>
+    <link href="{{ site.url }}{{ site.baseurl }}{{ n.url | default: '/news/index.html' }}"/>
+    <id>{{ site.url }}/news/#{{ n.date | date: '%Y-%m-%d' }}-{{ n.title | slugify }}</id>
+    <updated>{{ n.date | date_to_xmlschema }}</updated>
+    <summary>{{ n.text | xml_escape }}</summary>
+    <author><name>Apache Maven</name></author>
+  </entry>
+  {%- endfor %}
+</feed>

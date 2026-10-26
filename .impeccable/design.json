@@ -1,0 +1,433 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-26T13:21:26+00:00",
+  "title": "Design System: Apache Maven",
+  "extensions": {
+    "colorMeta": {
+      "navy": {
+        "role": "primary",
+        "displayName": "Wordmark Navy",
+        "canonical": "#003063",
+        "tonalRamp": [
+          "#000334",
+          "#002253",
+          "#124074",
+          "#325f96",
+          "#517fb9",
+          "#72a1dd",
+          "#97c8ff",
+          "#c0f2ff"
+        ]
+      },
+      "navy-deep": {
+        "role": "primary",
+        "displayName": "Night Navy",
+        "canonical": "#00224a",
+        "tonalRamp": [
+          "#00072d",
+          "#01234b",
+          "#1e406b",
+          "#3c5f8c",
+          "#5a7faf",
+          "#7ba1d2",
+          "#9fc7fa",
+          "#c9f2ff"
+        ]
+      },
+      "navy-soft": {
+        "role": "primary",
+        "displayName": "Navy Mist",
+        "canonical": "#e8eef6",
+        "tonalRamp": [
+          "#080b10",
+          "#20242a",
+          "#3b4046",
+          "#595e65",
+          "#787e85",
+          "#999fa6",
+          "#bfc5cc",
+          "#e9eff7"
+        ]
+      },
+      "orange": {
+        "role": "secondary",
+        "displayName": "Feather Orange",
+        "canonical": "#f79a23",
+        "tonalRamp": [
+          "#300000",
+          "#520000",
+          "#742000",
+          "#974200",
+          "#bb6400",
+          "#e08600",
+          "#ffac40",
+          "#ffd770"
+        ]
+      },
+      "orange-soft": {
+        "role": "secondary",
+        "displayName": "Feather Cream",
+        "canonical": "#fff3e3",
+        "tonalRamp": [
+          "#110a02",
+          "#2b2216",
+          "#483e31",
+          "#665c4e",
+          "#867b6d",
+          "#a89d8e",
+          "#cec2b3",
+          "#f9eddd"
+        ]
+      },
+      "feather-purple": {
+        "role": "tertiary",
+        "displayName": "Feather Purple",
+        "canonical": "#7c297d",
+        "tonalRamp": [
+          "#22002a",
+          "#3d0a45",
+          "#5a2462",
+          "#783f80",
+          "#975b9f",
+          "#b779bf",
+          "#da9be3",
+          "#ffc6ff"
+        ]
+      },
+      "ink": {
+        "role": "neutral",
+        "displayName": "Ink",
+        "canonical": "#1d2433",
+        "tonalRamp": [
+          "#060b18",
+          "#1d2433",
+          "#384050",
+          "#555e6f",
+          "#747d90",
+          "#959fb2",
+          "#bbc4d8",
+          "#e5efff"
+        ]
+      },
+      "ink-strong": {
+        "role": "neutral",
+        "displayName": "Strong Ink",
+        "canonical": "#0f1a2e",
+        "tonalRamp": [
+          "#030a1d",
+          "#182439",
+          "#334057",
+          "#505e76",
+          "#6f7e97",
+          "#909fba",
+          "#b5c5e0",
+          "#dfefff"
+        ]
+      },
+      "muted": {
+        "role": "neutral",
+        "displayName": "Slate",
+        "canonical": "#555f70",
+        "tonalRamp": [
+          "#050b18",
+          "#1c2433",
+          "#374050",
+          "#545e6f",
+          "#737e90",
+          "#949fb2",
+          "#b9c5d8",
+          "#e3efff"
+        ]
+      },
+      "line": {
+        "role": "neutral",
+        "displayName": "Hairline",
+        "canonical": "#dde2ea",
+        "tonalRamp": [
+          "#080b10",
+          "#21242a",
+          "#3c4046",
+          "#5a5e65",
+          "#797e85",
+          "#9a9fa6",
+          "#c0c4cc",
+          "#eaeff7"
+        ]
+      },
+      "line-strong": {
+        "role": "neutral",
+        "displayName": "Firm Hairline",
+        "canonical": "#c4ccd8",
+        "tonalRamp": [
+          "#070b13",
+          "#1e242d",
+          "#3a404a",
+          "#575e69",
+          "#767e89",
+          "#979faa",
+          "#bdc5d1",
+          "#e7effc"
+        ]
+      },
+      "paper": {
+        "role": "neutral",
+        "displayName": "Paper",
+        "canonical": "#ffffff",
+        "tonalRamp": [
+          "#0b0b0b",
+          "#242424",
+          "#404040",
+          "#5d5d5d",
+          "#7d7d7d",
+          "#9e9e9e",
+          "#c4c4c4",
+          "#eeeeee"
+        ]
+      },
+      "paper-2": {
+        "role": "neutral",
+        "displayName": "Cool Paper",
+        "canonical": "#f6f8fb",
+        "tonalRamp": [
+          "#0a0b0d",
+          "#232426",
+          "#3e4042",
+          "#5c5e60",
+          "#7c7d80",
+          "#9d9ea1",
+          "#c2c4c7",
+          "#edeff1"
+        ]
+      },
+      "code-bg": {
+        "role": "neutral",
+        "displayName": "Code Paper",
+        "canonical": "#f3f5f8",
+        "tonalRamp": [
+          "#0a0b0d",
+          "#232426",
+          "#3e4042",
+          "#5c5e60",
+          "#7c7d80",
+          "#9d9ea1",
+          "#c2c4c7",
+          "#edeff1"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "The home hero headline only, white on navy."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "The title of every page; later h1s on one page drop to 1.85rem."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "h2 in the text."
+      },
+      "subtitle": {
+        "displayName": "Subtitle",
+        "purpose": "h3 in the text, news item titles, release versions."
+      },
+      "lead": {
+        "displayName": "Lead",
+        "purpose": "The summary paragraph under every page, group and section title, in #38404f."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Reading text in the 46rem column; 1rem on phones."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "Side panel, rail, search, GitHub link; smaller steps for crumbs, footer, chips."
+      },
+      "code": {
+        "displayName": "Code",
+        "purpose": "Code blocks, inline code, file names, kbd. Never labels."
+      }
+    },
+    "shadows": [
+      {
+        "name": "floating-panel",
+        "value": "0 10px 30px rgba(0, 34, 74, .14)",
+        "purpose": "The search-as-you-type results panel."
+      },
+      {
+        "name": "hero-terminal",
+        "value": "0 24px 50px rgba(0, 0, 0, .25)",
+        "purpose": "The mvn verify terminal on the navy home hero."
+      }
+    ],
+    "motion": [
+      {
+        "name": "state-fade",
+        "value": "background-color .15s ease-out, border-color .15s ease-out, color .15s ease-out",
+        "purpose": "Hover on group-list items, previous/next steps and the search field; only under prefers-reduced-motion: no-preference."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "no-rail",
+        "value": "1180px"
+      },
+      {
+        "name": "tabs-row",
+        "value": "1000px"
+      },
+      {
+        "name": "single-column",
+        "value": "860px"
+      },
+      {
+        "name": "phone",
+        "value": "560px"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "The orange first action on the navy home hero; one per page at most.",
+      "html": "<div class=\"ds-hero\"><a class=\"ds-button ds-button--primary\" href=\"#\">Create your first project</a></div>",
+      "css": ":host{--navy:#003063;--navy-deep:#00224a;--navy-soft:#e8eef6;--orange:#f79a23;--orange-soft:#fff3e3;--ink:#1d2433;--ink-strong:#0f1a2e;--muted:#555f70;--line:#dde2ea;--line-strong:#c4ccd8;--paper:#fff;--paper-2:#f6f8fb;--code-bg:#f3f5f8;--radius:6px;--sans:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,'Noto Sans',sans-serif;--mono:ui-monospace,'SF Mono','Cascadia Mono','JetBrains Mono',Menlo,Consolas,'Liberation Mono',monospace;font-family:var(--sans);color:var(--ink);} .ds-hero{background:var(--navy);padding:1.5rem;} .ds-button{display:inline-block;font-weight:600;text-decoration:none;padding:.75rem 1.2rem;border-radius:var(--radius);border:1px solid transparent;transition:background-color .15s ease-out,border-color .15s ease-out;} .ds-button--primary{background:var(--orange);color:var(--navy-deep);} .ds-button--primary:hover{background:#ffae45;} .ds-button:focus-visible{outline:2px solid var(--orange);outline-offset:2px;}"
+    },
+    {
+      "name": "Secondary Button",
+      "kind": "button",
+      "refersTo": "button-secondary",
+      "description": "The outlined white action beside the primary on the navy hero.",
+      "html": "<div class=\"ds-hero\"><a class=\"ds-button ds-button--secondary\" href=\"#\">Download Maven 3.10.0</a></div>",
+      "css": ":host{--navy:#003063;--navy-deep:#00224a;--navy-soft:#e8eef6;--orange:#f79a23;--orange-soft:#fff3e3;--ink:#1d2433;--ink-strong:#0f1a2e;--muted:#555f70;--line:#dde2ea;--line-strong:#c4ccd8;--paper:#fff;--paper-2:#f6f8fb;--code-bg:#f3f5f8;--radius:6px;--sans:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,'Noto Sans',sans-serif;--mono:ui-monospace,'SF Mono','Cascadia Mono','JetBrains Mono',Menlo,Consolas,'Liberation Mono',monospace;font-family:var(--sans);color:var(--ink);} .ds-hero{background:var(--navy);padding:1.5rem;} .ds-button{display:inline-block;font-weight:600;text-decoration:none;padding:.75rem 1.2rem;border-radius:var(--radius);border:1px solid transparent;transition:background-color .15s ease-out,border-color .15s ease-out;} .ds-button--secondary{color:#fff;border-color:rgba(255,255,255,.45);} .ds-button--secondary:hover{border-color:#fff;background:rgba(255,255,255,.06);} .ds-button:focus-visible{outline:2px solid var(--orange);outline-offset:2px;}"
+    },
+    {
+      "name": "Section Tabs",
+      "kind": "nav",
+      "refersTo": "tab",
+      "description": "The five sections in the masthead; the active one has a 3px navy underline.",
+      "html": "<nav class=\"ds-tabs\"><ul><li><a href=\"#\" aria-current=\"page\">Docs</a></li><li><a href=\"#\">Downloads</a></li><li><a href=\"#\">News</a></li><li><a href=\"#\">Extend</a></li><li><a href=\"#\">Community</a></li></ul></nav>",
+      "css": ":host{--navy:#003063;--navy-deep:#00224a;--navy-soft:#e8eef6;--orange:#f79a23;--orange-soft:#fff3e3;--ink:#1d2433;--ink-strong:#0f1a2e;--muted:#555f70;--line:#dde2ea;--line-strong:#c4ccd8;--paper:#fff;--paper-2:#f6f8fb;--code-bg:#f3f5f8;--radius:6px;--sans:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,'Noto Sans',sans-serif;--mono:ui-monospace,'SF Mono','Cascadia Mono','JetBrains Mono',Menlo,Consolas,'Liberation Mono',monospace;font-family:var(--sans);color:var(--ink);} .ds-tabs{border-bottom:1px solid var(--line);padding:0 1rem;} .ds-tabs ul{display:flex;gap:1.6rem;margin:0;padding:0;list-style:none;} .ds-tabs a{display:block;padding:1.35rem 0 1.15rem;color:var(--ink);text-decoration:none;font-size:.975rem;border-bottom:3px solid transparent;} .ds-tabs a:hover{color:var(--navy);border-bottom-color:var(--line-strong);} .ds-tabs a[aria-current]{color:var(--navy);font-weight:600;border-bottom-color:var(--navy);} .ds-tabs a:focus-visible{outline:2px solid var(--navy);outline-offset:2px;border-radius:2px;}"
+    },
+    {
+      "name": "Search Field",
+      "kind": "input",
+      "refersTo": "search-input",
+      "description": "The masthead search; a form to the static index, search-as-you-type with JavaScript.",
+      "html": "<form class=\"ds-search\" role=\"search\"><svg class=\"ds-search-icon\" aria-hidden=\"true\" viewBox=\"0 0 16 16\" width=\"16\" height=\"16\"><circle cx=\"7\" cy=\"7\" r=\"5\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.6\"/><path d=\"M11 11l3.5 3.5\" stroke=\"currentColor\" stroke-width=\"1.6\" stroke-linecap=\"round\"/></svg><input type=\"search\" placeholder=\"Search the docs\" aria-label=\"Search the documentation\"></form>",
+      "css": ":host{--navy:#003063;--navy-deep:#00224a;--navy-soft:#e8eef6;--orange:#f79a23;--orange-soft:#fff3e3;--ink:#1d2433;--ink-strong:#0f1a2e;--muted:#555f70;--line:#dde2ea;--line-strong:#c4ccd8;--paper:#fff;--paper-2:#f6f8fb;--code-bg:#f3f5f8;--radius:6px;--sans:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,'Noto Sans',sans-serif;--mono:ui-monospace,'SF Mono','Cascadia Mono','JetBrains Mono',Menlo,Consolas,'Liberation Mono',monospace;font-family:var(--sans);color:var(--ink);} .ds-search{position:relative;display:inline-block;} .ds-search-icon{position:absolute;left:.7rem;top:50%;transform:translateY(-50%);color:var(--muted);pointer-events:none;} .ds-search input{width:15rem;font:inherit;font-size:.9rem;color:var(--ink);background:var(--paper-2);border:1px solid var(--line);border-radius:var(--radius);padding:.45rem .7rem .45rem 2.1rem;transition:background-color .15s ease-out,border-color .15s ease-out;} .ds-search input::placeholder{color:#5b6476;} .ds-search input:focus{outline:2px solid var(--navy);outline-offset:0;background:var(--paper);}"
+    },
+    {
+      "name": "Group Side Panel",
+      "kind": "nav",
+      "refersTo": "page-list-item-current",
+      "description": "The current group's pages with previous/next; the current page has a Navy Mist fill and the orange dot.",
+      "html": "<nav class=\"ds-group\"><div class=\"ds-steps\"><a class=\"ds-step\" href=\"#\"><span class=\"ds-step-dir\">Previous</span> Repositories explained</a><a class=\"ds-step ds-step--next\" href=\"#\"><span class=\"ds-step-dir\">Next</span> Why use a repository manager</a></div><h2>Dependencies and repositories</h2><ul class=\"ds-page-list\"><li><a href=\"#\">How dependencies work</a></li><li><a href=\"#\" aria-current=\"page\">Use a mirror or repository manager</a></li><li><a href=\"#\">Use several repositories</a></li></ul></nav>",
+      "css": ":host{--navy:#003063;--navy-deep:#00224a;--navy-soft:#e8eef6;--orange:#f79a23;--orange-soft:#fff3e3;--ink:#1d2433;--ink-strong:#0f1a2e;--muted:#555f70;--line:#dde2ea;--line-strong:#c4ccd8;--paper:#fff;--paper-2:#f6f8fb;--code-bg:#f3f5f8;--radius:6px;--sans:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,'Noto Sans',sans-serif;--mono:ui-monospace,'SF Mono','Cascadia Mono','JetBrains Mono',Menlo,Consolas,'Liberation Mono',monospace;font-family:var(--sans);color:var(--ink);} .ds-group{width:15rem;font-size:.9rem;line-height:1.45;padding-left:1rem;} .ds-group h2{font-size:.95rem;color:var(--ink-strong);margin:1.1rem 0 .5rem;} .ds-steps{display:flex;flex-direction:column;gap:.35rem;} .ds-step{display:block;text-decoration:none;color:var(--ink);padding:.35rem .5rem;border:1px solid var(--line);border-radius:var(--radius);transition:border-color .15s ease-out,color .15s ease-out;} .ds-step:hover{border-color:var(--navy);color:var(--navy);} .ds-step--next{text-align:right;} .ds-step-dir{display:block;font-size:.75rem;color:var(--muted);} .ds-page-list{list-style:none;margin:0;padding:0;} .ds-page-list a{display:block;position:relative;padding:.3rem .5rem .3rem .9rem;margin-left:-.9rem;border-radius:4px;color:var(--ink);text-decoration:none;transition:background-color .15s ease-out,color .15s ease-out;} .ds-page-list a:hover{background:var(--paper-2);color:var(--navy);} .ds-page-list a[aria-current=page]{color:var(--navy);font-weight:600;background:var(--navy-soft);} .ds-page-list a[aria-current=page]::before{content:'';position:absolute;left:.3rem;top:.78em;width:.32rem;height:.32rem;border-radius:50%;background:var(--orange);} .ds-group a:focus-visible{outline:2px solid var(--navy);outline-offset:2px;}"
+    },
+    {
+      "name": "Page Facts",
+      "kind": "card",
+      "refersTo": "facts",
+      "description": "What a page says about itself: versions it holds for as outlined chips, last change, kind, edit link.",
+      "html": "<section class=\"ds-facts\" aria-label=\"About this page\"><dl><dt>Holds for</dt><dd><span class=\"ds-versions\"><span class=\"ds-version\">3.9</span><span class=\"ds-version\">3.10</span><span class=\"ds-version ds-version--upcoming\" title=\"Maven 4.0 is not released yet\">4.0</span></span></dd><dt>Changed</dt><dd>25 October 2026</dd><dt>Kind</dt><dd>How-to</dd><dt>Source</dt><dd><a href=\"#\">Edit this page</a></dd></dl></section>",
+      "css": ":host{--navy:#003063;--navy-deep:#00224a;--navy-soft:#e8eef6;--orange:#f79a23;--orange-soft:#fff3e3;--ink:#1d2433;--ink-strong:#0f1a2e;--muted:#555f70;--line:#dde2ea;--line-strong:#c4ccd8;--paper:#fff;--paper-2:#f6f8fb;--code-bg:#f3f5f8;--radius:6px;--sans:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,'Noto Sans',sans-serif;--mono:ui-monospace,'SF Mono','Cascadia Mono','JetBrains Mono',Menlo,Consolas,'Liberation Mono',monospace;font-family:var(--sans);color:var(--ink);} .ds-facts{width:15rem;font-size:.9rem;line-height:1.45;border:1px solid var(--line);border-radius:var(--radius);padding:.8rem .9rem;background:var(--paper);} .ds-facts dl{display:grid;grid-template-columns:auto 1fr;gap:.35rem .9rem;margin:0;align-items:baseline;} .ds-facts dt{color:var(--muted);} .ds-facts dd{margin:0;} .ds-versions{display:inline-flex;flex-wrap:wrap;gap:.3rem;} .ds-version{display:inline-block;font-size:.78rem;font-weight:600;line-height:1.5;color:var(--navy);border:1px solid var(--navy);border-radius:3px;padding:0 .35rem;font-variant-numeric:tabular-nums;} .ds-version--upcoming{border-style:dashed;} .ds-facts a{color:var(--navy);text-underline-offset:.18em;text-decoration-thickness:1px;} .ds-facts a:hover{text-decoration-thickness:2px;} .ds-facts a:focus-visible{outline:2px solid var(--navy);outline-offset:2px;}"
+    },
+    {
+      "name": "Code Block with File Name",
+      "kind": "custom",
+      "refersTo": "code-block",
+      "description": "A Rouge-coloured code block joined to the file-name tab that the guide writes as an italic line above it.",
+      "html": "<div class=\"ds-code\"><p class=\"ds-file\">~/.m2/settings.xml</p><pre><code><span class=\"nt\">&lt;mirror&gt;</span>\n  <span class=\"nt\">&lt;id&gt;</span>company-repository<span class=\"nt\">&lt;/id&gt;</span>\n  <span class=\"nt\">&lt;mirrorOf&gt;</span>external:*<span class=\"nt\">&lt;/mirrorOf&gt;</span>\n<span class=\"nt\">&lt;/mirror&gt;</span>\n<span class=\"c\">&lt;!-- one per repository manager --&gt;</span></code></pre></div>",
+      "css": ":host{--navy:#003063;--navy-deep:#00224a;--navy-soft:#e8eef6;--orange:#f79a23;--orange-soft:#fff3e3;--ink:#1d2433;--ink-strong:#0f1a2e;--muted:#555f70;--line:#dde2ea;--line-strong:#c4ccd8;--paper:#fff;--paper-2:#f6f8fb;--code-bg:#f3f5f8;--radius:6px;--sans:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,'Noto Sans',sans-serif;--mono:ui-monospace,'SF Mono','Cascadia Mono','JetBrains Mono',Menlo,Consolas,'Liberation Mono',monospace;font-family:var(--sans);color:var(--ink);} .ds-code{max-width:46rem;} .ds-file{display:inline-block;margin:0;padding:.3rem .75rem;font-family:var(--mono);font-size:.85rem;color:var(--ink);background:var(--paper-2);border:1px solid var(--line);border-bottom:0;border-radius:var(--radius) var(--radius) 0 0;} .ds-code pre{margin:0;background:var(--code-bg);border:1px solid var(--line);border-radius:var(--radius);border-top-left-radius:0;padding:.9rem 1rem;overflow-x:auto;font-family:var(--mono);font-size:.875rem;line-height:1.55;} .ds-code .nt{color:var(--navy);} .ds-code .c{color:#5f6877;font-style:italic;}"
+    },
+    {
+      "name": "Version Note",
+      "kind": "card",
+      "refersTo": "note-version",
+      "description": "A passage that holds only for some Maven versions, in Feather Cream.",
+      "html": "<blockquote class=\"ds-note\"><p><strong>Maven 3.10 and 4:</strong> The environment variable <code>MAVEN_REPO_CENTRAL</code> changes the URL Maven uses for Central. Maven 3.9 ignores it.</p></blockquote>",
+      "css": ":host{--navy:#003063;--navy-deep:#00224a;--navy-soft:#e8eef6;--orange:#f79a23;--orange-soft:#fff3e3;--ink:#1d2433;--ink-strong:#0f1a2e;--muted:#555f70;--line:#dde2ea;--line-strong:#c4ccd8;--paper:#fff;--paper-2:#f6f8fb;--code-bg:#f3f5f8;--radius:6px;--sans:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,'Noto Sans',sans-serif;--mono:ui-monospace,'SF Mono','Cascadia Mono','JetBrains Mono',Menlo,Consolas,'Liberation Mono',monospace;font-family:var(--sans);color:var(--ink);} .ds-note{max-width:46rem;margin:0;padding:.75rem 1rem;background:var(--orange-soft);border-radius:var(--radius);font-size:1.0625rem;line-height:1.65;} .ds-note p{margin:0;} .ds-note strong{color:var(--ink-strong);} .ds-note code{font-family:var(--mono);font-size:.875em;background:var(--code-bg);border:1px solid #e6eaf0;border-radius:4px;padding:.05em .3em;}"
+    },
+    {
+      "name": "Audience Door",
+      "kind": "custom",
+      "description": "One of the three home-page doors: a heading link, a summary, and links between hairlines.",
+      "html": "<div class=\"ds-door\"><h3><a href=\"#\">Extend Maven</a></h3><p>Write plugins and extensions, publish your libraries to Maven Central, and build tools on the repository format.</p><ul><li><a href=\"#\">Your first plugin</a></li><li><a href=\"#\">Test your plugin</a></li><li><a href=\"#\">Publish to Maven Central</a></li></ul></div>",
+      "css": ":host{--navy:#003063;--navy-deep:#00224a;--navy-soft:#e8eef6;--orange:#f79a23;--orange-soft:#fff3e3;--ink:#1d2433;--ink-strong:#0f1a2e;--muted:#555f70;--line:#dde2ea;--line-strong:#c4ccd8;--paper:#fff;--paper-2:#f6f8fb;--code-bg:#f3f5f8;--radius:6px;--sans:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,'Noto Sans',sans-serif;--mono:ui-monospace,'SF Mono','Cascadia Mono','JetBrains Mono',Menlo,Consolas,'Liberation Mono',monospace;font-family:var(--sans);color:var(--ink);} .ds-door{max-width:22rem;line-height:1.65;} .ds-door h3{font-size:1.45rem;margin:0 0 .5rem;letter-spacing:-.01em;} .ds-door h3 a{color:var(--ink-strong);text-decoration:none;} .ds-door h3 a:hover{color:var(--navy);text-decoration:underline;} .ds-door p{color:var(--muted);margin:0 0 1rem;} .ds-door ul{list-style:none;margin:0;padding:0;border-top:1px solid var(--line);} .ds-door li{border-bottom:1px solid var(--line);} .ds-door li a{display:block;padding:.55rem 0;text-decoration:none;color:var(--ink);} .ds-door li a:hover{color:var(--navy);text-decoration:underline;} .ds-door a:focus-visible{outline:2px solid var(--navy);outline-offset:2px;}"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Quiet Reference Desk",
+    "overview": "The site is the category standard for documentation, executed with care: a white page, five tabs across the top, a short list of the current group on the left, one reading column in the centre and a rail on the right in which the page states its own facts. Nothing competes with the text. Maven's own navy carries every link and every piece of chrome; the feather orange appears only where the reader needs to be told something: where they are, and what to do first.\n\nDensity is that of a reference work, not a landing page. Inner pages are set at 17px on a 1.65 line height in a 46rem column, with navigation and facts in 0.9rem around it. Structure comes from 1px hairlines and pale fills, never from boxes stacked on boxes or from shadows. The home page is the one place the frame raises its voice: a full-width navy band with the key benefit, a terminal showing `mvn verify`, and the orange call to action, followed by the same quiet hairline grammar as the rest of the site.\n\nThe frame works completely without JavaScript. Navigation, previous/next, \"On this page\" and the page facts are all in the HTML from the build; script only turns the search field into search-as-you-type over the same static index.",
+    "keyCharacteristics": [
+      "White ground, ink text, Maven navy for links and chrome, feather orange as the single accent.",
+      "Five top tabs with a 3px navy underline for the active section.",
+      "A left side panel with previous/next and the current group's pages, the current page marked by an orange dot on a navy-soft fill.",
+      "A page-facts block with outlined navy version chips (dashed for an unreleased line).",
+      "Hairline rules and pale fills for structure; shadows only on things that float.",
+      "One system sans stack for all text, one system mono stack for code only.",
+      "Everything reachable without JavaScript."
+    ],
+    "rules": [
+      {
+        "name": "The One Feather Rule",
+        "section": "colors",
+        "body": "Feather orange is the only saturated accent, and it marks position or the first action: the current-page dot, the home primary button, the terminal prompt. It is never a link colour, a border, a heading colour or a decoration. Its pale tint (Feather Cream) marks version-bound notes and nothing else."
+      },
+      {
+        "name": "The Navy Is Chrome Rule",
+        "section": "colors",
+        "body": "Links, the active tab, the current page, version chips and focus rings are navy. Headings stay Strong Ink and turn navy only on hover when they are links."
+      },
+      {
+        "name": "The Tabular Facts Rule",
+        "section": "typography",
+        "body": "Every number a reader compares is set in tabular numerals: version chips, release versions, the release-notes index, news dates, tables."
+      },
+      {
+        "name": "The Mono Means Literal Rule",
+        "section": "typography",
+        "body": "Mono is for something to type or a file name, never for labels, dates or decoration."
+      },
+      {
+        "name": "The Hairline Rule",
+        "section": "elevation",
+        "body": "In-flow surfaces (facts, code, tables, steps, notes, landings) are separated by a 1px Hairline or a pale fill, never by a shadow. A shadow means the element floats above the page."
+      },
+      {
+        "name": "The Built-In Navigation Rule",
+        "section": "components",
+        "body": "Every navigation element (tabs, side panel, previous/next, breadcrumbs, \"On this page\", \"More in\", page facts) is in the HTML from the build. JavaScript may only enhance, as the search-as-you-type panel does, and the page must be complete without it."
+      },
+      {
+        "name": "The Version-Honest Rule",
+        "section": "components",
+        "body": "A page that holds for specific Maven versions says so in the facts block with version chips; a page that has not been checked says \"Not yet checked against Maven 3.9, 3.10 and 4.0\" in Slate instead of showing chips."
+      }
+    ],
+    "dos": [
+      "Do use Wordmark Navy for every link and every active state, with a 1px underline that thickens to 2px on hover.",
+      "Do keep reading text in the 46rem column at 1.0625rem / 1.65.",
+      "Do separate in-flow content with 1px Hairline rules and Cool Paper or Navy Mist fills.",
+      "Do mark the current page in a group with the Navy Mist fill, navy 600 text and the orange dot.",
+      "Do show version applicability as outlined navy chips, dashed for an unreleased line.",
+      "Do draw icons as inline SVG in `currentColor` (the search magnifier, the back chevron, the GitHub mark).",
+      "Do set versions, dates and table figures in tabular numerals.",
+      "Do keep focus visible: a 2px navy outline at 2px offset, orange on the navy hero.",
+      "Do limit motion to 0.15s ease-out colour, border and background transitions, and only under `prefers-reduced-motion: no-preference`."
+    ],
+    "donts": [
+      "Don't use Feather Orange for links, borders, headings or decoration; it marks position and the first action only.",
+      "Don't introduce a second accent hue; feather purple and the other syntax colours stay inside code.",
+      "Don't put a shadow on an in-flow surface; only the search results panel and the hero terminal float.",
+      "Don't build navigation or content that needs JavaScript to appear.",
+      "Don't bring back the Fluido skin, Bootstrap, or a second logo next to the Maven logo.",
+      "Don't use mono outside code, commands and file names.",
+      "Don't alter the Apache Maven logo or recolour Maven's navy and feather colours."
+    ]
+  }
+}

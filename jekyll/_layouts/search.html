@@ -1,0 +1,28 @@
+---
+layout: default
+---
+{%- comment -%}
+Search. Without JavaScript this page lists every page of the site by section and group, so the
+browser's find finds them; with JavaScript the form searches the index as you type.
+{%- endcomment -%}
+<h1>Search</h1>
+<form class="search search--large" role="search" action="{{ site.baseurl }}/search.html" method="get" data-index="{{ site.baseurl }}/search.json" data-script="{{ site.baseurl }}/js/minisearch-7.2.0.js">
+  <label for="q-large">A task, a setting, an option or an element</label>
+  <div class="search-field">
+    <svg class="search-icon" aria-hidden="true" viewBox="0 0 16 16" width="16" height="16"><circle cx="7" cy="7" r="5" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M11 11l3.5 3.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+    <input id="q-large" name="q" type="search" autocomplete="off" spellcheck="false" placeholder="mirrorOf, build one module, toolchains">
+  </div>
+</form>
+<h2 id="every-page">Every page</h2>
+<p>Every page of the site, by section and group. Use your browser’s find (Ctrl+F or ⌘F) to look for a word, or the <a href="{{ site.baseurl }}/docs/reference/a-z.html">A–Z index</a> of elements, files and options.</p>
+<div class="site-index">
+{%- for s in site.data.nav_tree %}{% if s.groups.size > 0 %}
+  <section aria-labelledby="idx-{{ s.id }}">
+    <h3 id="idx-{{ s.id }}"><a href="{{ site.baseurl }}{{ s.url }}">{{ s.title }}</a></h3>
+    {%- for g in s.groups %}
+    <h4><a href="{{ site.baseurl }}{{ g.url }}">{{ g.title }}</a></h4>
+    {% include page-list.html pages=g.pages %}
+    {%- endfor %}
+  </section>
+{%- endif %}{% endfor %}
+</div>

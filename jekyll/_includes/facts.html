@@ -1,0 +1,22 @@
+{%- comment -%} What a page says about itself: the Maven versions it holds for, when its text last changed, where to edit it. {%- endcomment -%}
+{%- assign facts = page.facts -%}
+<section class="facts" aria-label="About this page">
+  <dl>
+    <dt>Holds for</dt>
+    <dd>{% if facts.holds.size > 0 %}<span class="versions">{% for h in facts.holds %}<span class="version{% if h.upcoming %} version--upcoming{% endif %}"{% if h.upcoming %} title="Maven {{ h.series }} is not released yet"{% endif %}>{{ h.series }}</span>{% endfor %}</span>{% else %}<span class="unchecked">Not yet checked against Maven 3.9, 3.10 and 4.0</span>{% endif %}</dd>
+    {%- if facts.changed %}
+    <dt>Changed</dt>
+    <dd><time datetime="{{ facts.changed }}">{{ facts.changed | date: '%-d %B %Y' }}</time></dd>
+    {%- endif %}
+    {%- if facts.kind %}
+    <dt>Kind</dt>
+    <dd>{{ facts.kind }}</dd>
+    {%- endif %}
+    <dt>Source</dt>
+    <dd><a href="{{ facts.edit }}">Edit this page</a></dd>
+    <dt>Wrong?</dt>
+    {%- capture issue_title %}Page: {{ page.nav.title | default: page.title }}{% endcapture %}
+    {%- capture issue_body %}About {{ site.url }}{{ page.url }}{% endcapture %}
+    <dd><a href="https://github.com/apache/maven-site/issues/new?title={{ issue_title | url_encode }}&amp;body={{ issue_body | url_encode }}">Report a problem</a></dd>
+  </dl>
+</section>

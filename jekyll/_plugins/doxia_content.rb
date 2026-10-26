@@ -69,8 +69,12 @@ module Doxia
     doc.remove_namespaces!
     title = doc.at('properties > title')&.text.to_s.strip
     body = doc.at('body') or return [title, '']
+    # The first section is the page's title; later top-level sections are parts of the page.
+    tops = body.xpath('./section')
     body.css('section, subsection').each do |s|
-      level = s.ancestors('section, subsection').size + 1
+      top = s.ancestors('section').last || s
+      level = s.ancestors('section, subsection').size + 1 + (tops.index(top).to_i.positive? ? 1 : 0)
+      level = [level, 6].min
       heading = Nokogiri::XML::Node.new("h#{level}", doc)
       heading.content = s['name'].to_s
       s.prepend_child(heading) if s['name']
@@ -163,7 +167,7 @@ module Doxia
     section = opts.fetch('section', '0').to_i
     from = opts.fetch('fromDepth', '0').to_i
     to = opts.fetch('toDepth', '5').to_i
-    headings = main.css('h1, h2, h3, h4, h5, h6').reject { |h| h.ancestors('.doxia-toc, nav, .guide-foot, .guide-head').any? }
+    headings = main.css('h1, h2, h3, h4, h5, h6').reject { |h| h.ancestors('.doxia-toc, nav, aside, .page-head').any? }
     if section.positive?
       starts = headings.each_index.select { |i| headings[i].name == 'h1' }
       first = starts[section - 1] or return ''
@@ -193,11 +197,11 @@ module Doxia
   end
 
   def self.finish(item)
-    return unless item.output_ext == '.html' && item.output.to_s.include?('id="bodyColumn"')
+    return unless item.output_ext == '.html' && item.output.to_s.include?('id="content"')
     site = item.site
     base = site.config['baseurl'].to_s
     doc = Nokogiri::HTML5.parse(item.output, max_tree_depth: -1)
-    main = doc.at_css('#bodyColumn')
+    main = doc.at_css('#content')
     seen = Hash.new(0)
     main.css('h1, h2, h3, h4, h5, h6').each do |h|
       next if h['id'] || h.ancestors('.doxia-toc').any?
@@ -209,27 +213,81 @@ module Doxia
       m = c.text.match(/MACRO\{toc((?:\|[^}]*)?)\}/) or next
       c.replace(Nokogiri::HTML5.fragment(toc(main, m[1])))
     end
-    main.css('table').each { |t| t['class'] ||= 'table table-striped' }
+    main.css('table').each do |t|
+      next if t.parent['class'] == 'table-scroll'
+      t.wrap('<div class="table-scroll"></div>')
+    end
+    # The page facts again inside the text, after the title and lead, for narrow screens.
+    if (facts = doc.at_css('aside.rail .facts')) && (prose = main.at_css('.prose'))
+      h1 = prose.at_css('h1')
+      after = h1
+      after = after.next_element while after&.next_element && after.next_element['class'].to_s.split.include?('lead')
+      inline = facts.dup
+      inline['class'] = 'facts facts--inline'
+      after ? after.add_next_sibling(inline) : prose.prepend_child(inline)
+    end
+    # A link to each section.
+    main.css('.prose h2[id], .prose h3[id]').each do |h|
+      next if h.ancestors('.doxia-toc, nav, aside').any? || h.at_css('a.anchor')
+      h.add_child(%(<a class="anchor" href="##{h['id']}" aria-label="Link to this section"><svg aria-hidden="true" viewBox="0 0 16 16" width="14" height="14"><path d="M6.5 9.5l3-3M7 4.5l1-1a2.5 2.5 0 013.5 3.5l-1 1M9 11.5l-1 1A2.5 2.5 0 014.5 9l1-1" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></a>))
+    end
+    # "On this page": the ## headings of the text.
+    if (toc = doc.at_css('#on-this-page'))
+      heads = main.css('.prose h2[id], .prose h3[id]').reject { |h| h.ancestors('.doxia-toc, nav, aside').any? }
+      h2s = heads.select { |h| h.name == 'h2' }
+      # A page with few parts lists their sections too.
+      deep = h2s.size <= 2 && heads.size > h2s.size
+      if h2s.size >= 2 || deep
+        html = +'<h2>On this page</h2><ul>'
+        open = false
+        heads.each do |h|
+          link = %(<a href="##{h['id']}">#{CGI.escapeHTML(h.text.strip)}</a>)
+          if h.name == 'h2'
+            html << '</ul></li>' if open
+            html << '</li>' if !open && html.end_with?('</a>')
+            open = false
+            html << "<li>#{link}"
+          elsif deep
+            html << (open ? '' : '<ul>') << "<li>#{link}</li>"
+            open = true
+          end
+        end
+        html << '</ul>' if open
+        html << '</li></ul>'
+        toc.inner_html = html
+      else
+        toc.remove
+      end
+    end
     # A version note in the guide: a quote that starts with "Maven 4:".
     main.css('blockquote').each do |q|
       first = q.at_css('p > strong:first-child')
       q['class'] = 'guide-since' if first && first.text =~ /\AMaven \d/
     end
 
-    page_url = item.url
-    doc.css('a[href], img[src], link[href], script[src]').each do |el|
-      attr = el.name == 'img' || el.name == 'script' ? 'src' : 'href'
+    # Relative links in the text were written for the page's old place.
+    page_url = item.data['old_url'] || item.url
+    main.css('a[href], area[href], img[src]').each do |el|
+      attr = el.name == 'img' ? 'src' : 'href'
       href = el[attr].to_s.strip
       # Some pages link to themselves through maven.apache.org; keep those within this build.
       local = href[%r{\Ahttps?://maven\.apache\.org(/[^#?]*)}, 1]
-      if local && Doxia.urls.include?(local.end_with?('/') ? "#{local}index.html" : local)
-        el[attr] = base + href.sub(%r{\Ahttps?://maven\.apache\.org}, '')
+      if local
+        key = local.end_with?('/') ? "#{local}index.html" : local.sub(/\.md\z/, '.html')
+        frag = href[/#.*/].to_s
+        if (to = SiteMap.moved[key])
+          el[attr] = base + to + frag
+        elsif Doxia.urls.include?(key)
+          el[attr] = base + key + frag
+        end
         next
       end
       next if href.empty? || href.start_with?('#') || href =~ %r{\A[a-z][a-z0-9+.-]*:}i || href.start_with?('//')
       path, frag = href.split('#', 2)
       path = path.split('?', 2).first
       next if path.empty?
+      # Doxia turns links to Markdown sources into links to their pages.
+      path = path.sub(/\.md\z/, '.html')
       if path.start_with?(base + '/') && !base.empty?
         next
       end
@@ -243,8 +301,10 @@ module Doxia
       climbs = resolved.start_with?('/..')
       resolved = resolved.sub(%r{\A(/\.\.)+}, '')
       key = resolved.end_with?('/') ? "#{resolved}index.html" : resolved
-      if Doxia.urls.include?(key) || Doxia.urls.include?("#{key}/index.html")
-        el[attr] = "#{base}#{resolved}#{frag ? "##{frag}" : ''}" if path.start_with?('/') || climbs
+      key = "#{key}/index.html" if !Doxia.urls.include?(key) && Doxia.urls.include?("#{key}/index.html")
+      key = SiteMap.moved.fetch(key, key)
+      if Doxia.urls.include?(key)
+        el[attr] = "#{base}#{key}#{frag ? "##{frag}" : ''}"
       else
         Doxia.missing[resolved.sub(%r{\A/([^/]+/)?.*}, '/\1')] += 1
         if item.is_a?(Jekyll::Document) && item.collection.label == 'guide' && resolved.start_with?('/guides/')

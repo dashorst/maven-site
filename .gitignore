@@ -16,3 +16,8 @@ jekyll/.bundle-cache
 _site
 .gh-pages
 .jekyll-cache
+
+# Impeccable scratch: review captures and decision mockups
+.impeccable/review/
+.impeccable/decision/
+.impeccable/live/

@@ -1,0 +1,6 @@
+{%- comment -%} The pages of a group. include.pages: the pages; include.current: the URL being read. {%- endcomment -%}
+<ul class="{{ include.class | default: 'page-list' }}">
+  {%- for p in include.pages %}
+  <li>{% if p.url == include.current %}<a href="{{ site.baseurl }}{{ p.url }}" aria-current="page">{{ p.title }}</a>{% elsif p.external %}<a href="{{ p.url }}">{{ p.title }}</a>{% else %}<a href="{{ site.baseurl }}{{ p.url }}">{{ p.title }}</a>{% endif %}{% if include.summaries and p.summary %}<span class="page-summary">{{ p.summary }}</span>{% endif %}</li>
+  {%- endfor %}
+</ul>

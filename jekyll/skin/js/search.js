@@ -1,53 +1,13 @@
-// The search over the whole site, and the reader's Maven version.
+// Search as you type. Without this script every search form opens /search.html, which lists every
+// page of the site; with it the form answers from /search.json while you type.
 //
-// Search loads MiniSearch and /guides/search.json on first use. The index holds a record per
-// page and per section, so a result can open the section that answers the question. Guide
-// pages rank above the other pages of the site. Element and option names are indexed whole
-// and split at their parts, so "mirrorof" and "mirror of" both find <mirrorOf>.
-//
-// The version the reader picks is kept in localStorage. It filters the search results, and a
-// guide page that needs a newer version than the reader's says so above its text.
+// The index holds a record per page and per section, so a result can open the section that
+// answers the question. Guide pages rank above the other pages of the site. Element and option
+// names are indexed whole and split at their parts, so "mirrorof" and "mirror of" both find
+// <mirrorOf>.
 (function () {
-    var KEY = 'maven-guide-version';
-    var KINDS = { tutorial: 'Tutorial', howto: 'How-to', reference: 'Reference', explanation: 'Explanation', page: 'Page' };
+    var KINDS = { tutorial: 'Tutorial', howto: 'How-to', reference: 'Reference', explanation: 'Explanation', page: '' };
     var MAX = 10;
-
-    function storedVersion() {
-        try { return localStorage.getItem(KEY) || ''; } catch (e) { return ''; }
-    }
-
-    function storeVersion(v) {
-        try { if (v) localStorage.setItem(KEY, v); else localStorage.removeItem(KEY); } catch (e) { /* private mode */ }
-    }
-
-    // "3.10" is newer than "3.9".
-    function compare(a, b) {
-        var x = String(a).split('.'), y = String(b).split('.');
-        for (var i = 0; i < Math.max(x.length, y.length); i++) {
-            var d = (parseInt(x[i], 10) || 0) - (parseInt(y[i], 10) || 0);
-            if (d) return d;
-        }
-        return 0;
-    }
-
-    function showVersionNote() {
-        var note = document.querySelector('.guide-version-note');
-        if (!note) return;
-        var chosen = storedVersion();
-        note.hidden = !(chosen && compare(chosen, note.getAttribute('data-since')) < 0);
-        Array.prototype.forEach.call(note.querySelectorAll('[data-chosen]'), function (el) { el.textContent = chosen; });
-    }
-
-    var selects = document.querySelectorAll('[data-guide-version]');
-    Array.prototype.forEach.call(selects, function (select) {
-        select.value = storedVersion();
-        select.addEventListener('change', function () {
-            storeVersion(select.value);
-            showVersionNote();
-            document.dispatchEvent(new CustomEvent('guide-version'));
-        });
-    });
-    showVersionNote();
 
     // Splits names at their capitals and punctuation: <mirrorOf> also yields mirror, of.
     function tokenize(text) {
@@ -89,7 +49,7 @@
         }).then(function (records) {
             var search = new window.MiniSearch({
                 fields: ['title', 'terms', 'keywords', 'page', 'text', 'body'],
-                storeFields: ['url', 'title', 'page', 'kind', 'topic', 'since', 'text'],
+                storeFields: ['url', 'title', 'page', 'kind', 'topic', 'text'],
                 tokenize: tokenize,
                 processTerm: processTerm,
                 searchOptions: {
@@ -110,10 +70,8 @@
     }
 
     function run(search, query) {
-        var v = storedVersion();
-        var options = { filter: function (r) { return !v || !r.since || compare(r.since, v) <= 0; } };
-        var results = search.search(query, Object.assign({ combineWith: 'AND' }, options));
-        if (!results.length) results = search.search(query, options);
+        var results = search.search(query, { combineWith: 'AND' });
+        if (!results.length) results = search.search(query);
         // At most three results per page, so one long page does not fill the list.
         var perPage = {};
         return results.filter(function (r) {
@@ -126,24 +84,23 @@
     var count = 0;
     function setup(form) {
         var input = form.querySelector('input[type=search]');
-        var oldest = form.getAttribute('data-oldest');
-        var id = 'guide-results-' + (++count);
+        var id = 'search-results-' + (++count);
         var panel = document.createElement('div');
-        panel.className = 'guide-results';
+        panel.className = 'search-results';
         panel.hidden = true;
         var list = document.createElement('ul');
         list.id = id;
         list.setAttribute('role', 'listbox');
         list.setAttribute('aria-label', 'Search results');
-        var status = document.createElement('p');
-        status.className = 'guide-visually-hidden';
-        status.setAttribute('role', 'status');
         var empty = document.createElement('p');
-        empty.className = 'guide-results-empty';
+        empty.className = 'search-empty';
         empty.hidden = true;
+        var status = document.createElement('p');
+        status.className = 'visually-hidden';
+        status.setAttribute('role', 'status');
         panel.appendChild(list);
         panel.appendChild(empty);
-        form.querySelector('.guide-search-field').appendChild(panel);
+        form.querySelector('.search-field').appendChild(panel);
         form.appendChild(status);
 
         input.setAttribute('role', 'combobox');
@@ -171,6 +128,13 @@
             }
         }
 
+        function span(cls, text) {
+            var s = document.createElement('span');
+            s.className = cls;
+            s.textContent = text;
+            return s;
+        }
+
         function render(results, query) {
             list.textContent = '';
             items = [];
@@ -182,31 +146,13 @@
                 var a = document.createElement('a');
                 a.href = r.url;
                 a.tabIndex = -1;
-                var title = document.createElement('span');
-                title.className = 'guide-result-title';
-                title.textContent = r.title;
-                a.appendChild(title);
+                a.appendChild(span('result-title', r.title));
                 var meta = document.createElement('span');
-                meta.className = 'guide-result-meta';
-                var where = r.title === r.page ? [KINDS[r.kind], r.topic] : ['In ' + r.page, r.kind === 'page' ? '' : KINDS[r.kind]];
-                where.filter(Boolean).forEach(function (part) {
-                    var span = document.createElement('span');
-                    span.textContent = part;
-                    meta.appendChild(span);
-                });
-                if (r.since && r.since !== oldest) {
-                    var since = document.createElement('span');
-                    since.className = 'guide-list-since';
-                    since.textContent = 'Maven ' + r.since + '+';
-                    meta.appendChild(since);
-                }
+                meta.className = 'result-meta';
+                var where = r.title === r.page ? [KINDS[r.kind], r.topic] : ['In ' + r.page, KINDS[r.kind]];
+                where.filter(Boolean).forEach(function (part) { meta.appendChild(span('', part)); });
                 a.appendChild(meta);
-                if (r.text) {
-                    var text = document.createElement('span');
-                    text.className = 'guide-result-text';
-                    text.textContent = r.text;
-                    a.appendChild(text);
-                }
+                if (r.text) a.appendChild(span('result-text', r.text));
                 li.appendChild(a);
                 li.addEventListener('mousedown', function (e) { e.preventDefault(); });
                 li.addEventListener('click', function () { window.location.href = r.url; });
@@ -229,16 +175,14 @@
                 if (ticket !== pending) return;
                 render(run(search, query), query);
             }, function () {
-                empty.hidden = false;
-                empty.textContent = 'The search could not be loaded. The A–Z index lists every guide page.';
-                panel.hidden = false;
+                // Leave the form to do its plain job: open the page that lists every page.
+                close();
             });
         }
 
         input.addEventListener('focus', function () { engine(form); if (input.value.trim().length > 1) update(); });
         input.addEventListener('input', update);
         input.addEventListener('blur', function () { setTimeout(close, 100); });
-        document.addEventListener('guide-version', function () { if (!panel.hidden) update(); });
         input.addEventListener('keydown', function (e) {
             if (e.key === 'ArrowDown') {
                 e.preventDefault();
@@ -251,25 +195,28 @@
             }
         });
         form.addEventListener('submit', function (e) {
-            e.preventDefault();
             var item = items[active] || items[0];
-            if (item) window.location.href = item.querySelector('a').href;
+            if (item && !panel.hidden) {
+                e.preventDefault();
+                window.location.href = item.querySelector('a').href;
+            }
         });
 
         var q = new URLSearchParams(window.location.search).get('q');
-        if (q && !input.value) input.value = q;
+        if (q && !input.value) {
+            input.value = q;
+            if (form.classList.contains('search--large')) { input.focus(); update(); }
+        }
     }
 
-    var forms = document.querySelectorAll('.guide-search');
-    Array.prototype.forEach.call(forms, setup);
+    Array.prototype.forEach.call(document.querySelectorAll('form.search'), setup);
 
-    // "/" jumps to the search: the large one on the guide's front page, otherwise the menu's.
+    // "/" jumps to the search: the large one on the search page, otherwise the header's.
     document.addEventListener('keydown', function (e) {
         if (e.key !== '/' || e.ctrlKey || e.metaKey || e.altKey) return;
         var t = e.target;
         if (t && (t.isContentEditable || /^(input|textarea|select)$/i.test(t.tagName))) return;
-        var large = document.querySelector('.guide-search--large input[type=search]');
-        var input = large || document.querySelector('.guide-search input[type=search]');
+        var input = document.querySelector('.search--large input') || document.querySelector('form.search input');
         if (!input) return;
         e.preventDefault();
         input.focus();

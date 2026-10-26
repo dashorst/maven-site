@@ -1,0 +1,202 @@
+Top bar links (every page): Downloads | Get Sources
+Left menu (every page; sub-items show when you are inside that branch):
+
+[(untitled)]
+  - Welcome
+  - License
+[About Maven]
+  - What is Maven?
+  - Installation
+  - Downloads
+  - Use
+  - Configure
+  - Release Notes
+  - Security Reports
+[Documentation]
+  - Maven Plugins
+  - Maven Extensions
+  - Maven Tools
+    - Maven Daemon
+    - Maven Shell
+    - Maven Upgrade Tool
+    - Maven Wrapper
+  - Doxia
+    - Overview
+    - Downloads
+    - FAQ
+    - Format References
+      - Markdown Format
+      - Apt Format
+        - Doxia Apt Enhancements
+      - FML Format
+      - Xdoc Format
+    - Doxia Modules Guide
+    - Doxia Macros Guide
+    - Issues & Gotchas
+    - External Resources
+    - Developer Docs
+      - Create a Doxia Module
+      - Create a Doxia Macro
+      - Using the Sink API
+    - Doxia Base
+    - Doxia Sitetools
+    - Doxia Tools
+  - Index (category)
+  - User Manual
+    - Maven Build Fundamentals
+      - Maven in 5 Minutes
+      - Getting Help
+      - Running Maven
+    - Maven Build Config Fundamentals
+      - Plugins Validation
+      - Creating a site
+        - Markup Formats
+        - Snippet Macro
+      - Archetypes
+        - Creating Archetypes
+      - Repositories
+        - Install to Local
+        - Deploy to Remote
+        - Repository Management
+        - Using Multiple Repositories
+        - Large Scale Centralized Deployments
+        - Mirror Settings
+        - Deployment and Security Settings
+          - Encrypting Passwords (Maven 3)
+          - Encrypting Passwords (Maven 4)
+        - Using Proxies
+        - Authenticated HTTPS
+        - Resolver Transport
+        - Advanced Wagon HTTP Configuration
+        - Alternative Wagon Providers
+        - Relocation
+      - Profiles
+      - Standard Directory Layout
+      - Dependency Mechanism
+        - Optional & Exclusion
+    - Getting Started Guide
+      - Naming Conventions
+      - The Build Lifecycle
+      - The POM
+      - Configuring Plugins
+        - Plugin Prefix Resolution
+        - Configuring Default Mojo Executions
+      - POM 4.0.0 Reference
+      - Settings Reference
+    - Maven 4
+      - What's new in Maven 4?
+      - Starting with Maven 4
+      - Maven Mixins
+    - Guides
+      - Configuring for Reproducible Builds
+      - Creating Assemblies
+      - Configuring Archive Plugins
+      - Configuring Maven
+      - Generating Sources
+      - Working with Manifests
+      - Maven Classloading
+      - Using Modules (Maven 3)
+      - Using Subprojects (Maven 4)
+      - Using Release Plugin
+      - Using Ant
+      - Using Modello
+      - Using Extensions
+      - Building for Different Environments
+      - Using Toolchains
+      - Maven CI Friendly Version
+    - FAQ
+  - Maven Repositories
+    - Maven Central Repository
+      - Maintaining your Metadata
+      - Guide to Uploading Artifacts
+      - Fixing Metadata
+      - Central Index
+      - Repository Layout
+    - Maven Artifacts
+    - Maven Metadata
+    - Maven Layout
+    - Maven Local Repository
+    - Maven Remote Repositories
+  - Plugin Development
+    - Introduction
+    - Your First Mojo
+    - Your First Report Mojo
+    - Writing Plugin Documentation
+    - Testing Plugins
+    - Mojo API
+    - Maven 3.1.x logging
+    - Common Bugs and Pitfalls
+    - Maven Lifecycle Extensions
+    - Plexus Javadoc to Plexus Annotations
+    - Using JSR-330
+    - Maven 4
+      - Using Maven Dependency Injection
+      - Maven Null Annotations
+  - Contribute to Maven
+    - Guide to Helping with Maven
+    - Code Style and Conventions
+    - Git Convention
+    - GitHub Convention
+    - Developing Maven
+      - Building Maven
+      - Testing Development Plugins
+      - Testing Staged Releases
+      - Becoming Committer
+    - Release Process
+      - Common Procedure
+      - Maven Core
+      - Parent POM
+      - GPG Keys
+    - Deploy Maven Website
+      - Components Documentation
+      - Component Helper
+      - New logos for Maven
+    - Committers
+      - Environment
+      - Settings
+      - Plugins Retirement Plan
+      - Maven Dependency Policies
+      - Plugins Compatibility Plan
+  - Books and Resources
+[Community]
+  - Community Overview
+  - Project Roles
+  - How to Contribute
+  - Getting Help
+  - Issue Management
+  - Getting Maven Source
+  - The Maven Team
+[Project Documentation]
+  - Project Information
+[Maven Projects]
+  - Maven
+  - Archetypes
+  - Extensions
+  - Parent POMs
+  - Plugins
+  - Skins
+  - Components
+    - Archetype
+    - Artifact Resolver
+    - Doxia
+    - Indexer
+    - JXR
+    - Plugin Testing
+    - Plugin Tools
+    - Resource Bundles
+    - SCM
+    - Shared Components
+    - Surefire
+    - Wagon
+[ASF]
+  - How Apache Works
+  - Foundation
+  - Data Privacy
+  - Sponsoring Apache
+  - Thanks
+
+Home page body (only on the home page): a table with three rows:
+  Use: "Download, Install, Configure, Run Maven" (Information for those needing to build a project that uses Maven) | "Maven Plugins and Maven Extensions" (Lists of plugins and extensions to help with your builds) | "Maven 4" (Learn what's new and how to migrate a project to Maven 4; the Maven Upgrade Tool)
+  Extend: "Write Maven Plugins" (Information for developers writing Maven plugins) | "Improve the Maven Central Repository" (getting project metadata into the central repository) | "Upcoming: How to migrate plugins to the new Maven 4 API?"
+  Contribute: "Help Maven" (Information if you'd like to get involved) | "Develop Maven" (for those who are currently Maven developers, or interested in contributing to the Maven project itself)
+  Below the table: "How to Get Support" paragraph linking mailing lists and issue management.

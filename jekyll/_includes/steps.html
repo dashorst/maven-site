@@ -1,0 +1,6 @@
+{%- if page.nav.prev or page.nav.next -%}
+<p class="steps">
+  {%- if page.nav.prev %}<a class="step step--prev" href="{{ site.baseurl }}{{ page.nav.prev.url }}" rel="prev"><span class="step-dir">Previous</span> {{ page.nav.prev.title }}</a>{% endif -%}
+  {%- if page.nav.next %}<a class="step step--next" href="{{ site.baseurl }}{{ page.nav.next.url }}" rel="next"><span class="step-dir">Next</span> {{ page.nav.next.title }}</a>{% endif -%}
+</p>
+{%- endif -%}

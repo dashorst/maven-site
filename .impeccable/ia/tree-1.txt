@@ -1,0 +1,197 @@
+Top navigation bar on every page (5 items). Inside a section, a side menu shows that section's groups; the group you are in is expanded.
+
+
+[Use]
+  - Get started
+    - Create your first project
+    - Add a dependency and a test
+    - Install Maven
+    - Maven on Windows
+    - What is Maven?
+    - Philosophy of Maven
+    - Phases, goals and plugins
+    - Standard directory layout
+  - Configure Maven
+    - Configuration files: settings.xml, maven.config, jvm.config
+    - Use a mirror
+    - Configure a proxy
+    - Store server credentials
+    - Encrypt passwords
+    - Settings files reference
+    - Building for different environments (profiles)
+    - Inject POM properties via settings.xml
+    - Resolver transport and HTTP options
+    - Authenticated HTTPS repositories
+  - Multi-module projects
+    - Aggregation and inheritance
+    - Split a project into modules
+    - Build part of a project
+    - Share configuration between modules
+    - Reactor options reference
+    - Modules (Maven 3) and subprojects (Maven 4)
+    - CI-friendly versions
+  - Java versions and toolchains
+    - Toolchains explained
+    - Build with another JDK
+    - Compile for an older Java version
+    - toolchains.xml reference
+  - Dependencies and repositories
+    - How dependencies work
+    - Optional dependencies and exclusions
+    - Repositories explained
+    - Use several repositories
+    - Install a third-party JAR locally
+    - Deploy a third-party JAR to a remote repository
+    - Use a repository manager
+    - Large centralized deployments
+    - Naming your coordinates
+  - Plugins in your build
+    - Configure plugins
+    - Plugin prefixes
+    - Default executions
+    - Use extensions
+    - Plugin validation warnings
+    - Generate sources
+    - Configure archives and manifests
+    - Create assemblies
+    - Attached tests
+    - Reproducible builds
+    - Release a project
+    - Create a project site
+    - Use Ant
+    - Use Modello
+    - When you can't use the conventions
+  - Maven 4
+    - What's new in Maven 4
+    - Start with Maven 4 (migration)
+    - Mixins (Maven 4.1)
+    - Password encryption in Maven 4
+  - Reference
+    - POM reference
+    - Settings reference
+    - Command line: running Maven
+    - Build lifecycle reference
+    - Maven classloading
+    - Glossary
+    - Bash completion
+    - A–Z index
+  - Help
+    - FAQ
+    - Unofficial FAQ
+    - Getting help: mailing lists, Slack
+    - Books and resources
+  - Plugins
+    - Available plugins (catalog)
+    - Plugin localization
+  - Extensions
+    - Available extensions
+    - Extensions cookbook
+  - Tools
+    - Maven Daemon (mvnd)
+    - Maven Wrapper
+    - Maven Shell
+    - Maven Upgrade Tool (mvnup)
+    - POM Validation Tool (mvnval)
+[Extend]
+  - Write a plugin or extension
+    - Introduction to plugin development
+    - Your first Mojo
+    - Your first report Mojo
+    - Document your plugin
+    - Test your plugin
+    - Common bugs and pitfalls
+    - Mojo API specification
+    - Logging in plugins
+    - Dependency injection (Maven 4)
+    - JSR-330
+    - Null annotations
+    - Upgrade from Plexus Javadoc tags
+    - Lifecycle extensions example
+    - Maven conventions
+  - Archetypes
+    - Introduction to archetypes
+    - Create an archetype
+  - Publish to Maven Central
+    - Maven Central explained
+    - Upload your artifacts
+    - Fix or improve metadata
+    - Project metadata FAQ
+    - Central index
+    - Relocate an artifact
+  - Repository format
+    - Repositories overview
+    - Artifacts
+    - Dependencies
+    - Metadata (maven-metadata.xml)
+    - Layout
+    - Local repository
+    - Remote repositories
+  - Doxia, sites and skins
+    - Doxia overview
+    - Markup formats (Markdown, APT, FML, Xdoc)
+    - Macros and the snippet macro
+    - Doxia modules
+    - Write a Doxia module, macro or sink
+    - Skins
+    - Shared components
+    - Parent POMs
+    - All Maven components (Resolver, Surefire, Wagon, ...)
+[Contribute]
+  - Get help
+    - Getting help: mailing lists, Slack
+    - Issue tracking
+    - Community overview
+  - Contribute to Maven
+    - How to help
+    - Get the sources
+    - Build Maven
+    - Develop Maven
+    - Code style
+    - Git conventions
+    - GitHub conventions
+    - Documentation style
+    - Test development versions of plugins
+    - Test staged releases
+  - Committers
+    - Become a committer
+    - Welcome, new committers
+    - Committer environment
+    - Committer settings
+  - Release Maven projects
+    - Release process overview
+    - Common release procedure
+    - Release Maven core
+    - Release a parent POM
+    - GPG keys
+  - Maven website
+    - Website overview
+    - Deploy the website
+    - Component reference documentation
+  - Policies
+    - Plugin retirement plan
+    - Dependency policies
+    - Compatibility plan
+  - The project
+    - Project roles
+    - The team
+    - About Maven
+    - Testimonials
+    - History of Maven
+    - Logos and branding
+    - Archive: Aether plan, Maven 2.x graveyard
+[Downloads]
+  - Download
+    - Download Maven (current 3.10, previous 3.9, preview 4.0)
+    - Install Maven
+    - Verify a download
+  - Releases
+    - Release notes per version
+    - Release history (all versions)
+    - End of life: Maven 1.x
+    - End of life: Maven 2.x
+  - Security
+    - Security reports and CVEs
+    - Zip Slip vulnerability
+[News]
+  - News
+    - Dated entries: new releases, new tools, Maven 4 milestones, security advisories, plugin retirements

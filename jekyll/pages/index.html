@@ -1,0 +1,101 @@
+---
+permalink: /index.html
+layout: default
+title: Apache Maven
+wide: true
+body_class: home
+summary: Apache Maven builds Java projects from a project object model, pom.xml, and a set of plugins. Know one Maven project, and you know how they all build.
+---
+{%- assign u = site.data.src_urls -%}
+{%- assign current = site.data.releases.lines | where: "status", "current" | first -%}
+<section class="hero" aria-labelledby="hero-title">
+  <div class="hero-inner">
+    <div class="hero-text">
+      <h1 id="hero-title">Know one Maven project, and you know how they all build.</h1>
+      <p class="hero-lead">Maven builds a Java project from its <code>pom.xml</code> and a set of plugins. It fetches the libraries the project declares from Maven Central, then runs the same phases, compile, test and package, in the same order on every machine.</p>
+      <p class="actions">
+        <a class="button button--primary" href="{{ site.baseurl }}{{ u['guide:first-project'] }}">Create your first project</a>
+        <a class="button button--secondary" href="{{ site.baseurl }}/downloads/index.html">Download Maven {{ current.version }}</a>
+      </p>
+    </div>
+    <figure class="hero-demo">
+      <pre><code><span class="prompt">$</span> mvn verify
+[INFO] --- resources:3.3.1:resources (default-resources) @ my-app ---
+[INFO] --- compiler:3.13.0:compile (default-compile) @ my-app ---
+[INFO] --- surefire:3.3.0:test (default-test) @ my-app ---
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0
+[INFO] --- jar:3.4.2:jar (default-jar) @ my-app ---
+[INFO] <span class="ok">BUILD SUCCESS</span></code></pre>
+      <figcaption>One command, the same phases: on your machine, in CI, on a colleague’s laptop.</figcaption>
+    </figure>
+  </div>
+</section>
+
+<section class="releases" aria-labelledby="releases-title">
+  <h2 id="releases-title" class="visually-hidden">Releases</h2>
+  <ul class="release-lines">
+    {%- assign cur = site.data.releases.lines | where: "status", "current" -%}
+    {%- assign prev = site.data.releases.lines | where: "status", "maintained" -%}
+    {%- assign next = site.data.releases.lines | where: "status", "upcoming" -%}
+    {%- assign ordered = cur | concat: prev | concat: next -%}
+    {%- for line in ordered %}
+    <li class="release-line release-line--{{ line.status }}">
+      <span class="release-version">Maven {{ line.version }}</span>
+      <span class="release-note">{% case line.status %}{% when 'current' %}Current release, recommended for all users{% when 'maintained' %}Previous line, {{ line.series }}, still maintained{% when 'upcoming' %}Preview of Maven 4, not yet final{% endcase %}</span>
+      <span class="release-links"><a href="{{ site.baseurl }}/downloads/index.html">Download</a> · <a href="{{ site.baseurl }}/downloads/releases/{{ line.version }}.html">Release notes</a></span>
+    </li>
+    {%- endfor %}
+  </ul>
+</section>
+
+<section class="doors" aria-labelledby="doors-title">
+  <h2 id="doors-title" class="visually-hidden">Where to go</h2>
+  <div class="door">
+    <h3><a href="{{ site.baseurl }}/docs/index.html">Use Maven</a></h3>
+    <p>Build your projects: install and configure Maven, work with repositories and modules, choose plugins, move to Maven 4.</p>
+    <ul>
+      <li><a href="{{ site.baseurl }}{{ u['guide:first-project'] }}">Create your first project</a></li>
+      <li><a href="{{ site.baseurl }}{{ u['guide:mirror-settings'] }}">Use a mirror or repository manager</a></li>
+      <li><a href="{{ site.baseurl }}{{ u['guide:build-part-of-a-project'] }}">Build part of a multi-module project</a></li>
+      <li><a href="{{ site.baseurl }}{{ u['plugins/index.md'] }}">Available plugins</a></li>
+      <li><a href="{{ site.baseurl }}{{ u['whatsnewinmaven4.md'] }}">What’s new in Maven 4</a></li>
+    </ul>
+  </div>
+  <div class="door">
+    <h3><a href="{{ site.baseurl }}/extend/index.html">Extend Maven</a></h3>
+    <p>Write plugins and extensions, publish your libraries to Maven Central, and build tools on the repository format.</p>
+    <ul>
+      <li><a href="{{ site.baseurl }}{{ u['guides/plugin/guide-java-plugin-development.md.vm'] }}">Your first plugin</a></li>
+      <li><a href="{{ site.baseurl }}{{ u['plugin-developers/plugin-testing.md'] }}">Test your plugin</a></li>
+      <li><a href="{{ site.baseurl }}{{ u['repository/guide-central-repository-upload.md'] }}">Publish to Maven Central</a></li>
+      <li><a href="{{ site.baseurl }}{{ u['repositories/metadata.md'] }}">maven-metadata.xml</a></li>
+    </ul>
+  </div>
+  <div class="door">
+    <h3><a href="{{ site.baseurl }}/community/index.html">Contribute to Maven</a></h3>
+    <p>Maven is an open source community and welcomes contributions: fix a bug, improve these pages or help with a release.</p>
+    <ul>
+      <li><a href="{{ site.baseurl }}{{ u['guides/development/guide-helping.md'] }}">How to help</a></li>
+      <li><a href="{{ site.baseurl }}{{ u['scm.md'] }}">Get the sources</a></li>
+      <li><a href="{{ site.baseurl }}{{ u['guides/development/guide-building-maven.md'] }}">Build Maven</a></li>
+      <li><a href="{{ site.baseurl }}{{ u['community.md'] }}">Talk to us</a></li>
+    </ul>
+  </div>
+</section>
+
+<section class="latest" aria-labelledby="latest-title">
+  <div class="latest-head">
+    <h2 id="latest-title">News</h2>
+    <a href="{{ site.baseurl }}/news/index.html">All news</a>
+  </div>
+  <ol class="latest-list">
+    {%- for n in site.data.news limit: 4 %}
+    <li><time datetime="{{ n.date | date: '%Y-%m-%d' }}">{{ n.date | date: '%-d %b %Y' }}</time> <a href="{{ site.baseurl }}{{ n.url | default: '/news/index.html' }}">{{ n.title }}</a></li>
+    {%- endfor %}
+  </ol>
+</section>
+
+<section class="help-strip" aria-labelledby="help-title">
+  <h2 id="help-title">Stuck?</h2>
+  <p>Search the docs, read the <a href="{{ site.baseurl }}{{ u['general.md'] }}">FAQ</a>, or <a href="{{ site.baseurl }}{{ u['users/getting-help.md'] }}">ask on the users mailing list or Slack</a>.</p>
+</section>
