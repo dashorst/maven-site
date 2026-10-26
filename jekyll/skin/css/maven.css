@@ -458,3 +458,8 @@ body > .frame, body > main { flex: 1 0 auto; width: 100%; }
 .prose .lost .search { margin-top: .4rem; }
 .prose .lost .search label { display: block; margin-bottom: .3rem; }
 .prose .lost .search input { width: min(100%, 26rem); font-size: 1rem; padding: .55rem .8rem .55rem 2.2rem; }
+.specimen p a:last-child { margin-left: .5rem; font-weight: 600; }
+.before-after td:first-child { white-space: normal; min-width: 11rem; }
+.before-after td:last-child { color: var(--muted); }
+/* Pages without a rail keep the reading measure for running text; lists of groups and tables use the width. */
+.frame.no-rail .prose > p, .frame.no-rail .prose > ul, .frame.no-rail .prose > ol, .frame.no-rail .prose > h2, .frame.no-rail .prose > h3 { max-width: var(--measure); }

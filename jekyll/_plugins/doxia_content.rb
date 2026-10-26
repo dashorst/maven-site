@@ -269,6 +269,8 @@ module Doxia
     page_url = item.data['old_url'] || item.url
     main.css('a[href], area[href], img[src]').each do |el|
       attr = el.name == 'img' ? 'src' : 'href'
+      # A link that has to go to the real maven.apache.org, e.g. an original next to its rewrite.
+      next if el.key?('data-official')
       href = el[attr].to_s.strip
       # Some pages link to themselves through maven.apache.org; keep those within this build.
       local = href[%r{\Ahttps?://maven\.apache\.org(/[^#?]*)}, 1]

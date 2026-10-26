@@ -15,6 +15,16 @@ See the License for the specific language governing permissions and
 limitations under the License.
 -->
 
+# Maven Site, restructured: an example
+
+> **This branch is a proposal, not the official Maven site.** It rebuilds maven.apache.org
+> from these sources with a new structure, a frame of its own and a user guide that follows
+> one writing standard. See it at https://dashorst.github.io/maven-site/ and read
+> [About this example](https://dashorst.github.io/maven-site/about-this-example.html) for
+> what changed, how it was made, and where to give feedback. The build is described in
+> [jekyll/README.md](jekyll/README.md), the writing rules in [GUIDE.md](GUIDE.md).
+> — Martijn Dashorst
+
 # Maven Site
 
 [![Apache License, Version 2.0, January 2004](https://img.shields.io/github/license/apache/maven.svg?label=License)][license]
