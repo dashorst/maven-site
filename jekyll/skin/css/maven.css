@@ -451,3 +451,10 @@ body > .frame, body > main { flex: 1 0 auto; width: 100%; }
 .specimen p { max-width: 84rem; margin: 0 auto; padding: .45rem clamp(1rem, 3vw, 2rem); font-size: .875rem; color: #5a3a00; }
 .specimen strong { color: #5a3a00; }
 .specimen a { color: #5a3a00; }
+
+/* The 404 page */
+.prose .lost { padding-left: 1.2rem; }
+.prose .lost li { margin: 0 0 .9rem; }
+.prose .lost .search { margin-top: .4rem; }
+.prose .lost .search label { display: block; margin-bottom: .3rem; }
+.prose .lost .search input { width: min(100%, 26rem); font-size: 1rem; padding: .55rem .8rem .55rem 2.2rem; }

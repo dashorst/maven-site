@@ -1,0 +1,41 @@
+---
+permalink: /404.html
+layout: default
+title: Page not found
+summary: This page does not exist in the example of a new design for Apache Maven's website.
+---
+{%- comment -%}
+The page GitHub Pages shows for an address that does not exist. Without JavaScript the link to
+maven.apache.org goes to its home page; with it, to the same path there.
+{%- endcomment -%}
+<h1>Hey! You found a gaping hole</h1>
+<p class="lead">This page doesn’t exist in this example of a new design for Apache Maven’s website. The real site may well have it.</p>
+
+<h2>Where to go from here</h2>
+<ul class="lost">
+  <li>Look for it on the official site: <a class="official" href="https://maven.apache.org/">maven.apache.org</a></li>
+  <li>
+    <form class="search" role="search" action="{{ site.baseurl }}/search.html" method="get" data-index="{{ site.baseurl }}/search.json" data-script="{{ site.baseurl }}/js/minisearch-7.2.0.js">
+      <label for="q-404">Search this example</label>
+      <div class="search-field">
+        <svg class="search-icon" aria-hidden="true" viewBox="0 0 16 16" width="16" height="16"><circle cx="7" cy="7" r="5" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M11 11l3.5 3.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+        <input id="q-404" name="q" type="search" autocomplete="off" spellcheck="false" placeholder="mirrorOf, build one module, toolchains">
+      </div>
+    </form>
+  </li>
+  <li>Start again from {% for s in site.data.nav_tree %}<a href="{{ site.baseurl }}{{ s.url }}">{{ s.title }}</a>{% unless forloop.last %}, {% endunless %}{% endfor %} or the <a href="{{ site.baseurl }}/index.html">home page</a>.</li>
+  <li>Did a link in this example send you here? <a href="https://github.com/dashorst/maven-site/issues/new?title=Broken%20link%20in%20the%20example">Tell us which one</a>.</li>
+</ul>
+
+<script>
+  // The same path on maven.apache.org, without the example's base URL.
+  (function () {
+    var a = document.querySelector('a.official');
+    var base = '{{ site.baseurl }}';
+    var path = location.pathname.indexOf(base) === 0 ? location.pathname.slice(base.length) : location.pathname;
+    if (a && path && path !== '/' && path !== '/404.html') {
+      a.href = 'https://maven.apache.org' + path;
+      a.textContent = 'maven.apache.org' + path;
+    }
+  })();
+</script>
