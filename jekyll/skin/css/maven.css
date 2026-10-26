@@ -387,7 +387,7 @@ body > .frame, body > main { flex: 1 0 auto; width: 100%; }
 /* Home: what Maven does */
 .features { max-width: 84rem; margin: 0 auto; padding: 3.5rem clamp(1rem, 3vw, 2rem) 1rem; }
 .features > h2, .track-head h2, .quick h2 { font-size: 1.6rem; letter-spacing: -0.01em; color: var(--ink-strong); margin: 0 0 1.25rem; }
-.feature { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr); gap: 1rem 3rem; align-items: center; padding: 1.5rem 0; border-top: 1px solid var(--line); }
+.feature { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr); gap: 1rem 3rem; align-items: start; padding: 1.5rem 0; border-top: 1px solid var(--line); }
 .feature h3 { font-size: 1.2rem; margin: 0 0 .4rem; color: var(--ink-strong); }
 .feature-text p { margin: 0 0 .5rem; color: var(--muted); max-width: 34rem; }
 .feature-text p:last-child { margin: 0; }
