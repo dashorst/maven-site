@@ -1,0 +1,3 @@
+Title: "One lifecycle for every project"
+Text: "Every Maven project goes through the same phases in the same order. Ask for one, and Maven runs every phase before it." Link: Phases, goals and plugins.
+Code beside it: "validate → compile → test → package → verify → install → deploy" and "$ mvn package   # validate, compile, test, package".

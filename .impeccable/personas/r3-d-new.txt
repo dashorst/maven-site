@@ -1,0 +1,3 @@
+Title: "Faster builds with mvnd"
+Text: "The Maven Daemon keeps a JVM with Maven loaded running between builds, so the next build skips the start-up. Same projects, same options: type mvnd instead of mvn." Link: Maven Daemon.
+Code: "$ mvnd verify"

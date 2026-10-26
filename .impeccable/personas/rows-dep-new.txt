@@ -1,0 +1,6 @@
+Title: "Dependency management, made boring"
+Text: "Declare the libraries you use with an exact version. Maven fetches them and what they depend on from Maven Central, picks one version of each, and lets you fix versions in one place for all your modules. A new release reaches your build only when you change the version, downloading a library runs none of its code, and Maven downloads over HTTPS only. Automate upgrades with the Versions Maven Plugin from MojoHaus." Link: How dependencies work.
+Code beside it: a <dependency> for commons-lang3:3.17.0, then
+  $ mvn versions:display-dependency-updates
+  [INFO]   org.apache.commons:commons-lang3 ... 3.17.0 -> 3.21.0
+  $ mvn versions:use-latest-releases   # updates the POM

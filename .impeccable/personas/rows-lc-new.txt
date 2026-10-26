@@ -1,0 +1,3 @@
+Title: "Compile, test, package, repeat"
+Text: "Every Maven project builds through the same phases, in the same order, on your laptop and in CI. Learn them once, and you can build any Maven project you clone: mvn verify means the same everywhere." Link: Phases, goals and plugins.
+Code beside it: the same phase list and "$ mvn package   # validate, compile, test, package".

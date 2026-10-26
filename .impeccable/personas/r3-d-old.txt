@@ -1,0 +1,3 @@
+Title: "Faster with the Maven Daemon"
+Text: "The Maven Daemon keeps the JVM and Maven running between builds, so the next build starts warm. Same projects, same command line." Link: Maven Daemon.
+Code: "$ mvnd verify"

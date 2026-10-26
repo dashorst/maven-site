@@ -1,0 +1,5 @@
+Title: "Many modules, one build"
+Text: "Split an application into modules and Maven builds them in the right order. Work on one, and build only that module and what it needs." Link: Build part of a project.
+Code:
+  $ mvn verify             # every module, in order
+  $ mvn -pl app -am verify # app and what it needs

@@ -1,0 +1,7 @@
+"Use Maven" — a numbered beginner track, five tutorials that build on one and the same small project:
+  1. Create your first project
+  2. Add your first dependency
+  3. Add and configure your first plugin
+  4. Test and build your project
+  5. Split your application into several modules
+The heading "Use Maven" links to the full Docs section.

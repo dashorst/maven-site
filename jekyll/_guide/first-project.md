@@ -2,15 +2,15 @@
 title: Create your first project
 type: tutorial
 topic: start
-summary: Check Java and Maven, generate a project from the quickstart archetype, build it into a JAR, run its test and run the program.
+summary: Check Java and Maven, generate a project from the quickstart archetype, build it into a JAR and run the program.
 since: "3.9"
-terms: [mvn --version, archetype:generate, maven-archetype-quickstart, mvn package, mvn test, pom.xml, target]
-keywords: [hello world, new project, quickstart, first build, five minutes, mvn -v, JAVA_HOME, BUILD SUCCESS, BUILD FAILURE, skeleton, scaffold, java -cp]
+terms: [mvn --version, archetype:generate, maven-archetype-quickstart, mvn package, pom.xml, target]
+keywords: [hello world, new project, quickstart, first build, five minutes, mvn -v, JAVA_HOME, BUILD SUCCESS, skeleton, scaffold, java -cp, getting started, prefixes file appears stale]
 order: 10
 source: [guides/getting-started/maven-in-five-minutes.md, guides/getting-started/index.md, install.md]
 ---
 
-In this tutorial you create a small Java project with Maven, build it into a JAR file, run its test and run the program. You need a terminal, an internet connection and a Java Development Kit (JDK) 17 or later.
+In this tutorial you create a small Java project with Maven, build it into a JAR file and run the program. It is the first of five tutorials that grow this one project, `my-app`, into an application with a library, a test and two modules. You need a terminal, an internet connection and a Java Development Kit (JDK) 17 or later.
 
 ## 1. Check Java and Maven
 
@@ -66,7 +66,7 @@ The run ends with:
 [INFO] ------------------------------------------------------------------------
 ```
 
-The three `[WARNING] Don't override file` lines before it are normal for this archetype.
+The three `[WARNING] Don't override file` lines before it are normal for this archetype. Maven 3.10 and 4 also print a warning that Maven Central's "prefixes file appears stale" for `archetype-catalog.xml`. It is about Maven Central's list of what it holds, not about your project, and you can ignore it.
 
 ## 3. Look at the generated project
 
@@ -141,19 +141,7 @@ public class App {
 }
 ```
 
-And the test checks nothing yet:
-
-*src/test/java/com/mycompany/app/AppTest.java*
-
-```java
-public class AppTest {
-
-    @Test
-    public void shouldAnswerWithTrue() {
-        assertTrue(true);
-    }
-}
-```
+*AppTest.java* in `src/test/java` is a test that checks nothing yet. You replace it with a real one in [Test and build your project](test-and-build.html).
 
 ## 4. Build the project
 
@@ -163,7 +151,7 @@ In the `my-app` directory, run:
 mvn package
 ```
 
-Maven compiles the code, compiles and runs the test, and packages the classes into a JAR file. The output shows one line for each step, after the downloads:
+Maven compiles the code, runs the test, and packages the classes into a JAR file. The output shows one line for each step, after the downloads:
 
 ```
 [INFO] --- resources:3.3.1:resources (default-resources) @ my-app ---
@@ -183,36 +171,7 @@ Maven compiles the code, compiles and runs the test, and packages the classes in
 
 Everything Maven produces goes into the `target` directory: the compiled classes in `target/classes`, the compiled tests in `target/test-classes`, the test reports in `target/surefire-reports` and the JAR, `target/my-app-1.0-SNAPSHOT.jar`.
 
-## 5. Run the test
-
-To compile and run the tests without making a JAR, run:
-
-```shell
-mvn test
-```
-
-```
-[INFO] Running com.mycompany.app.AppTest
-[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.027 s -- in com.mycompany.app.AppTest
-...
-[INFO] BUILD SUCCESS
-```
-
-See what happens when a test fails. In *AppTest.java*, change `assertTrue(true)` to `assertTrue(false)` and run `mvn test` again:
-
-```
-[ERROR] Failures:
-[ERROR]   AppTest.shouldAnswerWithTrue:17 expected: <true> but was: <false>
-[INFO]
-[ERROR] Tests run: 1, Failures: 1, Errors: 0, Skipped: 0
-[INFO]
-[INFO] ------------------------------------------------------------------------
-[ERROR] BUILD FAILURE
-```
-
-Maven stops at the first phase that fails, so `mvn package` would not make a JAR now either. Change the test back to `assertTrue(true)`.
-
-## 6. Run the program
+## 5. Run the program
 
 Run the `App` class from the JAR:
 
@@ -228,4 +187,4 @@ You now have a Maven project that compiles, tests and packages itself with one c
 
 ## Continue with a dependency
 
-In the next tutorial, [Add a dependency and a test](add-a-dependency.html), you use a library from Maven Central in this project and write a real test for it. [Standard directory layout](standard-directory-layout.html) lists the other directories a project can have, and the [Introduction to the POM](../guides/introduction/introduction-to-the-pom.html) describes the rest of *pom.xml*.
+In the next tutorial, [Add your first dependency](add-a-dependency.html), the program uses a library from Maven Central. [Standard directory layout](standard-directory-layout.html) lists the other directories a project can have, and the [Introduction to the POM](../guides/introduction/introduction-to-the-pom.html) describes the rest of *pom.xml*.

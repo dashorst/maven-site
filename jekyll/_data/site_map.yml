@@ -24,8 +24,16 @@ sections:
         summary: Install Maven, build a first project and learn the few ideas everything else rests on.
         pages:
           - guide: first-project
+            title: "1. Create your first project"
             replaces: [guides/getting-started/maven-in-five-minutes.md]
           - guide: add-a-dependency
+            title: "2. Add your first dependency"
+          - guide: first-plugin
+            title: "3. Add and configure your first plugin"
+          - guide: test-and-build
+            title: "4. Test and build your project"
+          - guide: first-modules
+            title: "5. Split your application into modules"
           - { src: install.md.vm, title: Install Maven, slug: install }
           - { src: guides/getting-started/windows-prerequisites.md, title: Maven on Windows, slug: windows }
           - { src: what-is-maven.md, title: What is Maven? }
@@ -85,6 +93,7 @@ sections:
         title: Multi-module projects
         summary: Split a build into modules, build part of it, and share configuration between modules.
         pages:
+          - { url: /docs/get-started/first-modules.html, title: "Tutorial: split your application into modules" }
           - guide: aggregation-and-inheritance
           - guide: split-into-modules
           - guide: build-part-of-a-project

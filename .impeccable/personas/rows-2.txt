@@ -1,0 +1,24 @@
+Two rows of the 'What Maven does' section on the proposed maven.apache.org home page (under the hero 'Maven once, build anywhere'). Each row exists in two versions; judge each pair.
+
+ROW 1, version P:
+Title: "Dependency management, made boring"
+Text: "Declare the libraries you use with an exact version. Maven fetches them and what they depend on from Maven Central, picks one version of each, and lets you fix versions in one place for all your modules. A new release reaches your build only when you change the version, downloading a library runs none of its code, and Maven downloads over HTTPS only. Automate upgrades with the Versions Maven Plugin from MojoHaus." Link: How dependencies work.
+Code beside it: a <dependency> for commons-lang3:3.17.0, then
+  $ mvn versions:display-dependency-updates
+  [INFO]   org.apache.commons:commons-lang3 ... 3.17.0 -> 3.21.0
+  $ mvn versions:use-latest-releases   # updates the POM
+
+ROW 1, version Q:
+Title: "Libraries from Maven Central"
+Text: "Name a library by its coordinates and Maven downloads it, and everything it depends on, from Maven Central, the repository the Java world publishes to." Link: How dependencies work.
+Code beside it: a 4-line <dependency> for org.apache.commons:commons-lang3:3.21.0.
+
+ROW 2, version P:
+Title: "Compile, test, package, repeat"
+Text: "Every Maven project builds through the same phases, in the same order, on your laptop and in CI. Learn them once, and you can build any Maven project you clone: mvn verify means the same everywhere." Link: Phases, goals and plugins.
+Code beside it: the same phase list and "$ mvn package   # validate, compile, test, package".
+
+ROW 2, version Q:
+Title: "One lifecycle for every project"
+Text: "Every Maven project goes through the same phases in the same order. Ask for one, and Maven runs every phase before it." Link: Phases, goals and plugins.
+Code beside it: "validate → compile → test → package → verify → install → deploy" and "$ mvn package   # validate, compile, test, package".

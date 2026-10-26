@@ -1,0 +1,3 @@
+Title: "A plugin for every step"
+Text: "Compiling, testing and packaging are plugins, and so is everything you add: a runnable JAR, a site, a signed release. You configure them all the same way." Link: Available plugins.
+Code: a maven-shade-plugin 3.6.2 <plugin> with an <execution> binding its "shade" goal to the "package" phase.

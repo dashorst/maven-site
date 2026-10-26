@@ -1,0 +1,21 @@
+One row of the 'What Maven does' section on the proposed maven.apache.org home page. Left: title "There's a plugin for that" and the text "Compiling, testing and packaging are plugins, and so are many other jobs: a runnable JAR, a project site, signed artifacts for a release. Many you run straight from the command line; others you add to the POM and configure like any other." with a link 'Available plugins'. The right side of the row exists in three versions:
+
+--- Version K ---
+All 47 plugins of the Apache Maven project as a dense block of names in a small monospace font (about 12px), each name a link to that plugin's site, no grouping:
+  clean compiler deploy failsafe install resources site surefire ear ejb jar rar war shade source jlink jmod changelog changes checkstyle doap javadoc jdeps jxr pmd plugin-report project-info-reports surefire-report antrun artifact archetype assembly dependency enforcer gpg help invoker jarsigner jdeprscan plugin release remote-resources scm scm-publish scripting toolchains wrapper
+followed by "and many more outside the Apache Maven project, such as versions, build-helper and jetty".
+
+--- Version L ---
+About twenty plugin names grouped by job, in small type (about 13px), each a link to the plugin's site:
+  Build:    compiler · resources · surefire · failsafe
+  Package:  jar · war · shade · assembly · jlink
+  Check:    enforcer · checkstyle · pmd · dependency
+  Release:  source · javadoc · gpg · release · deploy
+  Site:     site · project-info-reports
+followed by "47 Apache Maven plugins, and many more from MojoHaus and others →" linking to the plugin list.
+
+--- Version M ---
+The real output of a plugin run from the command line, in a code block:
+  $ mvn dependency:tree
+  [INFO] com.example:my-app:jar:1.0
+  [INFO] \- org.apache.commons:commons-lang3:jar:3.17.0:compile

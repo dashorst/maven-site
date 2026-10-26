@@ -1,0 +1,3 @@
+Title: "Libraries from Maven Central"
+Text: "Name a library by its coordinates and Maven downloads it, and everything it depends on, from Maven Central, the repository the Java world publishes to." Link: How dependencies work.
+Code beside it: a 4-line <dependency> for org.apache.commons:commons-lang3:3.21.0.

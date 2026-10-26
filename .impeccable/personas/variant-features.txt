@@ -1,0 +1,8 @@
+"What Maven does" — six rows, each a short title, one sentence, a few lines of real code, and a link into the docs:
+  · Dependencies from Maven Central — declare a library by its coordinates; Maven fetches it and everything it depends on. [a 4-line <dependency> snippet] → How dependencies work
+  · One lifecycle — validate, compile, test, package, verify, install, deploy, the same in every project; a phase runs everything before it. [the phase list] → Phases, goals and plugins
+  · A plugin for every step — compiling, testing, packaging, signing, publishing: all plugins, configured the same way. → Available plugins
+  · Multi-module builds — build only the module you work on, plus what it needs. [`mvn -pl app -am verify`] → Build part of a project
+  · Any JDK, through toolchains — Maven runs on one JDK and builds with another. → Toolchains explained
+  · Reproducible builds — the same sources give the same artifacts, byte for byte. → Reproducible builds
+Below it "Use Maven" shrinks to a sentence and two links (Docs, Create your first project).

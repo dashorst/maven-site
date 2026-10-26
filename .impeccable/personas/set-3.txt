@@ -1,0 +1,38 @@
+THE HOME PAGE OF maven.apache.org (a proposed redesign), top to bottom:
+
+1. Header: Maven wordmark; tabs Docs · Downloads · News · Extend · Community; a search box; "Apache" link.
+2. Hero (navy band): headline "Maven once, build anywhere". Lead: "Maven builds a Java project from its pom.xml and a set of plugins: it fetches the libraries the project declares, then compiles, tests and packages in the same order on every machine." Buttons: [Create your first project] (orange, primary) and [Download Maven 3.10.0]. Beside it, a box showing a complete five-line pom.xml (modelVersion, groupId, artifactId, version), the project's files (pom.xml, src/main/java/com/example/App.java) and the real output of `mvn verify` ending in BUILD SUCCESS.
+3. Release strip: Maven 3.10.0 (current, recommended), Maven 3.9.16 (previous line, maintained), Maven 4.0.0-rc-7 (preview), each with Download · Release notes.
+4. THE BLOCK UNDER EVALUATION: the "Use Maven" area (one of the variants below).
+5. Two more columns beside/after it: "Extend Maven" (write plugins and extensions, publish to Maven Central: Your first plugin · Test your plugin · Publish to Maven Central · maven-metadata.xml) and "Contribute to Maven" (How to help · Get the sources · Build Maven · Talk to us).
+6. News: latest four items (new POM validation tool, Maven 3.10.0, 4.0.0-rc-7, 4.0.0-rc-6). "All news".
+7. "Stuck? Search the docs, read the FAQ, or ask on the users mailing list or Slack."
+
+THE THREE VARIANTS OF BLOCK 4:
+
+--- Variant X ---
+"What Maven does" — six rows, each a short title, one sentence, a few lines of real code, and a link into the docs:
+  · Dependencies from Maven Central — declare a library by its coordinates; Maven fetches it and everything it depends on. [a 4-line <dependency> snippet] → How dependencies work
+  · One lifecycle — validate, compile, test, package, verify, install, deploy, the same in every project; a phase runs everything before it. [the phase list] → Phases, goals and plugins
+  · A plugin for every step — compiling, testing, packaging, signing, publishing: all plugins, configured the same way. → Available plugins
+  · Multi-module builds — build only the module you work on, plus what it needs. [`mvn -pl app -am verify`] → Build part of a project
+  · Any JDK, through toolchains — Maven runs on one JDK and builds with another. → Toolchains explained
+  · Reproducible builds — the same sources give the same artifacts, byte for byte. → Reproducible builds
+Below it "Use Maven" shrinks to a sentence and two links (Docs, Create your first project).
+
+--- Variant Y ---
+"Use Maven" — a numbered beginner track, five tutorials that build on one and the same small project:
+  1. Create your first project
+  2. Add your first dependency
+  3. Add and configure your first plugin
+  4. Test and build your project
+  5. Split your application into several modules
+The heading "Use Maven" links to the full Docs section.
+
+--- Variant Z ---
+"Use Maven" — Build your projects: install and configure Maven, work with repositories and modules, choose plugins, move to Maven 4.
+  · Create your first project
+  · Use a mirror or repository manager
+  · Build part of a multi-module project
+  · Available plugins
+  · What's new in Maven 4

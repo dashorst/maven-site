@@ -1,0 +1,6 @@
+"Use Maven" — Build your projects: install and configure Maven, work with repositories and modules, choose plugins, move to Maven 4.
+  · Create your first project
+  · Use a mirror or repository manager
+  · Build part of a multi-module project
+  · Available plugins
+  · What's new in Maven 4

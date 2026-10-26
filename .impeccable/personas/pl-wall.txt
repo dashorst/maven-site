@@ -1,0 +1,3 @@
+All 47 plugins of the Apache Maven project as a dense block of names in a small monospace font (about 12px), each name a link to that plugin's site, no grouping:
+  clean compiler deploy failsafe install resources site surefire ear ejb jar rar war shade source jlink jmod changelog changes checkstyle doap javadoc jdeps jxr pmd plugin-report project-info-reports surefire-report antrun artifact archetype assembly dependency enforcer gpg help invoker jarsigner jdeprscan plugin release remote-resources scm scm-publish scripting toolchains wrapper
+followed by "and many more outside the Apache Maven project, such as versions, build-helper and jetty".

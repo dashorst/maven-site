@@ -1,0 +1,3 @@
+Title: "There's a plugin for that"
+Text: "Compiling, testing and packaging are plugins, and so is almost anything else a build needs: a runnable JAR, a project site, a signed release on Maven Central. Pick one from the plugin list, add it to the POM, and configure it like every other plugin." Link: Available plugins.
+Code: the same maven-shade-plugin 3.6.2 <plugin> with an <execution> binding its "shade" goal to the "package" phase.

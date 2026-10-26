@@ -1,0 +1,4 @@
+The real output of a plugin run from the command line, in a code block:
+  $ mvn dependency:tree
+  [INFO] com.example:my-app:jar:1.0
+  [INFO] \- org.apache.commons:commons-lang3:jar:3.17.0:compile

@@ -1,0 +1,5 @@
+Title: "Big builds, one command"
+Text: "Split an application into modules and one mvn verify builds them all, each after the modules it depends on. Working on one module? Build just that one and what it needs: -pl picks the module, -am adds the modules it depends on." Link: Build part of a project.
+Code:
+  $ mvn verify             # every module, in order
+  $ mvn -pl app -am verify # app and what it needs

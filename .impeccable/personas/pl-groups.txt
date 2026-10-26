@@ -1,0 +1,7 @@
+About twenty plugin names grouped by job, in small type (about 13px), each a link to the plugin's site:
+  Build:    compiler · resources · surefire · failsafe
+  Package:  jar · war · shade · assembly · jlink
+  Check:    enforcer · checkstyle · pmd · dependency
+  Release:  source · javadoc · gpg · release · deploy
+  Site:     site · project-info-reports
+followed by "47 Apache Maven plugins, and many more from MojoHaus and others →" linking to the plugin list.

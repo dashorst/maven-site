@@ -1,0 +1,38 @@
+Three rows of the 'What Maven does' section on the proposed maven.apache.org home page (hero: 'Maven once, build anywhere'; the rows above these are 'Dependency management, made boring' and 'Compile, test, package, repeat'). Each row exists in two versions; judge each pair.
+
+ROW A, 
+version P:
+Title: "A plugin for every step"
+Text: "Compiling, testing and packaging are plugins, and so is everything you add: a runnable JAR, a site, a signed release. You configure them all the same way." Link: Available plugins.
+Code: a maven-shade-plugin 3.6.2 <plugin> with an <execution> binding its "shade" goal to the "package" phase.
+
+version Q:
+Title: "There's a plugin for that"
+Text: "Compiling, testing and packaging are plugins, and so is almost anything else a build needs: a runnable JAR, a project site, a signed release on Maven Central. Pick one from the plugin list, add it to the POM, and configure it like every other plugin." Link: Available plugins.
+Code: the same maven-shade-plugin 3.6.2 <plugin> with an <execution> binding its "shade" goal to the "package" phase.
+
+ROW B, 
+version P:
+Title: "Big builds, one command"
+Text: "Split an application into modules and one mvn verify builds them all, each after the modules it depends on. Working on one module? Build just that one and what it needs: -pl picks the module, -am adds the modules it depends on." Link: Build part of a project.
+Code:
+  $ mvn verify             # every module, in order
+  $ mvn -pl app -am verify # app and what it needs
+
+version Q:
+Title: "Many modules, one build"
+Text: "Split an application into modules and Maven builds them in the right order. Work on one, and build only that module and what it needs." Link: Build part of a project.
+Code:
+  $ mvn verify             # every module, in order
+  $ mvn -pl app -am verify # app and what it needs
+
+ROW C, 
+version P:
+Title: "Faster with the Maven Daemon"
+Text: "The Maven Daemon keeps the JVM and Maven running between builds, so the next build starts warm. Same projects, same command line." Link: Maven Daemon.
+Code: "$ mvnd verify"
+
+version Q:
+Title: "Faster builds with mvnd"
+Text: "The Maven Daemon keeps a JVM with Maven loaded running between builds, so the next build skips the start-up. Same projects, same options: type mvnd instead of mvn." Link: Maven Daemon.
+Code: "$ mvnd verify"
