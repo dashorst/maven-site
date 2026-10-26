@@ -1,9 +1,9 @@
 <!DOCTYPE html><html lang="en"><head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Create your first project – Apache Maven</title>
-  <meta name="description" content="Check Java and Maven, generate a project from the quickstart archetype, build it into a JAR, run its test and run the program.">
-  <link rel="stylesheet" href="/maven-site/css/maven.css?v=1793026785">
+  <title>1. Create your first project – Apache Maven</title>
+  <meta name="description" content="Check Java and Maven, generate a project from the quickstart archetype, build it into a JAR and run the program.">
+  <link rel="stylesheet" href="/maven-site/css/maven.css?v=1793034111">
   <link rel="stylesheet" href="/maven-site/css/print.css" media="print">
   <link rel="icon" href="/maven-site/images/favicon.ico">
   <link rel="alternate" type="application/atom+xml" href="/maven-site/news/feed.xml" title="Apache Maven news">
@@ -47,11 +47,14 @@
   <div class="frame has-group">
     <nav class="group-nav" aria-labelledby="group-nav-title">
       <p class="up"><a href="/maven-site/docs/index.html"><svg aria-hidden="true" viewBox="0 0 16 16" width="14" height="14"><path d="M10 3.5L5.5 8l4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path></svg>All of Docs</a></p>
-      <p class="steps"><a class="step step--next" href="/maven-site/docs/get-started/add-a-dependency.html" rel="next"><span class="step-dir">Next</span> Add a dependency and a test</a></p>
+      <p class="steps"><a class="step step--next" href="/maven-site/docs/get-started/add-a-dependency.html" rel="next"><span class="step-dir">Next</span> 2. Add your first dependency</a></p>
       <h2 id="group-nav-title"><a href="/maven-site/docs/get-started/index.html">Get started</a></h2>
       <ul class="page-list">
-  <li><a href="/maven-site/docs/get-started/first-project.html" aria-current="page">Create your first project</a></li>
-  <li><a href="/maven-site/docs/get-started/add-a-dependency.html">Add a dependency and a test</a></li>
+  <li><a href="/maven-site/docs/get-started/first-project.html" aria-current="page">1. Create your first project</a></li>
+  <li><a href="/maven-site/docs/get-started/add-a-dependency.html">2. Add your first dependency</a></li>
+  <li><a href="/maven-site/docs/get-started/first-plugin.html">3. Add and configure your first plugin</a></li>
+  <li><a href="/maven-site/docs/get-started/test-and-build.html">4. Test and build your project</a></li>
+  <li><a href="/maven-site/docs/get-started/first-modules.html">5. Split your application into modules</a></li>
   <li><a href="/maven-site/docs/get-started/install.html">Install Maven</a></li>
   <li><a href="/maven-site/docs/get-started/windows.html">Maven on Windows</a></li>
   <li><a href="/maven-site/docs/get-started/what-is-maven.html">What is Maven?</a></li>
@@ -68,21 +71,21 @@
       <p class="crumbs"><a href="/maven-site/docs/index.html">Docs</a> <span aria-hidden="true">›</span> <a href="/maven-site/docs/get-started/index.html">Get started</a></p>
       <div class="prose">
 <h1 id="Create_your_first_project">Create your first project</h1>
-<p class="lead">Check Java and Maven, generate a project from the quickstart archetype, build it into a JAR, run its test and run the program.</p><section class="facts facts--inline" aria-label="About this page">
+<p class="lead">Check Java and Maven, generate a project from the quickstart archetype, build it into a JAR and run the program.</p><section class="facts facts--inline" aria-label="About this page">
   <dl>
     <dt>Holds for</dt>
     <dd><span class="versions"><span class="version">3.9</span><span class="version">3.10</span><span class="version version--upcoming" title="Maven 4.0 is not released yet">4.0</span></span></dd>
     <dt>Changed</dt>
-    <dd><time datetime="2026-10-25">25 October 2026</time></dd>
+    <dd><time datetime="2026-10-26">26 October 2026</time></dd>
     <dt>Kind</dt>
     <dd>Tutorial</dd>
     <dt>Source</dt>
     <dd><a href="https://github.com/dashorst/maven-site/blob/diataxis-demo/jekyll/_guide/first-project.md">Edit this page</a></dd>
     <dt>Wrong?</dt>
-    <dd><a href="https://github.com/apache/maven-site/issues/new?title=Page%3A+Create+your+first+project&amp;body=About+https%3A%2F%2Fmaven.apache.org%2Fdocs%2Fget-started%2Ffirst-project.html">Report a problem</a></dd>
+    <dd><a href="https://github.com/apache/maven-site/issues/new?title=Page%3A+1.+Create+your+first+project&amp;body=About+https%3A%2F%2Fmaven.apache.org%2Fdocs%2Fget-started%2Ffirst-project.html">Report a problem</a></dd>
   </dl>
 </section>
-<p>In this tutorial you create a small Java project with Maven, build it into a JAR file, run its test and run the program. You need a terminal, an internet connection and a Java Development Kit (JDK) 17 or later.</p>
+<p>In this tutorial you create a small Java project with Maven, build it into a JAR file and run the program. It is the first of five tutorials that grow this one project, <code>my-app</code>, into an application with a library, a test and two modules. You need a terminal, an internet connection and a Java Development Kit (JDK) 17 or later.</p>
 <h2 id="a1._Check_Java_and_Maven">1. Check Java and Maven<a class="anchor" href="#a1._Check_Java_and_Maven" aria-label="Link to this section"><svg aria-hidden="true" viewBox="0 0 16 16" width="14" height="14"><path d="M6.5 9.5l3-3M7 4.5l1-1a2.5 2.5 0 013.5 3.5l-1 1M9 11.5l-1 1A2.5 2.5 0 014.5 9l1-1" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path></svg></a></h2>
 <p>Open a terminal and check which Java you have:</p>
 <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="shell">java <span class="nt">-version</span>
@@ -116,7 +119,7 @@ OS name: "linux", version: "6.17.0", arch: "amd64", family: "unix"
 [INFO] BUILD SUCCESS
 [INFO] ------------------------------------------------------------------------
 </code></pre></div></div>
-<p>The three <code>[WARNING] Don't override file</code> lines before it are normal for this archetype.</p>
+<p>The three <code>[WARNING] Don't override file</code> lines before it are normal for this archetype. Maven 3.10 and 4 also print a warning that Maven Central's "prefixes file appears stale" for <code>archetype-catalog.xml</code>. It is about Maven Central's list of what it holds, not about your project, and you can ignore it.</p>
 <h2 id="a3._Look_at_the_generated_project">3. Look at the generated project<a class="anchor" href="#a3._Look_at_the_generated_project" aria-label="Link to this section"><svg aria-hidden="true" viewBox="0 0 16 16" width="14" height="14"><path d="M6.5 9.5l3-3M7 4.5l1-1a2.5 2.5 0 013.5 3.5l-1 1M9 11.5l-1 1A2.5 2.5 0 014.5 9l1-1" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path></svg></a></h2>
 <p>Go into the new directory:</p>
 <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="shell"><span class="nb">cd </span>my-app
@@ -172,21 +175,12 @@ OS name: "linux", version: "6.17.0", arch: "amd64", family: "unix"
     <span class="o">}</span>
 <span class="o">}</span>
 </code></pre></div></div>
-<p>And the test checks nothing yet:</p>
-<p><em>src/test/java/com/mycompany/app/AppTest.java</em></p>
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">AppTest</span> <span class="o">{</span>
-
-    <span class="nd">@Test</span>
-    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">shouldAnswerWithTrue</span><span class="o">()</span> <span class="o">{</span>
-        <span class="n">assertTrue</span><span class="o">(</span><span class="kc">true</span><span class="o">);</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></div></div>
+<p><em>AppTest.java</em> in <code>src/test/java</code> is a test that checks nothing yet. You replace it with a real one in <a href="/maven-site/docs/get-started/test-and-build.html">Test and build your project</a>.</p>
 <h2 id="a4._Build_the_project">4. Build the project<a class="anchor" href="#a4._Build_the_project" aria-label="Link to this section"><svg aria-hidden="true" viewBox="0 0 16 16" width="14" height="14"><path d="M6.5 9.5l3-3M7 4.5l1-1a2.5 2.5 0 013.5 3.5l-1 1M9 11.5l-1 1A2.5 2.5 0 014.5 9l1-1" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path></svg></a></h2>
 <p>In the <code>my-app</code> directory, run:</p>
 <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="shell">mvn package
 </code></pre></div></div>
-<p>Maven compiles the code, compiles and runs the test, and packages the classes into a JAR file. The output shows one line for each step, after the downloads:</p>
+<p>Maven compiles the code, runs the test, and packages the classes into a JAR file. The output shows one line for each step, after the downloads:</p>
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[INFO] --- resources:3.3.1:resources (default-resources) @ my-app ---
 [INFO] --- compiler:3.13.0:compile (default-compile) @ my-app ---
 [INFO] Compiling 1 source file with javac [debug release 17] to target/classes
@@ -201,26 +195,7 @@ OS name: "linux", version: "6.17.0", arch: "amd64", family: "unix"
 </code></pre></div></div>
 <p><code>package</code> is a phase of the build, not a single task: Maven runs every phase before it as well, from compiling to testing, and then makes the JAR. <a href="/maven-site/docs/get-started/build-lifecycle.html">Phases, goals and plugins</a> explains how that works.</p>
 <p>Everything Maven produces goes into the <code>target</code> directory: the compiled classes in <code>target/classes</code>, the compiled tests in <code>target/test-classes</code>, the test reports in <code>target/surefire-reports</code> and the JAR, <code>target/my-app-1.0-SNAPSHOT.jar</code>.</p>
-<h2 id="a5._Run_the_test">5. Run the test<a class="anchor" href="#a5._Run_the_test" aria-label="Link to this section"><svg aria-hidden="true" viewBox="0 0 16 16" width="14" height="14"><path d="M6.5 9.5l3-3M7 4.5l1-1a2.5 2.5 0 013.5 3.5l-1 1M9 11.5l-1 1A2.5 2.5 0 014.5 9l1-1" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path></svg></a></h2>
-<p>To compile and run the tests without making a JAR, run:</p>
-<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="shell">mvn <span class="nb">test</span>
-</code></pre></div></div>
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[INFO] Running com.mycompany.app.AppTest
-[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.027 s -- in com.mycompany.app.AppTest
-...
-[INFO] BUILD SUCCESS
-</code></pre></div></div>
-<p>See what happens when a test fails. In <em>AppTest.java</em>, change <code>assertTrue(true)</code> to <code>assertTrue(false)</code> and run <code>mvn test</code> again:</p>
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[ERROR] Failures:
-[ERROR]   AppTest.shouldAnswerWithTrue:17 expected: &lt;true&gt; but was: &lt;false&gt;
-[INFO]
-[ERROR] Tests run: 1, Failures: 1, Errors: 0, Skipped: 0
-[INFO]
-[INFO] ------------------------------------------------------------------------
-[ERROR] BUILD FAILURE
-</code></pre></div></div>
-<p>Maven stops at the first phase that fails, so <code>mvn package</code> would not make a JAR now either. Change the test back to <code>assertTrue(true)</code>.</p>
-<h2 id="a6._Run_the_program">6. Run the program<a class="anchor" href="#a6._Run_the_program" aria-label="Link to this section"><svg aria-hidden="true" viewBox="0 0 16 16" width="14" height="14"><path d="M6.5 9.5l3-3M7 4.5l1-1a2.5 2.5 0 013.5 3.5l-1 1M9 11.5l-1 1A2.5 2.5 0 014.5 9l1-1" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path></svg></a></h2>
+<h2 id="a5._Run_the_program">5. Run the program<a class="anchor" href="#a5._Run_the_program" aria-label="Link to this section"><svg aria-hidden="true" viewBox="0 0 16 16" width="14" height="14"><path d="M6.5 9.5l3-3M7 4.5l1-1a2.5 2.5 0 013.5 3.5l-1 1M9 11.5l-1 1A2.5 2.5 0 014.5 9l1-1" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path></svg></a></h2>
 <p>Run the <code>App</code> class from the JAR:</p>
 <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code data-lang="shell">java <span class="nt">-cp</span> target/my-app-1.0-SNAPSHOT.jar com.mycompany.app.App
 </code></pre></div></div>
@@ -228,15 +203,18 @@ OS name: "linux", version: "6.17.0", arch: "amd64", family: "unix"
 </code></pre></div></div>
 <p>You now have a Maven project that compiles, tests and packages itself with one command.</p>
 <h2 id="Continue_with_a_dependency">Continue with a dependency<a class="anchor" href="#Continue_with_a_dependency" aria-label="Link to this section"><svg aria-hidden="true" viewBox="0 0 16 16" width="14" height="14"><path d="M6.5 9.5l3-3M7 4.5l1-1a2.5 2.5 0 013.5 3.5l-1 1M9 11.5l-1 1A2.5 2.5 0 014.5 9l1-1" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path></svg></a></h2>
-<p>In the next tutorial, <a href="/maven-site/docs/get-started/add-a-dependency.html">Add a dependency and a test</a>, you use a library from Maven Central in this project and write a real test for it. <a href="/maven-site/docs/get-started/standard-directory-layout.html">Standard directory layout</a> lists the other directories a project can have, and the <a href="/maven-site/docs/get-started/the-pom.html">Introduction to the POM</a> describes the rest of <em>pom.xml</em>.</p>
+<p>In the next tutorial, <a href="/maven-site/docs/get-started/add-a-dependency.html">Add your first dependency</a>, the program uses a library from Maven Central. <a href="/maven-site/docs/get-started/standard-directory-layout.html">Standard directory layout</a> lists the other directories a project can have, and the <a href="/maven-site/docs/get-started/the-pom.html">Introduction to the POM</a> describes the rest of <em>pom.xml</em>.</p>
 
 
       </div>
       <nav class="more" aria-labelledby="more-title">
         <h2 id="more-title">More in <a href="/maven-site/docs/get-started/index.html">Get started</a></h2>
         <ul class="more-list">
-  <li><a href="/maven-site/docs/get-started/first-project.html" aria-current="page">Create your first project</a></li>
-  <li><a href="/maven-site/docs/get-started/add-a-dependency.html">Add a dependency and a test</a></li>
+  <li><a href="/maven-site/docs/get-started/first-project.html" aria-current="page">1. Create your first project</a></li>
+  <li><a href="/maven-site/docs/get-started/add-a-dependency.html">2. Add your first dependency</a></li>
+  <li><a href="/maven-site/docs/get-started/first-plugin.html">3. Add and configure your first plugin</a></li>
+  <li><a href="/maven-site/docs/get-started/test-and-build.html">4. Test and build your project</a></li>
+  <li><a href="/maven-site/docs/get-started/first-modules.html">5. Split your application into modules</a></li>
   <li><a href="/maven-site/docs/get-started/install.html">Install Maven</a></li>
   <li><a href="/maven-site/docs/get-started/windows.html">Maven on Windows</a></li>
   <li><a href="/maven-site/docs/get-started/what-is-maven.html">What is Maven?</a></li>
@@ -248,7 +226,7 @@ OS name: "linux", version: "6.17.0", arch: "amd64", family: "unix"
   <li><a href="/maven-site/docs/get-started/questions-and-answers.html">Getting started questions and answers</a></li>
 </ul>
 
-        <p class="steps"><a class="step step--next" href="/maven-site/docs/get-started/add-a-dependency.html" rel="next"><span class="step-dir">Next</span> Add a dependency and a test</a></p>
+        <p class="steps"><a class="step step--next" href="/maven-site/docs/get-started/add-a-dependency.html" rel="next"><span class="step-dir">Next</span> 2. Add your first dependency</a></p>
       </nav>
     </main>
     <aside class="rail">
@@ -257,17 +235,17 @@ OS name: "linux", version: "6.17.0", arch: "amd64", family: "unix"
     <dt>Holds for</dt>
     <dd><span class="versions"><span class="version">3.9</span><span class="version">3.10</span><span class="version version--upcoming" title="Maven 4.0 is not released yet">4.0</span></span></dd>
     <dt>Changed</dt>
-    <dd><time datetime="2026-10-25">25 October 2026</time></dd>
+    <dd><time datetime="2026-10-26">26 October 2026</time></dd>
     <dt>Kind</dt>
     <dd>Tutorial</dd>
     <dt>Source</dt>
     <dd><a href="https://github.com/dashorst/maven-site/blob/diataxis-demo/jekyll/_guide/first-project.md">Edit this page</a></dd>
     <dt>Wrong?</dt>
-    <dd><a href="https://github.com/apache/maven-site/issues/new?title=Page%3A+Create+your+first+project&amp;body=About+https%3A%2F%2Fmaven.apache.org%2Fdocs%2Fget-started%2Ffirst-project.html">Report a problem</a></dd>
+    <dd><a href="https://github.com/apache/maven-site/issues/new?title=Page%3A+1.+Create+your+first+project&amp;body=About+https%3A%2F%2Fmaven.apache.org%2Fdocs%2Fget-started%2Ffirst-project.html">Report a problem</a></dd>
   </dl>
 </section>
 
-      <nav id="on-this-page" aria-label="On this page"><h2>On this page</h2><ul><li><a href="#a1._Check_Java_and_Maven">1. Check Java and Maven</a></li><li><a href="#a2._Generate_the_project">2. Generate the project</a></li><li><a href="#a3._Look_at_the_generated_project">3. Look at the generated project</a></li><li><a href="#a4._Build_the_project">4. Build the project</a></li><li><a href="#a5._Run_the_test">5. Run the test</a></li><li><a href="#a6._Run_the_program">6. Run the program</a></li><li><a href="#Continue_with_a_dependency">Continue with a dependency</a></li></ul></nav>
+      <nav id="on-this-page" aria-label="On this page"><h2>On this page</h2><ul><li><a href="#a1._Check_Java_and_Maven">1. Check Java and Maven</a></li><li><a href="#a2._Generate_the_project">2. Generate the project</a></li><li><a href="#a3._Look_at_the_generated_project">3. Look at the generated project</a></li><li><a href="#a4._Build_the_project">4. Build the project</a></li><li><a href="#a5._Run_the_program">5. Run the program</a></li><li><a href="#Continue_with_a_dependency">Continue with a dependency</a></li></ul></nav>
     </aside>
   </div>
   <footer class="site-footer">
@@ -288,7 +266,7 @@ OS name: "linux", version: "6.17.0", arch: "amd64", family: "unix"
   </div>
 </footer>
 
-  <script src="/maven-site/js/search.js?v=1793026785" defer=""></script>
+  <script src="/maven-site/js/search.js?v=1793034111" defer=""></script>
 
 
 </body></html>
