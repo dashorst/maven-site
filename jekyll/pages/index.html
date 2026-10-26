@@ -4,15 +4,15 @@ layout: default
 title: Apache Maven
 wide: true
 body_class: home
-summary: Apache Maven builds Java projects from a project object model, pom.xml, and a set of plugins. Know one Maven project, and you know how they all build.
+summary: Apache Maven builds Java projects from a project object model, pom.xml, and a set of plugins, the same way on every machine.
 ---
 {%- assign u = site.data.src_urls -%}
 {%- assign current = site.data.releases.lines | where: "status", "current" | first -%}
 <section class="hero" aria-labelledby="hero-title">
   <div class="hero-inner">
     <div class="hero-text">
-      <h1 id="hero-title">Know one Maven project, and you know how they all build.</h1>
-      <p class="hero-lead">Maven builds a Java project from its <code>pom.xml</code> and a set of plugins. It fetches the libraries the project declares from Maven Central, then runs the same phases, compile, test and package, in the same order on every machine.</p>
+      <h1 id="hero-title">Maven once, build anywhere</h1>
+      <p class="hero-lead">Maven builds a Java project from its <code>pom.xml</code> and a set of plugins: it fetches the libraries the project declares, then compiles, tests and packages in the same order on every machine.</p>
       <p class="actions">
         <a class="button button--primary" href="{{ site.baseurl }}{{ u['guide:first-project'] }}">Create your first project</a>
         <a class="button button--secondary" href="{{ site.baseurl }}/downloads/index.html">Download Maven {{ current.version }}</a>
