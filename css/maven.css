@@ -372,3 +372,14 @@ body { min-height: 100vh; display: flex; flex-direction: column; }
 body > .frame, body > main { flex: 1 0 auto; width: 100%; }
 .site-footer { flex-shrink: 0; }
 #on-this-page ul ul { border-left: 0; padding-left: .8rem; margin-top: .35rem; }
+
+/* Home: the minimal POM above the build it runs */
+.demo-file { display: inline-block; margin: 0; padding: .3rem .75rem; font: .8rem var(--mono); color: #e6edf5;
+  background: rgba(255, 255, 255, .08); border: 1px solid rgba(255, 255, 255, .12); border-bottom: 0; border-radius: var(--radius) var(--radius) 0 0; }
+.demo-files { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: .75rem; margin-bottom: .75rem; }
+.demo-pane { min-width: 0; display: flex; flex-direction: column; }
+.demo-pane .demo-file { align-self: flex-start; }
+.hero-demo .demo-pom, .hero-demo .demo-tree { flex: 1; border-top-left-radius: 0; margin: 0; box-shadow: none; background: rgba(255, 255, 255, .05); color: #e6edf5; }
+.hero-demo .demo-tree { color: #cfd9e6; }
+@media (max-width: 560px) { .demo-files { grid-template-columns: minmax(0, 1fr); } }
+.hero-demo .demo-pom .t { color: #9fc0e8; }

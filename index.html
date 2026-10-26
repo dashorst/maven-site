@@ -3,7 +3,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Apache Maven</title>
   <meta name="description" content="Apache Maven builds Java projects from a project object model, pom.xml, and a set of plugins, the same way on every machine.">
-  <link rel="stylesheet" href="/maven-site/css/maven.css?v=1793025183">
+  <link rel="stylesheet" href="/maven-site/css/maven.css?v=1793026785">
   <link rel="stylesheet" href="/maven-site/css/print.css" media="print">
   <link rel="icon" href="/maven-site/images/favicon.ico">
   <link rel="alternate" type="application/atom+xml" href="/maven-site/news/feed.xml" title="Apache Maven news">
@@ -56,14 +56,31 @@
       </p>
     </div>
     <figure class="hero-demo">
-      <pre><code><span class="prompt">$</span> mvn verify
-[INFO] --- resources:3.3.1:resources (default-resources) @ my-app ---
-[INFO] --- compiler:3.13.0:compile (default-compile) @ my-app ---
-[INFO] --- surefire:3.3.0:test (default-test) @ my-app ---
-[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0
-[INFO] --- jar:3.4.2:jar (default-jar) @ my-app ---
+      <div class="demo-files">
+        <div class="demo-pane">
+          <p class="demo-file">pom.xml</p>
+          <pre class="demo-pom"><code><span class="t">&lt;project&gt;</span>
+  <span class="t">&lt;modelVersion&gt;</span>4.0.0<span class="t">&lt;/modelVersion&gt;</span>
+  <span class="t">&lt;groupId&gt;</span>com.example<span class="t">&lt;/groupId&gt;</span>
+  <span class="t">&lt;artifactId&gt;</span>my-app<span class="t">&lt;/artifactId&gt;</span>
+  <span class="t">&lt;version&gt;</span>1.0<span class="t">&lt;/version&gt;</span>
+<span class="t">&lt;/project&gt;</span></code></pre>
+        </div>
+        <div class="demo-pane">
+          <p class="demo-file">my-app/</p>
+          <pre class="demo-tree"><code>├── pom.xml
+└── src/main/java/
+    └── com/example/
+        └── App.java</code></pre>
+        </div>
+      </div>
+      <pre class="demo-run"><code><span class="prompt">$</span> mvn verify
+[INFO] --- resources:3.5.0:resources (default-resources) @ my-app ---
+[INFO] --- compiler:3.16.0:compile (default-compile) @ my-app ---
+[INFO] --- surefire:3.6.0:test (default-test) @ my-app ---
+[INFO] --- jar:3.5.1:jar (default-jar) @ my-app ---
 [INFO] <span class="ok">BUILD SUCCESS</span></code></pre>
-      <figcaption>One command, the same phases: on your machine, in CI, on a colleague’s laptop.</figcaption>
+      <figcaption>The POM only names the project; the convention says where the code is. The build is Maven 3.10.0’s own output.</figcaption>
     </figure>
   </div>
 </section>
@@ -161,7 +178,7 @@
   </div>
 </footer>
 
-  <script src="/maven-site/js/search.js?v=1793025183" defer=""></script>
+  <script src="/maven-site/js/search.js?v=1793026785" defer=""></script>
 
 
 </body></html>
