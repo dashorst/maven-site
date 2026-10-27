@@ -3,7 +3,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>About this example – Apache Maven</title>
   <meta name="description" content="What this proposed redesign of maven.apache.org changes, what it leaves as it is, how it was made, and how to give feedback.">
-  <link rel="stylesheet" href="/maven-site/css/maven.css?v=1793055479">
+  <link rel="stylesheet" href="/maven-site/css/maven.css?v=1793139885">
   <link rel="stylesheet" href="/maven-site/css/print.css" media="print">
   <link rel="icon" href="/maven-site/images/favicon.ico">
   <link rel="alternate" type="application/atom+xml" href="/maven-site/news/feed.xml" title="Apache Maven news">
@@ -121,7 +121,7 @@
 
 <h2 id="How_I_made_it">How I made it<a class="anchor" href="#How_I_made_it" aria-label="Link to this section"><svg aria-hidden="true" viewBox="0 0 16 16" width="14" height="14"><path d="M6.5 9.5l3-3M7 4.5l1-1a2.5 2.5 0 013.5 3.5l-1 1M9 11.5l-1 1A2.5 2.5 0 014.5 9l1-1" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path></svg></a></h2>
 <p>I built this with an AI assistant, Anthropic’s Claude, using the <a href="https://impeccable.style/"><em>impeccable</em></a> design skill for the structure and the front page. The guide pages were written from Maven’s own pages, and every command on them was run on the three Maven versions before it went in. Before building, the current site was reviewed against usability heuristics, the new navigation was tree-tested with 18 tasks, and the home page was put to a panel of reader personas; the testers and the personas were simulated by the AI, not real users.</p>
-<p>The example is built with Jekyll, because that was quickest for a demonstration. Maven would not need Jekyll: the frame could be a skin for maven-site-plugin, the structure a site descriptor, and the lists and the search index a small Doxia macro module. Every component site, from the plugins to the reference documentation, would get the same look with the same skin, and the old addresses could move as 301 redirects in the <code>.htaccess</code> files maven-site already uses.</p>
+<p>The example is built with Jekyll, because that was quickest for a demonstration. Maven would not need Jekyll: the frame could be a skin for maven-site-plugin, the structure a site descriptor, and the lists and the search index a small Doxia macro module. <a href="/maven-site/mvn-site/index.html">The same site built by <code>mvn site</code></a> shows that it works: a skin of its own, one menu in <code>site.xml</code>, and the code coloured and the search index written after the pages are rendered. Every component site, from the plugins to the reference documentation, would get the same look with the same skin, and the old addresses could move as 301 redirects in the <code>.htaccess</code> files maven-site already uses.</p>
 
 <h2 id="What_is_still_missing">What is still missing<a class="anchor" href="#What_is_still_missing" aria-label="Link to this section"><svg aria-hidden="true" viewBox="0 0 16 16" width="14" height="14"><path d="M6.5 9.5l3-3M7 4.5l1-1a2.5 2.5 0 013.5 3.5l-1 1M9 11.5l-1 1A2.5 2.5 0 014.5 9l1-1" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path></svg></a></h2>
 <ul>
@@ -154,7 +154,7 @@
   </div>
 </footer>
 
-  <script src="/maven-site/js/search.js?v=1793055479" defer=""></script>
+  <script src="/maven-site/js/search.js?v=1793139885" defer=""></script>
 
 
 </body></html>
