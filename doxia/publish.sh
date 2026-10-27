@@ -21,6 +21,9 @@ if [[ ! -d "$TREE" ]]; then
 fi
 rm -rf "$TREE/mvn-site"
 cp -a target/site/. "$TREE/mvn-site/"
+# The build links the component sites (ref, surefire, ...) to ../components/, as on the ASF
+# server; GitHub Pages refuses to publish links that lead nowhere.
+find "$TREE/mvn-site" -type l -delete
 git -C "$TREE" add -A mvn-site
 git -C "$TREE" commit -q -m "Publish doxia-demo at $commit in mvn-site/" || echo "Nothing changed."
 if $push; then
