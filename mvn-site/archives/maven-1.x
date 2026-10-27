@@ -1,1 +1,0 @@
-../components/archives/maven-1.x

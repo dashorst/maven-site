@@ -1,1 +1,0 @@
-../components/shared/maven-filtering-4.x
