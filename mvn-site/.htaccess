@@ -1,0 +1,112 @@
+IndexOptions +SuppressIcon
+ErrorDocument 404 /errors/404.html
+
+Redirect Permanent /release-notes.html /docs/history.html
+Redirect Permanent /download.html /download.cgi
+RedirectMatch permanent ^/(.*)/download.html$ /$1/download.cgi
+
+Redirect /ref/current/ /ref/3.10.0/
+Redirect /ref/current /ref/3.10.0/
+
+Redirect Permanent /maven-v4_0_0.xsd /xsd/maven-4.0.0.xsd
+
+Redirect Permanent /ant-tasks.html /ant-tasks/index.html
+Redirect Permanent /ant-tasks-release-notes.html /ant-tasks/release-notes.html
+
+Redirect Permanent /guides/mini/guide-ibiblio-upload.html /repository/guide-central-repository-upload.html
+Redirect Permanent /guides/mini/guide-maven-evangelism.html /repository/central-metadata.html
+Redirect Permanent /guides/mini/guide-central-repository-upload.html /repository/guide-central-repository-upload.html
+Redirect Permanent /guides/development/guide-m2-development.html /guides/development/guide-maven-development.html
+Redirect Permanent /guides/development/guide-building-m2.html /guides/development/guide-building-maven.html
+Redirect Permanent /faq.html /general.html
+Redirect Permanent /developers/release/pmc-release-process.html /developers/release/releasing.html
+Redirect Permanent /development-process.html /archives/maven-1.x/development-process.html
+Redirect Permanent /welcome-to-new-committers.html /developers/welcome-to-new-committers.html
+
+Redirect Permanent /plugins/maven-checkstyle-plugin/customize.html /plugins/maven-checkstyle-plugin/examples/custom-checker-config.html
+Redirect Permanent /plugins/maven-checkstyle-plugin/howto.html /plugins/maven-checkstyle-plugin/usage.html
+Redirect Permanent /plugins/maven-checkstyle-plugin/tips.html /plugins/maven-checkstyle-plugin/examples/multi-module-config.html
+
+RedirectMatch ^/maven2/(.*)$ /$1
+RedirectMatch ^/reference/(.*)$ /archives/maven-1.x/reference/$1
+RedirectMatch ^/maven-1.x/reference/plugins/(.*)$ /archives/maven-1.x/plugins/$1
+RedirectMatch ^/maven-aether-provider/(.*)$ /ref/3.10.0/maven-aether-provider/$1
+RedirectMatch ^/maven-artifact/(.*)$ /ref/3.10.0/maven-artifact/$1
+RedirectMatch ^/maven-compat/(.*)$ /ref/3.10.0/maven-compat/$1
+RedirectMatch ^/maven-core/(.*)$ /ref/3.10.0/maven-core/$1
+RedirectMatch ^/maven-embedder/(.*)$ /ref/3.10.0/maven-embedder/$1
+RedirectMatch ^/maven-model/(.*)$ /ref/3.10.0/maven-model/$1
+RedirectMatch ^/maven-model-builder/(.*)$ /ref/3.10.0/maven-model-builder/$1
+RedirectMatch ^/maven-plugin-api/(.*)$ /ref/3.10.0/maven-plugin-api/$1
+RedirectMatch ^/maven-repository-metadata/(.*)$ /ref/3.10.0/maven-repository-metadata/$1
+RedirectMatch ^/maven-settings/(.*)$ /ref/3.10.0/maven-settings/$1
+RedirectMatch ^/maven-settings-builder/(.*)$ /ref/3.10.0/maven-settings-builder/$1
+RedirectMatch ^/maven-1.x/plugins-sandbox/(.*)$ /archives/maven-1.x/plugins/$1
+RedirectMatch permanent ^/aether-archives/(.*)$ /aether.html
+
+RedirectMatch permanent ^/archetype/maven-archetype-bundles/(.*)$ /archetypes/$1
+RedirectMatch permanent ^/maven-archetype/(.*)$ /archetype/$1
+RedirectMatch permanent ^/plugins/maven-archetype-plugin/(.*)$ /archetype/maven-archetype-plugin/$1
+RedirectMatch permanent ^/plugins/maven-enforcer-plugin/(.*)$ /enforcer/maven-enforcer-plugin/$1
+RedirectMatch permanent ^/plugins/maven-failsafe-plugin/(.*)$ /surefire/maven-failsafe-plugin/$1
+RedirectMatch Permanent ^/plugins/maven-jxr-plugin/(.*)$ /jxr/maven-jxr-plugin/$1
+RedirectMatch permanent ^/plugins/maven-plugin-plugin/(.*)$ /plugin-tools/maven-plugin-plugin/$1
+RedirectMatch permanent ^/plugins/maven-release-plugin/(.*)$ /maven-release/maven-release-plugin/$1
+RedirectMatch permanent ^/plugins/maven-scm-plugin/(.*)$ /scm/maven-scm-plugin/$1
+RedirectMatch permanent ^/plugins/maven-surefire-plugin/(.*)$ /surefire/maven-surefire-plugin/$1
+RedirectMatch permanent ^/plugins/maven-surefire-report-plugin/(.*)$ /surefire/maven-surefire-report-plugin/$1
+RedirectMatch permanent ^/plugins/maven-wrapper-plugin/(.*)$ /wrapper/maven-wrapper-plugin/$1
+RedirectMatch permanent ^/pom/maven-(.*)$ /pom/maven/maven-$1
+RedirectMatch permanent ^/pom/skins(.*)$ /pom/maven/maven-skins$1
+RedirectMatch permanent ^/shared/maven-doxia-tools/(.*)$ /doxia/doxia-tools/doxia-integration-tools/$1
+RedirectMatch permanent ^/shared/maven-plugin-testing-harness/(.*)$ /plugin-testing/maven-plugin-testing-harness/$1
+RedirectMatch permanent ^/shared/maven-plugin-testing-tools/(.*)$ /plugin-testing/maven-plugin-testing-tools/$1
+RedirectMatch permanent ^/shared/maven-plugin-tools/(.*)$ /plugin-tools/$1
+RedirectMatch permanent ^/[^/]+-archives/([^/\dLATES]+/.*)$ /$1
+RedirectMatch permanent ^/ref/3.1-SNAPSHOT/(.*)$ /ref/3-LATEST/$1
+RedirectMatch permanent ^/wrapper/(.*)$ /tools/wrapper/$1
+RedirectMatch permanent ^/wrapper-archives/(.*)$ /tools-archives/$1
+
+RedirectMatch permanent ^/plugins/maven-clover-plugin/([^2i].+)$ /plugins/maven-clover-plugin/2.4/$1
+RedirectMatch permanent ^/plugins/maven-clover-plugin/ins(.+)$ /plugins/maven-clover-plugin/2.4/ins$1
+RedirectMatch permanent ^/plugins/maven-clover-plugin/int(.+)$ /plugins/maven-clover-plugin/2.4/int$1
+
+RedirectMatch ^/plugins/maven-site-plugin-2.x/(.*)$ /plugins-archives/maven-site-plugin-2.4/$1
+RedirectMatch ^/plugins/maven-site-plugin-3.x/(.*)$ /plugins/maven-site-plugin/$1
+
+RedirectMatch permanent ^/components/images/(.+)$ /images/$1
+
+Redirect Permanent /guides/development/guide-plugin-snapshot-repositories.html /guides/development/guide-testing-development-plugins.html
+
+Redirect Permanent /guides/mini/guide-apt-format.html /doxia/references/apt-format.html
+
+RedirectMatch ^/maven-1.x/(.*)$ /archives/maven-1.x/$1
+
+Redirect Permanent /maven-ci-friendly.html /guides/mini/guide-maven-ci-friendly.html
+
+Redirect Permanent /guides/mini/guide-multiple-modules-4.html /guides/mini/guide-multiple-subprojects-4.html
+Redirect Permanent /mvnd.html /tools/mvnd.html
+
+# used in ATR vote templates - https://maven.apache.org/archives/{{PROJECT_KEY}}-LATEST
+# we simply templates by redirecting to the latest version of the component in the archives
+
+# first matching rule wins - specific rules must precede generic ones
+RedirectMatch ^/archives/maven-apache-resources-LATEST(.*)$ /apache-resource-bundles-archives/apache-resource-bundles-LATEST$1
+RedirectMatch ^/archives/maven-enforcer-LATEST(.*)$ /enforcer-archives/enforcer-LATEST$1
+RedirectMatch ^/archives/maven-surefire-LATEST(.*)$ /surefire-archives/surefire-LATEST$1
+RedirectMatch ^/archives/maven-plugin-tools-LATEST(.*)$ /plugin-tools-archives/plugin-tools-LATEST$1
+RedirectMatch ^/archives/maven-plugin-testing-LATEST(.*)$ /plugin-testing-archives/LATEST$1
+RedirectMatch ^/archives/maven-(.*)-plugin-LATEST(.*)$ /plugins-archives/maven-$1-plugin-LATEST$2
+RedirectMatch ^/archives/maven-file-management-LATEST(.*)$ /shared-archives/file-management-LATEST$1
+RedirectMatch ^/archives/(maven-(archiver|common-artifact-filters|dependency-analyzer|dependency-tree|filtering|invoker|jarsigner|mapping|reporting-api|reporting-exec|reporting-impl|script-interpreter|shared-incremental|shared-io|shared-jar|shared-resources|shared-utils|verifier))-LATEST(.*)$ /shared-archives/$1-LATEST$3
+RedirectMatch ^/archives/maven-doxia-LATEST(.*)$ /doxia/doxia-archives/doxia-LATEST$1
+RedirectMatch ^/archives/maven-doxia-sitetools-LATEST(.*)$ /doxia/doxia-sitetools-archives/doxia-sitetools-LATEST$1
+RedirectMatch ^/archives/maven-doxia-converter-LATEST(.*)$ /doxia/doxia-tools-archives/doxia-converter-LATEST$1
+RedirectMatch ^/archives/maven-resolver-ant-tasks-LATEST(.*)$ /resolver-archives/resolver-ant-tasks-LATEST$1
+RedirectMatch ^/archives/maven-(scm|wagon|archetype|archetypes|jxr|executor|resolver)-LATEST(.*)$ /$1-archives/$1-LATEST$2
+RedirectMatch ^/archives/maven-(release|indexer)-LATEST(.*)$ /maven-$1-archives/maven-$1-LATEST$2
+RedirectMatch ^/archives/maven-wrapper-LATEST(.*)$ /tools-archives/wrapper-LATEST$1
+RedirectMatch ^/archives/maven-apache-parent-LATEST(.*)$ /pom-archives/asf-LATEST$1
+RedirectMatch ^/archives/maven-parent-LATEST(.*)$ /pom-archives/maven-LATEST$1
+RedirectMatch ^/archives/(maven-.*-skin)-LATEST(.*)$ /skins-archives/$1-LATEST$2
+RedirectMatch ^/archives/(maven-.*-extension)-LATEST(.*)$ /extensions-archives/$1-LATEST$2

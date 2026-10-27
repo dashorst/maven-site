@@ -1,0 +1,1 @@
+../components/plugins/maven-clean-plugin-4.x

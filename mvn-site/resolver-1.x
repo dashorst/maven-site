@@ -1,0 +1,1 @@
+components/resolver-1.x
