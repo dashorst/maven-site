@@ -234,6 +234,8 @@ blockquote > :last-child { margin-bottom: 0; }
 .hero :focus-visible { outline-color: var(--orange); }
 .hero-demo { margin: 0; }
 .hero-demo pre { background: var(--navy-deep); border: 1px solid rgba(255, 255, 255, .12); color: #cfd9e6; font-size: clamp(.66rem, .45rem + .35vw, .74rem); line-height: 1.7; padding: 1.1rem 1.2rem; margin: 0; box-shadow: 0 24px 50px rgba(0, 0, 0, .25); }
+/* The prompt is not copied with the command: select a block and you get just the commands. */
+.prompt { user-select: none; -webkit-user-select: none; }
 .hero-demo .prompt { color: var(--orange); }
 .hero-demo .ok { color: #8fd6a1; font-weight: 600; }
 .hero-demo figcaption { font-size: .875rem; color: #b6c4d6; margin-top: .75rem; }

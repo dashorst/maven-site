@@ -38,7 +38,7 @@ summary: Apache Maven builds Java projects from a project object model, pom.xml,
         └── App.java</code></pre>
         </div>
       </div>
-      <pre class="demo-run"><code><span class="prompt">$</span> mvn verify
+      <pre class="demo-run"><code><span class="prompt">$ </span>mvn verify
 [INFO] --- resources:3.5.0:resources (default-resources) @ my-app ---
 [INFO] --- compiler:3.16.0:compile (default-compile) @ my-app ---
 [INFO] --- surefire:3.6.0:test (default-test) @ my-app ---
@@ -86,9 +86,9 @@ summary: Apache Maven builds Java projects from a project object model, pom.xml,
   <span class="t">&lt;version&gt;</span>3.17.0<span class="t">&lt;/version&gt;</span>
 <span class="t">&lt;/dependency&gt;</span>
 
-<span class="prompt">$</span> mvn versions:display-dependency-updates
+<span class="prompt">$ </span>mvn versions:display-dependency-updates
 [INFO]   org.apache.commons:commons-lang3 ... 3.17.0 -> 3.21.0
-<span class="prompt">$</span> mvn versions:use-latest-releases   <span class="c"># updates the POM; review the diff</span></code></pre>
+<span class="prompt">$ </span>mvn versions:use-latest-releases   <span class="c"># updates the POM; review the diff</span></code></pre>
   </div>
   <div class="feature">
     <div class="feature-text">
@@ -96,9 +96,9 @@ summary: Apache Maven builds Java projects from a project object model, pom.xml,
       <p>Yes, it’s XML, and yes, you write versions down instead of letting them float. Here is what you get for it: build the same sources twice and you get the same JAR, byte for byte. Since Maven 3.10 reproducible builds are on by default.</p>
       <p><a href="{{ site.baseurl }}{{ u['guides/mini/guide-reproducible-builds.md'] }}">Reproducible builds</a></p>
     </div>
-    <pre class="feature-code"><code><span class="prompt">$</span> mvn clean package &amp;&amp; sha256sum target/my-app-1.0.jar
+    <pre class="feature-code"><code><span class="prompt">$ </span>mvn clean package &amp;&amp; sha256sum target/my-app-1.0.jar
 0b9b589c9d53…  target/my-app-1.0.jar
-<span class="prompt">$</span> mvn clean package &amp;&amp; sha256sum target/my-app-1.0.jar
+<span class="prompt">$ </span>mvn clean package &amp;&amp; sha256sum target/my-app-1.0.jar
 0b9b589c9d53…  target/my-app-1.0.jar</code></pre>
   </div>
   <div class="feature">
@@ -110,7 +110,7 @@ summary: Apache Maven builds Java projects from a project object model, pom.xml,
     <pre class="feature-code"><code>validate → compile → test → package
          → verify → install → deploy
 
-<span class="prompt">$</span> mvn verify   <span class="c"># validate … verify, in order</span></code></pre>
+<span class="prompt">$ </span>mvn verify   <span class="c"># validate … verify, in order</span></code></pre>
   </div>
   <div class="feature">
     <div class="feature-text">
@@ -135,9 +135,9 @@ summary: Apache Maven builds Java projects from a project object model, pom.xml,
       <p>Split an application into modules and one <code>mvn verify</code> from the root of your project builds them all, each after the modules it depends on. Working on one? <code>-pl</code> picks a module by its directory, <code>-am</code> adds the modules it depends on, and <code>-T</code> builds independent modules in parallel.</p>
       <p><a href="{{ site.baseurl }}{{ u['guide:build-part-of-a-project'] }}">Build part of a project</a></p>
     </div>
-    <pre class="feature-code"><code><span class="prompt">$</span> mvn verify             <span class="c"># every module, in order</span>
-<span class="prompt">$</span> mvn -pl app -am verify <span class="c"># app and what it needs</span>
-<span class="prompt">$</span> mvn -T 1C verify       <span class="c"># independent modules in parallel</span></code></pre>
+    <pre class="feature-code"><code><span class="prompt">$ </span>mvn verify             <span class="c"># every module, in order</span>
+<span class="prompt">$ </span>mvn -pl app -am verify <span class="c"># app and what it needs</span>
+<span class="prompt">$ </span>mvn -T 1C verify       <span class="c"># independent modules in parallel</span></code></pre>
   </div>
   <div class="feature">
     <div class="feature-text">
@@ -145,7 +145,7 @@ summary: Apache Maven builds Java projects from a project object model, pom.xml,
       <p>The Maven Daemon keeps Maven running between builds, so the next build starts warm. Install it next to Maven, then type <code>mvnd</code> instead of <code>mvn</code>: same projects, same goals.</p>
       <p><a href="{{ site.baseurl }}{{ u['tools/mvnd.md'] }}">Maven Daemon</a></p>
     </div>
-    <pre class="feature-code"><code><span class="prompt">$</span> mvnd verify</code></pre>
+    <pre class="feature-code"><code><span class="prompt">$ </span>mvnd verify</code></pre>
   </div>
 </section>
 
