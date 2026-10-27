@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Apache Maven</title>
+<meta name="facts" content="none"/>
+</head>
+<body>
+<div class="hero" aria-labelledby="hero-title">
+  <div class="hero-inner">
+    <section class="hero-text">
+      <h1>Know one Maven project, know them all</h1>
+      <p class="hero-lead">Maven builds a Java project from its <code>pom.xml</code> and a set of plugins: it fetches the libraries the project declares, then compiles, tests and packages in the same order on every machine.</p>
+      <p class="actions">
+        <a class="button button--primary" href="guide/first-project.html">Create your first project</a>
+        <a class="button button--secondary" href="download.html">Download Maven 3.10.0</a>
+      </p>
+    </section>
+    <figure class="hero-demo">
+      <div class="demo-files">
+        <div class="demo-pane">
+          <p class="demo-file">pom.xml</p>
+          <pre class="demo-pom"><code><span class="t">&lt;project&gt;</span>
+  <span class="t">&lt;modelVersion&gt;</span>4.0.0<span class="t">&lt;/modelVersion&gt;</span>
+  <span class="t">&lt;groupId&gt;</span>com.example<span class="t">&lt;/groupId&gt;</span>
+  <span class="t">&lt;artifactId&gt;</span>my-app<span class="t">&lt;/artifactId&gt;</span>
+  <span class="t">&lt;version&gt;</span>1.0<span class="t">&lt;/version&gt;</span>
+<span class="t">&lt;/project&gt;</span></code></pre>
+        </div>
+        <div class="demo-pane">
+          <p class="demo-file">my-app/</p>
+          <pre class="demo-tree"><code>├── pom.xml
+└── src/main/java/
+    └── com/example/
+        └── App.java</code></pre>
+        </div>
+      </div>
+      <pre class="demo-run"><code><span class="prompt">$ </span>mvn verify
+[INFO] --- resources:3.5.0:resources (default-resources) @ my-app ---
+[INFO] --- compiler:3.16.0:compile (default-compile) @ my-app ---
+[INFO] --- surefire:3.6.0:test (default-test) @ my-app ---
+[INFO] --- jar:3.5.1:jar (default-jar) @ my-app ---
+[INFO] <span class="ok">BUILD SUCCESS</span></code></pre>
+      <figcaption>The POM only names the project; the convention says where the code is. The build is Maven 3.10.0’s own output.</figcaption>
+    </figure>
+  </div>
+</div>
+
+<section class="home-body"><section class="releases">
+  <h2 class="visually-hidden">Releases</h2>
+  <ul class="release-lines">
+    <li class="release-line release-line--current">
+      <span class="release-version">Maven 3.10.0</span>
+      <span class="release-note">Current release, recommended for all users</span>
+      <span class="release-links"><a href="download.html">Download</a> · <a href="docs/3.10.0/release-notes.html">Release notes</a></span>
+    </li>
+    <li class="release-line release-line--maintained">
+      <span class="release-version">Maven 3.9.16</span>
+      <span class="release-note">Previous line, 3.9, still maintained</span>
+      <span class="release-links"><a href="download.html">Download</a> · <a href="docs/3.9.16/release-notes.html">Release notes</a></span>
+    </li>
+    <li class="release-line release-line--upcoming">
+      <span class="release-version">Maven 4.0.0-rc-7</span>
+      <span class="release-note">Preview of Maven 4, not yet final</span>
+      <span class="release-links"><a href="download.html">Download</a> · <a href="docs/4.0.0-rc-7/release-notes.html">Release notes</a></span>
+    </li>
+  </ul>
+</section>
+
+<section class="features">
+  <h2>What Maven does</h2>
+  <div class="feature">
+    <section class="feature-text">
+      <h3>Dependency management, made boring</h3>
+      <p>Declare each library by its coordinates, group, name and exact version, and Maven fetches it and what it depends on from Maven Central.</p>
+      <ul class="feature-points">
+        <li>One version of each library, fixed in one place for all your modules.</li>
+        <li>A new release reaches your build only when you change a version.</li>
+        <li>Downloads over HTTPS by default since Maven 3.8.1, and downloading a library runs none of its code.</li>
+      </ul>
+      <p>Automate upgrades with the <a href="https://www.mojohaus.org/versions/versions-maven-plugin/index.html">Versions Maven Plugin</a> from MojoHaus, and review the diff.</p>
+      <p><a href="guides/introduction/introduction-to-dependency-mechanism.html">How dependencies work</a></p>
+    </section>
+    <pre class="feature-code"><code><span class="t">&lt;dependency&gt;</span>
+  <span class="t">&lt;groupId&gt;</span>org.apache.commons<span class="t">&lt;/groupId&gt;</span>
+  <span class="t">&lt;artifactId&gt;</span>commons-lang3<span class="t">&lt;/artifactId&gt;</span>
+  <span class="t">&lt;version&gt;</span>3.17.0<span class="t">&lt;/version&gt;</span>
+<span class="t">&lt;/dependency&gt;</span>
+
+<span class="prompt">$ </span>mvn versions:display-dependency-updates
+[INFO]   org.apache.commons:commons-lang3 ... 3.17.0 -&gt; 3.21.0
+<span class="prompt">$ </span>mvn versions:use-latest-releases   <span class="c"># updates the POM; review the diff</span></code></pre>
+  </div>
+  <div class="feature">
+    <section class="feature-text">
+      <h3>Builds, made exceptionally boring</h3>
+      <p>Yes, it’s XML, and yes, you write versions down instead of letting them float. Here is what you get for it: build the same sources twice and you get the same JAR, byte for byte. Since Maven 3.10 reproducible builds are on by default.</p>
+      <p><a href="guides/mini/guide-reproducible-builds.html">Reproducible builds</a></p>
+    </section>
+    <pre class="feature-code"><code><span class="prompt">$ </span>mvn clean package &amp;&amp; sha256sum target/my-app-1.0.jar
+0b9b589c9d53…  target/my-app-1.0.jar
+<span class="prompt">$ </span>mvn clean package &amp;&amp; sha256sum target/my-app-1.0.jar
+0b9b589c9d53…  target/my-app-1.0.jar</code></pre>
+  </div>
+  <div class="feature">
+    <section class="feature-text">
+      <h3>Compile, test, package, repeat</h3>
+      <p>Every Maven project builds through the same main phases, in the same order, on your laptop and in CI. Learn them once, and you can build any Maven project you clone. With the <a href="tools/mavenwrapper.html">Maven Wrapper</a> the build also runs on the same Maven: <code>./mvnw verify</code>.</p>
+      <p><a href="guide/build-lifecycle.html">Phases, goals and plugins</a></p>
+    </section>
+    <pre class="feature-code"><code>validate → compile → test → package
+         → verify → install → deploy
+
+<span class="prompt">$ </span>mvn verify   <span class="c"># validate … verify, in order</span></code></pre>
+  </div>
+  <div class="feature">
+    <section class="feature-text">
+      <h3>There’s a plugin for that</h3>
+      <p>Compiling, testing and packaging are plugins, and so are many other jobs: a runnable JAR, a project site, signed artifacts for a release. Many you run straight from the command line; others you add to the POM and configure like any other.</p>
+    </section>
+    <div class="plugin-index">
+      <dl>
+      <div class="plugin-group"><dt>Build<span>compile and test your code</span></dt><dd><a href="https://maven.apache.org/plugins/maven-clean-plugin/">clean</a><a href="https://maven.apache.org/plugins/maven-compiler-plugin/">compiler</a><a href="https://maven.apache.org/plugins/maven-resources-plugin/">resources</a><a href="https://maven.apache.org/surefire/maven-surefire-plugin/">surefire</a><a href="https://maven.apache.org/surefire/maven-failsafe-plugin/">failsafe</a><a href="https://maven.apache.org/plugins/maven-install-plugin/">install</a></dd></div>
+      <div class="plugin-group"><dt>Package<span>turn it into something to ship</span></dt><dd><a href="https://maven.apache.org/plugins/maven-jar-plugin/">jar</a><a href="https://maven.apache.org/plugins/maven-war-plugin/">war</a><a href="https://maven.apache.org/plugins/maven-shade-plugin/">shade</a><a href="https://maven.apache.org/plugins/maven-assembly-plugin/">assembly</a><a href="https://maven.apache.org/plugins/maven-jlink-plugin/">jlink</a></dd></div>
+      <div class="plugin-group"><dt>Check<span>hold the build to your rules</span></dt><dd><a href="https://maven.apache.org/enforcer/maven-enforcer-plugin/">enforcer</a><a href="https://maven.apache.org/plugins/maven-checkstyle-plugin/">checkstyle</a><a href="https://maven.apache.org/plugins/maven-pmd-plugin/">pmd</a></dd></div>
+      <div class="plugin-group"><dt>Inspect<span>see what Maven sees</span></dt><dd><a href="https://maven.apache.org/plugins/maven-dependency-plugin/">dependency</a><a href="https://maven.apache.org/plugins/maven-help-plugin/">help</a></dd></div>
+      <div class="plugin-group"><dt>Release<span>publish what you built</span></dt><dd><a href="https://maven.apache.org/plugins/maven-source-plugin/">source</a><a href="https://maven.apache.org/plugins/maven-javadoc-plugin/">javadoc</a><a href="https://maven.apache.org/plugins/maven-gpg-plugin/">gpg</a><a href="https://maven.apache.org/plugins/maven-release-plugin/">release</a><a href="https://maven.apache.org/plugins/maven-deploy-plugin/">deploy</a></dd></div>
+      <div class="plugin-group"><dt>Site<span>document the project</span></dt><dd><a href="https://maven.apache.org/plugins/maven-site-plugin/">site</a><a href="https://maven.apache.org/plugins/maven-project-info-reports-plugin/">project-info-reports</a></dd></div>
+      </dl>
+      <p><a href="plugins/index.html">47 Apache Maven plugins, and many more from MojoHaus and others</a></p>
+    </div>
+  </div>
+  <div class="feature">
+    <section class="feature-text">
+      <h3>Big builds, one command</h3>
+      <p>Split an application into modules and one <code>mvn verify</code> from the root of your project builds them all, each after the modules it depends on. Working on one? <code>-pl</code> picks a module by its directory, <code>-am</code> adds the modules it depends on, and <code>-T</code> builds independent modules in parallel.</p>
+      <p><a href="guide/build-part-of-a-project.html">Build part of a project</a></p>
+    </section>
+    <pre class="feature-code"><code><span class="prompt">$ </span>mvn verify             <span class="c"># every module, in order</span>
+<span class="prompt">$ </span>mvn -pl app -am verify <span class="c"># app and what it needs</span>
+<span class="prompt">$ </span>mvn -T 1C verify       <span class="c"># independent modules in parallel</span></code></pre>
+  </div>
+  <div class="feature">
+    <section class="feature-text">
+      <h3>Faster builds with mvnd</h3>
+      <p>The Maven Daemon keeps Maven running between builds, so the next build starts warm. Install it next to Maven, then type <code>mvnd</code> instead of <code>mvn</code>: same projects, same goals.</p>
+      <p><a href="tools/mvnd.html">Maven Daemon</a></p>
+    </section>
+    <pre class="feature-code"><code><span class="prompt">$ </span>mvnd verify</code></pre>
+  </div>
+</section>
+
+<div class="track" aria-labelledby="track-title">
+  <section class="track-head">
+    <h2>Do it yourself</h2>
+    <p>Five short tutorials, one small project, from nothing to a build with several modules.</p>
+  </section>
+  <ol class="track-steps">
+    <li><a href="guide/first-project.html"><span class="step-title">Create your first project</span><span class="step-text">Generate a project, build it and run it.</span></a></li>
+    <li><a href="guide/add-a-dependency.html"><span class="step-title">Add your first dependency</span><span class="step-text">Use a library from Maven Central.</span></a></li>
+    <li><a href="guide/first-plugin.html"><span class="step-title">Add and configure your first plugin</span><span class="step-text">Make a JAR you can run with <code>java -jar</code>.</span></a></li>
+    <li><a href="guide/test-and-build.html"><span class="step-title">Test and build your project</span><span class="step-text">Write a test, break it, and see what the build does.</span></a></li>
+    <li><a href="guide/first-modules.html"><span class="step-title">Split your application into modules</span><span class="step-text">A library and an app, built together or one at a time.</span></a></li>
+  </ol>
+</div>
+
+<section class="quick">
+  <h2>Looking something up?</h2>
+  <ul>
+    <li><a href="pom.html">POM reference</a></li>
+    <li><a href="settings.html">Settings reference</a></li>
+    <li><a href="run.html">Command line</a></li>
+    <li><a href="plugins/index.html">Available plugins</a></li>
+    <li><a href="docs/reference/a-z.html">A–Z index</a></li>
+  </ul>
+</section>
+
+<div class="maven4" aria-labelledby="maven4-title">
+  <div class="maven4-inner">
+    <section class="maven4-text">
+      <h2>Maven 4 is almost here</h2>
+      <p>Maven 4.0.0-rc-7 is expected to be the last release candidate before Maven 4.0.0. Try it on your build now and report what breaks.</p>
+    </section>
+    <ul class="maven4-points">
+      <li>Maven 4 needs Java 17 to run, and still compiles for older Java.</li>
+      <li>Subprojects no longer repeat their parent’s coordinates.</li>
+      <li>Phases get before- and after-phases to hook into.</li>
+      <li>The Maven Upgrade Tool checks your POMs and updates them.</li>
+    </ul>
+    <p class="maven4-links">
+      <a href="whatsnewinmaven4.html">What’s new in Maven 4</a>
+      <a href="guides/mini/guide-migration-to-mvn4.html">Start with Maven 4</a>
+      <a href="tools/mvnup.html">Maven Upgrade Tool</a>
+      <a href="download.html#Preview_4.x_Release">Download the preview</a>
+    </p>
+  </div>
+</div>
+
+<section class="doors">
+  <h2 class="visually-hidden">Beyond using Maven</h2>
+  <section class="door">
+    <h3><a href="extend/index.html">Extend Maven</a></h3>
+    <p>Write plugins and extensions, publish your libraries to Maven Central, and build tools on the repository format.</p>
+    <ul>
+      <li><a href="guides/plugin/guide-java-plugin-development.html">Your first Maven plugin</a></li>
+      <li><a href="plugin-developers/plugin-testing.html">Test your plugin</a></li>
+      <li><a href="repository/guide-central-repository-upload.html">Publish to Maven Central</a></li>
+      <li><a href="repositories/metadata.html">maven-metadata.xml</a></li>
+    </ul>
+  </section>
+  <section class="door">
+    <h3><a href="community/index.html">Contribute to Maven</a></h3>
+    <p>Maven is an open source community and welcomes contributions: fix a bug, improve these pages or help with a release.</p>
+    <ul>
+      <li><a href="guides/development/guide-helping.html">How to help</a></li>
+      <li><a href="scm.html">Get the sources</a></li>
+      <li><a href="guides/development/guide-building-maven.html">Build Maven</a></li>
+      <li><a href="community.html">Talk to us</a></li>
+    </ul>
+  </section>
+</section>
+
+<div class="latest" aria-labelledby="latest-title">
+  <section class="latest-head">
+    <h2>News</h2>
+    <a href="news/index.html">All news</a>
+  </section>
+  <ol class="latest-list">
+    <li><time datetime="2026-10-13">13 Oct 2026</time> <a href="tools/mvnval.html">New in the docs: POM Validation Tool (mvnval)</a></li>
+    <li><time datetime="2026-09-27">27 Sep 2026</time> <a href="docs/3.10.0/release-notes.html">Maven 3.10.0</a></li>
+    <li><time datetime="2026-09-24">24 Sep 2026</time> <a href="docs/4.0.0-rc-7/release-notes.html">Maven 4.0.0-rc-7</a></li>
+    <li><time datetime="2026-08-04">4 Aug 2026</time> <a href="docs/4.0.0-rc-6/release-notes.html">Maven 4.0.0-rc-6</a></li>
+  </ol>
+</div>
+
+<section class="help-strip">
+  <h2>Stuck?</h2>
+  <p>Search the docs, read the <a href="general.html">FAQ</a>, or <a href="users/getting-help.html">ask on the users mailing list or Slack</a>.</p>
+</section>
+</section></body>
+</html>

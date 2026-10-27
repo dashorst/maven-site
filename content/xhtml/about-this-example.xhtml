@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>About this example</title>
+<meta name="facts" content="none" />
+</head>
+<body>
+<h1 id="About_this_example">About this example</h1>
+<p class="lead">This is a proposal for maven.apache.org, not the official site. I made it, unasked, to show what the Maven documentation could look like with a different structure and one writing standard.</p>
+
+<p>While redesigning the website of <a href="https://wicket.apache.org/">Apache Wicket</a>, I saw the documentation effort on dev@maven and figured I could try for Maven what I did for Wicket: turn the existing documentation into tutorials, how-to guides, reference and explanation, following <a href="https://diataxis.fr/">Diátaxis</a>, and then find a structure for the whole site. Everything here is built from the sources of <a href="https://github.com/apache/maven-site">apache/maven-site</a>.</p>
+<p>Martijn Dashorst</p>
+
+<h2 id="What_I_changed">What I changed</h2>
+<ul>
+  <li><strong>The structure.</strong> Five tabs, Docs, Downloads, News, Extend and Community, instead of one long menu, so users, plugin authors and contributors each have their own way in. Every page sits in a group of related pages, with previous and next.</li>
+  <li><strong>A guide that follows one standard.</strong> 24 pages, each with one job: a tutorial, a how-to guide, a reference or an explanation. Every command on them was run on Maven 3.9.16, 3.10.0 and 4.0.0-rc-7. They replace the Maven pages they were written from.</li>
+  <li><strong>A frame of its own.</strong> Maven navy and the feather’s orange, the Maven wordmark, and on every page the versions it holds for, when it changed, and where to edit it or report a problem.</li>
+  <li><strong>No JavaScript needed.</strong> Every page, menu and list works without it. JavaScript only makes the search answer as you type, and adds the “On this page” list and links on headings; without it, search opens a page listing every page.</li>
+  <li><strong>Old addresses stay.</strong> Maven’s own pages keep the address they have on maven.apache.org; only the guide pages and the overview pages are new.</li>
+</ul>
+
+<h2 id="What_I_left_as_it_is">What I left as it is</h2>
+<p>The other 150 or so pages are Maven’s own, carried over unchanged into the new structure: from pages written for Maven 2 to pages written for the Maven 4 betas, in as many voices. They say “Not yet checked against Maven 3.9, 3.10 and 4.0”, because they aren’t. They would need the same treatment as the guide pages. I changed Maven’s text in one place only, a published TODO; <a href="https://github.com/dashorst/maven-site/blob/diataxis-demo/CONTENT-FIXES.md">CONTENT-FIXES.md</a> lists it.</p>
+
+<h2 id="What_the_standard_looks_like">What the standard looks like</h2>
+<p>Each kind of page does one job:</p>
+<ul>
+  <li><strong>Tutorial</strong>: a lesson that builds something that works, step by step.</li>
+  <li><strong>How-to guide</strong>: directions to reach one goal, for someone who already knows the basics.</li>
+  <li><strong>Reference</strong>: the facts, complete and in a fixed order: elements, options, files.</li>
+  <li><strong>Explanation</strong>: why Maven works the way it does.</li>
+</ul>
+<p>Open an original next to what it became:</p>
+<div class="table-scroll">
+<table class="before-after">
+  <thead><tr><th>On maven.apache.org</th><th>In this example</th><th>What it shows</th></tr></thead>
+  <tbody>
+    <tr>
+      <td><a data-official="" href="https://maven.apache.org/guides/getting-started/maven-in-five-minutes.html">Maven in 5 Minutes</a></td>
+      <td>Five tutorials on one project: <a href="guide/first-project.html">create it</a>, <a href="guide/add-a-dependency.html">add a dependency</a>, <a href="guide/first-plugin.html">add a plugin</a>, <a href="guide/test-and-build.html">test and build</a>, <a href="guide/first-modules.html">split into modules</a></td>
+      <td>A tutorial builds one thing, step by step, that works at every step.</td>
+    </tr>
+    <tr>
+      <td><a data-official="" href="https://maven.apache.org/guides/mini/guide-using-toolchains.html">Guide to Using Toolchains</a></td>
+      <td><a href="guide/toolchains.html">An explanation</a>, two how-to guides (<a href="guide/build-with-another-jdk.html">another JDK</a>, <a href="guide/compile-for-older-java.html">older Java</a>) and <a href="guide/toolchains-xml.html">a reference</a></td>
+      <td>One page doing four jobs becomes four pages doing one each.</td>
+    </tr>
+    <tr>
+      <td><a data-official="" href="https://maven.apache.org/guides/mini/guide-multiple-modules.html">Working with Multiple Modules</a> and <a data-official="" href="https://maven.apache.org/guides/mini/guide-multiple-subprojects-4.html">its Maven 4 version</a></td>
+      <td><a href="guide/aggregation-and-inheritance.html">An explanation</a>, how-to guides to <a href="guide/split-into-modules.html">split a project</a>, <a href="guide/build-part-of-a-project.html">build part of it</a> and <a href="guide/share-configuration.html">share configuration</a>, and <a href="guide/reactor-options.html">a reference</a></td>
+      <td>Two pages per Maven version become one set, with Maven 4 notes where 4 differs.</td>
+    </tr>
+    <tr>
+      <td><a data-official="" href="https://maven.apache.org/guides/mini/guide-encryption.html">Password Encryption</a> and <a data-official="" href="https://maven.apache.org/guides/mini/guide-encryption-4.html">Password Encryption (Maven 4)</a></td>
+      <td><a href="guide/encrypt-passwords.html">One how-to guide</a></td>
+      <td>No separate page per version.</td>
+    </tr>
+    <tr>
+      <td><a data-official="" href="https://maven.apache.org/guides/mini/guide-mirror-settings.html">Using Mirrors for Repositories</a></td>
+      <td><a href="guide/mirror-settings.html">Use a repository manager as a mirror</a></td>
+      <td>A how-to opens with when you need it, then gives the steps and how to check them.</td>
+    </tr>
+    <tr>
+      <td><a data-official="" href="https://maven.apache.org/guides/introduction/introduction-to-the-lifecycle.html">Introduction to the Build Lifecycle</a></td>
+      <td><a href="guide/build-lifecycle.html">Phases, goals and plugins</a></td>
+      <td>An explanation says why, without steps in between.</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<p>The rules the guide pages follow, from front matter to how Maven 4 differences are marked, are in <a href="https://github.com/dashorst/maven-site/blob/diataxis-demo/GUIDE.md">GUIDE.md</a>. They could extend Maven’s own <a href="guides/development/guide-documentation-style.html">documentation style guide</a>, which so far covers dates and POM indentation.</p>
+
+<h2 id="What_turned_up_along_the_way">What turned up along the way</h2>
+<p>Running every command on three Maven versions turned up 48 places where Maven’s documentation and Maven’s behaviour disagree: outdated advice, examples that no longer work, and Maven 4 changes the pages don’t mention. They are on <a href="about-this-example/discrepancies.html">their own page</a>, as a list to check.</p>
+
+<h2 id="How_I_made_it">How I made it</h2>
+<p>I built this with an AI assistant, Anthropic’s Claude, using the <a href="https://impeccable.style/"><em>impeccable</em></a> design skill for the structure and the front page. The guide pages were written from Maven’s own pages, and every command on them was run on the three Maven versions before it went in. Before building, the current site was reviewed against usability heuristics, the new navigation was tree-tested with 18 tasks, and the home page was put to a panel of reader personas; the testers and the personas were simulated by the AI, not real users.</p>
+<p>This version of the example is built with Maven’s own tooling: <code>mvn site</code>, maven-site-plugin and Doxia, from the same sources as maven.apache.org. The frame is a skin of its own (<a href="https://github.com/dashorst/maven-site/tree/doxia-demo/doxia/skin"><code>doxia/skin</code></a>), the structure is the site descriptor <code>content/site.xml</code>, one menu three levels deep, and the landing pages, the news and the A–Z index are Markdown pages written from the same data by a small script. After the pages are rendered, two small classes run from the POM colour the code (<code>Highlight</code>) and write the search index (<code>SearchIndex</code>). Not in this version: the date a page last changed; moving pages to new addresses would add <code>.htaccess</code> redirects. The <a href="https://dashorst.github.io/maven-site/">version built with Jekyll</a> has those.</p>
+
+<h2 id="What_is_still_missing">What is still missing</h2>
+<ul>
+  <li>The plugin sites and the reference documentation are not part of this build, so links to them still lead to the current design.</li>
+  <li>The pages I left as they are have not been checked against the three Maven versions.</li>
+  <li>There is no single page yet on where Maven 4 stands and how to migrate.</li>
+</ul>
+
+<h2 id="Feedback">Feedback</h2>
+<p>I’d like to hear what you think: in #maven on the <a href="https://infra.apache.org/slack.html">ASF Slack</a>.</p>
+</body>
+</html>

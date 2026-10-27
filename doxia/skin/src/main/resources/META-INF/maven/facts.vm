@@ -1,0 +1,18 @@
+## What a page says about itself: the Maven versions it holds for, its kind, where to edit it.
+## Set by site.vm: $factsClass, $series, $kind, $kinds, $editUrl, $pageTitle.
+<section class="$factsClass" aria-label="About this page">
+  <dl>
+    <dt>Holds for</dt>
+    <dd>#if( $series.size() > 0 )<span class="versions">#foreach( $s in $series )<span class="version#if( $s == "4.0" ) version--upcoming" title="Maven 4.0 is not released yet#end">$s</span>#end</span>#else<span class="unchecked">Not yet checked against Maven 3.9, 3.10 and 4.0</span>#end</dd>
+#if( $kind )
+    <dt>Kind</dt>
+    <dd>#if( $kinds.get( $kind ) )$kinds.get( $kind )#else$kind#end</dd>
+#end
+#if( $editUrl )
+    <dt>Source</dt>
+    <dd><a href="$editUrl">Edit this page</a></dd>
+#end
+    <dt>Wrong?</dt>
+    <dd><a href="https://github.com/apache/maven-site/issues/new?title=$esc.url( "Page: $pageTitle" )&amp;body=$esc.url( "About https://maven.apache.org/$currentFilePath" )">Report a problem</a></dd>
+  </dl>
+</section>

@@ -216,6 +216,50 @@
         </executions>
       </plugin>
       <!--
+        after site:site, over the rendered site: colours the code blocks, then writes search.json,
+        the index for search as you type. Bound to the site phase, they run after site:site;
+        `mvn site` compiles nothing, so Java runs the source files.
+      -->
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>exec-maven-plugin</artifactId>
+        <version>3.6.4</version>
+        <executions>
+          <execution>
+            <id>highlight</id>
+            <goals>
+              <goal>exec</goal>
+            </goals>
+            <phase>site</phase>
+            <configuration>
+              <executable>${java.home}/bin/java</executable>
+              <arguments>
+                <argument>-classpath</argument>
+                <classpath />
+                <argument>${project.basedir}/src/main/java/org/apache/maven/site/render/Highlight.java</argument>
+                <argument>${project.reporting.outputDirectory}</argument>
+              </arguments>
+            </configuration>
+          </execution>
+          <execution>
+            <id>search-index</id>
+            <goals>
+              <goal>exec</goal>
+            </goals>
+            <phase>site</phase>
+            <configuration>
+              <executable>${java.home}/bin/java</executable>
+              <arguments>
+                <argument>-classpath</argument>
+                <classpath />
+                <argument>${project.basedir}/src/main/java/org/apache/maven/site/render/SearchIndex.java</argument>
+                <argument>${project.reporting.outputDirectory}</argument>
+              </arguments>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+      <!--
         used for timestamp of .well-known/security.txt file
         Plugin-definition must be before resources-plugin to be
         in the pre-site phase before 'copy-filtered-resources'.
