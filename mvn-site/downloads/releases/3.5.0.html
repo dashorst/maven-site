@@ -71,8 +71,8 @@
 <ul>
 
 <li>the website: <a href="https://maven.apache.org/" class="externalLink">http://maven.apache.org/</a></li>
-<li>the maven-user mailing list: <a href="/mailing-lists.html">http://maven.apache.org/mailing-lists.html</a></li>
-<li>the reference documentation: <a href="/ref/3.5.0/">http://maven.apache.org/ref/3.5.0/</a></li>
+<li>the maven-user mailing list: <a href="../../mailing-lists.html">http://maven.apache.org/mailing-lists.html</a></li>
+<li>the reference documentation: <a href="../../ref/3.5.0/">http://maven.apache.org/ref/3.5.0/</a></li>
 </ul><section><a id="Why_not_Maven_3.4.0.3F"></a>
 <h2>Why not Maven 3.4.0?</h2>
 <p>After Maven 3.3.9 was released, the Eclipse Aether project was retired and the code base was migrated to the Apache Maven project.</p>
@@ -150,11 +150,11 @@
 <pre tabindex="0"><code class="nohighlight nocode">    [INFO] Scanning for projects...
     [WARNING] The project org.apache.maven:maven:pom:3.5.0 uses prerequisites which is only intended for maven-plugin projects but not for non maven-plugin projects. For such purposes you should use the maven-enforcer-plugin. See https://maven.apache.org/enforcer/enforcer-rules/requireMavenVersion.html
 </code></pre>
-<p>This will tell you to use <a href="/enforcer/maven-enforcer-plugin/">maven-enforcer-plugin</a> to check the version of Maven you are expecting to build your project with, instead of using <code>prerequisites</code> <a href="https://issues.apache.org/jira/browse/MNG-5297" class="externalLink">MNG-5297</a>, <a href="https://issues.apache.org/jira/browse/MNG-6092" class="externalLink">MNG-6092</a>.</p></li>
+<p>This will tell you to use <a href="../../enforcer/maven-enforcer-plugin/">maven-enforcer-plugin</a> to check the version of Maven you are expecting to build your project with, instead of using <code>prerequisites</code> <a href="https://issues.apache.org/jira/browse/MNG-5297" class="externalLink">MNG-5297</a>, <a href="https://issues.apache.org/jira/browse/MNG-6092" class="externalLink">MNG-6092</a>.</p></li>
 <li>
-<p>Replaced Eclipse Aether with <a href="/resolver/">Maven Resolver</a> <a href="https://issues.apache.org/jira/browse/MNG-6110" class="externalLink">MNG-6110</a>, <a href="https://issues.apache.org/jira/browse/MNG-6140" class="externalLink">MNG-6140</a>.</p></li>
+<p>Replaced Eclipse Aether with <a href="../../resolver/">Maven Resolver</a> <a href="https://issues.apache.org/jira/browse/MNG-6110" class="externalLink">MNG-6110</a>, <a href="https://issues.apache.org/jira/browse/MNG-6140" class="externalLink">MNG-6140</a>.</p></li>
 <li>
-<p>Using of CI friendly versions via <code>${revision}</code>, <code>${sha1}</code> and/or <code>${changelist}</code> has been fixed <a href="https://issues.apache.org/jira/browse/MNG-6057" class="externalLink">MNG-6057</a>, <a href="https://issues.apache.org/jira/browse/MNG-6090" class="externalLink">MNG-6090</a> and <a href="https://issues.apache.org/jira/browse/MNG-5895" class="externalLink">MNG-5895</a>. It is very important to know if you are using the previously named properties for a version in your pom you have to use <a href="https://www.mojohaus.org/flatten-maven-plugin/" class="externalLink">flatten-maven-plugin</a> if you like to do an <code>mvn install</code> or <code>mvn deploy</code> more details can be found at <a href="/docs/multi-module/ci-friendly-versions.html">Maven CI Friendly Versions</a>.</p></li>
+<p>Using of CI friendly versions via <code>${revision}</code>, <code>${sha1}</code> and/or <code>${changelist}</code> has been fixed <a href="https://issues.apache.org/jira/browse/MNG-6057" class="externalLink">MNG-6057</a>, <a href="https://issues.apache.org/jira/browse/MNG-6090" class="externalLink">MNG-6090</a> and <a href="https://issues.apache.org/jira/browse/MNG-5895" class="externalLink">MNG-5895</a>. It is very important to know if you are using the previously named properties for a version in your pom you have to use <a href="https://www.mojohaus.org/flatten-maven-plugin/" class="externalLink">flatten-maven-plugin</a> if you like to do an <code>mvn install</code> or <code>mvn deploy</code> more details can be found at <a href="../../docs/multi-module/ci-friendly-versions.html">Maven CI Friendly Versions</a>.</p></li>
 </ul></section><section><a id="Improvements"></a>
 <h2>Improvements</h2>
 <p>The full list of changes as well as detailed descriptions of same can be found in our <a href="https://issues.apache.org/jira/secure/ReleaseNote.jspa?projectId=12316922&amp;version=12336084&amp;styleName=Text" class="externalLink">issue management system</a>.</p><section><a id="Bugs"></a>

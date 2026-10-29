@@ -73,21 +73,21 @@
 </section>
 <section><a id="Starting_with_Maven_4"></a>
 <h1>Starting with Maven 4</h1> 
-<p>Maven 4 introduces several updates and improvements (see <a href="/docs/maven-4/whats-new.html">“What's new in Maven 4?”</a>). Some of them are backwards compatible with Maven 3, but some require changes of your build environment or Maven project. This page offers help for users who want to build their projects with Maven 4 (and check with RCs that everything is fine).</p>
+<p>Maven 4 introduces several updates and improvements (see <a href="../../docs/maven-4/whats-new.html">“What's new in Maven 4?”</a>). Some of them are backwards compatible with Maven 3, but some require changes of your build environment or Maven project. This page offers help for users who want to build their projects with Maven 4 (and check with RCs that everything is fine).</p>
 <p>In short, the general suggestion for the migration is to do it in three steps:</p>
 <ol style="list-style-type: decimal;">
 
 <li><strong>prepare</strong>: Meet the prerequisites with latest Maven 3</li>
-<li><strong>test</strong>: Build in parallel with Maven 4 (<a href="/downloads/releases/history.html">latest RC of Maven 4</a>) and do minimal Maven 3-compatible fixes (report us if anything is unexpected)</li>
-<li><strong>migrate</strong>: Drop Maven 3 and introduce optional Maven 4 features (see also <a href="/docs/plugins/mvnup.html">Maven Upgrade Tool</a>)</li>
+<li><strong>test</strong>: Build in parallel with Maven 4 (<a href="../../downloads/releases/history.html">latest RC of Maven 4</a>) and do minimal Maven 3-compatible fixes (report us if anything is unexpected)</li>
+<li><strong>migrate</strong>: Drop Maven 3 and introduce optional Maven 4 features (see also <a href="../../docs/plugins/mvnup.html">Maven Upgrade Tool</a>)</li>
 </ol>
-<p>If you run into any issues, please don't hesitate to contact the <a href="/mailing-lists.html">users mailing list</a>. The Maven team is interested in all your migration experiences - either good or bad!</p>
+<p>If you run into any issues, please don't hesitate to contact the <a href="../../mailing-lists.html">users mailing list</a>. The Maven team is interested in all your migration experiences - either good or bad!</p>
 <p>Many OSS projects have already published releases to <a href="https://central.sonatype.com/search?q=l%3Abuild" class="externalLink">Maven Central with Maven 4 RC</a>: it's time to check that latest Maven 4 RC works for you before we release the long awaited Maven 4.0.0.</p>
 <p><strong>Notes</strong>:</p>
 <ul>
 
 <li>This page will constantly be updated to contain changes, but also to integrate feedback of the community and their experience when upgrading to Maven 4 (RC). This means it will still receive updates after Maven 4 (RC or final) has been released.</li>
-<li>Since Maven 4.0.0-rc-4, Maven ships with a built-in migration tool for “step 3 – migrate” (see <a href="/docs/plugins/mvnup.html">Maven Upgrade Tool</a>), doing most of the steps needed to benefit from optional Maven 4 specific features.</li>
+<li>Since Maven 4.0.0-rc-4, Maven ships with a built-in migration tool for “step 3 – migrate” (see <a href="../../docs/plugins/mvnup.html">Maven Upgrade Tool</a>), doing most of the steps needed to benefit from optional Maven 4 specific features.</li>
 <li>This guide does not contain information about how to update plugins to use the new Maven 4 plugin API. We plan to create a separate guide for this when we'll work on Maven 4.1: for now, we focus on using Maven 4.0.x (RC) with classical Maven 3 plugins.</li>
 </ul>
 <p><strong>Table of content</strong></p>
@@ -126,7 +126,7 @@
 <h2>Step 1 – prepare: Maven 3 Prerequisites</h2>
 <p>This guide assumes that your environment and project meets the following prerequisites. If they don't, please make sure they do before continuing with this guide.</p><section><a id="Use_latest_version_of_Maven_3.9"></a>
 <h3>Use latest version of Maven 3.9</h3>
-<p>This guide assumes that the project to be migrated was successfully built using the <a href="/downloads/releases/history.html">latest version of Maven 3</a>.</p></section><section><a id="Upgrade_plugins_to_their_latest_Maven_3_version"></a>
+<p>This guide assumes that the project to be migrated was successfully built using the <a href="../../downloads/releases/history.html">latest version of Maven 3</a>.</p></section><section><a id="Upgrade_plugins_to_their_latest_Maven_3_version"></a>
 <h3>Upgrade plugins to their latest Maven 3 version</h3>
 <p>Similar to the previous prerequisite, the guides assumes that you are using the latest Maven 3 plugin version of all your plugins.</p>
 <p>Do not upgrade yet to a plugin version which requires Maven 4! Be aware of this, if you use tools that can automate updates.</p>
@@ -155,12 +155,12 @@
 <p>Maven 4 requires Java 17 to be run. This means the build environment (locally but also your CI environment) needs to provide a JDK that supports Java 17. Either install one to your machine or use a container providing one.</p>
 <p><strong>Note</strong>: Maven 3 can also be executed with Java 17. So you should prepare your build environment as soon as possible to have a solid, project independent base for further migration.</p></section><section><a id="Install_and_use_Maven_4"></a>
 <h3>Install and use Maven 4</h3>
-<p>After you have upgraded your build environment to support Java 17, you also need to provide Maven 4. See the information <a href="/download.cgi">where to download</a> and <a href="/docs/get-started/install.html">how to install</a> Maven 4 for further information.</p>
+<p>After you have upgraded your build environment to support Java 17, you also need to provide Maven 4. See the information <a href="../../download.cgi">where to download</a> and <a href="../../docs/get-started/install.html">how to install</a> Maven 4 for further information.</p>
 <p>Places where you might have to configure Maven 4 usage aside installation:</p>
 <ul>
 
-<li><a href="/tools/wrapper/index.html">Maven Wrapper</a>'s <code>maven-wrapper.properties</code> file.</li>
-<li><a href="/enforcer/enforcer-rules/requireMavenVersion.html">Required Maven version</a> rule of the Maven enforcer plugin.</li>
+<li><a href="../../tools/wrapper/index.html">Maven Wrapper</a>'s <code>maven-wrapper.properties</code> file.</li>
+<li><a href="../../enforcer/enforcer-rules/requireMavenVersion.html">Required Maven version</a> rule of the Maven enforcer plugin.</li>
 <li>Your own CI/CD configuration scripts or pipelines.</li>
 </ul></section><section><a id="Update_few_necessary_plugins_to_Maven_4_version"></a>
 <h3>Update few necessary plugins to Maven 4 version</h3>
@@ -173,7 +173,7 @@
 <p><strong>Notes</strong>:</p>
 <ul>
 
-<li>The <a href="/docs/plugins/configure-plugins.html">plugin configuration guide</a> contains general information, how plugins are correctly declared and configured.</li>
+<li>The <a href="../../docs/plugins/configure-plugins.html">plugin configuration guide</a> contains general information, how plugins are correctly declared and configured.</li>
 <li>For analysing wrong build behavior, it might help to use the new <code>--fail-on-severity</code> parameter, paired with <code>WARN</code> as an argument, to fail your build when a warning occurs.</li>
 </ul><section><a id="Duplicate_plugin_declaration"></a>
 <h4>Duplicate plugin declaration</h4>
@@ -192,11 +192,11 @@
 <li><code>multiModuleProjectDirectory</code></li>
 </ul></section><section><a id="Replace_plugin_bindings_to_pre-_and_post-_lifecycle_phase"></a>
 <h3>Replace plugin bindings to <code>pre-</code> and <code>post-</code> lifecycle phase</h3>
-<p>In Maven 3, <code>integration-test</code>, <code>clean</code> and <code>test</code> <a href="/ref/3-LATEST/maven-core/lifecycles.html">lifecycle phases</a> have <code>pre-</code> and <code>post-</code> phases. In Maven 4 those phases are removed in favor of new <code>before:</code> and <code>after:</code> phases, available for <a href="/ref/4-LATEST/maven-impl-modules/maven-core/lifecycles.html">all lifecycle phases</a>.</p>
+<p>In Maven 3, <code>integration-test</code>, <code>clean</code> and <code>test</code> <a href="../../ref/3-LATEST/maven-core/lifecycles.html">lifecycle phases</a> have <code>pre-</code> and <code>post-</code> phases. In Maven 4 those phases are removed in favor of new <code>before:</code> and <code>after:</code> phases, available for <a href="../../ref/4-LATEST/maven-impl-modules/maven-core/lifecycles.html">all lifecycle phases</a>.</p>
 <p>Update your plugin executions that bind to a <code>pre-integration-test</code> or <code>post-integration-test</code> phase with the corresponding <code>before:integration-test</code> or <code>after:integration-test</code> phases.</p></section></section><section><a id="Step_3_.E2.80.93_migrate.3A_Drop_Maven_3.2C_use_Optional_Maven_4_features"></a>
 <h2>Step 3 – migrate: Drop Maven 3, use Optional Maven 4 features</h2>
 <p>In this step, we'll update your project's <code>pom.xml</code> to benefit from new Maven 4 features that are not available in Maven 3: by applying required changes, you won't be able to build your project with Maven 3 any more.</p>
-<p>Notice that <a href="/docs/maven-4/whats-new.html#Consumer_POM">Maven 4 Consumer POM</a> will automatically be triggered, which makes sure the output of your project can still be used by any tool, be it Maven 3 or other build tools: only <strong>building</strong> your project from <code>pom.xml</code> in your source control (aka. <em>Build POM</em>) requires Maven 4.</p><section><a id="Changed_default_values"></a>
+<p>Notice that <a href="../../docs/maven-4/whats-new.html#Consumer_POM">Maven 4 Consumer POM</a> will automatically be triggered, which makes sure the output of your project can still be used by any tool, be it Maven 3 or other build tools: only <strong>building</strong> your project from <code>pom.xml</code> in your source control (aka. <em>Build POM</em>) requires Maven 4.</p><section><a id="Changed_default_values"></a>
 <h3>Changed default values</h3><section><a id="Install.2Fdeploy_at_end_of_build_.28breaking_change.29"></a>
 <h4>Install/deploy at end of build (breaking change)</h4>
 <p>Both, the Maven Install Plugin and the Maven Deploy Plugin, have changed default values for their behavior, about when to install respectively deploy. The default values for <code>installAtEnd</code> and <code>deployAtEnd</code> are set to <code>true</code> in Maven 4. They now reflect the desired behavior for the majority of the Maven builds. If you manually set these values to <code>true</code> before, you can remove the explicit declaration and inherit the same behavior from the new default values now.</p>
@@ -320,7 +320,7 @@
 <span class="nt">&lt;/project</span><span class="nt">&gt;</span>
 </code></pre></section></section><section><a id="Use_the_new_all_and_each_life_cycle_phases"></a>
 <h3>Use the new <code>all</code> and <code>each</code> life cycle phases</h3>
-<p>Maven 4 introduces several new <a href="/ref/4-LATEST/maven-impl-modules/maven-core/lifecycles.html">lifecycle phases</a> — <code>all</code>, <code>each</code>, <code>before:all</code>, <code>after:all</code>, <code>before:each</code>, and <code>after:each</code>. They give users finer control over plugin execution, particularly in multi-project and concurrent builds. If you want to execute a plugin before/after all or each of your (sub-)projects, consider to use them.</p></section><section><a id="New_way_to_declare_source_directories"></a>
+<p>Maven 4 introduces several new <a href="../../ref/4-LATEST/maven-impl-modules/maven-core/lifecycles.html">lifecycle phases</a> — <code>all</code>, <code>each</code>, <code>before:all</code>, <code>after:all</code>, <code>before:each</code>, and <code>after:each</code>. They give users finer control over plugin execution, particularly in multi-project and concurrent builds. If you want to execute a plugin before/after all or each of your (sub-)projects, consider to use them.</p></section><section><a id="New_way_to_declare_source_directories"></a>
 <h3>New way to declare source directories</h3>
 <p>Maven 3 has two explicitly named XML elements (<code>&lt;sourceDirectory&gt;</code> and <code>&lt;testSourceDirectory&gt;</code>) to declare the root directories of source code, as shown below:</p>
 

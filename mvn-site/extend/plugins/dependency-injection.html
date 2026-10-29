@@ -87,8 +87,8 @@
  <section><a id="Maven_Dependency_Injection_.28DI.29"></a>
 <h1>Maven Dependency Injection (DI)</h1><section><a id="What_is_Maven_Dependency_Injection_.28DI.29.3F"></a>
 <h2>What is Maven Dependency Injection (DI)?</h2>
-<p><a href="/ref/4-LATEST/api/maven-api-di/index.html">Maven DI</a> is the dependency injection framework of Maven, that is introduced in Maven 4.</p>
-<p>It is the successor for <a href="https://codehaus-plexus.github.io/plexus-containers/" class="externalLink">Plexus IoC</a> (used in Maven 2) and <a href="https://eclipse.dev/sisu/" class="externalLink">Eclipse Sisu</a> based on <a href="/extend/plugins/jsr-330.html">JSR 330 annotations</a> (used in Maven 3). Sisu still ships with Maven 4 for compatibility reasons and kicks in whenever you use the injection annotations <code>org.eclipse.sisu.*</code> or <code>javax.inject.*</code>.</p></section><section><a id="How_to_use_Maven_DI"></a>
+<p><a href="../../ref/4-LATEST/api/maven-api-di/index.html">Maven DI</a> is the dependency injection framework of Maven, that is introduced in Maven 4.</p>
+<p>It is the successor for <a href="https://codehaus-plexus.github.io/plexus-containers/" class="externalLink">Plexus IoC</a> (used in Maven 2) and <a href="https://eclipse.dev/sisu/" class="externalLink">Eclipse Sisu</a> based on <a href="../../extend/plugins/jsr-330.html">JSR 330 annotations</a> (used in Maven 3). Sisu still ships with Maven 4 for compatibility reasons and kicks in whenever you use the injection annotations <code>org.eclipse.sisu.*</code> or <code>javax.inject.*</code>.</p></section><section><a id="How_to_use_Maven_DI"></a>
 <h2>How to use Maven DI</h2>
 <p>When you use Maven DI in Maven plugins or extensions, you want to have the dependency to <code>maven-api-di</code>, so you can use the <code>@org.apache.maven.api.di.Inject</code>, <code>@org.apache.maven.api.di.Named</code>, and <code>@org.apache.maven.api.di.Singleton</code> annotations in your plugins and extensions. The annotations of Maven DI are similar to JSR 330, but they have different package name <a href="https://maven.apache.org/ref/4-LATEST/api/maven-api-di/apidocs/org/apache/maven/api/di/package-summary.html" class="externalLink"><code>org.apache.maven.api.di</code></a>.</p></section><section><a id="Interoperability_of_Maven_DI_.3C-.3E_Eclipse_Sisu"></a>
 <h2>Interoperability of Maven DI &lt;-&gt; Eclipse Sisu</h2>
@@ -97,7 +97,7 @@
 <p>TBD (need help)</p></section></section><section><a id="How_to_use_Maven_DI_in_Maven_4_plugins"></a>
 <h2>How to use Maven DI in Maven 4 plugins</h2><hr>
 <p><strong>NOTE</strong></p>
-<p>If your plugin should also run with Maven 3.x, please look at <a href="/extend/plugins/jsr-330.html">Maven &amp; JSR-330</a>. Plugins that are using Maven DI are only compatible with Maven 4.</p>
+<p>If your plugin should also run with Maven 3.x, please look at <a href="../../extend/plugins/jsr-330.html">Maven &amp; JSR-330</a>. Plugins that are using Maven DI are only compatible with Maven 4.</p>
 <p>Let's take a look at an example plugin: If you want to look at this example project, you can find the code <a href="https://github.com/apache/maven/tree/master/its/core-it-suite/src/test/resources/mng-8525-maven-di-plugin" class="externalLink">in Maven Core ITs</a>.</p>
 <p>The POM is set up for Maven DI as previously mentioned, with the <code>maven-api-di</code> dependency</p>
 <p>In addition, we add a Maven plugin dependency <code>maven-api-core</code> to implement the interface <code>Mojo</code>.</p>

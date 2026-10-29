@@ -75,7 +75,7 @@
 <p>Creating an archetype is a pretty straight forward process. An archetype is a very simple artifact, that contains the project prototype you wish to create. An archetype is made up of:</p>
 <ul>
 
-<li>an <a href="/archetype/archetype-models/archetype-descriptor/archetype-descriptor.html">archetype descriptor</a> (<code>archetype-metadata.xml</code> in directory: <code>src/main/resources/META-INF/maven/</code>). It lists all the files that will be contained in the archetype and categorizes them so they can be processed correctly by the archetype generation mechanism.</li>
+<li>an <a href="../../archetype/archetype-models/archetype-descriptor/archetype-descriptor.html">archetype descriptor</a> (<code>archetype-metadata.xml</code> in directory: <code>src/main/resources/META-INF/maven/</code>). It lists all the files that will be contained in the archetype and categorizes them so they can be processed correctly by the archetype generation mechanism.</li>
 <li>the prototype files that are copied by the archetype plugin (directory: <code>src/main/resources/archetype-resources/</code>)</li>
 <li>the prototype pom (<code>pom.xml</code> in: <code>src/main/resources/archetype-resources</code>)</li>
 <li>a pom for the archetype (<code>pom.xml</code> in the archetype's root directory).</li>
@@ -106,7 +106,7 @@
 </code></pre>
 <p>All you need to specify is a <code>groupId</code>, <code>artifactId</code> and <code>version</code>. These three parameters will be needed later for invoking the archetype via <code>archetype:generate</code> from the commandline.</p></section><section><a id="a2._Create_the_archetype_descriptor"></a>
 <h2>2. Create the archetype descriptor</h2>
-<p>The <a href="/archetype/archetype-models/archetype-descriptor/archetype-descriptor.html">archetype descriptor</a> is a file called <code>archetype-metadata.xml</code> which must be located in the <code>src/main/resources/META-INF/maven/</code> directory. An example of an archetype descriptor can be found in the quickstart archetype:</p>
+<p>The <a href="../../archetype/archetype-models/archetype-descriptor/archetype-descriptor.html">archetype descriptor</a> is a file called <code>archetype-metadata.xml</code> which must be located in the <code>src/main/resources/META-INF/maven/</code> directory. An example of an archetype descriptor can be found in the quickstart archetype:</p>
 
 <pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;archetype-descriptor</span>
         <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/plugins/maven-archetype-plugin/archetype-descriptor/1.2.0"</span> <span class="na">xmlns:xsi</span>=<span class="s">"http://www.w3.org/2001/XMLSchema-instance"</span>
@@ -192,7 +192,7 @@
   -DgroupId=&lt;my.groupid&gt;                                \
   -DartifactId=&lt;my-artifactId&gt;
 </code></pre>
-<p>Once you are happy with the state of your archetype, you can deploy (or submit it to <a href="/extend/central/upload.html">Maven Central</a>) it as any other artifact and the archetype will then be available to any user of Maven.</p></section><section><a id="Alternative_way_to_start_creating_your_Archetype"></a>
+<p>Once you are happy with the state of your archetype, you can deploy (or submit it to <a href="../../extend/central/upload.html">Maven Central</a>) it as any other artifact and the archetype will then be available to any user of Maven.</p></section><section><a id="Alternative_way_to_start_creating_your_Archetype"></a>
 <h2>Alternative way to start creating your Archetype</h2>
 <p>Instead of manually creating the directory structure needed for an archetype, simply use</p>
 

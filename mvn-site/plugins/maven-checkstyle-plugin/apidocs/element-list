@@ -1,0 +1,4 @@
+org.apache.maven.plugins.checkstyle
+org.apache.maven.plugins.checkstyle.exec
+org.apache.maven.plugins.checkstyle.resource
+org.apache.maven.plugins.maven_checkstyle_plugin

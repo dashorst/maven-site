@@ -115,7 +115,7 @@
 <li><strong>Build plugins</strong> are executed during the build and configured in the <code>&lt;build/&gt;</code> element.</li>
 <li><strong>Reporting plugins</strong> are executed during the site generation and configured in the <code>&lt;reporting/&gt;</code> element.</li>
 </ul>
-<p>All plugins should have at least the minimal required <a href="/ref/current/maven-model/maven.html#class_plugin">information</a>: <code>groupId</code>, <code>artifactId</code> and <code>version</code>.</p>
+<p>All plugins should have at least the minimal required <a href="../../ref/current/maven-model/maven.html#class_plugin">information</a>: <code>groupId</code>, <code>artifactId</code> and <code>version</code>.</p>
 <p>If no <code>groupId</code> is defined for a plugin in the <code>build</code> or <code>reporting</code> section of the POM file, Maven uses the group ID <code>org.apache.maven.plugins</code>. This means that Maven assumes an official Maven plugin will be used.</p>
 <p>If a plugin is called from the command line without a fully qualified name, for example <code>mvn versions:set</code>, Maven searches for plugins with the group ID <code>org.apache.maven.plugins</code> or <code>org.codehaus.mojo</code>.</p>
 <p><strong>Important Note</strong>: Always define the version of each plugin to guarantee build reproducibility. A good practice is to specify each build plugin's version in a <code>&lt;build&gt;&lt;pluginManagement/&gt;&lt;/build&gt;</code> element. Often the <code>&lt;pluginManagement/&gt;</code> element is found in the parent POM. For reporting plugins, specify each version in the <code>&lt;reporting&gt;&lt;plugins/&gt;&lt;/reporting&gt;</code> element (and in the <code>&lt;build&gt;&lt;pluginManagement/&gt;&lt;/build&gt;</code> element too).</p></section><section><a id="Generic_Configuration"></a>
@@ -177,7 +177,7 @@ public class MyQueryMojo
 
 <pre tabindex="0"><code class="nohighlight nocode">mvn javadoc:help -Ddetail -Dgoal=javadoc
 </code></pre>
-<p>And you will see all parameters for the javadoc:javadoc goal, similar to this <a href="/plugins/maven-javadoc-plugin/javadoc-mojo.html">page</a>.</p></section><section><a id="Configuring_Parameters"></a>
+<p>And you will see all parameters for the javadoc:javadoc goal, similar to this <a href="../../plugins/maven-javadoc-plugin/javadoc-mojo.html">page</a>.</p></section><section><a id="Configuring_Parameters"></a>
 <h3>Configuring Parameters</h3>
 <p>Parameterization of Mojos relies internally on the Plexus Component Configuration API provided by <a href="https://github.com/eclipse/sisu.plexus" class="externalLink">sisu-plexus</a>.</p><section><a id="Mapping_Value_Objects"></a>
 <h4>Mapping Value Objects</h4>

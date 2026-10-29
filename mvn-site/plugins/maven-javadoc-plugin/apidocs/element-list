@@ -1,0 +1,5 @@
+org.apache.maven.plugins.javadoc
+org.apache.maven.plugins.javadoc.options
+org.apache.maven.plugins.javadoc.options.io.xpp3
+org.apache.maven.plugins.javadoc.resolver
+org.apache.maven.plugins.maven_javadoc_plugin

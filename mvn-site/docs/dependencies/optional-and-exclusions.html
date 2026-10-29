@@ -255,7 +255,7 @@ Project-A
 </code></pre></section><section><a id="Why_exclusions_are_made_on_a_per-dependency_basis.2C_rather_than_at_the_POM_level"></a>
 <h3>Why exclusions are made on a per-dependency basis, rather than at the POM level</h3>
 <p>This is mainly to be sure the dependency graph is predictable, and to keep inheritance effects from excluding a dependency that should not be excluded. If you get to the method of last resort and have to put in an exclusion, you should be absolutely certain which of your dependencies is bringing in that unwanted transitive dependency.</p>
-<p>If you truly want to ensure that a particular dependency appears nowhere in your classpath, regardless of path, the <a href="/enforcer/enforcer-rules/bannedDependencies.html">banned dependencies rule</a> can be configured to fail the build if a problematic dependency is found. When the build fails, you'll need to add specific exclusions on each path the enforcer finds.</p></section></section></section>
+<p>If you truly want to ensure that a particular dependency appears nowhere in your classpath, regardless of path, the <a href="../../enforcer/enforcer-rules/bannedDependencies.html">banned dependencies rule</a> can be configured to fail the build if a problematic dependency is found. When the build fails, you'll need to add specific exclusions on each path the enforcer finds.</p></section></section></section>
       </div>
       <nav class="more" aria-labelledby="more-title">
         <h2 id="more-title">More in <a href="../../docs/dependencies/index.html">Dependencies and repositories</a></h2>

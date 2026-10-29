@@ -85,7 +85,7 @@
 </section>
  <section><a id="Naming_convention_of_Maven_coordinates"></a>
 <h1>Naming convention of Maven coordinates</h1>
-<p>So that Maven can identify and utilise any artifact (e.g. a <code>.jar</code> file), every artifact must be identifiable through a unique combination of three identifiers. This combination is called the &#x201c;<a href="/docs/reference/pom.html#Maven_Coordinates">Maven coordinates</a>&#x201d;. Maven coordinates consist of a project group identifier named <code>groupId</code>, an artifact identifier named <code>artifactId</code>, and the version identifier named <code>version</code>.</p>
+<p>So that Maven can identify and utilise any artifact (e.g. a <code>.jar</code> file), every artifact must be identifiable through a unique combination of three identifiers. This combination is called the &#x201c;<a href="../../docs/reference/pom.html#Maven_Coordinates">Maven coordinates</a>&#x201d;. Maven coordinates consist of a project group identifier named <code>groupId</code>, an artifact identifier named <code>artifactId</code>, and the version identifier named <code>version</code>.</p>
 <p>This document defines the naming conventions of Maven coordinates.</p>
 <p>You should follow this convention whenever you create a new artifact.</p><section><a id="Project_group_identifier"></a>
 <h2>Project group identifier</h2>
@@ -139,7 +139,7 @@ maven-clean-plugin
 <h3>Unstable versions (SNAPSHOT)</h3>
 <p><code>SNAPSHOT</code>s are artifacts built in between releases. They may be built from a particular commit or from code that isn't even committed to the source repository. They are a snapshot of the project at a particular point in time, generally used for testing. Unlike release versions, snapshot artifacts can and do change over time.</p>
 <p>Usually the snapshot has the version of the next anticipated release followed by <code>-SNAPSHOT</code>, e.g. <code>1.0.1-SNAPSHOT</code>.</p>
-<p>Maven treats artifacts with such versions in a special way during deployment and stores them in the <code>snapshotRepository</code> if one is defined in the <a href="/docs/reference/pom.html#Repository">POM file</a>.</p></section></section></section>
+<p>Maven treats artifacts with such versions in a special way during deployment and stores them in the <code>snapshotRepository</code> if one is defined in the <a href="../../docs/reference/pom.html#Repository">POM file</a>.</p></section></section></section>
       </div>
       <nav class="more" aria-labelledby="more-title">
         <h2 id="more-title">More in <a href="../../docs/dependencies/index.html">Dependencies and repositories</a></h2>

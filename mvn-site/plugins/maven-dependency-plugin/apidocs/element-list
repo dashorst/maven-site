@@ -1,0 +1,13 @@
+org.apache.maven.plugins.dependency
+org.apache.maven.plugins.dependency.analyze
+org.apache.maven.plugins.dependency.exclusion
+org.apache.maven.plugins.dependency.fromConfiguration
+org.apache.maven.plugins.dependency.fromDependencies
+org.apache.maven.plugins.dependency.pom
+org.apache.maven.plugins.dependency.resolvers
+org.apache.maven.plugins.dependency.tree
+org.apache.maven.plugins.dependency.utils
+org.apache.maven.plugins.dependency.utils.filters
+org.apache.maven.plugins.dependency.utils.markers
+org.apache.maven.plugins.dependency.utils.translators
+org.apache.maven.plugins.maven_dependency_plugin

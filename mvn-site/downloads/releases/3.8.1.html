@@ -71,8 +71,8 @@
 <ul>
 
 <li>the website: <a href="https://maven.apache.org/" class="externalLink">https://maven.apache.org/</a></li>
-<li>the maven-user mailing list: <a href="/mailing-lists.html">https://maven.apache.org/mailing-lists.html</a></li>
-<li>the reference documentation: <a href="/ref/3.8.1/">https://maven.apache.org/ref/3.8.1/</a></li>
+<li>the maven-user mailing list: <a href="../../mailing-lists.html">https://maven.apache.org/mailing-lists.html</a></li>
+<li>the reference documentation: <a href="../../ref/3.8.1/">https://maven.apache.org/ref/3.8.1/</a></li>
 </ul><section><a id="Overview_about_the_changes"></a>
 <h2>Overview about the changes</h2>
 <p>This release covers two CVEs:</p><section><a id="CVE-2021-26291"></a>
@@ -89,7 +89,7 @@ The decision was made to block such external HTTP repositories by default: this 
 Sonatype has analyzed which domains were abandoned and has claimed these domains.</p></li>
 <li>
 <p>Possible hijacking of downloads by redirecting to custom repositories<br />
-This one was the hardest to analyze and explain. The short story is: you're safe, dependencies are only downloaded from repositories within their context. So there are two main questions: what is the context and what is the order? The order is described on the <a href="/docs/dependencies/several-repositories.html#repository-order">Repository Order</a> page. The first group of repositories are defined in the settings.xml (both user and global). The second group of repositories are based on inheritence, with ultimately the super POM containing the URL to Maven Central. The third group is the most complex one but is important to understand the term context: repositories from the effective POMs from the dependency path to the artifact. So if a dependency was defined by another dependency or by a Maven project, it will also include their repositories. In the end this is not a bug, but a design feature.</p></li>
+This one was the hardest to analyze and explain. The short story is: you're safe, dependencies are only downloaded from repositories within their context. So there are two main questions: what is the context and what is the order? The order is described on the <a href="../../docs/dependencies/several-repositories.html#repository-order">Repository Order</a> page. The first group of repositories are defined in the settings.xml (both user and global). The second group of repositories are based on inheritence, with ultimately the super POM containing the URL to Maven Central. The third group is the most complex one but is important to understand the term context: repositories from the effective POMs from the dependency path to the artifact. So if a dependency was defined by another dependency or by a Maven project, it will also include their repositories. In the end this is not a bug, but a design feature.</p></li>
 </ul></section><section><a id="CVE-2020-13956"></a>
 <h3>CVE-2020-13956</h3>
 <p>Apache HttpClient is a transitive dependency of Maven Resolver via Maven Wagon, so we've updated those versions as part of this release.</p></section></section><section><a id="Why_does_this_version_have_the_value_3.8.1.3F"></a>
@@ -118,7 +118,7 @@ With every release there's a 72h+ voting period. During the vote of 3.8.0 a bug 
 <li>
 <p>upgrade the dependency version to a newer version that replaced the obsolete HTTP repository URL with a HTTPS one,</p></li>
 <li>
-<p>keep the dependency version but <a href="/docs/dependencies/mirror-settings.html">define a mirror in your settings</a>.</p></li>
+<p>keep the dependency version but <a href="../../docs/dependencies/mirror-settings.html">define a mirror in your settings</a>.</p></li>
 </ul></section><section><a id="The_detailed_issue_list"></a>
 <h2>The detailed issue list<a href="#Details"></a></h2>
 <p>Bug</p>

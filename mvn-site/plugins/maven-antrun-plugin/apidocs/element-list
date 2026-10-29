@@ -1,0 +1,5 @@
+org.apache.maven.ant.tasks
+org.apache.maven.ant.tasks.support
+org.apache.maven.plugins.antrun
+org.apache.maven.plugins.antrun.taskconfig
+org.apache.maven.plugins.maven_antrun_plugin

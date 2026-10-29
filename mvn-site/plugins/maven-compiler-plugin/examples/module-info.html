@@ -122,7 +122,7 @@
 <li>default <code>default-compile</code> execution with <code>release=9</code>,</li>
 <li>additional custom <code>base-compile</code> execution with expected target compatibility.</li>
 </ol>
-<p>Notice that, in addition, JDK 9 only supports compilations for Java 6 and above, so projects wanting to be compatible with Java 5 or below need to use two different JDKs for the 2 executions. With <a href="/guides/mini/guide-using-toolchains.html">toolchains</a> configuration, it is quite easy to achieve this, even if a little bit more complex.</p><section><a id="Java_6_to_8_Compatibility"></a>
+<p>Notice that, in addition, JDK 9 only supports compilations for Java 6 and above, so projects wanting to be compatible with Java 5 or below need to use two different JDKs for the 2 executions. With <a href="../../../guides/mini/guide-using-toolchains.html">toolchains</a> configuration, it is quite easy to achieve this, even if a little bit more complex.</p><section><a id="Java_6_to_8_Compatibility"></a>
 <h2>Java 6 to 8 Compatibility</h2>
 <p>In case you want the project to be Java 6, 7 or 8 compatible, you can simply use JDK 9 for both execution blocks.</p>
 <p>The easiest way is to use Java 9 as the runtime for Maven, by setting <code>JAVA_HOME=/path/to/jdk-9</code> before running <code>mvn</code>. But if you want to use an older Java runtime for Maven, you can use the maven-toolchain-plugin to specify the shared JDK or a custom jdkToolchain and refer to the JDK 9 installation on your system.</p>

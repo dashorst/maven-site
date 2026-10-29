@@ -88,7 +88,7 @@
 <h1>Introduction</h1><section><a id="Where_did_the_standard_come_from.3F"></a>
 <h2>Where did the standard come from?</h2>
 <p>The plugin documentation standard was created to address frequent complaints about the lack of documentation, specifically on the Maven plugins. The standard was based on the suggestions made on the Maven dev mailing list with some refinements. It is a community consensus of the basic documentation a Maven plugin should have.</p>
-<p><a href="/plugins/maven-docck-plugin/">Maven Documentation Checker Plugin</a> (aka. DocCK) was created at that time to help check plugin documentation, but it is now unmaintained.</p></section><section><a id="Why_do_we_need_a_documentation_standard.3F"></a>
+<p><a href="../../plugins/maven-docck-plugin/">Maven Documentation Checker Plugin</a> (aka. DocCK) was created at that time to help check plugin documentation, but it is now unmaintained.</p></section><section><a id="Why_do_we_need_a_documentation_standard.3F"></a>
 <h2>Why do we need a documentation standard?</h2>
 <p>The standard is not a set of rules but a guide to help plugin developers document their plugins better, for the benefit of the users of the plugin. The standard also reminds plugin developers of important details that need to be documented to help speed up the adoption of the plugin.</p></section><section><a id="Generated_Documentation"></a>
 <h2>Generated Documentation</h2>
@@ -97,10 +97,10 @@
 
 <pre tabindex="0"><code class="nohighlight nocode">mvn site
 </code></pre>
-<p>Like any Maven project, this will generate a site based on the information in the POM used by <a href="/plugins/maven-project-info-reports-plugin/">Maven Project Info Reports Plugin</a>, <code>src/site</code> and other reporting plugins configured in the POM (like javadoc, jxr, or any other classical project report plugin).</p>
-<p>In addition, the most important additional reporting plugin for a plugin is the <a href="/plugins/maven-plugin-report-plugin/">Maven Plugin Report Plugin</a>, which will generate the <strong>documentation for each plugin goal</strong> based on the Mojo annotations. But in order for the generated site to be usable, the required information should be available to the Maven Site Plugin.</p></section><section><a id="POM_Elements"></a>
+<p>Like any Maven project, this will generate a site based on the information in the POM used by <a href="../../plugins/maven-project-info-reports-plugin/">Maven Project Info Reports Plugin</a>, <code>src/site</code> and other reporting plugins configured in the POM (like javadoc, jxr, or any other classical project report plugin).</p>
+<p>In addition, the most important additional reporting plugin for a plugin is the <a href="../../plugins/maven-plugin-report-plugin/">Maven Plugin Report Plugin</a>, which will generate the <strong>documentation for each plugin goal</strong> based on the Mojo annotations. But in order for the generated site to be usable, the required information should be available to the Maven Site Plugin.</p></section><section><a id="POM_Elements"></a>
 <h2>POM Elements</h2>
-<p>Like any Maven project, Maven extracts the information from the POM to let <a href="/plugins/maven-project-info-reports-plugin/">Maven Project Info Reports Plugin</a> generate the pages under <a href="/project-info.html">“Project Information”</a>. The first step in good documentation is to have accurate and visible basic project information. Maven can provide this for the plugin as long as the information in the POM is complete, descriptive, and accurate.</p><section><a id="Required_Elements"></a>
+<p>Like any Maven project, Maven extracts the information from the POM to let <a href="../../plugins/maven-project-info-reports-plugin/">Maven Project Info Reports Plugin</a> generate the pages under <a href="../../project-info.html">“Project Information”</a>. The first step in good documentation is to have accurate and visible basic project information. Maven can provide this for the plugin as long as the information in the POM is complete, descriptive, and accurate.</p><section><a id="Required_Elements"></a>
 <h3>Required Elements</h3>
 <p>Minimum elements for a valid POM:</p>
 <ul>
@@ -127,7 +127,7 @@
 <li><code>&lt;organization&gt;</code> - the organization maintaining the plugin, just in case we need someone to blame</li>
 </ul></section></section><section><a id="Plugin_Goals_List_and_Configuration_Parameters_for_each_Goal"></a>
 <h2>Plugin Goals List and Configuration Parameters for each Goal</h2>
-<p>The <a href="/plugin-tools/maven-plugin-report-plugin/">Maven Plugin Report Plugin</a> is responsible for generating the <a href="/plugin-tools/maven-plugin-report-plugin/plugin-info.html">“Plugin Documentation” <code>plugin-info.html</code></a> page and one <code>[goal]-mojo.html</code> page for each goal.</p>
+<p>The <a href="../../plugin-tools/maven-plugin-report-plugin/">Maven Plugin Report Plugin</a> is responsible for generating the <a href="../../plugin-tools/maven-plugin-report-plugin/plugin-info.html">“Plugin Documentation” <code>plugin-info.html</code></a> page and one <code>[goal]-mojo.html</code> page for each goal.</p>
 <p>It needs to be added to the <code>&lt;reporting&gt;</code> section, unless it is already inherited from a parent POM:</p>
 
 <pre tabindex="0" class="highlight"><code class="language-unknown"><span class="nt">&lt;project</span><span class="nt">&gt;</span>
@@ -176,7 +176,7 @@
     [...]
 </code></pre>
 <p>The class does not need any specific annotation. <code>@Parameter</code> on the <code>Mojo</code> field is sufficient to inject a bean instance created from XML configuration.</p>
-<p>See, for example, <a href="/plugin-tools/maven-plugin-report-plugin/report-mojo.html#requirementsHistories"><code>requirementsHistories</code> parameter documentation</a> rendered from <a href="https://github.com/apache/maven-plugin-tools/blob/maven-plugin-tools-3.15.1/maven-plugin-report-plugin/src/main/java/org/apache/maven/plugin/plugin/report/PluginReport.java#L93" class="externalLink">plugin source code</a> and <a href="https://github.com/apache/maven-plugin-tools/blob/maven-plugin-tools-3.15.1/maven-plugin-report-plugin/src/main/java/org/apache/maven/plugin/plugin/report/RequirementsHistory.java" class="externalLink"><code>RequirementsHistory</code></a> class,</p></li>
+<p>See, for example, <a href="../../plugin-tools/maven-plugin-report-plugin/report-mojo.html#requirementsHistories"><code>requirementsHistories</code> parameter documentation</a> rendered from <a href="https://github.com/apache/maven-plugin-tools/blob/maven-plugin-tools-3.15.1/maven-plugin-report-plugin/src/main/java/org/apache/maven/plugin/plugin/report/PluginReport.java#L93" class="externalLink">plugin source code</a> and <a href="https://github.com/apache/maven-plugin-tools/blob/maven-plugin-tools-3.15.1/maven-plugin-report-plugin/src/main/java/org/apache/maven/plugin/plugin/report/RequirementsHistory.java" class="externalLink"><code>RequirementsHistory</code></a> class,</p></li>
 <li>
 <p>The class level comment should explain what the goal does.</p>
 
@@ -199,7 +199,7 @@
 <h2>Site Organization</h2>
 <p>Visibility of the information is also crucial. Uniform navigation links greatly improve the visibility of the documentation. The index page can help emphasize important sections and pages of the plugin documentation.</p><section><a id="Site_Descriptor"></a>
 <h3>Site Descriptor</h3>
-<p>The <a href="/plugins/maven-site-plugin/examples/sitedescriptor.html">site descriptor</a> describes the navigation links and the layout of the page. It can be found in <code>src/site/site.xml</code>.</p>
+<p>The <a href="../../plugins/maven-site-plugin/examples/sitedescriptor.html">site descriptor</a> describes the navigation links and the layout of the page. It can be found in <code>src/site/site.xml</code>.</p>
 <p>You must define a <a href="../../docs/site/skins.html">skin</a> if you are using a site descriptor. No default skin is applied automatically.</p>
 <p>Below is the suggested site descriptor template (with maven-fluido-skin).</p>
 
@@ -310,8 +310,8 @@ you can take a look at the following examples:
 <p>For examples of items under “Examples” check these plugin sites:</p>
 <ul>
 
-<li><a href="/plugins/maven-javadoc-plugin/">Maven Javadoc Plugin Examples</a></li>
-<li><a href="/plugins/maven-war-plugin/">Maven War Plugin Examples</a></li>
+<li><a href="../../plugins/maven-javadoc-plugin/">Maven Javadoc Plugin Examples</a></li>
+<li><a href="../../plugins/maven-war-plugin/">Maven War Plugin Examples</a></li>
 </ul></li>
 </ul></section></section></section><section><a id="Recommended_Configured_Reports"></a>
 <h2>Recommended Configured Reports</h2>
@@ -346,7 +346,7 @@ you can take a look at the following examples:
   [...]
 <span class="nt">&lt;/project</span><span class="nt">&gt;</span>
 </code></pre>
-<p>Check the documentation about the plugin's <a href="/plugins/maven-javadoc-plugin/javadoc-mojo.html"><code>javadoc:javadoc</code></a> goal for the advanced configurations.</p></li>
+<p>Check the documentation about the plugin's <a href="../../plugins/maven-javadoc-plugin/javadoc-mojo.html"><code>javadoc:javadoc</code></a> goal for the advanced configurations.</p></li>
 <li>
 <p>Maven JXR Plugin</p>
 <p>The Maven JXR Plugin generates a cross-reference of the project sources. The generated cross-references are also linked to the corresponding javadoc if javadoc is generated. The cross-reference is great for those who want to better understand the inner workings of the plugin.</p>
@@ -369,7 +369,7 @@ you can take a look at the following examples:
   [...]
 <span class="nt">&lt;/project</span><span class="nt">&gt;</span>
 </code></pre>
-<p>Check the <a href="/plugins/maven-jxr-plugin/jxr-mojo.html">JXR configuration page</a> for the possible configuration parameters.</p></li>
+<p>Check the <a href="../../plugins/maven-jxr-plugin/jxr-mojo.html">JXR configuration page</a> for the possible configuration parameters.</p></li>
 </ul></section></section>
       </div>
       <nav class="more" aria-labelledby="more-title">

@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"org.apache.maven.plugins.maven_project_info_reports_plugin"},{"l":"org.apache.maven.report.projectinfo"},{"l":"org.apache.maven.report.projectinfo.avatars"},{"l":"org.apache.maven.report.projectinfo.dependencies"},{"l":"org.apache.maven.report.projectinfo.dependencies.renderer"}];updateSearchResults();

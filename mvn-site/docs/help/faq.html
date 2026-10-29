@@ -115,9 +115,9 @@
 <h2>How do I prevent including JARs in <code>WEB-INF/lib</code>? I need a “compile only” scope!</h2>
 <p>The scope you should use for this is <code>provided</code>. This indicates to Maven that the dependency will be provided at run time by its container or the JDK, for example. Dependencies with this scope will not be passed on transitively, nor will they be bundled in a package such as a WAR, or included in the runtime classpath.</p></section><section><a id="How_do_I_list_available_plugins.3F"></a>
 <h2>How do I list available plugins?</h2>
-<p>The <a href="/docs/plugins/available-plugins.html">Available Plugins</a> page lists them and provides additional information.</p></section><section><a id="How_do_I_determine_what_version_of_a_plugin_I_am_using.3F"></a>
+<p>The <a href="../../docs/plugins/available-plugins.html">Available Plugins</a> page lists them and provides additional information.</p></section><section><a id="How_do_I_determine_what_version_of_a_plugin_I_am_using.3F"></a>
 <h2>How do I determine what version of a plugin I am using?</h2>
-<p>You can use the <a href="/plugins/maven-help-plugin/">Maven Help Plugin</a>'s <a href="/plugins/maven-help-plugin/describe-mojo.html"> <code>describe</code></a> goal.</p>
+<p>You can use the <a href="../../plugins/maven-help-plugin/">Maven Help Plugin</a>'s <a href="../../plugins/maven-help-plugin/describe-mojo.html"> <code>describe</code></a> goal.</p>
 <p>For example, to find out the version of the install plugin:</p>
 <blockquote>
 
@@ -129,10 +129,10 @@
 <ul>
 
 <li>For use in a plugin written in Java, Beanshell or other Java-like scripting language, you can construct the Ant tasks using the <a href="https://ant.apache.org/manual/antexternal.html" class="externalLink">instructions given in the Ant documentation</a>.</li>
-<li>If you have very small amounts of Ant script specific to your project, you can use the <a href="/plugins/maven-antrun-plugin/index.html">AntRun plugin</a>.</li>
+<li>If you have very small amounts of Ant script specific to your project, you can use the <a href="../../plugins/maven-antrun-plugin/index.html">AntRun plugin</a>.</li>
 </ul></section><section><a id="How_can_I_use_Maven_features_in_an_Ant_build.3F"></a>
 <h2>How can I use Maven features in an Ant build?</h2>
-<p>The <a href="/ant-tasks/index.html">Maven Ant Tasks</a> allow many of the features of Maven, such as dependency management and repository deployment, to be used in an Ant build.</p></section><section><a id="How_do_I_set_up_Maven_so_it_will_compile_with_a_target_and_source_JVM_of_my_choice.3F"></a>
+<p>The <a href="../../ant-tasks/index.html">Maven Ant Tasks</a> allow many of the features of Maven, such as dependency management and repository deployment, to be used in an Ant build.</p></section><section><a id="How_do_I_set_up_Maven_so_it_will_compile_with_a_target_and_source_JVM_of_my_choice.3F"></a>
 <h2>How do I set up Maven so it will compile with a target and source JVM of my choice?</h2>
 <p>You must configure the source and target parameters in your pom. For example, to set the source and target JVM to 7, you should have in your pom:</p>
 
@@ -173,9 +173,9 @@
 <p>Absolutely yes!</p>
 <p>By configuring <code>&lt;sourceDirectory&gt;</code>, <code>&lt;resources&gt;</code> and other elements of the <code>&lt;build&gt;</code> section. In addition, you may need to change the plugin configuration if you are not using plugin defaults for their files/directories.</p></section><section><a id="Where_is_the_source_code.3F_I_couldn.27t_seem_to_find_a_link_anywhere_on_the_Maven_site"></a>
 <h2>Where is the source code? I couldn't seem to find a link anywhere on the Maven site</h2>
-<p>The source code can be found in <a href="../../community/contribute/sources.html">our Subversion and Git repositories</a>. For more information, see <a href="/community/contribute/build-maven.html">Building Maven</a>.</p></section><section><a id="Maven_can.27t_seem_to_download_the_dependencies._Is_my_installation_correct.3F"></a>
+<p>The source code can be found in <a href="../../community/contribute/sources.html">our Subversion and Git repositories</a>. For more information, see <a href="../../community/contribute/build-maven.html">Building Maven</a>.</p></section><section><a id="Maven_can.27t_seem_to_download_the_dependencies._Is_my_installation_correct.3F"></a>
 <h2>Maven can't seem to download the dependencies. Is my installation correct?</h2>
-<p>You most probably need to configure Maven to use a proxy. Please see the information on <a href="/docs/configure/proxy-settings.html">Configuring a proxy</a> for information on how to configure your proxy for Maven.</p></section><section><a id="I_have_a_jar_that_I_want_to_put_into_my_local_repository._How_can_I_copy_it_in.3F"></a>
+<p>You most probably need to configure Maven to use a proxy. Please see the information on <a href="../../docs/configure/proxy-settings.html">Configuring a proxy</a> for information on how to configure your proxy for Maven.</p></section><section><a id="I_have_a_jar_that_I_want_to_put_into_my_local_repository._How_can_I_copy_it_in.3F"></a>
 <h2>I have a jar that I want to put into my local repository. How can I copy it in?</h2>
 <p>If you understand the layout of the Maven repository, you can copy the jar directly into where it is meant to go. Maven will find this file next time it is run. If you are not confident about the layout of the Maven repository, then you can adapt the following command to load in your jar file, all on one line.</p>
 
@@ -200,7 +200,7 @@ Where:
 <p>People tend to have problems when they subscribe with one address and attempt to unsubscribe with another. So make sure that you are using the same address when unsubscribing that you used to subscribe before asking for help.</p>
 <p>If you find you still cannot get off a list then send a message to <code>[mailing-list]-help@maven.apache.org</code>. These instructions are also appended to every message sent out on a maven mailing list…</p></section><section><a id="How_do_I_skip_the_tests.3F"></a>
 <h2>How do I skip the tests?</h2>
-<p>Add the parameter <code>-Dmaven.test.skip=true</code> or <code>-DskipTests=true</code> in the command line, depending on whether you want to skip test compilation and execution or only execution. See the example <a href="/plugins/maven-surefire-plugin/examples/skipping-tests.html">Skipping Tests</a> in the <a href="/plugins/maven-surefire-plugin/">Surefire Plugin's documentation</a> for more details.</p></section><section><a id="How_can_I_run_a_single_unit_test.3F"></a>
+<p>Add the parameter <code>-Dmaven.test.skip=true</code> or <code>-DskipTests=true</code> in the command line, depending on whether you want to skip test compilation and execution or only execution. See the example <a href="../../plugins/maven-surefire-plugin/examples/skipping-tests.html">Skipping Tests</a> in the <a href="../../plugins/maven-surefire-plugin/">Surefire Plugin's documentation</a> for more details.</p></section><section><a id="How_can_I_run_a_single_unit_test.3F"></a>
 <h2>How can I run a single unit test?</h2>
 <p>Use the parameter <code>-Dtest=MyTest</code> at the command line. Do not specify the entire package (<code>org.apache.x.y.MyTest</code>).</p></section><section><a id="Handle_special_characters_in_site"></a>
 <h2>Handle special characters in site</h2>
@@ -234,7 +234,7 @@ Where:
 </code></pre>
 <p>Configure the file encoding used by mvn and add the encoding to MAVEN_OPTS (same as the ide). This can be made with adding <code>MAVEN_OPTS="-Dfile.encoding=ISO-8859-1"</code> in <code>$HOME/.profile</code>.</p></section><section><a id="Maven_compiles_my_test_classes_but_doesn.27t_run_them.3F"></a>
 <h2>Maven compiles my test classes but doesn't run them?</h2>
-<p>Tests are run by the <a href="/surefire/maven-surefire-plugin/">surefire plugin</a>. The surefire plugin can be configured to run certain test classes, and you may have unintentionally done so by specifying a value to <code>${test}</code>. Check your <code>settings.xml</code> and <code>pom.xml</code> for a property named <code>test</code> which would like this:</p>
+<p>Tests are run by the <a href="../../surefire/maven-surefire-plugin/">surefire plugin</a>. The surefire plugin can be configured to run certain test classes, and you may have unintentionally done so by specifying a value to <code>${test}</code>. Check your <code>settings.xml</code> and <code>pom.xml</code> for a property named <code>test</code> which would like this:</p>
 
 <pre tabindex="0" class="highlight"><code class="language-xml">
 <span class="nt">&lt;project</span><span class="nt">&gt;</span>
@@ -260,13 +260,13 @@ Where:
 <span class="nt">&lt;/project</span><span class="nt">&gt;</span>
 </code></pre></section><section><a id="Where_are_Maven_SNAPSHOT_artifacts.3F"></a>
 <h2>Where are Maven SNAPSHOT artifacts?</h2>
-<p>If you are trying to build a development version of Maven or plugins, you may need to access the Maven snapshot repositories. You need to update your <code>settings.xml</code> file using the <a href="/community/contribute/test-development-plugins.html">Guide to Plugin Snapshot Repositories</a>.</p></section><section><a id="Where_are_the_Maven_XSD_schemas.3F"></a>
+<p>If you are trying to build a development version of Maven or plugins, you may need to access the Maven snapshot repositories. You need to update your <code>settings.xml</code> file using the <a href="../../community/contribute/test-development-plugins.html">Guide to Plugin Snapshot Repositories</a>.</p></section><section><a id="Where_are_the_Maven_XSD_schemas.3F"></a>
 <h2>Where are the Maven XSD schemas?</h2>
 <p>See the following links:</p>
 <ul>
 
-<li><a href="/xsd/maven-4.0.0.xsd">Maven XSD</a></li>
-<li><a href="/xsd/settings-1.2.0.xsd">Maven Settings XSD</a></li>
+<li><a href="../../xsd/maven-4.0.0.xsd">Maven XSD</a></li>
+<li><a href="../../xsd/settings-1.2.0.xsd">Maven Settings XSD</a></li>
 </ul>
 <p>Your favorite IDE probably supports XSD schema's for <code>pom.xml</code> and <code>settings.xml</code> editing. You need to specify the following:</p>
 
@@ -290,7 +290,7 @@ Where:
 <span class="nt">&lt;/settings</span><span class="nt">&gt;</span>
 </code></pre></section><section><a id="Maven_doesn.27t_work.2C_how_do_I_get_help.3F"></a>
 <h2>Maven doesn't work, how do I get help?</h2>
-<p>We have compiled a list of available resources on the <a href="/docs/help/getting-help.html">getting help page</a>.</p></section><section><a id="How_to_produce_execution_debug_output_or_error_messages.3F"></a>
+<p>We have compiled a list of available resources on the <a href="../../docs/help/getting-help.html">getting help page</a>.</p></section><section><a id="How_to_produce_execution_debug_output_or_error_messages.3F"></a>
 <h2>How to produce execution debug output or error messages?</h2>
 <p>You could call Maven with <code>-X</code> parameter or <code>-e</code> parameter. For more information, run: <code>mvn --help</code>.</p></section><section><a id="What_is_a_Mojo.3F"></a>
 <h2>What is a Mojo?</h2>

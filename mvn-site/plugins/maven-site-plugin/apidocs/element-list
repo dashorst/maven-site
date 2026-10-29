@@ -1,0 +1,6 @@
+org.apache.maven.plugins.maven_site_plugin
+org.apache.maven.plugins.site
+org.apache.maven.plugins.site.deploy
+org.apache.maven.plugins.site.descriptor
+org.apache.maven.plugins.site.render
+org.apache.maven.plugins.site.run

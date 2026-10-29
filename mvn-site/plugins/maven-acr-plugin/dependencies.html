@@ -1,0 +1,1934 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Project Dependencies – Apache Maven</title>
+  <link rel="stylesheet" href="./css/maven.css">
+  <link rel="stylesheet" href="./css/print.css" media="print">
+  <link rel="icon" href="./images/favicon.ico">
+  <meta name="generator" content="Apache Maven Doxia Site Renderer 2.0.0">
+</head>
+<body class="page">
+  <a class="skip-link" href="#content">Skip to the text</a>
+  <header class="masthead">
+    <div class="masthead-inner">
+    <a class="brand" href="./../../index.html" aria-label="Maven, home"><svg class="wordmark" viewBox="0 0 9375 2346" width="140" height="35" aria-hidden="true" focusable="false" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
+  <path d="M5126.58,975.196c46.271,-114.421 97.896,-228.613 153.292,-329.825c-82.692,-61.417 -162.092,-193.859 -194.717,-252.538c-11.716,13.313 -19.32,28.642 -22.771,41.113c-30.733,110.971 78.671,244.971 -9.45,196.012c-73.42,-40.796 -238.745,-130.137 -301.804,-41.341c70.625,90.75 255.35,319.062 375.45,386.579Z" style="fill:#dd552c;fill-rule:nonzero;"/>
+  <path d="M5279.88,645.371c53.679,-98.071 110.879,-183.963 170.188,-245.842c-0,0 -59.155,85.621 -143.642,256.779c51.167,14.092 196.892,43.009 399.871,-9.425c4.991,-36.887 -19.809,-77.458 -143.384,-91.041c-80.679,-8.859 96.834,-192.646 -31.762,-279.563c-4.15,-2.812 -8.234,-5.291 -12.229,-7.512c-4.313,-1.55 -8.867,-2.967 -13.725,-4.23c-150.188,-39.191 -171.009,215.476 -230.938,160.73c-96.85,-88.467 -157.979,-67.796 -189.096,-32.434c32.625,58.68 112.025,191.121 194.717,252.538Z" style="fill:#f79a23;fill-rule:nonzero;"/>
+  <path d="M5005.79,1304.85c33.904,-101.567 74.687,-215.675 120.796,-329.654c-120.101,-67.517 -304.825,-295.829 -375.45,-386.579c-12.609,17.741 -21.226,42.487 -24.096,76.325c-15.404,181.766 172.116,316.333 134.733,340.912c-49.45,32.521 -147.867,-78.108 -186.658,-7.817c56.225,72.225 170.746,202.73 330.675,306.813Z" style="fill:#d22128;fill-rule:nonzero;"/>
+  <path d="M5525.38,912.842c-94.946,-33.863 99.217,-124.684 162.267,-221.029c8.066,-12.317 16.404,-28.238 18.666,-44.93c-202.979,52.434 -348.704,23.517 -399.871,9.425c-43.737,88.621 -94.241,200.3 -146.916,334.95c54.858,23.459 278.85,110.105 595.233,110.554c53.192,-138.55 -139.271,-156.845 -229.379,-188.97Z" style="fill:#dd552c;fill-rule:nonzero;"/>
+  <path d="M5042.5,1323.13c55.792,17.388 240.654,69.321 436.983,61.505c26.375,-71.413 -72.233,-78.384 -80.266,-135.655c-6.217,-44.316 259.504,37.242 345,-123.904c4.325,-8.15 7.695,-15.837 10.55,-23.267c-316.384,-0.449 -540.375,-87.095 -595.234,-110.554c-38.491,98.4 -78.087,208.838 -117.033,331.875Z" style="fill:#d22128;fill-rule:nonzero;"/>
+  <path d="M5042.5,1323.13c-25.067,79.196 -49.8,163.8 -73.808,253.213c-8.517,31.704 -16.929,63.996 -25.229,96.996c186.341,61.512 357.933,0.141 363.75,-75.925c0.045,-0.6 -0.063,-1.05 -0.03,-1.63c4.434,-80.562 -116.316,-35.904 -113.458,-84.345c2.867,-48.792 210.813,-0.284 275.121,-104.896c4.933,-8.021 8.146,-15.142 10.637,-21.908c-196.329,7.816 -381.191,-44.117 -436.983,-61.505Z" style="fill:#7c297d;fill-rule:nonzero;"/>
+  <path d="M4675.12,998.038c-2.717,4.924 -5.167,10.616 -7.258,17.42c-36.113,117.371 219.25,275.042 184.508,309.413c-31.317,30.971 -72.133,-39.804 -122.463,-10.571c-5.512,3.213 -11.112,7.263 -16.858,13.158c-56.921,58.313 -0.892,226.305 160.6,315.98c-37.687,126.533 -75.204,267.904 -111.933,415.75c13.325,-4.667 29.271,-9.346 33.237,-21.913c5.959,-24.496 42.788,-173.558 102.584,-375.779c-0,-0 10.912,-41.421 30.891,-109.671c18.475,-63.108 44.725,-149.175 77.367,-246.975c-159.929,-104.083 -274.45,-234.588 -330.675,-306.813Z" style="fill:#7c297d;fill-rule:nonzero;"/>
+  <path id="path4328" d="M8792.46,721.342c1.684,1.346 2.525,4.208 2.525,8.587c0,4.375 -0.841,8.417 -2.525,12.121l-0.504,4.042c-1.35,3.029 -2.862,5.554 -4.546,7.575c-1.345,1.683 -3.537,3.029 -6.566,4.037c-3.029,0.675 -7.238,1.013 -12.625,1.013c-5.388,-0.338 -9.934,-0.505 -13.638,-0.505l-7.575,0c-1.683,0.671 -3.2,0.842 -4.546,0.505c-1.345,-0.338 -2.695,-0.171 -4.041,0.504c-3.704,1.346 -6.9,4.546 -9.596,9.596c-1.008,1.683 -1.683,3.704 -2.021,6.062c-0.333,2.354 -0.671,4.713 -1.008,7.071l-24.242,119.192c-0.337,1.683 -0.504,3.196 -0.504,4.546c-0,1.345 -0.338,2.691 -1.013,4.037l-1.008,4.042c-0.337,1.008 -0.675,2.02 -1.012,3.029c-0,1.012 -0.505,1.854 -1.513,2.525c-1.35,2.696 -3.537,4.546 -6.567,5.558c-1.683,0.671 -3.704,1.008 -6.062,1.008l-22.725,0c-5.725,0 -9.596,-1.345 -11.617,-4.041c-1.012,-2.021 -1.346,-4.375 -1.012,-7.071c0.675,-2.692 1.35,-5.721 2.021,-9.088l23.737,-119.195c0.338,-1.684 0.675,-3.367 1.013,-5.05c0.67,-1.684 0.841,-3.196 0.504,-4.546l1.008,-7.071c0.338,-5.383 -1.346,-8.754 -5.05,-10.1c-3.029,-1.683 -7.575,-2.354 -13.637,-2.021c-5.721,0.338 -10.771,0.508 -15.15,0.508c-1.684,0 -3.367,0.167 -5.05,0.505c-1.346,-0 -2.525,-0.171 -3.534,-0.505c-1.35,-0.675 -2.529,-0.841 -3.537,-0.508c-1.009,0 -2.021,-0.167 -3.029,-0.504c-3.367,-1.683 -4.884,-4.375 -4.546,-8.079c0.337,-3.704 1.008,-8.084 2.021,-13.134c0.337,-2.02 0.67,-3.87 1.008,-5.554c0.675,-1.683 1.517,-3.366 2.525,-5.05c1.012,-1.683 2.358,-2.862 4.042,-3.537c1.683,-1.009 3.366,-1.85 5.05,-2.525c1.008,-0.338 1.683,-0.338 2.02,-0c0.671,-0 1.513,-0.167 2.525,-0.504l134.85,-0c3.03,-0 5.892,0.166 8.584,0.504c2.696,-0 4.883,0.675 6.566,2.021Zm268.688,1.012c1.346,2.354 1.683,5.05 1.008,8.079c-0.337,3.029 -0.841,6.396 -1.512,10.1l-32.829,164.142c-0.675,3.704 -1.517,7.071 -2.525,10.1c-0.675,2.696 -1.855,5.05 -3.538,7.071c-2.354,2.696 -6.058,4.041 -11.108,4.041l-14.142,0c-2.021,0 -4.208,0.167 -6.567,0.505c-2.02,-0 -3.704,-0.338 -5.05,-1.009c-3.033,-1.012 -4.883,-2.525 -5.558,-4.546c-0.333,-2.02 -0.504,-4.545 -0.504,-7.575l1.517,-8.587c-0,-1.008 0.166,-2.188 0.504,-3.533c0.337,-1.684 0.675,-3.2 1.008,-4.546l13.133,-64.142c0.675,-4.042 1.346,-8.083 2.021,-12.121c1.009,-4.041 1.513,-7.746 1.513,-11.112c-0.334,-1.684 -0.504,-3.029 -0.504,-4.042c-0,-1.346 -0.505,-2.354 -1.513,-3.029c-0.337,-0.338 -0.842,-0.504 -1.517,-0.504c-1.008,0.671 -2.187,1.346 -3.537,2.021c-3.367,4.037 -6.396,8.583 -9.088,13.633c-2.695,5.054 -5.558,9.933 -8.587,14.65c-6.058,10.437 -11.954,21.042 -17.675,31.817c-5.725,10.437 -11.617,20.708 -17.679,30.808c-2.692,4.712 -5.554,10.1 -8.584,16.162c-3.033,5.721 -6.566,9.934 -10.608,12.625c-2.021,1.346 -4.375,2.188 -7.071,2.525l-16.162,0c-1.684,-0.675 -3.196,-1.179 -4.546,-1.516c-1.346,-0.671 -2.525,-1.513 -3.533,-2.525c-1.009,-1.009 -1.684,-2.354 -2.021,-4.038c-0.338,-1.683 -0.671,-3.366 -1.009,-5.05c-1.012,-3.033 -1.683,-6.062 -2.02,-9.091c-0.338,-3.367 -0.842,-6.734 -1.517,-10.105c-2.021,-9.762 -3.704,-19.695 -5.05,-29.795c-1.346,-10.438 -3.029,-20.538 -5.05,-30.305c-1.008,-5.725 -2.021,-11.445 -3.029,-17.17c-0.675,-5.725 -2.525,-10.605 -5.559,-14.646c-0.67,-0 -1.175,0.166 -1.512,0.504l-1.013,-0c-1.683,1.346 -2.862,2.862 -3.533,4.546c-1.012,1.683 -1.683,3.366 -2.021,5.05c0,1.346 -0.337,2.862 -1.008,4.546l-1.517,8.587c-0.675,1.346 -1.179,2.692 -1.516,4.038c-0.334,1.35 -0.505,2.525 -0.505,3.537l-12.12,58.583c-0.675,4.38 -1.684,9.767 -3.03,16.163c-1.012,6.062 -2.525,10.437 -4.545,13.133c-1.013,0.671 -2.021,1.513 -3.03,2.525c-0.675,0.671 -1.516,1.179 -2.529,1.513c-1.683,0.675 -3.7,1.179 -6.058,1.516l-20.204,0c-4.375,0 -7.742,-1.008 -10.1,-3.029c-1.684,-1.346 -2.525,-3.537 -2.525,-6.566c0.337,-3.03 0.841,-6.396 1.516,-10.1l33.334,-166.667c0.671,-3.033 1.346,-5.892 2.021,-8.588c1.008,-3.029 2.187,-5.387 3.533,-7.07c1.683,-2.355 4.379,-3.871 8.083,-4.546c1.009,-0.338 1.684,-0.338 2.017,-0c0.675,-0 1.517,-0.167 2.525,-0.504l43.942,-0c3.366,-0 5.891,0.841 7.575,2.525c2.695,2.02 4.208,5.22 4.545,9.595c0.675,4.38 1.517,8.417 2.525,12.121c1.684,9.429 3.367,19.025 5.05,28.788c1.684,9.429 3.367,19.025 5.05,28.787c1.35,5.054 2.359,10.271 3.034,15.659c1.008,5.387 2.016,10.604 3.029,15.658c0.671,2.017 1.179,4.208 1.512,6.562c0.675,2.021 2.021,3.367 4.042,4.042c1.683,0.675 3.2,0.338 4.546,-1.008c1.683,-1.35 2.862,-2.525 3.537,-3.538c3.367,-3.704 6.059,-7.575 8.08,-11.616c2.358,-4.375 4.712,-8.584 7.07,-12.625c7.071,-11.113 13.638,-22.392 19.696,-33.838c6.4,-11.787 13.134,-23.233 20.204,-34.346c2.692,-4.712 5.388,-9.596 8.08,-14.646c3.029,-5.387 7.07,-9.091 12.12,-11.112c2.359,-0.671 4.713,-1.008 7.071,-1.008l36.363,-0c2.021,-0.338 3.875,-0.338 5.558,-0l2.525,-0c1.346,0.675 2.692,1.179 4.038,1.516c1.687,0.338 2.695,1.009 3.033,2.021Z" style="fill-rule:nonzero;"/>
+  <path id="path1" d="M2866.07,2092.43c-150.088,-13.46 -253.806,-82.277 -287.76,-190.93c-30.902,-98.885 -17.816,-209.252 38.457,-324.325c32.852,-67.182 117.72,-150.531 186.529,-183.192c63.217,-30.007 148.971,-58.338 205.759,-67.977c59.39,-10.081 180.315,-26.556 233.658,-31.834c65.006,-6.432 196.693,-35.197 222.697,-48.644c65.175,-33.703 107.043,-114.49 91.442,-176.444c-10.744,-42.671 -24.985,-61.992 -61.436,-83.353c-26.917,-15.775 -41.492,-18.79 -104.363,-21.586c-81.589,-3.628 -134.097,5.105 -183.215,30.471c-45.565,23.532 -65.58,42.437 -102.915,97.208c-44.598,65.424 -52.14,67.683 -216.76,64.919c-117.137,-1.967 -128.696,-3.28 -137.754,-15.685c-15.065,-20.631 -12.118,-39.46 14.385,-91.891c71.44,-141.33 176.549,-226.291 347.578,-280.952c113.514,-36.279 187.988,-44.764 356.551,-40.621c117.057,2.877 158.635,6.568 204.42,18.146c147.905,37.402 237.485,118.035 252.283,227.086c7.77,57.256 -0.281,108.097 -79.93,504.633c-52.358,260.672 -75.176,389.871 -79.987,452.908c-3.703,48.509 -8.552,93.931 -10.776,100.938c-8.95,28.2 -36.919,33.521 -175.337,33.357c-146.719,-0.153 -152.134,-1.742 -171.749,-49.741c-16.018,-39.197 -29.597,-39.148 -110.793,0.409c-88.834,43.269 -179.961,67.993 -284.512,77.193c-44.116,3.883 -74.223,4.631 -83.377,4.631c-6.148,0 -30.488,-1.792 -63.095,-4.715l-0,-0.009Zm336.194,-237.704c88.4,-18.702 157.053,-64.357 204.685,-136.117c49.452,-74.503 88.258,-223.244 65.422,-250.76c-10.644,-12.826 -6.135,-13.173 -180.834,13.925c-174.259,27.029 -232.875,46.454 -288.841,95.718c-40.966,36.058 -56.872,63.208 -67.574,115.338c-10.403,50.67 -2.703,86.568 25.843,120.493c34.69,41.226 149.235,60.88 241.299,41.403Zm2994.3,233.426c-82.623,-17.451 -121.141,-29.631 -175.904,-55.623c-51.008,-24.209 -74.873,-40.975 -115.398,-81.071c-109.659,-108.498 -149.964,-234.684 -137.079,-429.165c6.777,-102.277 16.471,-147.046 53.191,-245.636c49.332,-132.45 99.583,-210.499 200.169,-310.901c117.667,-117.449 252.423,-194.316 398.217,-227.152c91.88,-20.693 240.52,-22.113 313.869,-2.999c101.302,26.396 201.55,85.476 252.41,148.753c14.621,18.191 30.255,36.974 34.741,41.739c4.487,4.768 11.977,20.463 16.646,34.884c4.67,14.421 15.546,40.344 24.172,57.606c20.098,40.223 38.228,146.034 38.154,222.681c-0.051,78.348 -11.604,176.833 -24.241,207.079c-19.658,47.046 -13.154,46.429 -474.735,45.041c-258.129,-0.777 -418.628,1.338 -430.015,5.668c-9.992,3.797 -26.321,15.701 -36.287,26.449c-15.36,16.566 -18.12,25.969 -18.12,61.741c-0,128.542 55.515,205.624 165.757,230.15c133.528,29.707 269.973,-8.456 377.217,-105.506c22.738,-20.577 49.746,-40.608 60.019,-44.514c10.273,-3.904 66.775,-7.101 125.561,-7.101c93.997,-0 108.825,1.574 122.984,13.037c14.854,12.028 15.467,15.151 7.917,40.35c-10.106,33.728 -113.754,164.482 -163.667,206.468c-100.865,84.845 -217.315,139.479 -344.842,161.786c-56.608,9.902 -234.03,13.989 -270.736,6.236Zm540.93,-836.072c16.271,-18.923 14.876,-30.52 10.797,-72.675c-11.637,-120.265 -93.477,-189.165 -225.087,-189.5c-122.497,-0.306 -228.179,55.459 -296.923,156.69c-23.051,33.944 -29.121,49.206 -29.384,73.884c-0.532,49.927 -2.734,49.551 277.529,47.496c0,0 199.143,0.871 242.987,-1.778c8.168,-0.493 20.081,-14.117 20.081,-14.117Zm-6401.11,805.714c-31.661,-12.757 -32.497,-27.151 -8.828,-151.967c40.584,-214.015 313.564,-1565.81 321.645,-1592.78c15.865,-52.952 5.386,-50.994 284.867,-53.225l249.693,-1.993l18.225,15.943c15.918,13.925 19.572,25.655 28.863,92.666c5.851,42.198 18.378,126.943 27.837,188.322c9.459,61.378 26.714,185.357 38.344,275.507c11.631,90.15 30.161,220.406 41.178,289.457c11.017,69.051 23.609,153.796 27.981,188.321c20.136,158.983 44.034,167.026 111.466,37.513c407.078,-781.853 547.301,-1044.2 569.053,-1064.65c0,0 13.13,-22.755 24.203,-22.755c44.663,-0 252.581,1.829 252.581,1.829c0,0 207.842,1.829 252.581,1.829c3.637,0 10.728,19.146 10.728,19.146c10.158,18.13 1.694,64.212 -159.503,868.371c-93.626,467.074 -174.334,859.539 -179.351,872.144c-14.861,37.34 -39.592,43.342 -178.587,43.342c-156.443,-0 -179.423,-6.395 -179.673,-49.999c-0.057,-10.237 36.154,-198.558 80.473,-418.492c44.319,-219.934 85.083,-427.019 90.586,-460.19c5.504,-33.171 14.707,-80.251 20.452,-104.623c12.611,-53.494 13.903,-121.692 2.44,-128.776c-16.699,-10.32 -63.084,63.749 -207.959,332.071c-67.174,124.414 -162.132,297.567 -198.903,362.693c-16.245,28.772 -49.308,89.976 -73.475,136.01c-44.807,85.351 -142.33,259.503 -162.885,290.874c-19.945,30.44 -42.051,35.835 -159.658,38.97c-160.163,4.267 -163.303,1.988 -182.606,-132.507c-5.666,-39.484 -16.546,-112.592 -24.177,-162.463c-7.631,-49.87 -21.795,-142.461 -31.475,-205.758c-9.68,-63.297 -31.833,-212.385 -49.228,-331.306c-34.102,-233.127 -46.052,-293.199 -61.373,-308.52c-8.461,-8.461 -11.299,-8.366 -20.341,0.674c-12.066,12.067 -32.127,69.87 -40.238,115.941c-30.626,173.965 -198.122,976.255 -206.478,989.007c-20.413,31.155 -47.66,36.43 -185.705,35.951c-70.133,-0.255 -134.372,-3.204 -142.753,-6.581l0,0.004Zm3996.39,-3.276c-13.609,-5.917 -23.706,-16.093 -25.681,-25.883c-9.369,-46.429 -20.397,-118.628 -46.143,-302.101c-15.611,-111.25 -34.401,-241.505 -41.755,-289.457c-7.354,-47.953 -18.224,-123.281 -24.156,-167.397c-5.932,-44.116 -16.86,-121.014 -24.286,-170.884c-21.042,-141.326 -35.441,-255.869 -35.348,-281.197c0.205,-56.069 21.808,-64.157 170.267,-63.756c120.917,0.307 166.904,5.974 183.455,22.526c11.54,11.539 13.095,22.522 43.679,308.477c29.083,271.915 54.086,475.932 59.379,484.495c2.458,3.976 12.201,7.233 21.649,7.233c12.742,-0 22.281,-8.045 36.932,-31.146l19.752,-31.146l22.131,34.155c12.173,18.785 43.645,54.072 69.939,78.416l47.806,44.261l-33.792,125.358c-18.585,68.947 -40.983,152.037 -49.772,184.644c-22.725,84.307 -21.269,83.751 -218.184,83.415c-115.599,-0.205 -158.978,-2.668 -175.872,-10.013Zm2873.61,3.184c-8.517,-3.429 -17.647,-14.846 -20.289,-25.374c-3.215,-12.812 25.928,-173.81 88.121,-486.799c118.691,-597.316 149.089,-739.014 163.139,-760.458c16.378,-24.996 35.27,-28.041 173.927,-28.041c143.7,-0 144.164,0.204 144.164,63.608c0,32.355 11.326,58.452 25.369,58.452c7.207,-0 33.353,-16.279 64.434,-40.114c47.566,-36.478 164.682,-91.074 220.578,-102.826c57.953,-12.185 216.555,-13.887 269.933,-2.898c56.747,11.683 133.62,52.235 166.368,87.763c15.797,17.136 38.653,52.123 50.793,77.747c22.005,46.448 22.072,46.937 22.072,161.674c0,107.728 -1.921,124.673 -30.009,265.045c-81.595,407.75 -135.246,668.355 -141.909,689.308c-14.188,44.62 -33.883,49.973 -183.992,50.002c-155.256,0.031 -163.718,-2.611 -163.718,-51.157c0,-16.207 28.144,-169.99 62.542,-341.74c87.476,-436.769 94.455,-489.786 73.68,-559.746c-12.519,-42.154 -50.694,-81.654 -93.506,-96.749c-96.417,-33.997 -245.583,7.567 -318.593,88.772c-67.235,74.781 -86.042,139.101 -185.035,632.827c-37.681,187.937 -59.325,281.05 -68.093,292.945c-7.069,9.59 -23.545,21.183 -36.612,25.762c-28.123,9.854 -259.78,11.487 -283.364,1.998l0,-0.001Z" style="fill-rule:nonzero;"/>
+</svg></a>
+    <nav class="tabs" aria-label="Sections">
+      <ul>
+        <li><a href="./../../docs/index.html" aria-current="true">Docs</a></li>
+        <li><a href="./../../download.html">Downloads</a></li>
+        <li><a href="./../../news/index.html">News</a></li>
+        <li><a href="./../../extend/index.html">Extend</a></li>
+        <li><a href="./../../community/index.html">Community</a></li>
+      </ul>
+    </nav>
+    <form class="search" role="search" action="./../../search.html" method="get" data-index="./../../search.json" data-script="./js/minisearch-7.2.0.js">
+      <label class="visually-hidden" for="q">Search the documentation</label>
+      <div class="search-field">
+        <svg class="search-icon" aria-hidden="true" viewBox="0 0 16 16" width="16" height="16"><circle cx="7" cy="7" r="5" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M11 11l3.5 3.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+        <input id="q" name="q" type="search" autocomplete="off" spellcheck="false" placeholder="Search the docs">
+      </div>
+    </form>
+    <a class="asf" href="https://www.apache.org/"><img class="asf-leaf" src="./images/oakleaf.svg" width="14" height="22" alt=""><span>Apache</span></a>
+    </div>
+  </header>
+  <aside class="specimen" aria-label="About this site">
+    <p><strong>Specimen.</strong> A proposed redesign of maven.apache.org, built with <code>mvn site</code> and a skin of its own; not the official Apache Maven site. The official site is <a href="https://maven.apache.org/">maven.apache.org</a>. <a href="./../../about-this-example.html">About this example</a></p>
+  </aside>
+  <div class="frame has-group">
+    <nav class="group-nav component-nav" aria-labelledby="group-nav-title">
+      <p class="up"><a href="./../../docs/plugins/index.html"><svg aria-hidden="true" viewBox="0 0 16 16" width="14" height="14"><path d="M10 3.5L5.5 8l4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>All plugins</a></p>
+      <h2 id="group-nav-title"><a href="./index.html">Apache Maven ACR Plugin</a></h2>
+      <p class="component-version">Version 3.2.0 · <a class="other-versions" href="https://maven.apache.org/plugins-archives/" data-prefix="maven-acr-plugin-">Other versions</a></p>
+      <h3>Overview</h3>
+      <ul class="page-list">
+        <li><a href="index.html">Introduction</a>
+        </li>
+        <li><a href="plugin-info.html">Plugin Documentation</a>
+        </li>
+        <li><a href="usage.html">Usage</a>
+        </li>
+        <li><a href="faq.html">FAQ</a>
+        </li>
+        <li><a href="https://www.apache.org/licenses/">License</a>
+        </li>
+        <li><a href="download.html">Download</a>
+        </li>
+      </ul>
+      <h3>Examples</h3>
+      <ul class="page-list">
+        <li><a href="examples/filter-deployment-descriptor.html">Filter the deployment descriptor</a>
+        </li>
+        <li><a href="examples/app-client-dependency.html">Using the app-client as a dependency</a>
+        </li>
+      </ul>
+      <h3>Project Documentation</h3>
+      <ul class="page-list">
+        <li><a href="project-info.html" aria-current="true">Project Information</a>
+          <ul>
+            <li><a href="index.html">About</a></li>
+            <li><a href="summary.html">Summary</a></li>
+            <li><a href="dependency-info.html">Maven Coordinates</a></li>
+            <li><a href="team.html">Team</a></li>
+            <li><a href="scm.html">Source Code Management</a></li>
+            <li><a href="issue-management.html">Issue Management</a></li>
+            <li><a href="mailing-lists.html">Mailing Lists</a></li>
+            <li><a href="dependency-management.html">Dependency Management</a></li>
+            <li><a href="dependencies.html" aria-current="page">Dependencies</a></li>
+            <li><a href="dependency-convergence.html">Dependency Convergence</a></li>
+            <li><a href="ci-management.html">CI Management</a></li>
+            <li><a href="plugin-management.html">Plugin Management</a></li>
+            <li><a href="plugins.html">Plugins</a></li>
+            <li><a href="distribution-management.html">Distribution Management</a></li>
+          </ul>
+        </li>
+        <li><a href="project-reports.html">Project Reports</a>
+        </li>
+      </ul>
+    </nav>
+    <main id="content">
+      <p class="crumbs"><a href="./../../docs/index.html">Docs</a> <span aria-hidden="true">›</span> <a href="./../../docs/plugins/index.html">Plugins</a> <span aria-hidden="true">›</span> <a href="./index.html">Apache Maven ACR Plugin</a></p>
+      <div class="prose">
+
+<section class="facts facts--inline" aria-label="About this page">
+  <dl>
+    <dt>Version</dt>
+    <dd>3.2.0</dd>
+    <dt>Source</dt>
+    <dd>Generated from <a href="https://github.com/apache/maven-acr-plugin/tree/master/src/main/java">the code</a></dd>
+    <dt>Wrong?</dt>
+    <dd><a href="https://github.com/apache/maven-acr-plugin/issues/">Report a problem</a></dd>
+  </dl>
+</section>
+<section><a id="Project_Dependencies"></a>
+<h1>Project Dependencies</h1><section><a id="Project_Dependencies_compile"></a>
+<h2>compile</h2>
+<p>The following is a list of compile dependencies for this project. These dependencies are required to compile and run the application:</p>
+<div class="table-scroll" tabindex="0"><table class="bodyTable">
+<tr class="a">
+<th>GroupId</th>
+<th>ArtifactId</th>
+<th>Version</th>
+<th>Type</th>
+<th>Licenses</th></tr>
+<tr class="b">
+<td>commons-io</td>
+<td><a class="externalLink" href="https://commons.apache.org/proper/commons-io/">commons-io</a></td>
+<td>2.21.0</td>
+<td>jar</td>
+<td><a class="externalLink" href="https://www.apache.org/licenses/LICENSE-2.0.txt">Apache-2.0</a></td></tr>
+<tr class="a">
+<td>org.apache.maven</td>
+<td><a class="externalLink" href="https://maven.apache.org/shared/maven-archiver/">maven-archiver</a></td>
+<td>3.6.5</td>
+<td>jar</td>
+<td><a class="externalLink" href="https://www.apache.org/licenses/LICENSE-2.0.txt">Apache-2.0</a></td></tr>
+<tr class="b">
+<td>org.apache.maven.shared</td>
+<td><a class="externalLink" href="https://maven.apache.org/shared/maven-filtering/">maven-filtering</a></td>
+<td>3.4.0</td>
+<td>jar</td>
+<td><a class="externalLink" href="https://www.apache.org/licenses/LICENSE-2.0.txt">Apache-2.0</a></td></tr>
+<tr class="a">
+<td>org.codehaus.plexus</td>
+<td><a class="externalLink" href="https://codehaus-plexus.github.io/plexus-archiver/">plexus-archiver</a></td>
+<td>4.10.4</td>
+<td>jar</td>
+<td><a class="externalLink" href="https://www.apache.org/licenses/LICENSE-2.0.txt">Apache-2.0</a></td></tr>
+<tr class="b">
+<td>org.codehaus.plexus</td>
+<td><a class="externalLink" href="https://codehaus-plexus.github.io/plexus-utils/">plexus-utils</a></td>
+<td>4.0.2</td>
+<td>jar</td>
+<td><a class="externalLink" href="https://www.apache.org/licenses/LICENSE-2.0.txt">Apache License, Version 2.0</a></td></tr></table></div></section><section><a id="Project_Dependencies_test"></a>
+<h2>test</h2>
+<p>The following is a list of test dependencies for this project. These dependencies are only required to compile and run unit tests for the application:</p>
+<div class="table-scroll" tabindex="0"><table class="bodyTable">
+<tr class="a">
+<th>GroupId</th>
+<th>ArtifactId</th>
+<th>Version</th>
+<th>Type</th>
+<th>Licenses</th></tr>
+<tr class="b">
+<td>org.apache.maven</td>
+<td><a class="externalLink" href="https://maven.apache.org/ref/3.6.3/maven-compat/">maven-compat</a></td>
+<td>3.6.3</td>
+<td>jar</td>
+<td><a class="externalLink" href="https://www.apache.org/licenses/LICENSE-2.0.txt">Apache License, Version 2.0</a></td></tr>
+<tr class="a">
+<td>org.apache.maven.plugin-testing</td>
+<td><a class="externalLink" href="https://maven.apache.org/plugin-testing/maven-plugin-testing-harness/">maven-plugin-testing-harness</a></td>
+<td>3.4.0</td>
+<td>jar</td>
+<td><a class="externalLink" href="https://www.apache.org/licenses/LICENSE-2.0.txt">Apache-2.0</a></td></tr></table></div></section><section><a id="Project_Dependencies_provided"></a>
+<h2>provided</h2>
+<p>The following is a list of provided dependencies for this project. These dependencies are required to compile the application, but should be provided by default when using the library:</p>
+<div class="table-scroll" tabindex="0"><table class="bodyTable">
+<tr class="a">
+<th>GroupId</th>
+<th>ArtifactId</th>
+<th>Version</th>
+<th>Type</th>
+<th>Licenses</th></tr>
+<tr class="b">
+<td>javax.inject</td>
+<td><a class="externalLink" href="http://code.google.com/p/atinject/">javax.inject</a></td>
+<td>1</td>
+<td>jar</td>
+<td><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">The Apache Software License, Version 2.0</a></td></tr>
+<tr class="a">
+<td>org.apache.maven</td>
+<td><a class="externalLink" href="https://maven.apache.org/ref/3.6.3/maven-artifact/">maven-artifact</a></td>
+<td>3.6.3</td>
+<td>jar</td>
+<td><a class="externalLink" href="https://www.apache.org/licenses/LICENSE-2.0.txt">Apache License, Version 2.0</a></td></tr>
+<tr class="b">
+<td>org.apache.maven</td>
+<td><a class="externalLink" href="https://maven.apache.org/ref/3.6.3/maven-core/">maven-core</a></td>
+<td>3.6.3</td>
+<td>jar</td>
+<td><a class="externalLink" href="https://www.apache.org/licenses/LICENSE-2.0.txt">Apache License, Version 2.0</a></td></tr>
+<tr class="a">
+<td>org.apache.maven</td>
+<td><a class="externalLink" href="https://maven.apache.org/ref/3.6.3/maven-plugin-api/">maven-plugin-api</a></td>
+<td>3.6.3</td>
+<td>jar</td>
+<td><a class="externalLink" href="https://www.apache.org/licenses/LICENSE-2.0.txt">Apache License, Version 2.0</a></td></tr>
+<tr class="b">
+<td>org.apache.maven.plugin-tools</td>
+<td><a class="externalLink" href="https://maven.apache.org/plugin-tools/maven-plugin-annotations">maven-plugin-annotations</a></td>
+<td>3.15.1</td>
+<td>jar</td>
+<td><a class="externalLink" href="https://www.apache.org/licenses/LICENSE-2.0.txt">Apache-2.0</a></td></tr></table></div></section></section><section><a id="Project_Transitive_Dependencies"></a>
+<h1>Project Transitive Dependencies</h1>
+<p>The following is a list of transitive dependencies for this project. Transitive dependencies are the dependencies of the project dependencies.</p><section><a id="Project_Transitive_Dependencies_compile"></a>
+<h2>compile</h2>
+<p>The following is a list of compile dependencies for this project. These dependencies are required to compile and run the application:</p>
+<div class="table-scroll" tabindex="0"><table class="bodyTable">
+<tr class="a">
+<th>GroupId</th>
+<th>ArtifactId</th>
+<th>Version</th>
+<th>Type</th>
+<th>Licenses</th></tr>
+<tr class="b">
+<td>commons-codec</td>
+<td><a class="externalLink" href="https://commons.apache.org/proper/commons-codec/">commons-codec</a></td>
+<td>1.19.0</td>
+<td>jar</td>
+<td><a class="externalLink" href="https://www.apache.org/licenses/LICENSE-2.0.txt">Apache-2.0</a></td></tr>
+<tr class="a">
+<td>io.airlift</td>
+<td><a class="externalLink" href="https://github.com/airlift/aircompressor">aircompressor</a></td>
+<td>0.27</td>
+<td>jar</td>
+<td><a class="externalLink" href="https://www.apache.org/licenses/LICENSE-2.0.html">Apache License 2.0</a></td></tr>
+<tr class="b">
+<td>org.apache.commons</td>
+<td><a class="externalLink" href="https://commons.apache.org/proper/commons-compress/">commons-compress</a></td>
+<td>1.28.0</td>
+<td>jar</td>
+<td><a class="externalLink" href="https://www.apache.org/licenses/LICENSE-2.0.txt">Apache-2.0</a></td></tr>
+<tr class="a">
+<td>org.apache.commons</td>
+<td><a class="externalLink" href="http://commons.apache.org/proper/commons-lang/">commons-lang3</a></td>
+<td>3.8.1</td>
+<td>jar</td>
+<td><a class="externalLink" href="https://www.apache.org/licenses/LICENSE-2.0.txt">Apache License, Version 2.0</a></td></tr>
+<tr class="b">
+<td>org.codehaus.plexus</td>
+<td><a class="externalLink" href="https://codehaus-plexus.github.io/plexus-pom/plexus-interpolation/">plexus-interpolation</a></td>
+<td>1.28</td>
+<td>jar</td>
+<td><a class="externalLink" href="https://www.apache.org/licenses/LICENSE-2.0.txt">Apache-2.0</a></td></tr>
+<tr class="a">
+<td>org.codehaus.plexus</td>
+<td><a class="externalLink" href="https://codehaus-plexus.github.io/plexus-pom/plexus-io/">plexus-io</a></td>
+<td>3.6.0</td>
+<td>jar</td>
+<td><a class="externalLink" href="https://www.apache.org/licenses/LICENSE-2.0.txt">Apache-2.0</a></td></tr>
+<tr class="b">
+<td>org.codehaus.plexus</td>
+<td><a class="externalLink" href="https://codehaus-plexus.github.io/plexus-xml/">plexus-xml</a></td>
+<td>3.0.1</td>
+<td>jar</td>
+<td><a class="externalLink" href="https://www.apache.org/licenses/LICENSE-2.0.txt">Apache License, Version 2.0</a></td></tr>
+<tr class="a">
+<td>org.slf4j</td>
+<td><a class="externalLink" href="http://www.slf4j.org">slf4j-api</a></td>
+<td>1.7.36</td>
+<td>jar</td>
+<td><a class="externalLink" href="http://www.opensource.org/licenses/mit-license.php">MIT License</a></td></tr>
+<tr class="b">
+<td>org.sonatype.plexus</td>
+<td><a class="externalLink" href="http://forge.sonatype.com/spice-parent/plexus-build-api/">plexus-build-api</a></td>
+<td>0.0.7</td>
+<td>jar</td>
+<td><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0">Apache Public License 2.0</a></td></tr></table></div></section><section><a id="Project_Transitive_Dependencies_runtime"></a>
+<h2>runtime</h2>
+<p>The following is a list of runtime dependencies for this project. These dependencies are required to run the application:</p>
+<div class="table-scroll" tabindex="0"><table class="bodyTable">
+<tr class="a">
+<th>GroupId</th>
+<th>ArtifactId</th>
+<th>Version</th>
+<th>Type</th>
+<th>Licenses</th></tr>
+<tr class="b">
+<td>com.github.luben</td>
+<td><a class="externalLink" href="https://github.com/luben/zstd-jni">zstd-jni</a></td>
+<td>1.5.7-6</td>
+<td>jar</td>
+<td><a class="externalLink" href="https://opensource.org/licenses/BSD-2-Clause">BSD 2-Clause License</a></td></tr>
+<tr class="a">
+<td>org.tukaani</td>
+<td><a class="externalLink" href="https://tukaani.org/xz/java.html">xz</a></td>
+<td>1.10</td>
+<td>jar</td>
+<td>0BSD</td></tr></table></div></section><section><a id="Project_Transitive_Dependencies_test"></a>
+<h2>test</h2>
+<p>The following is a list of test dependencies for this project. These dependencies are only required to compile and run unit tests for the application:</p>
+<div class="table-scroll" tabindex="0"><table class="bodyTable">
+<tr class="a">
+<th>GroupId</th>
+<th>ArtifactId</th>
+<th>Version</th>
+<th>Type</th>
+<th>Licenses</th></tr>
+<tr class="b">
+<td>com.google.inject</td>
+<td><a class="externalLink" href="https://github.com/google/guice/guice">guice</a></td>
+<td>5.1.0</td>
+<td>jar</td>
+<td><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">The Apache Software License, Version 2.0</a></td></tr>
+<tr class="a">
+<td>net.bytebuddy</td>
+<td><a class="externalLink" href="https://bytebuddy.net/byte-buddy">byte-buddy</a></td>
+<td>1.12.19</td>
+<td>jar</td>
+<td><a class="externalLink" href="https://www.apache.org/licenses/LICENSE-2.0.txt">Apache License, Version 2.0</a></td></tr>
+<tr class="b">
+<td>net.bytebuddy</td>
+<td><a class="externalLink" href="https://bytebuddy.net/byte-buddy-agent">byte-buddy-agent</a></td>
+<td>1.12.19</td>
+<td>jar</td>
+<td><a class="externalLink" href="https://www.apache.org/licenses/LICENSE-2.0.txt">Apache License, Version 2.0</a></td></tr>
+<tr class="a">
+<td>org.apache.maven.wagon</td>
+<td><a class="externalLink" href="https://maven.apache.org/wagon/wagon-provider-api">wagon-provider-api</a></td>
+<td>3.3.4</td>
+<td>jar</td>
+<td><a class="externalLink" href="https://www.apache.org/licenses/LICENSE-2.0.txt">Apache License, Version 2.0</a></td></tr>
+<tr class="b">
+<td>org.codehaus.plexus</td>
+<td><a class="externalLink" href="https://codehaus-plexus.github.io/plexus-testing/">plexus-testing</a></td>
+<td>2.0.1</td>
+<td>jar</td>
+<td><a class="externalLink" href="https://www.apache.org/licenses/LICENSE-2.0.txt">Apache-2.0</a></td></tr>
+<tr class="a">
+<td>org.mockito</td>
+<td><a class="externalLink" href="https://github.com/mockito/mockito">mockito-core</a></td>
+<td>4.11.0</td>
+<td>jar</td>
+<td><a class="externalLink" href="https://github.com/mockito/mockito/blob/main/LICENSE">The MIT License</a></td></tr>
+<tr class="b">
+<td>org.objenesis</td>
+<td><a class="externalLink" href="http://objenesis.org/objenesis">objenesis</a></td>
+<td>3.3</td>
+<td>jar</td>
+<td><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">Apache License, Version 2.0</a></td></tr></table></div></section><section><a id="Project_Transitive_Dependencies_provided"></a>
+<h2>provided</h2>
+<p>The following is a list of provided dependencies for this project. These dependencies are required to compile the application, but should be provided by default when using the library:</p>
+<div class="table-scroll" tabindex="0"><table class="bodyTable">
+<tr class="a">
+<th>GroupId</th>
+<th>ArtifactId</th>
+<th>Version</th>
+<th>Classifier</th>
+<th>Type</th>
+<th>Licenses</th></tr>
+<tr class="b">
+<td>aopalliance</td>
+<td><a class="externalLink" href="http://aopalliance.sourceforge.net">aopalliance</a></td>
+<td>1.0</td>
+<td>-</td>
+<td>jar</td>
+<td>Public Domain</td></tr>
+<tr class="a">
+<td>com.google.code.findbugs</td>
+<td><a class="externalLink" href="http://findbugs.sourceforge.net/">jsr305</a></td>
+<td>3.0.2</td>
+<td>-</td>
+<td>jar</td>
+<td><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">The Apache Software License, Version 2.0</a></td></tr>
+<tr class="b">
+<td>com.google.errorprone</td>
+<td><a class="externalLink" href="http://nexus.sonatype.org/oss-repository-hosting.html/error_prone_parent/error_prone_annotations">error_prone_annotations</a></td>
+<td>2.1.3</td>
+<td>-</td>
+<td>jar</td>
+<td><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">Apache 2.0</a></td></tr>
+<tr class="a">
+<td>com.google.guava</td>
+<td><a class="externalLink" href="https://github.com/google/guava/guava">guava</a></td>
+<td>25.1-android</td>
+<td>-</td>
+<td>jar</td>
+<td><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">The Apache Software License, Version 2.0</a></td></tr>
+<tr class="b">
+<td>com.google.inject</td>
+<td><a class="externalLink" href="https://github.com/google/guice/guice">guice</a></td>
+<td>4.2.1</td>
+<td>no_aop</td>
+<td>jar</td>
+<td><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">The Apache Software License, Version 2.0</a></td></tr>
+<tr class="a">
+<td>com.google.j2objc</td>
+<td><a class="externalLink" href="https://github.com/google/j2objc/">j2objc-annotations</a></td>
+<td>1.1</td>
+<td>-</td>
+<td>jar</td>
+<td><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">The Apache Software License, Version 2.0</a></td></tr>
+<tr class="b">
+<td>org.apache.maven</td>
+<td><a class="externalLink" href="https://maven.apache.org/ref/3.6.3/maven-builder-support/">maven-builder-support</a></td>
+<td>3.6.3</td>
+<td>-</td>
+<td>jar</td>
+<td><a class="externalLink" href="https://www.apache.org/licenses/LICENSE-2.0.txt">Apache License, Version 2.0</a></td></tr>
+<tr class="a">
+<td>org.apache.maven</td>
+<td><a class="externalLink" href="https://maven.apache.org/ref/3.6.3/maven-model/">maven-model</a></td>
+<td>3.6.3</td>
+<td>-</td>
+<td>jar</td>
+<td><a class="externalLink" href="https://www.apache.org/licenses/LICENSE-2.0.txt">Apache License, Version 2.0</a></td></tr>
+<tr class="b">
+<td>org.apache.maven</td>
+<td><a class="externalLink" href="https://maven.apache.org/ref/3.6.3/maven-model-builder/">maven-model-builder</a></td>
+<td>3.6.3</td>
+<td>-</td>
+<td>jar</td>
+<td><a class="externalLink" href="https://www.apache.org/licenses/LICENSE-2.0.txt">Apache License, Version 2.0</a></td></tr>
+<tr class="a">
+<td>org.apache.maven</td>
+<td><a class="externalLink" href="https://maven.apache.org/ref/3.6.3/maven-repository-metadata/">maven-repository-metadata</a></td>
+<td>3.6.3</td>
+<td>-</td>
+<td>jar</td>
+<td><a class="externalLink" href="https://www.apache.org/licenses/LICENSE-2.0.txt">Apache License, Version 2.0</a></td></tr>
+<tr class="b">
+<td>org.apache.maven</td>
+<td><a class="externalLink" href="https://maven.apache.org/ref/3.6.3/maven-resolver-provider/">maven-resolver-provider</a></td>
+<td>3.6.3</td>
+<td>-</td>
+<td>jar</td>
+<td><a class="externalLink" href="https://www.apache.org/licenses/LICENSE-2.0.txt">Apache License, Version 2.0</a></td></tr>
+<tr class="a">
+<td>org.apache.maven</td>
+<td><a class="externalLink" href="https://maven.apache.org/ref/3.6.3/maven-settings/">maven-settings</a></td>
+<td>3.6.3</td>
+<td>-</td>
+<td>jar</td>
+<td><a class="externalLink" href="https://www.apache.org/licenses/LICENSE-2.0.txt">Apache License, Version 2.0</a></td></tr>
+<tr class="b">
+<td>org.apache.maven</td>
+<td><a class="externalLink" href="https://maven.apache.org/ref/3.6.3/maven-settings-builder/">maven-settings-builder</a></td>
+<td>3.6.3</td>
+<td>-</td>
+<td>jar</td>
+<td><a class="externalLink" href="https://www.apache.org/licenses/LICENSE-2.0.txt">Apache License, Version 2.0</a></td></tr>
+<tr class="a">
+<td>org.apache.maven.resolver</td>
+<td><a class="externalLink" href="https://maven.apache.org/resolver/maven-resolver-api/">maven-resolver-api</a></td>
+<td>1.4.1</td>
+<td>-</td>
+<td>jar</td>
+<td><a class="externalLink" href="https://www.apache.org/licenses/LICENSE-2.0.txt">Apache License, Version 2.0</a></td></tr>
+<tr class="b">
+<td>org.apache.maven.resolver</td>
+<td><a class="externalLink" href="https://maven.apache.org/resolver/maven-resolver-impl/">maven-resolver-impl</a></td>
+<td>1.4.1</td>
+<td>-</td>
+<td>jar</td>
+<td><a class="externalLink" href="https://www.apache.org/licenses/LICENSE-2.0.txt">Apache License, Version 2.0</a></td></tr>
+<tr class="a">
+<td>org.apache.maven.resolver</td>
+<td><a class="externalLink" href="https://maven.apache.org/resolver/maven-resolver-spi/">maven-resolver-spi</a></td>
+<td>1.4.1</td>
+<td>-</td>
+<td>jar</td>
+<td><a class="externalLink" href="https://www.apache.org/licenses/LICENSE-2.0.txt">Apache License, Version 2.0</a></td></tr>
+<tr class="b">
+<td>org.apache.maven.resolver</td>
+<td><a class="externalLink" href="https://maven.apache.org/resolver/maven-resolver-util/">maven-resolver-util</a></td>
+<td>1.4.1</td>
+<td>-</td>
+<td>jar</td>
+<td><a class="externalLink" href="https://www.apache.org/licenses/LICENSE-2.0.txt">Apache License, Version 2.0</a></td></tr>
+<tr class="a">
+<td>org.apache.maven.shared</td>
+<td><a class="externalLink" href="https://maven.apache.org/shared/maven-shared-utils/">maven-shared-utils</a></td>
+<td>3.2.1</td>
+<td>-</td>
+<td>jar</td>
+<td><a class="externalLink" href="https://www.apache.org/licenses/LICENSE-2.0.txt">Apache License, Version 2.0</a></td></tr>
+<tr class="b">
+<td>org.checkerframework</td>
+<td><a class="externalLink" href="http://checkerframework.org">checker-compat-qual</a></td>
+<td>2.0.0</td>
+<td>-</td>
+<td>jar</td>
+<td><a class="externalLink" href="http://www.gnu.org/software/classpath/license.html">GNU General Public License, version 2 (GPL2), with the classpath exception</a><a class="externalLink" href="http://opensource.org/licenses/MIT">The MIT License</a></td></tr>
+<tr class="a">
+<td>org.codehaus.mojo</td>
+<td><a class="externalLink" href="http://mojo.codehaus.org/animal-sniffer/animal-sniffer-annotations">animal-sniffer-annotations</a></td>
+<td>1.14</td>
+<td>-</td>
+<td>jar</td>
+<td><a class="externalLink" href="http://www.opensource.org/licenses/mit-license.php">MIT license</a></td></tr>
+<tr class="b">
+<td>org.codehaus.plexus</td>
+<td><a class="externalLink" href="http://codehaus-plexus.github.io/plexus-classworlds/">plexus-classworlds</a></td>
+<td>2.6.0</td>
+<td>-</td>
+<td>jar</td>
+<td><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">Apache License, Version 2.0</a></td></tr>
+<tr class="a">
+<td>org.codehaus.plexus</td>
+<td><a class="externalLink" href="http://codehaus-plexus.github.io/plexus-containers/plexus-component-annotations/">plexus-component-annotations</a></td>
+<td>2.1.0</td>
+<td>-</td>
+<td>jar</td>
+<td><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">Apache License, Version 2.0</a></td></tr>
+<tr class="b">
+<td>org.eclipse.sisu</td>
+<td><a class="externalLink" href="https://eclipse.dev/sisu/org.eclipse.sisu.inject/">org.eclipse.sisu.inject</a></td>
+<td>0.9.0.M4</td>
+<td>-</td>
+<td>jar</td>
+<td><a class="externalLink" href="https://www.eclipse.org/legal/epl-v20.html">Eclipse Public License, Version 2.0</a></td></tr>
+<tr class="a">
+<td>org.eclipse.sisu</td>
+<td><a class="externalLink" href="https://eclipse.dev/sisu/org.eclipse.sisu.plexus/">org.eclipse.sisu.plexus</a></td>
+<td>0.9.0.M4</td>
+<td>-</td>
+<td>jar</td>
+<td><a class="externalLink" href="https://www.eclipse.org/legal/epl-v20.html">Eclipse Public License, Version 2.0</a></td></tr>
+<tr class="b">
+<td>org.ow2.asm</td>
+<td><a class="externalLink" href="http://asm.ow2.io/">asm</a></td>
+<td>9.8</td>
+<td>-</td>
+<td>jar</td>
+<td><a class="externalLink" href="https://asm.ow2.io/license.html">BSD-3-Clause</a></td></tr>
+<tr class="a">
+<td>org.sonatype.plexus</td>
+<td><a class="externalLink" href="http://spice.sonatype.org/plexus-cipher">plexus-cipher</a></td>
+<td>1.4</td>
+<td>-</td>
+<td>jar</td>
+<td><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0">Apache Public License 2.0</a></td></tr>
+<tr class="b">
+<td>org.sonatype.plexus</td>
+<td><a class="externalLink" href="http://spice.sonatype.org/plexus-sec-dispatcher">plexus-sec-dispatcher</a></td>
+<td>1.4</td>
+<td>-</td>
+<td>jar</td>
+<td><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0">Apache Public License 2.0</a></td></tr></table></div></section></section><section><a id="Project_Dependency_Graph"></a>
+<h1>Project Dependency Graph</h1>
+<script>
+      function toggleDependencyDetails( divId, imgId )
+      {
+        var div = document.getElementById( divId );
+        var img = document.getElementById( imgId );
+        if( div.style.display == '' )
+        {
+          div.style.display = 'none';
+          img.src='./images/icon_info_sml.gif';
+          img.alt='[Information]';
+        }
+        else
+        {
+          div.style.display = '';
+          img.src='./images/close.gif';
+          img.alt='[Close]';
+        }
+      }
+
+</script>
+<section><a id="Dependency_Tree"></a>
+<h2>Dependency Tree</h2>
+<ul>
+<li>org.apache.maven.plugins:maven-acr-plugin:maven-plugin:3.2.0 <img id="_img1" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep0', '_img1' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep0" style="display:none">
+<div class="table-scroll" tabindex="0"><table class="bodyTable">
+<tr class="a">
+<th>Apache Maven ACR Plugin</th></tr>
+<tr class="b">
+<td>
+<p><b>Description: </b>Generates a J2EE Application Client file.</p>
+<p><b>URL: </b><a class="externalLink" href="https://maven.apache.org/plugins/maven-acr-plugin/">https://maven.apache.org/plugins/maven-acr-plugin/</a></p>
+<p><b>Project Licenses: </b><a class="externalLink" href="https://www.apache.org/licenses/LICENSE-2.0.txt">Apache-2.0</a></p></td></tr></table></div></div>
+<ul>
+<li>org.apache.maven:maven-plugin-api:jar:3.6.3 (provided) <img id="_img3" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep2', '_img3' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep2" style="display:none">
+<div class="table-scroll" tabindex="0"><table class="bodyTable">
+<tr class="a">
+<th>Maven Plugin API</th></tr>
+<tr class="b">
+<td>
+<p><b>Description: </b>The API for plugins - Mojos - development.</p>
+<p><b>URL: </b><a class="externalLink" href="https://maven.apache.org/ref/3.6.3/maven-plugin-api/">https://maven.apache.org/ref/3.6.3/maven-plugin-api/</a></p>
+<p><b>Project Licenses: </b><a class="externalLink" href="https://www.apache.org/licenses/LICENSE-2.0.txt">Apache License, Version 2.0</a></p></td></tr></table></div></div>
+<ul>
+<li>org.apache.maven:maven-model:jar:3.6.3 (provided) <img id="_img5" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep4', '_img5' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep4" style="display:none">
+<div class="table-scroll" tabindex="0"><table class="bodyTable">
+<tr class="a">
+<th>Maven Model</th></tr>
+<tr class="b">
+<td>
+<p><b>Description: </b>Model for Maven POM (Project Object Model)</p>
+<p><b>URL: </b><a class="externalLink" href="https://maven.apache.org/ref/3.6.3/maven-model/">https://maven.apache.org/ref/3.6.3/maven-model/</a></p>
+<p><b>Project Licenses: </b><a class="externalLink" href="https://www.apache.org/licenses/LICENSE-2.0.txt">Apache License, Version 2.0</a></p></td></tr></table></div></div></li>
+<li>org.eclipse.sisu:org.eclipse.sisu.plexus:jar:0.9.0.M4 (provided) <img id="_img7" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep6', '_img7' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep6" style="display:none">
+<div class="table-scroll" tabindex="0"><table class="bodyTable">
+<tr class="a">
+<th>org.eclipse.sisu:org.eclipse.sisu.plexus</th></tr>
+<tr class="b">
+<td>
+<p><b>Description: </b>Plexus-JSR330 adapter; adds Plexus support to the Sisu-Inject container</p>
+<p><b>URL: </b><a class="externalLink" href="https://eclipse.dev/sisu/org.eclipse.sisu.plexus/">https://eclipse.dev/sisu/org.eclipse.sisu.plexus/</a></p>
+<p><b>Project Licenses: </b><a class="externalLink" href="https://www.eclipse.org/legal/epl-v20.html">Eclipse Public License, Version 2.0</a></p></td></tr></table></div></div></li>
+<li>org.codehaus.plexus:plexus-classworlds:jar:2.6.0 (provided) <img id="_img9" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep8', '_img9' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep8" style="display:none">
+<div class="table-scroll" tabindex="0"><table class="bodyTable">
+<tr class="a">
+<th>Plexus Classworlds</th></tr>
+<tr class="b">
+<td>
+<p><b>Description: </b>A class loader framework</p>
+<p><b>URL: </b><a class="externalLink" href="http://codehaus-plexus.github.io/plexus-classworlds/">http://codehaus-plexus.github.io/plexus-classworlds/</a></p>
+<p><b>Project Licenses: </b><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">Apache License, Version 2.0</a></p></td></tr></table></div></div></li></ul></li>
+<li>org.apache.maven.plugin-tools:maven-plugin-annotations:jar:3.15.1 (provided) <img id="_img11" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep10', '_img11' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep10" style="display:none">
+<div class="table-scroll" tabindex="0"><table class="bodyTable">
+<tr class="a">
+<th>Maven Plugin Tools Java Annotations</th></tr>
+<tr class="b">
+<td>
+<p><b>Description: </b>Java annotations to use in Mojos</p>
+<p><b>URL: </b><a class="externalLink" href="https://maven.apache.org/plugin-tools/maven-plugin-annotations">https://maven.apache.org/plugin-tools/maven-plugin-annotations</a></p>
+<p><b>Project Licenses: </b><a class="externalLink" href="https://www.apache.org/licenses/LICENSE-2.0.txt">Apache-2.0</a></p></td></tr></table></div></div></li>
+<li>org.apache.maven:maven-core:jar:3.6.3 (provided) <img id="_img13" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep12', '_img13' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep12" style="display:none">
+<div class="table-scroll" tabindex="0"><table class="bodyTable">
+<tr class="a">
+<th>Maven Core</th></tr>
+<tr class="b">
+<td>
+<p><b>Description: </b>Maven Core classes.</p>
+<p><b>URL: </b><a class="externalLink" href="https://maven.apache.org/ref/3.6.3/maven-core/">https://maven.apache.org/ref/3.6.3/maven-core/</a></p>
+<p><b>Project Licenses: </b><a class="externalLink" href="https://www.apache.org/licenses/LICENSE-2.0.txt">Apache License, Version 2.0</a></p></td></tr></table></div></div>
+<ul>
+<li>org.apache.maven:maven-settings:jar:3.6.3 (provided) <img id="_img15" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep14', '_img15' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep14" style="display:none">
+<div class="table-scroll" tabindex="0"><table class="bodyTable">
+<tr class="a">
+<th>Maven Settings</th></tr>
+<tr class="b">
+<td>
+<p><b>Description: </b>Maven Settings model.</p>
+<p><b>URL: </b><a class="externalLink" href="https://maven.apache.org/ref/3.6.3/maven-settings/">https://maven.apache.org/ref/3.6.3/maven-settings/</a></p>
+<p><b>Project Licenses: </b><a class="externalLink" href="https://www.apache.org/licenses/LICENSE-2.0.txt">Apache License, Version 2.0</a></p></td></tr></table></div></div></li>
+<li>org.apache.maven:maven-settings-builder:jar:3.6.3 (provided) <img id="_img17" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep16', '_img17' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep16" style="display:none">
+<div class="table-scroll" tabindex="0"><table class="bodyTable">
+<tr class="a">
+<th>Maven Settings Builder</th></tr>
+<tr class="b">
+<td>
+<p><b>Description: </b>The effective settings builder, with inheritance and password decryption.</p>
+<p><b>URL: </b><a class="externalLink" href="https://maven.apache.org/ref/3.6.3/maven-settings-builder/">https://maven.apache.org/ref/3.6.3/maven-settings-builder/</a></p>
+<p><b>Project Licenses: </b><a class="externalLink" href="https://www.apache.org/licenses/LICENSE-2.0.txt">Apache License, Version 2.0</a></p></td></tr></table></div></div>
+<ul>
+<li>org.sonatype.plexus:plexus-sec-dispatcher:jar:1.4 (provided) <img id="_img19" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep18', '_img19' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep18" style="display:none">
+<div class="table-scroll" tabindex="0"><table class="bodyTable">
+<tr class="a">
+<th>Plexus Security Dispatcher Component</th></tr>
+<tr class="b">
+<td>
+<p><b>Description: </b>There is currently no description associated with this project.</p>
+<p><b>URL: </b><a class="externalLink" href="http://spice.sonatype.org/plexus-sec-dispatcher">http://spice.sonatype.org/plexus-sec-dispatcher</a></p>
+<p><b>Project Licenses: </b><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0">Apache Public License 2.0</a></p></td></tr></table></div></div>
+<ul>
+<li>org.sonatype.plexus:plexus-cipher:jar:1.4 (provided) <img id="_img21" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep20', '_img21' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep20" style="display:none">
+<div class="table-scroll" tabindex="0"><table class="bodyTable">
+<tr class="a">
+<th>Plexus Cipher: encryption/decryption Component</th></tr>
+<tr class="b">
+<td>
+<p><b>Description: </b>There is currently no description associated with this project.</p>
+<p><b>URL: </b><a class="externalLink" href="http://spice.sonatype.org/plexus-cipher">http://spice.sonatype.org/plexus-cipher</a></p>
+<p><b>Project Licenses: </b><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0">Apache Public License 2.0</a></p></td></tr></table></div></div></li></ul></li></ul></li>
+<li>org.apache.maven:maven-builder-support:jar:3.6.3 (provided) <img id="_img23" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep22', '_img23' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep22" style="display:none">
+<div class="table-scroll" tabindex="0"><table class="bodyTable">
+<tr class="a">
+<th>Maven Builder Support</th></tr>
+<tr class="b">
+<td>
+<p><b>Description: </b>Support for descriptor builders (model, setting, toolchains)</p>
+<p><b>URL: </b><a class="externalLink" href="https://maven.apache.org/ref/3.6.3/maven-builder-support/">https://maven.apache.org/ref/3.6.3/maven-builder-support/</a></p>
+<p><b>Project Licenses: </b><a class="externalLink" href="https://www.apache.org/licenses/LICENSE-2.0.txt">Apache License, Version 2.0</a></p></td></tr></table></div></div></li>
+<li>org.apache.maven:maven-repository-metadata:jar:3.6.3 (provided) <img id="_img25" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep24', '_img25' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep24" style="display:none">
+<div class="table-scroll" tabindex="0"><table class="bodyTable">
+<tr class="a">
+<th>Maven Repository Metadata Model</th></tr>
+<tr class="b">
+<td>
+<p><b>Description: </b>Per-directory local and remote repository metadata.</p>
+<p><b>URL: </b><a class="externalLink" href="https://maven.apache.org/ref/3.6.3/maven-repository-metadata/">https://maven.apache.org/ref/3.6.3/maven-repository-metadata/</a></p>
+<p><b>Project Licenses: </b><a class="externalLink" href="https://www.apache.org/licenses/LICENSE-2.0.txt">Apache License, Version 2.0</a></p></td></tr></table></div></div></li>
+<li>org.apache.maven:maven-model-builder:jar:3.6.3 (provided) <img id="_img27" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep26', '_img27' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep26" style="display:none">
+<div class="table-scroll" tabindex="0"><table class="bodyTable">
+<tr class="a">
+<th>Maven Model Builder</th></tr>
+<tr class="b">
+<td>
+<p><b>Description: </b>The effective model builder, with inheritance, profile activation, interpolation, ...</p>
+<p><b>URL: </b><a class="externalLink" href="https://maven.apache.org/ref/3.6.3/maven-model-builder/">https://maven.apache.org/ref/3.6.3/maven-model-builder/</a></p>
+<p><b>Project Licenses: </b><a class="externalLink" href="https://www.apache.org/licenses/LICENSE-2.0.txt">Apache License, Version 2.0</a></p></td></tr></table></div></div></li>
+<li>org.apache.maven:maven-resolver-provider:jar:3.6.3 (provided) <img id="_img29" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep28', '_img29' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep28" style="display:none">
+<div class="table-scroll" tabindex="0"><table class="bodyTable">
+<tr class="a">
+<th>Maven Artifact Resolver Provider</th></tr>
+<tr class="b">
+<td>
+<p><b>Description: </b>Extensions to Maven Resolver for utilizing Maven POM and repository metadata.</p>
+<p><b>URL: </b><a class="externalLink" href="https://maven.apache.org/ref/3.6.3/maven-resolver-provider/">https://maven.apache.org/ref/3.6.3/maven-resolver-provider/</a></p>
+<p><b>Project Licenses: </b><a class="externalLink" href="https://www.apache.org/licenses/LICENSE-2.0.txt">Apache License, Version 2.0</a></p></td></tr></table></div></div></li>
+<li>org.apache.maven.resolver:maven-resolver-impl:jar:1.4.1 (provided) <img id="_img31" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep30', '_img31' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep30" style="display:none">
+<div class="table-scroll" tabindex="0"><table class="bodyTable">
+<tr class="a">
+<th>Maven Artifact Resolver Implementation</th></tr>
+<tr class="b">
+<td>
+<p><b>Description: </b>An implementation of the repository system.</p>
+<p><b>URL: </b><a class="externalLink" href="https://maven.apache.org/resolver/maven-resolver-impl/">https://maven.apache.org/resolver/maven-resolver-impl/</a></p>
+<p><b>Project Licenses: </b><a class="externalLink" href="https://www.apache.org/licenses/LICENSE-2.0.txt">Apache License, Version 2.0</a></p></td></tr></table></div></div></li>
+<li>org.apache.maven.resolver:maven-resolver-api:jar:1.4.1 (provided) <img id="_img33" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep32', '_img33' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep32" style="display:none">
+<div class="table-scroll" tabindex="0"><table class="bodyTable">
+<tr class="a">
+<th>Maven Artifact Resolver API</th></tr>
+<tr class="b">
+<td>
+<p><b>Description: </b>The application programming interface for the repository system.</p>
+<p><b>URL: </b><a class="externalLink" href="https://maven.apache.org/resolver/maven-resolver-api/">https://maven.apache.org/resolver/maven-resolver-api/</a></p>
+<p><b>Project Licenses: </b><a class="externalLink" href="https://www.apache.org/licenses/LICENSE-2.0.txt">Apache License, Version 2.0</a></p></td></tr></table></div></div></li>
+<li>org.apache.maven.resolver:maven-resolver-spi:jar:1.4.1 (provided) <img id="_img35" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep34', '_img35' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep34" style="display:none">
+<div class="table-scroll" tabindex="0"><table class="bodyTable">
+<tr class="a">
+<th>Maven Artifact Resolver SPI</th></tr>
+<tr class="b">
+<td>
+<p><b>Description: </b>The service provider interface for repository system implementations and repository connectors.</p>
+<p><b>URL: </b><a class="externalLink" href="https://maven.apache.org/resolver/maven-resolver-spi/">https://maven.apache.org/resolver/maven-resolver-spi/</a></p>
+<p><b>Project Licenses: </b><a class="externalLink" href="https://www.apache.org/licenses/LICENSE-2.0.txt">Apache License, Version 2.0</a></p></td></tr></table></div></div></li>
+<li>org.apache.maven.resolver:maven-resolver-util:jar:1.4.1 (provided) <img id="_img37" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep36', '_img37' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep36" style="display:none">
+<div class="table-scroll" tabindex="0"><table class="bodyTable">
+<tr class="a">
+<th>Maven Artifact Resolver Utilities</th></tr>
+<tr class="b">
+<td>
+<p><b>Description: </b>A collection of utility classes to ease usage of the repository system.</p>
+<p><b>URL: </b><a class="externalLink" href="https://maven.apache.org/resolver/maven-resolver-util/">https://maven.apache.org/resolver/maven-resolver-util/</a></p>
+<p><b>Project Licenses: </b><a class="externalLink" href="https://www.apache.org/licenses/LICENSE-2.0.txt">Apache License, Version 2.0</a></p></td></tr></table></div></div></li>
+<li>org.apache.maven.shared:maven-shared-utils:jar:3.2.1 (provided) <img id="_img39" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep38', '_img39' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep38" style="display:none">
+<div class="table-scroll" tabindex="0"><table class="bodyTable">
+<tr class="a">
+<th>Apache Maven Shared Utils</th></tr>
+<tr class="b">
+<td>
+<p><b>Description: </b>Shared utils without any further dependencies</p>
+<p><b>URL: </b><a class="externalLink" href="https://maven.apache.org/shared/maven-shared-utils/">https://maven.apache.org/shared/maven-shared-utils/</a></p>
+<p><b>Project Licenses: </b><a class="externalLink" href="https://www.apache.org/licenses/LICENSE-2.0.txt">Apache License, Version 2.0</a></p></td></tr></table></div></div></li>
+<li>org.eclipse.sisu:org.eclipse.sisu.inject:jar:0.9.0.M4 (provided) <img id="_img41" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep40', '_img41' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep40" style="display:none">
+<div class="table-scroll" tabindex="0"><table class="bodyTable">
+<tr class="a">
+<th>org.eclipse.sisu:org.eclipse.sisu.inject</th></tr>
+<tr class="b">
+<td>
+<p><b>Description: </b>JSR330-based container; supports classpath scanning, auto-binding, and dynamic auto-wiring</p>
+<p><b>URL: </b><a class="externalLink" href="https://eclipse.dev/sisu/org.eclipse.sisu.inject/">https://eclipse.dev/sisu/org.eclipse.sisu.inject/</a></p>
+<p><b>Project Licenses: </b><a class="externalLink" href="https://www.eclipse.org/legal/epl-v20.html">Eclipse Public License, Version 2.0</a></p></td></tr></table></div></div>
+<ul>
+<li>org.ow2.asm:asm:jar:9.8 (provided) <img id="_img43" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep42', '_img43' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep42" style="display:none">
+<div class="table-scroll" tabindex="0"><table class="bodyTable">
+<tr class="a">
+<th>asm</th></tr>
+<tr class="b">
+<td>
+<p><b>Description: </b>ASM, a very small and fast Java bytecode manipulation framework</p>
+<p><b>URL: </b><a class="externalLink" href="http://asm.ow2.io/">http://asm.ow2.io/</a></p>
+<p><b>Project Licenses: </b><a class="externalLink" href="https://asm.ow2.io/license.html">BSD-3-Clause</a></p></td></tr></table></div></div></li></ul></li>
+<li>com.google.inject:guice:jar:no_aop:4.2.1 (provided) <img id="_img45" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep44', '_img45' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep44" style="display:none">
+<div class="table-scroll" tabindex="0"><table class="bodyTable">
+<tr class="a">
+<th>Google Guice - Core Library</th></tr>
+<tr class="b">
+<td>
+<p><b>Description: </b>Guice is a lightweight dependency injection framework for Java 6 and above</p>
+<p><b>URL: </b><a class="externalLink" href="https://github.com/google/guice/guice">https://github.com/google/guice/guice</a></p>
+<p><b>Project Licenses: </b><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">The Apache Software License, Version 2.0</a></p></td></tr></table></div></div>
+<ul>
+<li>aopalliance:aopalliance:jar:1.0 (provided) <img id="_img47" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep46', '_img47' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep46" style="display:none">
+<div class="table-scroll" tabindex="0"><table class="bodyTable">
+<tr class="a">
+<th>AOP alliance</th></tr>
+<tr class="b">
+<td>
+<p><b>Description: </b>AOP Alliance</p>
+<p><b>URL: </b><a class="externalLink" href="http://aopalliance.sourceforge.net">http://aopalliance.sourceforge.net</a></p>
+<p><b>Project Licenses: </b>Public Domain</p></td></tr></table></div></div></li>
+<li>com.google.guava:guava:jar:25.1-android (provided) <img id="_img49" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep48', '_img49' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep48" style="display:none">
+<div class="table-scroll" tabindex="0"><table class="bodyTable">
+<tr class="a">
+<th>Guava: Google Core Libraries for Java</th></tr>
+<tr class="b">
+<td>
+<p><b>Description: </b>Guava is a suite of core and expanded libraries that include
+    utility classes, google's collections, io classes, and much
+    much more.</p>
+<p><b>URL: </b><a class="externalLink" href="https://github.com/google/guava/guava">https://github.com/google/guava/guava</a></p>
+<p><b>Project Licenses: </b><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">The Apache Software License, Version 2.0</a></p></td></tr></table></div></div>
+<ul>
+<li>org.checkerframework:checker-compat-qual:jar:2.0.0 (provided) <img id="_img51" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep50', '_img51' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep50" style="display:none">
+<div class="table-scroll" tabindex="0"><table class="bodyTable">
+<tr class="a">
+<th>Checker Qual</th></tr>
+<tr class="b">
+<td>
+<p><b>Description: </b>Checker Qual is the set of annotations (qualifiers) and supporting classes
+        used by the Checker Framework to type check Java source code.  Please
+        see artifact:
+        org.checkerframework:checker</p>
+<p><b>URL: </b><a class="externalLink" href="http://checkerframework.org">http://checkerframework.org</a></p>
+<p><b>Project Licenses: </b><a class="externalLink" href="http://www.gnu.org/software/classpath/license.html">GNU General Public License, version 2 (GPL2), with the classpath exception</a>, <a class="externalLink" href="http://opensource.org/licenses/MIT">The MIT License</a></p></td></tr></table></div></div></li>
+<li>com.google.errorprone:error_prone_annotations:jar:2.1.3 (provided) <img id="_img53" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep52', '_img53' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep52" style="display:none">
+<div class="table-scroll" tabindex="0"><table class="bodyTable">
+<tr class="a">
+<th>error-prone annotations</th></tr>
+<tr class="b">
+<td>
+<p><b>Description: </b>Sonatype helps open source projects to set up Maven repositories on https://oss.sonatype.org/</p>
+<p><b>URL: </b><a class="externalLink" href="http://nexus.sonatype.org/oss-repository-hosting.html/error_prone_parent/error_prone_annotations">http://nexus.sonatype.org/oss-repository-hosting.html/error_prone_parent/error_prone_annotations</a></p>
+<p><b>Project Licenses: </b><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">Apache 2.0</a></p></td></tr></table></div></div></li>
+<li>com.google.j2objc:j2objc-annotations:jar:1.1 (provided) <img id="_img55" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep54', '_img55' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep54" style="display:none">
+<div class="table-scroll" tabindex="0"><table class="bodyTable">
+<tr class="a">
+<th>J2ObjC Annotations</th></tr>
+<tr class="b">
+<td>
+<p><b>Description: </b>A set of annotations that provide additional information to the J2ObjC
+    translator to modify the result of translation.</p>
+<p><b>URL: </b><a class="externalLink" href="https://github.com/google/j2objc/">https://github.com/google/j2objc/</a></p>
+<p><b>Project Licenses: </b><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">The Apache Software License, Version 2.0</a></p></td></tr></table></div></div></li>
+<li>org.codehaus.mojo:animal-sniffer-annotations:jar:1.14 (provided) <img id="_img57" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep56', '_img57' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep56" style="display:none">
+<div class="table-scroll" tabindex="0"><table class="bodyTable">
+<tr class="a">
+<th>Animal Sniffer Annotations</th></tr>
+<tr class="b">
+<td>
+<p><b>Description: </b>Animal Sniffer Parent project.</p>
+<p><b>URL: </b><a class="externalLink" href="http://mojo.codehaus.org/animal-sniffer/animal-sniffer-annotations">http://mojo.codehaus.org/animal-sniffer/animal-sniffer-annotations</a></p>
+<p><b>Project Licenses: </b><a class="externalLink" href="http://www.opensource.org/licenses/mit-license.php">MIT license</a></p></td></tr></table></div></div></li></ul></li></ul></li>
+<li>org.codehaus.plexus:plexus-component-annotations:jar:2.1.0 (provided) <img id="_img59" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep58', '_img59' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep58" style="display:none">
+<div class="table-scroll" tabindex="0"><table class="bodyTable">
+<tr class="a">
+<th>Plexus :: Component Annotations</th></tr>
+<tr class="b">
+<td>
+<p><b>Description: </b>Plexus Component &quot;Java 5&quot; Annotations, to describe plexus components properties in java sources with
+    standard annotations instead of javadoc annotations.</p>
+<p><b>URL: </b><a class="externalLink" href="http://codehaus-plexus.github.io/plexus-containers/plexus-component-annotations/">http://codehaus-plexus.github.io/plexus-containers/plexus-component-annotations/</a></p>
+<p><b>Project Licenses: </b><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">Apache License, Version 2.0</a></p></td></tr></table></div></div></li>
+<li>org.apache.commons:commons-lang3:jar:3.8.1 (compile) <img id="_img61" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep60', '_img61' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep60" style="display:none">
+<div class="table-scroll" tabindex="0"><table class="bodyTable">
+<tr class="a">
+<th>Apache Commons Lang</th></tr>
+<tr class="b">
+<td>
+<p><b>Description: </b>Apache Commons Lang, a package of Java utility classes for the
+  classes that are in java.lang's hierarchy, or are considered to be so
+  standard as to justify existence in java.lang.</p>
+<p><b>URL: </b><a class="externalLink" href="http://commons.apache.org/proper/commons-lang/">http://commons.apache.org/proper/commons-lang/</a></p>
+<p><b>Project Licenses: </b><a class="externalLink" href="https://www.apache.org/licenses/LICENSE-2.0.txt">Apache License, Version 2.0</a></p></td></tr></table></div></div></li></ul></li>
+<li>org.apache.maven:maven-artifact:jar:3.6.3 (provided) <img id="_img63" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep62', '_img63' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep62" style="display:none">
+<div class="table-scroll" tabindex="0"><table class="bodyTable">
+<tr class="a">
+<th>Maven Artifact</th></tr>
+<tr class="b">
+<td>
+<p><b>Description: </b>Maven is a software build management and
+    comprehension tool. Based on the concept of a project object model:
+    builds, dependency management, documentation creation, site
+    publication, and distribution publication are all controlled from
+    the declarative file. Maven can be extended by plugins to utilise a
+    number of other development tools for reporting or the build
+    process.</p>
+<p><b>URL: </b><a class="externalLink" href="https://maven.apache.org/ref/3.6.3/maven-artifact/">https://maven.apache.org/ref/3.6.3/maven-artifact/</a></p>
+<p><b>Project Licenses: </b><a class="externalLink" href="https://www.apache.org/licenses/LICENSE-2.0.txt">Apache License, Version 2.0</a></p></td></tr></table></div></div></li>
+<li>org.apache.maven:maven-archiver:jar:3.6.5 (compile) <img id="_img65" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep64', '_img65' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep64" style="display:none">
+<div class="table-scroll" tabindex="0"><table class="bodyTable">
+<tr class="a">
+<th>Apache Maven Archiver</th></tr>
+<tr class="b">
+<td>
+<p><b>Description: </b>Provides utility methods for creating JARs and other archive files from a Maven project.</p>
+<p><b>URL: </b><a class="externalLink" href="https://maven.apache.org/shared/maven-archiver/">https://maven.apache.org/shared/maven-archiver/</a></p>
+<p><b>Project Licenses: </b><a class="externalLink" href="https://www.apache.org/licenses/LICENSE-2.0.txt">Apache-2.0</a></p></td></tr></table></div></div>
+<ul>
+<li>org.codehaus.plexus:plexus-interpolation:jar:1.28 (compile) <img id="_img67" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep66', '_img67' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep66" style="display:none">
+<div class="table-scroll" tabindex="0"><table class="bodyTable">
+<tr class="a">
+<th>Plexus Interpolation API</th></tr>
+<tr class="b">
+<td>
+<p><b>Description: </b>The Plexus project provides a full software stack for creating and executing software projects.</p>
+<p><b>URL: </b><a class="externalLink" href="https://codehaus-plexus.github.io/plexus-pom/plexus-interpolation/">https://codehaus-plexus.github.io/plexus-pom/plexus-interpolation/</a></p>
+<p><b>Project Licenses: </b><a class="externalLink" href="https://www.apache.org/licenses/LICENSE-2.0.txt">Apache-2.0</a></p></td></tr></table></div></div></li>
+<li>org.codehaus.plexus:plexus-xml:jar:3.0.1 (compile) <img id="_img69" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep68', '_img69' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep68" style="display:none">
+<div class="table-scroll" tabindex="0"><table class="bodyTable">
+<tr class="a">
+<th>Plexus XML Utilities</th></tr>
+<tr class="b">
+<td>
+<p><b>Description: </b>A collection of various utility classes to ease working with XML in Maven 3.</p>
+<p><b>URL: </b><a class="externalLink" href="https://codehaus-plexus.github.io/plexus-xml/">https://codehaus-plexus.github.io/plexus-xml/</a></p>
+<p><b>Project Licenses: </b><a class="externalLink" href="https://www.apache.org/licenses/LICENSE-2.0.txt">Apache License, Version 2.0</a></p></td></tr></table></div></div></li></ul></li>
+<li>org.apache.maven.shared:maven-filtering:jar:3.4.0 (compile) <img id="_img71" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep70', '_img71' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep70" style="display:none">
+<div class="table-scroll" tabindex="0"><table class="bodyTable">
+<tr class="a">
+<th>Apache Maven Filtering</th></tr>
+<tr class="b">
+<td>
+<p><b>Description: </b>A component to assist in filtering of resource files with properties from a Maven project.</p>
+<p><b>URL: </b><a class="externalLink" href="https://maven.apache.org/shared/maven-filtering/">https://maven.apache.org/shared/maven-filtering/</a></p>
+<p><b>Project Licenses: </b><a class="externalLink" href="https://www.apache.org/licenses/LICENSE-2.0.txt">Apache-2.0</a></p></td></tr></table></div></div>
+<ul>
+<li>org.slf4j:slf4j-api:jar:1.7.36 (compile) <img id="_img73" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep72', '_img73' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep72" style="display:none">
+<div class="table-scroll" tabindex="0"><table class="bodyTable">
+<tr class="a">
+<th>SLF4J API Module</th></tr>
+<tr class="b">
+<td>
+<p><b>Description: </b>The slf4j API</p>
+<p><b>URL: </b><a class="externalLink" href="http://www.slf4j.org">http://www.slf4j.org</a></p>
+<p><b>Project Licenses: </b><a class="externalLink" href="http://www.opensource.org/licenses/mit-license.php">MIT License</a></p></td></tr></table></div></div></li>
+<li>org.sonatype.plexus:plexus-build-api:jar:0.0.7 (compile) <img id="_img75" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep74', '_img75' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep74" style="display:none">
+<div class="table-scroll" tabindex="0"><table class="bodyTable">
+<tr class="a">
+<th>plexus-build-api</th></tr>
+<tr class="b">
+<td>
+<p><b>Description: </b>There is currently no description associated with this project.</p>
+<p><b>URL: </b><a class="externalLink" href="http://forge.sonatype.com/spice-parent/plexus-build-api/">http://forge.sonatype.com/spice-parent/plexus-build-api/</a></p>
+<p><b>Project Licenses: </b><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0">Apache Public License 2.0</a></p></td></tr></table></div></div></li></ul></li>
+<li>org.codehaus.plexus:plexus-utils:jar:4.0.2 (compile) <img id="_img77" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep76', '_img77' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep76" style="display:none">
+<div class="table-scroll" tabindex="0"><table class="bodyTable">
+<tr class="a">
+<th>Plexus Common Utilities</th></tr>
+<tr class="b">
+<td>
+<p><b>Description: </b>A collection of various utility classes to ease working with strings, files, command lines and
+    more.</p>
+<p><b>URL: </b><a class="externalLink" href="https://codehaus-plexus.github.io/plexus-utils/">https://codehaus-plexus.github.io/plexus-utils/</a></p>
+<p><b>Project Licenses: </b><a class="externalLink" href="https://www.apache.org/licenses/LICENSE-2.0.txt">Apache License, Version 2.0</a></p></td></tr></table></div></div></li>
+<li>javax.inject:javax.inject:jar:1 (provided) <img id="_img79" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep78', '_img79' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep78" style="display:none">
+<div class="table-scroll" tabindex="0"><table class="bodyTable">
+<tr class="a">
+<th>javax.inject</th></tr>
+<tr class="b">
+<td>
+<p><b>Description: </b>The javax.inject API</p>
+<p><b>URL: </b><a class="externalLink" href="http://code.google.com/p/atinject/">http://code.google.com/p/atinject/</a></p>
+<p><b>Project Licenses: </b><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">The Apache Software License, Version 2.0</a></p></td></tr></table></div></div></li>
+<li>org.codehaus.plexus:plexus-archiver:jar:4.10.4 (compile) <img id="_img81" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep80', '_img81' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep80" style="display:none">
+<div class="table-scroll" tabindex="0"><table class="bodyTable">
+<tr class="a">
+<th>Plexus Archiver Component</th></tr>
+<tr class="b">
+<td>
+<p><b>Description: </b>The Plexus project provides a full software stack for creating and executing software projects.</p>
+<p><b>URL: </b><a class="externalLink" href="https://codehaus-plexus.github.io/plexus-archiver/">https://codehaus-plexus.github.io/plexus-archiver/</a></p>
+<p><b>Project Licenses: </b><a class="externalLink" href="https://www.apache.org/licenses/LICENSE-2.0.txt">Apache-2.0</a></p></td></tr></table></div></div>
+<ul>
+<li>org.codehaus.plexus:plexus-io:jar:3.6.0 (compile) <img id="_img83" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep82', '_img83' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep82" style="display:none">
+<div class="table-scroll" tabindex="0"><table class="bodyTable">
+<tr class="a">
+<th>Plexus IO Components</th></tr>
+<tr class="b">
+<td>
+<p><b>Description: </b>The Plexus project provides a full software stack for creating and executing software projects.</p>
+<p><b>URL: </b><a class="externalLink" href="https://codehaus-plexus.github.io/plexus-pom/plexus-io/">https://codehaus-plexus.github.io/plexus-pom/plexus-io/</a></p>
+<p><b>Project Licenses: </b><a class="externalLink" href="https://www.apache.org/licenses/LICENSE-2.0.txt">Apache-2.0</a></p></td></tr></table></div></div></li>
+<li>org.apache.commons:commons-compress:jar:1.28.0 (compile) <img id="_img85" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep84', '_img85' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep84" style="display:none">
+<div class="table-scroll" tabindex="0"><table class="bodyTable">
+<tr class="a">
+<th>Apache Commons Compress</th></tr>
+<tr class="b">
+<td>
+<p><b>Description: </b>Apache Commons Compress defines an API for working with
+compression and archive formats. These include bzip2, gzip, pack200,
+LZMA, XZ, Snappy, traditional Unix Compress, DEFLATE, DEFLATE64, LZ4,
+Brotli, Zstandard and ar, cpio, jar, tar, zip, dump, 7z, arj.</p>
+<p><b>URL: </b><a class="externalLink" href="https://commons.apache.org/proper/commons-compress/">https://commons.apache.org/proper/commons-compress/</a></p>
+<p><b>Project Licenses: </b><a class="externalLink" href="https://www.apache.org/licenses/LICENSE-2.0.txt">Apache-2.0</a></p></td></tr></table></div></div>
+<ul>
+<li>commons-codec:commons-codec:jar:1.19.0 (compile) <img id="_img87" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep86', '_img87' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep86" style="display:none">
+<div class="table-scroll" tabindex="0"><table class="bodyTable">
+<tr class="a">
+<th>Apache Commons Codec</th></tr>
+<tr class="b">
+<td>
+<p><b>Description: </b>The Apache Commons Codec component contains encoders and decoders for
+     formats such as Base16, Base32, Base64, digest, and Hexadecimal. In addition to these
+     widely used encoders and decoders, the codec package also maintains a
+     collection of phonetic encoding utilities.</p>
+<p><b>URL: </b><a class="externalLink" href="https://commons.apache.org/proper/commons-codec/">https://commons.apache.org/proper/commons-codec/</a></p>
+<p><b>Project Licenses: </b><a class="externalLink" href="https://www.apache.org/licenses/LICENSE-2.0.txt">Apache-2.0</a></p></td></tr></table></div></div></li></ul></li>
+<li>io.airlift:aircompressor:jar:0.27 (compile) <img id="_img89" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep88', '_img89' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep88" style="display:none">
+<div class="table-scroll" tabindex="0"><table class="bodyTable">
+<tr class="a">
+<th>aircompressor</th></tr>
+<tr class="b">
+<td>
+<p><b>Description: </b>Compression algorithms</p>
+<p><b>URL: </b><a class="externalLink" href="https://github.com/airlift/aircompressor">https://github.com/airlift/aircompressor</a></p>
+<p><b>Project Licenses: </b><a class="externalLink" href="https://www.apache.org/licenses/LICENSE-2.0.html">Apache License 2.0</a></p></td></tr></table></div></div></li>
+<li>org.tukaani:xz:jar:1.10 (runtime) <img id="_img91" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep90', '_img91' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep90" style="display:none">
+<div class="table-scroll" tabindex="0"><table class="bodyTable">
+<tr class="a">
+<th>XZ for Java</th></tr>
+<tr class="b">
+<td>
+<p><b>Description: </b>XZ data compression</p>
+<p><b>URL: </b><a class="externalLink" href="https://tukaani.org/xz/java.html">https://tukaani.org/xz/java.html</a></p>
+<p><b>Project Licenses: </b>0BSD</p></td></tr></table></div></div></li>
+<li>com.github.luben:zstd-jni:jar:1.5.7-6 (runtime) <img id="_img93" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep92', '_img93' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep92" style="display:none">
+<div class="table-scroll" tabindex="0"><table class="bodyTable">
+<tr class="a">
+<th>zstd-jni</th></tr>
+<tr class="b">
+<td>
+<p><b>Description: </b>JNI bindings for Zstd native library that provides fast and high compression lossless algorithm for Java and all JVM languages.</p>
+<p><b>URL: </b><a class="externalLink" href="https://github.com/luben/zstd-jni">https://github.com/luben/zstd-jni</a></p>
+<p><b>Project Licenses: </b><a class="externalLink" href="https://opensource.org/licenses/BSD-2-Clause">BSD 2-Clause License</a></p></td></tr></table></div></div></li></ul></li>
+<li>commons-io:commons-io:jar:2.21.0 (compile) <img id="_img95" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep94', '_img95' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep94" style="display:none">
+<div class="table-scroll" tabindex="0"><table class="bodyTable">
+<tr class="a">
+<th>Apache Commons IO</th></tr>
+<tr class="b">
+<td>
+<p><b>Description: </b>The Apache Commons IO library contains utility classes, stream implementations, file filters,
+file comparators, endian transformation classes, and much more.</p>
+<p><b>URL: </b><a class="externalLink" href="https://commons.apache.org/proper/commons-io/">https://commons.apache.org/proper/commons-io/</a></p>
+<p><b>Project Licenses: </b><a class="externalLink" href="https://www.apache.org/licenses/LICENSE-2.0.txt">Apache-2.0</a></p></td></tr></table></div></div></li>
+<li>org.apache.maven:maven-compat:jar:3.6.3 (test) <img id="_img97" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep96', '_img97' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep96" style="display:none">
+<div class="table-scroll" tabindex="0"><table class="bodyTable">
+<tr class="a">
+<th>Maven Compat</th></tr>
+<tr class="b">
+<td>
+<p><b>Description: </b>Maven2 classes maintained as compatibility layer.</p>
+<p><b>URL: </b><a class="externalLink" href="https://maven.apache.org/ref/3.6.3/maven-compat/">https://maven.apache.org/ref/3.6.3/maven-compat/</a></p>
+<p><b>Project Licenses: </b><a class="externalLink" href="https://www.apache.org/licenses/LICENSE-2.0.txt">Apache License, Version 2.0</a></p></td></tr></table></div></div>
+<ul>
+<li>org.apache.maven.wagon:wagon-provider-api:jar:3.3.4 (test) <img id="_img99" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep98', '_img99' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep98" style="display:none">
+<div class="table-scroll" tabindex="0"><table class="bodyTable">
+<tr class="a">
+<th>Apache Maven Wagon :: API</th></tr>
+<tr class="b">
+<td>
+<p><b>Description: </b>Maven Wagon API that defines the contract between different Wagon implementations</p>
+<p><b>URL: </b><a class="externalLink" href="https://maven.apache.org/wagon/wagon-provider-api">https://maven.apache.org/wagon/wagon-provider-api</a></p>
+<p><b>Project Licenses: </b><a class="externalLink" href="https://www.apache.org/licenses/LICENSE-2.0.txt">Apache License, Version 2.0</a></p></td></tr></table></div></div></li></ul></li>
+<li>org.apache.maven.plugin-testing:maven-plugin-testing-harness:jar:3.4.0 (test) <img id="_img101" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep100', '_img101' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep100" style="display:none">
+<div class="table-scroll" tabindex="0"><table class="bodyTable">
+<tr class="a">
+<th>Maven Plugin Testing Mechanism</th></tr>
+<tr class="b">
+<td>
+<p><b>Description: </b>The Maven Plugin Testing Harness provides mechanisms to manage tests on Mojo.</p>
+<p><b>URL: </b><a class="externalLink" href="https://maven.apache.org/plugin-testing/maven-plugin-testing-harness/">https://maven.apache.org/plugin-testing/maven-plugin-testing-harness/</a></p>
+<p><b>Project Licenses: </b><a class="externalLink" href="https://www.apache.org/licenses/LICENSE-2.0.txt">Apache-2.0</a></p></td></tr></table></div></div>
+<ul>
+<li>org.codehaus.plexus:plexus-testing:jar:2.0.1 (test) <img id="_img103" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep102', '_img103' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep102" style="display:none">
+<div class="table-scroll" tabindex="0"><table class="bodyTable">
+<tr class="a">
+<th>Plexus Testing</th></tr>
+<tr class="b">
+<td>
+<p><b>Description: </b>Library to help testing plexus components</p>
+<p><b>URL: </b><a class="externalLink" href="https://codehaus-plexus.github.io/plexus-testing/">https://codehaus-plexus.github.io/plexus-testing/</a></p>
+<p><b>Project Licenses: </b><a class="externalLink" href="https://www.apache.org/licenses/LICENSE-2.0.txt">Apache-2.0</a></p></td></tr></table></div></div>
+<ul>
+<li>com.google.inject:guice:jar:5.1.0 (test) <img id="_img105" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep104', '_img105' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep104" style="display:none">
+<div class="table-scroll" tabindex="0"><table class="bodyTable">
+<tr class="a">
+<th>Google Guice - Core Library</th></tr>
+<tr class="b">
+<td>
+<p><b>Description: </b>Guice is a lightweight dependency injection framework for Java 6 and above</p>
+<p><b>URL: </b><a class="externalLink" href="https://github.com/google/guice/guice">https://github.com/google/guice/guice</a></p>
+<p><b>Project Licenses: </b><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">The Apache Software License, Version 2.0</a></p></td></tr></table></div></div></li>
+<li>com.google.code.findbugs:jsr305:jar:3.0.2 (provided) <img id="_img107" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep106', '_img107' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep106" style="display:none">
+<div class="table-scroll" tabindex="0"><table class="bodyTable">
+<tr class="a">
+<th>FindBugs-jsr305</th></tr>
+<tr class="b">
+<td>
+<p><b>Description: </b>JSR305 Annotations for Findbugs</p>
+<p><b>URL: </b><a class="externalLink" href="http://findbugs.sourceforge.net/">http://findbugs.sourceforge.net/</a></p>
+<p><b>Project Licenses: </b><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">The Apache Software License, Version 2.0</a></p></td></tr></table></div></div></li></ul></li>
+<li>org.mockito:mockito-core:jar:4.11.0 (test) <img id="_img109" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep108', '_img109' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep108" style="display:none">
+<div class="table-scroll" tabindex="0"><table class="bodyTable">
+<tr class="a">
+<th>mockito-core</th></tr>
+<tr class="b">
+<td>
+<p><b>Description: </b>Mockito mock objects library core API and implementation</p>
+<p><b>URL: </b><a class="externalLink" href="https://github.com/mockito/mockito">https://github.com/mockito/mockito</a></p>
+<p><b>Project Licenses: </b><a class="externalLink" href="https://github.com/mockito/mockito/blob/main/LICENSE">The MIT License</a></p></td></tr></table></div></div>
+<ul>
+<li>net.bytebuddy:byte-buddy:jar:1.12.19 (test) <img id="_img111" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep110', '_img111' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep110" style="display:none">
+<div class="table-scroll" tabindex="0"><table class="bodyTable">
+<tr class="a">
+<th>Byte Buddy (without dependencies)</th></tr>
+<tr class="b">
+<td>
+<p><b>Description: </b>Byte Buddy is a Java library for creating Java classes at run time.
+        This artifact is a build of Byte Buddy with all ASM dependencies repackaged into its own name space.</p>
+<p><b>URL: </b><a class="externalLink" href="https://bytebuddy.net/byte-buddy">https://bytebuddy.net/byte-buddy</a></p>
+<p><b>Project Licenses: </b><a class="externalLink" href="https://www.apache.org/licenses/LICENSE-2.0.txt">Apache License, Version 2.0</a></p></td></tr></table></div></div></li>
+<li>net.bytebuddy:byte-buddy-agent:jar:1.12.19 (test) <img id="_img113" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep112', '_img113' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep112" style="display:none">
+<div class="table-scroll" tabindex="0"><table class="bodyTable">
+<tr class="a">
+<th>Byte Buddy agent</th></tr>
+<tr class="b">
+<td>
+<p><b>Description: </b>The Byte Buddy agent offers convenience for attaching an agent to the local or a remote VM.</p>
+<p><b>URL: </b><a class="externalLink" href="https://bytebuddy.net/byte-buddy-agent">https://bytebuddy.net/byte-buddy-agent</a></p>
+<p><b>Project Licenses: </b><a class="externalLink" href="https://www.apache.org/licenses/LICENSE-2.0.txt">Apache License, Version 2.0</a></p></td></tr></table></div></div></li>
+<li>org.objenesis:objenesis:jar:3.3 (test) <img id="_img115" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep114', '_img115' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep114" style="display:none">
+<div class="table-scroll" tabindex="0"><table class="bodyTable">
+<tr class="a">
+<th>Objenesis</th></tr>
+<tr class="b">
+<td>
+<p><b>Description: </b>A library for instantiating Java objects</p>
+<p><b>URL: </b><a class="externalLink" href="http://objenesis.org/objenesis">http://objenesis.org/objenesis</a></p>
+<p><b>Project Licenses: </b><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">Apache License, Version 2.0</a></p></td></tr></table></div></div></li></ul></li></ul></li></ul></li></ul></section></section><section><a id="Licenses"></a>
+<h1>Licenses</h1>
+<p><b>Apache Public License 2.0: </b>Plexus Cipher: encryption/decryption Component, Plexus Security Dispatcher Component, plexus-build-api</p>
+<p><b>Apache 2.0: </b>error-prone annotations</p>
+<p><b>BSD-3-Clause: </b>asm</p>
+<p><b>MIT License: </b>SLF4J API Module</p>
+<p><b>Public Domain: </b>AOP alliance</p>
+<p><b>BSD 2-Clause License: </b>zstd-jni</p>
+<p><b>Eclipse Public License, Version 2.0: </b>org.eclipse.sisu:org.eclipse.sisu.inject, org.eclipse.sisu:org.eclipse.sisu.plexus</p>
+<p><b>Apache License 2.0: </b>aircompressor</p>
+<p><b>0BSD: </b>XZ for Java</p>
+<p><b>The MIT License: </b>Checker Qual, mockito-core</p>
+<p><b>Apache-2.0: </b>Apache Commons Codec, Apache Commons Compress, Apache Commons IO, Apache Maven ACR Plugin, Apache Maven Archiver, Apache Maven Filtering, Maven Plugin Testing Mechanism, Maven Plugin Tools Java Annotations, Plexus Archiver Component, Plexus IO Components, Plexus Interpolation API, Plexus Testing</p>
+<p><b>Apache License, Version 2.0: </b>Apache Commons Lang, Apache Maven Shared Utils, Apache Maven Wagon :: API, Byte Buddy (without dependencies), Byte Buddy agent, Maven Artifact, Maven Artifact Resolver API, Maven Artifact Resolver Implementation, Maven Artifact Resolver Provider, Maven Artifact Resolver SPI, Maven Artifact Resolver Utilities, Maven Builder Support, Maven Compat, Maven Core, Maven Model, Maven Model Builder, Maven Plugin API, Maven Repository Metadata Model, Maven Settings, Maven Settings Builder, Objenesis, Plexus :: Component Annotations, Plexus Classworlds, Plexus Common Utilities, Plexus XML Utilities</p>
+<p><b>GNU General Public License, version 2 (GPL2), with the classpath exception: </b>Checker Qual</p>
+<p><b>MIT license: </b>Animal Sniffer Annotations</p>
+<p><b>The Apache Software License, Version 2.0: </b>FindBugs-jsr305, Google Guice - Core Library, Guava: Google Core Libraries for Java, J2ObjC Annotations, javax.inject</p></section><section><a id="Dependency_File_Details"></a>
+<h1>Dependency File Details</h1>
+<div class="table-scroll" tabindex="0"><table class="bodyTable">
+<tr class="a">
+<th>Filename</th>
+<th>Size</th>
+<th>Entries</th>
+<th>Classes</th>
+<th>Packages</th>
+<th>Java Version</th>
+<th title="Indicates whether these dependencies have been compiled with debug information.">Debug Information</th>
+<th>Sealed</th></tr>
+<tr class="b">
+<td style="text-align: left;">aopalliance-1.0.jar</td>
+<td style="text-align: right;">4.5 kB</td>
+<td style="text-align: right;">15</td>
+<td style="text-align: right;">9</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: center;">1.3</td>
+<td style="text-align: center;">Yes</td>
+<td style="text-align: center;">No</td></tr>
+<tr class="a">
+<td style="text-align: left;">zstd-jni-1.5.7-6.jar</td>
+<td style="text-align: right;">7.4 MB</td>
+<td style="text-align: right;">85</td>
+<td style="text-align: right;">38</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: center;">1.8</td>
+<td style="text-align: center;">Yes</td>
+<td style="text-align: center;">No</td></tr>
+<tr class="b">
+<td style="text-align: left;">jsr305-3.0.2.jar</td>
+<td style="text-align: right;">19.9 kB</td>
+<td style="text-align: right;">46</td>
+<td style="text-align: right;">35</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: center;">1.5</td>
+<td style="text-align: center;">Yes</td>
+<td style="text-align: center;">No</td></tr>
+<tr class="a">
+<td style="text-align: left;">error_prone_annotations-2.1.3.jar</td>
+<td style="text-align: right;">13.7 kB</td>
+<td style="text-align: right;">34</td>
+<td style="text-align: right;">22</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: center;">1.7</td>
+<td style="text-align: center;">No</td>
+<td style="text-align: center;">No</td></tr>
+<tr class="b">
+<td style="text-align: left;">guava-25.1-android.jar</td>
+<td style="text-align: right;">2.6 MB</td>
+<td style="text-align: right;">1905</td>
+<td style="text-align: right;">1875</td>
+<td style="text-align: right;">18</td>
+<td style="text-align: center;">1.7</td>
+<td style="text-align: center;">Yes</td>
+<td style="text-align: center;">No</td></tr>
+<tr class="a">
+<td style="text-align: left;">guice-4.2.1-no_aop.jar</td>
+<td style="text-align: right;">520.7 kB</td>
+<td style="text-align: right;">406</td>
+<td style="text-align: right;">390</td>
+<td style="text-align: right;">9</td>
+<td style="text-align: center;">1.7</td>
+<td style="text-align: center;">Yes</td>
+<td style="text-align: center;">No</td></tr>
+<tr class="b">
+<td style="text-align: left;">guice-5.1.0.jar</td>
+<td style="text-align: right;">777.6 kB</td>
+<td style="text-align: right;">512</td>
+<td style="text-align: right;">494</td>
+<td style="text-align: right;">11</td>
+<td style="text-align: center;">1.8</td>
+<td style="text-align: center;">Yes</td>
+<td style="text-align: center;">No</td></tr>
+<tr class="a">
+<td style="text-align: left;">j2objc-annotations-1.1.jar</td>
+<td style="text-align: right;">8.8 kB</td>
+<td style="text-align: right;">23</td>
+<td style="text-align: right;">12</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: center;">1.5</td>
+<td style="text-align: center;">Yes</td>
+<td style="text-align: center;">No</td></tr>
+<tr class="b">
+<td style="text-align: left;">commons-codec-1.19.0.jar</td>
+<td style="text-align: right;">374.7 kB</td>
+<td style="text-align: right;">263</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: center;">-</td>
+<td style="text-align: center;">-</td>
+<td style="text-align: center;">No</td></tr>
+<tr class="a">
+<td style="text-align: left;">&#160;&#160;&#160;&#x2022; Root</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">262</td>
+<td style="text-align: right;">115</td>
+<td style="text-align: right;">7</td>
+<td style="text-align: center;">1.8</td>
+<td style="text-align: center;">Yes</td>
+<td style="text-align: center;">-</td></tr>
+<tr class="b">
+<td style="text-align: left;">&#160;&#160;&#160;&#x2022; Versioned</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: center;">9</td>
+<td style="text-align: center;">No</td>
+<td style="text-align: center;">-</td></tr>
+<tr class="a">
+<td style="text-align: left;">commons-io-2.21.0.jar</td>
+<td style="text-align: right;">585.3 kB</td>
+<td style="text-align: right;">428</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: center;">-</td>
+<td style="text-align: center;">-</td>
+<td style="text-align: center;">No</td></tr>
+<tr class="b">
+<td style="text-align: left;">&#160;&#160;&#160;&#x2022; Root</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">426</td>
+<td style="text-align: right;">398</td>
+<td style="text-align: right;">15</td>
+<td style="text-align: center;">1.8</td>
+<td style="text-align: center;">Yes</td>
+<td style="text-align: center;">-</td></tr>
+<tr class="a">
+<td style="text-align: left;">&#160;&#160;&#160;&#x2022; Versioned</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: center;">9</td>
+<td style="text-align: center;">No</td>
+<td style="text-align: center;">-</td></tr>
+<tr class="b">
+<td style="text-align: left;">aircompressor-0.27.jar</td>
+<td style="text-align: right;">254.9 kB</td>
+<td style="text-align: right;">142</td>
+<td style="text-align: right;">124</td>
+<td style="text-align: right;">9</td>
+<td style="text-align: center;">1.8</td>
+<td style="text-align: center;">Yes</td>
+<td style="text-align: center;">No</td></tr>
+<tr class="a">
+<td style="text-align: left;">javax.inject-1.jar</td>
+<td style="text-align: right;">2.5 kB</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: center;">1.5</td>
+<td style="text-align: center;">No</td>
+<td style="text-align: center;">No</td></tr>
+<tr class="b">
+<td style="text-align: left;">byte-buddy-1.12.19.jar</td>
+<td style="text-align: right;">4 MB</td>
+<td style="text-align: right;">2742</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: center;">-</td>
+<td style="text-align: center;">-</td>
+<td style="text-align: center;">No</td></tr>
+<tr class="a">
+<td style="text-align: left;">&#160;&#160;&#160;&#x2022; Root</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">2740</td>
+<td style="text-align: right;">2687</td>
+<td style="text-align: right;">38</td>
+<td style="text-align: center;">1.6</td>
+<td style="text-align: center;">Yes</td>
+<td style="text-align: center;">-</td></tr>
+<tr class="b">
+<td style="text-align: left;">&#160;&#160;&#160;&#x2022; Versioned</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: center;">9</td>
+<td style="text-align: center;">No</td>
+<td style="text-align: center;">-</td></tr>
+<tr class="a">
+<td style="text-align: left;">byte-buddy-agent-1.12.19.jar</td>
+<td style="text-align: right;">256.4 kB</td>
+<td style="text-align: right;">90</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: center;">-</td>
+<td style="text-align: center;">-</td>
+<td style="text-align: center;">No</td></tr>
+<tr class="b">
+<td style="text-align: left;">&#160;&#160;&#160;&#x2022; Root</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">88</td>
+<td style="text-align: right;">69</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: center;">1.5</td>
+<td style="text-align: center;">Yes</td>
+<td style="text-align: center;">-</td></tr>
+<tr class="a">
+<td style="text-align: left;">&#160;&#160;&#160;&#x2022; Versioned</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: center;">9</td>
+<td style="text-align: center;">No</td>
+<td style="text-align: center;">-</td></tr>
+<tr class="b">
+<td style="text-align: left;">commons-compress-1.28.0.jar</td>
+<td style="text-align: right;">1.1 MB</td>
+<td style="text-align: right;">642</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: center;">-</td>
+<td style="text-align: center;">-</td>
+<td style="text-align: center;">No</td></tr>
+<tr class="a">
+<td style="text-align: left;">&#160;&#160;&#160;&#x2022; Root</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">641</td>
+<td style="text-align: right;">589</td>
+<td style="text-align: right;">36</td>
+<td style="text-align: center;">1.8</td>
+<td style="text-align: center;">Yes</td>
+<td style="text-align: center;">-</td></tr>
+<tr class="b">
+<td style="text-align: left;">&#160;&#160;&#160;&#x2022; Versioned</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: center;">9</td>
+<td style="text-align: center;">No</td>
+<td style="text-align: center;">-</td></tr>
+<tr class="a">
+<td style="text-align: left;">commons-lang3-3.8.1.jar</td>
+<td style="text-align: right;">501.9 kB</td>
+<td style="text-align: right;">297</td>
+<td style="text-align: right;">272</td>
+<td style="text-align: right;">13</td>
+<td style="text-align: center;">1.7</td>
+<td style="text-align: center;">Yes</td>
+<td style="text-align: center;">No</td></tr>
+<tr class="b">
+<td style="text-align: left;">maven-archiver-3.6.5.jar</td>
+<td style="text-align: right;">28.3 kB</td>
+<td style="text-align: right;">20</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: center;">1.8</td>
+<td style="text-align: center;">Yes</td>
+<td style="text-align: center;">No</td></tr>
+<tr class="a">
+<td style="text-align: left;">maven-artifact-3.6.3.jar</td>
+<td style="text-align: right;">57.8 kB</td>
+<td style="text-align: right;">59</td>
+<td style="text-align: right;">34</td>
+<td style="text-align: right;">11</td>
+<td style="text-align: center;">1.7</td>
+<td style="text-align: center;">Yes</td>
+<td style="text-align: center;">No</td></tr>
+<tr class="b">
+<td style="text-align: left;">maven-builder-support-3.6.3.jar</td>
+<td style="text-align: right;">14.3 kB</td>
+<td style="text-align: right;">24</td>
+<td style="text-align: right;">10</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: center;">1.7</td>
+<td style="text-align: center;">Yes</td>
+<td style="text-align: center;">No</td></tr>
+<tr class="a">
+<td style="text-align: left;">maven-compat-3.6.3.jar</td>
+<td style="text-align: right;">288 kB</td>
+<td style="text-align: right;">215</td>
+<td style="text-align: right;">163</td>
+<td style="text-align: right;">29</td>
+<td style="text-align: center;">1.7</td>
+<td style="text-align: center;">Yes</td>
+<td style="text-align: center;">No</td></tr>
+<tr class="b">
+<td style="text-align: left;">maven-core-3.6.3.jar</td>
+<td style="text-align: right;">633 kB</td>
+<td style="text-align: right;">490</td>
+<td style="text-align: right;">403</td>
+<td style="text-align: right;">56</td>
+<td style="text-align: center;">1.7</td>
+<td style="text-align: center;">Yes</td>
+<td style="text-align: center;">No</td></tr>
+<tr class="a">
+<td style="text-align: left;">maven-model-3.6.3.jar</td>
+<td style="text-align: right;">215.4 kB</td>
+<td style="text-align: right;">94</td>
+<td style="text-align: right;">77</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: center;">1.7</td>
+<td style="text-align: center;">Yes</td>
+<td style="text-align: center;">No</td></tr>
+<tr class="b">
+<td style="text-align: left;">maven-model-builder-3.6.3.jar</td>
+<td style="text-align: right;">192.3 kB</td>
+<td style="text-align: right;">156</td>
+<td style="text-align: right;">123</td>
+<td style="text-align: right;">16</td>
+<td style="text-align: center;">1.7</td>
+<td style="text-align: center;">Yes</td>
+<td style="text-align: center;">No</td></tr>
+<tr class="a">
+<td style="text-align: left;">maven-plugin-api-3.6.3.jar</td>
+<td style="text-align: right;">47 kB</td>
+<td style="text-align: right;">48</td>
+<td style="text-align: right;">27</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: center;">1.7</td>
+<td style="text-align: center;">Yes</td>
+<td style="text-align: center;">No</td></tr>
+<tr class="b">
+<td style="text-align: left;">maven-repository-metadata-3.6.3.jar</td>
+<td style="text-align: right;">27.2 kB</td>
+<td style="text-align: right;">27</td>
+<td style="text-align: right;">9</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: center;">1.7</td>
+<td style="text-align: center;">Yes</td>
+<td style="text-align: center;">No</td></tr>
+<tr class="a">
+<td style="text-align: left;">maven-resolver-provider-3.6.3.jar</td>
+<td style="text-align: right;">66.2 kB</td>
+<td style="text-align: right;">43</td>
+<td style="text-align: right;">26</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: center;">1.7</td>
+<td style="text-align: center;">Yes</td>
+<td style="text-align: center;">No</td></tr>
+<tr class="b">
+<td style="text-align: left;">maven-settings-3.6.3.jar</td>
+<td style="text-align: right;">44 kB</td>
+<td style="text-align: right;">35</td>
+<td style="text-align: right;">19</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: center;">1.7</td>
+<td style="text-align: center;">Yes</td>
+<td style="text-align: center;">No</td></tr>
+<tr class="a">
+<td style="text-align: left;">maven-settings-builder-3.6.3.jar</td>
+<td style="text-align: right;">42.1 kB</td>
+<td style="text-align: right;">53</td>
+<td style="text-align: right;">32</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: center;">1.7</td>
+<td style="text-align: center;">Yes</td>
+<td style="text-align: center;">No</td></tr>
+<tr class="b">
+<td style="text-align: left;">maven-plugin-testing-harness-3.4.0.jar</td>
+<td style="text-align: right;">68 kB</td>
+<td style="text-align: right;">46</td>
+<td style="text-align: right;">25</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: center;">1.8</td>
+<td style="text-align: center;">Yes</td>
+<td style="text-align: center;">No</td></tr>
+<tr class="a">
+<td style="text-align: left;">maven-plugin-annotations-3.15.1.jar</td>
+<td style="text-align: right;">13.8 kB</td>
+<td style="text-align: right;">22</td>
+<td style="text-align: right;">7</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: center;">1.8</td>
+<td style="text-align: center;">Yes</td>
+<td style="text-align: center;">No</td></tr>
+<tr class="b">
+<td style="text-align: left;">maven-resolver-api-1.4.1.jar</td>
+<td style="text-align: right;">149 kB</td>
+<td style="text-align: right;">156</td>
+<td style="text-align: right;">132</td>
+<td style="text-align: right;">12</td>
+<td style="text-align: center;">1.7</td>
+<td style="text-align: center;">Yes</td>
+<td style="text-align: center;">No</td></tr>
+<tr class="a">
+<td style="text-align: left;">maven-resolver-impl-1.4.1.jar</td>
+<td style="text-align: right;">180.7 kB</td>
+<td style="text-align: right;">116</td>
+<td style="text-align: right;">95</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: center;">1.7</td>
+<td style="text-align: center;">Yes</td>
+<td style="text-align: center;">No</td></tr>
+<tr class="b">
+<td style="text-align: left;">maven-resolver-spi-1.4.1.jar</td>
+<td style="text-align: right;">36.7 kB</td>
+<td style="text-align: right;">56</td>
+<td style="text-align: right;">34</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: center;">1.7</td>
+<td style="text-align: center;">Yes</td>
+<td style="text-align: center;">No</td></tr>
+<tr class="a">
+<td style="text-align: left;">maven-resolver-util-1.4.1.jar</td>
+<td style="text-align: right;">167.5 kB</td>
+<td style="text-align: right;">132</td>
+<td style="text-align: right;">105</td>
+<td style="text-align: right;">13</td>
+<td style="text-align: center;">1.7</td>
+<td style="text-align: center;">Yes</td>
+<td style="text-align: center;">No</td></tr>
+<tr class="b">
+<td style="text-align: left;">maven-filtering-3.4.0.jar</td>
+<td style="text-align: right;">56 kB</td>
+<td style="text-align: right;">40</td>
+<td style="text-align: right;">23</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: center;">1.8</td>
+<td style="text-align: center;">Yes</td>
+<td style="text-align: center;">No</td></tr>
+<tr class="a">
+<td style="text-align: left;">maven-shared-utils-3.2.1.jar</td>
+<td style="text-align: right;">166.6 kB</td>
+<td style="text-align: right;">109</td>
+<td style="text-align: right;">84</td>
+<td style="text-align: right;">10</td>
+<td style="text-align: center;">1.6</td>
+<td style="text-align: center;">Yes</td>
+<td style="text-align: center;">No</td></tr>
+<tr class="b">
+<td style="text-align: left;">wagon-provider-api-3.3.4.jar</td>
+<td style="text-align: right;">55.8 kB</td>
+<td style="text-align: right;">60</td>
+<td style="text-align: right;">39</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: center;">1.7</td>
+<td style="text-align: center;">Yes</td>
+<td style="text-align: center;">No</td></tr>
+<tr class="a">
+<td style="text-align: left;">checker-compat-qual-2.0.0.jar</td>
+<td style="text-align: right;">31.5 kB</td>
+<td style="text-align: right;">47</td>
+<td style="text-align: right;">28</td>
+<td style="text-align: right;">10</td>
+<td style="text-align: center;">1.7</td>
+<td style="text-align: center;">Yes</td>
+<td style="text-align: center;">No</td></tr>
+<tr class="b">
+<td style="text-align: left;">animal-sniffer-annotations-1.14.jar</td>
+<td style="text-align: right;">3.5 kB</td>
+<td style="text-align: right;">12</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: center;">1.5</td>
+<td style="text-align: center;">No</td>
+<td style="text-align: center;">No</td></tr>
+<tr class="a">
+<td style="text-align: left;">plexus-archiver-4.10.4.jar</td>
+<td style="text-align: right;">227.2 kB</td>
+<td style="text-align: right;">212</td>
+<td style="text-align: right;">172</td>
+<td style="text-align: right;">26</td>
+<td style="text-align: center;">1.8</td>
+<td style="text-align: center;">Yes</td>
+<td style="text-align: center;">No</td></tr>
+<tr class="b">
+<td style="text-align: left;">plexus-classworlds-2.6.0.jar</td>
+<td style="text-align: right;">52.9 kB</td>
+<td style="text-align: right;">52</td>
+<td style="text-align: right;">37</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: center;">1.7</td>
+<td style="text-align: center;">Yes</td>
+<td style="text-align: center;">No</td></tr>
+<tr class="a">
+<td style="text-align: left;">plexus-component-annotations-2.1.0.jar</td>
+<td style="text-align: right;">4.2 kB</td>
+<td style="text-align: right;">15</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: center;">1.6</td>
+<td style="text-align: center;">No</td>
+<td style="text-align: center;">No</td></tr>
+<tr class="b">
+<td style="text-align: left;">plexus-interpolation-1.28.jar</td>
+<td style="text-align: right;">87.1 kB</td>
+<td style="text-align: right;">80</td>
+<td style="text-align: right;">63</td>
+<td style="text-align: right;">7</td>
+<td style="text-align: center;">1.8</td>
+<td style="text-align: center;">Yes</td>
+<td style="text-align: center;">No</td></tr>
+<tr class="a">
+<td style="text-align: left;">plexus-io-3.6.0.jar</td>
+<td style="text-align: right;">80.3 kB</td>
+<td style="text-align: right;">87</td>
+<td style="text-align: right;">66</td>
+<td style="text-align: right;">7</td>
+<td style="text-align: center;">1.8</td>
+<td style="text-align: center;">Yes</td>
+<td style="text-align: center;">No</td></tr>
+<tr class="b">
+<td style="text-align: left;">plexus-testing-2.0.1.jar</td>
+<td style="text-align: right;">8.9 kB</td>
+<td style="text-align: right;">15</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: center;">1.8</td>
+<td style="text-align: center;">Yes</td>
+<td style="text-align: center;">No</td></tr>
+<tr class="a">
+<td style="text-align: left;">plexus-utils-4.0.2.jar</td>
+<td style="text-align: right;">192.5 kB</td>
+<td style="text-align: right;">128</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: center;">-</td>
+<td style="text-align: center;">-</td>
+<td style="text-align: center;">No</td></tr>
+<tr class="b">
+<td style="text-align: left;">&#160;&#160;&#160;&#x2022; Root</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">110</td>
+<td style="text-align: right;">86</td>
+<td style="text-align: right;">7</td>
+<td style="text-align: center;">1.8</td>
+<td style="text-align: center;">Yes</td>
+<td style="text-align: center;">-</td></tr>
+<tr class="a">
+<td style="text-align: left;">&#160;&#160;&#160;&#x2022; Versioned</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: center;">9</td>
+<td style="text-align: center;">Yes</td>
+<td style="text-align: center;">-</td></tr>
+<tr class="b">
+<td style="text-align: left;">&#160;&#160;&#160;&#x2022; Versioned</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: center;">10</td>
+<td style="text-align: center;">Yes</td>
+<td style="text-align: center;">-</td></tr>
+<tr class="a">
+<td style="text-align: left;">&#160;&#160;&#160;&#x2022; Versioned</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: center;">11</td>
+<td style="text-align: center;">Yes</td>
+<td style="text-align: center;">-</td></tr>
+<tr class="b">
+<td style="text-align: left;">plexus-xml-3.0.1.jar</td>
+<td style="text-align: right;">94.3 kB</td>
+<td style="text-align: right;">44</td>
+<td style="text-align: right;">25</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: center;">1.8</td>
+<td style="text-align: center;">Yes</td>
+<td style="text-align: center;">No</td></tr>
+<tr class="a">
+<td style="text-align: left;">org.eclipse.sisu.inject-0.9.0.M4.jar</td>
+<td style="text-align: right;">305 kB</td>
+<td style="text-align: right;">281</td>
+<td style="text-align: right;">262</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: center;">1.8</td>
+<td style="text-align: center;">Yes</td>
+<td style="text-align: center;">No</td></tr>
+<tr class="b">
+<td style="text-align: left;">org.eclipse.sisu.plexus-0.9.0.M4.jar</td>
+<td style="text-align: right;">215.8 kB</td>
+<td style="text-align: right;">204</td>
+<td style="text-align: right;">167</td>
+<td style="text-align: right;">20</td>
+<td style="text-align: center;">1.8</td>
+<td style="text-align: center;">Yes</td>
+<td style="text-align: center;">No</td></tr>
+<tr class="a">
+<td style="text-align: left;">mockito-core-4.11.0.jar</td>
+<td style="text-align: right;">684.9 kB</td>
+<td style="text-align: right;">651</td>
+<td style="text-align: right;">579</td>
+<td style="text-align: right;">64</td>
+<td style="text-align: center;">1.8</td>
+<td style="text-align: center;">Yes</td>
+<td style="text-align: center;">No</td></tr>
+<tr class="b">
+<td style="text-align: left;">objenesis-3.3.jar</td>
+<td style="text-align: right;">49.4 kB</td>
+<td style="text-align: right;">59</td>
+<td style="text-align: right;">43</td>
+<td style="text-align: right;">10</td>
+<td style="text-align: center;">1.8</td>
+<td style="text-align: center;">Yes</td>
+<td style="text-align: center;">No</td></tr>
+<tr class="a">
+<td style="text-align: left;">asm-9.8.jar</td>
+<td style="text-align: right;">126.1 kB</td>
+<td style="text-align: right;">45</td>
+<td style="text-align: right;">39</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: center;">1.5</td>
+<td style="text-align: center;">Yes</td>
+<td style="text-align: center;">No</td></tr>
+<tr class="b">
+<td style="text-align: left;">slf4j-api-1.7.36.jar</td>
+<td style="text-align: right;">41.1 kB</td>
+<td style="text-align: right;">46</td>
+<td style="text-align: right;">34</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: center;">1.5</td>
+<td style="text-align: center;">Yes</td>
+<td style="text-align: center;">No</td></tr>
+<tr class="a">
+<td style="text-align: left;">plexus-build-api-0.0.7.jar</td>
+<td style="text-align: right;">8.5 kB</td>
+<td style="text-align: right;">19</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: center;">1.4</td>
+<td style="text-align: center;">Yes</td>
+<td style="text-align: center;">No</td></tr>
+<tr class="b">
+<td style="text-align: left;">plexus-cipher-1.4.jar</td>
+<td style="text-align: right;">13.5 kB</td>
+<td style="text-align: right;">20</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: center;">1.4</td>
+<td style="text-align: center;">Yes</td>
+<td style="text-align: center;">No</td></tr>
+<tr class="a">
+<td style="text-align: left;">plexus-sec-dispatcher-1.4.jar</td>
+<td style="text-align: right;">27.7 kB</td>
+<td style="text-align: right;">31</td>
+<td style="text-align: right;">13</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: center;">1.4</td>
+<td style="text-align: center;">Yes</td>
+<td style="text-align: center;">No</td></tr>
+<tr class="b">
+<td style="text-align: left;">xz-1.10.jar</td>
+<td style="text-align: right;">168.6 kB</td>
+<td style="text-align: right;">151</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: center;">-</td>
+<td style="text-align: center;">-</td>
+<td style="text-align: center;">Yes</td></tr>
+<tr class="a">
+<td style="text-align: left;">&#160;&#160;&#160;&#x2022; Root</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">137</td>
+<td style="text-align: right;">123</td>
+<td style="text-align: right;">9</td>
+<td style="text-align: center;">1.8</td>
+<td style="text-align: center;">Yes</td>
+<td style="text-align: center;">-</td></tr>
+<tr class="b">
+<td style="text-align: left;">&#160;&#160;&#160;&#x2022; Versioned</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">14</td>
+<td style="text-align: right;">7</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: center;">9</td>
+<td style="text-align: center;">Yes</td>
+<td style="text-align: center;">-</td></tr>
+<tr class="a">
+<th>Total</th>
+<th>Size</th>
+<th>Entries</th>
+<th>Classes</th>
+<th>Packages</th>
+<th>Java Version</th>
+<th>Debug Information</th>
+<th>Sealed</th></tr>
+<tr class="b">
+<td style="text-align: right;">57</td>
+<td style="text-align: right;">23.4 MB</td>
+<td style="text-align: right;">11838</td>
+<td style="text-align: right;">10363</td>
+<td style="text-align: right;">556</td>
+<td style="text-align: center;">1.8</td>
+<td style="text-align: right;">53</td>
+<td style="text-align: center;">1</td></tr>
+<tr class="a">
+<td style="text-align: right;">compile: 14</td>
+<td style="text-align: right;">compile: 3.6 MB</td>
+<td style="text-align: right;">compile: 2448</td>
+<td style="text-align: right;">compile: 1977</td>
+<td style="text-align: right;">compile: 136</td>
+<td rowspan="3" style="text-align: center; vertical-align: middle;">1.8</td>
+<td style="text-align: right;">compile: 14</td>
+<td style="text-align: center;">-</td></tr>
+<tr class="b">
+<td style="text-align: right;">runtime: 2</td>
+<td style="text-align: right;">runtime: 7.6 MB</td>
+<td style="text-align: right;">runtime: 236</td>
+<td style="text-align: right;">runtime: 161</td>
+<td style="text-align: right;">runtime: 12</td>
+<td style="text-align: right;">runtime: 2</td>
+<td style="text-align: right;">runtime: 1</td></tr>
+<tr class="a">
+<td style="text-align: right;">provided: 32</td>
+<td style="text-align: right;">provided: 6 MB</td>
+<td style="text-align: right;">provided: 4764</td>
+<td style="text-align: right;">provided: 4122</td>
+<td style="text-align: right;">provided: 240</td>
+<td style="text-align: right;">provided: 28</td>
+<td style="text-align: right;">-</td></tr>
+<tr class="b">
+<td style="text-align: right;">test: 9</td>
+<td style="text-align: right;">test: 6.1 MB</td>
+<td style="text-align: right;">test: 4390</td>
+<td style="text-align: right;">test: 4103</td>
+<td style="text-align: right;">test: 168</td>
+<td style="text-align: center;">1.8</td>
+<td style="text-align: right;">test: 9</td>
+<td style="text-align: center;">-</td></tr></table></div></section>
+      </div>
+      <nav class="more component-more" aria-labelledby="more-title">
+        <h2 id="more-title">More in <a href="./index.html">Apache Maven ACR Plugin</a></h2>
+        <p class="component-version">Version 3.2.0 · <a href="https://maven.apache.org/plugins-archives/">Other versions</a></p>
+        <h3>Overview</h3>
+        <ul class="more-list">
+  <li><a href="index.html">Introduction</a></li>
+  <li><a href="plugin-info.html">Plugin Documentation</a></li>
+  <li><a href="usage.html">Usage</a></li>
+  <li><a href="faq.html">FAQ</a></li>
+  <li><a href="https://www.apache.org/licenses/">License</a></li>
+  <li><a href="download.html">Download</a></li>
+</ul>
+        <h3>Examples</h3>
+        <ul class="more-list">
+  <li><a href="examples/filter-deployment-descriptor.html">Filter the deployment descriptor</a></li>
+  <li><a href="examples/app-client-dependency.html">Using the app-client as a dependency</a></li>
+</ul>
+        <h3>Project Documentation</h3>
+        <ul class="more-list">
+  <li><a href="project-info.html">Project Information</a></li>
+  <li><a href="project-reports.html">Project Reports</a></li>
+</ul>
+      </nav>
+    </main>
+    <aside class="rail">
+
+<section class="facts" aria-label="About this page">
+  <dl>
+    <dt>Version</dt>
+    <dd>3.2.0</dd>
+    <dt>Source</dt>
+    <dd>Generated from <a href="https://github.com/apache/maven-acr-plugin/tree/master/src/main/java">the code</a></dd>
+    <dt>Wrong?</dt>
+    <dd><a href="https://github.com/apache/maven-acr-plugin/issues/">Report a problem</a></dd>
+  </dl>
+</section>
+      <nav id="on-this-page" aria-label="On this page"></nav>
+    </aside>
+  </div>
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <nav aria-label="Apache Software Foundation">
+        <ul>
+          <li><a href="https://www.apache.org/">The Apache Software Foundation</a></li>
+          <li><a href="https://www.apache.org/licenses/">License</a></li>
+          <li><a href="https://www.apache.org/foundation/sponsorship.html">Sponsorship</a></li>
+          <li><a href="https://www.apache.org/foundation/thanks.html">Thanks</a></li>
+          <li><a href="https://www.apache.org/security/">Security</a></li>
+          <li><a href="https://privacy.apache.org/policies/privacy-policy-public.html">Privacy</a></li>
+          <li><a href="https://www.apache.org/events/current-event">Events</a></li>
+        </ul>
+      </nav>
+      <p>© 2002–2026 The Apache Software Foundation. Apache Maven, Maven, Apache, the Apache logo, and the Apache Maven project logo are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners.</p>
+      <p class="demo-note">A demonstration of a restructured maven.apache.org, built by maven-site-plugin from <a href="https://github.com/dashorst/maven-site/tree/doxia-demo">dashorst/maven-site</a>. Not the official Apache Maven site. <a href="./../../about-this-example.html">About this example</a>.</p>
+    </div>
+  </footer>
+  <script src="./js/page.js" defer></script>
+  <script src="./js/search.js" defer></script>
+</body>
+</html>

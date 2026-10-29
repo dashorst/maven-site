@@ -117,7 +117,7 @@
 <h2>Your First Plugin</h2>
 <p>In this section we will build a simple plugin with one goal that takes no parameters and displays a message on the screen when run. Along the way, we will cover setting up a project to create a plugin, the minimal contents of a Java mojo which will define goal code, and a couple ways to execute the mojo.</p><section><a id="Your_First_Mojo"></a>
 <h3>Your First Mojo</h3>
-<p>At its simplest, a Java mojo consists simply of a single class representing one plugin's goal. When processing the source tree to find mojos, <a href="/plugin-tools/"><code>plugin-tools</code></a> looks for classes with the <code>@Mojo</code> annotation. Any class with this annotation is included in the plugin configuration file.</p><section><a id="A_Simple_Mojo"></a>
+<p>At its simplest, a Java mojo consists simply of a single class representing one plugin's goal. When processing the source tree to find mojos, <a href="../../plugin-tools/"><code>plugin-tools</code></a> looks for classes with the <code>@Mojo</code> annotation. Any class with this annotation is included in the plugin configuration file.</p><section><a id="A_Simple_Mojo"></a>
 <h4>A Simple Mojo</h4>
 <p>Listed below is a simple mojo class which has no parameters. This is about as simple as a mojo can be. After the listing is a description of the various parts of the source.</p>
 
@@ -251,7 +251,7 @@
 <td>Compiles the Java code for the plugin</td></tr>
 <tr class="a">
 <td><code>process-classes</code></td>
-<td>Extracts data to build the <a href="/ref/current/maven-plugin-api/plugin.html">plugin descriptor</a></td></tr>
+<td>Extracts data to build the <a href="../../ref/current/maven-plugin-api/plugin.html">plugin descriptor</a></td></tr>
 <tr class="b">
 <td><code>test</code></td>
 <td>Runs the plugin's unit tests</td></tr>
@@ -266,7 +266,7 @@
 <td>Deploys the plugin jar to the remote repository</td></tr></tbody>
 </table></div>
 
-<p>For more details, you can look at <a href="/ref/current/maven-core/default-bindings.html#Plugin_bindings_for_maven-plugin_packaging">detailed bindings for <code>maven-plugin</code> packaging</a>.</p></section><section><a id="Executing_Your_First_Mojo"></a>
+<p>For more details, you can look at <a href="../../ref/current/maven-core/default-bindings.html#Plugin_bindings_for_maven-plugin_packaging">detailed bindings for <code>maven-plugin</code> packaging</a>.</p></section><section><a id="Executing_Your_First_Mojo"></a>
 <h3>Executing Your First Mojo</h3>
 <p>The most direct means of executing your new plugin is to specify the plugin goal directly on the command line. To do this, configure the <code>hello-maven-plugin</code> plugin in the project:</p>
 
@@ -364,7 +364,7 @@
     <span class="nd">@Parameter</span>(property = <span class="s">"sayhi.greeting"</span>, defaultValue = <span class="s">"Hello World!"</span> )
     <span class="k">private</span> String greeting;
 </code></pre>
-<p>The Javadoc comment is the description of the parameter. The <code>@Parameter</code> annotation identifies the variable as a mojo parameter. The <code>defaultValue</code> element defines the default value for the parameter. This value can include expressions which reference the project, such as “<code>${project.version}</code>”. (More can be found in the <a href="/ref/current/maven-core/apidocs/org/apache/maven/plugin/PluginParameterExpressionEvaluator.html">“Parameter Expressions” document.</a>) The <code>property</code> element enables configuration of the mojo parameter from the command line by referencing a system property that the user sets via the <code>-D</code> option.</p></section><section><a id="Configuring_Parameters_in_a_Project"></a>
+<p>The Javadoc comment is the description of the parameter. The <code>@Parameter</code> annotation identifies the variable as a mojo parameter. The <code>defaultValue</code> element defines the default value for the parameter. This value can include expressions which reference the project, such as “<code>${project.version}</code>”. (More can be found in the <a href="../../ref/current/maven-core/apidocs/org/apache/maven/plugin/PluginParameterExpressionEvaluator.html">“Parameter Expressions” document.</a>) The <code>property</code> element enables configuration of the mojo parameter from the command line by referencing a system property that the user sets via the <code>-D</code> option.</p></section><section><a id="Configuring_Parameters_in_a_Project"></a>
 <h3>Configuring Parameters in a Project</h3>
 <p>Each Maven project can configure the plugins it uses in the <code>pluginManagement</code> section of the pom.xml. For example:</p>
 
@@ -424,7 +424,7 @@
 <ol style="list-style-type: decimal;">
 
 <li><a href="mojo-api.html">Mojo Documentation</a>: Mojo API, Mojo annotations</li>
-<li><a href="/shared/maven-plugin-testing-harness/">Maven Plugin Testing Harness</a>: Testing framework for your Mojos.</li>
+<li><a href="../../shared/maven-plugin-testing-harness/">Maven Plugin Testing Harness</a>: Testing framework for your Mojos.</li>
 <li><a href="https://eclipse.dev/sisu/index.html" class="externalLink">Eclipse Sisu</a>: The IoC container used by Maven 3.</li>
 <li><a href="jsr-330.html">Maven &amp; JSR 330</a>: How to use JSR 330 in Plugins</li>
 <li><a href="common-bugs.html">Common Bugs and Pitfalls</a>: Overview of problematic coding patterns.</li>

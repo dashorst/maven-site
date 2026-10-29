@@ -76,14 +76,14 @@
 </section>
  <section><a id="Introduction"></a>
 <h1>Introduction</h1>
-<p>This document gives step-by-step instructions for deploying the main Maven <a href="/">https://maven.apache.org</a> website.</p>
+<p>This document gives step-by-step instructions for deploying the main Maven <a href="../../">https://maven.apache.org</a> website.</p>
 <p><strong>Require updates</strong> this documentation requires some updates: with the migration of site source to Git, Apache CMS is not used anymore. It is replaced by Git edit (eventually through GitHub with the &#x201c;edit&#x201d; link accessible from breadcrumb) followed by Jenkins job to build and commit to svnpubsub. This does not really change the overall picture, but detailed instructions on editing are obsolete.</p>
 <p>See <a href="overview.html">Maven website introduction</a> for instructions on the whole website publication.</p></section><section><a id="Overview"></a>
 <h1>Overview</h1>
 <p>Since December 2012, the overall website uses svnpubsub mechanism and the main website uses Apache CMS:</p>
 <p><img src="../../developers/website/main-website.png" alt="Main website mechanisms overview" /></p></section><section><a id="How_main_website_publication_works"></a>
 <h1>How main website publication works</h1>
-<p>Maven main website (<a href="https://maven.apache.org/" class="externalLink">https://maven.apache.org</a>) is generated with <a href="/plugins/maven-site-plugin">maven-site-plugin</a> from a source tree stored in svn: <a href="https://svn.apache.org/repos/asf/maven/site/trunk" class="externalLink">https://svn.apache.org/repos/asf/maven/site/trunk</a>.</p><section><a id="Edit_source_content"></a>
+<p>Maven main website (<a href="https://maven.apache.org/" class="externalLink">https://maven.apache.org</a>) is generated with <a href="../../plugins/maven-site-plugin">maven-site-plugin</a> from a source tree stored in svn: <a href="https://svn.apache.org/repos/asf/maven/site/trunk" class="externalLink">https://svn.apache.org/repos/asf/maven/site/trunk</a>.</p><section><a id="Edit_source_content"></a>
 <h2>Edit source content</h2>
 <p>You can edit source content in 2 ways:</p>
 <ol style="list-style-type: decimal;">
@@ -101,7 +101,7 @@
 <p>After source tree is modified in svn, <a href="http://ci.apache.org/builders/maven-site-staging" class="externalLink">a Buildbot job</a> is triggered:</p>
 <ol style="list-style-type: decimal;">
 
-<li>it builds the HTML site using <a href="/plugins/maven-site-plugin">maven-site-plugin</a>: <code>mvn site</code>,</li>
+<li>it builds the HTML site using <a href="../../plugins/maven-site-plugin">maven-site-plugin</a>: <code>mvn site</code>,</li>
 <li>it publishes generated HTML content to <a href="https://svn.apache.org/repos/infra/websites/staging/maven/trunk/content/" class="externalLink">CMS staging svn area</a>,</li>
 <li>svnpubsub mecanism transfers svn CMS staging content to live CMS staging site: <a href="http://maven.staging.apache.org" class="externalLink">http://maven.staging.apache.org</a>,</li>
 </ol></section><section><a id="Publish_site_content"></a>

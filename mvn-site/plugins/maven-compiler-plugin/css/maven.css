@@ -149,7 +149,7 @@ main.wide { display: block; }
 #on-this-page h2 { font-size: .8rem; font-weight: 600; color: var(--muted); margin: 0 0 .5rem; }
 #on-this-page ul { list-style: none; margin: 0; padding: 0 0 0 .8rem; border-left: 1px solid var(--line); }
 #on-this-page li { margin: 0 0 .35rem; }
-#on-this-page a { color: var(--ink); text-decoration: none; }
+#on-this-page a { color: var(--ink); text-decoration: none; overflow-wrap: anywhere; }
 #on-this-page a:hover { color: var(--navy); text-decoration: underline; }
 
 /* Bottom of the page: the rest of the group */

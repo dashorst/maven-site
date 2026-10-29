@@ -125,13 +125,13 @@
 <p>- Defined in the POM itself <code>(pom.xml)</code>.</p></li>
 <li>
 <p>Per User</p>
-<p>- Defined in the <a href="/ref/current/maven-settings/settings.html">Maven-settings</a> <code>(%USER_HOME%/.m2/settings.xml)</code>.</p></li>
+<p>- Defined in the <a href="../../ref/current/maven-settings/settings.html">Maven-settings</a> <code>(%USER_HOME%/.m2/settings.xml)</code>.</p></li>
 <li>
 <p>Global</p>
-<p>- Defined in the <a href="/ref/current/maven-settings/settings.html">global Maven-settings</a> <code>(${maven.home}/conf/settings.xml)</code>.</p></li>
+<p>- Defined in the <a href="../../ref/current/maven-settings/settings.html">global Maven-settings</a> <code>(${maven.home}/conf/settings.xml)</code>.</p></li>
 </ul></section><section><a id="Profile_Inheritance"></a>
 <h2>Profile Inheritance</h2>
-<p>The profiles are not inherited by child POMs. Instead, they are resolved very early by the <a href="/ref/current/maven-model-builder/">Maven Model Builder</a> and only the effects of active profiles are inherited (e.g. the plugins defined in the profile). Implicit profile activation only has an effect on the surrounding profile container but never on any other profile (even if it has the same id).</p></section><section><a id="How_can_a_profile_be_triggered.3F_How_does_this_vary_according_to_the_type_of_profile_being_used.3F"></a>
+<p>The profiles are not inherited by child POMs. Instead, they are resolved very early by the <a href="../../ref/current/maven-model-builder/">Maven Model Builder</a> and only the effects of active profiles are inherited (e.g. the plugins defined in the profile). Implicit profile activation only has an effect on the surrounding profile container but never on any other profile (even if it has the same id).</p></section><section><a id="How_can_a_profile_be_triggered.3F_How_does_this_vary_according_to_the_type_of_profile_being_used.3F"></a>
 <h2>How can a profile be triggered? How does this vary according to the type of profile being used?</h2>
 <p>A profile can be activated in several ways:</p>
 <ul>
@@ -207,7 +207,7 @@
   <span class="nt">&lt;/profile</span><span class="nt">&gt;</span>
 <span class="nt">&lt;/profiles</span><span class="nt">&gt;</span>
 </code></pre>
-<p><a href="/enforcer/enforcer-rules/versionRanges.html">Ranges</a> can also be used. Range values must start with either <code>[</code> or <code>(</code>. The following honours versions <code>1.3</code>, <code>1.4</code>, and <code>1.5</code>.</p>
+<p><a href="../../enforcer/enforcer-rules/versionRanges.html">Ranges</a> can also be used. Range values must start with either <code>[</code> or <code>(</code>. The following honours versions <code>1.3</code>, <code>1.4</code>, and <code>1.5</code>.</p>
 
 <pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;profiles</span><span class="nt">&gt;</span>
   <span class="nt">&lt;profile</span><span class="nt">&gt;</span>
@@ -250,7 +250,7 @@
 <p>The values are interpreted as Strings and are matched against the <a href="https://docs.oracle.com/javase/tutorial/essential/environment/sysprop.html" class="externalLink">Java System properties</a> <code>os.name</code>, <code>os.arch</code>, <code>os.version</code> and the family being derived from those.</p>
 <p>Each value can be prefixed with <code>!</code> to negate the matching. The values match if they are (not) equal to the actual String value (<strong>case insensitive</strong>). All given OS conditions must match for the profile to be considered for activation.</p>
 <p>Since <a href="https://issues.apache.org/jira/browse/MNG-5726" class="externalLink">Maven 3.9.7</a> the value for <code>version</code> may be prefixed with <code>regex:</code>. In that case <a href="https://docs.oracle.com/javase/tutorial/essential/regex/" class="externalLink">regular pattern matching</a> is applied for the version matching and applied against the <strong>lower case</strong> <code>os.version</code> value.</p>
-<p>The actual OS values which need to match the given values are emitted when executing <code>mvn --version</code>. See the maven-enforcer-plugin's <a href="/enforcer/enforcer-rules/requireOS.html">Require OS Rule</a> for more details about OS values.</p></section><section><a id="Properties"></a>
+<p>The actual OS values which need to match the given values are emitted when executing <code>mvn --version</code>. See the maven-enforcer-plugin's <a href="../../enforcer/enforcer-rules/requireOS.html">Require OS Rule</a> for more details about OS values.</p></section><section><a id="Properties"></a>
 <h5>Properties</h5>
 <p>The <code>profile</code> will activate if Maven detects a system property or CLI user property (a value which can be dereferenced within the POM by <code>${name}</code>) of the corresponding <code>name=value</code> pair, and it matches the given value (if given). Since Maven 3.9.0 one can also evaluate the <code>&lt;packaging value&gt;</code> of the pom via property name <code>packaging</code>.</p><section><a id="System_or_CLI_user_property"></a>
 <h6>System or CLI user property</h6>
@@ -471,7 +471,7 @@ mvn groupId:artifactId:goal -Ddebug=false
 <p>The <code>&lt;properties&gt;</code> section allows you to specify free-form key-value pairs which will be included in the interpolation process for the POM. This allows you to specify a plugin configuration in the form of <code>${profile.provided.path}</code>.</p></section><section><a id="Profiles_in_POMs"></a>
 <h3>Profiles in POMs</h3>
 <p>On the other hand, if your profiles can be reasonably specified <em>inside</em> the POM, you have many more options. The trade-off, of course, is that you can only modify <em>that</em> project and its sub-modules. Since these profiles are specified inline, and therefore have a better chance of preserving portability, it's reasonable to say you can add more information to them without the risk of that information being unavailable to other users.</p>
-<p>Profiles specified in the POM can modify <a href="/ref/current/maven-model/maven.html">the following POM elements</a>:</p>
+<p>Profiles specified in the POM can modify <a href="../../ref/current/maven-model/maven.html">the following POM elements</a>:</p>
 <ul>
 
 <li><code>&lt;repositories&gt;</code></li>
@@ -499,7 +499,7 @@ mvn groupId:artifactId:goal -Ddebug=false
 </ul>
 <p><em>Note</em>: A profile which tries to modify other elements of the <code>&lt;build&gt;</code> element is invalid and will fail the build with a “malformed POM” error.</p><section><a id="Examples"></a>
 <h4>Examples</h4>
-<p>The following example defines a profile to execute the <a href="https://maven.apache.org/plugins/maven-invoker-plugin/" class="externalLink">Maven Invoker Plugin</a>:</p>
+<p>The following example defines a profile to execute the <a href="../../plugins/maven-invoker-plugin/">Maven Invoker Plugin</a>:</p>
 
 <pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;profile</span><span class="nt">&gt;</span>
   <span class="nt">&lt;id</span><span class="nt">&gt;</span>run-its<span class="nt">&lt;/id</span><span class="nt">&gt;</span>
@@ -692,7 +692,7 @@ mvn groupId:artifactId:goal -Ddebug=false
 <p>will not do a successful build. Why? Because, the resulting non-interpolated literal value of <code>${appserver.home}</code> will not be a valid path for deploying and testing your web application. We haven't considered the case for the production environment when writing our profiles. The “production” environment (env=production), along with “test” and possibly even “local” constitute a natural set of target environments for which we may want to build the integration-test lifecycle phase. The incomplete specification of this natural set means we have effectively limited our valid target environments to the development environment. Your teammates - and probably your manager - will not see the humor in this. When you construct profiles to handle cases such as these, be sure to address the entire set of target permutations.</p>
 <p>As a quick aside, it's possible for user-specific profiles to act in a similar way. This means that profiles for handling different environments which are keyed to the user can act up when the team adds a new developer. While I suppose this <em>could</em> act as useful training for the newbie, it just wouldn't be nice to throw them to the wolves in this way. Again, be sure to think of the <em>whole</em> set of profiles.</p></section></section><section><a id="How_can_I_tell_which_profiles_are_in_effect_during_a_build.3F"></a>
 <h2>How can I tell which profiles are in effect during a build?</h2>
-<p>Determining active profiles will help the user to know what particular profiles has been executed during a build. We can use the <a href="/plugins/maven-help-plugin/">Maven Help Plugin</a> to tell what profiles are in effect during a build.</p>
+<p>Determining active profiles will help the user to know what particular profiles has been executed during a build. We can use the <a href="../../plugins/maven-help-plugin/">Maven Help Plugin</a> to tell what profiles are in effect during a build.</p>
 
 <pre tabindex="0"><code class="nohighlight nocode">mvn help:active-profiles
 </code></pre>

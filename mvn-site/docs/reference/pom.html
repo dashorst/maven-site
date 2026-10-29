@@ -146,7 +146,7 @@
 <li><a href="#Final">Final</a></li></ul>
 <section><a id="Introduction"></a>
 <h2>Introduction</h2>
-<p><a href="/xsd/maven-4.0.0.xsd">The POM 4.0.0 XSD</a> and <a href="/ref/current/maven-model/maven.html">descriptor reference documentation</a>.</p></section><section><a id="What_is_the_POM.3F"></a>
+<p><a href="../../xsd/maven-4.0.0.xsd">The POM 4.0.0 XSD</a> and <a href="../../ref/current/maven-model/maven.html">descriptor reference documentation</a>.</p></section><section><a id="What_is_the_POM.3F"></a>
 <h2>What is the POM?</h2>
 <p>POM stands for “Project Object Model”. It is an XML representation of a Maven project held in a file named <code>pom.xml</code>. When in the presence of Maven folks, speaking of a project is speaking in the philosophical sense, beyond a mere collection of files containing code. A project contains configuration files, as well as the developers involved and the roles they play, the defect tracking system, the organization and licenses, the URL of where the project lives, the project's dependencies, and all the other little pieces that come into play to give code life. It is a one-stop-shop for all things concerning the project. In fact, in the Maven world, a project does not need to contain any code at all, merely a <code>pom.xml</code>.</p></section><section><a id="Quick_Overview"></a>
 <h2>Quick Overview</h2>
@@ -225,13 +225,13 @@
   ...
 <span class="nt">&lt;/project</span><span class="nt">&gt;</span>
 </code></pre>
-<p>When no packaging is declared, Maven assumes the packaging is the default: <code>jar</code>. The valid types are Plexus role-hints (read more on Plexus for an explanation of roles and role-hints) of the component role <code>org.apache.maven.lifecycle.mapping.LifecycleMapping</code>. The current core packaging values are: <code>pom</code>, <code>jar</code>, <code>maven-plugin</code>, <code>ejb</code>, <code>war</code>, <code>ear</code>, <code>rar</code>. These define the default list of goals which execute on each corresponding build lifecycle stage for a particular package structure: see <a href="/ref/current/maven-core/default-bindings.html">Plugin Bindings for default Lifecycle Reference</a> for details.</p></section><section><a id="POM_Relationships"></a>
+<p>When no packaging is declared, Maven assumes the packaging is the default: <code>jar</code>. The valid types are Plexus role-hints (read more on Plexus for an explanation of roles and role-hints) of the component role <code>org.apache.maven.lifecycle.mapping.LifecycleMapping</code>. The current core packaging values are: <code>pom</code>, <code>jar</code>, <code>maven-plugin</code>, <code>ejb</code>, <code>war</code>, <code>ear</code>, <code>rar</code>. These define the default list of goals which execute on each corresponding build lifecycle stage for a particular package structure: see <a href="../../ref/current/maven-core/default-bindings.html">Plugin Bindings for default Lifecycle Reference</a> for details.</p></section><section><a id="POM_Relationships"></a>
 <h3>POM Relationships</h3>
 <p>One powerful aspect of Maven is its handling of project relationships: this includes dependencies (and transitive dependencies), inheritance, and aggregation (multi-module projects).</p>
 <p>Dependency management has a long tradition of being a complicated mess for anything but the most trivial of projects. <em>“Jarmageddon”</em> quickly ensues as the dependency tree becomes large and complicated. <em>“Jar Hell”</em> follows, where versions of dependencies on one system are not equivalent to the versions developed with, either by the wrong version given, or conflicting versions between similarly named jars.</p>
 <p>Maven solves both problems through a common local repository from which to link projects correctly, versions and all.</p><section><a id="Dependencies"></a>
 <h4>Dependencies</h4>
-<p>The cornerstone of the POM is its <a href="/ref/current/maven-model/maven.html#class_dependency">dependency</a> list. Most projects depend on others to build and run correctly. Maven downloads the dependencies on compilation, as well as on other goals that require them. As an added bonus, Maven brings in the dependencies of those dependencies (transitive dependencies), allowing your list to focus solely on the dependencies your project requires.</p>
+<p>The cornerstone of the POM is its <a href="../../ref/current/maven-model/maven.html#class_dependency">dependency</a> list. Most projects depend on others to build and run correctly. Maven downloads the dependencies on compilation, as well as on other goals that require them. As an added bonus, Maven brings in the dependencies of those dependencies (transitive dependencies), allowing your list to focus solely on the dependencies your project requires.</p>
 
 <pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span><span class="nt">&gt;</span>
   ...
@@ -280,7 +280,7 @@
 <p>As a motivation for this element, consider for example a project that offers an artifact targeting Java 11 but at the same time also an artifact that still supports Java 1.8. The first artifact could be equipped with the classifier <code>jdk11</code> and the second one with <code>jdk8</code> such that clients can choose which one to use.</p>
 <p>Another common use case for classifiers is to attach secondary artifacts to the project's main artifact. If you browse the Maven central repository, you will notice that the classifiers <code>sources</code> and <code>javadoc</code> are used to deploy the project source code and API docs along with the packaged class files.</p></li>
 <li>
-<p><code>&lt;type&gt;</code>: Corresponds to the chosen dependency type. This defaults to <code>jar</code>. While it usually represents the extension on the filename of the dependency, that is not always the case: a type can be mapped to a different extension and a classifier. The type often corresponds to the packaging used, though this is also not always the case. Some examples are <code>jar</code>, <code>ejb-client</code> and <code>test-jar</code>: see <a href="/ref/current/maven-core/artifact-handlers.html">default artifact handlers</a> for a list. New types can be defined by plugins that set <code>extensions</code> to true, so this is not a complete list.</p></li>
+<p><code>&lt;type&gt;</code>: Corresponds to the chosen dependency type. This defaults to <code>jar</code>. While it usually represents the extension on the filename of the dependency, that is not always the case: a type can be mapped to a different extension and a classifier. The type often corresponds to the packaging used, though this is also not always the case. Some examples are <code>jar</code>, <code>ejb-client</code> and <code>test-jar</code>: see <a href="../../ref/current/maven-core/artifact-handlers.html">default artifact handlers</a> for a list. New types can be defined by plugins that set <code>extensions</code> to true, so this is not a complete list.</p></li>
 <li>
 <p><code>&lt;scope&gt;</code>: This element refers to the classpath of the task at hand (compiling and runtime, testing, etc.) as well as how to limit the transitivity of a dependency. There are five scopes available:</p></li>
 <li>
@@ -818,7 +818,7 @@ Display parameters as parsed by Maven (in canonical form and as a list of tokens
   <span class="nt">&lt;/build</span><span class="nt">&gt;</span>
 <span class="nt">&lt;/project</span><span class="nt">&gt;</span>
 </code></pre>
-<p>Plugins are also identified by coordinates. Unlike dependencies, there is a default <code>groupId</code> for plugins. See <a href="/docs/plugins/configure-plugins.html">Configuring Plugins</a>.</p>
+<p>Plugins are also identified by coordinates. Unlike dependencies, there is a default <code>groupId</code> for plugins. See <a href="../../docs/plugins/configure-plugins.html">Configuring Plugins</a>.</p>
 <p><strong>Note</strong>: It is not allowed to declare the same plugin multiple times in the same build. Multiple declarations of the same plugin result in warnings using Maven 3 and fail the build using Maven 4.</p>
 <p>Beyond the standard coordinate of <code>groupId:artifactId:version</code>, there are elements which configure the plugin or this builds interaction with it.</p>
 <ul>
@@ -1284,7 +1284,7 @@ Display parameters as parsed by Maven (in canonical form and as a list of tokens
 </code></pre>
 <ul>
 
-<li><code>&lt;connection&gt;</code>, <code>&lt;developerConnection&gt;</code>: The two connection elements convey to how one is to connect to the version control system through Maven. Where connection requires read access for Maven to be able to find the source code (for example, an update), developerConnection requires a connection that will give write access. The Maven project has spawned another project named Maven SCM, which creates a common API for any SCMs that wish to implement it. The most popular are CVS and Subversion, however, there is a growing list of other supported <a href="/scm/scms-overview.html">SCMs</a>. All SCM connections are made through a common URL structure.</li>
+<li><code>&lt;connection&gt;</code>, <code>&lt;developerConnection&gt;</code>: The two connection elements convey to how one is to connect to the version control system through Maven. Where connection requires read access for Maven to be able to find the source code (for example, an update), developerConnection requires a connection that will give write access. The Maven project has spawned another project named Maven SCM, which creates a common API for any SCMs that wish to implement it. The most popular are CVS and Subversion, however, there is a growing list of other supported <a href="../../scm/scms-overview.html">SCMs</a>. All SCM connections are made through a common URL structure.</li>
 </ul>
 
 <pre tabindex="0"><code class="nohighlight nocode">scm:[provider]:[provider_specific]
@@ -1302,7 +1302,7 @@ Display parameters as parsed by Maven (in canonical form and as a list of tokens
 </ul></section><section><a id="Prerequisites"></a>
 <h3>Prerequisites</h3>
 <p>The POM may have certain prerequisites in order to execute correctly. The only element that exists as a prerequisite in POM 4.0.0 is the <code>maven</code> element, which takes a minimum version number.</p>
-<p>Use <a href="/enforcer/enforcer-rules/requireMavenVersion.html">Maven Enforcer Plugin's <code>requireMavenVersion</code> rule</a>, or other rules for <code>&lt;build-time&gt;</code> prerequisites. For packaging <code>maven-plugin</code> this is still used at <code>&lt;run-time&gt;</code> to make sure that the minimum Maven version for the plugin is met (but only in the pom.xml of the referenced plugin).</p>
+<p>Use <a href="../../enforcer/enforcer-rules/requireMavenVersion.html">Maven Enforcer Plugin's <code>requireMavenVersion</code> rule</a>, or other rules for <code>&lt;build-time&gt;</code> prerequisites. For packaging <code>maven-plugin</code> this is still used at <code>&lt;run-time&gt;</code> to make sure that the minimum Maven version for the plugin is met (but only in the pom.xml of the referenced plugin).</p>
 
 <pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span><span class="nt">&gt;</span>
   ...

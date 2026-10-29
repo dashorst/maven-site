@@ -139,7 +139,7 @@
 <p>Although transitive dependencies can implicitly include desired dependencies, it is a good practice to explicitly specify the dependencies your source code uses directly. This best practice proves its value especially when the dependencies of your project change their dependencies.</p>
 <p>For example, assume that your project A specifies a dependency on another project B, and project B specifies a dependency on project C. If you are directly using components in project C, and you don't specify project C in your project A, it may cause build failure when project B suddenly updates/removes its dependency on project C.</p>
 <p>Another reason to directly specify dependencies is that it provides better documentation for your project: one can learn more information by just reading the POM file in your project, or by executing <strong>mvn dependency:tree</strong>.</p>
-<p>Maven also provides <a href="/plugins/maven-dependency-plugin/analyze-mojo.html">dependency:analyze</a> plugin goal for analyzing the dependencies: it helps making this best practice more achievable.</p></section><section><a id="Dependency_Scope"></a>
+<p>Maven also provides <a href="../../plugins/maven-dependency-plugin/analyze-mojo.html">dependency:analyze</a> plugin goal for analyzing the dependencies: it helps making this best practice more achievable.</p></section><section><a id="Dependency_Scope"></a>
 <h2>Dependency Scope</h2>
 <p>Dependency scope is used to limit the transitivity of a dependency and to determine when a dependency is included in a classpath.</p>
 <p>There are 6 scopes:</p>
@@ -832,7 +832,7 @@ This scope is only supported on a dependency of type <code>pom</code> in the <co
   ...
 <span class="nt">&lt;/project</span><span class="nt">&gt;</span>
 </code></pre>
-<p>While the <em>system</em> scope is supported, its usage is <strong>not recommended</strong>! The dependency is only looked up on this specific file path, which binds the build to individual machines. The recommended approach is to upload the dependency to a <a href="/docs/dependencies/repository-manager.html">private hosted repository</a> accessible within the organization. This also allows differentiation between dependencies needed for compile/execution and those only needed for testing, by using <em>compile</em> or <em>test</em> scope.</p><section><a id="Historical_usage.3A_Java_EE_.28javax.29_libraries_of_the_JDK"></a>
+<p>While the <em>system</em> scope is supported, its usage is <strong>not recommended</strong>! The dependency is only looked up on this specific file path, which binds the build to individual machines. The recommended approach is to upload the dependency to a <a href="../../docs/dependencies/repository-manager.html">private hosted repository</a> accessible within the organization. This also allows differentiation between dependencies needed for compile/execution and those only needed for testing, by using <em>compile</em> or <em>test</em> scope.</p><section><a id="Historical_usage.3A_Java_EE_.28javax.29_libraries_of_the_JDK"></a>
 <h3>Historical usage: Java EE (<code>javax</code>) libraries of the JDK</h3>
 <p>In the past, the system scope was commonly used to tell Maven about Java EE (<code>javax</code> package) dependencies provided by the JDK that were available as separate downloads earlier. A typical examples is the Java Authentication and Authorization Service (JAAS):</p>
 

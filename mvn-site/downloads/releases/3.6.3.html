@@ -71,8 +71,8 @@
 <ul>
 
 <li>the website: <a href="https://maven.apache.org/" class="externalLink">https://maven.apache.org/</a></li>
-<li>the maven-user mailing list: <a href="/mailing-lists.html">https://maven.apache.org/mailing-lists.html</a></li>
-<li>the reference documentation: <a href="/ref/3.6.3/">https://maven.apache.org/ref/3.6.3/</a></li>
+<li>the maven-user mailing list: <a href="../../mailing-lists.html">https://maven.apache.org/mailing-lists.html</a></li>
+<li>the reference documentation: <a href="../../ref/3.6.3/">https://maven.apache.org/ref/3.6.3/</a></li>
 </ul><section><a id="Reporters_and_Contributors_of_this_release"></a>
 <h2>Reporters and Contributors of this release</h2>
 <p>We really value the contributions of these non committers, so this section is focused on those individuals. Descriptions of the issues fixed can be found at the <a href="#Details">end of these release notes</a>.</p>
@@ -88,14 +88,14 @@
 <li>
 <p>Some license issues on binary distribution have been fixed.</p></li>
 <li>
-<p>This Maven distribution is now Reproducible: if you <a href="/download.cgi">download Maven source archive</a> (<code>apache-maven-3.6.3-src.zip</code> or <code>.tar.gz</code>), build it on Windows with JDK 8 using following command:</p></li>
+<p>This Maven distribution is now Reproducible: if you <a href="../../download.cgi">download Maven source archive</a> (<code>apache-maven-3.6.3-src.zip</code> or <code>.tar.gz</code>), build it on Windows with JDK 8 using following command:</p></li>
 </ul>
 
 <pre tabindex="0"><code class="nohighlight nocode">mvn -DbuildNumber=cecedd343002696d0abb50b32b541b8a6ba2883f package
 </code></pre>
 <p>you'll get bit-by-bit identical output (<code>apache-maven-3.6.3-bin.zip</code> and <code>.tar.gz</code> in <code>apache-maven/target/</code>) that you can check with sha512 fingerprints against official release.<br />
 If you're building on any Unix system, you'll need to add &#x201c;<code>-Dline.separator=$'\r\n'</code>&#x201d;.<br />
-See the <a href="/docs/recipes/reproducible-builds.html">Maven - Guide to Configuring for Reproducible Builds</a> for more details.</p></section><section><a id="The_detailed_issue_list"></a>
+See the <a href="../../docs/recipes/reproducible-builds.html">Maven - Guide to Configuring for Reproducible Builds</a> for more details.</p></section><section><a id="The_detailed_issue_list"></a>
 <h2>The detailed issue list<a href="#Details"></a></h2>
 <p>Sub-task</p>
 

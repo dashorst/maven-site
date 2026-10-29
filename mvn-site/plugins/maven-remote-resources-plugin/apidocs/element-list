@@ -1,0 +1,3 @@
+org.apache.maven.plugin.resources.remote
+org.apache.maven.plugin.resources.remote.io.xpp3
+org.apache.maven.plugins.maven_remote_resources_plugin

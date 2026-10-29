@@ -70,9 +70,9 @@
 <p>We hope you enjoy using Maven! If you have any questions, please consult:</p>
 <ul>
 
-<li>the website: <a href="/">http://maven.apache.org/</a></li>
-<li>the maven-user mailing list: <a href="/mailing-lists.html">http://maven.apache.org/mailing-lists.html</a></li>
-<li>the reference documentation: <a href="/ref/3.3.9/">http://maven.apache.org/ref/3.3.9/</a></li>
+<li>the website: <a href="../../">http://maven.apache.org/</a></li>
+<li>the maven-user mailing list: <a href="../../mailing-lists.html">http://maven.apache.org/mailing-lists.html</a></li>
+<li>the reference documentation: <a href="../../ref/3.3.9/">http://maven.apache.org/ref/3.3.9/</a></li>
 </ul><section><a id="Reporters_and_Contributors_of_this_release"></a>
 <h2>Reporters and Contributors of this release</h2>
 <p>Bugs:</p>
@@ -109,7 +109,7 @@
 <li>
 <p>The <code>par</code> lifecycle has been removed from the default life cycle bindings and the maven-ejb3-plugin has been removed from default bindings, cause it does not exist <a href="https://issues.apache.org/jira/browse/MNG-5892" class="externalLink">MNG-5892</a>, <a href="https://issues.apache.org/jira/browse/MNG-5894" class="externalLink">MNG-5894</a>.</p></li>
 <li>
-<p>The default bindings defined two different versions for the <a href="/enforcer/maven-resources-plugin/">maven-resources-plugin</a> which has been fixed by <a href="https://issues.apache.org/jira/browse/MNG-5893" class="externalLink">MNG-5893</a>.</p></li>
+<p>The default bindings defined two different versions for the <a href="../../enforcer/maven-resources-plugin/">maven-resources-plugin</a> which has been fixed by <a href="https://issues.apache.org/jira/browse/MNG-5893" class="externalLink">MNG-5893</a>.</p></li>
 <li>
 <p>Switch to official <a href="https://github.com/google/guice/wiki/Motivation" class="externalLink">Guice</a> 4.0, upgrade to <a href="https://www.eclipse.org/sisu/" class="externalLink">Eclipse/Sisu</a> 0.3.2 has been done with <a href="https://issues.apache.org/jira/browse/MNG-5923" class="externalLink">MNG-5923</a> and <a href="https://issues.apache.org/jira/browse/MNG-5924" class="externalLink">MNG-5924</a>.</p></li>
 <li>
@@ -131,9 +131,9 @@
 <li>
 <p>Use canonical name for UTC timezone <a href="https://issues.apache.org/jira/browse/MNG-5906" class="externalLink">MNG-5906</a>.</p></li>
 <li>
-<p>Upgrade <a href="/pom/maven/">maven-parent</a> to version 27 <a href="https://issues.apache.org/jira/browse/MNG-5911" class="externalLink">MNG-5911</a>.</p></li>
+<p>Upgrade <a href="../../pom/maven/">maven-parent</a> to version 27 <a href="https://issues.apache.org/jira/browse/MNG-5911" class="externalLink">MNG-5911</a>.</p></li>
 <li>
-<p>Upgrade <a href="/wagon/">Wagon</a> version to 2.10 <a href="https://issues.apache.org/jira/browse/MNG-5915" class="externalLink">MNG-5915</a>.</p></li>
+<p>Upgrade <a href="../../wagon/">Wagon</a> version to 2.10 <a href="https://issues.apache.org/jira/browse/MNG-5915" class="externalLink">MNG-5915</a>.</p></li>
 <li>
 <p>Upgraded to <a href="https://codehaus-plexus.github.io/plexus-containers/" class="externalLink">plexus-component-*</a> 1.6 that uses <a href="http://asm.ow2.org/" class="externalLink">asm</a> 5.x <a href="https://issues.apache.org/jira/browse/MNG-5921" class="externalLink">MNG-5921</a>.</p></li>
 <li>
@@ -157,7 +157,7 @@
 <li>
 <p>In cases where you start Maven in the root of a windows drive Maven will fail. This has been fixed by <a href="https://issues.apache.org/jira/browse/MNG-5796" class="externalLink">MNG-5796</a>.</p></li>
 <li>
-<p>The <code>&lt;prerequisites&gt;</code> elements is intended for <a href="https://issues.apache.org/jira/browse/MNG-4840" class="externalLink">buildtime checking but not for runtime checks</a> which should be left to <a href="/enforcer/maven-enforcer-plugin/">maven-enforcer-plugin</a>. This has not been documented accordingly. This has been done with <a href="https://issues.apache.org/jira/browse/MNG-5297" class="externalLink">MNG-5297</a>.</p></li>
+<p>The <code>&lt;prerequisites&gt;</code> elements is intended for <a href="https://issues.apache.org/jira/browse/MNG-4840" class="externalLink">buildtime checking but not for runtime checks</a> which should be left to <a href="../../enforcer/maven-enforcer-plugin/">maven-enforcer-plugin</a>. This has not been documented accordingly. This has been done with <a href="https://issues.apache.org/jira/browse/MNG-5297" class="externalLink">MNG-5297</a>.</p></li>
 <li>
 <p>In situations like this: <code>mvn -Dtest=\&quot;anton\&quot; clean package</code> the trailing quote is stripped away which could cause problems. This has been fixed with <a href="https://issues.apache.org/jira/browse/MNG-5681" class="externalLink">MNG-5681</a>.</p></li>
 <li>
@@ -167,7 +167,7 @@
 <li>
 <p>Broken link of &#x2018;Building Maven&#x2019; in README.md has been fixed by <a href="https://issues.apache.org/jira/browse/MNG-5886" class="externalLink">MNG-5886</a>.</p></li>
 <li>
-<p><a href="/ref/3.3.9/maven-aether-provider/">maven-aether-provider</a>/<a href="/ref/3.3.9/maven-compat/">maven-compat</a> does not always generate snapshot versions using Gregorian calendar year fixed in <a href="https://issues.apache.org/jira/browse/MNG-5877" class="externalLink">MNG-5877</a></p></li>
+<p><a href="../../ref/3.3.9/maven-aether-provider/">maven-aether-provider</a>/<a href="../../ref/3.3.9/maven-compat/">maven-compat</a> does not always generate snapshot versions using Gregorian calendar year fixed in <a href="https://issues.apache.org/jira/browse/MNG-5877" class="externalLink">MNG-5877</a></p></li>
 <li>
 <p>Log file command line option description contains an extra word has been fixed by <a href="https://issues.apache.org/jira/browse/MNG-5891" class="externalLink">MNG-5891</a></p></li>
 <li>

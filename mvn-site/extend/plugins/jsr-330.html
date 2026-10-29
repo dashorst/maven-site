@@ -107,7 +107,7 @@
 <h2>How to use JSR-330 in plugins</h2>
 <p>Let's take a look at an example plugin: If you want to look at this example project, you can find the code <a href="https://github.com/apache/maven-integration-testing/tree/master/core-it-suite/src/test/resources/mng-5382" class="externalLink">in Maven Core ITs</a>.</p>
 <p>The POM is set up for JSR-300 as previously mentioned, with the <code>javax.inject</code> dependency and the <code>sisu-maven-plugin</code> configured to create the JSR-330 component index.</p>
-<p>In addition, we add classical Maven plugin dependencies <code>maven-plugin-api</code> and <code>maven-plugin-annotations</code> to extend the <code>AbstractMojo</code> and use the Java Plugin Tools Annotations with associated <code>maven-plugin-plugin</code> (see <a href="/plugin-tools/">Maven Plugin Tools</a>).</p>
+<p>In addition, we add classical Maven plugin dependencies <code>maven-plugin-api</code> and <code>maven-plugin-annotations</code> to extend the <code>AbstractMojo</code> and use the Java Plugin Tools Annotations with associated <code>maven-plugin-plugin</code> (see <a href="../../plugin-tools/">Maven Plugin Tools</a>).</p>
 
 <pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span> <span class="na">xmlns:xsi</span>=<span class="s">"http://www.w3.org/2001/XMLSchema-instance"</span>
   <span class="na">xsi:schemaLocation</span>=<span class="s">"http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd"</span><span class="nt">&gt;</span>
@@ -195,7 +195,7 @@
   <span class="nt">&lt;/build</span><span class="nt">&gt;</span>
 <span class="nt">&lt;/project</span><span class="nt">&gt;</span>
 </code></pre>
-<p>Now let's take a look at the plugin code. You'll notice that we're using constructor injection which makes testing a lot easier. If you want to test your <code>Jsr330Component</code>, you do not need the container to instantiate the <code>Mojo</code>. In this simple case, you can actually test this plugin without using the <a href="/plugin-testing/maven-plugin-testing-harness/index.html">plugin testing harness</a> because you can instantiate the <code>Jsr330Component</code> and <code>Jsr330Mojo</code> directly and wire everything up manually using the constructor. Constructor injection, which Plexus lacks, greatly simplifies testing.</p>
+<p>Now let's take a look at the plugin code. You'll notice that we're using constructor injection which makes testing a lot easier. If you want to test your <code>Jsr330Component</code>, you do not need the container to instantiate the <code>Mojo</code>. In this simple case, you can actually test this plugin without using the <a href="../../plugin-testing/maven-plugin-testing-harness/index.html">plugin testing harness</a> because you can instantiate the <code>Jsr330Component</code> and <code>Jsr330Mojo</code> directly and wire everything up manually using the constructor. Constructor injection, which Plexus lacks, greatly simplifies testing.</p>
 
 <pre tabindex="0" class="highlight"><code class="language-java"><span class="k">package</span> org.apache.maven.plugins;
 

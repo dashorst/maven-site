@@ -86,7 +86,7 @@
  <section><a id="Guide_to_installing_3rd_party_JARs"></a>
 <h1>Guide to installing 3rd party JARs</h1>
 <p>Occasionally, you will have 3rd party JARs that you need to put in your local repository for use in your builds, since they don't exist in any public repository like <a href="https://search.maven.org" class="externalLink">Maven Central</a>. The JARs must be placed in the local repository in the correct place in order for it to be correctly picked up by Apache Maven.</p>
-<p>To make this easier, and less error prone, we have provided an <code>install-file</code> goal in the <a href="/plugins/maven-install-plugin/">maven-install-plugin</a> which should make this relatively painless.</p>
+<p>To make this easier, and less error prone, we have provided an <code>install-file</code> goal in the <a href="../../plugins/maven-install-plugin/">maven-install-plugin</a> which should make this relatively painless.</p>
 <p>To install a JAR in the local repository use the following command:</p>
 
 <pre tabindex="0"><code class="nohighlight nocode">mvn install:install-file -Dfile=&lt;path-to-file&gt; -DgroupId=&lt;group-id&gt; -DartifactId=&lt;artifact-id&gt; -Dversion=&lt;version&gt; -Dpackaging=&lt;packaging&gt;

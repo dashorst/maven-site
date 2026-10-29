@@ -1,0 +1,559 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="" lang="">
+<head><meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+<title>Cleaner xref</title>
+<link type="text/css" rel="stylesheet" href="../../../../../stylesheet.css" />
+</head>
+<body>
+<div id="overview"><a href="../../../../../../apidocs/org/apache/maven/plugins/clean/Cleaner.html">View Javadoc</a></div><pre>
+<a class="jxr_linenumber" name="L1" href="#L1">1</a>   <em class="jxr_comment">/*</em>
+<a class="jxr_linenumber" name="L2" href="#L2">2</a>   <em class="jxr_comment"> * Licensed to the Apache Software Foundation (ASF) under one</em>
+<a class="jxr_linenumber" name="L3" href="#L3">3</a>   <em class="jxr_comment"> * or more contributor license agreements.  See the NOTICE file</em>
+<a class="jxr_linenumber" name="L4" href="#L4">4</a>   <em class="jxr_comment"> * distributed with this work for additional information</em>
+<a class="jxr_linenumber" name="L5" href="#L5">5</a>   <em class="jxr_comment"> * regarding copyright ownership.  The ASF licenses this file</em>
+<a class="jxr_linenumber" name="L6" href="#L6">6</a>   <em class="jxr_comment"> * to you under the Apache License, Version 2.0 (the</em>
+<a class="jxr_linenumber" name="L7" href="#L7">7</a>   <em class="jxr_comment"> * "License"); you may not use this file except in compliance</em>
+<a class="jxr_linenumber" name="L8" href="#L8">8</a>   <em class="jxr_comment"> * with the License.  You may obtain a copy of the License at</em>
+<a class="jxr_linenumber" name="L9" href="#L9">9</a>   <em class="jxr_comment"> *</em>
+<a class="jxr_linenumber" name="L10" href="#L10">10</a>  <em class="jxr_comment"> *   <a href="http://www.apache.org/licenses/LICENSE-2.0" target="alexandria_uri">http://www.apache.org/licenses/LICENSE-2.0</a></em>
+<a class="jxr_linenumber" name="L11" href="#L11">11</a>  <em class="jxr_comment"> *</em>
+<a class="jxr_linenumber" name="L12" href="#L12">12</a>  <em class="jxr_comment"> * Unless required by applicable law or agreed to in writing,</em>
+<a class="jxr_linenumber" name="L13" href="#L13">13</a>  <em class="jxr_comment"> * software distributed under the License is distributed on an</em>
+<a class="jxr_linenumber" name="L14" href="#L14">14</a>  <em class="jxr_comment"> * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY</em>
+<a class="jxr_linenumber" name="L15" href="#L15">15</a>  <em class="jxr_comment"> * KIND, either express or implied.  See the License for the</em>
+<a class="jxr_linenumber" name="L16" href="#L16">16</a>  <em class="jxr_comment"> * specific language governing permissions and limitations</em>
+<a class="jxr_linenumber" name="L17" href="#L17">17</a>  <em class="jxr_comment"> * under the License.</em>
+<a class="jxr_linenumber" name="L18" href="#L18">18</a>  <em class="jxr_comment"> */</em>
+<a class="jxr_linenumber" name="L19" href="#L19">19</a>  <strong class="jxr_keyword">package</strong> org.apache.maven.plugins.clean;
+<a class="jxr_linenumber" name="L20" href="#L20">20</a>  
+<a class="jxr_linenumber" name="L21" href="#L21">21</a>  <strong class="jxr_keyword">import</strong> java.io.File;
+<a class="jxr_linenumber" name="L22" href="#L22">22</a>  <strong class="jxr_keyword">import</strong> java.io.IOException;
+<a class="jxr_linenumber" name="L23" href="#L23">23</a>  <strong class="jxr_keyword">import</strong> java.lang.reflect.InvocationHandler;
+<a class="jxr_linenumber" name="L24" href="#L24">24</a>  <strong class="jxr_keyword">import</strong> java.lang.reflect.Method;
+<a class="jxr_linenumber" name="L25" href="#L25">25</a>  <strong class="jxr_keyword">import</strong> java.lang.reflect.Proxy;
+<a class="jxr_linenumber" name="L26" href="#L26">26</a>  <strong class="jxr_keyword">import</strong> java.nio.file.AccessDeniedException;
+<a class="jxr_linenumber" name="L27" href="#L27">27</a>  <strong class="jxr_keyword">import</strong> java.nio.file.DirectoryStream;
+<a class="jxr_linenumber" name="L28" href="#L28">28</a>  <strong class="jxr_keyword">import</strong> java.nio.file.Files;
+<a class="jxr_linenumber" name="L29" href="#L29">29</a>  <strong class="jxr_keyword">import</strong> java.nio.file.LinkOption;
+<a class="jxr_linenumber" name="L30" href="#L30">30</a>  <strong class="jxr_keyword">import</strong> java.nio.file.Path;
+<a class="jxr_linenumber" name="L31" href="#L31">31</a>  <strong class="jxr_keyword">import</strong> java.nio.file.StandardCopyOption;
+<a class="jxr_linenumber" name="L32" href="#L32">32</a>  <strong class="jxr_keyword">import</strong> java.nio.file.attribute.BasicFileAttributes;
+<a class="jxr_linenumber" name="L33" href="#L33">33</a>  <strong class="jxr_keyword">import</strong> java.nio.file.attribute.DosFileAttributeView;
+<a class="jxr_linenumber" name="L34" href="#L34">34</a>  <strong class="jxr_keyword">import</strong> java.nio.file.attribute.PosixFileAttributeView;
+<a class="jxr_linenumber" name="L35" href="#L35">35</a>  <strong class="jxr_keyword">import</strong> java.nio.file.attribute.PosixFilePermission;
+<a class="jxr_linenumber" name="L36" href="#L36">36</a>  <strong class="jxr_keyword">import</strong> java.util.ArrayDeque;
+<a class="jxr_linenumber" name="L37" href="#L37">37</a>  <strong class="jxr_keyword">import</strong> java.util.Deque;
+<a class="jxr_linenumber" name="L38" href="#L38">38</a>  <strong class="jxr_keyword">import</strong> java.util.EnumSet;
+<a class="jxr_linenumber" name="L39" href="#L39">39</a>  <strong class="jxr_keyword">import</strong> java.util.HashSet;
+<a class="jxr_linenumber" name="L40" href="#L40">40</a>  <strong class="jxr_keyword">import</strong> java.util.Set;
+<a class="jxr_linenumber" name="L41" href="#L41">41</a>  
+<a class="jxr_linenumber" name="L42" href="#L42">42</a>  <strong class="jxr_keyword">import</strong> org.apache.maven.execution.ExecutionListener;
+<a class="jxr_linenumber" name="L43" href="#L43">43</a>  <strong class="jxr_keyword">import</strong> org.apache.maven.execution.MavenSession;
+<a class="jxr_linenumber" name="L44" href="#L44">44</a>  <strong class="jxr_keyword">import</strong> org.apache.maven.plugin.logging.Log;
+<a class="jxr_linenumber" name="L45" href="#L45">45</a>  <strong class="jxr_keyword">import</strong> org.codehaus.plexus.util.Os;
+<a class="jxr_linenumber" name="L46" href="#L46">46</a>  <strong class="jxr_keyword">import</strong> org.eclipse.aether.SessionData;
+<a class="jxr_linenumber" name="L47" href="#L47">47</a>  
+<a class="jxr_linenumber" name="L48" href="#L48">48</a>  <strong class="jxr_keyword">import</strong> <strong class="jxr_keyword">static</strong> java.nio.file.Files.exists;
+<a class="jxr_linenumber" name="L49" href="#L49">49</a>  <strong class="jxr_keyword">import</strong> <strong class="jxr_keyword">static</strong> java.nio.file.Files.isDirectory;
+<a class="jxr_linenumber" name="L50" href="#L50">50</a>  <strong class="jxr_keyword">import</strong> <strong class="jxr_keyword">static</strong> java.nio.file.Files.newDirectoryStream;
+<a class="jxr_linenumber" name="L51" href="#L51">51</a>  <strong class="jxr_keyword">import</strong> <strong class="jxr_keyword">static</strong> org.apache.maven.plugins.clean.CleanMojo.FAST_MODE_BACKGROUND;
+<a class="jxr_linenumber" name="L52" href="#L52">52</a>  <strong class="jxr_keyword">import</strong> <strong class="jxr_keyword">static</strong> org.apache.maven.plugins.clean.CleanMojo.FAST_MODE_DEFER;
+<a class="jxr_linenumber" name="L53" href="#L53">53</a>  
+<a class="jxr_linenumber" name="L54" href="#L54">54</a>  <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L55" href="#L55">55</a>  <em class="jxr_javadoccomment"> * Cleans directories.</em>
+<a class="jxr_linenumber" name="L56" href="#L56">56</a>  <em class="jxr_javadoccomment"> *</em>
+<a class="jxr_linenumber" name="L57" href="#L57">57</a>  <em class="jxr_javadoccomment"> * @author Benjamin Bentmann</em>
+<a class="jxr_linenumber" name="L58" href="#L58">58</a>  <em class="jxr_javadoccomment"> */</em>
+<a class="jxr_linenumber" name="L59" href="#L59">59</a>  <strong class="jxr_keyword">class</strong> <a name="Cleaner" href="../../../../../org/apache/maven/plugins/clean/Cleaner.html#Cleaner">Cleaner</a> {
+<a class="jxr_linenumber" name="L60" href="#L60">60</a>  
+<a class="jxr_linenumber" name="L61" href="#L61">61</a>      <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">boolean</strong> ON_WINDOWS = Os.isFamily(Os.FAMILY_WINDOWS);
+<a class="jxr_linenumber" name="L62" href="#L62">62</a>  
+<a class="jxr_linenumber" name="L63" href="#L63">63</a>      <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> String LAST_DIRECTORY_TO_DELETE = Cleaner.<strong class="jxr_keyword">class</strong>.getName() + <span class="jxr_string">".lastDirectoryToDelete"</span>;
+<a class="jxr_linenumber" name="L64" href="#L64">64</a>  
+<a class="jxr_linenumber" name="L65" href="#L65">65</a>      <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L66" href="#L66">66</a>  <em class="jxr_javadoccomment">     * The maven session.  This is typically non-null in a real run, but it can be during unit tests.</em>
+<a class="jxr_linenumber" name="L67" href="#L67">67</a>  <em class="jxr_javadoccomment">     */</em>
+<a class="jxr_linenumber" name="L68" href="#L68">68</a>      <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">final</strong> MavenSession session;
+<a class="jxr_linenumber" name="L69" href="#L69">69</a>  
+<a class="jxr_linenumber" name="L70" href="#L70">70</a>      <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">final</strong> Path fastDir;
+<a class="jxr_linenumber" name="L71" href="#L71">71</a>  
+<a class="jxr_linenumber" name="L72" href="#L72">72</a>      <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">final</strong> String fastMode;
+<a class="jxr_linenumber" name="L73" href="#L73">73</a>  
+<a class="jxr_linenumber" name="L74" href="#L74">74</a>      <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">boolean</strong> verbose;
+<a class="jxr_linenumber" name="L75" href="#L75">75</a>  
+<a class="jxr_linenumber" name="L76" href="#L76">76</a>      <strong class="jxr_keyword">private</strong> Log log;
+<a class="jxr_linenumber" name="L77" href="#L77">77</a>  
+<a class="jxr_linenumber" name="L78" href="#L78">78</a>      <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L79" href="#L79">79</a>  <em class="jxr_javadoccomment">     * Whether to force the deletion of read-only files. Note that on Linux,</em>
+<a class="jxr_linenumber" name="L80" href="#L80">80</a>  <em class="jxr_javadoccomment">     * {@link Files#delete(Path)} and {@link Files#deleteIfExists(Path)} delete read-only files</em>
+<a class="jxr_linenumber" name="L81" href="#L81">81</a>  <em class="jxr_javadoccomment">     * but throw {@link AccessDeniedException} if the directory containing the file is read-only.</em>
+<a class="jxr_linenumber" name="L82" href="#L82">82</a>  <em class="jxr_javadoccomment">     */</em>
+<a class="jxr_linenumber" name="L83" href="#L83">83</a>      <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">boolean</strong> force;
+<a class="jxr_linenumber" name="L84" href="#L84">84</a>  
+<a class="jxr_linenumber" name="L85" href="#L85">85</a>      <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L86" href="#L86">86</a>  <em class="jxr_javadoccomment">     * Creates a new cleaner.</em>
+<a class="jxr_linenumber" name="L87" href="#L87">87</a>  <em class="jxr_javadoccomment">     *</em>
+<a class="jxr_linenumber" name="L88" href="#L88">88</a>  <em class="jxr_javadoccomment">     * @param session  The Maven session to be used.</em>
+<a class="jxr_linenumber" name="L89" href="#L89">89</a>  <em class="jxr_javadoccomment">     * @param log      The logger to use.</em>
+<a class="jxr_linenumber" name="L90" href="#L90">90</a>  <em class="jxr_javadoccomment">     * @param verbose  Whether to perform verbose logging.</em>
+<a class="jxr_linenumber" name="L91" href="#L91">91</a>  <em class="jxr_javadoccomment">     * @param fastDir  The explicit configured directory or to be deleted in fast mode.</em>
+<a class="jxr_linenumber" name="L92" href="#L92">92</a>  <em class="jxr_javadoccomment">     * @param fastMode The fast deletion mode.</em>
+<a class="jxr_linenumber" name="L93" href="#L93">93</a>  <em class="jxr_javadoccomment">     * @param force    whether to force the deletion of read-only files</em>
+<a class="jxr_linenumber" name="L94" href="#L94">94</a>  <em class="jxr_javadoccomment">     */</em>
+<a class="jxr_linenumber" name="L95" href="#L95">95</a>      <a name="Cleaner" href="../../../../../org/apache/maven/plugins/clean/Cleaner.html#Cleaner">Cleaner</a>(MavenSession session, <strong class="jxr_keyword">final</strong> Log log, <strong class="jxr_keyword">boolean</strong> verbose, Path fastDir, String fastMode, <strong class="jxr_keyword">boolean</strong> force) {
+<a class="jxr_linenumber" name="L96" href="#L96">96</a>          <strong class="jxr_keyword">this</strong>.session = session;
+<a class="jxr_linenumber" name="L97" href="#L97">97</a>          <em class="jxr_comment">// This can't be null as the Cleaner gets it from the CleanMojo which gets it from AbstractMojo class, where it</em>
+<a class="jxr_linenumber" name="L98" href="#L98">98</a>          <em class="jxr_comment">// is never null.</em>
+<a class="jxr_linenumber" name="L99" href="#L99">99</a>          <strong class="jxr_keyword">this</strong>.log = log;
+<a class="jxr_linenumber" name="L100" href="#L100">100</a>         <strong class="jxr_keyword">this</strong>.fastDir = fastDir;
+<a class="jxr_linenumber" name="L101" href="#L101">101</a>         <strong class="jxr_keyword">this</strong>.fastMode = fastMode;
+<a class="jxr_linenumber" name="L102" href="#L102">102</a>         <strong class="jxr_keyword">this</strong>.verbose = verbose;
+<a class="jxr_linenumber" name="L103" href="#L103">103</a>         <strong class="jxr_keyword">this</strong>.force = force;
+<a class="jxr_linenumber" name="L104" href="#L104">104</a>     }
+<a class="jxr_linenumber" name="L105" href="#L105">105</a> 
+<a class="jxr_linenumber" name="L106" href="#L106">106</a>     <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L107" href="#L107">107</a> <em class="jxr_javadoccomment">     * Deletes the specified directories and its contents.</em>
+<a class="jxr_linenumber" name="L108" href="#L108">108</a> <em class="jxr_javadoccomment">     *</em>
+<a class="jxr_linenumber" name="L109" href="#L109">109</a> <em class="jxr_javadoccomment">     * @param basedir        The directory to delete, must not be &lt;code&gt;null&lt;/code&gt;. Non-existing directories will be silently</em>
+<a class="jxr_linenumber" name="L110" href="#L110">110</a> <em class="jxr_javadoccomment">     *                       ignored.</em>
+<a class="jxr_linenumber" name="L111" href="#L111">111</a> <em class="jxr_javadoccomment">     * @param selector       The selector used to determine what contents to delete, may be &lt;code&gt;null&lt;/code&gt; to delete</em>
+<a class="jxr_linenumber" name="L112" href="#L112">112</a> <em class="jxr_javadoccomment">     *                       everything.</em>
+<a class="jxr_linenumber" name="L113" href="#L113">113</a> <em class="jxr_javadoccomment">     * @param followSymlinks Whether to follow symlinks.</em>
+<a class="jxr_linenumber" name="L114" href="#L114">114</a> <em class="jxr_javadoccomment">     * @param failOnError    Whether to abort with an exception in case a selected file/directory could not be deleted.</em>
+<a class="jxr_linenumber" name="L115" href="#L115">115</a> <em class="jxr_javadoccomment">     * @param retryOnError   Whether to undertake additional delete attempts in case the first attempt failed.</em>
+<a class="jxr_linenumber" name="L116" href="#L116">116</a> <em class="jxr_javadoccomment">     * @throws IOException If a file/directory could not be deleted and &lt;code&gt;failOnError&lt;/code&gt; is &lt;code&gt;true&lt;/code&gt;.</em>
+<a class="jxr_linenumber" name="L117" href="#L117">117</a> <em class="jxr_javadoccomment">     */</em>
+<a class="jxr_linenumber" name="L118" href="#L118">118</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> delete(
+<a class="jxr_linenumber" name="L119" href="#L119">119</a>             Path basedir, <a name="Selector" href="../../../../../org/apache/maven/plugins/clean/Selector.html#Selector">Selector</a> selector, <strong class="jxr_keyword">boolean</strong> followSymlinks, <strong class="jxr_keyword">boolean</strong> failOnError, <strong class="jxr_keyword">boolean</strong> retryOnError)
+<a class="jxr_linenumber" name="L120" href="#L120">120</a>             <strong class="jxr_keyword">throws</strong> IOException {
+<a class="jxr_linenumber" name="L121" href="#L121">121</a>         <strong class="jxr_keyword">if</strong> (!isDirectory(basedir)) {
+<a class="jxr_linenumber" name="L122" href="#L122">122</a>             <strong class="jxr_keyword">if</strong> (!exists(basedir)) {
+<a class="jxr_linenumber" name="L123" href="#L123">123</a>                 <strong class="jxr_keyword">if</strong> (log.isDebugEnabled()) {
+<a class="jxr_linenumber" name="L124" href="#L124">124</a>                     log.debug(<span class="jxr_string">"Skipping non-existing directory "</span> + basedir);
+<a class="jxr_linenumber" name="L125" href="#L125">125</a>                 }
+<a class="jxr_linenumber" name="L126" href="#L126">126</a>                 <strong class="jxr_keyword">return</strong>;
+<a class="jxr_linenumber" name="L127" href="#L127">127</a>             }
+<a class="jxr_linenumber" name="L128" href="#L128">128</a>             <strong class="jxr_keyword">throw</strong> <strong class="jxr_keyword">new</strong> IOException(<span class="jxr_string">"Invalid base directory "</span> + basedir);
+<a class="jxr_linenumber" name="L129" href="#L129">129</a>         }
+<a class="jxr_linenumber" name="L130" href="#L130">130</a> 
+<a class="jxr_linenumber" name="L131" href="#L131">131</a>         <strong class="jxr_keyword">if</strong> (log.isInfoEnabled()) {
+<a class="jxr_linenumber" name="L132" href="#L132">132</a>             log.info(<span class="jxr_string">"Deleting "</span> + basedir + (selector != <strong class="jxr_keyword">null</strong> ? <span class="jxr_string">" ("</span> + selector + <span class="jxr_string">")"</span> : <span class="jxr_string">""</span>));
+<a class="jxr_linenumber" name="L133" href="#L133">133</a>         }
+<a class="jxr_linenumber" name="L134" href="#L134">134</a> 
+<a class="jxr_linenumber" name="L135" href="#L135">135</a>         Path file = followSymlinks ? basedir : basedir.toRealPath();
+<a class="jxr_linenumber" name="L136" href="#L136">136</a> 
+<a class="jxr_linenumber" name="L137" href="#L137">137</a>         <strong class="jxr_keyword">if</strong> (selector == <strong class="jxr_keyword">null</strong> &amp;&amp; !followSymlinks &amp;&amp; fastDir != <strong class="jxr_keyword">null</strong> &amp;&amp; session != <strong class="jxr_keyword">null</strong>) {
+<a class="jxr_linenumber" name="L138" href="#L138">138</a>             <em class="jxr_comment">// If anything wrong happens, we'll just use the usual deletion mechanism</em>
+<a class="jxr_linenumber" name="L139" href="#L139">139</a>             <strong class="jxr_keyword">if</strong> (fastDelete(file)) {
+<a class="jxr_linenumber" name="L140" href="#L140">140</a>                 <strong class="jxr_keyword">return</strong>;
+<a class="jxr_linenumber" name="L141" href="#L141">141</a>             }
+<a class="jxr_linenumber" name="L142" href="#L142">142</a>         }
+<a class="jxr_linenumber" name="L143" href="#L143">143</a> 
+<a class="jxr_linenumber" name="L144" href="#L144">144</a>         delete(file, <span class="jxr_string">""</span>, selector, followSymlinks, failOnError, retryOnError);
+<a class="jxr_linenumber" name="L145" href="#L145">145</a>     }
+<a class="jxr_linenumber" name="L146" href="#L146">146</a> 
+<a class="jxr_linenumber" name="L147" href="#L147">147</a>     <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">boolean</strong> fastDelete(Path baseDir) {
+<a class="jxr_linenumber" name="L148" href="#L148">148</a>         <em class="jxr_comment">// Handle the case where we use ${maven.multiModuleProjectDirectory}/target/.clean for example</em>
+<a class="jxr_linenumber" name="L149" href="#L149">149</a>         <strong class="jxr_keyword">if</strong> (fastDir.toAbsolutePath().startsWith(baseDir.toAbsolutePath())) {
+<a class="jxr_linenumber" name="L150" href="#L150">150</a>             <strong class="jxr_keyword">try</strong> {
+<a class="jxr_linenumber" name="L151" href="#L151">151</a>                 String prefix = baseDir.getFileName().toString() + <span class="jxr_string">"."</span>;
+<a class="jxr_linenumber" name="L152" href="#L152">152</a>                 Path tmpDir = Files.createTempDirectory(baseDir.getParent(), prefix);
+<a class="jxr_linenumber" name="L153" href="#L153">153</a>                 <strong class="jxr_keyword">try</strong> {
+<a class="jxr_linenumber" name="L154" href="#L154">154</a>                     Files.move(baseDir, tmpDir, StandardCopyOption.REPLACE_EXISTING);
+<a class="jxr_linenumber" name="L155" href="#L155">155</a>                     <strong class="jxr_keyword">if</strong> (session != <strong class="jxr_keyword">null</strong>) {
+<a class="jxr_linenumber" name="L156" href="#L156">156</a>                         session.getRepositorySession().getData().set(LAST_DIRECTORY_TO_DELETE, baseDir);
+<a class="jxr_linenumber" name="L157" href="#L157">157</a>                     }
+<a class="jxr_linenumber" name="L158" href="#L158">158</a>                     baseDir = tmpDir;
+<a class="jxr_linenumber" name="L159" href="#L159">159</a>                 } <strong class="jxr_keyword">catch</strong> (IOException e) {
+<a class="jxr_linenumber" name="L160" href="#L160">160</a>                     Files.delete(tmpDir);
+<a class="jxr_linenumber" name="L161" href="#L161">161</a>                     <strong class="jxr_keyword">throw</strong> e;
+<a class="jxr_linenumber" name="L162" href="#L162">162</a>                 }
+<a class="jxr_linenumber" name="L163" href="#L163">163</a>             } <strong class="jxr_keyword">catch</strong> (IOException e) {
+<a class="jxr_linenumber" name="L164" href="#L164">164</a>                 <strong class="jxr_keyword">if</strong> (log.isDebugEnabled()) {
+<a class="jxr_linenumber" name="L165" href="#L165">165</a>                     log.debug(<span class="jxr_string">"Unable to fast delete directory: "</span>, e);
+<a class="jxr_linenumber" name="L166" href="#L166">166</a>                 }
+<a class="jxr_linenumber" name="L167" href="#L167">167</a>                 <strong class="jxr_keyword">return</strong> false;
+<a class="jxr_linenumber" name="L168" href="#L168">168</a>             }
+<a class="jxr_linenumber" name="L169" href="#L169">169</a>         }
+<a class="jxr_linenumber" name="L170" href="#L170">170</a>         <em class="jxr_comment">// Create fastDir and the needed parents if needed</em>
+<a class="jxr_linenumber" name="L171" href="#L171">171</a>         <strong class="jxr_keyword">try</strong> {
+<a class="jxr_linenumber" name="L172" href="#L172">172</a>             <strong class="jxr_keyword">if</strong> (!isDirectory(fastDir)) {
+<a class="jxr_linenumber" name="L173" href="#L173">173</a>                 Files.createDirectories(fastDir);
+<a class="jxr_linenumber" name="L174" href="#L174">174</a>             }
+<a class="jxr_linenumber" name="L175" href="#L175">175</a>         } <strong class="jxr_keyword">catch</strong> (IOException e) {
+<a class="jxr_linenumber" name="L176" href="#L176">176</a>             <strong class="jxr_keyword">if</strong> (log.isDebugEnabled()) {
+<a class="jxr_linenumber" name="L177" href="#L177">177</a>                 log.debug(
+<a class="jxr_linenumber" name="L178" href="#L178">178</a>                         <span class="jxr_string">"Unable to fast delete directory as the path "</span> + fastDir
+<a class="jxr_linenumber" name="L179" href="#L179">179</a>                                 + <span class="jxr_string">" does not point to a directory or cannot be created: "</span>,
+<a class="jxr_linenumber" name="L180" href="#L180">180</a>                         e);
+<a class="jxr_linenumber" name="L181" href="#L181">181</a>             }
+<a class="jxr_linenumber" name="L182" href="#L182">182</a>             <strong class="jxr_keyword">return</strong> false;
+<a class="jxr_linenumber" name="L183" href="#L183">183</a>         }
+<a class="jxr_linenumber" name="L184" href="#L184">184</a> 
+<a class="jxr_linenumber" name="L185" href="#L185">185</a>         <strong class="jxr_keyword">try</strong> {
+<a class="jxr_linenumber" name="L186" href="#L186">186</a>             Path tmpDir = Files.createTempDirectory(fastDir, <span class="jxr_string">""</span>);
+<a class="jxr_linenumber" name="L187" href="#L187">187</a>             Path dstDir = tmpDir.resolve(baseDir.getFileName());
+<a class="jxr_linenumber" name="L188" href="#L188">188</a>             <em class="jxr_comment">// Note that by specifying the ATOMIC_MOVE, we expect an exception to be thrown</em>
+<a class="jxr_linenumber" name="L189" href="#L189">189</a>             <em class="jxr_comment">// if the path leads to a directory on another mountpoint.  If this is the case</em>
+<a class="jxr_linenumber" name="L190" href="#L190">190</a>             <em class="jxr_comment">// or any other exception occurs, an exception will be thrown in which case</em>
+<a class="jxr_linenumber" name="L191" href="#L191">191</a>             <em class="jxr_comment">// the method will return false and the usual deletion will be performed.</em>
+<a class="jxr_linenumber" name="L192" href="#L192">192</a>             Files.move(baseDir, dstDir, StandardCopyOption.ATOMIC_MOVE);
+<a class="jxr_linenumber" name="L193" href="#L193">193</a>             BackgroundCleaner.delete(<strong class="jxr_keyword">this</strong>, tmpDir, fastMode);
+<a class="jxr_linenumber" name="L194" href="#L194">194</a>             <strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">true</strong>;
+<a class="jxr_linenumber" name="L195" href="#L195">195</a>         } <strong class="jxr_keyword">catch</strong> (IOException e) {
+<a class="jxr_linenumber" name="L196" href="#L196">196</a>             <strong class="jxr_keyword">if</strong> (log.isDebugEnabled()) {
+<a class="jxr_linenumber" name="L197" href="#L197">197</a>                 log.debug(<span class="jxr_string">"Unable to fast delete directory: "</span>, e);
+<a class="jxr_linenumber" name="L198" href="#L198">198</a>             }
+<a class="jxr_linenumber" name="L199" href="#L199">199</a>             <strong class="jxr_keyword">return</strong> false;
+<a class="jxr_linenumber" name="L200" href="#L200">200</a>         }
+<a class="jxr_linenumber" name="L201" href="#L201">201</a>     }
+<a class="jxr_linenumber" name="L202" href="#L202">202</a> 
+<a class="jxr_linenumber" name="L203" href="#L203">203</a>     <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L204" href="#L204">204</a> <em class="jxr_javadoccomment">     * Deletes the specified file or directory.</em>
+<a class="jxr_linenumber" name="L205" href="#L205">205</a> <em class="jxr_javadoccomment">     *</em>
+<a class="jxr_linenumber" name="L206" href="#L206">206</a> <em class="jxr_javadoccomment">     * @param file           The file/directory to delete, must not be &lt;code&gt;null&lt;/code&gt;. If &lt;code&gt;followSymlinks&lt;/code&gt; is</em>
+<a class="jxr_linenumber" name="L207" href="#L207">207</a> <em class="jxr_javadoccomment">     *                       &lt;code&gt;false&lt;/code&gt;, it is assumed that the parent file is canonical.</em>
+<a class="jxr_linenumber" name="L208" href="#L208">208</a> <em class="jxr_javadoccomment">     * @param pathname       The relative pathname of the file, using {@link File#separatorChar}, must not be</em>
+<a class="jxr_linenumber" name="L209" href="#L209">209</a> <em class="jxr_javadoccomment">     *                       &lt;code&gt;null&lt;/code&gt;.</em>
+<a class="jxr_linenumber" name="L210" href="#L210">210</a> <em class="jxr_javadoccomment">     * @param selector       The selector used to determine what contents to delete, may be &lt;code&gt;null&lt;/code&gt; to delete</em>
+<a class="jxr_linenumber" name="L211" href="#L211">211</a> <em class="jxr_javadoccomment">     *                       everything.</em>
+<a class="jxr_linenumber" name="L212" href="#L212">212</a> <em class="jxr_javadoccomment">     * @param followSymlinks Whether to follow symlinks.</em>
+<a class="jxr_linenumber" name="L213" href="#L213">213</a> <em class="jxr_javadoccomment">     * @param failOnError    Whether to abort with an exception in case a selected file/directory could not be deleted.</em>
+<a class="jxr_linenumber" name="L214" href="#L214">214</a> <em class="jxr_javadoccomment">     * @param retryOnError   Whether to undertake additional delete attempts in case the first attempt failed.</em>
+<a class="jxr_linenumber" name="L215" href="#L215">215</a> <em class="jxr_javadoccomment">     * @return The result of the cleaning, never &lt;code&gt;null&lt;/code&gt;.</em>
+<a class="jxr_linenumber" name="L216" href="#L216">216</a> <em class="jxr_javadoccomment">     * @throws IOException If a file/directory could not be deleted and &lt;code&gt;failOnError&lt;/code&gt; is &lt;code&gt;true&lt;/code&gt;.</em>
+<a class="jxr_linenumber" name="L217" href="#L217">217</a> <em class="jxr_javadoccomment">     */</em>
+<a class="jxr_linenumber" name="L218" href="#L218">218</a>     <strong class="jxr_keyword">private</strong> Result delete(
+<a class="jxr_linenumber" name="L219" href="#L219">219</a>             Path file,
+<a class="jxr_linenumber" name="L220" href="#L220">220</a>             String pathname,
+<a class="jxr_linenumber" name="L221" href="#L221">221</a>             <a name="Selector" href="../../../../../org/apache/maven/plugins/clean/Selector.html#Selector">Selector</a> selector,
+<a class="jxr_linenumber" name="L222" href="#L222">222</a>             <strong class="jxr_keyword">boolean</strong> followSymlinks,
+<a class="jxr_linenumber" name="L223" href="#L223">223</a>             <strong class="jxr_keyword">boolean</strong> failOnError,
+<a class="jxr_linenumber" name="L224" href="#L224">224</a>             <strong class="jxr_keyword">boolean</strong> retryOnError)
+<a class="jxr_linenumber" name="L225" href="#L225">225</a>             <strong class="jxr_keyword">throws</strong> IOException {
+<a class="jxr_linenumber" name="L226" href="#L226">226</a>         Result result = <strong class="jxr_keyword">new</strong> Result();
+<a class="jxr_linenumber" name="L227" href="#L227">227</a> 
+<a class="jxr_linenumber" name="L228" href="#L228">228</a>         <strong class="jxr_keyword">boolean</strong> isDirectory = isDirectory(file);
+<a class="jxr_linenumber" name="L229" href="#L229">229</a> 
+<a class="jxr_linenumber" name="L230" href="#L230">230</a>         <strong class="jxr_keyword">if</strong> (isDirectory) {
+<a class="jxr_linenumber" name="L231" href="#L231">231</a>             <strong class="jxr_keyword">if</strong> (selector == <strong class="jxr_keyword">null</strong> || selector.couldHoldSelected(pathname)) {
+<a class="jxr_linenumber" name="L232" href="#L232">232</a>                 <strong class="jxr_keyword">if</strong> (followSymlinks || !isSymbolicLink(file)) {
+<a class="jxr_linenumber" name="L233" href="#L233">233</a>                     Path canonical = followSymlinks ? file : file.toRealPath();
+<a class="jxr_linenumber" name="L234" href="#L234">234</a>                     String prefix = pathname.length() &gt; 0 ? pathname + File.separatorChar : <span class="jxr_string">""</span>;
+<a class="jxr_linenumber" name="L235" href="#L235">235</a>                     <strong class="jxr_keyword">try</strong> (DirectoryStream&lt;Path&gt; children = newDirectoryStream(canonical)) {
+<a class="jxr_linenumber" name="L236" href="#L236">236</a>                         <strong class="jxr_keyword">for</strong> (Path child : children) {
+<a class="jxr_linenumber" name="L237" href="#L237">237</a>                             String filename = child.getFileName().toString();
+<a class="jxr_linenumber" name="L238" href="#L238">238</a>                             result.update(delete(
+<a class="jxr_linenumber" name="L239" href="#L239">239</a>                                     child, prefix + filename, selector, followSymlinks, failOnError, retryOnError));
+<a class="jxr_linenumber" name="L240" href="#L240">240</a>                         }
+<a class="jxr_linenumber" name="L241" href="#L241">241</a>                     }
+<a class="jxr_linenumber" name="L242" href="#L242">242</a>                 } <strong class="jxr_keyword">else</strong> <strong class="jxr_keyword">if</strong> (log.isDebugEnabled()) {
+<a class="jxr_linenumber" name="L243" href="#L243">243</a>                     log.debug(<span class="jxr_string">"Not recursing into symlink "</span> + file);
+<a class="jxr_linenumber" name="L244" href="#L244">244</a>                 }
+<a class="jxr_linenumber" name="L245" href="#L245">245</a>             } <strong class="jxr_keyword">else</strong> <strong class="jxr_keyword">if</strong> (log.isDebugEnabled()) {
+<a class="jxr_linenumber" name="L246" href="#L246">246</a>                 log.debug(<span class="jxr_string">"Not recursing into directory without included files "</span> + file);
+<a class="jxr_linenumber" name="L247" href="#L247">247</a>             }
+<a class="jxr_linenumber" name="L248" href="#L248">248</a>         }
+<a class="jxr_linenumber" name="L249" href="#L249">249</a> 
+<a class="jxr_linenumber" name="L250" href="#L250">250</a>         <strong class="jxr_keyword">if</strong> (!result.excluded &amp;&amp; (selector == <strong class="jxr_keyword">null</strong> || selector.isSelected(pathname))) {
+<a class="jxr_linenumber" name="L251" href="#L251">251</a>             String logmessage;
+<a class="jxr_linenumber" name="L252" href="#L252">252</a>             <strong class="jxr_keyword">if</strong> (isDirectory) {
+<a class="jxr_linenumber" name="L253" href="#L253">253</a>                 logmessage = <span class="jxr_string">"Deleting directory "</span> + file;
+<a class="jxr_linenumber" name="L254" href="#L254">254</a>             } <strong class="jxr_keyword">else</strong> <strong class="jxr_keyword">if</strong> (exists(file)) {
+<a class="jxr_linenumber" name="L255" href="#L255">255</a>                 logmessage = <span class="jxr_string">"Deleting file "</span> + file;
+<a class="jxr_linenumber" name="L256" href="#L256">256</a>             } <strong class="jxr_keyword">else</strong> {
+<a class="jxr_linenumber" name="L257" href="#L257">257</a>                 logmessage = <span class="jxr_string">"Deleting dangling symlink "</span> + file;
+<a class="jxr_linenumber" name="L258" href="#L258">258</a>             }
+<a class="jxr_linenumber" name="L259" href="#L259">259</a> 
+<a class="jxr_linenumber" name="L260" href="#L260">260</a>             <strong class="jxr_keyword">if</strong> (verbose &amp;&amp; log.isInfoEnabled()) {
+<a class="jxr_linenumber" name="L261" href="#L261">261</a>                 log.info(logmessage);
+<a class="jxr_linenumber" name="L262" href="#L262">262</a>             } <strong class="jxr_keyword">else</strong> <strong class="jxr_keyword">if</strong> (log.isDebugEnabled()) {
+<a class="jxr_linenumber" name="L263" href="#L263">263</a>                 log.debug(logmessage);
+<a class="jxr_linenumber" name="L264" href="#L264">264</a>             }
+<a class="jxr_linenumber" name="L265" href="#L265">265</a> 
+<a class="jxr_linenumber" name="L266" href="#L266">266</a>             result.failures += delete(file, failOnError, retryOnError);
+<a class="jxr_linenumber" name="L267" href="#L267">267</a>         } <strong class="jxr_keyword">else</strong> {
+<a class="jxr_linenumber" name="L268" href="#L268">268</a>             result.excluded = <strong class="jxr_keyword">true</strong>;
+<a class="jxr_linenumber" name="L269" href="#L269">269</a>         }
+<a class="jxr_linenumber" name="L270" href="#L270">270</a> 
+<a class="jxr_linenumber" name="L271" href="#L271">271</a>         <strong class="jxr_keyword">return</strong> result;
+<a class="jxr_linenumber" name="L272" href="#L272">272</a>     }
+<a class="jxr_linenumber" name="L273" href="#L273">273</a> 
+<a class="jxr_linenumber" name="L274" href="#L274">274</a>     <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">boolean</strong> isSymbolicLink(Path path) <strong class="jxr_keyword">throws</strong> IOException {
+<a class="jxr_linenumber" name="L275" href="#L275">275</a>         BasicFileAttributes attrs = Files.readAttributes(path, BasicFileAttributes.<strong class="jxr_keyword">class</strong>, LinkOption.NOFOLLOW_LINKS);
+<a class="jxr_linenumber" name="L276" href="#L276">276</a>         <strong class="jxr_keyword">return</strong> attrs.isSymbolicLink()
+<a class="jxr_linenumber" name="L277" href="#L277">277</a>                 <em class="jxr_comment">// MCLEAN-93: NTFS junctions have isDirectory() and isOther() attributes set</em>
+<a class="jxr_linenumber" name="L278" href="#L278">278</a>                 || (attrs.isDirectory() &amp;&amp; attrs.isOther());
+<a class="jxr_linenumber" name="L279" href="#L279">279</a>     }
+<a class="jxr_linenumber" name="L280" href="#L280">280</a> 
+<a class="jxr_linenumber" name="L281" href="#L281">281</a>     <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L282" href="#L282">282</a> <em class="jxr_javadoccomment">     * Makes the given file or directory writable.</em>
+<a class="jxr_linenumber" name="L283" href="#L283">283</a> <em class="jxr_javadoccomment">     * If the file is already writable, then this method tries to make the parent directory writable.</em>
+<a class="jxr_linenumber" name="L284" href="#L284">284</a> <em class="jxr_javadoccomment">     *</em>
+<a class="jxr_linenumber" name="L285" href="#L285">285</a> <em class="jxr_javadoccomment">     * @param file the path to the file or directory to make writable, or {@code null} if none</em>
+<a class="jxr_linenumber" name="L286" href="#L286">286</a> <em class="jxr_javadoccomment">     * @return the root path which has been made writable, or {@code null} if none</em>
+<a class="jxr_linenumber" name="L287" href="#L287">287</a> <em class="jxr_javadoccomment">     */</em>
+<a class="jxr_linenumber" name="L288" href="#L288">288</a>     <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> Path setWritable(Path file) <strong class="jxr_keyword">throws</strong> IOException {
+<a class="jxr_linenumber" name="L289" href="#L289">289</a>         <strong class="jxr_keyword">while</strong> (file != <strong class="jxr_keyword">null</strong>) {
+<a class="jxr_linenumber" name="L290" href="#L290">290</a>             PosixFileAttributeView posix = Files.getFileAttributeView(file, PosixFileAttributeView.<strong class="jxr_keyword">class</strong>);
+<a class="jxr_linenumber" name="L291" href="#L291">291</a>             <strong class="jxr_keyword">if</strong> (posix != <strong class="jxr_keyword">null</strong>) {
+<a class="jxr_linenumber" name="L292" href="#L292">292</a>                 EnumSet&lt;PosixFilePermission&gt; permissions =
+<a class="jxr_linenumber" name="L293" href="#L293">293</a>                         EnumSet.copyOf(posix.readAttributes().permissions());
+<a class="jxr_linenumber" name="L294" href="#L294">294</a>                 <strong class="jxr_keyword">if</strong> (permissions.add(PosixFilePermission.OWNER_WRITE)) {
+<a class="jxr_linenumber" name="L295" href="#L295">295</a>                     posix.setPermissions(permissions);
+<a class="jxr_linenumber" name="L296" href="#L296">296</a>                     <strong class="jxr_keyword">return</strong> file;
+<a class="jxr_linenumber" name="L297" href="#L297">297</a>                 }
+<a class="jxr_linenumber" name="L298" href="#L298">298</a>             } <strong class="jxr_keyword">else</strong> {
+<a class="jxr_linenumber" name="L299" href="#L299">299</a>                 DosFileAttributeView dos = Files.getFileAttributeView(file, DosFileAttributeView.<strong class="jxr_keyword">class</strong>);
+<a class="jxr_linenumber" name="L300" href="#L300">300</a>                 <strong class="jxr_keyword">if</strong> (dos == <strong class="jxr_keyword">null</strong>) {
+<a class="jxr_linenumber" name="L301" href="#L301">301</a>                     <strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">null</strong>; <em class="jxr_comment">// Unknown type of file attributes.</em>
+<a class="jxr_linenumber" name="L302" href="#L302">302</a>                 }
+<a class="jxr_linenumber" name="L303" href="#L303">303</a>                 <em class="jxr_comment">// No need to update the parent directory because DOS read-only attribute does not apply to folders.</em>
+<a class="jxr_linenumber" name="L304" href="#L304">304</a>                 dos.setReadOnly(false);
+<a class="jxr_linenumber" name="L305" href="#L305">305</a>                 <strong class="jxr_keyword">return</strong> file;
+<a class="jxr_linenumber" name="L306" href="#L306">306</a>             }
+<a class="jxr_linenumber" name="L307" href="#L307">307</a>             <em class="jxr_comment">// File was already writable. Maybe it is the parent directory which was not writable.</em>
+<a class="jxr_linenumber" name="L308" href="#L308">308</a>             file = file.getParent();
+<a class="jxr_linenumber" name="L309" href="#L309">309</a>         }
+<a class="jxr_linenumber" name="L310" href="#L310">310</a>         <strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">null</strong>;
+<a class="jxr_linenumber" name="L311" href="#L311">311</a>     }
+<a class="jxr_linenumber" name="L312" href="#L312">312</a> 
+<a class="jxr_linenumber" name="L313" href="#L313">313</a>     <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L314" href="#L314">314</a> <em class="jxr_javadoccomment">     * Deletes the specified file, directory. If the path denotes a symlink, only the link is removed, its target is</em>
+<a class="jxr_linenumber" name="L315" href="#L315">315</a> <em class="jxr_javadoccomment">     * left untouched.</em>
+<a class="jxr_linenumber" name="L316" href="#L316">316</a> <em class="jxr_javadoccomment">     *</em>
+<a class="jxr_linenumber" name="L317" href="#L317">317</a> <em class="jxr_javadoccomment">     * @param file         The file/directory to delete, must not be &lt;code&gt;null&lt;/code&gt;.</em>
+<a class="jxr_linenumber" name="L318" href="#L318">318</a> <em class="jxr_javadoccomment">     * @param failOnError  Whether to abort with an exception in case the file/directory could not be deleted.</em>
+<a class="jxr_linenumber" name="L319" href="#L319">319</a> <em class="jxr_javadoccomment">     * @param retryOnError Whether to undertake additional delete attempts in case the first attempt failed.</em>
+<a class="jxr_linenumber" name="L320" href="#L320">320</a> <em class="jxr_javadoccomment">     * @return &lt;code&gt;0&lt;/code&gt; if the file was deleted, &lt;code&gt;1&lt;/code&gt; otherwise.</em>
+<a class="jxr_linenumber" name="L321" href="#L321">321</a> <em class="jxr_javadoccomment">     * @throws IOException If a file/directory could not be deleted and &lt;code&gt;failOnError&lt;/code&gt; is &lt;code&gt;true&lt;/code&gt;.</em>
+<a class="jxr_linenumber" name="L322" href="#L322">322</a> <em class="jxr_javadoccomment">     */</em>
+<a class="jxr_linenumber" name="L323" href="#L323">323</a>     <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">int</strong> delete(Path file, <strong class="jxr_keyword">boolean</strong> failOnError, <strong class="jxr_keyword">boolean</strong> retryOnError) <strong class="jxr_keyword">throws</strong> IOException {
+<a class="jxr_linenumber" name="L324" href="#L324">324</a>         IOException failure = delete(file);
+<a class="jxr_linenumber" name="L325" href="#L325">325</a>         <strong class="jxr_keyword">if</strong> (failure != <strong class="jxr_keyword">null</strong>) {
+<a class="jxr_linenumber" name="L326" href="#L326">326</a>             <strong class="jxr_keyword">boolean</strong> deleted = false;
+<a class="jxr_linenumber" name="L327" href="#L327">327</a>             <strong class="jxr_keyword">boolean</strong> tryWritable = force &amp;&amp; failure instanceof AccessDeniedException;
+<a class="jxr_linenumber" name="L328" href="#L328">328</a>             <strong class="jxr_keyword">if</strong> (tryWritable || retryOnError) {
+<a class="jxr_linenumber" name="L329" href="#L329">329</a>                 <strong class="jxr_keyword">final</strong> Set&lt;Path&gt; madeWritable; <em class="jxr_comment">// Safety against never-ending loops.</em>
+<a class="jxr_linenumber" name="L330" href="#L330">330</a>                 <strong class="jxr_keyword">if</strong> (force) {
+<a class="jxr_linenumber" name="L331" href="#L331">331</a>                     madeWritable = <strong class="jxr_keyword">new</strong> HashSet&lt;&gt;();
+<a class="jxr_linenumber" name="L332" href="#L332">332</a>                     madeWritable.add(<strong class="jxr_keyword">null</strong>); <em class="jxr_comment">// For having `add(null)` to return `false`.</em>
+<a class="jxr_linenumber" name="L333" href="#L333">333</a>                 } <strong class="jxr_keyword">else</strong> {
+<a class="jxr_linenumber" name="L334" href="#L334">334</a>                     madeWritable = <strong class="jxr_keyword">null</strong>;
+<a class="jxr_linenumber" name="L335" href="#L335">335</a>                 }
+<a class="jxr_linenumber" name="L336" href="#L336">336</a>                 <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">int</strong>[] delays = {50, 250, 750};
+<a class="jxr_linenumber" name="L337" href="#L337">337</a>                 <strong class="jxr_keyword">int</strong> delayIndex = 0;
+<a class="jxr_linenumber" name="L338" href="#L338">338</a>                 <strong class="jxr_keyword">while</strong> (!deleted &amp;&amp; delayIndex &lt; delays.length) {
+<a class="jxr_linenumber" name="L339" href="#L339">339</a>                     <strong class="jxr_keyword">if</strong> (tryWritable) {
+<a class="jxr_linenumber" name="L340" href="#L340">340</a>                         tryWritable = madeWritable.add(setWritable(file));
+<a class="jxr_linenumber" name="L341" href="#L341">341</a>                         <em class="jxr_comment">// `true` if we successfully changed permission, in which case we will skip the delay.</em>
+<a class="jxr_linenumber" name="L342" href="#L342">342</a>                     }
+<a class="jxr_linenumber" name="L343" href="#L343">343</a>                     <strong class="jxr_keyword">if</strong> (!tryWritable) {
+<a class="jxr_linenumber" name="L344" href="#L344">344</a>                         <strong class="jxr_keyword">if</strong> (ON_WINDOWS) {
+<a class="jxr_linenumber" name="L345" href="#L345">345</a>                             <em class="jxr_comment">// Try to release any locks held by non-closed files.</em>
+<a class="jxr_linenumber" name="L346" href="#L346">346</a>                             System.gc();
+<a class="jxr_linenumber" name="L347" href="#L347">347</a>                         }
+<a class="jxr_linenumber" name="L348" href="#L348">348</a>                         <strong class="jxr_keyword">try</strong> {
+<a class="jxr_linenumber" name="L349" href="#L349">349</a>                             Thread.sleep(delays[delayIndex++]);
+<a class="jxr_linenumber" name="L350" href="#L350">350</a>                         } <strong class="jxr_keyword">catch</strong> (InterruptedException e) {
+<a class="jxr_linenumber" name="L351" href="#L351">351</a>                             <em class="jxr_comment">// ignore</em>
+<a class="jxr_linenumber" name="L352" href="#L352">352</a>                         }
+<a class="jxr_linenumber" name="L353" href="#L353">353</a>                     }
+<a class="jxr_linenumber" name="L354" href="#L354">354</a>                     deleted = delete(file) == <strong class="jxr_keyword">null</strong> || !exists(file);
+<a class="jxr_linenumber" name="L355" href="#L355">355</a>                     tryWritable = !deleted &amp;&amp; force &amp;&amp; failure instanceof AccessDeniedException;
+<a class="jxr_linenumber" name="L356" href="#L356">356</a>                 }
+<a class="jxr_linenumber" name="L357" href="#L357">357</a>             } <strong class="jxr_keyword">else</strong> {
+<a class="jxr_linenumber" name="L358" href="#L358">358</a>                 deleted = !exists(file);
+<a class="jxr_linenumber" name="L359" href="#L359">359</a>             }
+<a class="jxr_linenumber" name="L360" href="#L360">360</a> 
+<a class="jxr_linenumber" name="L361" href="#L361">361</a>             <strong class="jxr_keyword">if</strong> (!deleted) {
+<a class="jxr_linenumber" name="L362" href="#L362">362</a>                 <strong class="jxr_keyword">if</strong> (failOnError) {
+<a class="jxr_linenumber" name="L363" href="#L363">363</a>                     <strong class="jxr_keyword">throw</strong> <strong class="jxr_keyword">new</strong> IOException(<span class="jxr_string">"Failed to delete "</span> + file, failure);
+<a class="jxr_linenumber" name="L364" href="#L364">364</a>                 } <strong class="jxr_keyword">else</strong> {
+<a class="jxr_linenumber" name="L365" href="#L365">365</a>                     <strong class="jxr_keyword">if</strong> (log.isWarnEnabled()) {
+<a class="jxr_linenumber" name="L366" href="#L366">366</a>                         log.warn(<span class="jxr_string">"Failed to delete "</span> + file, failure);
+<a class="jxr_linenumber" name="L367" href="#L367">367</a>                     }
+<a class="jxr_linenumber" name="L368" href="#L368">368</a>                     <strong class="jxr_keyword">return</strong> 1;
+<a class="jxr_linenumber" name="L369" href="#L369">369</a>                 }
+<a class="jxr_linenumber" name="L370" href="#L370">370</a>             }
+<a class="jxr_linenumber" name="L371" href="#L371">371</a>         }
+<a class="jxr_linenumber" name="L372" href="#L372">372</a> 
+<a class="jxr_linenumber" name="L373" href="#L373">373</a>         <strong class="jxr_keyword">return</strong> 0;
+<a class="jxr_linenumber" name="L374" href="#L374">374</a>     }
+<a class="jxr_linenumber" name="L375" href="#L375">375</a> 
+<a class="jxr_linenumber" name="L376" href="#L376">376</a>     <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> IOException delete(Path file) {
+<a class="jxr_linenumber" name="L377" href="#L377">377</a>         <strong class="jxr_keyword">try</strong> {
+<a class="jxr_linenumber" name="L378" href="#L378">378</a>             Files.delete(file);
+<a class="jxr_linenumber" name="L379" href="#L379">379</a>         } <strong class="jxr_keyword">catch</strong> (IOException e) {
+<a class="jxr_linenumber" name="L380" href="#L380">380</a>             <strong class="jxr_keyword">return</strong> e;
+<a class="jxr_linenumber" name="L381" href="#L381">381</a>         }
+<a class="jxr_linenumber" name="L382" href="#L382">382</a>         <strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">null</strong>;
+<a class="jxr_linenumber" name="L383" href="#L383">383</a>     }
+<a class="jxr_linenumber" name="L384" href="#L384">384</a> 
+<a class="jxr_linenumber" name="L385" href="#L385">385</a>     <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">class</strong> Result {
+<a class="jxr_linenumber" name="L386" href="#L386">386</a> 
+<a class="jxr_linenumber" name="L387" href="#L387">387</a>         <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">int</strong> failures;
+<a class="jxr_linenumber" name="L388" href="#L388">388</a> 
+<a class="jxr_linenumber" name="L389" href="#L389">389</a>         <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">boolean</strong> excluded;
+<a class="jxr_linenumber" name="L390" href="#L390">390</a> 
+<a class="jxr_linenumber" name="L391" href="#L391">391</a>         <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> update(Result result) {
+<a class="jxr_linenumber" name="L392" href="#L392">392</a>             failures += result.failures;
+<a class="jxr_linenumber" name="L393" href="#L393">393</a>             excluded |= result.excluded;
+<a class="jxr_linenumber" name="L394" href="#L394">394</a>         }
+<a class="jxr_linenumber" name="L395" href="#L395">395</a>     }
+<a class="jxr_linenumber" name="L396" href="#L396">396</a> 
+<a class="jxr_linenumber" name="L397" href="#L397">397</a>     <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">class</strong> BackgroundCleaner <strong class="jxr_keyword">extends</strong> Thread {
+<a class="jxr_linenumber" name="L398" href="#L398">398</a> 
+<a class="jxr_linenumber" name="L399" href="#L399">399</a>         <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">int</strong> NEW = 0;
+<a class="jxr_linenumber" name="L400" href="#L400">400</a>         <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">int</strong> RUNNING = 1;
+<a class="jxr_linenumber" name="L401" href="#L401">401</a>         <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">int</strong> STOPPED = 2;
+<a class="jxr_linenumber" name="L402" href="#L402">402</a>         <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> BackgroundCleaner instance;
+<a class="jxr_linenumber" name="L403" href="#L403">403</a>         <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">final</strong> Deque&lt;Path&gt; filesToDelete = <strong class="jxr_keyword">new</strong> ArrayDeque&lt;&gt;();
+<a class="jxr_linenumber" name="L404" href="#L404">404</a>         <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">final</strong> <a name="Cleaner" href="../../../../../org/apache/maven/plugins/clean/Cleaner.html#Cleaner">Cleaner</a> cleaner;
+<a class="jxr_linenumber" name="L405" href="#L405">405</a>         <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">final</strong> String fastMode;
+<a class="jxr_linenumber" name="L406" href="#L406">406</a>         <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">int</strong> status = NEW;
+<a class="jxr_linenumber" name="L407" href="#L407">407</a> 
+<a class="jxr_linenumber" name="L408" href="#L408">408</a>         <strong class="jxr_keyword">private</strong> BackgroundCleaner(<a name="Cleaner" href="../../../../../org/apache/maven/plugins/clean/Cleaner.html#Cleaner">Cleaner</a> cleaner, Path dir, String fastMode) <strong class="jxr_keyword">throws</strong> IOException {
+<a class="jxr_linenumber" name="L409" href="#L409">409</a>             <strong class="jxr_keyword">super</strong>(<span class="jxr_string">"mvn-background-cleaner"</span>);
+<a class="jxr_linenumber" name="L410" href="#L410">410</a>             <strong class="jxr_keyword">this</strong>.cleaner = cleaner;
+<a class="jxr_linenumber" name="L411" href="#L411">411</a>             <strong class="jxr_keyword">this</strong>.fastMode = fastMode;
+<a class="jxr_linenumber" name="L412" href="#L412">412</a>             init(cleaner.fastDir, dir);
+<a class="jxr_linenumber" name="L413" href="#L413">413</a>         }
+<a class="jxr_linenumber" name="L414" href="#L414">414</a> 
+<a class="jxr_linenumber" name="L415" href="#L415">415</a>         <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">void</strong> delete(<a name="Cleaner" href="../../../../../org/apache/maven/plugins/clean/Cleaner.html#Cleaner">Cleaner</a> cleaner, Path dir, String fastMode) <strong class="jxr_keyword">throws</strong> IOException {
+<a class="jxr_linenumber" name="L416" href="#L416">416</a>             <strong class="jxr_keyword">synchronized</strong> (BackgroundCleaner.<strong class="jxr_keyword">class</strong>) {
+<a class="jxr_linenumber" name="L417" href="#L417">417</a>                 <strong class="jxr_keyword">if</strong> (instance == <strong class="jxr_keyword">null</strong> || !instance.doDelete(dir)) {
+<a class="jxr_linenumber" name="L418" href="#L418">418</a>                     instance = <strong class="jxr_keyword">new</strong> BackgroundCleaner(cleaner, dir, fastMode);
+<a class="jxr_linenumber" name="L419" href="#L419">419</a>                 }
+<a class="jxr_linenumber" name="L420" href="#L420">420</a>             }
+<a class="jxr_linenumber" name="L421" href="#L421">421</a>         }
+<a class="jxr_linenumber" name="L422" href="#L422">422</a> 
+<a class="jxr_linenumber" name="L423" href="#L423">423</a>         <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">void</strong> sessionEnd() {
+<a class="jxr_linenumber" name="L424" href="#L424">424</a>             <strong class="jxr_keyword">synchronized</strong> (BackgroundCleaner.<strong class="jxr_keyword">class</strong>) {
+<a class="jxr_linenumber" name="L425" href="#L425">425</a>                 <strong class="jxr_keyword">if</strong> (instance != <strong class="jxr_keyword">null</strong>) {
+<a class="jxr_linenumber" name="L426" href="#L426">426</a>                     instance.doSessionEnd();
+<a class="jxr_linenumber" name="L427" href="#L427">427</a>                 }
+<a class="jxr_linenumber" name="L428" href="#L428">428</a>             }
+<a class="jxr_linenumber" name="L429" href="#L429">429</a>         }
+<a class="jxr_linenumber" name="L430" href="#L430">430</a> 
+<a class="jxr_linenumber" name="L431" href="#L431">431</a>         <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> run() {
+<a class="jxr_linenumber" name="L432" href="#L432">432</a>             <strong class="jxr_keyword">while</strong> (<strong class="jxr_keyword">true</strong>) {
+<a class="jxr_linenumber" name="L433" href="#L433">433</a>                 Path basedir = pollNext();
+<a class="jxr_linenumber" name="L434" href="#L434">434</a>                 <strong class="jxr_keyword">if</strong> (basedir == <strong class="jxr_keyword">null</strong>) {
+<a class="jxr_linenumber" name="L435" href="#L435">435</a>                     <strong class="jxr_keyword">break</strong>;
+<a class="jxr_linenumber" name="L436" href="#L436">436</a>                 }
+<a class="jxr_linenumber" name="L437" href="#L437">437</a>                 <strong class="jxr_keyword">try</strong> {
+<a class="jxr_linenumber" name="L438" href="#L438">438</a>                     cleaner.delete(basedir, <span class="jxr_string">""</span>, <strong class="jxr_keyword">null</strong>, false, false, <strong class="jxr_keyword">true</strong>);
+<a class="jxr_linenumber" name="L439" href="#L439">439</a>                 } <strong class="jxr_keyword">catch</strong> (IOException e) {
+<a class="jxr_linenumber" name="L440" href="#L440">440</a>                     <em class="jxr_comment">// do not display errors</em>
+<a class="jxr_linenumber" name="L441" href="#L441">441</a>                 }
+<a class="jxr_linenumber" name="L442" href="#L442">442</a>             }
+<a class="jxr_linenumber" name="L443" href="#L443">443</a>         }
+<a class="jxr_linenumber" name="L444" href="#L444">444</a> 
+<a class="jxr_linenumber" name="L445" href="#L445">445</a>         <strong class="jxr_keyword">synchronized</strong> <strong class="jxr_keyword">void</strong> init(Path fastDir, Path dir) <strong class="jxr_keyword">throws</strong> IOException {
+<a class="jxr_linenumber" name="L446" href="#L446">446</a>             <strong class="jxr_keyword">if</strong> (isDirectory(fastDir)) {
+<a class="jxr_linenumber" name="L447" href="#L447">447</a>                 <strong class="jxr_keyword">try</strong> (DirectoryStream&lt;Path&gt; children = newDirectoryStream(fastDir)) {
+<a class="jxr_linenumber" name="L448" href="#L448">448</a>                     <strong class="jxr_keyword">for</strong> (Path child : children) {
+<a class="jxr_linenumber" name="L449" href="#L449">449</a>                         doDelete(child);
+<a class="jxr_linenumber" name="L450" href="#L450">450</a>                     }
+<a class="jxr_linenumber" name="L451" href="#L451">451</a>                 }
+<a class="jxr_linenumber" name="L452" href="#L452">452</a>             }
+<a class="jxr_linenumber" name="L453" href="#L453">453</a>             doDelete(dir);
+<a class="jxr_linenumber" name="L454" href="#L454">454</a>         }
+<a class="jxr_linenumber" name="L455" href="#L455">455</a> 
+<a class="jxr_linenumber" name="L456" href="#L456">456</a>         <strong class="jxr_keyword">synchronized</strong> Path pollNext() {
+<a class="jxr_linenumber" name="L457" href="#L457">457</a>             Path basedir = filesToDelete.poll();
+<a class="jxr_linenumber" name="L458" href="#L458">458</a>             <strong class="jxr_keyword">if</strong> (basedir == <strong class="jxr_keyword">null</strong>) {
+<a class="jxr_linenumber" name="L459" href="#L459">459</a>                 <strong class="jxr_keyword">if</strong> (cleaner.session != <strong class="jxr_keyword">null</strong>) {
+<a class="jxr_linenumber" name="L460" href="#L460">460</a>                     SessionData data = cleaner.session.getRepositorySession().getData();
+<a class="jxr_linenumber" name="L461" href="#L461">461</a>                     Path lastDir = (Path) data.get(LAST_DIRECTORY_TO_DELETE);
+<a class="jxr_linenumber" name="L462" href="#L462">462</a>                     <strong class="jxr_keyword">if</strong> (lastDir != <strong class="jxr_keyword">null</strong>) {
+<a class="jxr_linenumber" name="L463" href="#L463">463</a>                         data.set(LAST_DIRECTORY_TO_DELETE, <strong class="jxr_keyword">null</strong>);
+<a class="jxr_linenumber" name="L464" href="#L464">464</a>                         <strong class="jxr_keyword">return</strong> lastDir;
+<a class="jxr_linenumber" name="L465" href="#L465">465</a>                     }
+<a class="jxr_linenumber" name="L466" href="#L466">466</a>                 }
+<a class="jxr_linenumber" name="L467" href="#L467">467</a>                 status = STOPPED;
+<a class="jxr_linenumber" name="L468" href="#L468">468</a>                 notifyAll();
+<a class="jxr_linenumber" name="L469" href="#L469">469</a>             }
+<a class="jxr_linenumber" name="L470" href="#L470">470</a>             <strong class="jxr_keyword">return</strong> basedir;
+<a class="jxr_linenumber" name="L471" href="#L471">471</a>         }
+<a class="jxr_linenumber" name="L472" href="#L472">472</a> 
+<a class="jxr_linenumber" name="L473" href="#L473">473</a>         <strong class="jxr_keyword">synchronized</strong> <strong class="jxr_keyword">boolean</strong> doDelete(Path dir) {
+<a class="jxr_linenumber" name="L474" href="#L474">474</a>             <strong class="jxr_keyword">if</strong> (status == STOPPED) {
+<a class="jxr_linenumber" name="L475" href="#L475">475</a>                 <strong class="jxr_keyword">return</strong> false;
+<a class="jxr_linenumber" name="L476" href="#L476">476</a>             }
+<a class="jxr_linenumber" name="L477" href="#L477">477</a>             filesToDelete.add(dir);
+<a class="jxr_linenumber" name="L478" href="#L478">478</a>             <strong class="jxr_keyword">if</strong> (status == NEW &amp;&amp; FAST_MODE_BACKGROUND.equals(fastMode)) {
+<a class="jxr_linenumber" name="L479" href="#L479">479</a>                 status = RUNNING;
+<a class="jxr_linenumber" name="L480" href="#L480">480</a>                 notifyAll();
+<a class="jxr_linenumber" name="L481" href="#L481">481</a>                 start();
+<a class="jxr_linenumber" name="L482" href="#L482">482</a>             }
+<a class="jxr_linenumber" name="L483" href="#L483">483</a>             wrapExecutionListener();
+<a class="jxr_linenumber" name="L484" href="#L484">484</a>             <strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">true</strong>;
+<a class="jxr_linenumber" name="L485" href="#L485">485</a>         }
+<a class="jxr_linenumber" name="L486" href="#L486">486</a> 
+<a class="jxr_linenumber" name="L487" href="#L487">487</a>         <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L488" href="#L488">488</a> <em class="jxr_javadoccomment">         * If this has not been done already, we wrap the ExecutionListener inside a proxy</em>
+<a class="jxr_linenumber" name="L489" href="#L489">489</a> <em class="jxr_javadoccomment">         * which simply delegates call to the previous listener.  When the session ends, it will</em>
+<a class="jxr_linenumber" name="L490" href="#L490">490</a> <em class="jxr_javadoccomment">         * also call {@link BackgroundCleaner#sessionEnd()}.</em>
+<a class="jxr_linenumber" name="L491" href="#L491">491</a> <em class="jxr_javadoccomment">         * There's no clean API to do that properly as this is a very unusual use case for a plugin</em>
+<a class="jxr_linenumber" name="L492" href="#L492">492</a> <em class="jxr_javadoccomment">         * to outlive its main execution.</em>
+<a class="jxr_linenumber" name="L493" href="#L493">493</a> <em class="jxr_javadoccomment">         */</em>
+<a class="jxr_linenumber" name="L494" href="#L494">494</a>         <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">void</strong> wrapExecutionListener() {
+<a class="jxr_linenumber" name="L495" href="#L495">495</a>             ExecutionListener executionListener = cleaner.session.getRequest().getExecutionListener();
+<a class="jxr_linenumber" name="L496" href="#L496">496</a>             <strong class="jxr_keyword">if</strong> (executionListener == <strong class="jxr_keyword">null</strong>
+<a class="jxr_linenumber" name="L497" href="#L497">497</a>                     || !Proxy.isProxyClass(executionListener.getClass())
+<a class="jxr_linenumber" name="L498" href="#L498">498</a>                     || !(Proxy.getInvocationHandler(executionListener) instanceof SpyInvocationHandler)) {
+<a class="jxr_linenumber" name="L499" href="#L499">499</a>                 ExecutionListener listener = (ExecutionListener) Proxy.newProxyInstance(
+<a class="jxr_linenumber" name="L500" href="#L500">500</a>                         ExecutionListener.<strong class="jxr_keyword">class</strong>.getClassLoader(),
+<a class="jxr_linenumber" name="L501" href="#L501">501</a>                         <strong class="jxr_keyword">new</strong> Class[] {ExecutionListener.<strong class="jxr_keyword">class</strong>},
+<a class="jxr_linenumber" name="L502" href="#L502">502</a>                         <strong class="jxr_keyword">new</strong> SpyInvocationHandler(executionListener));
+<a class="jxr_linenumber" name="L503" href="#L503">503</a>                 cleaner.session.getRequest().setExecutionListener(listener);
+<a class="jxr_linenumber" name="L504" href="#L504">504</a>             }
+<a class="jxr_linenumber" name="L505" href="#L505">505</a>         }
+<a class="jxr_linenumber" name="L506" href="#L506">506</a> 
+<a class="jxr_linenumber" name="L507" href="#L507">507</a>         <strong class="jxr_keyword">synchronized</strong> <strong class="jxr_keyword">void</strong> doSessionEnd() {
+<a class="jxr_linenumber" name="L508" href="#L508">508</a>             <strong class="jxr_keyword">if</strong> (status != STOPPED) {
+<a class="jxr_linenumber" name="L509" href="#L509">509</a>                 <strong class="jxr_keyword">if</strong> (status == NEW) {
+<a class="jxr_linenumber" name="L510" href="#L510">510</a>                     start();
+<a class="jxr_linenumber" name="L511" href="#L511">511</a>                 }
+<a class="jxr_linenumber" name="L512" href="#L512">512</a>                 <strong class="jxr_keyword">if</strong> (!FAST_MODE_DEFER.equals(fastMode)) {
+<a class="jxr_linenumber" name="L513" href="#L513">513</a>                     <strong class="jxr_keyword">try</strong> {
+<a class="jxr_linenumber" name="L514" href="#L514">514</a>                         <strong class="jxr_keyword">if</strong> (cleaner.log.isInfoEnabled()) {
+<a class="jxr_linenumber" name="L515" href="#L515">515</a>                             cleaner.log.info(<span class="jxr_string">"Waiting for background file deletion"</span>);
+<a class="jxr_linenumber" name="L516" href="#L516">516</a>                         }
+<a class="jxr_linenumber" name="L517" href="#L517">517</a>                         <strong class="jxr_keyword">while</strong> (status != STOPPED) {
+<a class="jxr_linenumber" name="L518" href="#L518">518</a>                             wait();
+<a class="jxr_linenumber" name="L519" href="#L519">519</a>                         }
+<a class="jxr_linenumber" name="L520" href="#L520">520</a>                     } <strong class="jxr_keyword">catch</strong> (InterruptedException e) {
+<a class="jxr_linenumber" name="L521" href="#L521">521</a>                         <em class="jxr_comment">// ignore</em>
+<a class="jxr_linenumber" name="L522" href="#L522">522</a>                     }
+<a class="jxr_linenumber" name="L523" href="#L523">523</a>                 }
+<a class="jxr_linenumber" name="L524" href="#L524">524</a>             }
+<a class="jxr_linenumber" name="L525" href="#L525">525</a>         }
+<a class="jxr_linenumber" name="L526" href="#L526">526</a>     }
+<a class="jxr_linenumber" name="L527" href="#L527">527</a> 
+<a class="jxr_linenumber" name="L528" href="#L528">528</a>     <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">class</strong> SpyInvocationHandler <strong class="jxr_keyword">implements</strong> InvocationHandler {
+<a class="jxr_linenumber" name="L529" href="#L529">529</a>         <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">final</strong> ExecutionListener delegate;
+<a class="jxr_linenumber" name="L530" href="#L530">530</a> 
+<a class="jxr_linenumber" name="L531" href="#L531">531</a>         SpyInvocationHandler(ExecutionListener delegate) {
+<a class="jxr_linenumber" name="L532" href="#L532">532</a>             <strong class="jxr_keyword">this</strong>.delegate = delegate;
+<a class="jxr_linenumber" name="L533" href="#L533">533</a>         }
+<a class="jxr_linenumber" name="L534" href="#L534">534</a> 
+<a class="jxr_linenumber" name="L535" href="#L535">535</a>         @Override
+<a class="jxr_linenumber" name="L536" href="#L536">536</a>         <strong class="jxr_keyword">public</strong> Object invoke(Object proxy, Method method, Object[] args) <strong class="jxr_keyword">throws</strong> Throwable {
+<a class="jxr_linenumber" name="L537" href="#L537">537</a>             <strong class="jxr_keyword">if</strong> (<span class="jxr_string">"sessionEnded"</span>.equals(method.getName())) {
+<a class="jxr_linenumber" name="L538" href="#L538">538</a>                 BackgroundCleaner.sessionEnd();
+<a class="jxr_linenumber" name="L539" href="#L539">539</a>             }
+<a class="jxr_linenumber" name="L540" href="#L540">540</a>             <strong class="jxr_keyword">if</strong> (delegate != <strong class="jxr_keyword">null</strong>) {
+<a class="jxr_linenumber" name="L541" href="#L541">541</a>                 <strong class="jxr_keyword">return</strong> method.invoke(delegate, args);
+<a class="jxr_linenumber" name="L542" href="#L542">542</a>             }
+<a class="jxr_linenumber" name="L543" href="#L543">543</a>             <strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">null</strong>;
+<a class="jxr_linenumber" name="L544" href="#L544">544</a>         }
+<a class="jxr_linenumber" name="L545" href="#L545">545</a>     }
+<a class="jxr_linenumber" name="L546" href="#L546">546</a> }
+</pre>
+<hr/>
+<div id="footer">© 2001–2026 <a href="https://www.apache.org/">The Apache Software Foundation</a></div>
+</body>
+</html>

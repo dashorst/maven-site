@@ -89,7 +89,7 @@
 <ol style="list-style-type: decimal;">
 
 <li>
-<p>Upgrade your plugins to reproducible versions: to easily detect <a href="/plugins/maven-artifact-plugin/plugin-issues.html">required upgrades</a>, run</p>
+<p>Upgrade your plugins to reproducible versions: to easily detect <a href="../../plugins/maven-artifact-plugin/plugin-issues.html">required upgrades</a>, run</p>
 
 <pre tabindex="0"><code class="nohighlight nocode">mvn artifact:check-buildplan
 </code></pre></li>
@@ -104,7 +104,7 @@
 <p>Notice: starting with Maven 3.10.0 and 4.0.0-beta-5, Reproducible Builds mode is active by default (see <a href="https://issues.apache.org/jira/browse/MNG-8258" class="externalLink">MNG-8258</a>), without modifying project's <code>pom.xml</code>. Setting a value in your <code>pom.xml</code> remains useful if you want to override the inherited static default value. See FAQ for opt-out.</p>
 <p>You have the basics configured. The output should be mostly reproducible now.</p></section><section><a id="How_to_test_my_Maven_build_reproducibility.3F"></a>
 <h2>How to test my Maven build reproducibility?</h2>
-<p>Using <a href="/plugins/maven-artifact-plugin/compare-mojo.html"><code>maven-artifact-plugin</code>'s <code>compare</code> goal</a>, you can easily check that the second build of your project produce the same output than an initial build:</p>
+<p>Using <a href="../../plugins/maven-artifact-plugin/compare-mojo.html"><code>maven-artifact-plugin</code>'s <code>compare</code> goal</a>, you can easily check that the second build of your project produce the same output than an initial build:</p>
 <ol style="list-style-type: decimal;">
 
 <li>
@@ -125,7 +125,7 @@
 <pre tabindex="0"><code class="nohighlight nocode">mvn verify artifact:compare -Dreference.repo=https://repository.apache.org/content/repositories/staging/
 </code></pre></section></section><section><a id="How_to_fix_my_Maven_build_reproducibility.3F"></a>
 <h2>How to fix my Maven build reproducibility?</h2>
-<p>If something is still not reproducible after initial setup and <a href="/plugins/maven-artifact-plugin/plugin-issues.html">automatic check from <code>artifact:check-buildplan</code></a>:</p>
+<p>If something is still not reproducible after initial setup and <a href="../../plugins/maven-artifact-plugin/plugin-issues.html">automatic check from <code>artifact:check-buildplan</code></a>:</p>
 <ol style="list-style-type: decimal;">
 
 <li>Use <a href="https://diffoscope.org/" class="externalLink">diffoscope</a> to find the unstable output between builds. The <code>artifact:buildinfo</code> goal proposes a command with path to files: just copy/paste to launch.</li>
@@ -150,17 +150,17 @@
 <p>Details depend on your release process tooling:</p>
 <ul>
 
-<li>if you use <a href="/plugins/maven-release-plugin/">maven-release-plugin</a>, you'll need <strong>version 3.0.0-M1 or later</strong>: it will automatically update the timestamp value in <code>pom.xml</code> during the release in the same commit that updates version,</li>
+<li>if you use <a href="../../plugins/maven-release-plugin/">maven-release-plugin</a>, you'll need <strong>version 3.0.0-M1 or later</strong>: it will automatically update the timestamp value in <code>pom.xml</code> during the release in the same commit that updates version,</li>
 <li>if you have a custom release process tooling, you'll need to add the feature to your release tooling. Notice that if you're using <code>versions-maven-plugin</code> in custom release scripts, starting with release 2.9.0, <a href="https://github.com/mojohaus/versions-maven-plugin/issues/453" class="externalLink"><code>versions:set</code> goal updates the property</a>.</li>
 <li>instead of explicitly writing a timestamp in their <code>pom.xml</code>, some people tend to prefer using last Git commit timestamp, like <code>${git.commit.time}</code> from <a href="https://github.com/git-commit-id/git-commit-id-maven-plugin" class="externalLink">git-commit-id-maven-plugin</a> (with <code>&lt;dateFormatTimeZone&gt;UTC&lt;/dateFormatTimeZone&gt;</code> to be independent from user's timezone).</li>
 </ul></li>
 </ul>
-<p>Don't hesitate to share your questions or solutions on <a href="/mailing-lists.html">user mailing-list</a>.</p>
+<p>Don't hesitate to share your questions or solutions on <a href="../../mailing-lists.html">user mailing-list</a>.</p>
 <ul>
 
 <li>
 <p>Q. Which additional plugins need to be updated for Reproducible Builds?</p>
-<p>A. See the list of <a href="/plugins/maven-artifact-plugin/plugin-issues.html">required upgrades</a></p></li>
+<p>A. See the list of <a href="../../plugins/maven-artifact-plugin/plugin-issues.html">required upgrades</a></p></li>
 <li>
 <p>Q. Reproducible Builds is active by default on my project (from a parent POM, or using Maven 3.10+), how can I opt-out and disable it?</p>
 <p>A. We'd love to understand why you want to disable Reproducible Builds, but any single character value (non-numeric) will disable Reproducible Builds: <code>&lt;project.build.outputTimestamp&gt;x&lt;/project.build.outputTimestamp&gt;</code></p></li>

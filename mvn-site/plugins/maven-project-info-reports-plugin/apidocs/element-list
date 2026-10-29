@@ -1,0 +1,5 @@
+org.apache.maven.plugins.maven_project_info_reports_plugin
+org.apache.maven.report.projectinfo
+org.apache.maven.report.projectinfo.avatars
+org.apache.maven.report.projectinfo.dependencies
+org.apache.maven.report.projectinfo.dependencies.renderer

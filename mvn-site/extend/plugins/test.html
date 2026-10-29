@@ -138,7 +138,7 @@
 <p>Both Guice-based and Plexus-based mojos rely on the Guice Plexus adapter to inject dependencies by having the test class extend <code>PlexusTestCase</code> and calling the <strong>lookup()</strong>&gt; method to instantiate the mojo. Tests for fully Guicified mojos can also inject dependencies directly into the constructor without extending <code>PlexusTestCase</code>. These dependencies can be Mockito mocks or instances of the actual model classes. If a particular test does not access the injected field — that is, it's only injected to fulfill the constructor signature — you can usually also pass null as the value of that argument.</p>
 <p>With that said, if you need to inject Maven objects into your mojo, you'll probably prefer to use the maven-plugin-testing-harness.</p></section><section><a id="maven-plugin-testing-harness"></a>
 <h2>maven-plugin-testing-harness</h2>
-<p>The <a href="/plugin-testing/maven-plugin-testing-harness/">maven-plugin-testing-harness</a> is explicitly intended to test the Maven plugin <code>Mojo</code> implementation.</p>
+<p>The <a href="../../plugin-testing/maven-plugin-testing-harness/">maven-plugin-testing-harness</a> is explicitly intended to test the Maven plugin <code>Mojo</code> implementation.</p>
 <p>In general, you need to include <code>maven-plugin-testing-harness</code> as a test-scoped dependency, and create a <code>MojoTest</code>.</p>
 
 <pre tabindex="0" class="highlight"><code class="language-xml">...
@@ -187,11 +187,11 @@
 </code></pre></section></section><section><a id="Integration.2FFunctional_testing"></a>
 <h1>Integration/Functional testing</h1><section><a id="maven-executor"></a>
 <h2>maven-executor</h2>
-<p><a href="/executor/">Maven Executor</a> runs Maven from JUnit tests, either forked or embedded in the test JVM, and captures its output for your assertions. Maven itself uses it to run its core integration tests. For more information, see <a href="https://cwiki.apache.org/confluence/display/MAVEN/Creating+a+Maven+Integration+Test" class="externalLink">Creating a Maven Integration Test</a>.</p></section><section><a id="maven-verifier"></a>
+<p><a href="../../executor/">Maven Executor</a> runs Maven from JUnit tests, either forked or embedded in the test JVM, and captures its output for your assertions. Maven itself uses it to run its core integration tests. For more information, see <a href="https://cwiki.apache.org/confluence/display/MAVEN/Creating+a+Maven+Integration+Test" class="externalLink">Creating a Maven Integration Test</a>.</p></section><section><a id="maven-verifier"></a>
 <h2>maven-verifier</h2>
 <p>maven-verifier is retired, and 2.0.0 is its final release. Existing tests keep working against that release, but new tests should use <a href="#maven-executor">Maven Executor</a>; the <a href="https://github.com/apache/maven-verifier/blob/master/MIGRATION.md" class="externalLink">migration guide</a> covers moving existing tests.</p></section><section><a id="maven-invoker-plugin"></a>
 <h2>maven-invoker-plugin</h2>
-<p>You can use <a href="https://maven.apache.org/plugins/maven-invoker-plugin/" class="externalLink">maven-invoker-plugin</a> to invoke Maven and to provide some BeanShell/Groovy tests. Tests written in this way don't run under JUnit/TestNG; instead, they're run by Maven itself.</p>
+<p>You can use <a href="../../plugins/maven-invoker-plugin/">maven-invoker-plugin</a> to invoke Maven and to provide some BeanShell/Groovy tests. Tests written in this way don't run under JUnit/TestNG; instead, they're run by Maven itself.</p>
 <p>You can take a look at the <a href="https://svn.apache.org/repos/asf/maven/plugins/trunk/maven-install-plugin/src/it/" class="externalLink">maven-install-plugin</a> to see how integration tests are written.</p>
 
 <pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span> <span class="na">xmlns:xsi</span>=<span class="s">"http://www.w3.org/2001/XMLSchema-instance"</span>

@@ -1,0 +1,5 @@
+org.apache.maven.plugins.maven_pmd_plugin
+org.apache.maven.plugins.pmd
+org.apache.maven.plugins.pmd.exec
+org.apache.maven.plugins.pmd.model
+org.apache.maven.plugins.pmd.model.io.xpp3
