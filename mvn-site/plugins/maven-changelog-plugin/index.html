@@ -47,77 +47,34 @@
   <aside class="specimen" aria-label="About this site">
     <p><strong>Specimen.</strong> A proposed redesign of maven.apache.org, built with <code>mvn site</code> and a skin of its own; not the official Apache Maven site. The official site is <a href="https://maven.apache.org/">maven.apache.org</a>. <a href="./../../about-this-example.html">About this example</a></p>
   </aside>
-  <div class="frame has-group">
-    <nav class="group-nav component-nav" aria-labelledby="group-nav-title">
-      <p class="up"><a href="./../../docs/plugins/index.html"><svg aria-hidden="true" viewBox="0 0 16 16" width="14" height="14"><path d="M10 3.5L5.5 8l4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>All plugins</a></p>
-      <h2 id="group-nav-title"><a href="./index.html">Apache Maven Changelog Plugin</a></h2>
-      <p class="component-version">Version 3.0.0-M2 · <a class="other-versions" href="https://maven.apache.org/plugins-archives/" data-prefix="maven-changelog-plugin-">Other versions</a></p>
-      <h3>Overview</h3>
-      <ul class="page-list">
-        <li><a href="index.html" aria-current="page">Introduction</a>
-        </li>
-        <li><a href="plugin-info.html">Plugin Documentation</a>
-        </li>
-        <li><a href="usage.html">Usage</a>
-        </li>
-        <li><a href="faq.html">FAQ</a>
-        </li>
-        <li><a href="changing-scm-impl.html">Change Scm implementation</a>
-        </li>
-        <li><a href="https://www.apache.org/licenses/">License</a>
-        </li>
-        <li><a href="download.html">Download</a>
-        </li>
-      </ul>
-      <h3>Examples</h3>
-      <ul class="page-list">
-        <li><a href="examples/changing-heading-date-format.html">Changing the Heading Date Format</a>
-        </li>
-        <li><a href="examples/modifying-scm-links.html">Modifying SCM Links</a>
-        </li>
-        <li><a href="examples/selecting-reports.html">Selecting Reports</a>
-        </li>
-        <li><a href="examples/configuration-date-type.html">Using Date Type</a>
-        </li>
-        <li><a href="examples/configuration-range-type.html">Using Range Type</a>
-        </li>
-        <li><a href="examples/configuration-tag-type.html">Using Tag Type</a>
-        </li>
-        <li><a href="examples/using-perforce.html">Using Perforce</a>
-        </li>
-      </ul>
-      <h3>Project Documentation</h3>
-      <ul class="page-list">
-        <li><a href="project-info.html" aria-current="true">Project Information</a>
-          <ul>
-            <li><a href="index.html" aria-current="page">About</a></li>
-            <li><a href="summary.html">Summary</a></li>
-            <li><a href="dependency-info.html">Maven Coordinates</a></li>
-            <li><a href="team.html">Team</a></li>
-            <li><a href="scm.html">Source Code Management</a></li>
-            <li><a href="issue-management.html">Issue Management</a></li>
-            <li><a href="mailing-lists.html">Mailing Lists</a></li>
-            <li><a href="dependency-management.html">Dependency Management</a></li>
-            <li><a href="dependencies.html">Dependencies</a></li>
-            <li><a href="dependency-convergence.html">Dependency Convergence</a></li>
-            <li><a href="ci-management.html">CI Management</a></li>
-            <li><a href="plugin-management.html">Plugin Management</a></li>
-            <li><a href="plugins.html">Plugins</a></li>
-            <li><a href="distribution-management.html">Distribution Management</a></li>
-          </ul>
-        </li>
-        <li><a href="project-reports.html">Project Reports</a>
-        </li>
-      </ul>
-    </nav>
-    <main id="content">
+  <section class="component-bar" aria-label="Changelog Plugin">
+    <div class="component-bar-inner">
       <p class="crumbs"><a href="./../../docs/index.html">Docs</a> <span aria-hidden="true">›</span> <a href="./../../docs/plugins/index.html">Plugins</a></p>
+      <div class="component-title">
+        <a class="component-name" href="./index.html">Changelog Plugin</a>
+        <span class="component-version">3.0.0-M2 · <a class="other-versions" href="https://maven.apache.org/plugins-archives/" data-prefix="maven-changelog-plugin-">Other versions</a></span>
+        <p class="component-description">Produce SCM changelog reports.</p>
+      </div>
+      <nav class="component-tabs" aria-label="Changelog Plugin">
+        <ul>
+          <li><a href="index.html" aria-current="page">Overview</a></li>
+          <li><a href="plugin-info.html">Goals</a></li>
+          <li><a href="usage.html">Usage</a></li>
+          <li><a href="faq.html">FAQ</a></li>
+          <li><a href="changing-scm-impl.html">Change Scm implementation</a></li>
+          <li><a href="download.html">Download</a></li>
+          <li><a href="examples/changing-heading-date-format.html">Examples</a></li>
+          <li><a href="project-info.html">Project</a></li>
+        </ul>
+      </nav>
+    </div>
+  </section>
+  <div class="frame">
+    <main id="content">
       <div class="prose">
 
 <section class="facts facts--inline" aria-label="About this page">
   <dl>
-    <dt>Version</dt>
-    <dd>3.0.0-M2</dd>
     <dt>Source</dt>
     <dd><a href="https://github.com/apache/maven-changelog-plugin/edit/master/src/site/apt/index.apt.vm">Edit this page</a></dd>
     <dt>Wrong?</dt>
@@ -125,7 +82,12 @@
   </dl>
 </section>
 <section><a id="Apache_Maven_Changelog_Plugin"></a>
-<h1>Apache Maven Changelog Plugin</h1>
+<h1>Apache Maven Changelog Plugin</h1><p class="snippet-label">In the <code>&lt;build&gt;&lt;plugins&gt;</code> of your <code>pom.xml</code>:</p>
+<pre class="highlight" tabindex="0"><code><span class="nt">&lt;plugin&gt;</span>
+  <span class="nt">&lt;groupId&gt;</span>org.apache.maven.plugins<span class="nt">&lt;/groupId&gt;</span>
+  <span class="nt">&lt;artifactId&gt;</span>maven-changelog-plugin<span class="nt">&lt;/artifactId&gt;</span>
+  <span class="nt">&lt;version&gt;</span>3.0.0-M2<span class="nt">&lt;/version&gt;</span>
+<span class="nt">&lt;/plugin&gt;</span></code></pre>
 <p>The Maven Changelog Plugin generates reports regarding the recent changes in your Software Configuration Management or SCM. These reports include the changelog report, developer activity report and the file activity report.</p><section><a id="Goals_Overview"></a>
 <h2>Goals Overview</h2>
 <p>The Changelog Plugin has three goals:</p>
@@ -146,42 +108,11 @@
 <li><a href="./examples/configuration-tag-type.html">Using Tag Type</a></li>
 <li><a href="./examples/using-perforce.html">Using Perforce</a></li></ul></section></section>
       </div>
-      <nav class="more component-more" aria-labelledby="more-title">
-        <h2 id="more-title">More in <a href="./index.html">Apache Maven Changelog Plugin</a></h2>
-        <p class="component-version">Version 3.0.0-M2 · <a href="https://maven.apache.org/plugins-archives/">Other versions</a></p>
-        <h3>Overview</h3>
-        <ul class="more-list">
-  <li><a href="index.html" aria-current="page">Introduction</a></li>
-  <li><a href="plugin-info.html">Plugin Documentation</a></li>
-  <li><a href="usage.html">Usage</a></li>
-  <li><a href="faq.html">FAQ</a></li>
-  <li><a href="changing-scm-impl.html">Change Scm implementation</a></li>
-  <li><a href="https://www.apache.org/licenses/">License</a></li>
-  <li><a href="download.html">Download</a></li>
-</ul>
-        <h3>Examples</h3>
-        <ul class="more-list">
-  <li><a href="examples/changing-heading-date-format.html">Changing the Heading Date Format</a></li>
-  <li><a href="examples/modifying-scm-links.html">Modifying SCM Links</a></li>
-  <li><a href="examples/selecting-reports.html">Selecting Reports</a></li>
-  <li><a href="examples/configuration-date-type.html">Using Date Type</a></li>
-  <li><a href="examples/configuration-range-type.html">Using Range Type</a></li>
-  <li><a href="examples/configuration-tag-type.html">Using Tag Type</a></li>
-  <li><a href="examples/using-perforce.html">Using Perforce</a></li>
-</ul>
-        <h3>Project Documentation</h3>
-        <ul class="more-list">
-  <li><a href="project-info.html">Project Information</a></li>
-  <li><a href="project-reports.html">Project Reports</a></li>
-</ul>
-      </nav>
     </main>
     <aside class="rail">
 
 <section class="facts" aria-label="About this page">
   <dl>
-    <dt>Version</dt>
-    <dd>3.0.0-M2</dd>
     <dt>Source</dt>
     <dd><a href="https://github.com/apache/maven-changelog-plugin/edit/master/src/site/apt/index.apt.vm">Edit this page</a></dd>
     <dt>Wrong?</dt>

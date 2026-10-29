@@ -118,10 +118,23 @@ main.wide { display: block; }
   content: ""; position: absolute; left: .3rem; top: .78em; width: .32rem; height: .32rem; border-radius: 50%; background: var(--orange);
 }
 
-/* A component site's side panel: its version, its other versions, and its own menus. */
-.component-nav .component-version { margin: -.25rem 0 1rem; color: var(--muted); font-size: .85rem; }
-.component-nav h3 { font-size: .85rem; font-weight: 600; color: var(--muted); margin: 1.2rem 0 .3rem; }
-.component-nav .page-list ul { list-style: none; margin: 0 0 .25rem; padding: 0 0 0 .8rem; }
+/* A component site (a plugin): a bar under the header with its name, version, what it does and its own
+   sections; the side panel lists the pages of the current section. */
+.component-bar { background: var(--paper-2); border-bottom: 1px solid var(--line); }
+.component-bar-inner { max-width: 84rem; margin: 0 auto; padding: .9rem clamp(1rem, 3vw, 2rem) 0; }
+.component-bar .crumbs { margin: 0 0 .15rem; }
+.component-title { display: flex; flex-wrap: wrap; align-items: baseline; gap: .2rem 1rem; }
+.component-name { font-size: 1.6rem; font-weight: 700; line-height: 1.25; letter-spacing: -.01em; color: var(--ink-strong); text-decoration: none; }
+.component-name:hover { color: var(--navy); }
+.component-version { position: relative; color: var(--muted); font-size: .9rem; font-variant-numeric: tabular-nums; }
+.component-description { flex-basis: 100%; margin: .15rem 0 0; color: var(--muted); }
+.component-tabs ul { list-style: none; display: flex; gap: 1.6rem; margin: .7rem 0 0; padding: 0; overflow-x: auto; }
+.component-tabs a { display: block; padding: .5rem 0 .6rem; color: var(--ink); text-decoration: none; border-bottom: 2px solid transparent; white-space: nowrap; }
+.component-tabs a:hover { color: var(--navy); }
+.component-tabs a[aria-current] { color: var(--ink-strong); font-weight: 600; border-bottom-color: var(--orange); }
+.component-version .version-list { position: absolute; top: 100%; left: 0; z-index: 5; width: max-content; max-height: 18rem; overflow: auto; margin: .4rem 0 0; padding: .5rem .9rem; columns: 3; column-gap: 1.5rem; background: var(--paper); border: 1px solid var(--line-strong); border-radius: var(--radius); box-shadow: 0 10px 30px rgba(0, 34, 74, .14); }
+.page-list li.sub a { padding-left: 1.7rem; font-size: .95em; }
+.snippet-label { margin-bottom: .4rem; color: var(--muted); }
 .page-list a[aria-current="true"] { color: var(--navy); font-weight: 600; }
 .version-list { list-style: none; margin: .4rem 0 0; padding: 0; columns: 2; font-size: .85rem; }
 .version-list a { display: block; padding: .2rem 0; }
@@ -163,8 +176,6 @@ main.wide { display: block; }
 .component-more { display: none; }
 /* The edit link of a page without page facts: overview pages, the home page. */
 .page-edit { margin: 0 0 1rem; font-size: .9rem; }
-.component-more .component-version { margin: -.4rem 0 1rem; color: var(--muted); font-size: .9rem; }
-.component-more h3 { font-size: .9rem; color: var(--muted); margin: 0 0 .4rem; }
 
 /* ---------- The text ---------- */
 .prose { font-size: 1.0625rem; overflow-wrap: break-word; }

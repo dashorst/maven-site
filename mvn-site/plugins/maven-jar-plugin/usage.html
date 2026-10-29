@@ -47,57 +47,33 @@
   <aside class="specimen" aria-label="About this site">
     <p><strong>Specimen.</strong> A proposed redesign of maven.apache.org, built with <code>mvn site</code> and a skin of its own; not the official Apache Maven site. The official site is <a href="https://maven.apache.org/">maven.apache.org</a>. <a href="./../../about-this-example.html">About this example</a></p>
   </aside>
-  <div class="frame has-group">
-    <nav class="group-nav component-nav" aria-labelledby="group-nav-title">
-      <p class="up"><a href="./../../docs/plugins/index.html"><svg aria-hidden="true" viewBox="0 0 16 16" width="14" height="14"><path d="M10 3.5L5.5 8l4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>All plugins</a></p>
-      <h2 id="group-nav-title"><a href="./index.html">Apache Maven JAR Plugin</a></h2>
-      <p class="component-version">Version 3.5.1 · <a class="other-versions" href="https://maven.apache.org/plugins-archives/" data-prefix="maven-jar-plugin-">Other versions</a></p>
-      <h3>Overview</h3>
-      <ul class="page-list">
-        <li><a href="index.html">Introduction</a>
-        </li>
-        <li><a href="plugin-info.html">Plugin Documentation</a>
-        </li>
-        <li><a href="usage.html" aria-current="page">Usage</a>
-        </li>
-        <li><a href="faq.html">FAQ</a>
-        </li>
-        <li><a href="https://www.apache.org/licenses/">License</a>
-        </li>
-        <li><a href="download.html">Download</a>
-        </li>
-      </ul>
-      <h3>Examples</h3>
-      <ul class="page-list">
-        <li><a href="../../shared/maven-archiver/examples/classpath.html">Creating an Executable JAR File</a>
-        </li>
-        <li><a href="examples/manifest-customization.html">Manifest Customization</a>
-        </li>
-        <li><a href="../../shared/maven-archiver/examples/manifestFile.html">Using Your Own Manifest File</a>
-        </li>
-        <li><a href="examples/attached-jar.html">Additional attached JAR</a>
-        </li>
-        <li><a href="examples/create-test-jar.html">Create Test JAR</a>
-        </li>
-        <li><a href="examples/include-exclude.html">Include/Exclude content</a>
-        </li>
-      </ul>
-      <h3>Project Documentation</h3>
-      <ul class="page-list">
-        <li><a href="project-info.html">Project Information</a>
-        </li>
-        <li><a href="project-reports.html">Project Reports</a>
-        </li>
-      </ul>
-    </nav>
+  <section class="component-bar" aria-label="JAR Plugin">
+    <div class="component-bar-inner">
+      <p class="crumbs"><a href="./../../docs/index.html">Docs</a> <span aria-hidden="true">›</span> <a href="./../../docs/plugins/index.html">Plugins</a></p>
+      <div class="component-title">
+        <a class="component-name" href="./index.html">JAR Plugin</a>
+        <span class="component-version">3.5.1 · <a class="other-versions" href="https://maven.apache.org/plugins-archives/" data-prefix="maven-jar-plugin-">Other versions</a></span>
+        <p class="component-description">Builds a Java Archive (JAR) file from the compiled project classes and resources.</p>
+      </div>
+      <nav class="component-tabs" aria-label="JAR Plugin">
+        <ul>
+          <li><a href="index.html">Overview</a></li>
+          <li><a href="plugin-info.html">Goals</a></li>
+          <li><a href="usage.html" aria-current="page">Usage</a></li>
+          <li><a href="faq.html">FAQ</a></li>
+          <li><a href="download.html">Download</a></li>
+          <li><a href="../../shared/maven-archiver/examples/classpath.html">Examples</a></li>
+          <li><a href="project-info.html">Project</a></li>
+        </ul>
+      </nav>
+    </div>
+  </section>
+  <div class="frame">
     <main id="content">
-      <p class="crumbs"><a href="./../../docs/index.html">Docs</a> <span aria-hidden="true">›</span> <a href="./../../docs/plugins/index.html">Plugins</a> <span aria-hidden="true">›</span> <a href="./index.html">Apache Maven JAR Plugin</a></p>
       <div class="prose">
 
 <section class="facts facts--inline" aria-label="About this page">
   <dl>
-    <dt>Version</dt>
-    <dd>3.5.1</dd>
     <dt>Source</dt>
     <dd><a href="https://github.com/apache/maven-jar-plugin/edit/master/src/site/apt/usage.apt.vm">Edit this page</a></dd>
     <dt>Wrong?</dt>
@@ -129,40 +105,11 @@
 <p>The <a class="externalLink" href="https://openjdk.java.net/projects/jigsaw/spec/">Java Platform Module System (JPMS)</a> introduced <a class="externalLink" href="https://cr.openjdk.java.net/~mr/jigsaw/spec/jar.html">changes in the JAR file specifications</a> as well - Modular JAR files. Modular JAR files are JAR files with <code>module-info.class</code> file in the root directory (or in the versioned area for multi-release JAR files). If the project contains <code>module-info.class</code> the resulting JAR will be a Modular JAR without a need for any configuration regardless of the plugin version used.</p>
 <p>Starting with version 3.1.2, if the JAR file contains <code>module-info.class</code>, this plugin will update the modular descriptor (<code>module-info.class</code>) with additional attributes such as the list of packages included and will validate the resulting modular descriptor (for example if all services provided by the module are actually included in the JAR file). The most notable additional attribute added is the module main class. If the JAR manifest contains <code>Main-Class</code> attribute this plugin will set the module main class to the same value (for example how to set it read <a href="../../shared/maven-archiver/examples/classpath.html">Make The Jar Executable</a>). Internally the plugin uses the JDK <code>jar</code> tool so in order to add the additional attributes and to verify the modular descriptor Maven should be run with JDK version 9 or newer. If version 8 or earlier is used the resulting JAR still will be Modular JAR (as it contains <code>module-info.class</code>) but no additional attributes will be added and no validation will be performed.</p></section></section>
       </div>
-      <nav class="more component-more" aria-labelledby="more-title">
-        <h2 id="more-title">More in <a href="./index.html">Apache Maven JAR Plugin</a></h2>
-        <p class="component-version">Version 3.5.1 · <a href="https://maven.apache.org/plugins-archives/">Other versions</a></p>
-        <h3>Overview</h3>
-        <ul class="more-list">
-  <li><a href="index.html">Introduction</a></li>
-  <li><a href="plugin-info.html">Plugin Documentation</a></li>
-  <li><a href="usage.html" aria-current="page">Usage</a></li>
-  <li><a href="faq.html">FAQ</a></li>
-  <li><a href="https://www.apache.org/licenses/">License</a></li>
-  <li><a href="download.html">Download</a></li>
-</ul>
-        <h3>Examples</h3>
-        <ul class="more-list">
-  <li><a href="../../shared/maven-archiver/examples/classpath.html">Creating an Executable JAR File</a></li>
-  <li><a href="examples/manifest-customization.html">Manifest Customization</a></li>
-  <li><a href="../../shared/maven-archiver/examples/manifestFile.html">Using Your Own Manifest File</a></li>
-  <li><a href="examples/attached-jar.html">Additional attached JAR</a></li>
-  <li><a href="examples/create-test-jar.html">Create Test JAR</a></li>
-  <li><a href="examples/include-exclude.html">Include/Exclude content</a></li>
-</ul>
-        <h3>Project Documentation</h3>
-        <ul class="more-list">
-  <li><a href="project-info.html">Project Information</a></li>
-  <li><a href="project-reports.html">Project Reports</a></li>
-</ul>
-      </nav>
     </main>
     <aside class="rail">
 
 <section class="facts" aria-label="About this page">
   <dl>
-    <dt>Version</dt>
-    <dd>3.5.1</dd>
     <dt>Source</dt>
     <dd><a href="https://github.com/apache/maven-jar-plugin/edit/master/src/site/apt/usage.apt.vm">Edit this page</a></dd>
     <dt>Wrong?</dt>

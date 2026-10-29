@@ -67,10 +67,18 @@
             }
             return 0;
         };
+        document.addEventListener('keydown', function (e) {
+            var shown = other.parentNode.querySelector('.version-list');
+            if (e.key === 'Escape' && shown && !shown.hidden) {
+                shown.hidden = true;
+                other.setAttribute('aria-expanded', 'false');
+                other.focus();
+            }
+        });
         other.addEventListener('click', function (e) {
             e.preventDefault();
-            var shown = other.parentNode.nextElementSibling;
-            if (shown && shown.classList.contains('version-list')) {
+            var shown = other.parentNode.querySelector('.version-list');
+            if (shown) {
                 shown.hidden = !shown.hidden;
                 other.setAttribute('aria-expanded', String(!shown.hidden));
                 return;
@@ -95,7 +103,7 @@
                     li.appendChild(a);
                     ul.appendChild(li);
                 });
-                other.parentNode.insertAdjacentElement('afterend', ul);
+                other.parentNode.appendChild(ul);
                 other.setAttribute('aria-expanded', 'true');
             }).catch(function () {
                 window.location.href = other.href;
