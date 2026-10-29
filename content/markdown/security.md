@@ -84,7 +84,7 @@ The affected plugins use plexus-archiver to unpack dependencies to disk
 and have been identified as potential triggers for exposing the vulnerability
 if dependencies are compromised.
 
-See [full description](./security-plexus-archiver.html) for more details.
+See [full description](downloads/security/zip-slip.html) for more details.
 
 Credit: This issue was identified by the Snyk Security Research Team
 

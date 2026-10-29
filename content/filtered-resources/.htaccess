@@ -1,7 +1,7 @@
 IndexOptions +SuppressIcon
 ErrorDocument 404 /errors/404.html
 
-Redirect Permanent /release-notes.html /docs/history.html
+Redirect Permanent /release-notes.html /downloads/releases/history.html
 Redirect Permanent /download.html /download.cgi
 RedirectMatch permanent ^/(.*)/download.html$ /$1/download.cgi
 
@@ -13,15 +13,15 @@ Redirect Permanent /maven-v4_0_0.xsd /xsd/maven-4.0.0.xsd
 Redirect Permanent /ant-tasks.html /ant-tasks/index.html
 Redirect Permanent /ant-tasks-release-notes.html /ant-tasks/release-notes.html
 
-Redirect Permanent /guides/mini/guide-ibiblio-upload.html /repository/guide-central-repository-upload.html
-Redirect Permanent /guides/mini/guide-maven-evangelism.html /repository/central-metadata.html
-Redirect Permanent /guides/mini/guide-central-repository-upload.html /repository/guide-central-repository-upload.html
-Redirect Permanent /guides/development/guide-m2-development.html /guides/development/guide-maven-development.html
-Redirect Permanent /guides/development/guide-building-m2.html /guides/development/guide-building-maven.html
-Redirect Permanent /faq.html /general.html
+Redirect Permanent /guides/mini/guide-ibiblio-upload.html /extend/central/upload.html
+Redirect Permanent /guides/mini/guide-maven-evangelism.html /extend/central/fix-metadata.html
+Redirect Permanent /guides/mini/guide-central-repository-upload.html /extend/central/upload.html
+Redirect Permanent /guides/development/guide-m2-development.html /community/contribute/develop-maven.html
+Redirect Permanent /guides/development/guide-building-m2.html /community/contribute/build-maven.html
+Redirect Permanent /faq.html /docs/help/faq.html
 Redirect Permanent /developers/release/pmc-release-process.html /developers/release/releasing.html
 Redirect Permanent /development-process.html /archives/maven-1.x/development-process.html
-Redirect Permanent /welcome-to-new-committers.html /developers/welcome-to-new-committers.html
+Redirect Permanent /welcome-to-new-committers.html /community/committers/welcome.html
 
 Redirect Permanent /plugins/maven-checkstyle-plugin/customize.html /plugins/maven-checkstyle-plugin/examples/custom-checker-config.html
 Redirect Permanent /plugins/maven-checkstyle-plugin/howto.html /plugins/maven-checkstyle-plugin/usage.html
@@ -42,7 +42,7 @@ RedirectMatch ^/maven-repository-metadata/(.*)$ /ref/${currentStableVersion}/mav
 RedirectMatch ^/maven-settings/(.*)$ /ref/${currentStableVersion}/maven-settings/$1
 RedirectMatch ^/maven-settings-builder/(.*)$ /ref/${currentStableVersion}/maven-settings-builder/$1
 RedirectMatch ^/maven-1.x/plugins-sandbox/(.*)$ /archives/maven-1.x/plugins/$1
-RedirectMatch permanent ^/aether-archives/(.*)$ /aether.html
+RedirectMatch permanent ^/aether-archives/(.*)$ /community/project/aether.html
 
 RedirectMatch permanent ^/archetype/maven-archetype-bundles/(.*)$ /archetypes/$1
 RedirectMatch permanent ^/maven-archetype/(.*)$ /archetype/$1
@@ -76,16 +76,16 @@ RedirectMatch ^/plugins/maven-site-plugin-3.x/(.*)$ /plugins/maven-site-plugin/$
 
 RedirectMatch permanent ^/components/images/(.+)$ /images/$1
 
-Redirect Permanent /guides/development/guide-plugin-snapshot-repositories.html /guides/development/guide-testing-development-plugins.html
+Redirect Permanent /guides/development/guide-plugin-snapshot-repositories.html /community/contribute/test-development-plugins.html
 
-Redirect Permanent /guides/mini/guide-apt-format.html /doxia/references/apt-format.html
+Redirect Permanent /guides/mini/guide-apt-format.html /docs/site/apt.html
 
 RedirectMatch ^/maven-1.x/(.*)$ /archives/maven-1.x/$1
 
-Redirect Permanent /maven-ci-friendly.html /guides/mini/guide-maven-ci-friendly.html
+Redirect Permanent /maven-ci-friendly.html /docs/multi-module/ci-friendly-versions.html
 
-Redirect Permanent /guides/mini/guide-multiple-modules-4.html /guides/mini/guide-multiple-subprojects-4.html
-Redirect Permanent /mvnd.html /tools/mvnd.html
+Redirect Permanent /guides/mini/guide-multiple-modules-4.html /docs/multi-module/subprojects-maven-4.html
+Redirect Permanent /mvnd.html /docs/plugins/mvnd.html
 
 # used in ATR vote templates - https://maven.apache.org/archives/{{PROJECT_KEY}}-LATEST
 # we simply templates by redirecting to the latest version of the component in the archives
@@ -110,3 +110,181 @@ RedirectMatch ^/archives/maven-apache-parent-LATEST(.*)$ /pom-archives/asf-LATES
 RedirectMatch ^/archives/maven-parent-LATEST(.*)$ /pom-archives/maven-LATEST$1
 RedirectMatch ^/archives/(maven-.*-skin)-LATEST(.*)$ /skins-archives/$1-LATEST$2
 RedirectMatch ^/archives/(maven-.*-extension)-LATEST(.*)$ /extensions-archives/$1-LATEST$2
+
+# The restructured site: pages that moved to a new address. `mvn site` checks that every address in
+# src/published-addresses.txt still leads to its page and anchors; see src/main/java/org/apache/maven/site/check/.
+# The pages that were split or replaced by new ones keep their address, as a page that points to the new places.
+RedirectMatch permanent ^/docs/([^/]+)/release-notes\.html$ /downloads/releases/$1.html
+Redirect Permanent /about.html /community/project/about.html
+Redirect Permanent /aether.html /community/project/aether.html
+Redirect Permanent /archives/maven-2.x/index.html /community/project/maven-2.html
+Redirect Permanent /archives/maven-2.x/maven-2.1-architectural-goals.html /community/project/maven-2-1-goals.html
+Redirect Permanent /articles.html /docs/help/books-and-resources.html
+Redirect Permanent /background/history-of-maven.html /community/project/history.html
+Redirect Permanent /background/philosophy-of-maven.html /docs/get-started/philosophy-of-maven.html
+Redirect Permanent /code-quality-management.html /docs/recipes/code-quality.html
+Redirect Permanent /community.html /community/talk/overview.html
+Redirect Permanent /developers/committer-environment.html /community/committers/environment.html
+Redirect Permanent /developers/committer-settings.html /community/committers/settings.html
+Redirect Permanent /developers/compatibility-plan.html /community/policies/compatibility.html
+Redirect Permanent /developers/conventions/code.html /community/contribute/code-style.html
+Redirect Permanent /developers/conventions/git.html /community/contribute/git.html
+Redirect Permanent /developers/conventions/github.html /community/contribute/github.html
+Redirect Permanent /developers/dependency-policies.html /community/policies/dependencies.html
+Redirect Permanent /developers/mojo-api-specification.html /extend/plugins/mojo-api.html
+Redirect Permanent /developers/release/index.html /community/releasing/overview.html
+Redirect Permanent /developers/release/maven-core-release.html /community/releasing/maven-core.html
+Redirect Permanent /developers/release/maven-project-release-procedure.html /community/releasing/procedure.html
+Redirect Permanent /developers/release/parent-pom-release.html /community/releasing/parent-pom.html
+Redirect Permanent /developers/release/pmc-gpg-keys.html /community/releasing/gpg-keys.html
+Redirect Permanent /developers/retirement-plan-plugins.html /community/policies/plugin-retirement.html
+Redirect Permanent /developers/website/component-reference-documentation-helper.html /community/website/component-docs-helper.html
+Redirect Permanent /developers/website/deploy-component-reference-documentation.html /community/website/component-docs.html
+Redirect Permanent /developers/website/deploy-maven-website.html /community/website/deploy.html
+Redirect Permanent /developers/website/index.html /community/website/overview.html
+Redirect Permanent /developers/website/website-overview.html /community/website/sites.html
+Redirect Permanent /developers/welcome-to-new-committers.html /community/committers/welcome.html
+Redirect Permanent /docs/history.html /downloads/releases/history.html
+Redirect Permanent /doxia/developers/index.html /extend/doxia/developers.html
+Redirect Permanent /doxia/developers/macros.html /extend/doxia/write-a-macro.html
+Redirect Permanent /doxia/developers/modules.html /extend/doxia/write-a-module.html
+Redirect Permanent /doxia/developers/sink.html /extend/doxia/sink-api.html
+Redirect Permanent /doxia/downloads.html /extend/doxia/releases.html
+Redirect Permanent /doxia/doxia-tools/index.html /extend/doxia/tools.html
+Redirect Permanent /doxia/faq.html /extend/doxia/faq.html
+Redirect Permanent /doxia/index.html /extend/doxia/doxia.html
+Redirect Permanent /doxia/issues/index.html /extend/doxia/issues.html
+Redirect Permanent /doxia/macros/index.html /docs/site/macros.html
+Redirect Permanent /doxia/modules/index.html /extend/doxia/modules.html
+Redirect Permanent /doxia/overview.html /extend/doxia/overview.html
+Redirect Permanent /doxia/references/apt-format.html /docs/site/apt.html
+Redirect Permanent /doxia/references/doxia-apt.html /docs/site/doxia-apt.html
+Redirect Permanent /doxia/references/fml-format.html /docs/site/fml.html
+Redirect Permanent /doxia/references/index.html /docs/site/markup-formats.html
+Redirect Permanent /doxia/references/markdown-format.html /docs/site/markdown.html
+Redirect Permanent /doxia/references/xdoc-format.html /docs/site/xdoc.html
+Redirect Permanent /doxia/resources.html /extend/doxia/resources.html
+Redirect Permanent /doxia/scm.html /extend/doxia/sources.html
+Redirect Permanent /examples/injecting-properties-via-settings.html /docs/configure/properties-from-settings.html
+Redirect Permanent /examples/maven-3-lifecycle-extensions.html /extend/plugins/lifecycle-extensions.html
+Redirect Permanent /extensions/index.html /docs/plugins/available-extensions.html
+Redirect Permanent /faq-unoffical.html /docs/help/unofficial-faq.html
+Redirect Permanent /general.html /docs/help/faq.html
+Redirect Permanent /glossary.html /docs/reference/glossary.html
+Redirect Permanent /guides/development/guide-building-maven.html /community/contribute/build-maven.html
+Redirect Permanent /guides/development/guide-committer-school.html /community/committers/become-a-committer.html
+Redirect Permanent /guides/development/guide-documentation-style.html /community/contribute/documentation-style.html
+Redirect Permanent /guides/development/guide-helping.html /community/contribute/how-to-help.html
+Redirect Permanent /guides/development/guide-maven-development.html /community/contribute/develop-maven.html
+Redirect Permanent /guides/development/guide-plugin-documentation.html /extend/plugins/document.html
+Redirect Permanent /guides/development/guide-testing-development-plugins.html /community/contribute/test-development-plugins.html
+Redirect Permanent /guides/development/guide-testing-releases.html /community/contribute/test-staged-releases.html
+Redirect Permanent /guides/getting-started/index.html /docs/get-started/questions-and-answers.html
+Redirect Permanent /guides/getting-started/windows-prerequisites.html /docs/get-started/windows.html
+Redirect Permanent /guides/introduction/introduction-to-archetypes.html /extend/archetypes/introduction.html
+Redirect Permanent /guides/introduction/introduction-to-dependency-mechanism.html /docs/dependencies/how-dependencies-work.html
+Redirect Permanent /guides/introduction/introduction-to-optional-and-excludes-dependencies.html /docs/dependencies/optional-and-exclusions.html
+Redirect Permanent /guides/introduction/introduction-to-plugin-prefix-mapping.html /docs/plugins/plugin-prefixes.html
+Redirect Permanent /guides/introduction/introduction-to-plugins.html /extend/plugins/introduction.html
+Redirect Permanent /guides/introduction/introduction-to-profiles.html /docs/configure/profiles.html
+Redirect Permanent /guides/introduction/introduction-to-repositories.html /docs/dependencies/repositories.html
+Redirect Permanent /guides/introduction/introduction-to-the-pom.html /docs/get-started/the-pom.html
+Redirect Permanent /guides/mini/guide-3rd-party-jars-local.html /docs/dependencies/third-party-jar-local.html
+Redirect Permanent /guides/mini/guide-3rd-party-jars-remote.html /docs/dependencies/third-party-jar-remote.html
+Redirect Permanent /guides/mini/guide-archive-configuration.html /docs/recipes/archives.html
+Redirect Permanent /guides/mini/guide-assemblies.html /docs/recipes/assemblies.html
+Redirect Permanent /guides/mini/guide-attached-tests.html /docs/recipes/attached-tests.html
+Redirect Permanent /guides/mini/guide-bash-m2-completion.html /docs/reference/bash-completion.html
+Redirect Permanent /guides/mini/guide-building-for-different-environments.html /docs/configure/different-environments.html
+Redirect Permanent /guides/mini/guide-configuring-plugins.html /docs/plugins/configure-plugins.html
+Redirect Permanent /guides/mini/guide-creating-archetypes.html /extend/archetypes/create.html
+Redirect Permanent /guides/mini/guide-default-execution-ids.html /docs/plugins/default-executions.html
+Redirect Permanent /guides/mini/guide-generating-sources.html /docs/recipes/generate-sources.html
+Redirect Permanent /guides/mini/guide-http-settings.html /docs/dependencies/wagon-http.html
+Redirect Permanent /guides/mini/guide-large-scale-centralized-deployments.html /docs/dependencies/centralized-deployments.html
+Redirect Permanent /guides/mini/guide-manifest.html /docs/recipes/manifests.html
+Redirect Permanent /guides/mini/guide-maven-ci-friendly.html /docs/multi-module/ci-friendly-versions.html
+Redirect Permanent /guides/mini/guide-maven-classloading.html /docs/reference/classloading.html
+Redirect Permanent /guides/mini/guide-migration-to-mvn4.html /docs/maven-4/migrate.html
+Redirect Permanent /guides/mini/guide-mixins.html /docs/maven-4/mixins.html
+Redirect Permanent /guides/mini/guide-multiple-modules.html /docs/multi-module/modules-maven-3.html
+Redirect Permanent /guides/mini/guide-multiple-repositories.html /docs/dependencies/several-repositories.html
+Redirect Permanent /guides/mini/guide-multiple-subprojects-4.html /docs/multi-module/subprojects-maven-4.html
+Redirect Permanent /guides/mini/guide-naming-conventions.html /docs/dependencies/naming-coordinates.html
+Redirect Permanent /guides/mini/guide-new-committers.html /community/committers/guide.html
+Redirect Permanent /guides/mini/guide-releasing.html /docs/recipes/release-your-project.html
+Redirect Permanent /guides/mini/guide-relocation.html /extend/central/relocation.html
+Redirect Permanent /guides/mini/guide-repository-ssl.html /docs/dependencies/https-repositories.html
+Redirect Permanent /guides/mini/guide-reproducible-builds.html /docs/recipes/reproducible-builds.html
+Redirect Permanent /guides/mini/guide-resolver-transport.html /docs/dependencies/resolver-transport.html
+Redirect Permanent /guides/mini/guide-site.html /docs/site/create-a-site.html
+Redirect Permanent /guides/mini/guide-snippet-macro.html /docs/site/snippet-macro.html
+Redirect Permanent /guides/mini/guide-using-ant.html /docs/recipes/ant.html
+Redirect Permanent /guides/mini/guide-using-extensions.html /docs/plugins/use-extensions.html
+Redirect Permanent /guides/mini/guide-using-modello.html /docs/recipes/modello.html
+Redirect Permanent /guides/mini/guide-using-one-source-directory.html /docs/recipes/without-conventions.html
+Redirect Permanent /guides/mini/guide-wagon-providers.html /docs/dependencies/wagon-providers.html
+Redirect Permanent /guides/plugin/guide-java-plugin-development.html /extend/plugins/first-plugin.html
+Redirect Permanent /guides/plugin/guide-java-report-plugin-development.html /extend/plugins/first-report-plugin.html
+Redirect Permanent /guides/plugins/validation/index.html /docs/plugins/plugin-validation.html
+Redirect Permanent /install.html /docs/get-started/install.html
+Redirect Permanent /issue-management.html /community/talk/issues.html
+Redirect Permanent /logoupdate.html /community/project/logos.html
+Redirect Permanent /logovote.html /community/project/logo-vote.html
+Redirect Permanent /maven-1.x-eol.html /downloads/releases/eol-maven-1.html
+Redirect Permanent /maven-2.x-eol.html /downloads/releases/eol-maven-2.html
+Redirect Permanent /maven-conventions.html /extend/plugins/conventions.html
+Redirect Permanent /maven-di.html /extend/plugins/dependency-injection.html
+Redirect Permanent /maven-jsr330.html /extend/plugins/jsr-330.html
+Redirect Permanent /maven-logging.html /extend/plugins/logging.html
+Redirect Permanent /null-annotations.html /extend/plugins/null-annotations.html
+Redirect Permanent /plugin-developers/common-bugs.html /extend/plugins/common-bugs.html
+Redirect Permanent /plugin-developers/cookbook/index.html /extend/plugins/cookbook.html
+Redirect Permanent /plugin-developers/cookbook/plexus-plugin-upgrade.html /extend/plugins/plexus-annotations.html
+Redirect Permanent /plugin-developers/plugin-testing.html /extend/plugins/test.html
+Redirect Permanent /plugins/index.html /docs/plugins/available-plugins.html
+Redirect Permanent /plugins/localization.html /extend/plugins/localization.html
+Redirect Permanent /pom.html /docs/reference/pom.html
+Redirect Permanent /pom/index.html /extend/building-blocks/parent-poms.html
+Redirect Permanent /project-faq.html /extend/central/metadata-faq.html
+Redirect Permanent /project-roles.html /community/project/roles.html
+Redirect Permanent /reference/maven-classloading.html /docs/reference/classloading-core.html
+Redirect Permanent /release-notes-all.html /downloads/releases/release-notes.html
+Redirect Permanent /repositories/artifacts.html /extend/repository-format/artifacts.html
+Redirect Permanent /repositories/dependencies.html /extend/repository-format/dependencies.html
+Redirect Permanent /repositories/index.html /extend/repository-format/overview.html
+Redirect Permanent /repositories/layout.html /extend/repository-format/layout.html
+Redirect Permanent /repositories/local.html /extend/repository-format/local.html
+Redirect Permanent /repositories/metadata.html /extend/repository-format/metadata.html
+Redirect Permanent /repositories/remote.html /extend/repository-format/remote.html
+Redirect Permanent /repository-management.html /docs/dependencies/repository-manager.html
+Redirect Permanent /repository/central-index.html /extend/central/central-index.html
+Redirect Permanent /repository/central-metadata.html /extend/central/fix-metadata.html
+Redirect Permanent /repository/guide-central-repository-upload.html /extend/central/upload.html
+Redirect Permanent /repository/index.html /extend/central/maven-central.html
+Redirect Permanent /repository/layout.html /extend/central/layout.html
+Redirect Permanent /resource/branding/actioncards.html /community/project/action-cards.html
+Redirect Permanent /run-maven/index.html /docs/get-started/build-a-project.html
+Redirect Permanent /run.html /docs/reference/command-line.html
+Redirect Permanent /scm.html /community/contribute/sources.html
+Redirect Permanent /security-plexus-archiver.html /downloads/security/zip-slip.html
+Redirect Permanent /settings.html /docs/reference/settings.html
+Redirect Permanent /shared/index.html /extend/building-blocks/shared-components.html
+Redirect Permanent /skins/index.html /docs/site/skins.html
+Redirect Permanent /testimonials.html /community/project/testimonials.html
+Redirect Permanent /tools/index.html /docs/plugins/tools.html
+Redirect Permanent /tools/mavenwrapper.html /docs/plugins/wrapper.html
+Redirect Permanent /tools/mvnd.html /docs/plugins/mvnd.html
+Redirect Permanent /tools/mvnsh.html /docs/plugins/mvnsh.html
+Redirect Permanent /tools/mvnup.html /docs/plugins/mvnup.html
+Redirect Permanent /tools/mvnval.html /docs/plugins/mvnval.html
+Redirect Permanent /users/getting-help.html /docs/help/getting-help.html
+Redirect Permanent /what-is-maven.html /docs/get-started/what-is-maven.html
+Redirect Permanent /whatsnewinmaven4.html /docs/maven-4/whats-new.html
+
+# The files of the Fluido skin, which the site no longer uses
+RedirectMatch gone ^/(css|js)/apache-maven-fluido-[^/]*$
+RedirectMatch gone ^/fonts/glyphicons-halflings-regular\.[a-z0-9]+$
+RedirectMatch gone ^/img/glyphicons-halflings(-white)?\.png$
+RedirectMatch gone ^/images/profiles/(pre-release|retired|sandbox)\.png$
+RedirectMatch gone ^/images/(accessories-text-editor|window-new)\.png$

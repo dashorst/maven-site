@@ -96,10 +96,10 @@
 #end
 #set( $kinds = { "tutorial": "Tutorial", "howto": "How-to guide", "reference": "Reference", "explanation": "Explanation" } )
 #set( $source = $docRenderingContext.getDoxiaSourcePath() )
-#if( $source && $source.startsWith( "content/markdown/guide/" ) )
+## The example's sources are on its own branch: most pages have moved, so apache/maven-site has no file at
+## their new path yet.
+#if( $source )
 #**##set( $editUrl = "https://github.com/dashorst/maven-site/edit/doxia-demo/" + $source )
-#elseif( $source )
-#**##set( $editUrl = "https://github.com/apache/maven-site/edit/master/" + $source )
 #end
 ##
 #set( $pageTitle = $shortTitle )
@@ -210,7 +210,7 @@ $bodyContent
 #end
   <footer class="site-footer">
     <div class="footer-inner">
-      <nav aria-label="Apache Software Foundation">
+      <nav aria-label="Apache Software Foundation"#if( $isHome ) id="Apache_Software_Foundation"#end>
         <ul>
           <li><a href="https://www.apache.org/">The Apache Software Foundation</a></li>
           <li><a href="https://www.apache.org/licenses/">License</a></li>

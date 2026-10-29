@@ -52,7 +52,7 @@ import org.jsoup.select.NodeVisitor;
  * names in {@code <code>} are indexed as terms, so {@code mirrorOf} finds {@code <mirrorOf>}.
  */
 public class SearchIndex {
-    private static final Pattern RELEASE_NOTES = Pattern.compile("docs/[^/]+/release-notes\\.html");
+    private static final Pattern RELEASE_NOTES = Pattern.compile("downloads/releases/\\d[^/]*\\.html");
     private static final Pattern IDENTIFIER = Pattern.compile("<?[A-Za-z][\\w.-]*>?|--?[a-z][\\w-]*");
     private static final int SNIPPET = 160;
 

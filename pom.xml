@@ -74,6 +74,8 @@
     <version.plantuml-maven-plugin>0.4.16</version.plantuml-maven-plugin>
     <!-- required by plantuml-m-p 0.3 -->
     <minimalJavaBuildVersion>17</minimalJavaBuildVersion>
+    <!-- check, or record to add the addresses of new pages to src/published-addresses.txt -->
+    <addresses>check</addresses>
   </properties>
 
   <dependencies>
@@ -254,6 +256,28 @@
                 <classpath />
                 <argument>${project.basedir}/src/main/java/org/apache/maven/site/render/SearchIndex.java</argument>
                 <argument>${project.reporting.outputDirectory}</argument>
+              </arguments>
+            </configuration>
+          </execution>
+          <!--
+            every address the site has published still leads to its page and anchors, through the
+            redirects in .htaccess; -Daddresses=record adds the addresses of new pages to the list
+          -->
+          <execution>
+            <id>addresses</id>
+            <goals>
+              <goal>exec</goal>
+            </goals>
+            <phase>site</phase>
+            <configuration>
+              <executable>${java.home}/bin/java</executable>
+              <arguments>
+                <argument>-classpath</argument>
+                <classpath />
+                <argument>${project.basedir}/src/main/java/org/apache/maven/site/check/Addresses.java</argument>
+                <argument>${addresses}</argument>
+                <argument>${project.reporting.outputDirectory}</argument>
+                <argument>${project.basedir}/src/published-addresses.txt</argument>
               </arguments>
             </configuration>
           </execution>

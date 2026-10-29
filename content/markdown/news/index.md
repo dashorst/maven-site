@@ -10,7 +10,7 @@ facts: none
 
 mvnval checks POM files and reports every problem it finds, without running a build. Unlike mvn validate it does not stop at the first error, and its raw mode works offline. The page says it ships with Maven 4.1.0.
 
-[Read more](../tools/mvnval.html)
+[Read more](../docs/plugins/mvnval.html)
 
 ## Maven 3.10.0
 
@@ -18,7 +18,7 @@ mvnval checks POM files and reports every problem it finds, without running a bu
 
 Maven 3 moves to Resolver 2.x, the same lineage Maven 4 uses. Reproducible builds are on by default, and server credentials in settings.xml are now scoped to the repositories and mirrors that declare them. It still runs on Java 8.
 
-[Read more](../docs/3.10.0/release-notes.html)
+[Read more](../downloads/releases/3.10.0.html)
 
 ## Maven 4.0.0-rc-7
 
@@ -26,7 +26,7 @@ Maven 3 moves to Resolver 2.x, the same lineage Maven 4 uses. Reproducible build
 
 This release candidate is expected to be the last before Maven 4.0.0 GA. It contains a large number of bug fixes and improvements since rc-6, including fixes to the upgrade tool mvnup. Maven 4 needs Java 17 to run.
 
-[Read more](../docs/4.0.0-rc-7/release-notes.html)
+[Read more](../downloads/releases/4.0.0-rc-7.html)
 
 ## Maven 4.0.0-rc-6
 
@@ -34,7 +34,7 @@ This release candidate is expected to be the last before Maven 4.0.0 GA. It cont
 
 All known issues reported for rc-5 are fixed, including the macOS Gatekeeper problem with the JLine native library. Servers in settings.xml can declare aliases, and the default resolver transport is now Apache HttpClient.
 
-[Read more](../docs/4.0.0-rc-6/release-notes.html)
+[Read more](../downloads/releases/4.0.0-rc-6.html)
 
 ## Maven 3.10.0-rc-1
 
@@ -42,7 +42,7 @@ All known issues reported for rc-5 are fixed, including the macOS Gatekeeper pro
 
 The first release candidate of Maven 3.10 uses Resolver 2.x, turns on reproducible builds by default and allows user-wide and installation-wide extensions. Dependency classpath ordering changes from depth-first to breadth-first, as in Maven 4.
 
-[Read more](../docs/3.10.0-rc-1/release-notes.html)
+[Read more](../downloads/releases/3.10.0-rc-1.html)
 
 ## A new Maven logo
 
@@ -50,7 +50,7 @@ The first release candidate of Maven 3.10 uses Resolver 2.x, turns on reproducib
 
 The logo page now shows the new Maven logo received from the ASF, in SVG and PNG. There is no version for a dark background yet.
 
-[Read more](../logoupdate.html)
+[Read more](../community/project/logos.html)
 
 ## Maven 3.9.16
 
@@ -58,7 +58,7 @@ The logo page now shows the new Maven logo received from the ASF, in SVG and PNG
 
 Regression fixes and other improvements from 3.9.15. Plugin prefix resolution no longer always forces a metadata download. All 3.9.x users are advised to upgrade.
 
-[Read more](../docs/3.9.16/release-notes.html)
+[Read more](../downloads/releases/3.9.16.html)
 
 ## Maven 3.9.15
 
@@ -66,7 +66,7 @@ Regression fixes and other improvements from 3.9.15. Plugin prefix resolution no
 
 Upgrades plexus-utils to 3.6.1 to get rid of a CVE, and makes colored console output work on Java 26 and later. All 3.9.x users are advised to upgrade.
 
-[Read more](../docs/3.9.15/release-notes.html)
+[Read more](../downloads/releases/3.9.15.html)
 
 ## Two options for a new Maven logo
 
@@ -74,7 +74,7 @@ Upgrades plexus-utils to 3.6.1 to get rid of a CVE, and makes colored console ou
 
 A page shows the two logo options that were put to a vote.
 
-[Read more](../logovote.html)
+[Read more](../community/project/logo-vote.html)
 
 ## Maven 3.9.14
 
@@ -82,7 +82,7 @@ A page shows the two logo options that were put to a vote.
 
 A quick fix for the one known issue in 3.9.13. All 3.9.x users are advised to upgrade.
 
-[Read more](../docs/3.9.14/release-notes.html)
+[Read more](../downloads/releases/3.9.14.html)
 
 ## Maven 3.9.13
 
@@ -90,7 +90,7 @@ A quick fix for the one known issue in 3.9.13. All 3.9.x users are advised to up
 
 Mostly bug and regression fixes for user-reported problems. Resolver 1.9.27 undoes the parallel PUT change from 1.9.25, because many repository managers struggled with concurrent requests, and treats HTTP 410 like 404.
 
-[Read more](../docs/3.9.13/release-notes.html)
+[Read more](../downloads/releases/3.9.13.html)
 
 ## New in the docs: Maven null annotations
 
@@ -98,7 +98,7 @@ Mostly bug and regression fixes for user-reported problems. Resolver 1.9.27 undo
 
 Maven 4 has its own @Nonnull and @Nullable annotations. All Maven 4 API modules use them, and Maven DI checks them at run time. The page lists which analysis tools and IDEs support them.
 
-[Read more](../null-annotations.html)
+[Read more](../extend/plugins/null-annotations.html)
 
 ## Maven 3.9.12
 
@@ -106,7 +106,7 @@ Maven 4 has its own @Nonnull and @Nullable annotations. All Maven 4 API modules 
 
 Removes the Guice warnings on JDK 25 and later, and checks a plugin's Java version requirement before it runs, with a clear error message. Resolver 1.9.25 refines locking for parallel builds.
 
-[Read more](../docs/3.9.12/release-notes.html)
+[Read more](../downloads/releases/3.9.12.html)
 
 ## Stage and Verifier plugins retired
 
@@ -114,7 +114,7 @@ Removes the Guice warnings on JDK 25 and later, and checks a plugin's Java versi
 
 The Stage plugin (last version 1.0) assisted with release staging and promotion. The Verifier plugin (last version 1.1) verified conditions in integration tests. Both are now in the Retired list.
 
-[Read more](../plugins/index.html)
+[Read more](../docs/plugins/available-plugins.html)
 
 ## Maven logos to follow the ASF oak leaf
 
@@ -122,7 +122,7 @@ The Stage plugin (last version 1.0) assisted with release staging and promotion.
 
 In September 2025 the ASF announced a new logo, the oak leaf, replacing the feather. The page lists every Maven logo that has to be redrawn as a result.
 
-[Read more](../logoupdate.html)
+[Read more](../community/project/logos.html)
 
 ## Maven 4.0.0-rc-5
 
@@ -130,7 +130,7 @@ In September 2025 the ASF announced a new logo, the oak leaf, replacing the feat
 
 Consumer POM flattening is off by default and becomes an opt-in feature, because it could cause problems when computing the dependency tree. Configuration files now use UTF-8.
 
-[Read more](../docs/4.0.0-rc-5/release-notes.html)
+[Read more](../downloads/releases/4.0.0-rc-5.html)
 
 ## New in the docs: Maven Mixins (Maven 4.1)
 
@@ -138,7 +138,7 @@ Consumer POM flattening is off by default and becomes an opt-in feature, because
 
 Mixins will let a POM take shared configuration from several sources instead of a single parent. The page documents this planned Maven 4.1 feature.
 
-[Read more](../guides/mini/guide-mixins.html)
+[Read more](../docs/maven-4/mixins.html)
 
 ## Linkcheck plugin retired
 
@@ -146,7 +146,7 @@ Mixins will let a POM take shared configuration from several sources instead of 
 
 The Linkcheck plugin (last version 1.2) generated a Linkcheck report of a project's documentation. It is now in the Retired list.
 
-[Read more](../plugins/index.html)
+[Read more](../docs/plugins/available-plugins.html)
 
 ## New in the docs: Maven Shell (mvnsh)
 
@@ -154,7 +154,7 @@ The Linkcheck plugin (last version 1.2) generated a Linkcheck report of a projec
 
 Maven Shell keeps one Maven process running while the shell is open, so builds skip booting Java and Maven each time. It is built in since Maven 4.0.0 and is a technical preview that may change.
 
-[Read more](../tools/mvnsh.html)
+[Read more](../docs/plugins/mvnsh.html)
 
 ## New in the docs: Maven Upgrade Tool (mvnup)
 
@@ -162,7 +162,7 @@ Maven Shell keeps one Maven process running while the shell is open, so builds s
 
 mvnup upgrades pom.xml files for Maven 4 with a check and apply workflow. It ships with Maven 4 from 4.0.0-rc-4 on, so there is nothing extra to install.
 
-[Read more](../tools/mvnup.html)
+[Read more](../docs/plugins/mvnup.html)
 
 ## Maven 3.9.11
 
@@ -170,7 +170,7 @@ mvnup upgrades pom.xml files for Maven 4 with a check and apply workflow. It shi
 
 Bug and regression fixes, and a new option to control which repositories are queried to resolve version ranges. Resolver 1.9.24 adds human-readable details for HTTP problems (RFC 9457).
 
-[Read more](../docs/3.9.11/release-notes.html)
+[Read more](../downloads/releases/3.9.11.html)
 
 ## Maven 4.0.0-rc-4
 
@@ -178,7 +178,7 @@ Bug and regression fixes, and a new option to control which repositories are que
 
 Introduces the Maven Upgrade Tool, which can fix pom.xml files so they work with Maven 4. Build extensions can now use DI beans.
 
-[Read more](../docs/4.0.0-rc-4/release-notes.html)
+[Read more](../downloads/releases/4.0.0-rc-4.html)
 
 ## New in the docs: Maven Dependency Injection
 
@@ -186,7 +186,7 @@ Introduces the Maven Upgrade Tool, which can fix pom.xml files so they work with
 
 Maven DI is the dependency injection framework introduced in Maven 4, the successor to Plexus and Sisu. The page shows how to use it in plugins and extensions. Plugins that use it run only on Maven 4.
 
-[Read more](../maven-di.html)
+[Read more](../extend/plugins/dependency-injection.html)
 
 ## Maven 3.8.9
 
@@ -194,7 +194,7 @@ Maven DI is the dependency injection framework introduced in Maven 4, the succes
 
 The release notes say to expect this to be the last release of the 3.8.x line.
 
-[Read more](../docs/3.8.9/release-notes.html)
+[Read more](../downloads/releases/3.8.9.html)
 
 ## Maven 3.9.10
 
@@ -202,7 +202,7 @@ The release notes say to expect this to be the last release of the 3.8.x line.
 
 Updates the dependencies that caused errors and warnings on Java 24, so builds run far better on Java 24. Maven still needs only Java 8 to run.
 
-[Read more](../docs/3.9.10/release-notes.html)
+[Read more](../downloads/releases/3.9.10.html)
 
 ## New in the docs: Starting with Maven 4
 
@@ -210,7 +210,7 @@ Updates the dependencies that caused errors and warnings on Java 24, so builds r
 
 A guide to moving a build to Maven 4 in three steps: prepare with the latest Maven 3, test with the latest Maven 4 release candidate, then migrate. The page is updated as feedback from the community comes in.
 
-[Read more](../guides/mini/guide-migration-to-mvn4.html)
+[Read more](../docs/maven-4/migrate.html)
 
 ## New in the docs: Maven Daemon (mvnd)
 
@@ -218,7 +218,7 @@ A guide to moving a build to Maven 4 in three steps: prepare with the latest Mav
 
 mvnd keeps the JVM running between builds and manages a pool of Maven processes to reduce build time. It works with existing plugins and extensions, and a native executable is available from the download page.
 
-[Read more](../tools/mvnd.html)
+[Read more](../docs/plugins/mvnd.html)
 
 ## Maven 4.0.0-rc-3
 
@@ -226,7 +226,7 @@ mvnd keeps the JVM running between builds and manages a pool of Maven processes 
 
 Requires Java 17 to run and is not suitable for production. It changes the new Maven 4 API in ways that plugins targeting that API need to follow.
 
-[Read more](../docs/4.0.0-rc-3/release-notes.html)
+[Read more](../downloads/releases/4.0.0-rc-3.html)
 
 ## PDF plugin retired
 
@@ -234,7 +234,7 @@ Requires Java 17 to run and is not suitable for production. It changes the new M
 
 The PDF plugin (last version 1.6.2) generated a PDF version of a project's documentation. It is now in the Retired list.
 
-[Read more](../plugins/index.html)
+[Read more](../docs/plugins/available-plugins.html)
 
 ## New in the docs: What's new in Maven 4?
 
@@ -242,7 +242,7 @@ The PDF plugin (last version 1.6.2) generated a PDF version of a project's docum
 
 An overview of Maven 4: Java 17 to run Maven, separate build and consumer POMs, model version 4.1.0, subprojects instead of modules, and lifecycle changes. The article is updated at least until Maven 4.0.0 is released.
 
-[Read more](../whatsnewinmaven4.html)
+[Read more](../docs/maven-4/whats-new.html)
 
 ## New in the docs: password encryption in Maven 4
 
@@ -250,7 +250,7 @@ An overview of Maven 4: Java 17 to run Maven, separate build and consumer POMs, 
 
 Maven 4 replaces the Maven 3 password encryption with a new system that has pluggable providers and the mvnenc command-line tool. A legacy provider covers a settings.xml shared with Maven 3.
 
-[Read more](../guides/mini/guide-encryption-4.html)
+[Read more](../docs/configure/encrypt-passwords.html)
 
 ## Guide updated: multiple subprojects in Maven 4
 
@@ -258,7 +258,7 @@ Maven 4 replaces the Maven 3 password encryption with a new system that has plug
 
 The Maven 4 guide to the reactor now uses the new term subproject instead of module. It explains how Maven collects, sorts and builds subprojects, and how it finds the root of a build.
 
-[Read more](../guides/mini/guide-multiple-subprojects-4.html)
+[Read more](../docs/multi-module/subprojects-maven-4.html)
 
 ## Patch plugin retired
 
@@ -266,7 +266,7 @@ The Maven 4 guide to the reactor now uses the new term subproject instead of mod
 
 The Patch plugin (last version 1.3) used the GNU patch tool to apply patch files to source code. It is now in the Retired list.
 
-[Read more](../plugins/index.html)
+[Read more](../docs/plugins/available-plugins.html)
 
 ## CVE-2021-26291: external HTTP repositories blocked
 
@@ -282,5 +282,5 @@ POMs on Maven Central can refer to custom repositories over plain HTTP, which ma
 
 A crafted archive can write files outside the target directory when it is unpacked. Maven itself is not vulnerable, but several plugins that unpack dependencies with plexus-archiver were. The page lists the fixed plugin versions.
 
-[Read more](../security-plexus-archiver.html)
+[Read more](../downloads/security/zip-slip.html)
 

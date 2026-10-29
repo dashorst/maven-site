@@ -1,0 +1,282 @@
+<!--
+Licensed to the Apache Software Foundation (ASF) under one
+or more contributor license agreements.  See the NOTICE file
+distributed with this work for additional information
+regarding copyright ownership.  The ASF licenses this file
+to you under the Apache License, Version 2.0 (the
+"License"); you may not use this file except in compliance
+with the License.  You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing,
+software distributed under the License is distributed on an
+"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+KIND, either express or implied.  See the License for the
+specific language governing permissions and limitations
+under the License.
+-->
+
+# Creating a site
+
+## Creating Content
+
+The first step to creating your site is to create some content. In Maven, the site content is separated by format, as there are several available.
+
+```
++- src/
+   +- site/
+      +- markdown/
+      |  +- index.md
+      |
+      +- apt/
+      |  +- content.apt
+      |
+      +- fml/
+      |  +- general.fml
+      |  +- faq.fml
+      |
+      +- xdoc/
+      |  +- other.xml
+      |
+      +- site.xml
+```
+
+You will notice there is now a `${project.basedir}/src/site` directory within which is contained a `site.xml` site descriptor along with various directories corresponding to the supported document types.
+
+Let's take a look at the examples of the various document types:
+
+- `markdown`: the well known [Markdown](https://en.wikipedia.org/wiki/Markdown) format, and the one this page is written in. It is what new documentation should use,
+- `apt`: the APT format, "Almost Plain Text", a wiki-like format that predates Maven's support for Markdown. It is still supported, but the Maven project itself has moved its own documentation off it; see the [APT Format](/docs/site/apt.html) reference if you are maintaining an existing page, and [doxia-converter](/doxia/doxia-tools/doxia-converter/) if you would like to convert one,
+- `fml`: the FML format is the [FAQ format](/docs/site/fml.html),
+- `xdoc`: an XML document conforming to a small and simple set of tags, see the [full reference](/docs/site/xdoc.html).
+
+Other formats are available, but at this point these 4 are the best tested.
+
+There are also several possible output formats, but as of Maven Site Plugin, only XHTML is available.
+
+Note that all of the above is optional - just one index file is required in one of the input trees. Each of the paths will be merged together to form the root directory of the site.
+
+## Customizing the Look &amp; Feel
+
+If you want to tune the way your site looks, you can use a custom **skin** to provide your own CSS styles. If that is still not enough, you can even tweak the output templates that Maven uses to generate the site documentation.
+
+You can visit the [Skins index](/docs/site/skins.html) to have a look at some of the skins that you can use to change the look of your site.
+
+<!--  TODO: The following link is currently not available. Restore it when it becomes available again.-->
+<!--  For an in-depth discussion of site customization, please have a look at the-->
+<!--  {{{http://www.sonatype.com/book/site-generation.html} Maven User Guide, Chapter 9, "Site Generation"}}.-->
+
+## Generating the Site
+
+Generating the site is very simple, and fast!
+
+```
+mvn site
+```
+
+By default, the resulting site will be in `target/site/...`
+
+For more information on the Maven Site Plugin, see the [maven-site-plugin reference](../../plugins/maven-site-plugin/).
+
+## Deploying the Site
+
+### Classical Website deployment
+
+To be able to deploy the site with a classical network protocol (ftp, scp, webdav), you must first declare a location to distribute to in your `pom.xml`, similar to the repository for deployment:
+
+```xml
+<project xmlns="http://maven.apache.org/POM/4.0.0">
+  ...
+  <distributionManagement>
+    <site>
+      <id>website</id>
+      <url>scp://www.mycompany.com/www/docs/project/</url>
+    </site>
+  </distributionManagement>
+  ...
+</project>
+```
+
+- the `<id>` element identifies the repository, so that you can attach credentials to it in your `settings.xml` file using the [`<servers>` element](../reference/settings.html#Servers) as you would for any other repository,
+- the `<url>` gives the location to deploy to. Currently, only SSH is supported by default, as above which copies to the host `www.mycompany.com` in the path `/www/docs/project/`, but you can [add more protocols as required](/plugins/maven-site-plugin/examples/adding-deploy-protocol.html). If subprojects inherit the site URL from a parent POM, they will automatically get their `<artifactId>` appended to form their effective deployment location.
+
+Once distribution location is configured, deploying the site is done by using the `site-deploy` phase of the site lifecycle.
+
+```
+mvn site-deploy
+```
+
+### GitHub Pages, Apache svnpubsub/gitpubsub Deployment
+
+When site publication is done with a SCM commit, like with [GitHub Pages](https://pages.github.com/) or [Apache svnpubsub/gitpubsub](https://infra.apache.org/project-site.html#tools), deploying the site will be done with [Maven SCM Publish Plugin](/plugins/maven-scm-publish-plugin/).
+
+For example with a project hosted on GitHub and using GitHub Pages for its site publication:
+
+```xml
+<plugin>
+  <groupId>org.apache.maven.plugins</groupId>
+  <artifactId>maven-scm-publish-plugin</artifactId>
+  <version>3.1.0</version>
+  <configuration>
+    <pubScmUrl>${project.scm.developerConnection}</pubScmUrl>
+    <scmBranch>gh-pages</scmBranch>
+  </configuration>
+</plugin>
+```
+
+Deploying the site is done in 2 steps:
+
+1. staging the content by using the `site` phase of the site lifecycle followed by `site:stage`: `mvn site site:stage`
+2. publishing the staged site to the SCM: `mvn scm-publish:publish-scm`
+
+## Creating a Site Descriptor
+
+The `site.xml` file is used to describe the structure of the site. A sample is given below:
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<site xmlns="http://maven.apache.org/SITE/2.1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/SITE/2.1.0 https://maven.apache.org/xsd/site-2.1.0.xsd"
+  name="Maven">
+  <bannerLeft href="https://maven.apache.org/">
+    <image src="https://maven.apache.org/images/apache-maven-project.png" alt="Maven"/>
+  </bannerLeft>
+
+  <skin>
+    <groupId>org.apache.maven.skins</groupId>
+    <artifactId>maven-fluido-skin</artifactId>
+    <version>2.1.0</version>
+  </skin>
+
+  <body>
+    <links>
+      <item name="Apache" href="https://www.apache.org/"/>
+    </links>
+
+    <menu name="Overview">
+      <item name="Introduction" href="index.html"/>
+      <item name="Download" href="download.html"/>
+      <item name="Release Notes" href="release-notes.html"/>
+    </menu>
+
+    <menu ref="reports"/>
+
+    ...
+  </body>
+</site>
+```
+
+<!--TODO: deserves more explanation.-->
+
+**Note:** A skin is mandatory. Projects inheriting from the [Apache Parent POM](/pom/asf/) or from another parent that declares one inherit it and need no `<skin>` element of their own.
+
+**Note:** The `<menu ref="reports"/>` element above. When building the site, this is replaced by a menu with links to all the reports that you have configured.
+
+More information about the site descriptor is available at the [dedicated page of Maven Site Plugin](/plugins/maven-site-plugin/examples/sitedescriptor.html).
+
+## Adding Extra Resources
+
+You can add any arbitrary resource to your site by including them in a `resources` directory as shown below. Additional CSS files will be picked up when they are placed in the `css` directory within the `resources` directory.
+
+```
++- src/
+   +- site/
+      +- resources/
+         +- css/
+         |  +- site.css
+         |
+         +- images/
+            +- pic1.jpg
+```
+
+The file `site.css` will be added to the default XHTML output, so it can be used to adjust the default Maven stylesheets if desired.
+
+The file `pic1.jpg` will be available via a relative reference to the `images` directory from any page in your site.
+
+## Configuring Reports
+
+Maven has several reports that you can add to your web site to display the current state of the project. These reports take the form of plugins, just like those used to build the project.
+
+There are many standard reports that are available by gleaning information from the POM. Currently what is provided by default are:
+
+- Dependencies Report
+- Mailing Lists
+- Continuous Integration
+- Source Repository
+- Issue Tracking
+- Project Team
+- License
+
+To find out more please refer to the [Project Info Reports Plugin](../../plugins/maven-project-info-reports-plugin/).
+
+To add these reports to your site, you must add the Project Info Reports plugin to a special `<reporting>` section in the POM. The following example shows how to configure the standard project information reports that display information from the POM in a friendly format:
+
+```xml
+<project xmlns="http://maven.apache.org/POM/4.0.0">
+  ...
+  <reporting>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-project-info-reports-plugin</artifactId>
+        <version>2.8</version><!-- define version here if not already defined in build/plugins or build/pluginManagement -->
+      </plugin>
+    </plugins>
+  </reporting>
+  ...
+</project>
+```
+
+If you have included the appropriate `<menu ref="reports"/>` tag in your `site.xml` descriptor, then when you regenerate the site those items will appear in the menu.
+
+Many other plugins provide reporting goals: look for "R" (Reporting) value in the "Type" column of the [list of plugins](/docs/plugins/available-plugins.html). When plugins are both Build and Reporting plugins, defining explicitly the version in the reporting section is usually not necessary since reporting will use the version from `build/plugins` or `build/pluginManagement`. Since Maven Site Plugin 3.4, reporting plugin also get configuration from `build/pluginManagement`.
+
+**Note:** Many report plugins provide a parameter called `outputDirectory` or similar to specify the destination for their report outputs. This parameter is only relevant if the report plugin is run standalone, i.e. by invocation directly from the command line. In contrast, when reports are generated as part of the site, the configuration of the Maven Site Plugin will determine the effective output directory to ensure that all reports end up in a central location.
+
+<!--TODO: explain report sets-->
+
+## Internationalization
+
+Internationalization in Maven is very simple, as long as the reports you are using have that particular locale defined. For an overview of supported languages and instructions on how to add further languages, please see the related article [Internationalization](../../plugins/maven-site-plugin/i18n.html) from the Maven Site Plugin.
+
+To enable multiple locales, add a configuration similar to the following to your POM:
+
+```xml
+<project xmlns="http://maven.apache.org/POM/4.0.0">
+  ...
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-site-plugin</artifactId>
+        <version>3.4</version>
+        <configuration>
+          <locales>en,fr</locales>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+  ...
+</project>
+```
+
+This will generate both an English and a French version of the site. If `en` is your current locale, then it will be generated at the root of the site, with a copy of the French translation of the site in the `fr/` subdirectory.
+
+To add your own content for that translation instead of using the default, place a subdirectory with that locale name in your site directory and create a new site descriptor with the locale in the file name. For example:
+
+```
++- src/
+   +- site/
+      +- apt/
+      |  +- index.apt     (Default version)
+      |
+      +- fr/
+      |  +- apt/
+      |     +- index.apt  (French version)
+      |
+      +- site.xml         (Default site descriptor)
+      +- site_fr.xml      (French site descriptor)
+```
+
+With one site descriptor per language, the translated site(s) can evolve independently.

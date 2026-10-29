@@ -6,7 +6,7 @@
   Version 2.0 (the "License"); you may not use this file except in compliance with the License.
   You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0
 
-  The structure of the site, written by doxia/generate.py from jekyll/_data/site_map.yml.
+  The structure of the site, and where every page sits in it.
   The one menu holds three levels: the sections (the tabs at the top of every page), their
   groups, and the pages of each group in reading order. The skin draws the tabs, the side
   panel, previous and next from it.
@@ -23,124 +23,124 @@
     <menu name="Site">
       <item name="Docs" href="/docs/index.html">
         <item name="Get started" href="/docs/get-started/index.html">
-          <item name="1. Create your first project" href="/guide/first-project.html"/>
-          <item name="2. Add your first dependency" href="/guide/add-a-dependency.html"/>
-          <item name="3. Add and configure your first plugin" href="/guide/first-plugin.html"/>
-          <item name="4. Test and build your project" href="/guide/test-and-build.html"/>
-          <item name="5. Split your application into modules" href="/guide/first-modules.html"/>
-          <item name="Install Maven" href="/install.html"/>
-          <item name="Maven on Windows" href="/guides/getting-started/windows-prerequisites.html"/>
-          <item name="What is Maven?" href="/what-is-maven.html"/>
-          <item name="Philosophy of Maven" href="/background/philosophy-of-maven.html"/>
-          <item name="Phases, goals and plugins" href="/guide/build-lifecycle.html"/>
-          <item name="Standard directory layout" href="/guide/standard-directory-layout.html"/>
-          <item name="The POM explained" href="/guides/introduction/introduction-to-the-pom.html"/>
-          <item name="Build an existing project" href="/run-maven/index.html"/>
-          <item name="Getting started questions and answers" href="/guides/getting-started/index.html"/>
+          <item name="1. Create your first project" href="/docs/get-started/first-project.html"/>
+          <item name="2. Add your first dependency" href="/docs/get-started/add-a-dependency.html"/>
+          <item name="3. Add and configure your first plugin" href="/docs/get-started/first-plugin.html"/>
+          <item name="4. Test and build your project" href="/docs/get-started/test-and-build.html"/>
+          <item name="5. Split your application into modules" href="/docs/get-started/first-modules.html"/>
+          <item name="Install Maven" href="/docs/get-started/install.html"/>
+          <item name="Maven on Windows" href="/docs/get-started/windows.html"/>
+          <item name="What is Maven?" href="/docs/get-started/what-is-maven.html"/>
+          <item name="Philosophy of Maven" href="/docs/get-started/philosophy-of-maven.html"/>
+          <item name="Phases, goals and plugins" href="/docs/get-started/build-lifecycle.html"/>
+          <item name="Standard directory layout" href="/docs/get-started/standard-directory-layout.html"/>
+          <item name="The POM explained" href="/docs/get-started/the-pom.html"/>
+          <item name="Build an existing project" href="/docs/get-started/build-a-project.html"/>
+          <item name="Getting started questions and answers" href="/docs/get-started/questions-and-answers.html"/>
         </item>
         <item name="Configure Maven" href="/docs/configure/index.html">
-          <item name="Configuration files: settings.xml, maven.config, jvm.config" href="/guide/configuration-files.html"/>
-          <item name="Configure a proxy" href="/guide/proxy-settings.html"/>
-          <item name="Store server credentials" href="/guide/server-credentials.html"/>
-          <item name="Encrypt passwords in settings.xml" href="/guide/encrypt-passwords.html"/>
-          <item name="Settings files reference" href="/guide/settings-files-reference.html"/>
-          <item name="Build profiles explained" href="/guides/introduction/introduction-to-profiles.html"/>
-          <item name="Build for different environments" href="/guides/mini/guide-building-for-different-environments.html"/>
-          <item name="Inject POM properties via settings.xml" href="/examples/injecting-properties-via-settings.html"/>
+          <item name="Configuration files: settings.xml, maven.config, jvm.config" href="/docs/configure/configuration-files.html"/>
+          <item name="Configure a proxy" href="/docs/configure/proxy-settings.html"/>
+          <item name="Store server credentials" href="/docs/configure/server-credentials.html"/>
+          <item name="Encrypt passwords in settings.xml" href="/docs/configure/encrypt-passwords.html"/>
+          <item name="Settings files reference" href="/docs/configure/settings-files-reference.html"/>
+          <item name="Build profiles explained" href="/docs/configure/profiles.html"/>
+          <item name="Build for different environments" href="/docs/configure/different-environments.html"/>
+          <item name="Inject POM properties via settings.xml" href="/docs/configure/properties-from-settings.html"/>
         </item>
         <item name="Dependencies and repositories" href="/docs/dependencies/index.html">
-          <item name="How dependencies work" href="/guides/introduction/introduction-to-dependency-mechanism.html"/>
-          <item name="Optional dependencies and exclusions" href="/guides/introduction/introduction-to-optional-and-excludes-dependencies.html"/>
-          <item name="Repositories explained" href="/guides/introduction/introduction-to-repositories.html"/>
-          <item name="Use a mirror or repository manager (Nexus, Artifactory)" href="/guide/mirror-settings.html"/>
-          <item name="Why use a repository manager" href="/repository-management.html"/>
-          <item name="Use several repositories" href="/guides/mini/guide-multiple-repositories.html"/>
-          <item name="Install a third-party JAR locally" href="/guides/mini/guide-3rd-party-jars-local.html"/>
-          <item name="Deploy a third-party JAR to a remote repository" href="/guides/mini/guide-3rd-party-jars-remote.html"/>
-          <item name="Authenticated HTTPS repositories" href="/guides/mini/guide-repository-ssl.html"/>
-          <item name="Resolver transport" href="/guides/mini/guide-resolver-transport.html"/>
-          <item name="HTTP options of the Wagon transport" href="/guides/mini/guide-http-settings.html"/>
-          <item name="Alternative Wagon providers" href="/guides/mini/guide-wagon-providers.html"/>
-          <item name="Large centralized deployments" href="/guides/mini/guide-large-scale-centralized-deployments.html"/>
-          <item name="Naming your coordinates" href="/guides/mini/guide-naming-conventions.html"/>
+          <item name="How dependencies work" href="/docs/dependencies/how-dependencies-work.html"/>
+          <item name="Optional dependencies and exclusions" href="/docs/dependencies/optional-and-exclusions.html"/>
+          <item name="Repositories explained" href="/docs/dependencies/repositories.html"/>
+          <item name="Use a mirror or repository manager (Nexus, Artifactory)" href="/docs/dependencies/mirror-settings.html"/>
+          <item name="Why use a repository manager" href="/docs/dependencies/repository-manager.html"/>
+          <item name="Use several repositories" href="/docs/dependencies/several-repositories.html"/>
+          <item name="Install a third-party JAR locally" href="/docs/dependencies/third-party-jar-local.html"/>
+          <item name="Deploy a third-party JAR to a remote repository" href="/docs/dependencies/third-party-jar-remote.html"/>
+          <item name="Authenticated HTTPS repositories" href="/docs/dependencies/https-repositories.html"/>
+          <item name="Resolver transport" href="/docs/dependencies/resolver-transport.html"/>
+          <item name="HTTP options of the Wagon transport" href="/docs/dependencies/wagon-http.html"/>
+          <item name="Alternative Wagon providers" href="/docs/dependencies/wagon-providers.html"/>
+          <item name="Large centralized deployments" href="/docs/dependencies/centralized-deployments.html"/>
+          <item name="Naming your coordinates" href="/docs/dependencies/naming-coordinates.html"/>
         </item>
         <item name="Multi-module projects" href="/docs/multi-module/index.html">
-          <item name="Tutorial: split your application into modules" href="/guide/first-modules.html"/>
-          <item name="Aggregation and inheritance" href="/guide/aggregation-and-inheritance.html"/>
-          <item name="Split a project into modules" href="/guide/split-into-modules.html"/>
-          <item name="Build part of a multi-module project" href="/guide/build-part-of-a-project.html"/>
-          <item name="Share configuration between modules" href="/guide/share-configuration.html"/>
-          <item name="Reactor options reference" href="/guide/reactor-options.html"/>
-          <item name="Modules in Maven 3" href="/guides/mini/guide-multiple-modules.html"/>
-          <item name="Subprojects in Maven 4" href="/guides/mini/guide-multiple-subprojects-4.html"/>
-          <item name="CI-friendly versions" href="/guides/mini/guide-maven-ci-friendly.html"/>
+          <item name="Tutorial: split your application into modules" href="/docs/get-started/first-modules.html"/>
+          <item name="Aggregation and inheritance" href="/docs/multi-module/aggregation-and-inheritance.html"/>
+          <item name="Split a project into modules" href="/docs/multi-module/split-into-modules.html"/>
+          <item name="Build part of a multi-module project" href="/docs/multi-module/build-part-of-a-project.html"/>
+          <item name="Share configuration between modules" href="/docs/multi-module/share-configuration.html"/>
+          <item name="Reactor options reference" href="/docs/multi-module/reactor-options.html"/>
+          <item name="Modules in Maven 3" href="/docs/multi-module/modules-maven-3.html"/>
+          <item name="Subprojects in Maven 4" href="/docs/multi-module/subprojects-maven-4.html"/>
+          <item name="CI-friendly versions" href="/docs/multi-module/ci-friendly-versions.html"/>
         </item>
         <item name="Java versions and toolchains" href="/docs/java-versions/index.html">
-          <item name="Toolchains explained" href="/guide/toolchains.html"/>
-          <item name="Build with another JDK" href="/guide/build-with-another-jdk.html"/>
-          <item name="Compile for an older Java version" href="/guide/compile-for-older-java.html"/>
-          <item name="toolchains.xml reference" href="/guide/toolchains-xml.html"/>
+          <item name="Toolchains explained" href="/docs/java-versions/toolchains.html"/>
+          <item name="Build with another JDK" href="/docs/java-versions/build-with-another-jdk.html"/>
+          <item name="Compile for an older Java version" href="/docs/java-versions/compile-for-older-java.html"/>
+          <item name="toolchains.xml reference" href="/docs/java-versions/toolchains-xml.html"/>
         </item>
         <item name="Plugins, extensions and tools" href="/docs/plugins/index.html">
-          <item name="Available plugins" href="/plugins/index.html"/>
-          <item name="Available extensions" href="/extensions/index.html"/>
-          <item name="Configure plugins" href="/guides/mini/guide-configuring-plugins.html"/>
-          <item name="Plugin prefixes" href="/guides/introduction/introduction-to-plugin-prefix-mapping.html"/>
-          <item name="Default executions" href="/guides/mini/guide-default-execution-ids.html"/>
-          <item name="Use extensions" href="/guides/mini/guide-using-extensions.html"/>
-          <item name="Plugin validation warnings" href="/guides/plugins/validation/index.html"/>
-          <item name="Maven tools" href="/tools/index.html"/>
-          <item name="Maven Daemon (mvnd)" href="/tools/mvnd.html"/>
-          <item name="Maven Wrapper" href="/tools/mavenwrapper.html"/>
-          <item name="Maven Shell" href="/tools/mvnsh.html"/>
-          <item name="Maven Upgrade Tool (mvnup)" href="/tools/mvnup.html"/>
-          <item name="POM Validation Tool (mvnval)" href="/tools/mvnval.html"/>
+          <item name="Available plugins" href="/docs/plugins/available-plugins.html"/>
+          <item name="Available extensions" href="/docs/plugins/available-extensions.html"/>
+          <item name="Configure plugins" href="/docs/plugins/configure-plugins.html"/>
+          <item name="Plugin prefixes" href="/docs/plugins/plugin-prefixes.html"/>
+          <item name="Default executions" href="/docs/plugins/default-executions.html"/>
+          <item name="Use extensions" href="/docs/plugins/use-extensions.html"/>
+          <item name="Plugin validation warnings" href="/docs/plugins/plugin-validation.html"/>
+          <item name="Maven tools" href="/docs/plugins/tools.html"/>
+          <item name="Maven Daemon (mvnd)" href="/docs/plugins/mvnd.html"/>
+          <item name="Maven Wrapper" href="/docs/plugins/wrapper.html"/>
+          <item name="Maven Shell" href="/docs/plugins/mvnsh.html"/>
+          <item name="Maven Upgrade Tool (mvnup)" href="/docs/plugins/mvnup.html"/>
+          <item name="POM Validation Tool (mvnval)" href="/docs/plugins/mvnval.html"/>
         </item>
         <item name="Build recipes" href="/docs/recipes/index.html">
-          <item name="Generate sources" href="/guides/mini/guide-generating-sources.html"/>
-          <item name="Configure archives" href="/guides/mini/guide-archive-configuration.html"/>
-          <item name="Work with manifests" href="/guides/mini/guide-manifest.html"/>
-          <item name="Create assemblies and fat JARs" href="/guides/mini/guide-assemblies.html"/>
-          <item name="Attached tests" href="/guides/mini/guide-attached-tests.html"/>
-          <item name="Reproducible builds" href="/guides/mini/guide-reproducible-builds.html"/>
-          <item name="Version and release your own project" href="/guides/mini/guide-releasing.html"/>
-          <item name="Code quality tools" href="/code-quality-management.html"/>
-          <item name="Use Ant" href="/guides/mini/guide-using-ant.html"/>
-          <item name="Use Modello" href="/guides/mini/guide-using-modello.html"/>
-          <item name="When you can't use the conventions" href="/guides/mini/guide-using-one-source-directory.html"/>
+          <item name="Generate sources" href="/docs/recipes/generate-sources.html"/>
+          <item name="Configure archives" href="/docs/recipes/archives.html"/>
+          <item name="Work with manifests" href="/docs/recipes/manifests.html"/>
+          <item name="Create assemblies and fat JARs" href="/docs/recipes/assemblies.html"/>
+          <item name="Attached tests" href="/docs/recipes/attached-tests.html"/>
+          <item name="Reproducible builds" href="/docs/recipes/reproducible-builds.html"/>
+          <item name="Version and release your own project" href="/docs/recipes/release-your-project.html"/>
+          <item name="Code quality tools" href="/docs/recipes/code-quality.html"/>
+          <item name="Use Ant" href="/docs/recipes/ant.html"/>
+          <item name="Use Modello" href="/docs/recipes/modello.html"/>
+          <item name="When you can't use the conventions" href="/docs/recipes/without-conventions.html"/>
         </item>
         <item name="Project site" href="/docs/site/index.html">
-          <item name="Create a project site" href="/guides/mini/guide-site.html"/>
-          <item name="Write pages in Markdown" href="/doxia/references/index.html"/>
-          <item name="Markdown format" href="/doxia/references/markdown-format.html"/>
-          <item name="APT format" href="/doxia/references/apt-format.html"/>
-          <item name="Doxia's APT enhancements" href="/doxia/references/doxia-apt.html"/>
-          <item name="FML format" href="/doxia/references/fml-format.html"/>
-          <item name="Xdoc format" href="/doxia/references/xdoc-format.html"/>
-          <item name="Snippet macro" href="/guides/mini/guide-snippet-macro.html"/>
-          <item name="All Doxia macros" href="/doxia/macros/index.html"/>
-          <item name="Choose a skin" href="/skins/index.html"/>
+          <item name="Create a project site" href="/docs/site/create-a-site.html"/>
+          <item name="Write pages in Markdown" href="/docs/site/markup-formats.html"/>
+          <item name="Markdown format" href="/docs/site/markdown.html"/>
+          <item name="APT format" href="/docs/site/apt.html"/>
+          <item name="Doxia's APT enhancements" href="/docs/site/doxia-apt.html"/>
+          <item name="FML format" href="/docs/site/fml.html"/>
+          <item name="Xdoc format" href="/docs/site/xdoc.html"/>
+          <item name="Snippet macro" href="/docs/site/snippet-macro.html"/>
+          <item name="All Doxia macros" href="/docs/site/macros.html"/>
+          <item name="Choose a skin" href="/docs/site/skins.html"/>
         </item>
         <item name="Maven 4" href="/docs/maven-4/index.html">
-          <item name="What's new in Maven 4" href="/whatsnewinmaven4.html"/>
-          <item name="Start with Maven 4 (migration)" href="/guides/mini/guide-migration-to-mvn4.html"/>
-          <item name="Mixins (Maven 4.1)" href="/guides/mini/guide-mixins.html"/>
+          <item name="What's new in Maven 4" href="/docs/maven-4/whats-new.html"/>
+          <item name="Start with Maven 4 (migration)" href="/docs/maven-4/migrate.html"/>
+          <item name="Mixins (Maven 4.1)" href="/docs/maven-4/mixins.html"/>
         </item>
         <item name="Reference" href="/docs/reference/index.html">
-          <item name="POM reference" href="/pom.html"/>
-          <item name="Settings reference" href="/settings.html"/>
-          <item name="Command line: running Maven" href="/run.html"/>
-          <item name="Maven classloading" href="/guides/mini/guide-maven-classloading.html"/>
-          <item name="Classloading in Maven core" href="/reference/maven-classloading.html"/>
-          <item name="Glossary" href="/glossary.html"/>
-          <item name="Bash completion" href="/guides/mini/guide-bash-m2-completion.html"/>
+          <item name="POM reference" href="/docs/reference/pom.html"/>
+          <item name="Settings reference" href="/docs/reference/settings.html"/>
+          <item name="Command line: running Maven" href="/docs/reference/command-line.html"/>
+          <item name="Maven classloading" href="/docs/reference/classloading.html"/>
+          <item name="Classloading in Maven core" href="/docs/reference/classloading-core.html"/>
+          <item name="Glossary" href="/docs/reference/glossary.html"/>
+          <item name="Bash completion" href="/docs/reference/bash-completion.html"/>
           <item name="A–Z index" href="/docs/reference/a-z.html"/>
         </item>
         <item name="Help" href="/docs/help/index.html">
-          <item name="FAQ" href="/general.html"/>
-          <item name="Unofficial FAQ" href="/faq-unoffical.html"/>
-          <item name="Ask for help" href="/users/getting-help.html"/>
-          <item name="Books and resources" href="/articles.html"/>
+          <item name="FAQ" href="/docs/help/faq.html"/>
+          <item name="Unofficial FAQ" href="/docs/help/unofficial-faq.html"/>
+          <item name="Ask for help" href="/docs/help/getting-help.html"/>
+          <item name="Books and resources" href="/docs/help/books-and-resources.html"/>
         </item>
       </item>
       <item name="Downloads" href="/download.html">
@@ -148,77 +148,77 @@
           <item name="Download Maven" href="/download.html"/>
         </item>
         <item name="Releases" href="/downloads/releases/index.html">
-          <item name="Release notes" href="/release-notes-all.html"/>
-          <item name="Release history" href="/docs/history.html"/>
-          <item name="End of life: Maven 2.x" href="/maven-2.x-eol.html"/>
-          <item name="End of life: Maven 1.x" href="/maven-1.x-eol.html"/>
+          <item name="Release notes" href="/downloads/releases/release-notes.html"/>
+          <item name="Release history" href="/downloads/releases/history.html"/>
+          <item name="End of life: Maven 2.x" href="/downloads/releases/eol-maven-2.html"/>
+          <item name="End of life: Maven 1.x" href="/downloads/releases/eol-maven-1.html"/>
         </item>
         <item name="Security" href="/downloads/security/index.html">
           <item name="Security reports" href="/security.html"/>
-          <item name="Zip Slip vulnerability" href="/security-plexus-archiver.html"/>
+          <item name="Zip Slip vulnerability" href="/downloads/security/zip-slip.html"/>
         </item>
       </item>
       <item name="News" href="/news/index.html">
       </item>
       <item name="Extend" href="/extend/index.html">
         <item name="Write a plugin or extension" href="/extend/plugins/index.html">
-          <item name="Introduction to plugin development" href="/guides/introduction/introduction-to-plugins.html"/>
-          <item name="Your first plugin (Mojo)" href="/guides/plugin/guide-java-plugin-development.html"/>
-          <item name="Your first report plugin" href="/guides/plugin/guide-java-report-plugin-development.html"/>
-          <item name="Document your plugin" href="/guides/development/guide-plugin-documentation.html"/>
-          <item name="Test your plugin" href="/plugin-developers/plugin-testing.html"/>
-          <item name="Common bugs and pitfalls" href="/plugin-developers/common-bugs.html"/>
-          <item name="Mojo API specification" href="/developers/mojo-api-specification.html"/>
-          <item name="Logging in plugins" href="/maven-logging.html"/>
-          <item name="Dependency injection (Maven 4)" href="/maven-di.html"/>
-          <item name="JSR-330" href="/maven-jsr330.html"/>
-          <item name="Null annotations" href="/null-annotations.html"/>
-          <item name="Upgrade from Plexus Javadoc tags" href="/plugin-developers/cookbook/plexus-plugin-upgrade.html"/>
-          <item name="Lifecycle extensions example" href="/examples/maven-3-lifecycle-extensions.html"/>
-          <item name="Extensions cookbook" href="/plugin-developers/cookbook/index.html"/>
-          <item name="Plugin localization" href="/plugins/localization.html"/>
-          <item name="Maven conventions" href="/maven-conventions.html"/>
+          <item name="Introduction to plugin development" href="/extend/plugins/introduction.html"/>
+          <item name="Your first plugin (Mojo)" href="/extend/plugins/first-plugin.html"/>
+          <item name="Your first report plugin" href="/extend/plugins/first-report-plugin.html"/>
+          <item name="Document your plugin" href="/extend/plugins/document.html"/>
+          <item name="Test your plugin" href="/extend/plugins/test.html"/>
+          <item name="Common bugs and pitfalls" href="/extend/plugins/common-bugs.html"/>
+          <item name="Mojo API specification" href="/extend/plugins/mojo-api.html"/>
+          <item name="Logging in plugins" href="/extend/plugins/logging.html"/>
+          <item name="Dependency injection (Maven 4)" href="/extend/plugins/dependency-injection.html"/>
+          <item name="JSR-330" href="/extend/plugins/jsr-330.html"/>
+          <item name="Null annotations" href="/extend/plugins/null-annotations.html"/>
+          <item name="Upgrade from Plexus Javadoc tags" href="/extend/plugins/plexus-annotations.html"/>
+          <item name="Lifecycle extensions example" href="/extend/plugins/lifecycle-extensions.html"/>
+          <item name="Extensions cookbook" href="/extend/plugins/cookbook.html"/>
+          <item name="Plugin localization" href="/extend/plugins/localization.html"/>
+          <item name="Maven conventions" href="/extend/plugins/conventions.html"/>
         </item>
         <item name="Archetypes" href="/extend/archetypes/index.html">
-          <item name="Introduction to archetypes" href="/guides/introduction/introduction-to-archetypes.html"/>
-          <item name="Create an archetype" href="/guides/mini/guide-creating-archetypes.html"/>
+          <item name="Introduction to archetypes" href="/extend/archetypes/introduction.html"/>
+          <item name="Create an archetype" href="/extend/archetypes/create.html"/>
         </item>
         <item name="Publish to Maven Central" href="/extend/central/index.html">
-          <item name="Maven Central explained" href="/repository/index.html"/>
-          <item name="Upload your artifacts" href="/repository/guide-central-repository-upload.html"/>
-          <item name="Fix or improve metadata" href="/repository/central-metadata.html"/>
-          <item name="Project metadata FAQ" href="/project-faq.html"/>
-          <item name="Central index" href="/repository/central-index.html"/>
-          <item name="Central's directory layout" href="/repository/layout.html"/>
-          <item name="Relocate an artifact" href="/guides/mini/guide-relocation.html"/>
+          <item name="Maven Central explained" href="/extend/central/maven-central.html"/>
+          <item name="Upload your artifacts" href="/extend/central/upload.html"/>
+          <item name="Fix or improve metadata" href="/extend/central/fix-metadata.html"/>
+          <item name="Project metadata FAQ" href="/extend/central/metadata-faq.html"/>
+          <item name="Central index" href="/extend/central/central-index.html"/>
+          <item name="Central's directory layout" href="/extend/central/layout.html"/>
+          <item name="Relocate an artifact" href="/extend/central/relocation.html"/>
         </item>
         <item name="Repository format: layout and metadata files" href="/extend/repository-format/index.html">
-          <item name="Repositories overview" href="/repositories/index.html"/>
-          <item name="Artifacts" href="/repositories/artifacts.html"/>
-          <item name="Dependencies" href="/repositories/dependencies.html"/>
-          <item name="maven-metadata.xml" href="/repositories/metadata.html"/>
-          <item name="Directory layout" href="/repositories/layout.html"/>
-          <item name="Local repository" href="/repositories/local.html"/>
-          <item name="Remote repositories" href="/repositories/remote.html"/>
+          <item name="Repositories overview" href="/extend/repository-format/overview.html"/>
+          <item name="Artifacts" href="/extend/repository-format/artifacts.html"/>
+          <item name="Dependencies" href="/extend/repository-format/dependencies.html"/>
+          <item name="maven-metadata.xml" href="/extend/repository-format/metadata.html"/>
+          <item name="Directory layout" href="/extend/repository-format/layout.html"/>
+          <item name="Local repository" href="/extend/repository-format/local.html"/>
+          <item name="Remote repositories" href="/extend/repository-format/remote.html"/>
         </item>
         <item name="Doxia and skins: site tooling" href="/extend/doxia/index.html">
-          <item name="Doxia" href="/doxia/index.html"/>
-          <item name="Doxia overview" href="/doxia/overview.html"/>
-          <item name="Doxia modules" href="/doxia/modules/index.html"/>
-          <item name="Doxia developers" href="/doxia/developers/index.html"/>
-          <item name="Write a Doxia module" href="/doxia/developers/modules.html"/>
-          <item name="Write a Doxia macro" href="/doxia/developers/macros.html"/>
-          <item name="Use the Sink API" href="/doxia/developers/sink.html"/>
-          <item name="Doxia tools" href="/doxia/doxia-tools/index.html"/>
-          <item name="Doxia issues and gotchas" href="/doxia/issues/index.html"/>
-          <item name="Doxia FAQ" href="/doxia/faq.html"/>
-          <item name="Doxia releases" href="/doxia/downloads.html"/>
-          <item name="Doxia resources" href="/doxia/resources.html"/>
-          <item name="Doxia sources" href="/doxia/scm.html"/>
+          <item name="Doxia" href="/extend/doxia/doxia.html"/>
+          <item name="Doxia overview" href="/extend/doxia/overview.html"/>
+          <item name="Doxia modules" href="/extend/doxia/modules.html"/>
+          <item name="Doxia developers" href="/extend/doxia/developers.html"/>
+          <item name="Write a Doxia module" href="/extend/doxia/write-a-module.html"/>
+          <item name="Write a Doxia macro" href="/extend/doxia/write-a-macro.html"/>
+          <item name="Use the Sink API" href="/extend/doxia/sink-api.html"/>
+          <item name="Doxia tools" href="/extend/doxia/tools.html"/>
+          <item name="Doxia issues and gotchas" href="/extend/doxia/issues.html"/>
+          <item name="Doxia FAQ" href="/extend/doxia/faq.html"/>
+          <item name="Doxia releases" href="/extend/doxia/releases.html"/>
+          <item name="Doxia resources" href="/extend/doxia/resources.html"/>
+          <item name="Doxia sources" href="/extend/doxia/sources.html"/>
         </item>
         <item name="Building blocks" href="/extend/building-blocks/index.html">
-          <item name="Shared components" href="/shared/index.html"/>
-          <item name="Parent POMs" href="/pom/index.html"/>
+          <item name="Shared components" href="/extend/building-blocks/shared-components.html"/>
+          <item name="Parent POMs" href="/extend/building-blocks/parent-poms.html"/>
           <item name="Maven core reference" href="https://maven.apache.org/ref/current/"/>
           <item name="Maven Resolver" href="https://maven.apache.org/resolver/"/>
           <item name="Surefire" href="https://maven.apache.org/surefire/"/>
@@ -227,60 +227,60 @@
       </item>
       <item name="Community" href="/community/index.html">
         <item name="Talk to us" href="/community/talk/index.html">
-          <item name="Community overview" href="/community.html"/>
-          <item name="Mailing lists and Slack" href="/users/getting-help.html"/>
-          <item name="Issue tracking" href="/issue-management.html"/>
+          <item name="Community overview" href="/community/talk/overview.html"/>
+          <item name="Mailing lists and Slack" href="/docs/help/getting-help.html"/>
+          <item name="Issue tracking" href="/community/talk/issues.html"/>
         </item>
         <item name="Contribute to Maven" href="/community/contribute/index.html">
-          <item name="How to help" href="/guides/development/guide-helping.html"/>
-          <item name="Get the sources" href="/scm.html"/>
-          <item name="Build Maven" href="/guides/development/guide-building-maven.html"/>
-          <item name="Develop Maven" href="/guides/development/guide-maven-development.html"/>
-          <item name="Code style" href="/developers/conventions/code.html"/>
-          <item name="Git conventions" href="/developers/conventions/git.html"/>
-          <item name="GitHub conventions" href="/developers/conventions/github.html"/>
-          <item name="Documentation style" href="/guides/development/guide-documentation-style.html"/>
-          <item name="Test development versions of plugins" href="/guides/development/guide-testing-development-plugins.html"/>
-          <item name="Test staged releases" href="/guides/development/guide-testing-releases.html"/>
+          <item name="How to help" href="/community/contribute/how-to-help.html"/>
+          <item name="Get the sources" href="/community/contribute/sources.html"/>
+          <item name="Build Maven" href="/community/contribute/build-maven.html"/>
+          <item name="Develop Maven" href="/community/contribute/develop-maven.html"/>
+          <item name="Code style" href="/community/contribute/code-style.html"/>
+          <item name="Git conventions" href="/community/contribute/git.html"/>
+          <item name="GitHub conventions" href="/community/contribute/github.html"/>
+          <item name="Documentation style" href="/community/contribute/documentation-style.html"/>
+          <item name="Test development versions of plugins" href="/community/contribute/test-development-plugins.html"/>
+          <item name="Test staged releases" href="/community/contribute/test-staged-releases.html"/>
         </item>
         <item name="Committers" href="/community/committers/index.html">
-          <item name="Become a committer" href="/guides/development/guide-committer-school.html"/>
-          <item name="Welcome" href="/developers/welcome-to-new-committers.html"/>
-          <item name="Guide for new committers" href="/guides/mini/guide-new-committers.html"/>
-          <item name="Committer environment" href="/developers/committer-environment.html"/>
-          <item name="Committer settings" href="/developers/committer-settings.html"/>
+          <item name="Become a committer" href="/community/committers/become-a-committer.html"/>
+          <item name="Welcome" href="/community/committers/welcome.html"/>
+          <item name="Guide for new committers" href="/community/committers/guide.html"/>
+          <item name="Committer environment" href="/community/committers/environment.html"/>
+          <item name="Committer settings" href="/community/committers/settings.html"/>
         </item>
         <item name="Release Apache Maven components" href="/community/releasing/index.html">
-          <item name="How Apache Maven releases work" href="/developers/release/index.html"/>
-          <item name="Release a plugin or component" href="/developers/release/maven-project-release-procedure.html"/>
-          <item name="Release Maven core" href="/developers/release/maven-core-release.html"/>
-          <item name="Release a parent POM" href="/developers/release/parent-pom-release.html"/>
-          <item name="GPG keys" href="/developers/release/pmc-gpg-keys.html"/>
+          <item name="How Apache Maven releases work" href="/community/releasing/overview.html"/>
+          <item name="Release a plugin or component" href="/community/releasing/procedure.html"/>
+          <item name="Release Maven core" href="/community/releasing/maven-core.html"/>
+          <item name="Release a parent POM" href="/community/releasing/parent-pom.html"/>
+          <item name="GPG keys" href="/community/releasing/gpg-keys.html"/>
         </item>
         <item name="Maven website" href="/community/website/index.html">
-          <item name="The Maven website" href="/developers/website/index.html"/>
-          <item name="How the sites fit together" href="/developers/website/website-overview.html"/>
-          <item name="Deploy the website" href="/developers/website/deploy-maven-website.html"/>
-          <item name="Component reference documentation" href="/developers/website/deploy-component-reference-documentation.html"/>
-          <item name="Component documentation helper" href="/developers/website/component-reference-documentation-helper.html"/>
+          <item name="The Maven website" href="/community/website/overview.html"/>
+          <item name="How the sites fit together" href="/community/website/sites.html"/>
+          <item name="Deploy the website" href="/community/website/deploy.html"/>
+          <item name="Component reference documentation" href="/community/website/component-docs.html"/>
+          <item name="Component documentation helper" href="/community/website/component-docs-helper.html"/>
         </item>
         <item name="Policies" href="/community/policies/index.html">
-          <item name="Plugin retirement plan" href="/developers/retirement-plan-plugins.html"/>
-          <item name="Dependency policies" href="/developers/dependency-policies.html"/>
-          <item name="Compatibility plan" href="/developers/compatibility-plan.html"/>
+          <item name="Plugin retirement plan" href="/community/policies/plugin-retirement.html"/>
+          <item name="Dependency policies" href="/community/policies/dependencies.html"/>
+          <item name="Compatibility plan" href="/community/policies/compatibility.html"/>
         </item>
         <item name="The project" href="/community/project/index.html">
-          <item name="Project roles" href="/project-roles.html"/>
+          <item name="Project roles" href="/community/project/roles.html"/>
           <item name="The team" href="https://maven.apache.org/team.html"/>
-          <item name="About Maven" href="/about.html"/>
-          <item name="Testimonials" href="/testimonials.html"/>
-          <item name="History of Maven" href="/background/history-of-maven.html"/>
-          <item name="Logos" href="/logoupdate.html"/>
-          <item name="The logo vote" href="/logovote.html"/>
-          <item name="Action cards" href="/resource/branding/actioncards.html"/>
-          <item name="Archive: the Aether import plan" href="/aether.html"/>
-          <item name="Archive: Maven 2" href="/archives/maven-2.x/index.html"/>
-          <item name="Archive: Maven 2.1 goals" href="/archives/maven-2.x/maven-2.1-architectural-goals.html"/>
+          <item name="About Maven" href="/community/project/about.html"/>
+          <item name="Testimonials" href="/community/project/testimonials.html"/>
+          <item name="History of Maven" href="/community/project/history.html"/>
+          <item name="Logos" href="/community/project/logos.html"/>
+          <item name="The logo vote" href="/community/project/logo-vote.html"/>
+          <item name="Action cards" href="/community/project/action-cards.html"/>
+          <item name="Archive: the Aether import plan" href="/community/project/aether.html"/>
+          <item name="Archive: Maven 2" href="/community/project/maven-2.html"/>
+          <item name="Archive: Maven 2.1 goals" href="/community/project/maven-2-1-goals.html"/>
         </item>
       </item>
     </menu>

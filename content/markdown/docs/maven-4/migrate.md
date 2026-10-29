@@ -1,0 +1,387 @@
+# Starting with Maven 4
+
+<!--
+Licensed to the Apache Software Foundation (ASF) under one
+or more contributor license agreements.  See the NOTICE file
+distributed with this work for additional information
+regarding copyright ownership.  The ASF licenses this file
+to you under the Apache License, Version 2.0 (the
+"License"); you may not use this file except in compliance
+with the License.  You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing,
+software distributed under the License is distributed on an
+"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+KIND, either express or implied.  See the License for the
+specific language governing permissions and limitations
+under the License.
+-->
+
+Maven 4 introduces several updates and improvements (see ["What's new in Maven 4?"](/docs/maven-4/whats-new.html)).
+Some of them are backwards compatible with Maven 3, but some require changes of your build environment or Maven project.
+This page offers help for users who want to build their projects with Maven 4 (and check with RCs that everything is fine).
+
+In short, the general suggestion for the migration is to do it in three steps:
+
+1. **prepare**: Meet the prerequisites with latest Maven 3
+2. **test**: Build in parallel with Maven 4 ([latest RC of Maven 4](/downloads/releases/history.html)) and do minimal Maven 3-compatible fixes (report us if anything is unexpected)
+3. **migrate**: Drop Maven 3 and introduce optional Maven 4 features (see also [Maven Upgrade Tool](/docs/plugins/mvnup.html))
+
+If you run into any issues, please don't hesitate to contact the [users mailing list](/mailing-lists.html).
+The Maven team is interested in all your migration experiences - either good or bad!
+
+Many OSS projects have already published releases to [Maven Central with Maven 4 RC](https://central.sonatype.com/search?q=l%3Abuild): it's time to check that latest Maven 4 RC works for you before we release the long awaited Maven 4.0.0.
+
+**Notes**:
+
+* This page will constantly be updated  to contain changes, but also to integrate feedback of the community and their experience when upgrading to Maven 4 (RC).
+  This means it will still receive updates after Maven 4 (RC or final) has been released.
+* Since Maven 4.0.0-rc-4, Maven ships with a built-in migration tool for "step 3 -- migrate" (see [Maven Upgrade Tool](/docs/plugins/mvnup.html)), doing most of the steps needed to benefit from optional Maven 4 specific features.
+* This guide does not contain information about how to update plugins to use the new Maven 4 plugin API.
+  We plan to create a separate guide for this when we'll work on Maven 4.1: for now, we focus on using Maven 4.0.x (RC) with classical Maven 3 plugins.
+
+**Table of content**
+
+<!--MACRO{toc|fromDepth=2|toDepth=4}-->
+
+## Step 1 -- prepare: Maven 3 Prerequisites
+
+This guide assumes that your environment and project meets the following prerequisites.
+If they don't, please make sure they do before continuing with this guide.
+
+### Use latest version of Maven 3.9
+
+This guide assumes that the project to be migrated was successfully built using the [latest version of Maven 3](/downloads/releases/history.html).
+
+### Upgrade plugins to their latest Maven 3 version
+
+Similar to the previous prerequisite, the guides assumes that you are using the latest Maven 3 plugin version of all your plugins.
+
+Do not upgrade yet to a plugin version which requires Maven 4!
+Be aware of this, if you use tools that can automate updates.
+
+You can use the [versions-maven-plugin's `display-plugin-updates` goal][versionpluginupdate] to see which are the latest available versions of the plugins you use.
+
+The following example shows the output of the [Versions Maven Plugin](https://www.mojohaus.org/versions/versions-maven-plugin/) in a project using the outdated version 3.12.0 of the Maven Compiler Plugin.
+As you can see, it shows that 3.14.0 is the best Maven 3 compatible update, while versions 4.0.0-beta-1 and 4.0.0-beta-2 require Maven 4 versions, not yet for the current step.
+
+```
+[INFO] The following plugin updates are available:
+[INFO]   maven-compiler-plugin ............................ 3.12.0 -> 3.14.0
+[INFO]
+[INFO] All plugins have a version specified.
+[INFO]
+[INFO] Project requires minimum Maven version for build of: 3.9
+[INFO] Plugins require minimum Maven version of: 3.6.3
+[INFO]
+[INFO] No plugins require a newer version of Maven than specified by the pom.
+[INFO]
+[INFO] Require Maven 4.0.0-beta-3 to use the following plugin updates:
+[INFO]   maven-compiler-plugin ...................... 3.12.0 -> 4.0.0-beta-1
+[INFO]
+[INFO] Require Maven 4.0.0-rc-2 to use the following plugin updates:
+[INFO]   maven-compiler-plugin ...................... 3.12.0 -> 4.0.0-beta-2
+```
+
+## Step 2 -- test: Minimal Updates for Maven 4
+
+You need to do the following steps to be able to use Maven 4.
+
+### Upgrade build environment to support Java 17
+
+Maven 4 requires Java 17 to be run.
+This means the build environment (locally but also your CI environment) needs to provide a JDK that supports Java 17.
+Either install one to your machine or use a container providing one.
+
+**Note**: Maven 3 can also be executed with Java 17.
+So you should prepare your build environment as soon as possible to have a solid, project independent base for further migration.
+
+### Install and use Maven 4
+
+After you have upgraded your build environment to support Java 17, you also need to provide Maven 4.
+See the information [where to download](/download.cgi) and [how to install](/docs/get-started/install.html) Maven 4 for further information.
+
+Places where you might have to configure Maven 4 usage aside installation:
+
+* [Maven Wrapper](/tools/wrapper/index.html)'s `maven-wrapper.properties` file.
+* [Required Maven version](/enforcer/enforcer-rules/requireMavenVersion.html) rule of the Maven enforcer plugin.
+* Your own CI/CD configuration scripts or pipelines.
+
+### Update few necessary plugins to Maven 4 version
+
+If there is a dedicated Maven 4 version for used plugins, you should evaluate updating to such a version.
+You can use the [Versions Maven Plugin's `display-plugin-updates` goal][versionpluginupdate] to check for updates.
+
+**Note**: Maven 4 aims to support all Maven 3.9 compatible plugins that do not use old Maven 2 APIs. This is why we promote upgrading to latest release, and to Maven 4 specific release only when a plugin requires definitively a Maven 4-specific update (a bugfix or a feature).
+
+## Troubleshooting and required changes if situation applies
+
+The following changes are in general not required by all projects, but might apply to yours.
+
+### Fix plugin misconfigurations
+
+There are several misconfigurations in the project's POM declaration that result in warnings when using Maven 3.9.
+While your build should not throw any warnings at all, the following ones needs to be fixed as they will fail the build in Maven 4.
+
+**Notes**:
+
+* The [plugin configuration guide](/docs/plugins/configure-plugins.html) contains general information, how plugins are correctly declared and configured.
+* For analysing wrong build behavior, it might help to use the new `--fail-on-severity` parameter, paired with `WARN` as an argument, to fail your build when a warning occurs.
+
+#### Duplicate plugin declaration
+
+A plugin must only be declared once.
+Defining it multiple times results the following log message.
+
+> 'build.plugins.plugin.(groupId:artifactId)' must be unique but found duplicate declaration of plugin [plugin-name] ...
+
+To fix this, remove the duplicated configuration.
+
+### Replace removed directory properties
+
+Maven 4 introduces new public properties dedicated to point to the root and top directory of (multi-subproject) project.
+You can now use `${project.rootDirectory}`, `${session.topDirectory}`, `${session.rootDirectory}` when declaring paths.
+See the [Maven Model Builder interpolation reference][modelbuilderinterpolation] for more details.
+
+At the same time, several (especially internal) properties are deprecated or removed.
+This includes the following properties:
+
+* `executionRootDirectory`
+* `multiModuleProjectDirectory`
+
+### Replace plugin bindings to `pre-` and `post-` lifecycle phase
+
+In Maven 3, `integration-test`, `clean` and `test` [lifecycle phases](/ref/3-LATEST/maven-core/lifecycles.html) have `pre-` and `post-` phases.
+In Maven 4 those phases are removed in favor of new `before:` and `after:` phases, available for [all lifecycle phases](/ref/4-LATEST/maven-impl-modules/maven-core/lifecycles.html).
+
+Update your plugin executions that bind to a `pre-integration-test` or `post-integration-test` phase with the corresponding `before:integration-test` or `after:integration-test` phases.
+
+## Step 3 -- migrate: Drop Maven 3, use Optional Maven 4 features
+
+In this step, we'll update your project's `pom.xml` to benefit from new Maven 4 features that are not available in Maven 3:
+by applying required changes, you won't be able to build your project with Maven 3 any more.
+
+Notice that [Maven 4 Consumer POM](/docs/maven-4/whats-new.html#Consumer_POM) will automatically be triggered, which makes sure the
+output of your project can still be used by any tool, be it Maven 3 or other build tools: only **building** your project from `pom.xml`
+in your source control (aka. *Build POM*) requires Maven 4.
+
+### Changed default values
+
+#### Install/deploy at end of build (breaking change)
+
+Both, the Maven Install Plugin and the Maven Deploy Plugin, have changed default values for their behavior, about when to install respectively deploy.
+The default values for `installAtEnd` and `deployAtEnd` are set to `true` in Maven 4.
+They now reflect the desired behavior for the majority of the Maven builds.
+If you manually set these values to `true` before, you can remove the explicit declaration and inherit the same behavior from the new default values now.
+
+If your build relies on the old default value (`false`), you have to add it to your plugin configuration now.
+But in most cases, a build that requires the values to be `false` means that these settings hide a configuration error.
+We suggest to analyse the build configuration after migration.
+
+### Use POM model version 4.1.0
+
+Using POM model version 4.1.0 is not required with Maven 4.0.0.
+It is only required, for using new POM features like `root`-attribute, BOM packaging types, optional profiles and others.
+
+Model version 4.1.0 (or higher) will be required in future versions of Maven.
+It's suggested to migrate your project to Maven 4 without any POM changes that require model version 4.1.0 first.
+After you have successfully done this, include wanted features step by step.
+
+#### Define project's root directory
+
+It is highly recommended to define the project's root directory.
+While the definition is not enforced with Maven 4.0.0, it might be in the future.
+Some new Maven 4 features, for example the `${project.rootDirectory}`property, do require it.
+
+When the root directory is not defined, the following warning is displayed:
+
+> [WARNING] Unable to find the root directory. Create a .mvn directory in the root directory or add the root="true" attribute on the root project's model to identify it.
+
+As written in the warning, there are two ways to define the project's root directory:
+
+1. Create a `.mvn` directory in the root directory.
+   From Maven's perspective, the directory can be empty, but some version control systems do not check in an empty directory.
+   Therefore, placing an empty file inside (or a Maven [configuration files](https://maven.apache.org/docs/configure/configuration-files.html)) works around this.
+   Using the `.mvn` directory is already possible with Maven 3.
+2. Set the `root` attribute in your parent POM to `true`.
+   The `root` attribute is a new attribute of model version 4.1.0 and therefore can only be used with Maven 4.
+   Note: That is also the cause, why this topic is listed in the model version 4.1.0 section.
+
+#### Use `<subprojects>` instead of `<modules>`
+
+In Maven 4 subprojects are no longer called modules, to avoid confusion between *Maven modules* and *Java Modules* introduced in Java 9.
+While the `<modules>` element is still supported, it was marked as deprecated in model version 4.1.0 and will get removed in a future version.
+So you should replace it with the new `<subprojects>` element instead.
+
+```xml
+<!-- Requires model version 4.0.0 (Maven 3, deprecated in model version 4.1.0) -->
+ <modules>
+     <module>moduleA</module>
+     <module>moduleB</module>
+ </modules>
+
+<!-- Requires model version 4.1.0 (Maven 4) -->
+ <subprojects>
+     <subproject>moduleA</subproject>
+     <subproject>moduleB</subproject>
+ </subprojects>
+```
+
+#### Automatic versioning in multi subprojects setups
+
+Maven 4 contains a lot of improvements for projects which contain subprojects.
+Those include automatic version detection of the parent and project own dependencies, and automatic detection of parent groupId and artifactId.
+
+Using Maven 3 with model version 4.0.0, you need to declare those.
+While the parent's version always must be hardcoded, you can use the `${project.version}` property to declare another subproject as a dependency.
+Using Maven 4 and model version 4.1.0, those definitions are optional: they are automatically inferred from content on disk.
+
+The following example of a `pom.xml` shows the associated part for a subproject called "subprojectB".
+This subproject declares its parent and the dependency to "subprojectA", which is also a subproject in the same multi subproject setup.
+
+In Maven 3 with model version 4.0.0 such a declaration looks like the following.
+
+```xml
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+   
+   <modelVersion>4.0.0</modelVersion>
+   <artifactId>subprojectB</artifactId>
+   
+   <parent>
+      <!-- The parent groupId and artifactId must be "hardcoded" -->
+      <groupId>demo.maven</groupId>
+      <artifactId>theParentProjecct</artifactId>
+      <!-- The parents' version must be "hardcoded" -->
+      <version>0.0.1-SNAPSHOT</version>
+   </parent>
+   
+   <dependencies>
+      <dependency>
+         <groupId>demo.maven</groupId>
+         <artifactId>subprojectA</artifactId>
+         <!-- The subproject dependency version declaration can make use of the project.version property-->
+         <version>${project.version}</version>
+      </dependency>
+   </dependencies>
+   
+   <!-- other declarations -->
+</project>
+```
+
+In Maven 4 and model version 4.1.0, the version declarations and parent coordinates are not needed anymore.
+
+```xml
+<project xmlns="http://maven.apache.org/POM/4.1.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.1.0 http://maven.apache.org/xsd/maven-4.1.0.xsd">
+   
+   <modelVersion>4.1.0</modelVersion>
+   <artifactId>subprojectB</artifactId>
+   
+   <parent/>
+   
+   <dependencies>
+      <dependency>
+         <groupId>demo.maven</groupId>
+         <artifactId>subprojectA</artifactId>
+      </dependency>
+   </dependencies>
+   
+   <!-- other declarations -->
+</project>
+```
+
+#### CI-friendly variables without flatten-maven-plugin
+
+Maven partially supports [CI-friendly variables][cifriendlyguide] (like `${revision}`) since version 3.5.0.
+Thanks to the improved dependency resolution of project own dependencies in multi subprojects setups they are now fully supported if you rely on the automatic versioning as described in the section above.
+This also means that you don't need the [flatten-maven-plugin][flattenmavenplugin] to `install` and `deploy` anymore.
+
+#### Using BOM packaging
+
+Maven 4 introduces a dedicated `bom` packaging type to provide a [Bill of Materials BOM POM][bompomguide].
+This now differentiates between parent POMs and dependency-managing BOM POMs.
+The new type is only available as a build POM in Model Version 4.1.0 and later, but Maven generates a full Maven 3
+compatible consumer POM during the build.
+
+The following code snippet shows an example for a BOM POM using the new `<packaging>` type.
+
+```xml
+<project xmlns="http://maven.apache.org/POM/4.1.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.1.0 http://maven.apache.org/xsd/maven-4.1.0.xsd">
+
+    <modelVersion>4.1.0</modelVersion>
+    <groupId>demo.maven</groupId>
+    <artifactId>maven4-example-bom</artifactId>
+    <version>1.0.0</version>
+
+    <packaging>bom</packaging>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>dev.some.group</groupId>
+                <artifactId>someArtifact</artifactId>
+                <version>1.2.3</version>
+            </dependency>
+            <dependency>
+                <groupId>dev.some.other</groupId>
+                <artifactId>somethingElse</artifactId>
+                <version>3.1.5</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+</project>
+```
+
+### Use the new `all` and `each` life cycle phases
+
+Maven 4 introduces several new [lifecycle phases](/ref/4-LATEST/maven-impl-modules/maven-core/lifecycles.html) — `all`, `each`, `before:all`, `after:all`, `before:each`, and `after:each`.
+They give users finer control over plugin execution, particularly in multi-project and concurrent builds.
+If you want to execute a plugin before/after all or each of your (sub-)projects, consider to use them.
+
+### New way to declare source directories
+
+Maven 3 has two explicitly named XML elements (`<sourceDirectory>` and `<testSourceDirectory>`) to declare the root directories of source code, as shown below:
+
+```xml
+<project>
+  <build>
+    <sourceDirectory>my-custom-dir/foo</sourceDirectory>
+    <testSourceDirectory>my-custom-dir/bar</testSourceDirectory>
+  </build>
+</project>
+```
+
+Maven 4 introduces the new `<sources>` element for this.
+This makes source directory declarations more flexible for future improvements like Java Modules.
+When migrate to Maven 4, you should use the new element.
+
+```xml
+<project>
+  <build>
+    <sources>
+      <source>
+        <scope>main</scope>
+        <directory>my-custom-dir/foo</directory>
+      </source>
+      <source>
+        <scope>test</scope>
+        <directory>my-custom-dir/bar</directory>
+      </source>
+    </sources>
+  </build>
+</project>
+```
+
+[versionpluginupdate]: https://www.mojohaus.org/versions/versions-maven-plugin/examples/display-plugin-updates.html
+[modelbuilderinterpolation]: https://maven.apache.org/ref/4-LATEST/maven-compat-modules/maven-model-builder/#model-interpolation
+[cifriendlyguide]: https://maven.apache.org/docs/multi-module/ci-friendly-versions.html
+[flattenmavenplugin]: https://www.mojohaus.org/flatten-maven-plugin/
+[bompomguide]: https://maven.apache.org/docs/dependencies/how-dependencies-work.html#bill-of-materials-bom-poms
+

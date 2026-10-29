@@ -21,6 +21,9 @@ if [[ ! -d "$TREE" ]]; then
 fi
 rm -rf "$TREE/mvn-site"
 cp -a target/site/. "$TREE/mvn-site/"
+# GitHub Pages ignores .htaccess: a page at each moved address forwards to the new one.
+classpath=$(mvn -q -B dependency:build-classpath -Dmdep.outputFile=/dev/stdout "$@")
+java -cp "$classpath" src/main/java/org/apache/maven/site/check/Addresses.java pages "$TREE/mvn-site" src/published-addresses.txt
 # The build links the component sites (ref, surefire, ...) to ../components/, as on the ASF
 # server; GitHub Pages refuses to publish links that lead nowhere.
 find "$TREE/mvn-site" -type l -delete
