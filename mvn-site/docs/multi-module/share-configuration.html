@@ -71,6 +71,7 @@
       <div class="prose">
         <h1>Share configuration between modules</h1>
         <p class="lead">Set dependency versions, plugin versions and plugin configuration once in the parent POM, and import a BOM, so that every module uses the same.</p>
+
 <section class="facts facts--inline" aria-label="About this page">
   <dl>
     <dt>Holds for</dt>
@@ -83,7 +84,7 @@
     <dd><a href="https://github.com/apache/maven-site/issues/new?title=Page%3A+Share+configuration+between+modules&amp;body=About+https%3A%2F%2Fmaven.apache.org%2Fdocs%2Fmulti-module%2Fshare-configuration.html">Report a problem</a></dd>
   </dl>
 </section>
-
+ 
 <p>Put shared versions and plugin configuration in the parent POM when several modules use the same libraries and plugins and should not drift apart. Every module that names the parent inherits what is described here; <a href="split-into-modules.html">Split a project into modules</a> sets that up, and <a href="aggregation-and-inheritance.html">Aggregation and inheritance</a> explains what a module inherits.</p>
 <p>The examples use a parent <code>shop</code> with the modules <code>api</code>, <code>core</code> and <code>app</code>.</p><section><section><a id="Set_a_value_once_with_a_property"></a>
 <h2>Set a value once with a property</h2>
@@ -252,6 +253,7 @@
       </nav>
     </main>
     <aside class="rail">
+
 <section class="facts" aria-label="About this page">
   <dl>
     <dt>Holds for</dt>

@@ -70,6 +70,7 @@
       <div class="prose">
         <h1>Configuration files: settings.xml, maven.config, jvm.config</h1>
         <p class="lead">Why Maven splits its configuration between the project and the machine, which files and variables each side uses, and how they combine.</p>
+
 <section class="facts facts--inline" aria-label="About this page">
   <dl>
     <dt>Holds for</dt>
@@ -82,7 +83,7 @@
     <dd><a href="https://github.com/apache/maven-site/issues/new?title=Page%3A+Configuration+files%3A+settings.xml%2C+maven.config%2C+jvm.config&amp;body=About+https%3A%2F%2Fmaven.apache.org%2Fdocs%2Fconfigure%2Fconfiguration-files.html">Report a problem</a></dd>
   </dl>
 </section>
-
+ 
 <p>Maven reads its configuration from two sides. The project side lives in the project's directory and in version control: the POM and the files in the <em>.mvn</em> directory. It is the same for everyone who builds the project. The machine side lives in your home directory, the Maven installation and the environment: <em>settings.xml</em> and a few environment variables. It describes this machine and this person: where artifacts come from, how the network is reached, and which credentials to use.</p><section><section><a id="The_project_describes_the_build.2C_the_machine_describes_the_environment"></a>
 <h2>The project describes the build, the machine describes the environment</h2>
 <p>A POM says what the project is and how it is built: its coordinates, dependencies, plugins and the repositories it deploys to. Everyone who checks out the project gets the same POM, and the POM is deployed with the artifact, so other builds read it too. That rules out anything that differs per machine or that must stay private. A password in a POM is published with every release.</p>
@@ -162,6 +163,7 @@
       </nav>
     </main>
     <aside class="rail">
+
 <section class="facts" aria-label="About this page">
   <dl>
     <dt>Holds for</dt>

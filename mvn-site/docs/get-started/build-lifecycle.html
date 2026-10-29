@@ -76,6 +76,7 @@
       <div class="prose">
         <h1>Phases, goals and plugins</h1>
         <p class="lead">How Maven turns a command such as mvn package into a series of plugin goals, and why every Maven project builds with the same few commands.</p>
+
 <section class="facts facts--inline" aria-label="About this page">
   <dl>
     <dt>Holds for</dt>
@@ -88,7 +89,7 @@
     <dd><a href="https://github.com/apache/maven-site/issues/new?title=Page%3A+Phases%2C+goals+and+plugins&amp;body=About+https%3A%2F%2Fmaven.apache.org%2Fdocs%2Fget-started%2Fbuild-lifecycle.html">Report a problem</a></dd>
   </dl>
 </section>
-
+ 
 <p>Every Maven project builds with the same commands. <code>mvn package</code> makes a JAR of a library and a WAR of a web application; <code>mvn verify</code> builds and checks either one. The person who runs the build says how far the build should go. The project decides what happens on the way there. Three ideas make that split work: the lifecycle, its phases, and the plugin goals bound to those phases.</p><section><section><a id="A_lifecycle_is_a_fixed_list_of_phases"></a>
 <h2>A lifecycle is a fixed list of phases</h2>
 <p>Maven has three lifecycles. The default lifecycle builds, tests and ships the project. The clean lifecycle removes what an earlier build produced. The site lifecycle generates the project's website.</p>
@@ -227,6 +228,7 @@
       </nav>
     </main>
     <aside class="rail">
+
 <section class="facts" aria-label="About this page">
   <dl>
     <dt>Holds for</dt>

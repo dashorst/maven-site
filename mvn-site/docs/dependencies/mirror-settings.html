@@ -76,6 +76,7 @@
       <div class="prose">
         <h1>Use a mirror or repository manager (Nexus, Artifactory)</h1>
         <p class="lead">Send every download through your organisation's repository manager instead of Maven Central and the repositories projects declare.</p>
+
 <section class="facts facts--inline" aria-label="About this page">
   <dl>
     <dt>Holds for</dt>
@@ -88,7 +89,7 @@
     <dd><a href="https://github.com/apache/maven-site/issues/new?title=Page%3A+Use+a+mirror+or+repository+manager+%28Nexus%2C+Artifactory%29&amp;body=About+https%3A%2F%2Fmaven.apache.org%2Fdocs%2Fdependencies%2Fmirror-settings.html">Report a problem</a></dd>
   </dl>
 </section>
-
+ 
 <p>You need this when your organisation runs a <a href="repository-manager.html">repository manager</a>, such as Nexus, Artifactory or Reposilite, and builds should download through it instead of reaching Maven Central and other repositories directly. The repository manager caches what it downloads, so a build gets it from the local network, and keeps working when an outside repository is slow or gone.</p><section><section><a id="Add_the_mirror_to_your_settings"></a>
 <h2>Add the mirror to your settings</h2>
 <p>Ask the administrators of the repository manager for the URL of the repository that combines the outside repositories, often called a group or virtual repository. Add it as a mirror to your user settings:</p>
@@ -166,6 +167,7 @@
       </nav>
     </main>
     <aside class="rail">
+
 <section class="facts" aria-label="About this page">
   <dl>
     <dt>Holds for</dt>

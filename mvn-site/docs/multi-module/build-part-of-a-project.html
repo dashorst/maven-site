@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -71,6 +72,7 @@
       <div class="prose">
         <h1>Build part of a multi-module project</h1>
         <p class="lead">Build one module, a module with the modules it needs or with the modules that use it, leave modules out, or resume a failed build.</p>
+
 <section class="facts facts--inline" aria-label="About this page">
   <dl>
     <dt>Holds for</dt>
@@ -83,7 +85,7 @@
     <dd><a href="https://github.com/apache/maven-site/issues/new?title=Page%3A+Build+part+of+a+multi-module+project&amp;body=About+https%3A%2F%2Fmaven.apache.org%2Fdocs%2Fmulti-module%2Fbuild-part-of-a-project.html">Report a problem</a></dd>
   </dl>
 </section>
-
+ 
 <p>Build part of a project when you changed one module and do not want to wait for all of them, or when a build failed halfway. You run these commands in the root directory and select modules with options; <a href="reactor-options.html">Reactor options</a> lists every option and the ways to name a module. The examples use a project <code>shop</code> with the modules <code>api</code>, <code>core</code> and <code>app</code>, where <code>app</code> depends on <code>core</code> and <code>core</code> on <code>api</code>.</p><section><section><a id="Build_one_module"></a>
 <h2>Build one module</h2>
 <p>Select the module with <code>-pl</code>, followed by its directory:</p>
@@ -182,6 +184,7 @@ mvn verify
       </nav>
     </main>
     <aside class="rail">
+
 <section class="facts" aria-label="About this page">
   <dl>
     <dt>Holds for</dt>

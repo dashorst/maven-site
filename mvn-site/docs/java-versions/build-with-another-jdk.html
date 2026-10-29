@@ -66,6 +66,7 @@
       <div class="prose">
         <h1>Build with another JDK</h1>
         <p class="lead">Compile, test and package a project with a JDK of your choice while Maven itself keeps running on the JDK in JAVA_HOME.</p>
+
 <section class="facts facts--inline" aria-label="About this page">
   <dl>
     <dt>Holds for</dt>
@@ -78,7 +79,7 @@
     <dd><a href="https://github.com/apache/maven-site/issues/new?title=Page%3A+Build+with+another+JDK&amp;body=About+https%3A%2F%2Fmaven.apache.org%2Fdocs%2Fjava-versions%2Fbuild-with-another-jdk.html">Report a problem</a></dd>
   </dl>
 </section>
-
+ 
 <p>Use a toolchain when the project must be built with a particular JDK and you do not want to change <code>JAVA_HOME</code>, or cannot, because Maven 4 needs Java 17 or later to run. The steps below build a project with JDK 17 while Maven runs on JDK 21. <a href="toolchains.html">Toolchains and the JDK Maven runs on</a> explains how the two JDKs relate.</p><section><section><a id="Describe_your_JDKs_in_toolchains.xml"></a>
 <h2>Describe your JDKs in toolchains.xml</h2>
 <p>List the JDKs installed on your machine in <em>toolchains.xml</em> in the <code>.m2</code> directory of your home directory. Each <code>&lt;toolchain&gt;</code> names a JDK's home directory and the version you will ask for:</p>
@@ -255,6 +256,7 @@ jdk [ version='25' ]
       </nav>
     </main>
     <aside class="rail">
+
 <section class="facts" aria-label="About this page">
   <dl>
     <dt>Holds for</dt>

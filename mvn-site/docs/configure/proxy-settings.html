@@ -70,6 +70,7 @@
       <div class="prose">
         <h1>Configure a proxy</h1>
         <p class="lead">Make Maven download through the HTTP proxy your network requires, with a login if the proxy asks for one and exceptions for internal hosts.</p>
+
 <section class="facts facts--inline" aria-label="About this page">
   <dl>
     <dt>Holds for</dt>
@@ -82,7 +83,7 @@
     <dd><a href="https://github.com/apache/maven-site/issues/new?title=Page%3A+Configure+a+proxy&amp;body=About+https%3A%2F%2Fmaven.apache.org%2Fdocs%2Fconfigure%2Fproxy-settings.html">Report a problem</a></dd>
   </dl>
 </section>
-
+ 
 <p>You need this when your network only reaches the internet through an HTTP proxy, so that Maven fails to download from Maven Central with timeouts or <code>Connection refused</code>. If all downloads go through a <a href="../dependencies/mirror-settings.html">repository manager mirror</a> inside your network, you may not need a proxy at all.</p><section><section><a id="Add_the_proxy_to_your_settings"></a>
 <h2>Add the proxy to your settings</h2>
 <p><em>~/.m2/settings.xml</em></p>
@@ -147,6 +148,7 @@
       </nav>
     </main>
     <aside class="rail">
+
 <section class="facts" aria-label="About this page">
   <dl>
     <dt>Holds for</dt>

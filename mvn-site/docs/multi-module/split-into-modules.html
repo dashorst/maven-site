@@ -71,6 +71,7 @@
       <div class="prose">
         <h1>Split a project into modules</h1>
         <p class="lead">Turn one Maven project into a parent POM with modules that depend on each other and build together from the root directory.</p>
+
 <section class="facts facts--inline" aria-label="About this page">
   <dl>
     <dt>Holds for</dt>
@@ -83,7 +84,7 @@
     <dd><a href="https://github.com/apache/maven-site/issues/new?title=Page%3A+Split+a+project+into+modules&amp;body=About+https%3A%2F%2Fmaven.apache.org%2Fdocs%2Fmulti-module%2Fsplit-into-modules.html">Report a problem</a></dd>
   </dl>
 </section>
-
+ 
 <p>Split a project into modules when parts of it should be built, tested or released as separate jars but still be built together. The steps below turn a project <code>shop</code> into three modules: <code>api</code> with interfaces, <code>core</code> that implements them, and <code>app</code> that uses <code>core</code>. The root POM becomes both the parent the modules inherit from and the aggregator that lists them; <a href="aggregation-and-inheritance.html">Aggregation and inheritance</a> explains the two roles.</p>
 <p>The result has this layout:</p>
 
@@ -257,6 +258,7 @@ git mv src core/src
       </nav>
     </main>
     <aside class="rail">
+
 <section class="facts" aria-label="About this page">
   <dl>
     <dt>Holds for</dt>

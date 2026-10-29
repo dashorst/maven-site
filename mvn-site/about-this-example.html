@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -49,8 +50,7 @@
   <div class="frame no-rail">
     <main id="content">
       <div class="prose">
-
-
+ 
 
 <section><a id="About_this_example"></a>
 <h1 id="About_this_example">About this example</h1>
@@ -71,11 +71,11 @@
 
 <li><strong>A guide that follows one standard.</strong> 24 pages, each with one job: a tutorial, a how-to guide, a reference or an explanation. Every command on them was run on Maven 3.9.16, 3.10.0 and 4.0.0-rc-7. They replace the Maven pages they were written from.</li>
 
-<li><strong>A frame of its own.</strong> Maven navy and the feather&#x2019;s orange, the Maven wordmark, and on every page the versions it holds for, when it changed, and where to edit it or report a problem.</li>
+<li><strong>A frame of its own.</strong> Maven navy and the feather&#x2019;s orange, the Maven wordmark, and on every page the versions it holds for, and where to edit it or report a problem.</li>
 
 <li><strong>No JavaScript needed.</strong> Every page, menu and list works without it. JavaScript only makes the search answer as you type, and adds the &#x201c;On this page&#x201d; list and links on headings; without it, search opens a page listing every page.</li>
 
-<li><strong>Old addresses stay.</strong> Maven&#x2019;s own pages keep the address they have on maven.apache.org; only the guide pages and the overview pages are new.</li>
+<li><strong>Old addresses still work.</strong> The pages moved to the new structure, and every address maven.apache.org has published, 781 files and the anchors on them, still leads to its content: through a redirect, or for a page that was split up, through a page that says where each of its sections went. The build checks it.</li>
 </ul>
 
 </section><section><a id="What_I_left_as_it_is"></a>
@@ -180,14 +180,71 @@
 
 <p>I built this with an AI assistant, Anthropic&#x2019;s Claude, using the <a href="https://impeccable.style/" class="externalLink"><em>impeccable</em></a> design skill for the structure and the front page. The guide pages were written from Maven&#x2019;s own pages, and every command on them was run on the three Maven versions before it went in. Before building, the current site was reviewed against usability heuristics, the new navigation was tree-tested with 18 tasks, and the home page was put to a panel of reader personas; the testers and the personas were simulated by the AI, not real users.</p>
 
-<p>This version of the example is built with Maven&#x2019;s own tooling: <code>mvn site</code>, maven-site-plugin and Doxia, from the same sources as maven.apache.org. The frame is a skin of its own (<a href="https://github.com/dashorst/maven-site/tree/doxia-demo/doxia/skin" class="externalLink"><code>doxia/skin</code></a>), the structure is the site descriptor <code>content/site.xml</code>, one menu three levels deep, and the landing pages, the news and the A&#x2013;Z index are Markdown pages written from the same data by a small script. After the pages are rendered, two small classes run from the POM colour the code (<code>Highlight</code>) and write the search index (<code>SearchIndex</code>). Not in this version: the date a page last changed; moving pages to new addresses would add <code>.htaccess</code> redirects. The <a href="https://dashorst.github.io/maven-site/" class="externalLink">version built with Jekyll</a> has those.</p>
+<p>This version of the example is built with Maven&#x2019;s own tooling: <code>mvn site</code>, maven-site-plugin and Doxia, from the same sources as maven.apache.org. The frame is a skin of its own (<a href="https://github.com/dashorst/maven-site/tree/doxia-demo/doxia/skin" class="externalLink"><code>doxia/skin</code></a>), the structure is the site descriptor <code>content/site.xml</code>, one menu three levels deep, and every page is a source in <code>content/</code>. After the pages are rendered, four small classes run from the POM: <code>Highlight</code> colours the code, <code>SearchIndex</code> writes the search index, <code>Addresses</code> checks that every published address still works, and <code>ThirdParty</code> checks that no page loads anything from another host. Not in this version: the date a page last changed, which the <a href="https://dashorst.github.io/maven-site/" class="externalLink">version built with Jekyll</a> shows.</p>
+
+</section><section><a id="Measured_against_the_requirements"></a>
+<h2 id="The_requirements">Measured against the requirements</h2>
+
+<p>The Maven project collected what a new site has to do. This is how the example does it:</p>
+
+<div class="table-scroll">
+
+<table class="bodyTable">
+<thead>
+<tr class="a">
+<th>Requirement</th>
+<th>In this example</th></tr></thead>
+<tbody>
+
+<tr class="b">
+<td>Content works without JavaScript</td>
+<td>Every page, menu and list. JavaScript only makes search answer as you type, adds &#x201c;On this page&#x201d; and links on headings, lists a plugin&#x2019;s other versions, and forwards a moved page straight to the right section.</td></tr>
+
+<tr class="a">
+<td>Built with Maven, Doxia and the site plugin</td>
+<td><code>mvn site</code>, with a skin and <code>site.xml</code>. The checks are Java classes run from the POM; nothing else is needed.</td></tr>
+
+<tr class="b">
+<td>No published URL or anchor breaks, checked in CI</td>
+<td><code>src/published-addresses.txt</code> lists the 781 addresses and 2,126 anchors of the current site; every <code>mvn site</code>, so every CI run, follows them through the <code>.htaccess</code> redirects and fails when one breaks.</td></tr>
+
+<tr class="a">
+<td>Plugin and component sites get the new look</td>
+<td>The same skin builds <a href="plugins/maven-compiler-plugin/index.html">maven-compiler-plugin 3.16.0</a>, with its goal pages and reports as they are. The plugin&#x2019;s <code>site.xml</code> only names the skin; for all components at once, that is the <code>site.xml</code> of maven-parent.</td></tr>
+
+<tr class="b">
+<td>An &#x201c;edit this page&#x201d; link on every page</td>
+<td>In the page facts, or in the footer of overview pages. A plugin&#x2019;s pages are edited in the plugin&#x2019;s repository; a goal page links to the code it is generated from.</td></tr>
+
+<tr class="a">
+<td>Mobile layout and dark mode</td>
+<td>Every layout down to a phone&#x2019;s width. Dark mode follows the system setting, without JavaScript.</td></tr>
+
+<tr class="b">
+<td>No third-party requests</td>
+<td>None; every build checks it.</td></tr>
+
+<tr class="a">
+<td>Search, and moving between versions of a plugin&#x2019;s documentation</td>
+<td>A search page that works without JavaScript and answers as you type with it. A plugin site links to its other versions in the archive; with JavaScript, as a list.</td></tr>
+
+<tr class="b">
+<td>Sources stay close to the code</td>
+<td>The general documentation is in maven-site; a plugin&#x2019;s documentation stays in its own repository, and the skin is an artifact that both use.</td></tr>
+</tbody>
+</table>
+</div>
 
 </section><section><a id="What_is_still_missing"></a>
 <h2 id="What_is_still_missing">What is still missing</h2>
 
 <ul>
 
-<li>The plugin sites and the reference documentation are not part of this build, so links to them still lead to the current design.</li>
+<li>Of the component sites, only maven-compiler-plugin is built with the skin here; links to the others lead to pages this example does not have.</li>
+
+<li>A goal page does not name the class it documents, so its edit link goes to the plugin&#x2019;s code rather than to the file; maven-plugin-report-plugin could print it.</li>
+
+<li>The A&#x2013;Z index and the list of every page on the search page are written by hand; the build should generate them.</li>
 
 <li>The pages I left as they are have not been checked against the three Maven versions.</li>
 
@@ -205,6 +262,7 @@
   </div>
   <footer class="site-footer">
     <div class="footer-inner">
+      <p class="page-edit"><a href="https://github.com/dashorst/maven-site/edit/doxia-demo/content/xhtml/about-this-example.xhtml">Edit this page</a></p>
       <nav aria-label="Apache Software Foundation">
         <ul>
           <li><a href="https://www.apache.org/">The Apache Software Foundation</a></li>

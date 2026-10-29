@@ -66,6 +66,7 @@
       <div class="prose">
         <h1>Compile for an older Java version</h1>
         <p class="lead">Build classes that run on an older Java than the JDK you build with, check them against that Java's API, and run the tests on it.</p>
+
 <section class="facts facts--inline" aria-label="About this page">
   <dl>
     <dt>Holds for</dt>
@@ -78,7 +79,7 @@
     <dd><a href="https://github.com/apache/maven-site/issues/new?title=Page%3A+Compile+for+an+older+Java+version&amp;body=About+https%3A%2F%2Fmaven.apache.org%2Fdocs%2Fjava-versions%2Fcompile-for-older-java.html">Report a problem</a></dd>
   </dl>
 </section>
-
+ 
 <p>Use this when your code has to run on an older Java than the JDK you build with, for example a library that still supports Java 8 while you build on JDK 21. The compiler of a newer JDK can do this by itself; you only need a second JDK to run the tests on the older Java.</p><section><section><a id="Set_the_release"></a>
 <h2>Set the release</h2>
 <p>Set the <code>maven.compiler.release</code> property to the oldest Java version the code must run on:</p>
@@ -210,6 +211,7 @@
       </nav>
     </main>
     <aside class="rail">
+
 <section class="facts" aria-label="About this page">
   <dl>
     <dt>Holds for</dt>

@@ -76,6 +76,7 @@
       <div class="prose">
         <h1>5. Split your application into modules</h1>
         <p class="lead">Turn my-app into a parent POM with a library module and an application module, build them together, and build one with what it needs.</p>
+
 <section class="facts facts--inline" aria-label="About this page">
   <dl>
     <dt>Holds for</dt>
@@ -88,7 +89,7 @@
     <dd><a href="https://github.com/apache/maven-site/issues/new?title=Page%3A+5.+Split+your+application+into+modules&amp;body=About+https%3A%2F%2Fmaven.apache.org%2Fdocs%2Fget-started%2Ffirst-modules.html">Report a problem</a></dd>
   </dl>
 </section>
-
+ 
 <p>In this tutorial you split <code>my-app</code> into two modules: <code>greeting</code>, a library with the <code>Greeter</code> class and its test, and <code>app</code>, the application that uses it and is packed into one JAR. The top directory gets a parent POM that holds what the modules share and builds them together.</p>
 <p>Start in the <code>my-app</code> directory as you left it at the end of <a href="test-and-build.html">Test and build your project</a>. At the end of this tutorial it looks like this:</p>
 
@@ -352,6 +353,7 @@ mvn -pl app verify
       </nav>
     </main>
     <aside class="rail">
+
 <section class="facts" aria-label="About this page">
   <dl>
     <dt>Holds for</dt>

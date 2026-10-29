@@ -1,9 +1,28 @@
+/*
+ * Licensed to the Apache Software Foundation (ASF) under one
+ * or more contributor license agreements.  See the NOTICE file
+ * distributed with this work for additional information
+ * regarding copyright ownership.  The ASF licenses this file
+ * to you under the Apache License, Version 2.0 (the
+ * "License"); you may not use this file except in compliance
+ * with the License.  You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+ */
 /* maven.apache.org: the frame and the text. One stylesheet, no framework, no JavaScript needed.
    Maven navy carries links and chrome; the feather orange is the one accent. */
 
 :root {
   --navy: #003063;
   --navy-deep: #00224a;
+  --navy-fill: #003063;
   --navy-soft: #e8eef6;
   --orange: #f79a23;
   --orange-soft: #fff3e3;
@@ -19,6 +38,7 @@
   --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
   --mono: ui-monospace, "SF Mono", "Cascadia Mono", "JetBrains Mono", Menlo, Consolas, "Liberation Mono", monospace;
   --measure: 46rem;
+  color-scheme: light dark;
 }
 
 *, *::before, *::after { box-sizing: border-box; }
@@ -32,7 +52,7 @@ a:hover { text-decoration-thickness: 2px; }
 :focus-visible { outline: 2px solid var(--navy); outline-offset: 2px; border-radius: 2px; }
 
 .visually-hidden { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
-.skip-link { position: absolute; left: 1rem; top: -3rem; z-index: 10; background: var(--navy); color: #fff; padding: .5rem .9rem; border-radius: var(--radius); }
+.skip-link { position: absolute; left: 1rem; top: -3rem; z-index: 10; background: var(--navy-fill); color: #fff; padding: .5rem .9rem; border-radius: var(--radius); }
 .skip-link:focus { top: .75rem; }
 
 /* ---------- Header ---------- */
@@ -42,7 +62,7 @@ a:hover { text-decoration-thickness: 2px; }
   max-width: 84rem; margin: 0 auto; padding: 0 clamp(1rem, 3vw, 2rem);
 }
 .brand { display: block; padding: .9rem 0 .75rem; line-height: 0; }
-.wordmark { display: block; width: 140px; height: auto; overflow: visible; }
+.wordmark { display: block; width: 140px; height: auto; overflow: visible; fill: var(--ink-strong); }
 .brand:focus-visible { outline-offset: 4px; }
 .asf { display: inline-flex; align-items: center; gap: .45rem; color: var(--ink); text-decoration: none; font-size: .95rem; }
 .asf:hover { color: var(--navy); }
@@ -95,6 +115,14 @@ main.wide { display: block; }
   content: ""; position: absolute; left: .3rem; top: .78em; width: .32rem; height: .32rem; border-radius: 50%; background: var(--orange);
 }
 
+/* A component site's side panel: its version, its other versions, and its own menus. */
+.component-nav .component-version { margin: -.25rem 0 1rem; color: var(--muted); font-size: .85rem; }
+.component-nav h3 { font-size: .85rem; font-weight: 600; color: var(--muted); margin: 1.2rem 0 .3rem; }
+.component-nav .page-list ul { list-style: none; margin: 0 0 .25rem; padding: 0 0 0 .8rem; }
+.page-list a[aria-current="true"] { color: var(--navy); font-weight: 600; }
+.version-list { list-style: none; margin: .4rem 0 0; padding: 0; columns: 2; font-size: .85rem; }
+.version-list a { display: block; padding: .1rem 0; }
+
 .steps { display: flex; flex-direction: column; gap: .35rem; margin: 0 0 .5rem; }
 .step { display: block; text-decoration: none; color: var(--ink); padding: .35rem .5rem; border: 1px solid var(--line); border-radius: var(--radius); }
 .step:hover { border-color: var(--navy); color: var(--navy); }
@@ -129,6 +157,11 @@ main.wide { display: block; }
 .more-list a[aria-current="page"] { color: var(--ink); font-weight: 600; text-decoration: none; }
 .more .steps { flex-direction: row; justify-content: space-between; }
 .more .step { flex: 0 1 48%; }
+.component-more { display: none; }
+/* The edit link of a page without page facts: overview pages, the home page. */
+.page-edit { margin: 0 0 1rem; font-size: .9rem; }
+.component-more .component-version { margin: -.4rem 0 1rem; color: var(--muted); font-size: .9rem; }
+.component-more h3 { font-size: .9rem; color: var(--muted); margin: 0 0 .4rem; }
 
 /* ---------- The text ---------- */
 .prose { font-size: 1.0625rem; }
@@ -162,6 +195,8 @@ th, td { text-align: left; vertical-align: top; padding: .5rem .75rem; border-bo
 th { background: var(--paper-2); color: var(--ink-strong); font-weight: 600; }
 tr:last-child td { border-bottom: 0; }
 td code { white-space: nowrap; }
+/* A table that comes without a wrapper, as in generated pages, scrolls on its own on a narrow screen. */
+@media (max-width: 760px) { .prose table:not(.table-scroll table) { display: block; overflow-x: auto; } }
 
 blockquote { margin-left: 0; padding: .75rem 1rem; background: var(--paper-2); border-radius: var(--radius); color: var(--ink); }
 blockquote > :last-child { margin-bottom: 0; }
@@ -220,7 +255,7 @@ blockquote > :last-child { margin-bottom: 0; }
 .news-kind--security { color: #a4141a; }
 
 /* ---------- Home ---------- */
-.home .hero { background: var(--navy); color: #fff; }
+.home .hero { background: var(--navy-fill); color: #fff; }
 .hero-inner { max-width: 84rem; margin: 0 auto; padding: clamp(2.5rem, 6vw, 5rem) clamp(1rem, 3vw, 2rem); display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr); gap: 3rem; align-items: center; }
 .hero h1 { font-size: clamp(2.2rem, 1.3rem + 3vw, 3.6rem); line-height: 1.08; letter-spacing: -0.025em; margin: 0 0 1.25rem; text-wrap: balance; color: #fff; }
 .hero-lead { font-size: 1.2rem; line-height: 1.6; color: #d7e1ee; margin: 0 0 2rem; max-width: 34rem; }
@@ -296,6 +331,7 @@ blockquote > :last-child { margin-bottom: 0; }
   .frame { padding-top: 1.25rem; }
   .frame.no-rail.has-group { grid-template-columns: minmax(0, 1fr); grid-template-areas: "main"; }
   .group-nav { display: none; }
+  .component-more { display: block; }
   .hero-inner { grid-template-columns: 1fr; }
   .release-lines, .doors, .latest-list { grid-template-columns: 1fr; }
   .release-line + .release-line { border-top: 1px solid var(--line); }
@@ -473,3 +509,40 @@ body > .frame, body > main { flex: 1 0 auto; width: 100%; }
    take a cell of a grid, and writes list-style-type into every <ol>. */
 main a[id]:empty { position: absolute; }
 .track-steps[style] { list-style: none !important; }
+
+/* ---------- Dark: follows the reader's system setting, without JavaScript ----------
+   The same roles on a navy-black paper: links in a light Maven blue, the feather orange as the
+   accent; the home page's navy band and the code panes stay as they are. */
+@media screen and (prefers-color-scheme: dark) {
+  :root {
+    --navy: #8db8ee;
+    --navy-soft: #16263d;
+    --navy-fill: #003063;
+    --orange-soft: #2b2012;
+    --ink: #d6dce6;
+    --ink-strong: #f1f4f8;
+    --muted: #9aa5b5;
+    --line: #253144;
+    --line-strong: #344259;
+    --paper: #0d1522;
+    --paper-2: #131d2c;
+    --code-bg: #111b29;
+  }
+  ::selection { background: #5a3a00; color: var(--ink-strong); }
+  .search input::placeholder { color: #8a94a3; }
+  .prose .lead, .lead { color: #b7c0cd; }
+  :not(pre) > code { border-color: var(--line); }
+  .news-kind--security { color: #ff9b9b; }
+  .track-steps a::before { color: var(--orange); }
+  .home .hero { border-bottom: 1px solid var(--line); }
+  .specimen { border-bottom-color: #4a3618; }
+  .specimen p, .specimen strong, .specimen a { color: #f3cf98; }
+  .feature-code .c, .highlight .c, .highlight .c1, .highlight .cm, .highlight .cp, .highlight .cs { color: #8a94a3; }
+  .feature-code .prompt { color: #f0a46a; }
+  .highlight .na, .highlight .py, .highlight .nd { color: #d7a6e3; }
+  .highlight .s, .highlight .s1, .highlight .s2, .highlight .sb, .highlight .sc, .highlight .sx, .highlight .si { color: #9fd9ad; }
+  .highlight .k, .highlight .kd, .highlight .kn, .highlight .kr, .highlight .kt, .highlight .kc, .highlight .ow { color: #d7a6e3; }
+  .highlight .m, .highlight .mi, .highlight .mf, .highlight .il { color: #f0a46a; }
+  .highlight .nf, .highlight .nb, .highlight .nv { color: #8db8ee; }
+  .prose img:not([src$=".svg"]) { background: #fff; border-radius: 4px; }
+}

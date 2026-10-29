@@ -71,6 +71,7 @@
       <div class="prose">
         <h1>Aggregation and inheritance</h1>
         <p class="lead">How a parent POM passes configuration down, how an aggregator builds modules together, and how the reactor decides the order.</p>
+
 <section class="facts facts--inline" aria-label="About this page">
   <dl>
     <dt>Holds for</dt>
@@ -83,7 +84,7 @@
     <dd><a href="https://github.com/apache/maven-site/issues/new?title=Page%3A+Aggregation+and+inheritance&amp;body=About+https%3A%2F%2Fmaven.apache.org%2Fdocs%2Fmulti-module%2Faggregation-and-inheritance.html">Report a problem</a></dd>
   </dl>
 </section>
-
+ 
 <p>A multi-module project rests on two separate relationships between POMs. Inheritance lets one POM take its configuration from another: the child names its parent. Aggregation lets one POM build other projects along with itself: the aggregator names its modules. In most projects one POM at the top does both, which is why the two are easy to mix up. They point in opposite directions, though, and each works without the other.</p><section><section><a id="Inheritance.3A_a_child_names_its_parent"></a>
 <h2>Inheritance: a child names its parent</h2>
 <p>A POM with a <code>&lt;parent&gt;</code> element starts from the parent's configuration and adds its own on top. The parent is a POM like any other, with <code>pom</code> packaging, because it produces no jar of its own.</p>
@@ -206,6 +207,7 @@
       </nav>
     </main>
     <aside class="rail">
+
 <section class="facts" aria-label="About this page">
   <dl>
     <dt>Holds for</dt>

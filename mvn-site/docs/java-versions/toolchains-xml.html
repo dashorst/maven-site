@@ -66,6 +66,7 @@
       <div class="prose">
         <h1>toolchains.xml reference</h1>
         <p class="lead">Where Maven reads toolchains.xml, the elements of a JDK toolchain, how a requirement matches an entry, and which plugins use the selected toolchain.</p>
+
 <section class="facts facts--inline" aria-label="About this page">
   <dl>
     <dt>Holds for</dt>
@@ -78,7 +79,7 @@
     <dd><a href="https://github.com/apache/maven-site/issues/new?title=Page%3A+toolchains.xml+reference&amp;body=About+https%3A%2F%2Fmaven.apache.org%2Fdocs%2Fjava-versions%2Ftoolchains-xml.html">Report a problem</a></dd>
   </dl>
 </section>
-
+ 
 <p><em>toolchains.xml</em> describes the tools installed on a machine, most often JDKs, so that a build can ask for one without naming its path. <a href="toolchains.html">Toolchains and the JDK Maven runs on</a> explains the idea; <a href="build-with-another-jdk.html">Build with a different JDK than Maven runs on</a> puts it to use.</p><section><section><a id="Where_Maven_reads_it"></a>
 <h2>Where Maven reads it</h2>
 <p>Maven reads two files and puts their toolchains in one list, those of the user file first.</p>
@@ -344,6 +345,7 @@ jdk [ version='25' ]
       </nav>
     </main>
     <aside class="rail">
+
 <section class="facts" aria-label="About this page">
   <dl>
     <dt>Holds for</dt>
