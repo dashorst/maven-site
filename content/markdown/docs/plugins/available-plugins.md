@@ -40,55 +40,55 @@ Plugins corresponding to default core phases (ie. clean, compile). They may have
 
 <div class="plugin-list">
 
-- **[`clean`](/plugins/maven-clean-plugin/)** · build plugin · 3.5.0, 2025-05-27 · [Source](https://github.com/apache/maven-clean-plugin/) · [Issues](https://github.com/apache/maven-clean-plugin/issues)
+- **[`clean`](/plugins/maven-clean-plugin/)** build plugin · 3.5.0, 2025-05-27 [Source](https://github.com/apache/maven-clean-plugin/) · [Issues](https://github.com/apache/maven-clean-plugin/issues)
 
   Clean up after the build.
 
-- **[`clean 4.x`](/plugins/maven-clean-plugin-4.x/)** · build plugin · 4.0.0-beta-3, 2026-10-12 · [Source](https://github.com/apache/maven-clean-plugin/) · [Issues](https://github.com/apache/maven-clean-plugin/issues)
+- **[`clean 4.x`](/plugins/maven-clean-plugin-4.x/)** build plugin · 4.0.0-beta-3, 2026-10-12 [Source](https://github.com/apache/maven-clean-plugin/) · [Issues](https://github.com/apache/maven-clean-plugin/issues)
 
   Clean up after the build.
 
-- **[`compiler`](/plugins/maven-compiler-plugin/)** · build plugin · 3.16.0, 2026-08-30 · [Source](https://github.com/apache/maven-compiler-plugin/) · [Issues](https://github.com/apache/maven-compiler-plugin/issues)
+- **[`compiler`](/plugins/maven-compiler-plugin/)** build plugin · 3.16.0, 2026-08-30 [Source](https://github.com/apache/maven-compiler-plugin/) · [Issues](https://github.com/apache/maven-compiler-plugin/issues)
 
   Compiles Java sources.
 
-- **[`compiler 4.x`](/plugins/maven-compiler-plugin-4.x/)** · build plugin · 4.0.0-beta-5, 2026-08-26 · [Source](https://github.com/apache/maven-compiler-plugin/) · [Issues](https://github.com/apache/maven-compiler-plugin/issues)
+- **[`compiler 4.x`](/plugins/maven-compiler-plugin-4.x/)** build plugin · 4.0.0-beta-5, 2026-08-26 [Source](https://github.com/apache/maven-compiler-plugin/) · [Issues](https://github.com/apache/maven-compiler-plugin/issues)
 
   Compiles Java sources, with [Maven 4 Java Modules support](https://cwiki.apache.org/confluence/spaces/MAVEN/pages/393677487/Full+Java+Modules+Support+-+Current+State).
 
-- **[`deploy`](/plugins/maven-deploy-plugin/)** · build plugin · 3.2.0, 2026-09-11 · [Source](https://github.com/apache/maven-deploy-plugin/) · [Issues](https://github.com/apache/maven-deploy-plugin/issues)
+- **[`deploy`](/plugins/maven-deploy-plugin/)** build plugin · 3.2.0, 2026-09-11 [Source](https://github.com/apache/maven-deploy-plugin/) · [Issues](https://github.com/apache/maven-deploy-plugin/issues)
 
   Deploy the built artifact to the remote repository.
 
-- **[`deploy 4.x`](/plugins/maven-deploy-plugin-4.x/)** · build plugin · 4.0.0-beta-3, 2026-09-11 · [Source](https://github.com/apache/maven-deploy-plugin/) · [Issues](https://github.com/apache/maven-deploy-plugin/issues)
+- **[`deploy 4.x`](/plugins/maven-deploy-plugin-4.x/)** build plugin · 4.0.0-beta-3, 2026-09-11 [Source](https://github.com/apache/maven-deploy-plugin/) · [Issues](https://github.com/apache/maven-deploy-plugin/issues)
 
   Deploy the built artifact to the remote repository.
 
-- **[`failsafe`](/surefire/maven-failsafe-plugin/)** · build plugin · 3.6.0, 2026-08-31 · [Source](https://github.com/apache/maven-surefire/) · [Issues](https://github.com/apache/maven-surefire/issues)
+- **[`failsafe`](/surefire/maven-failsafe-plugin/)** build plugin · 3.6.0, 2026-08-31 [Source](https://github.com/apache/maven-surefire/) · [Issues](https://github.com/apache/maven-surefire/issues)
 
   Run the JUnit integration tests in an isolated classloader.
 
-- **[`install`](/plugins/maven-install-plugin/)** · build plugin · 3.2.0, 2026-09-11 · [Source](https://github.com/apache/maven-install-plugin/) · [Issues](https://github.com/apache/maven-install-plugin/issues)
+- **[`install`](/plugins/maven-install-plugin/)** build plugin · 3.2.0, 2026-09-11 [Source](https://github.com/apache/maven-install-plugin/) · [Issues](https://github.com/apache/maven-install-plugin/issues)
 
   Install the built artifact into the local repository.
 
-- **[`install 4.x`](/plugins/maven-install-plugin-4.x/)** · build plugin · 4.0.0-beta-3, 2026-09-11 · [Source](https://github.com/apache/maven-install-plugin/) · [Issues](https://github.com/apache/maven-install-plugin/issues)
+- **[`install 4.x`](/plugins/maven-install-plugin-4.x/)** build plugin · 4.0.0-beta-3, 2026-09-11 [Source](https://github.com/apache/maven-install-plugin/) · [Issues](https://github.com/apache/maven-install-plugin/issues)
 
   Install the built artifact into the local repository.
 
-- **[`resources`](/plugins/maven-resources-plugin/)** · build plugin · 3.5.0, 2026-03-02 · [Source](https://github.com/apache/maven-resources-plugin/) · [Issues](https://github.com/apache/maven-resources-plugin/issues)
+- **[`resources`](/plugins/maven-resources-plugin/)** build plugin · 3.5.0, 2026-03-02 [Source](https://github.com/apache/maven-resources-plugin/) · [Issues](https://github.com/apache/maven-resources-plugin/issues)
 
   Copy the resources to the output directory for including in the JAR.
 
-- **[`resources 4.x`](/plugins/maven-resources-plugin-4.x/)** · build plugin · 4.0.0-beta-2, 2026-10-12 · [Source](https://github.com/apache/maven-resources-plugin/) · [Issues](https://github.com/apache/maven-resources-plugin/issues)
+- **[`resources 4.x`](/plugins/maven-resources-plugin-4.x/)** build plugin · 4.0.0-beta-2, 2026-10-12 [Source](https://github.com/apache/maven-resources-plugin/) · [Issues](https://github.com/apache/maven-resources-plugin/issues)
 
   Copy the resources to the output directory for including in the JAR.
 
-- **[`site`](/plugins/maven-site-plugin/)** · build plugin · 3.22.0, 2026-05-20 · [Source](https://github.com/apache/maven-site-plugin/) · [Issues](https://github.com/apache/maven-site-plugin/issues)
+- **[`site`](/plugins/maven-site-plugin/)** build plugin · 3.22.0, 2026-05-20 [Source](https://github.com/apache/maven-site-plugin/) · [Issues](https://github.com/apache/maven-site-plugin/issues)
 
   Generate a site for the current project.
 
-- **[`surefire`](/surefire/maven-surefire-plugin/)** · build plugin · 3.6.0, 2026-08-31 · [Source](https://github.com/apache/maven-surefire/) · [Issues](https://github.com/apache/maven-surefire/issues)
+- **[`surefire`](/surefire/maven-surefire-plugin/)** build plugin · 3.6.0, 2026-08-31 [Source](https://github.com/apache/maven-surefire/) · [Issues](https://github.com/apache/maven-surefire/issues)
 
   Run the JUnit unit tests in an isolated classloader.
 
@@ -100,43 +100,43 @@ These plugins relate to packaging respective artifact types.
 
 <div class="plugin-list">
 
-- **[`ear`](/plugins/maven-ear-plugin/)** · build plugin · 3.4.0, 2025-06-16 · [Source](https://github.com/apache/maven-ear-plugin/) · [Issues](https://github.com/apache/maven-ear-plugin/issues)
+- **[`ear`](/plugins/maven-ear-plugin/)** build plugin · 3.4.0, 2025-06-16 [Source](https://github.com/apache/maven-ear-plugin/) · [Issues](https://github.com/apache/maven-ear-plugin/issues)
 
   Generate an EAR from the current project.
 
-- **[`ejb`](/plugins/maven-ejb-plugin/)** · build plugin · 3.3.0, 2025-11-16 · [Source](https://github.com/apache/maven-ejb-plugin/) · [Issues](https://github.com/apache/maven-ejb-plugin/issues)
+- **[`ejb`](/plugins/maven-ejb-plugin/)** build plugin · 3.3.0, 2025-11-16 [Source](https://github.com/apache/maven-ejb-plugin/) · [Issues](https://github.com/apache/maven-ejb-plugin/issues)
 
   Build an EJB (and optional client) from the current project.
 
-- **[`jar`](/plugins/maven-jar-plugin/)** · build plugin · 3.5.1, 2026-07-19 · [Source](https://github.com/apache/maven-jar-plugin/) · [Issues](https://github.com/apache/maven-jar-plugin/issues)
+- **[`jar`](/plugins/maven-jar-plugin/)** build plugin · 3.5.1, 2026-07-19 [Source](https://github.com/apache/maven-jar-plugin/) · [Issues](https://github.com/apache/maven-jar-plugin/issues)
 
   Build a JAR from the current project.
 
-- **[`rar`](/plugins/maven-rar-plugin/)** · build plugin · 3.1.0, 2025-11-15 · [Source](https://github.com/apache/maven-rar-plugin/) · [Issues](https://github.com/apache/maven-rar-plugin/issues)
+- **[`rar`](/plugins/maven-rar-plugin/)** build plugin · 3.1.0, 2025-11-15 [Source](https://github.com/apache/maven-rar-plugin/) · [Issues](https://github.com/apache/maven-rar-plugin/issues)
 
   Build a RAR from the current project.
 
-- **[`war`](/plugins/maven-war-plugin/)** · build plugin · 3.5.1, 2025-11-24 · [Source](https://github.com/apache/maven-war-plugin/) · [Issues](https://github.com/apache/maven-war-plugin/issues)
+- **[`war`](/plugins/maven-war-plugin/)** build plugin · 3.5.1, 2025-11-24 [Source](https://github.com/apache/maven-war-plugin/) · [Issues](https://github.com/apache/maven-war-plugin/issues)
 
   Build a WAR from the current project.
 
-- **[`app-client/acr`](/plugins/maven-acr-plugin/)** · build plugin · 3.2.0, 2025-11-25 · [Source](https://github.com/apache/maven-acr-plugin/) · [Issues](https://github.com/apache/maven-acr-plugin/issues)
+- **[`app-client/acr`](/plugins/maven-acr-plugin/)** build plugin · 3.2.0, 2025-11-25 [Source](https://github.com/apache/maven-acr-plugin/) · [Issues](https://github.com/apache/maven-acr-plugin/issues)
 
   Build a JavaEE application client from the current project.
 
-- **[`shade`](/plugins/maven-shade-plugin/)** · build plugin · 3.6.2, 2026-03-02 · [Source](https://github.com/apache/maven-shade-plugin/) · [Issues](https://github.com/apache/maven-shade-plugin/issues)
+- **[`shade`](/plugins/maven-shade-plugin/)** build plugin · 3.6.2, 2026-03-02 [Source](https://github.com/apache/maven-shade-plugin/) · [Issues](https://github.com/apache/maven-shade-plugin/issues)
 
   Build an Uber-JAR from the current project, including dependencies.
 
-- **[`source`](/plugins/maven-source-plugin/)** · build plugin · 3.4.0, 2025-11-22 · [Source](https://github.com/apache/maven-source-plugin/) · [Issues](https://github.com/apache/maven-source-plugin/issues)
+- **[`source`](/plugins/maven-source-plugin/)** build plugin · 3.4.0, 2025-11-22 [Source](https://github.com/apache/maven-source-plugin/) · [Issues](https://github.com/apache/maven-source-plugin/issues)
 
   Build a source-JAR from the current project.
 
-- **[`jlink`](/plugins/maven-jlink-plugin/)** · build plugin · 3.3.0, 2026-03-09 · [Source](https://github.com/apache/maven-jlink-plugin/) · [Issues](https://github.com/apache/maven-jlink-plugin/issues)
+- **[`jlink`](/plugins/maven-jlink-plugin/)** build plugin · 3.3.0, 2026-03-09 [Source](https://github.com/apache/maven-jlink-plugin/) · [Issues](https://github.com/apache/maven-jlink-plugin/issues)
 
   Build Java Run Time Image.
 
-- **[`jmod`](/plugins/maven-jmod-plugin/)** · build plugin · 3.0.0, 2025-12-22 · [Source](https://github.com/apache/maven-jmod-plugin/) · [Issues](https://github.com/apache/maven-jmod-plugin/issues)
+- **[`jmod`](/plugins/maven-jmod-plugin/)** build plugin · 3.0.0, 2025-12-22 [Source](https://github.com/apache/maven-jmod-plugin/) · [Issues](https://github.com/apache/maven-jmod-plugin/issues)
 
   Build Java JMod files.
 
@@ -148,47 +148,47 @@ Plugins which generate reports, are configured as reports in the POM and run und
 
 <div class="plugin-list">
 
-- **[`changelog`](/plugins/maven-changelog-plugin/)** · reporting plugin · 3.0.0-M2, 2026-05-19 · [Source](https://github.com/apache/maven-changelog-plugin/) · [Issues](https://github.com/apache/maven-changelog-plugin/issues)
+- **[`changelog`](/plugins/maven-changelog-plugin/)** reporting plugin · 3.0.0-M2, 2026-05-19 [Source](https://github.com/apache/maven-changelog-plugin/) · [Issues](https://github.com/apache/maven-changelog-plugin/issues)
 
   Generate a list of recent changes from your SCM.
 
-- **[`changes`](/plugins/maven-changes-plugin/)** · build and reporting plugin · 3.0.0-M3, 2025-05-12 · [Source](https://github.com/apache/maven-changes-plugin/) · [Issues](https://github.com/apache/maven-changes-plugin/issues)
+- **[`changes`](/plugins/maven-changes-plugin/)** build and reporting plugin · 3.0.0-M3, 2025-05-12 [Source](https://github.com/apache/maven-changes-plugin/) · [Issues](https://github.com/apache/maven-changes-plugin/issues)
 
   Generate a report from an issue tracker or a change document.
 
-- **[`checkstyle`](/plugins/maven-checkstyle-plugin/)** · build and reporting plugin · 3.6.0, 2024-10-22 · [Source](https://github.com/apache/maven-checkstyle-plugin/) · [Issues](https://github.com/apache/maven-checkstyle-plugin/issues)
+- **[`checkstyle`](/plugins/maven-checkstyle-plugin/)** build and reporting plugin · 3.6.0, 2024-10-22 [Source](https://github.com/apache/maven-checkstyle-plugin/) · [Issues](https://github.com/apache/maven-checkstyle-plugin/issues)
 
   Generate a Checkstyle report.
 
-- **[`doap`](/plugins/maven-doap-plugin/)** · build plugin · 3.0.0-M2, 2026-09-26 · [Source](https://github.com/apache/maven-doap-plugin/) · [Issues](https://github.com/apache/maven-doap-plugin/issues)
+- **[`doap`](/plugins/maven-doap-plugin/)** build plugin · 3.0.0-M2, 2026-09-26 [Source](https://github.com/apache/maven-doap-plugin/) · [Issues](https://github.com/apache/maven-doap-plugin/issues)
 
   Generate a Description of a Project (DOAP) file from a POM.
 
-- **[`javadoc`](/plugins/maven-javadoc-plugin/)** · build and reporting plugin · 3.12.0, 2025-09-16 · [Source](https://github.com/apache/maven-javadoc-plugin/) · [Issues](https://github.com/apache/maven-javadoc-plugin/issues)
+- **[`javadoc`](/plugins/maven-javadoc-plugin/)** build and reporting plugin · 3.12.0, 2025-09-16 [Source](https://github.com/apache/maven-javadoc-plugin/) · [Issues](https://github.com/apache/maven-javadoc-plugin/issues)
 
   Generate Javadoc for the project.
 
-- **[`jdeps`](/plugins/maven-jdeps-plugin/)** · build plugin · 3.2.0, 2025-12-28 · [Source](https://github.com/apache/maven-jdeps-plugin/) · [Issues](https://github.com/apache/maven-jdeps-plugin/issues)
+- **[`jdeps`](/plugins/maven-jdeps-plugin/)** build plugin · 3.2.0, 2025-12-28 [Source](https://github.com/apache/maven-jdeps-plugin/) · [Issues](https://github.com/apache/maven-jdeps-plugin/issues)
 
   Run JDK's JDeps tool on the project.
 
-- **[`jxr`](/jxr/maven-jxr-plugin/)** · reporting plugin · 3.6.0, 2024-10-22 · [Source](https://github.com/apache/maven-jxr/) · [Issues](https://github.com/apache/maven-jxr/issues)
+- **[`jxr`](/jxr/maven-jxr-plugin/)** reporting plugin · 3.6.0, 2024-10-22 [Source](https://github.com/apache/maven-jxr/) · [Issues](https://github.com/apache/maven-jxr/issues)
 
   Generate a source cross reference.
 
-- **[`pmd`](/plugins/maven-pmd-plugin/)** · build and reporting plugin · 3.28.0, 2025-10-07 · [Source](https://github.com/apache/maven-pmd-plugin/) · [Issues](https://github.com/apache/maven-pmd-plugin/issues)
+- **[`pmd`](/plugins/maven-pmd-plugin/)** build and reporting plugin · 3.28.0, 2025-10-07 [Source](https://github.com/apache/maven-pmd-plugin/) · [Issues](https://github.com/apache/maven-pmd-plugin/issues)
 
   Generate a PMD/CPD report.
 
-- **[`plugin-report`](/plugin-tools/maven-plugin-report-plugin/)** · reporting plugin · 3.16.0, 2026-09-06 · [Source](https://github.com/apache/maven-plugin-tools/) · [Issues](https://github.com/apache/maven-plugin-tools/issues)
+- **[`plugin-report`](/plugin-tools/maven-plugin-report-plugin/)** reporting plugin · 3.16.0, 2026-09-06 [Source](https://github.com/apache/maven-plugin-tools/) · [Issues](https://github.com/apache/maven-plugin-tools/issues)
 
   Create a plugin documentation for any mojos found in the source tree.
 
-- **[`project-info-reports`](/plugins/maven-project-info-reports-plugin/)** · reporting plugin · 3.9.0, 2025-02-23 · [Source](https://github.com/apache/maven-project-info-reports-plugin/) · [Issues](https://github.com/apache/maven-project-info-reports-plugin/issues)
+- **[`project-info-reports`](/plugins/maven-project-info-reports-plugin/)** reporting plugin · 3.9.0, 2025-02-23 [Source](https://github.com/apache/maven-project-info-reports-plugin/) · [Issues](https://github.com/apache/maven-project-info-reports-plugin/issues)
 
   Generate standard project reports.
 
-- **[`surefire-report`](/surefire/maven-surefire-report-plugin/)** · reporting plugin · 3.6.0, 2026-08-31 · [Source](https://github.com/apache/maven-surefire/) · [Issues](https://github.com/apache/maven-surefire/issues)
+- **[`surefire-report`](/surefire/maven-surefire-report-plugin/)** reporting plugin · 3.6.0, 2026-08-31 [Source](https://github.com/apache/maven-surefire/) · [Issues](https://github.com/apache/maven-surefire/issues)
 
   Generate a report based on the results of unit tests.
 
@@ -200,79 +200,79 @@ These are miscellaneous tools available through Maven by default.
 
 <div class="plugin-list">
 
-- **[`antrun`](/plugins/maven-antrun-plugin/)** · build plugin · 3.2.0, 2025-10-17 · [Source](https://github.com/apache/maven-antrun-plugin/) · [Issues](https://github.com/apache/maven-antrun-plugin/issues)
+- **[`antrun`](/plugins/maven-antrun-plugin/)** build plugin · 3.2.0, 2025-10-17 [Source](https://github.com/apache/maven-antrun-plugin/) · [Issues](https://github.com/apache/maven-antrun-plugin/issues)
 
   Run a set of ant tasks from a phase of the build.
 
-- **[`artifact`](/plugins/maven-artifact-plugin/)** · build plugin · 3.7.0, 2026-09-15 · [Source](https://github.com/apache/maven-artifact-plugin/) · [Issues](https://github.com/apache/maven-artifact-plugin/issues)
+- **[`artifact`](/plugins/maven-artifact-plugin/)** build plugin · 3.7.0, 2026-09-15 [Source](https://github.com/apache/maven-artifact-plugin/) · [Issues](https://github.com/apache/maven-artifact-plugin/issues)
 
   Manage Reproducible Builds tasks about artifacts.
 
-- **[`archetype`](/archetype/maven-archetype-plugin/)** · build plugin · 3.4.1, 2025-10-03 · [Source](https://github.com/apache/maven-archetype/) · [Issues](https://github.com/apache/maven-archetype/issues)
+- **[`archetype`](/archetype/maven-archetype-plugin/)** build plugin · 3.4.1, 2025-10-03 [Source](https://github.com/apache/maven-archetype/) · [Issues](https://github.com/apache/maven-archetype/issues)
 
   Generate a skeleton project structure from an archetype.
 
-- **[`assembly`](/plugins/maven-assembly-plugin/)** · build plugin · 3.8.0, 2025-11-22 · [Source](https://github.com/apache/maven-assembly-plugin/) · [Issues](https://github.com/apache/maven-assembly-plugin/issues)
+- **[`assembly`](/plugins/maven-assembly-plugin/)** build plugin · 3.8.0, 2025-11-22 [Source](https://github.com/apache/maven-assembly-plugin/) · [Issues](https://github.com/apache/maven-assembly-plugin/issues)
 
   Build an assembly (distribution) of sources and/or binaries.
 
-- **[`dependency`](/plugins/maven-dependency-plugin/)** · build and reporting plugin · 3.11.0, 2026-05-24 · [Source](https://github.com/apache/maven-dependency-plugin/) · [Issues](https://github.com/apache/maven-dependency-plugin/issues)
+- **[`dependency`](/plugins/maven-dependency-plugin/)** build and reporting plugin · 3.11.0, 2026-05-24 [Source](https://github.com/apache/maven-dependency-plugin/) · [Issues](https://github.com/apache/maven-dependency-plugin/issues)
 
   Dependency manipulation (copy, unpack) and analysis.
 
-- **[`enforcer`](/enforcer/maven-enforcer-plugin/)** · build plugin · 3.6.3, 2026-05-15 · [Source](https://github.com/apache/maven-enforcer/) · [Issues](https://github.com/apache/maven-enforcer/issues)
+- **[`enforcer`](/enforcer/maven-enforcer-plugin/)** build plugin · 3.6.3, 2026-05-15 [Source](https://github.com/apache/maven-enforcer/) · [Issues](https://github.com/apache/maven-enforcer/issues)
 
   Environmental constraint checking (Maven Version, JDK etc), User Custom Rule Execution.
 
-- **[`gpg`](/plugins/maven-gpg-plugin/)** · build plugin · 3.2.8, 2025-06-28 · [Source](https://github.com/apache/maven-gpg-plugin/) · [Issues](https://github.com/apache/maven-gpg-plugin/issues)
+- **[`gpg`](/plugins/maven-gpg-plugin/)** build plugin · 3.2.8, 2025-06-28 [Source](https://github.com/apache/maven-gpg-plugin/) · [Issues](https://github.com/apache/maven-gpg-plugin/issues)
 
   Create signatures for the artifacts and poms.
 
-- **[`help`](/plugins/maven-help-plugin/)** · build plugin · 3.5.2, 2026-06-30 · [Source](https://github.com/apache/maven-help-plugin/) · [Issues](https://github.com/apache/maven-help-plugin/issues)
+- **[`help`](/plugins/maven-help-plugin/)** build plugin · 3.5.2, 2026-06-30 [Source](https://github.com/apache/maven-help-plugin/) · [Issues](https://github.com/apache/maven-help-plugin/issues)
 
   Get information about the working environment for the project.
 
-- **[`invoker`](/plugins/maven-invoker-plugin/)** · build and reporting plugin · 3.10.1, 2026-05-02 · [Source](https://github.com/apache/maven-invoker-plugin/) · [Issues](https://github.com/apache/maven-invoker-plugin/issues)
+- **[`invoker`](/plugins/maven-invoker-plugin/)** build and reporting plugin · 3.10.1, 2026-05-02 [Source](https://github.com/apache/maven-invoker-plugin/) · [Issues](https://github.com/apache/maven-invoker-plugin/issues)
 
   Run a set of Maven projects and verify the output.
 
-- **[`jarsigner`](/plugins/maven-jarsigner-plugin/)** · build plugin · 3.1.0, 2024-09-03 · [Source](https://github.com/apache/maven-jarsigner-plugin/) · [Issues](https://github.com/apache/maven-jarsigner-plugin/issues)
+- **[`jarsigner`](/plugins/maven-jarsigner-plugin/)** build plugin · 3.1.0, 2024-09-03 [Source](https://github.com/apache/maven-jarsigner-plugin/) · [Issues](https://github.com/apache/maven-jarsigner-plugin/issues)
 
   Signs or verifies project artifacts.
 
-- **[`jdeprscan`](/plugins/maven-jdeprscan-plugin/)** · build plugin · 3.0.0, 2025-12-22 · [Source](https://github.com/apache/maven-jdeprscan-plugin/) · [Issues](https://github.com/apache/maven-jdeprscan-plugin/issues)
+- **[`jdeprscan`](/plugins/maven-jdeprscan-plugin/)** build plugin · 3.0.0, 2025-12-22 [Source](https://github.com/apache/maven-jdeprscan-plugin/) · [Issues](https://github.com/apache/maven-jdeprscan-plugin/issues)
 
   Run JDK's JDeprScan tool on the project.
 
-- **[`plugin`](/plugin-tools/maven-plugin-plugin/)** · build plugin · 3.16.0, 2026-09-06 · [Source](https://github.com/apache/maven-plugin-tools/) · [Issues](https://github.com/apache/maven-plugin-tools/issues)
+- **[`plugin`](/plugin-tools/maven-plugin-plugin/)** build plugin · 3.16.0, 2026-09-06 [Source](https://github.com/apache/maven-plugin-tools/) · [Issues](https://github.com/apache/maven-plugin-tools/issues)
 
   Create a Maven plugin descriptor for any mojos found in the source tree, to include in the JAR.
 
-- **[`release`](/plugins/maven-release-plugin/)** · build plugin · 3.3.1, 2025-12-09 · [Source](https://github.com/apache/maven-release/) · [Issues](https://github.com/apache/maven-release/issues)
+- **[`release`](/plugins/maven-release-plugin/)** build plugin · 3.3.1, 2025-12-09 [Source](https://github.com/apache/maven-release/) · [Issues](https://github.com/apache/maven-release/issues)
 
   Release the current project - updating the POM and tagging in the SCM.
 
-- **[`remote-resources`](/plugins/maven-remote-resources-plugin/)** · build plugin · 3.3.0, 2024-12-30 · [Source](https://github.com/apache/maven-remote-resources-plugin/) · [Issues](https://github.com/apache/maven-remote-resources-plugin/issues)
+- **[`remote-resources`](/plugins/maven-remote-resources-plugin/)** build plugin · 3.3.0, 2024-12-30 [Source](https://github.com/apache/maven-remote-resources-plugin/) · [Issues](https://github.com/apache/maven-remote-resources-plugin/issues)
 
   Copy remote resources to the output directory for inclusion in the artifact.
 
-- **[`scm`](/scm/maven-scm-plugin/)** · build plugin · 2.2.1, 2025-09-19 · [Source](https://github.com/apache/maven-scm/) · [Issues](https://github.com/apache/maven-scm/issues)
+- **[`scm`](/scm/maven-scm-plugin/)** build plugin · 2.2.1, 2025-09-19 [Source](https://github.com/apache/maven-scm/) · [Issues](https://github.com/apache/maven-scm/issues)
 
   Execute SCM commands for the current project.
 
-- **[`scm-publish`](/plugins/maven-scm-publish-plugin/)** · build plugin · 3.3.0, 2024-06-16 · [Source](https://github.com/apache/maven-scm-publish-plugin/) · [Issues](https://github.com/apache/maven-scm-publish-plugin/issues)
+- **[`scm-publish`](/plugins/maven-scm-publish-plugin/)** build plugin · 3.3.0, 2024-06-16 [Source](https://github.com/apache/maven-scm-publish-plugin/) · [Issues](https://github.com/apache/maven-scm-publish-plugin/issues)
 
   Publish your Maven website to a scm location.
 
-- **[`scripting`](/plugins/maven-scripting-plugin/)** · build plugin · 3.1.0, 2025-12-22 · [Source](https://github.com/apache/maven-scripting-plugin/) · [Issues](https://github.com/apache/maven-scripting-plugin/issues)
+- **[`scripting`](/plugins/maven-scripting-plugin/)** build plugin · 3.1.0, 2025-12-22 [Source](https://github.com/apache/maven-scripting-plugin/) · [Issues](https://github.com/apache/maven-scripting-plugin/issues)
 
   The Maven Scripting Plugin wraps the Scripting API according to JSR223.
 
-- **[`toolchains`](/plugins/maven-toolchains-plugin/)** · build plugin · 3.3.0, 2026-07-21 · [Source](https://github.com/apache/maven-toolchains-plugin/) · [Issues](https://github.com/apache/maven-toolchains-plugin/issues)
+- **[`toolchains`](/plugins/maven-toolchains-plugin/)** build plugin · 3.3.0, 2026-07-21 [Source](https://github.com/apache/maven-toolchains-plugin/) · [Issues](https://github.com/apache/maven-toolchains-plugin/issues)
 
   Allows to share configuration across plugins.
 
-- **[`wrapper`](/tools/wrapper/maven-wrapper-plugin/)** · build plugin · 3.3.4, 2025-09-08 · [Source](https://github.com/apache/maven-wrapper/) · [Issues](https://github.com/apache/maven-wrapper/issues)
+- **[`wrapper`](/tools/wrapper/maven-wrapper-plugin/)** build plugin · 3.3.4, 2025-09-08 [Source](https://github.com/apache/maven-wrapper/) · [Issues](https://github.com/apache/maven-wrapper/issues)
 
   Download and unpack the maven wrapper distribution
 
