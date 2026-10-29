@@ -1,10 +1,22 @@
 // Optional additions to a page; without this script nothing is missing that the reader needs.
 //  - an anchor link on every h2 and h3 of the text,
 //  - "On this page" in the rail, from the h2s (and the h3s when there are two h2s or fewer),
-//  - on the search page, the list of every page filtered while you type.
+//  - on the search page, the list of every page filtered while you type,
+//  - on a page that has moved, straight on to the new place of the section the address points at.
 (function () {
     var prose = document.querySelector('.prose');
     if (!prose) return;
+
+    var moved = prose.querySelector('.moved');
+    if (moved) {
+        var target = location.hash && document.getElementById(decodeURIComponent(location.hash.slice(1)));
+        var item = target && target.closest('li, p');
+        var link = (item && item.querySelector('a[href]')) || moved.querySelector('p a[href]');
+        if (link) {
+            location.replace(link.href);
+            return;
+        }
+    }
 
     function idOf(h) {
         if (h.id) return h.id;

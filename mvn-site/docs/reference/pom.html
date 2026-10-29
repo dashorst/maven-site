@@ -1,0 +1,1573 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>POM reference – Apache Maven</title>
+  <link rel="stylesheet" href="../../css/maven.css">
+  <link rel="stylesheet" href="../../css/print.css" media="print">
+  <link rel="icon" href="../../images/favicon.ico">
+  <meta name="generator" content="Apache Maven Doxia Site Renderer 2.1.0">
+</head>
+<body class="page">
+  <a class="skip-link" href="#content">Skip to the text</a>
+  <header class="masthead">
+    <div class="masthead-inner">
+    <a class="brand" href="../../index.html" aria-label="Maven, home"><svg class="wordmark" viewBox="0 0 9375 2346" width="140" height="35" aria-hidden="true" focusable="false" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
+  <path d="M5126.58,975.196c46.271,-114.421 97.896,-228.613 153.292,-329.825c-82.692,-61.417 -162.092,-193.859 -194.717,-252.538c-11.716,13.313 -19.32,28.642 -22.771,41.113c-30.733,110.971 78.671,244.971 -9.45,196.012c-73.42,-40.796 -238.745,-130.137 -301.804,-41.341c70.625,90.75 255.35,319.062 375.45,386.579Z" style="fill:#dd552c;fill-rule:nonzero;" />
+  <path d="M5279.88,645.371c53.679,-98.071 110.879,-183.963 170.188,-245.842c-0,0 -59.155,85.621 -143.642,256.779c51.167,14.092 196.892,43.009 399.871,-9.425c4.991,-36.887 -19.809,-77.458 -143.384,-91.041c-80.679,-8.859 96.834,-192.646 -31.762,-279.563c-4.15,-2.812 -8.234,-5.291 -12.229,-7.512c-4.313,-1.55 -8.867,-2.967 -13.725,-4.23c-150.188,-39.191 -171.009,215.476 -230.938,160.73c-96.85,-88.467 -157.979,-67.796 -189.096,-32.434c32.625,58.68 112.025,191.121 194.717,252.538Z" style="fill:#f79a23;fill-rule:nonzero;" />
+  <path d="M5005.79,1304.85c33.904,-101.567 74.687,-215.675 120.796,-329.654c-120.101,-67.517 -304.825,-295.829 -375.45,-386.579c-12.609,17.741 -21.226,42.487 -24.096,76.325c-15.404,181.766 172.116,316.333 134.733,340.912c-49.45,32.521 -147.867,-78.108 -186.658,-7.817c56.225,72.225 170.746,202.73 330.675,306.813Z" style="fill:#d22128;fill-rule:nonzero;" />
+  <path d="M5525.38,912.842c-94.946,-33.863 99.217,-124.684 162.267,-221.029c8.066,-12.317 16.404,-28.238 18.666,-44.93c-202.979,52.434 -348.704,23.517 -399.871,9.425c-43.737,88.621 -94.241,200.3 -146.916,334.95c54.858,23.459 278.85,110.105 595.233,110.554c53.192,-138.55 -139.271,-156.845 -229.379,-188.97Z" style="fill:#dd552c;fill-rule:nonzero;" />
+  <path d="M5042.5,1323.13c55.792,17.388 240.654,69.321 436.983,61.505c26.375,-71.413 -72.233,-78.384 -80.266,-135.655c-6.217,-44.316 259.504,37.242 345,-123.904c4.325,-8.15 7.695,-15.837 10.55,-23.267c-316.384,-0.449 -540.375,-87.095 -595.234,-110.554c-38.491,98.4 -78.087,208.838 -117.033,331.875Z" style="fill:#d22128;fill-rule:nonzero;" />
+  <path d="M5042.5,1323.13c-25.067,79.196 -49.8,163.8 -73.808,253.213c-8.517,31.704 -16.929,63.996 -25.229,96.996c186.341,61.512 357.933,0.141 363.75,-75.925c0.045,-0.6 -0.063,-1.05 -0.03,-1.63c4.434,-80.562 -116.316,-35.904 -113.458,-84.345c2.867,-48.792 210.813,-0.284 275.121,-104.896c4.933,-8.021 8.146,-15.142 10.637,-21.908c-196.329,7.816 -381.191,-44.117 -436.983,-61.505Z" style="fill:#7c297d;fill-rule:nonzero;" />
+  <path d="M4675.12,998.038c-2.717,4.924 -5.167,10.616 -7.258,17.42c-36.113,117.371 219.25,275.042 184.508,309.413c-31.317,30.971 -72.133,-39.804 -122.463,-10.571c-5.512,3.213 -11.112,7.263 -16.858,13.158c-56.921,58.313 -0.892,226.305 160.6,315.98c-37.687,126.533 -75.204,267.904 -111.933,415.75c13.325,-4.667 29.271,-9.346 33.237,-21.913c5.959,-24.496 42.788,-173.558 102.584,-375.779c-0,-0 10.912,-41.421 30.891,-109.671c18.475,-63.108 44.725,-149.175 77.367,-246.975c-159.929,-104.083 -274.45,-234.588 -330.675,-306.813Z" style="fill:#7c297d;fill-rule:nonzero;" />
+  <path id="path4328" d="M8792.46,721.342c1.684,1.346 2.525,4.208 2.525,8.587c0,4.375 -0.841,8.417 -2.525,12.121l-0.504,4.042c-1.35,3.029 -2.862,5.554 -4.546,7.575c-1.345,1.683 -3.537,3.029 -6.566,4.037c-3.029,0.675 -7.238,1.013 -12.625,1.013c-5.388,-0.338 -9.934,-0.505 -13.638,-0.505l-7.575,0c-1.683,0.671 -3.2,0.842 -4.546,0.505c-1.345,-0.338 -2.695,-0.171 -4.041,0.504c-3.704,1.346 -6.9,4.546 -9.596,9.596c-1.008,1.683 -1.683,3.704 -2.021,6.062c-0.333,2.354 -0.671,4.713 -1.008,7.071l-24.242,119.192c-0.337,1.683 -0.504,3.196 -0.504,4.546c-0,1.345 -0.338,2.691 -1.013,4.037l-1.008,4.042c-0.337,1.008 -0.675,2.02 -1.012,3.029c-0,1.012 -0.505,1.854 -1.513,2.525c-1.35,2.696 -3.537,4.546 -6.567,5.558c-1.683,0.671 -3.704,1.008 -6.062,1.008l-22.725,0c-5.725,0 -9.596,-1.345 -11.617,-4.041c-1.012,-2.021 -1.346,-4.375 -1.012,-7.071c0.675,-2.692 1.35,-5.721 2.021,-9.088l23.737,-119.195c0.338,-1.684 0.675,-3.367 1.013,-5.05c0.67,-1.684 0.841,-3.196 0.504,-4.546l1.008,-7.071c0.338,-5.383 -1.346,-8.754 -5.05,-10.1c-3.029,-1.683 -7.575,-2.354 -13.637,-2.021c-5.721,0.338 -10.771,0.508 -15.15,0.508c-1.684,0 -3.367,0.167 -5.05,0.505c-1.346,-0 -2.525,-0.171 -3.534,-0.505c-1.35,-0.675 -2.529,-0.841 -3.537,-0.508c-1.009,0 -2.021,-0.167 -3.029,-0.504c-3.367,-1.683 -4.884,-4.375 -4.546,-8.079c0.337,-3.704 1.008,-8.084 2.021,-13.134c0.337,-2.02 0.67,-3.87 1.008,-5.554c0.675,-1.683 1.517,-3.366 2.525,-5.05c1.012,-1.683 2.358,-2.862 4.042,-3.537c1.683,-1.009 3.366,-1.85 5.05,-2.525c1.008,-0.338 1.683,-0.338 2.02,-0c0.671,-0 1.513,-0.167 2.525,-0.504l134.85,-0c3.03,-0 5.892,0.166 8.584,0.504c2.696,-0 4.883,0.675 6.566,2.021Zm268.688,1.012c1.346,2.354 1.683,5.05 1.008,8.079c-0.337,3.029 -0.841,6.396 -1.512,10.1l-32.829,164.142c-0.675,3.704 -1.517,7.071 -2.525,10.1c-0.675,2.696 -1.855,5.05 -3.538,7.071c-2.354,2.696 -6.058,4.041 -11.108,4.041l-14.142,0c-2.021,0 -4.208,0.167 -6.567,0.505c-2.02,-0 -3.704,-0.338 -5.05,-1.009c-3.033,-1.012 -4.883,-2.525 -5.558,-4.546c-0.333,-2.02 -0.504,-4.545 -0.504,-7.575l1.517,-8.587c-0,-1.008 0.166,-2.188 0.504,-3.533c0.337,-1.684 0.675,-3.2 1.008,-4.546l13.133,-64.142c0.675,-4.042 1.346,-8.083 2.021,-12.121c1.009,-4.041 1.513,-7.746 1.513,-11.112c-0.334,-1.684 -0.504,-3.029 -0.504,-4.042c-0,-1.346 -0.505,-2.354 -1.513,-3.029c-0.337,-0.338 -0.842,-0.504 -1.517,-0.504c-1.008,0.671 -2.187,1.346 -3.537,2.021c-3.367,4.037 -6.396,8.583 -9.088,13.633c-2.695,5.054 -5.558,9.933 -8.587,14.65c-6.058,10.437 -11.954,21.042 -17.675,31.817c-5.725,10.437 -11.617,20.708 -17.679,30.808c-2.692,4.712 -5.554,10.1 -8.584,16.162c-3.033,5.721 -6.566,9.934 -10.608,12.625c-2.021,1.346 -4.375,2.188 -7.071,2.525l-16.162,0c-1.684,-0.675 -3.196,-1.179 -4.546,-1.516c-1.346,-0.671 -2.525,-1.513 -3.533,-2.525c-1.009,-1.009 -1.684,-2.354 -2.021,-4.038c-0.338,-1.683 -0.671,-3.366 -1.009,-5.05c-1.012,-3.033 -1.683,-6.062 -2.02,-9.091c-0.338,-3.367 -0.842,-6.734 -1.517,-10.105c-2.021,-9.762 -3.704,-19.695 -5.05,-29.795c-1.346,-10.438 -3.029,-20.538 -5.05,-30.305c-1.008,-5.725 -2.021,-11.445 -3.029,-17.17c-0.675,-5.725 -2.525,-10.605 -5.559,-14.646c-0.67,-0 -1.175,0.166 -1.512,0.504l-1.013,-0c-1.683,1.346 -2.862,2.862 -3.533,4.546c-1.012,1.683 -1.683,3.366 -2.021,5.05c0,1.346 -0.337,2.862 -1.008,4.546l-1.517,8.587c-0.675,1.346 -1.179,2.692 -1.516,4.038c-0.334,1.35 -0.505,2.525 -0.505,3.537l-12.12,58.583c-0.675,4.38 -1.684,9.767 -3.03,16.163c-1.012,6.062 -2.525,10.437 -4.545,13.133c-1.013,0.671 -2.021,1.513 -3.03,2.525c-0.675,0.671 -1.516,1.179 -2.529,1.513c-1.683,0.675 -3.7,1.179 -6.058,1.516l-20.204,0c-4.375,0 -7.742,-1.008 -10.1,-3.029c-1.684,-1.346 -2.525,-3.537 -2.525,-6.566c0.337,-3.03 0.841,-6.396 1.516,-10.1l33.334,-166.667c0.671,-3.033 1.346,-5.892 2.021,-8.588c1.008,-3.029 2.187,-5.387 3.533,-7.07c1.683,-2.355 4.379,-3.871 8.083,-4.546c1.009,-0.338 1.684,-0.338 2.017,-0c0.675,-0 1.517,-0.167 2.525,-0.504l43.942,-0c3.366,-0 5.891,0.841 7.575,2.525c2.695,2.02 4.208,5.22 4.545,9.595c0.675,4.38 1.517,8.417 2.525,12.121c1.684,9.429 3.367,19.025 5.05,28.788c1.684,9.429 3.367,19.025 5.05,28.787c1.35,5.054 2.359,10.271 3.034,15.659c1.008,5.387 2.016,10.604 3.029,15.658c0.671,2.017 1.179,4.208 1.512,6.562c0.675,2.021 2.021,3.367 4.042,4.042c1.683,0.675 3.2,0.338 4.546,-1.008c1.683,-1.35 2.862,-2.525 3.537,-3.538c3.367,-3.704 6.059,-7.575 8.08,-11.616c2.358,-4.375 4.712,-8.584 7.07,-12.625c7.071,-11.113 13.638,-22.392 19.696,-33.838c6.4,-11.787 13.134,-23.233 20.204,-34.346c2.692,-4.712 5.388,-9.596 8.08,-14.646c3.029,-5.387 7.07,-9.091 12.12,-11.112c2.359,-0.671 4.713,-1.008 7.071,-1.008l36.363,-0c2.021,-0.338 3.875,-0.338 5.558,-0l2.525,-0c1.346,0.675 2.692,1.179 4.038,1.516c1.687,0.338 2.695,1.009 3.033,2.021Z" style="fill-rule:nonzero;" />
+  <path id="path1" d="M2866.07,2092.43c-150.088,-13.46 -253.806,-82.277 -287.76,-190.93c-30.902,-98.885 -17.816,-209.252 38.457,-324.325c32.852,-67.182 117.72,-150.531 186.529,-183.192c63.217,-30.007 148.971,-58.338 205.759,-67.977c59.39,-10.081 180.315,-26.556 233.658,-31.834c65.006,-6.432 196.693,-35.197 222.697,-48.644c65.175,-33.703 107.043,-114.49 91.442,-176.444c-10.744,-42.671 -24.985,-61.992 -61.436,-83.353c-26.917,-15.775 -41.492,-18.79 -104.363,-21.586c-81.589,-3.628 -134.097,5.105 -183.215,30.471c-45.565,23.532 -65.58,42.437 -102.915,97.208c-44.598,65.424 -52.14,67.683 -216.76,64.919c-117.137,-1.967 -128.696,-3.28 -137.754,-15.685c-15.065,-20.631 -12.118,-39.46 14.385,-91.891c71.44,-141.33 176.549,-226.291 347.578,-280.952c113.514,-36.279 187.988,-44.764 356.551,-40.621c117.057,2.877 158.635,6.568 204.42,18.146c147.905,37.402 237.485,118.035 252.283,227.086c7.77,57.256 -0.281,108.097 -79.93,504.633c-52.358,260.672 -75.176,389.871 -79.987,452.908c-3.703,48.509 -8.552,93.931 -10.776,100.938c-8.95,28.2 -36.919,33.521 -175.337,33.357c-146.719,-0.153 -152.134,-1.742 -171.749,-49.741c-16.018,-39.197 -29.597,-39.148 -110.793,0.409c-88.834,43.269 -179.961,67.993 -284.512,77.193c-44.116,3.883 -74.223,4.631 -83.377,4.631c-6.148,0 -30.488,-1.792 -63.095,-4.715l-0,-0.009Zm336.194,-237.704c88.4,-18.702 157.053,-64.357 204.685,-136.117c49.452,-74.503 88.258,-223.244 65.422,-250.76c-10.644,-12.826 -6.135,-13.173 -180.834,13.925c-174.259,27.029 -232.875,46.454 -288.841,95.718c-40.966,36.058 -56.872,63.208 -67.574,115.338c-10.403,50.67 -2.703,86.568 25.843,120.493c34.69,41.226 149.235,60.88 241.299,41.403Zm2994.3,233.426c-82.623,-17.451 -121.141,-29.631 -175.904,-55.623c-51.008,-24.209 -74.873,-40.975 -115.398,-81.071c-109.659,-108.498 -149.964,-234.684 -137.079,-429.165c6.777,-102.277 16.471,-147.046 53.191,-245.636c49.332,-132.45 99.583,-210.499 200.169,-310.901c117.667,-117.449 252.423,-194.316 398.217,-227.152c91.88,-20.693 240.52,-22.113 313.869,-2.999c101.302,26.396 201.55,85.476 252.41,148.753c14.621,18.191 30.255,36.974 34.741,41.739c4.487,4.768 11.977,20.463 16.646,34.884c4.67,14.421 15.546,40.344 24.172,57.606c20.098,40.223 38.228,146.034 38.154,222.681c-0.051,78.348 -11.604,176.833 -24.241,207.079c-19.658,47.046 -13.154,46.429 -474.735,45.041c-258.129,-0.777 -418.628,1.338 -430.015,5.668c-9.992,3.797 -26.321,15.701 -36.287,26.449c-15.36,16.566 -18.12,25.969 -18.12,61.741c-0,128.542 55.515,205.624 165.757,230.15c133.528,29.707 269.973,-8.456 377.217,-105.506c22.738,-20.577 49.746,-40.608 60.019,-44.514c10.273,-3.904 66.775,-7.101 125.561,-7.101c93.997,-0 108.825,1.574 122.984,13.037c14.854,12.028 15.467,15.151 7.917,40.35c-10.106,33.728 -113.754,164.482 -163.667,206.468c-100.865,84.845 -217.315,139.479 -344.842,161.786c-56.608,9.902 -234.03,13.989 -270.736,6.236Zm540.93,-836.072c16.271,-18.923 14.876,-30.52 10.797,-72.675c-11.637,-120.265 -93.477,-189.165 -225.087,-189.5c-122.497,-0.306 -228.179,55.459 -296.923,156.69c-23.051,33.944 -29.121,49.206 -29.384,73.884c-0.532,49.927 -2.734,49.551 277.529,47.496c0,0 199.143,0.871 242.987,-1.778c8.168,-0.493 20.081,-14.117 20.081,-14.117Zm-6401.11,805.714c-31.661,-12.757 -32.497,-27.151 -8.828,-151.967c40.584,-214.015 313.564,-1565.81 321.645,-1592.78c15.865,-52.952 5.386,-50.994 284.867,-53.225l249.693,-1.993l18.225,15.943c15.918,13.925 19.572,25.655 28.863,92.666c5.851,42.198 18.378,126.943 27.837,188.322c9.459,61.378 26.714,185.357 38.344,275.507c11.631,90.15 30.161,220.406 41.178,289.457c11.017,69.051 23.609,153.796 27.981,188.321c20.136,158.983 44.034,167.026 111.466,37.513c407.078,-781.853 547.301,-1044.2 569.053,-1064.65c0,0 13.13,-22.755 24.203,-22.755c44.663,-0 252.581,1.829 252.581,1.829c0,0 207.842,1.829 252.581,1.829c3.637,0 10.728,19.146 10.728,19.146c10.158,18.13 1.694,64.212 -159.503,868.371c-93.626,467.074 -174.334,859.539 -179.351,872.144c-14.861,37.34 -39.592,43.342 -178.587,43.342c-156.443,-0 -179.423,-6.395 -179.673,-49.999c-0.057,-10.237 36.154,-198.558 80.473,-418.492c44.319,-219.934 85.083,-427.019 90.586,-460.19c5.504,-33.171 14.707,-80.251 20.452,-104.623c12.611,-53.494 13.903,-121.692 2.44,-128.776c-16.699,-10.32 -63.084,63.749 -207.959,332.071c-67.174,124.414 -162.132,297.567 -198.903,362.693c-16.245,28.772 -49.308,89.976 -73.475,136.01c-44.807,85.351 -142.33,259.503 -162.885,290.874c-19.945,30.44 -42.051,35.835 -159.658,38.97c-160.163,4.267 -163.303,1.988 -182.606,-132.507c-5.666,-39.484 -16.546,-112.592 -24.177,-162.463c-7.631,-49.87 -21.795,-142.461 -31.475,-205.758c-9.68,-63.297 -31.833,-212.385 -49.228,-331.306c-34.102,-233.127 -46.052,-293.199 -61.373,-308.52c-8.461,-8.461 -11.299,-8.366 -20.341,0.674c-12.066,12.067 -32.127,69.87 -40.238,115.941c-30.626,173.965 -198.122,976.255 -206.478,989.007c-20.413,31.155 -47.66,36.43 -185.705,35.951c-70.133,-0.255 -134.372,-3.204 -142.753,-6.581l0,0.004Zm3996.39,-3.276c-13.609,-5.917 -23.706,-16.093 -25.681,-25.883c-9.369,-46.429 -20.397,-118.628 -46.143,-302.101c-15.611,-111.25 -34.401,-241.505 -41.755,-289.457c-7.354,-47.953 -18.224,-123.281 -24.156,-167.397c-5.932,-44.116 -16.86,-121.014 -24.286,-170.884c-21.042,-141.326 -35.441,-255.869 -35.348,-281.197c0.205,-56.069 21.808,-64.157 170.267,-63.756c120.917,0.307 166.904,5.974 183.455,22.526c11.54,11.539 13.095,22.522 43.679,308.477c29.083,271.915 54.086,475.932 59.379,484.495c2.458,3.976 12.201,7.233 21.649,7.233c12.742,-0 22.281,-8.045 36.932,-31.146l19.752,-31.146l22.131,34.155c12.173,18.785 43.645,54.072 69.939,78.416l47.806,44.261l-33.792,125.358c-18.585,68.947 -40.983,152.037 -49.772,184.644c-22.725,84.307 -21.269,83.751 -218.184,83.415c-115.599,-0.205 -158.978,-2.668 -175.872,-10.013Zm2873.61,3.184c-8.517,-3.429 -17.647,-14.846 -20.289,-25.374c-3.215,-12.812 25.928,-173.81 88.121,-486.799c118.691,-597.316 149.089,-739.014 163.139,-760.458c16.378,-24.996 35.27,-28.041 173.927,-28.041c143.7,-0 144.164,0.204 144.164,63.608c0,32.355 11.326,58.452 25.369,58.452c7.207,-0 33.353,-16.279 64.434,-40.114c47.566,-36.478 164.682,-91.074 220.578,-102.826c57.953,-12.185 216.555,-13.887 269.933,-2.898c56.747,11.683 133.62,52.235 166.368,87.763c15.797,17.136 38.653,52.123 50.793,77.747c22.005,46.448 22.072,46.937 22.072,161.674c0,107.728 -1.921,124.673 -30.009,265.045c-81.595,407.75 -135.246,668.355 -141.909,689.308c-14.188,44.62 -33.883,49.973 -183.992,50.002c-155.256,0.031 -163.718,-2.611 -163.718,-51.157c0,-16.207 28.144,-169.99 62.542,-341.74c87.476,-436.769 94.455,-489.786 73.68,-559.746c-12.519,-42.154 -50.694,-81.654 -93.506,-96.749c-96.417,-33.997 -245.583,7.567 -318.593,88.772c-67.235,74.781 -86.042,139.101 -185.035,632.827c-37.681,187.937 -59.325,281.05 -68.093,292.945c-7.069,9.59 -23.545,21.183 -36.612,25.762c-28.123,9.854 -259.78,11.487 -283.364,1.998l0,-0.001Z" style="fill-rule:nonzero;" />
+</svg></a>
+    <nav class="tabs" aria-label="Sections">
+      <ul>
+        <li><a href="../../docs/index.html" aria-current="true">Docs</a></li>
+        <li><a href="../../download.html">Downloads</a></li>
+        <li><a href="../../news/index.html">News</a></li>
+        <li><a href="../../extend/index.html">Extend</a></li>
+        <li><a href="../../community/index.html">Community</a></li>
+      </ul>
+    </nav>
+    <form class="search" role="search" action="../../search.html" method="get" data-index="../../search.json" data-script="../../js/minisearch-7.2.0.js">
+      <label class="visually-hidden" for="q">Search the documentation</label>
+      <div class="search-field">
+        <svg class="search-icon" aria-hidden="true" viewBox="0 0 16 16" width="16" height="16"><circle cx="7" cy="7" r="5" fill="none" stroke="currentColor" stroke-width="1.6" /><path d="M11 11l3.5 3.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" /></svg>
+        <input id="q" name="q" type="search" autocomplete="off" spellcheck="false" placeholder="Search the docs">
+      </div>
+    </form>
+    <a class="asf" href="https://www.apache.org/"><img class="asf-leaf" src="../../images/oakleaf.svg" width="14" height="22" alt=""><span>Apache</span></a>
+    </div>
+  </header>
+  <div class="specimen" role="note">
+    <p><strong>Specimen.</strong> A proposed redesign of maven.apache.org, built with <code>mvn site</code> and a skin of its own; not the official Apache Maven site. The official site is <a href="https://maven.apache.org/">maven.apache.org</a>. <a href="../../about-this-example.html">About this example</a></p>
+  </div>
+  <div class="frame has-group">
+    <nav class="group-nav" aria-labelledby="group-nav-title">
+      <p class="up"><a href="../../docs/index.html"><svg aria-hidden="true" viewBox="0 0 16 16" width="14" height="14"><path d="M10 3.5L5.5 8l4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" /></svg>All of Docs</a></p>
+      <p class="steps"><a class="step step--next" href="../../docs/reference/settings.html" rel="next"><span class="step-dir">Next</span> Settings reference</a></p>
+      <h2 id="group-nav-title"><a href="../../docs/reference/index.html">Reference</a></h2>
+      <ul class="page-list">
+  <li><a href="../../docs/reference/pom.html" aria-current="page">POM reference</a></li>
+  <li><a href="../../docs/reference/settings.html">Settings reference</a></li>
+  <li><a href="../../docs/reference/command-line.html">Command line: running Maven</a></li>
+  <li><a href="../../docs/reference/classloading.html">Maven classloading</a></li>
+  <li><a href="../../docs/reference/classloading-core.html">Classloading in Maven core</a></li>
+  <li><a href="../../docs/reference/glossary.html">Glossary</a></li>
+  <li><a href="../../docs/reference/bash-completion.html">Bash completion</a></li>
+  <li><a href="../../docs/reference/a-z.html">A–Z index</a></li>
+</ul>
+    </nav>
+    <main id="content">
+      <p class="crumbs"><a href="../../docs/index.html">Docs</a> <span aria-hidden="true">›</span> <a href="../../docs/reference/index.html">Reference</a></p>
+      <div class="prose">
+<section class="facts facts--inline" aria-label="About this page">
+  <dl>
+    <dt>Holds for</dt>
+    <dd><span class="unchecked">Not yet checked against Maven 3.9, 3.10 and 4.0</span></dd>
+    <dt>Source</dt>
+    <dd><a href="https://github.com/dashorst/maven-site/edit/doxia-demo/content/markdown/docs/reference/pom.md">Edit this page</a></dd>
+    <dt>Wrong?</dt>
+    <dd><a href="https://github.com/apache/maven-site/issues/new?title=Page%3A+POM+reference&amp;body=About+https%3A%2F%2Fmaven.apache.org%2Fdocs%2Freference%2Fpom.html">Report a problem</a></dd>
+  </dl>
+</section>
+ <section><a id="POM_Reference"></a>
+<h1>POM Reference</h1>
+<ul>
+<li><a href="#Introduction">Introduction</a></li>
+<li><a href="#What_is_the_POM.3F">What is the POM?</a></li>
+<li><a href="#Quick_Overview">Quick Overview</a></li>
+<li><a href="#The_Basics">The Basics</a>
+<ul>
+<li><a href="#Maven_Coordinates">Maven Coordinates</a></li>
+<li><a href="#Packaging">Packaging</a></li>
+<li><a href="#POM_Relationships">POM Relationships</a>
+<ul>
+<li><a href="#Dependencies">Dependencies</a>
+<ul>
+<li><a href="#Dependency_Management">Dependency Management</a></li>
+<li><a href="#Dependency_Version_Requirement_Specification">Dependency Version Requirement Specification</a></li></ul></li>
+<li><a href="#Version_Order_Specification">Version Order Specification</a>
+<ul>
+<li><a href="#Version_Order_Testing">Version Order Testing</a></li>
+<li><a href="#Exclusions">Exclusions</a></li></ul></li>
+<li><a href="#Inheritance">Inheritance</a>
+<ul>
+<li><a href="#The_Super_POM">The Super POM</a></li>
+<li><a href="#Dependency_Management_1">Dependency Management</a></li></ul></li>
+<li><a href="#Aggregation_.28or_Multi-Module.29">Aggregation (or Multi-Module)</a>
+<ul>
+<li><a href="#A_final_note_on_.28Inheritance_v._Aggregation.29">A final note on (Inheritance v. Aggregation)</a></li></ul></li></ul></li></ul></li>
+<li><a href="#Properties">Properties</a></li>
+<li><a href="#Build_Settings">Build Settings</a></li>
+<li><a href="#Build">Build</a>
+<ul>
+<li><a href="#The_BaseBuild_Element_Set">The BaseBuild Element Set</a>
+<ul>
+<li><a href="#Resources">Resources</a></li>
+<li><a href="#Plugins">Plugins</a></li>
+<li><a href="#Plugin_Management">Plugin Management</a></li></ul></li>
+<li><a href="#The_Build_Element_Set">The Build Element Set</a>
+<ul>
+<li><a href="#Directories">Directories</a></li>
+<li><a href="#Extensions">Extensions</a></li></ul></li>
+<li><a href="#Reporting">Reporting</a>
+<ul>
+<li><a href="#Report_Sets">Report Sets</a></li></ul></li></ul></li>
+<li><a href="#More_Project_Information">More Project Information</a>
+<ul>
+<li><a href="#Licenses">Licenses</a></li>
+<li><a href="#Organization">Organization</a></li>
+<li><a href="#Developers">Developers</a></li>
+<li><a href="#Contributors">Contributors</a></li></ul></li>
+<li><a href="#Environment_Settings">Environment Settings</a>
+<ul>
+<li><a href="#Issue_Management">Issue Management</a></li>
+<li><a href="#Continuous_Integration_Management">Continuous Integration Management</a></li>
+<li><a href="#Mailing_Lists">Mailing Lists</a></li>
+<li><a href="#SCM">SCM</a></li>
+<li><a href="#Prerequisites">Prerequisites</a></li>
+<li><a href="#Repositories">Repositories</a></li>
+<li><a href="#Plugin_Repositories">Plugin Repositories</a></li>
+<li><a href="#Distribution_Management">Distribution Management</a>
+<ul>
+<li><a href="#Repository">Repository</a></li>
+<li><a href="#Site_Distribution">Site Distribution</a></li>
+<li><a href="#Relocation">Relocation</a></li>
+<li><a href="#downloadUrl">downloadUrl</a></li>
+<li><a href="#Status">Status</a></li></ul></li></ul></li>
+<li><a href="#Profiles">Profiles</a></li>
+<li><a href="#The_BaseBuild_Element_Set_.28revisited.29">The BaseBuild Element Set (revisited)</a></li>
+<li><a href="#Final">Final</a></li></ul>
+<section><a id="Introduction"></a>
+<h2>Introduction</h2>
+<p><a href="/xsd/maven-4.0.0.xsd">The POM 4.0.0 XSD</a> and <a href="/ref/current/maven-model/maven.html">descriptor reference documentation</a>.</p></section><section><a id="What_is_the_POM.3F"></a>
+<h2>What is the POM?</h2>
+<p>POM stands for “Project Object Model”. It is an XML representation of a Maven project held in a file named <code>pom.xml</code>. When in the presence of Maven folks, speaking of a project is speaking in the philosophical sense, beyond a mere collection of files containing code. A project contains configuration files, as well as the developers involved and the roles they play, the defect tracking system, the organization and licenses, the URL of where the project lives, the project's dependencies, and all the other little pieces that come into play to give code life. It is a one-stop-shop for all things concerning the project. In fact, in the Maven world, a project does not need to contain any code at all, merely a <code>pom.xml</code>.</p></section><section><a id="Quick_Overview"></a>
+<h2>Quick Overview</h2>
+<p>This is a listing of the elements directly under the POM's project element. Notice that <code>&lt;modelVersion&gt;</code> contains 4.0.0. That is currently the only supported POM version, and is always required.</p>
+
+<pre class="highlight"><code class="language-xml"><span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span> <span class="na">xmlns:xsi</span>=<span class="s">"http://www.w3.org/2001/XMLSchema-instance"</span>
+  <span class="na">xsi:schemaLocation</span>=<span class="s">"http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;modelVersion</span><span class="nt">&gt;</span>4.0.0<span class="nt">&lt;/modelVersion</span><span class="nt">&gt;</span>
+
+  <span class="c">&lt;!-- The Basics --&gt;</span>
+  <span class="nt">&lt;groupId</span><span class="nt">&gt;</span>...<span class="nt">&lt;/groupId</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;artifactId</span><span class="nt">&gt;</span>...<span class="nt">&lt;/artifactId</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;version</span><span class="nt">&gt;</span>...<span class="nt">&lt;/version</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;packaging</span><span class="nt">&gt;</span>...<span class="nt">&lt;/packaging</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;dependencies</span><span class="nt">&gt;</span>...<span class="nt">&lt;/dependencies</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;parent</span><span class="nt">&gt;</span>...<span class="nt">&lt;/parent</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;dependencyManagement</span><span class="nt">&gt;</span>...<span class="nt">&lt;/dependencyManagement</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;modules</span><span class="nt">&gt;</span>...<span class="nt">&lt;/modules</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;properties</span><span class="nt">&gt;</span>...<span class="nt">&lt;/properties</span><span class="nt">&gt;</span>
+
+  <span class="c">&lt;!-- Build Settings --&gt;</span>
+  <span class="nt">&lt;build</span><span class="nt">&gt;</span>...<span class="nt">&lt;/build</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;reporting</span><span class="nt">&gt;</span>...<span class="nt">&lt;/reporting</span><span class="nt">&gt;</span>
+
+  <span class="c">&lt;!-- More Project Information --&gt;</span>
+  <span class="nt">&lt;name</span><span class="nt">&gt;</span>...<span class="nt">&lt;/name</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;description</span><span class="nt">&gt;</span>...<span class="nt">&lt;/description</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;url</span><span class="nt">&gt;</span>...<span class="nt">&lt;/url</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;inceptionYear</span><span class="nt">&gt;</span>...<span class="nt">&lt;/inceptionYear</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;licenses</span><span class="nt">&gt;</span>...<span class="nt">&lt;/licenses</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;organization</span><span class="nt">&gt;</span>...<span class="nt">&lt;/organization</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;developers</span><span class="nt">&gt;</span>...<span class="nt">&lt;/developers</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;contributors</span><span class="nt">&gt;</span>...<span class="nt">&lt;/contributors</span><span class="nt">&gt;</span>
+
+  <span class="c">&lt;!-- Environment Settings --&gt;</span>
+  <span class="nt">&lt;issueManagement</span><span class="nt">&gt;</span>...<span class="nt">&lt;/issueManagement</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;ciManagement</span><span class="nt">&gt;</span>...<span class="nt">&lt;/ciManagement</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;mailingLists</span><span class="nt">&gt;</span>...<span class="nt">&lt;/mailingLists</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;scm</span><span class="nt">&gt;</span>...<span class="nt">&lt;/scm</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;prerequisites</span><span class="nt">&gt;</span>...<span class="nt">&lt;/prerequisites</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;repositories</span><span class="nt">&gt;</span>...<span class="nt">&lt;/repositories</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;pluginRepositories</span><span class="nt">&gt;</span>...<span class="nt">&lt;/pluginRepositories</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;distributionManagement</span><span class="nt">&gt;</span>...<span class="nt">&lt;/distributionManagement</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;profiles</span><span class="nt">&gt;</span>...<span class="nt">&lt;/profiles</span><span class="nt">&gt;</span>
+<span class="nt">&lt;/project</span><span class="nt">&gt;</span>
+</code></pre></section><section><a id="The_Basics"></a>
+<h2>The Basics</h2>
+<p>The POM contains all necessary information about a project, as well as configurations of plugins to be used during the build process. It is the declarative manifestation of the “who”, “what”, and “where”, while the build lifecycle is the “when” and “how”. That is not to say that the POM cannot affect the flow of the lifecycle - it can. For example, by configuring the <code>maven-antrun-plugin</code>, one can embed Apache Ant tasks inside the POM. It is ultimately a declaration, however. Whereas a <code>build.xml</code> tells Ant precisely what to do when it is run (procedural), a POM states its configuration (declarative). If some external force causes the lifecycle to skip the Ant plugin execution, it does not stop the plugins that are executed from doing their magic. This is unlike a <code>build.xml</code> file, where tasks are almost always dependent on the lines executed before it.</p>
+
+<pre class="highlight"><code class="language-xml"><span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;modelVersion</span><span class="nt">&gt;</span>4.0.0<span class="nt">&lt;/modelVersion</span><span class="nt">&gt;</span>
+
+  <span class="nt">&lt;groupId</span><span class="nt">&gt;</span>org.codehaus.mojo<span class="nt">&lt;/groupId</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;artifactId</span><span class="nt">&gt;</span>my-project<span class="nt">&lt;/artifactId</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;version</span><span class="nt">&gt;</span>1.0<span class="nt">&lt;/version</span><span class="nt">&gt;</span>
+<span class="nt">&lt;/project</span><span class="nt">&gt;</span>
+</code></pre><section><a id="Maven_Coordinates"></a>
+<h3>Maven Coordinates</h3>
+<p>The POM defined above is the bare minimum that Maven allows. <code>groupId:artifactId:version</code> are all required fields (although, groupId and version do not need to be explicitly defined if they are inherited from a parent - more on inheritance later). The three fields act much like an address and timestamp in one. This marks a specific place in a repository, acting like a coordinate system for Maven projects:</p>
+<ul>
+
+<li>
+<p><code>&lt;groupId&gt;</code>: This is generally unique amongst an organization or a project. For example, all core Maven artifacts do (well, should) live under the groupId <code>org.apache.maven</code>. Group ID's do not necessarily use the dot notation, for example, the junit project. Note that the dot-notated groupId does not have to correspond to the package structure that the project contains. It is, however, a good practice to follow. When stored within a repository, the group acts much like the Java packaging structure does in an operating system. The dots are replaced by OS specific directory separators (such as ‘/’ in Unix) which becomes a relative directory structure from the base repository. In the example given, the <code>org.codehaus.mojo</code> group lives within the directory <code>$M2_REPO/org/codehaus/mojo</code>.</p></li>
+<li>
+<p><code>&lt;artifactId&gt;</code>: The artifactId is generally the name that the project is known by. Although the groupId is important, people within the group will rarely mention the groupId in discussion (they are often all be the same ID, such as the <a href="https://www.mojohaus.org/" class="externalLink">MojoHaus</a> project groupId: <code>org.codehaus.mojo</code>). It, along with the groupId, creates a key that separates this project from every other project in the world (at least, it should :) ). Along with the groupId, the artifactId fully defines the artifact's relative path within the repository. In the case of the above project, <code>my-project</code> lives in <code>$M2_REPO/org/codehaus/mojo/my-project</code>.</p></li>
+<li>
+<p><code>&lt;version&gt;</code>: This is the last piece of the naming puzzle. <code>groupId:artifactId</code> denotes a single project, but it does not indicate which incarnation of that project we are talking about. Do we want the <code>junit:junit</code> of 2018 (version 4.12), or of 2007 (version 3.8.2)? In short: code changes, those changes should be versioned, and this element keeps those versions in line. It is also used within an artifact's repository to separate versions from each other. <code>my-project</code> version 1.0 files live in the directory structure <code>$M2_REPO/org/codehaus/mojo/my-project/1.0</code>.</p></li>
+</ul>
+<p>The three elements given above point to a specific version of a project, letting Maven know <em>who</em> we are dealing with, and <em>when</em> in its software lifecycle we want them.</p></section><section><a id="Packaging"></a>
+<h3>Packaging</h3>
+<p>Now that we have our address structure of <code>groupId:artifactId:version</code>, there is one more standard label to give us a really complete <em>what</em>: that is the project's packaging. In our case, the example POM for <code>org.codehaus.mojo:my-project:1.0</code> defined above will be packaged as a <code>jar</code>. We could make it into a <code>war</code> by declaring a different packaging:</p>
+
+<pre class="highlight"><code class="language-xml"><span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span><span class="nt">&gt;</span>
+  ...
+  <span class="nt">&lt;packaging</span><span class="nt">&gt;</span>war<span class="nt">&lt;/packaging</span><span class="nt">&gt;</span>
+  ...
+<span class="nt">&lt;/project</span><span class="nt">&gt;</span>
+</code></pre>
+<p>When no packaging is declared, Maven assumes the packaging is the default: <code>jar</code>. The valid types are Plexus role-hints (read more on Plexus for an explanation of roles and role-hints) of the component role <code>org.apache.maven.lifecycle.mapping.LifecycleMapping</code>. The current core packaging values are: <code>pom</code>, <code>jar</code>, <code>maven-plugin</code>, <code>ejb</code>, <code>war</code>, <code>ear</code>, <code>rar</code>. These define the default list of goals which execute on each corresponding build lifecycle stage for a particular package structure: see <a href="/ref/current/maven-core/default-bindings.html">Plugin Bindings for default Lifecycle Reference</a> for details.</p></section><section><a id="POM_Relationships"></a>
+<h3>POM Relationships</h3>
+<p>One powerful aspect of Maven is its handling of project relationships: this includes dependencies (and transitive dependencies), inheritance, and aggregation (multi-module projects).</p>
+<p>Dependency management has a long tradition of being a complicated mess for anything but the most trivial of projects. <em>“Jarmageddon”</em> quickly ensues as the dependency tree becomes large and complicated. <em>“Jar Hell”</em> follows, where versions of dependencies on one system are not equivalent to the versions developed with, either by the wrong version given, or conflicting versions between similarly named jars.</p>
+<p>Maven solves both problems through a common local repository from which to link projects correctly, versions and all.</p><section><a id="Dependencies"></a>
+<h4>Dependencies</h4>
+<p>The cornerstone of the POM is its <a href="/ref/current/maven-model/maven.html#class_dependency">dependency</a> list. Most projects depend on others to build and run correctly. Maven downloads the dependencies on compilation, as well as on other goals that require them. As an added bonus, Maven brings in the dependencies of those dependencies (transitive dependencies), allowing your list to focus solely on the dependencies your project requires.</p>
+
+<pre class="highlight"><code class="language-xml"><span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span><span class="nt">&gt;</span>
+  ...
+  <span class="nt">&lt;dependencies</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;dependency</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;groupId</span><span class="nt">&gt;</span>junit<span class="nt">&lt;/groupId</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;artifactId</span><span class="nt">&gt;</span>junit<span class="nt">&lt;/artifactId</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;version</span><span class="nt">&gt;</span>4.12<span class="nt">&lt;/version</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;type</span><span class="nt">&gt;</span>jar<span class="nt">&lt;/type</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;scope</span><span class="nt">&gt;</span>test<span class="nt">&lt;/scope</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;optional</span><span class="nt">&gt;</span>true<span class="nt">&lt;/optional</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;/dependency</span><span class="nt">&gt;</span>
+    ...
+  <span class="nt">&lt;/dependencies</span><span class="nt">&gt;</span>
+  ...
+<span class="nt">&lt;/project</span><span class="nt">&gt;</span>
+</code></pre>
+<ul>
+
+<li>
+<p><code>&lt;groupId&gt;</code>, <code>&lt;artifactId&gt;</code>, <code>&lt;version&gt;</code>: You will see these elements often. This trinity is used to compute the Maven coordinate of a specific project in time, demarcating it as a dependency of this project. The purpose of this computation is to select a version that matches all the dependency declarations (due to transitive dependencies, there can be multiple dependency declarations for the same artifact). The values should be:</p></li>
+<li>
+<p><code>&lt;groupId&gt;</code>, <code>&lt;artifactId&gt;</code>: directly the corresponding coordinates of the dependency,</p></li>
+<li>
+<p><code>&lt;version&gt;</code>: a <code>&lt;dependency version requirement specification&gt;</code>, that is used to compute the dependency's effective version.</p></li>
+</ul>
+<p>Since the dependency is described by Maven coordinates, you may be thinking: “This means that my project can only depend upon Maven artifacts!” The answer is, “Of course, but that's a good thing.” This forces you to depend solely on dependencies that Maven can manage.</p>
+<p>There are times, unfortunately, when a project cannot be downloaded from the central Maven repository. For example, a project may depend upon a jar that has a closed-source license which prevents it from being in a central repository. There are three methods for dealing with this scenario.</p>
+<ol style="list-style-type: decimal;">
+
+<li>
+<p>Install the dependency locally using the <em>Maven Install Plugin</em>. The method is the simplest recommended method. For example:</p>
+
+<pre><code class="nohighlight nocode">mvn install:install-file -Dfile=non-maven-proj.jar -DgroupId=some.group -DartifactId=non-maven-proj -Dversion=1 -Dpackaging=jar
+</code></pre>
+<p>Notice that an address is still required, only this time you use the command line and the Maven Install Plugin will create a POM for you with the given address.</p></li>
+<li>
+<p>Create your own repository and deploy it there. This is a favorite method for companies with an intranet and need to be able to keep everyone in synch. There is a Maven goal called <code>deploy:deploy-file</code> which is similar to the <code>install:install-file</code> goal (read the plugin's goal page for more information).</p></li>
+<li>
+<p>Set the dependency scope to <code>system</code> and define a <code>systemPath</code>. This is not recommended, however, but leads us to explaining the following elements:</p></li>
+</ol>
+<ul>
+
+<li>
+<p><code>&lt;classifier&gt;</code>: The classifier distinguishes artifacts that were built from the same POM but differ in content. It is some optional and arbitrary string that - if present - is appended to the artifact name just after the version number.</p>
+<p>As a motivation for this element, consider for example a project that offers an artifact targeting Java 11 but at the same time also an artifact that still supports Java 1.8. The first artifact could be equipped with the classifier <code>jdk11</code> and the second one with <code>jdk8</code> such that clients can choose which one to use.</p>
+<p>Another common use case for classifiers is to attach secondary artifacts to the project's main artifact. If you browse the Maven central repository, you will notice that the classifiers <code>sources</code> and <code>javadoc</code> are used to deploy the project source code and API docs along with the packaged class files.</p></li>
+<li>
+<p><code>&lt;type&gt;</code>: Corresponds to the chosen dependency type. This defaults to <code>jar</code>. While it usually represents the extension on the filename of the dependency, that is not always the case: a type can be mapped to a different extension and a classifier. The type often corresponds to the packaging used, though this is also not always the case. Some examples are <code>jar</code>, <code>ejb-client</code> and <code>test-jar</code>: see <a href="/ref/current/maven-core/artifact-handlers.html">default artifact handlers</a> for a list. New types can be defined by plugins that set <code>extensions</code> to true, so this is not a complete list.</p></li>
+<li>
+<p><code>&lt;scope&gt;</code>: This element refers to the classpath of the task at hand (compiling and runtime, testing, etc.) as well as how to limit the transitivity of a dependency. There are five scopes available:</p></li>
+<li>
+<p><code>&lt;compile&gt;</code> - this is the default scope, used if none is specified. Compile dependencies are available in all classpaths. Furthermore, those dependencies are propagated to dependent projects.</p></li>
+<li>
+<p><code>&lt;provided&gt;</code> - this is much like compile, but indicates you expect the JDK or a container to provide it at runtime. It is only available on the compilation and test classpath, and is not transitive.</p></li>
+<li>
+<p><code>&lt;runtime&gt;</code> - this scope indicates that the dependency is not required for compilation, but is for execution. It is in the runtime and test classpaths, but not the compile classpath.</p></li>
+<li>
+<p><code>&lt;test&gt;</code> - this scope indicates that the dependency is not required for normal use of the application, and is only available for the test compilation and execution phases. It is not transitive.</p></li>
+<li>
+<p><code>&lt;system&gt;</code> - this scope is similar to <code>provided</code> except that you have to provide the JAR which contains it explicitly. The artifact is always available and is not looked up in a repository.</p></li>
+<li>
+<p><code>&lt;systemPath&gt;</code>: is used <em>only</em> if the dependency <code>scope</code> is <code>system</code>. Otherwise, the build will fail if this element is set. The path must be absolute, so it is recommended to use a property to specify the machine-specific path (more on <code>properties</code> below), such as <code>${java.home}/lib</code>. Since it is assumed that system scope dependencies are installed <em>a priori</em>, Maven does not check the repositories for the project, but instead checks to ensure that the file exists. If not, Maven fails the build and suggests that you download and install it manually.</p></li>
+<li>
+<p><code>&lt;optional&gt;</code>: Marks a dependency optional when this project itself is a dependency. For example, imagine a project <code>A</code> that depends upon project <code>B</code> to compile a portion of code that may not be used at runtime. In that case, if project <code>X</code> adds project <code>A</code> as its own dependency, project <code>X</code> does not need project <code>B</code> on the classpath and Maven does not need to install project <code>B</code> at all. Symbolically, if <code>=&gt;</code> represents a required dependency, and <code>--&gt;</code> represents optional, although <code>A=&gt;B</code> may be the case when building <code>A</code> <code>X=&gt;A--&gt;B</code> would be the case when building <code>X</code>.</p>
+<p>In the shortest terms, <code>optional</code> lets other projects know that, when you use this project, you do not require this dependency in order to work correctly.</p></li>
+</ul><section><a id="Dependency_Management"></a>
+<h5>Dependency Management</h5>
+<p>Dependencies can be managed in the <code>dependencyManagement</code> section to affect the resolution of dependencies which are not fully qualified or to enforce the usage of a specific transitive dependency version. Further information in <a href="../dependencies/how-dependencies-work.html">Introduction to the Dependency Mechanism</a>.</p></section><section><a id="Dependency_Version_Requirement_Specification"></a>
+<h5>Dependency Version Requirement Specification</h5>
+<p>Dependencies' <code>version</code> elements define version requirements, which are used to compute dependency versions. Soft requirements can be replaced by different versions of the same artifact found elsewhere in the dependency graph. Hard requirements mandate a particular version or versions and override soft requirements. If there are no versions of a dependency that satisfy all the hard requirements for that artifact, the build fails.</p>
+<p>Version requirements have the following syntax:</p>
+<ul>
+
+<li><code>1.0</code>: Soft requirement for 1.0. Use 1.0 if no other version appears earlier in the dependency tree.</li>
+<li><code>[1.0]</code>: Hard requirement for 1.0. Use 1.0 and only 1.0.</li>
+<li><code>(,1.0]</code>: Hard requirement for any version &lt;= 1.0.</li>
+<li><code>[1.2,1.3]</code>: Hard requirement for any version between 1.2 and 1.3 inclusive.</li>
+<li><code>[1.0,2.0)</code>: 1.0 &lt;= x &lt; 2.0; Hard requirement for any version between 1.0 inclusive and 2.0 exclusive.</li>
+<li><code>[1.5,)</code>: Hard requirement for any version greater than or equal to 1.5.</li>
+<li><code>(,1.0],[1.2,)</code>: Hard requirement for any version less than or equal to 1.0 than or greater than or equal to 1.2, but not 1.1. Multiple requirements are separated by commas.</li>
+<li><code>(,1.1),(1.1,)</code>: Hard requirement for any version except 1.1; for example because 1.1 has a critical vulnerability.</li>
+</ul>
+<p>Maven picks the highest version of each project that satisfies all the hard requirements of the dependencies on that project. If no version satisfies all the hard requirements, the build fails.</p></section></section><section><a id="Version_Order_Specification"></a>
+<h4>Version Order Specification</h4>
+<p>If version strings are syntactically correct <a href="https://semver.org/spec/v1.0.0.html" class="externalLink">Semantic Versioning 1.0.0</a> version numbers, then in most cases version comparison follows the precedence rules outlined in that specification. These versions are the commonly encountered alphanumeric ASCII strings such as 2.15.2-alpha. More precisely, this is true if both version strings to be compared match the “valid semver” production in the BNF grammar for semantic versioning and both version strings only use lower case letters. Maven does not consider any semantics implied by Semantic Versioning.</p>
+<p><strong>Important</strong>: This is only true for Semantic Versioning <em>1.0.0</em>. The Maven version order algorithm is not compatible with Semantic Versioning <em>2.0.0</em>. In particular, Maven does not special case the plus sign or consider build identifiers.</p>
+<p><strong>Important</strong>: Maven compares version strings using case-insensitive rules. Semver is case-sensitive. Thus in Semver, 3.2-ALPHA1 compares greater than 3.2-alpha1. In Maven, 3.2-ALPHA1 compares equal to 3.2-alpha1.</p>
+<p>When version strings do not follow semantic versioning, a more complex set of rules is required. Each Maven version string is split into tokens between dots (‘<code>.</code>’), hyphens (‘<code>-</code>’), underscores (‘<code>_</code>’), and transitions between ASCII digits and characters. The separator is recorded and will have effect on the order. A transition between ASCII digits and characters is equivalent to a hyphen. Empty tokens are replaced with ‘<code>0</code>’. This gives a sequence of version numbers (numeric tokens) and version qualifiers (non-numeric tokens) with ‘<code>.</code>’, ‘<code>_</code>’ or ‘<code>-</code>’ prefixes.</p>
+<p>Splitting and Replacing Examples:</p>
+<ul>
+
+<li><code>1-1.foo-bar1baz-.1</code> -&gt; <code>1-1.foo-bar-1-baz-0.1</code></li>
+</ul>
+<p>Then, starting from the end of the version, the trailing “null” values (<code>0</code>, <code>""</code>, “<code>final</code>”, “<code>ga</code>”) are trimmed. This process is repeated at each remaining hyphen from end to start.</p>
+<p>Trimming Examples:</p>
+<ul>
+
+<li><code>1.0.0</code> -&gt; <code>1</code></li>
+<li><code>1.ga</code> -&gt; <code>1</code></li>
+<li><code>1.final</code> -&gt; <code>1</code></li>
+<li><code>1.0</code> -&gt; <code>1</code></li>
+<li><code>1.</code> -&gt; <code>1</code></li>
+<li><code>1-</code> -&gt; <code>1</code></li>
+<li><code>1_</code> -&gt; <code>1</code></li>
+<li><code>1.0.0-foo.0.0</code> -&gt; <code>1-foo</code></li>
+<li><code>1.0.0-0.0.0</code> -&gt; <code>1</code></li>
+</ul>
+<p>Following tokenization and trimming, the shorter token sequence is padded with enough “<code>null</code>” values with matching prefix to have the same length as the longer one. Padded “<code>null</code>” values depend on the separator of the other version: <code>0</code> for ‘<code>.</code>’, ‘<code></code>’ for ‘<code>-</code>’, ‘<code>_</code>’ and a transition between ASCII digits and characters.</p>
+<p>Then the two sequences are compared token by token from beginning to end (left-to-right in the original strings). If each token in one sequence compares equal to the corresponding token in the other sequence, then the two version strings are equal. Otherwise, the result is the comparison of the tokens from the first position in the sequences where they are not equal: less than if the first non-matching token in the first string is less than the corresponding token in the second string, greater than if the first non-matching token in the first string is greater than the corresponding token in the second string.</p>
+<p>Individual tokens are compared according to the following rules:</p>
+<ul>
+
+<li>
+<p>Tokens comprised of the ASCII digits 0-9 are called “numeric tokens”. Tokens comprised of any other characters, including non-ASCII digits, are called “qualifiers”.</p></li>
+<li>
+<p>If the separator is the same, then compare the token:</p>
+<ul>
+
+<li>
+<p>Numeric tokens have the usual ordering of integers.</p></li>
+<li>
+<p>Qualifiers are first converted to lower case in the English locale. Then they are ordered as by the <code>compareTo()</code> method of <code>java.lang.String</code>, except for the following tokens which come first in this order:</p>
+<p><code>alpha</code> &lt; <code>beta</code> &lt; <code>milestone</code> &lt; <code>rc</code> = <code>cr</code> &lt; <code>snapshot</code> &lt; <code></code> = <code>final</code> = <code>ga</code> = <code>release</code> &lt; <code>sp</code></p></li>
+<li>
+<p>the <code>alpha</code>, <code>beta</code> and <code>milestone</code> qualifiers can respectively be shortened to <code>a</code>, <code>b</code> and <code>m</code> when directly followed by a number.</p></li>
+<li>
+<p>Alphabetic tokens other than the special cases described above come before numeric tokens.</p></li>
+<li>
+<p>Alphabetic tokens are compared in a case-insensitive fashion in the <a href="https://docs.oracle.com/javase/8/docs/api/java/util/Locale.html#ENGLISH" class="externalLink">English locale</a>. For example, <code>A</code> and <code>a</code> are treated the same as are <code>i</code> and <code>I</code> and <code>é</code> and <code>É</code>.</p></li>
+</ul></li>
+<li>
+<p>else <code>.qualifier</code> = <code>-qualifier</code> &lt; <code>-number</code> &lt; <code>.number</code></p></li>
+<li>
+<p><code>alpha</code> &lt; <code>a1</code> &lt; <code>beta</code> &lt; <code>b1</code> &lt; <code>milestone</code> &lt; <code>m1</code> &lt; <code>rc</code> = <code>cr</code> &lt; <code>snapshot</code> &lt; <code></code> = <code>final</code> = <code>ga</code> = <code>release</code> &lt; <code>sp</code></p></li>
+</ul>
+<p>Following semver rules is encouraged, and some qualifiers are discouraged:</p>
+<ul>
+
+<li>Prefer <code>alpha</code>, <code>beta</code>, and <code>milestone</code> qualifiers over <code>ea</code> and <code>preview</code>.</li>
+<li>Prefer <code>1.0.0-RC1</code> over <code>1.0.0.RC1</code>.</li>
+<li>The usage of <code>CR</code> qualifier is discouraged. Use <code>RC</code> instead.</li>
+<li>The usage of <code>final</code>, <code>ga</code>, and <code>release</code> qualifiers is discouraged. Use no qualifier instead.</li>
+<li>The usage of <code>SP</code> qualifier is discouraged. Increment the patch version instead.</li>
+<li>Avoid non-ASCII characters, including non-ASCII digits, which may sort in surprising ways.</li>
+<li>Avoid upper case characters.</li>
+</ul>
+<p>End Result Examples:</p>
+<ul>
+
+<li><code>1</code> &lt; <code>1.1</code> (number padding)</li>
+<li><code>1-snapshot</code> &lt; <code>1</code> &lt; <code>1-sp</code> (qualifier padding)</li>
+<li><code>1-foo2</code> &lt; <code>1-foo10</code> (correctly automatically “switching” to numeric order)</li>
+<li><code>1.foo</code> = <code>1-foo</code> &lt; <code>1-1</code> &lt; <code>1.1</code></li>
+<li><code>1.ga</code> = <code>1-ga</code> = <code>1-0</code> = <code>1_0</code> = <code>1.0</code> = <code>1</code> (removing of trailing “null” values)</li>
+<li><code>1-sp</code> &gt; <code>1-ga</code></li>
+<li><code>1-sp.1</code> &gt; <code>1-ga.1</code></li>
+<li><code>1-sp-1</code> &lt; <code>1-ga-1</code></li>
+<li><code>1-a1</code> = <code>1-alpha-1</code></li>
+<li><code>1.0-alpha1</code> = <code>1.0-ALPHA1</code> (case insensitivity)</li>
+<li><code>1.7</code> &gt; <code>1.K</code></li>
+<li><code>5.zebra</code> &gt; <code>5.aardvark</code></li>
+<li><code>1.α</code> &gt; <code>1.b</code> (Note the Greek letter alpha.)</li>
+</ul>
+<p><strong>Note</strong>: Contrary to what was stated in some design documents, for version order, snapshots are not treated differently than releases or any other qualifier.</p>
+<p><strong>Note</strong>: As <code>2.0-rc1</code> &lt; <code>2.0</code>, the version requirement <code>[1.0,2.0)</code> excludes <code>2.0</code> but includes version <code>2.0-rc1</code>, which is contrary to what most people expect. In addition, Gradle interprets it differently, resulting in different dependency trees for the same POM. If the intention is to restrict it to <code>1.*</code> versions, the better version requirement is <code>[1,1.999999]</code> or <code>[1,2-alpha)</code>.</p><section><a id="Version_Order_Testing"></a>
+<h5>Version Order Testing</h5>
+<p>The maven distribution includes a tool to check version order. It was used to produce the examples in the previous paragraphs. Feel free to run it yourself when in doubt. You can run it like this:</p>
+
+<pre><code class="nohighlight nocode">java -jar ${MAVEN_HOME}/lib/maven-artifact-${currentStableVersion}.jar [versions...]
+</code></pre>
+<p>example:</p>
+
+<pre><code class="nohighlight nocode">$ java -jar ./lib/maven-artifact-${currentStableVersion}.jar  1 2 1.1
+Display parameters as parsed by Maven (in canonical form and as a list of tokens) and comparison result:
+1. 1 -&gt; 1; tokens: [1]
+   1 &lt; 2
+2. 2 -&gt; 2; tokens: [2]
+   2 &gt; 1.1
+3. 1.1 -&gt; 1.1; tokens: [1, 1]
+</code></pre></section><section><a id="Exclusions"></a>
+<h5>Exclusions</h5>
+<p>It is sometimes useful to limit a dependency's transitive dependencies. A dependency may have incorrectly specified scopes, or dependencies that conflict with other dependencies in your project. Exclusions tell Maven not to include a specified artifact in the classpath even if it is a dependency of one or more of this project's dependencies (a transitive dependency). For example, <code>maven-embedder</code> depends on <code>maven-core</code>. Suppose you want to depend on maven-embedder but do not want to include maven-core or its dependencies in the classpath. Then add <code>maven-core</code> as an <code>exclusion</code> in the element that declares the dependency on maven-embedder:</p>
+
+<pre class="highlight"><code class="language-xml"><span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span><span class="nt">&gt;</span>
+  ...
+  <span class="nt">&lt;dependencies</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;dependency</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;groupId</span><span class="nt">&gt;</span>org.apache.maven<span class="nt">&lt;/groupId</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;artifactId</span><span class="nt">&gt;</span>maven-embedder<span class="nt">&lt;/artifactId</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;version</span><span class="nt">&gt;</span>${currentStableVersion}<span class="nt">&lt;/version</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;exclusions</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;exclusion</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;groupId</span><span class="nt">&gt;</span>org.apache.maven<span class="nt">&lt;/groupId</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;artifactId</span><span class="nt">&gt;</span>maven-core<span class="nt">&lt;/artifactId</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;/exclusion</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;/exclusions</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;/dependency</span><span class="nt">&gt;</span>
+    ...
+  <span class="nt">&lt;/dependencies</span><span class="nt">&gt;</span>
+  ...
+<span class="nt">&lt;/project</span><span class="nt">&gt;</span>
+</code></pre>
+<p>This only removes the path to maven-core from this one dependency. If maven-core appears as a direct or transitive dependency elsewhere in the POM, it can still be added to the classpath.</p>
+<p>Wildcard excludes make it easy to exclude all of a dependency's transitive dependencies. In the case below, you may be working with the maven-embedder and you want to manage the dependencies you use, so you exclude all the transitive dependencies:</p>
+
+<pre class="highlight"><code class="language-xml"><span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span><span class="nt">&gt;</span>
+  ...
+  <span class="nt">&lt;dependencies</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;dependency</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;groupId</span><span class="nt">&gt;</span>org.apache.maven<span class="nt">&lt;/groupId</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;artifactId</span><span class="nt">&gt;</span>maven-embedder<span class="nt">&lt;/artifactId</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;version</span><span class="nt">&gt;</span>3.8.6<span class="nt">&lt;/version</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;exclusions</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;exclusion</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;groupId</span><span class="nt">&gt;</span>*<span class="nt">&lt;/groupId</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;artifactId</span><span class="nt">&gt;</span>*<span class="nt">&lt;/artifactId</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;/exclusion</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;/exclusions</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;/dependency</span><span class="nt">&gt;</span>
+    ...
+  <span class="nt">&lt;/dependencies</span><span class="nt">&gt;</span>
+  ...
+<span class="nt">&lt;/project</span><span class="nt">&gt;</span>
+</code></pre>
+<p><code>&lt;exclusions&gt;</code> contain one or more <code>exclusion</code> elements, each containing a <code>groupId</code> and <code>artifactId</code> denoting a dependency to exclude. Unlike <code>optional</code>, which may or may not be installed and used, <code>exclusions</code> actively remove artifacts from the dependency tree.</p></section></section><section><a id="Inheritance"></a>
+<h4>Inheritance</h4>
+<p>One powerful addition that Maven brings to build management is the concept of project inheritance. Although in build systems such as Ant inheritance can be simulated, Maven makes project inheritance explicit in the project object model.</p>
+
+<pre class="highlight"><code class="language-xml"><span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;modelVersion</span><span class="nt">&gt;</span>4.0.0<span class="nt">&lt;/modelVersion</span><span class="nt">&gt;</span>
+
+  <span class="nt">&lt;groupId</span><span class="nt">&gt;</span>org.codehaus.mojo<span class="nt">&lt;/groupId</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;artifactId</span><span class="nt">&gt;</span>my-parent<span class="nt">&lt;/artifactId</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;version</span><span class="nt">&gt;</span>2.0<span class="nt">&lt;/version</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;packaging</span><span class="nt">&gt;</span>pom<span class="nt">&lt;/packaging</span><span class="nt">&gt;</span>
+<span class="nt">&lt;/project</span><span class="nt">&gt;</span>
+</code></pre>
+<p>The <code>&lt;packaging&gt;</code> type is required to be <code>pom</code> for <em>parent</em> and <em>aggregation</em> (multi-module) projects. These types define the goals bound to a set of lifecycle stages. For example, if packaging is <code>jar</code>, then the <code>package</code> phase will execute the <code>jar:jar</code> goal. Now we may add values to the parent POM, which will be inherited by its children. Most elements from the parent POM are inherited by its children, including:</p>
+<ul>
+
+<li>groupId</li>
+<li>version</li>
+<li>description</li>
+<li>url</li>
+<li>inceptionYear</li>
+<li>organization</li>
+<li>licenses</li>
+<li>developers</li>
+<li>contributors</li>
+<li>mailingLists</li>
+<li>scm</li>
+<li>issueManagement</li>
+<li>ciManagement</li>
+<li>properties</li>
+<li>dependencyManagement</li>
+<li>dependencies</li>
+<li>repositories</li>
+<li>pluginRepositories</li>
+<li>build
+<ul>
+
+<li>plugin executions with matching ids</li>
+<li>plugin configuration</li>
+<li>etc.</li>
+</ul></li>
+<li>reporting</li>
+</ul>
+<p>Notable elements which are <strong>not</strong> inherited include:</p>
+<ul>
+
+<li>artifactId</li>
+<li>name</li>
+<li>prerequisites</li>
+<li>profiles (but the effects of active profiles from parent POMs are)</li>
+</ul>
+
+<pre class="highlight"><code class="language-xml"><span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;modelVersion</span><span class="nt">&gt;</span>4.0.0<span class="nt">&lt;/modelVersion</span><span class="nt">&gt;</span>
+
+  <span class="nt">&lt;parent</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;groupId</span><span class="nt">&gt;</span>org.codehaus.mojo<span class="nt">&lt;/groupId</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;artifactId</span><span class="nt">&gt;</span>my-parent<span class="nt">&lt;/artifactId</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;version</span><span class="nt">&gt;</span>2.0<span class="nt">&lt;/version</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;relativePath</span><span class="nt">&gt;</span>../my-parent<span class="nt">&lt;/relativePath</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;/parent</span><span class="nt">&gt;</span>
+
+  <span class="nt">&lt;artifactId</span><span class="nt">&gt;</span>my-project<span class="nt">&lt;/artifactId</span><span class="nt">&gt;</span>
+<span class="nt">&lt;/project</span><span class="nt">&gt;</span>
+</code></pre>
+<p>Notice the <code>&lt;relativePath&gt;</code> element. It is not required, but may be used as a signifier to Maven to first search the path given for this project's parent, before searching the local and then remote repositories.</p>
+<p>To see inheritance in action, just have a look at the <a href="https://github.com/apache/maven-apache-parent/blob/master/pom.xml" class="externalLink">ASF</a> or <a href="https://github.com/apache/maven-parent/blob/master/pom.xml" class="externalLink">Maven</a> parent POM's.</p>
+<p>Detailed inheritance rules are outlined in <a href="https://maven.apache.org/ref/3-LATEST/maven-model-builder/index.html#Inheritance_Assembly" class="externalLink">Maven Model Builder</a>. All URLs are transformed when being inherited by default. The other ones are just inherited as is. For plugin configuration you can overwrite the inheritance behaviour with the attributes <code>combine.children</code> or <code>combine.self</code> outlined in the plugin sections.</p><section><a id="The_Super_POM"></a>
+<h5>The Super POM</h5>
+<p>Similar to the inheritance of objects in object-oriented programming, POMs that extend a parent POM inherit certain values from that parent. Moreover, just as Java objects ultimately inherit from <code>java.lang.Object</code>, all Project Object Models inherit from a base Super POM. The snippet below is the Super POM for Maven 3.9.12.</p>
+<p>Note: The latest Super POM for Maven 3 is available <a href="https://maven.apache.org/ref/3-LATEST/maven-model-builder/super-pom.html" class="externalLink">here</a>.</p>
+
+<pre class="highlight"><code class="language-xml"><span class="nt">&lt;project</span><span class="nt">&gt;</span>
+  
+  <span class="nt">&lt;modelVersion</span><span class="nt">&gt;</span>4.0.0<span class="nt">&lt;/modelVersion</span><span class="nt">&gt;</span>
+  
+  <span class="nt">&lt;repositories</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;repository</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;id</span><span class="nt">&gt;</span>central<span class="nt">&lt;/id</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;name</span><span class="nt">&gt;</span>Central Repository<span class="nt">&lt;/name</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;url</span><span class="nt">&gt;</span>https://repo.maven.apache.org/maven2<span class="nt">&lt;/url</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;layout</span><span class="nt">&gt;</span>default<span class="nt">&lt;/layout</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;snapshots</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;enabled</span><span class="nt">&gt;</span>false<span class="nt">&lt;/enabled</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;/snapshots</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;/repository</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;/repositories</span><span class="nt">&gt;</span>
+  
+  <span class="nt">&lt;pluginRepositories</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;pluginRepository</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;id</span><span class="nt">&gt;</span>central<span class="nt">&lt;/id</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;name</span><span class="nt">&gt;</span>Central Repository<span class="nt">&lt;/name</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;url</span><span class="nt">&gt;</span>https://repo.maven.apache.org/maven2<span class="nt">&lt;/url</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;layout</span><span class="nt">&gt;</span>default<span class="nt">&lt;/layout</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;snapshots</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;enabled</span><span class="nt">&gt;</span>false<span class="nt">&lt;/enabled</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;/snapshots</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;/pluginRepository</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;/pluginRepositories</span><span class="nt">&gt;</span>
+  
+  <span class="nt">&lt;build</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;directory</span><span class="nt">&gt;</span>${project.basedir}/target<span class="nt">&lt;/directory</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;outputDirectory</span><span class="nt">&gt;</span>${project.build.directory}/classes<span class="nt">&lt;/outputDirectory</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;finalName</span><span class="nt">&gt;</span>${project.artifactId}-${project.version}<span class="nt">&lt;/finalName</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;testOutputDirectory</span><span class="nt">&gt;</span>${project.build.directory}/test-classes<span class="nt">&lt;/testOutputDirectory</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;sourceDirectory</span><span class="nt">&gt;</span>${project.basedir}/src/main/java<span class="nt">&lt;/sourceDirectory</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;scriptSourceDirectory</span><span class="nt">&gt;</span>${project.basedir}/src/main/scripts<span class="nt">&lt;/scriptSourceDirectory</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;testSourceDirectory</span><span class="nt">&gt;</span>${project.basedir}/src/test/java<span class="nt">&lt;/testSourceDirectory</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;resources</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;resource</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;directory</span><span class="nt">&gt;</span>${project.basedir}/src/main/resources<span class="nt">&lt;/directory</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;/resource</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;/resources</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;testResources</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;testResource</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;directory</span><span class="nt">&gt;</span>${project.basedir}/src/test/resources<span class="nt">&lt;/directory</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;/testResource</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;/testResources</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;pluginManagement</span><span class="nt">&gt;</span>
+      <span class="c">&lt;!-- NOTE: These plugins will be removed from future versions of the super POM --&gt;</span>
+      <span class="c">&lt;!-- They are kept for the moment as they are very unlikely to conflict with lifecycle mappings (MNG-4453) --&gt;</span>
+      <span class="nt">&lt;plugins</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;plugin</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;artifactId</span><span class="nt">&gt;</span>maven-antrun-plugin<span class="nt">&lt;/artifactId</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;version</span><span class="nt">&gt;</span>3.1.0<span class="nt">&lt;/version</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;/plugin</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;plugin</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;artifactId</span><span class="nt">&gt;</span>maven-assembly-plugin<span class="nt">&lt;/artifactId</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;version</span><span class="nt">&gt;</span>3.7.1<span class="nt">&lt;/version</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;/plugin</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;plugin</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;artifactId</span><span class="nt">&gt;</span>maven-dependency-plugin<span class="nt">&lt;/artifactId</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;version</span><span class="nt">&gt;</span>3.7.0<span class="nt">&lt;/version</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;/plugin</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;plugin</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;artifactId</span><span class="nt">&gt;</span>maven-release-plugin<span class="nt">&lt;/artifactId</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;version</span><span class="nt">&gt;</span>3.0.1<span class="nt">&lt;/version</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;/plugin</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;/plugins</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;/pluginManagement</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;/build</span><span class="nt">&gt;</span>
+  
+  <span class="nt">&lt;reporting</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;outputDirectory</span><span class="nt">&gt;</span>${project.build.directory}/site<span class="nt">&lt;/outputDirectory</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;/reporting</span><span class="nt">&gt;</span>
+  
+  <span class="nt">&lt;profiles</span><span class="nt">&gt;</span>
+    <span class="c">&lt;!-- NOTE: The release profile will be removed from future versions of the super POM --&gt;</span>
+    <span class="nt">&lt;profile</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;id</span><span class="nt">&gt;</span>release-profile<span class="nt">&lt;/id</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;activation</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;property</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;name</span><span class="nt">&gt;</span>performRelease<span class="nt">&lt;/name</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;value</span><span class="nt">&gt;</span>true<span class="nt">&lt;/value</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;/property</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;/activation</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;build</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;plugins</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;plugin</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;inherited</span><span class="nt">&gt;</span>true<span class="nt">&lt;/inherited</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;artifactId</span><span class="nt">&gt;</span>maven-source-plugin<span class="nt">&lt;/artifactId</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;executions</span><span class="nt">&gt;</span>
+              <span class="nt">&lt;execution</span><span class="nt">&gt;</span>
+                <span class="nt">&lt;id</span><span class="nt">&gt;</span>attach-sources<span class="nt">&lt;/id</span><span class="nt">&gt;</span>
+                <span class="nt">&lt;goals</span><span class="nt">&gt;</span>
+                  <span class="nt">&lt;goal</span><span class="nt">&gt;</span>jar-no-fork<span class="nt">&lt;/goal</span><span class="nt">&gt;</span>
+                <span class="nt">&lt;/goals</span><span class="nt">&gt;</span>
+              <span class="nt">&lt;/execution</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;/executions</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;/plugin</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;plugin</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;inherited</span><span class="nt">&gt;</span>true<span class="nt">&lt;/inherited</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;artifactId</span><span class="nt">&gt;</span>maven-javadoc-plugin<span class="nt">&lt;/artifactId</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;executions</span><span class="nt">&gt;</span>
+              <span class="nt">&lt;execution</span><span class="nt">&gt;</span>
+                <span class="nt">&lt;id</span><span class="nt">&gt;</span>attach-javadocs<span class="nt">&lt;/id</span><span class="nt">&gt;</span>
+                <span class="nt">&lt;goals</span><span class="nt">&gt;</span>
+                  <span class="nt">&lt;goal</span><span class="nt">&gt;</span>jar<span class="nt">&lt;/goal</span><span class="nt">&gt;</span>
+                <span class="nt">&lt;/goals</span><span class="nt">&gt;</span>
+              <span class="nt">&lt;/execution</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;/executions</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;/plugin</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;plugin</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;inherited</span><span class="nt">&gt;</span>true<span class="nt">&lt;/inherited</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;artifactId</span><span class="nt">&gt;</span>maven-deploy-plugin<span class="nt">&lt;/artifactId</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;/plugin</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;/plugins</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;/build</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;/profile</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;/profiles</span><span class="nt">&gt;</span>
+  
+<span class="nt">&lt;/project</span><span class="nt">&gt;</span>
+</code></pre>
+<p>You can take a look at how the Super POM affects your Project Object Model by creating a minimal <code>pom.xml</code> and executing on the command line: <code>mvn help:effective-pom</code></p></section><section><a id="Dependency_Management_1"></a>
+<h5>Dependency Management</h5>
+<p>Besides inheriting certain top-level elements, parents have elements to configure values for child POMs and transitive dependencies. One of those elements is <code>&lt;dependencyManagement&gt;</code>.</p>
+<p><code>&lt;dependencyManagement&gt;</code> is used by a POM to help manage dependency information across all of its children. If the <code>my-parent</code> project uses <code>dependencyManagement</code> to define a dependency on <code>junit:junit:4.12</code>, then POMs inheriting from this one can set their dependency giving the <code>groupId</code>=<code>junit</code> and <code>artifactId</code>=<code>junit</code> only and Maven will fill in the <code>version</code> set by the parent. The benefits of this method are obvious. Dependency details can be set in one central location, which propagates to all inheriting POMs.</p>
+<p>Note that the version and scope of artifacts which are incorporated from transitive dependencies are also controlled by version specifications in a dependency management section. This can lead to unexpected consequences. Consider a case in which your project uses two dependencies, <code>dep1</code> and <code>dep2</code>. <code>dep2</code> in turn also uses <code>dep1</code>, and requires a particular minimum version to function. If you then use <code>dependencyManagement</code> to specify an older version, <code>dep2</code> will be forced to use the older version, and fail. So, you must be careful to check the entire dependency tree to avoid this problem; <code>mvn dependency:tree</code> is helpful.</p></section></section><section><a id="Aggregation_.28or_Multi-Module.29"></a>
+<h4>Aggregation (or Multi-Module)</h4>
+<p>A project with modules is known as a multi-module, or aggregator project. Modules are projects that this POM lists, and are executed as a group. A <code>pom</code> packaged project may aggregate the build of a set of projects by listing them as modules, which are relative paths to the directories or the POM files of those projects.</p>
+
+<pre class="highlight"><code class="language-xml"><span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;modelVersion</span><span class="nt">&gt;</span>4.0.0<span class="nt">&lt;/modelVersion</span><span class="nt">&gt;</span>
+
+  <span class="nt">&lt;groupId</span><span class="nt">&gt;</span>org.codehaus.mojo<span class="nt">&lt;/groupId</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;artifactId</span><span class="nt">&gt;</span>my-parent<span class="nt">&lt;/artifactId</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;version</span><span class="nt">&gt;</span>2.0<span class="nt">&lt;/version</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;packaging</span><span class="nt">&gt;</span>pom<span class="nt">&lt;/packaging</span><span class="nt">&gt;</span>
+
+  <span class="nt">&lt;modules</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;module</span><span class="nt">&gt;</span>my-project<span class="nt">&lt;/module</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;module</span><span class="nt">&gt;</span>another-project<span class="nt">&lt;/module</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;module</span><span class="nt">&gt;</span>third-project/pom-example.xml<span class="nt">&lt;/module</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;/modules</span><span class="nt">&gt;</span>
+<span class="nt">&lt;/project</span><span class="nt">&gt;</span>
+</code></pre>
+<p>You do not need to consider the inter-module dependencies yourself when listing the modules; i.e. the ordering of the modules given by the POM is not important. Maven will topologically sort the modules such that dependencies are always build before dependent modules.</p>
+<p>To see aggregation in action, have a look at the <a href="https://github.com/apache/maven/blob/master/pom.xml" class="externalLink">Maven base POM</a>.</p><section><a id="A_final_note_on_.28Inheritance_v._Aggregation.29"></a>
+<h5>A final note on (Inheritance v. Aggregation)</h5>
+<p>Inheritance and aggregation create a nice dynamic to control builds through a single, high-level POM. You often see projects that are both parents and aggregators. For example, the entire Maven core runs through a single base POM <a href="https://github.com/apache/maven/blob/master/pom.xml" class="externalLink"><code>org.apache.maven:maven</code></a>, so building the Maven project can be executed by a single command: <code>mvn compile</code>. However, an aggregator project and a parent project are both POM projects, they are not one and the same and should not be confused. A POM project may be inherited from - but does not necessarily have - any modules that it aggregates. Conversely, a POM project may aggregate projects that do not inherit from it.</p></section></section></section></section><section><a id="Properties"></a>
+<h2>Properties</h2>
+<p>Properties are the last required piece to understand POM basics. Maven properties are value placeholders, like properties in Ant. Their values are accessible anywhere within a POM by using the notation <code>$\{X\}</code>, where <code>X</code> is the property. Or they can be used by plugins as default values, for example:</p>
+
+<pre class="highlight"><code class="language-xml"><span class="nt">&lt;project</span><span class="nt">&gt;</span>
+  ...
+  <span class="nt">&lt;properties</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;maven.compiler.source</span><span class="nt">&gt;</span>1.7<span class="nt">&lt;/maven.compiler.source</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;maven.compiler.target</span><span class="nt">&gt;</span>1.7<span class="nt">&lt;/maven.compiler.target</span><span class="nt">&gt;</span>
+    <span class="c">&lt;!-- Following project.-properties are reserved for Maven in will become elements in a future POM definition. --&gt;</span>
+    <span class="c">&lt;!-- Don't start your own properties properties with project. --&gt;</span>
+    <span class="nt">&lt;project.build.sourceEncoding</span><span class="nt">&gt;</span>UTF-8<span class="nt">&lt;/project.build.sourceEncoding</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;project.reporting.outputEncoding</span><span class="nt">&gt;</span>UTF-8<span class="nt">&lt;/project.reporting.outputEncoding</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;/properties</span><span class="nt">&gt;</span>
+  ...
+<span class="nt">&lt;/project</span><span class="nt">&gt;</span>
+</code></pre>
+<p>They come in five different styles:</p>
+<ol style="list-style-type: decimal;">
+
+<li>
+<p><code>env.X</code>: Prefixing a variable with “env.” will return the shell's environment variable. For example, <code>${env.PATH}</code> contains the PATH environment variable.</p>
+<p><em>Note</em>: While environment variables themselves are case-insensitive on Windows, lookup of properties is case-sensitive. In other words, while the Windows shell returns the same value for <code>%PATH%</code> and <code>%Path%</code>, Maven distinguishes between <code>${env.PATH}</code> and <code>${env.Path}</code>. <strong>The names of environment variables are normalized to all upper-case</strong> for the sake of reliability.</p></li>
+<li>
+<p><code>project.x</code>: A dot (<code>.</code>) notated path in the POM will contain the corresponding element's value. For example: <code>&lt;project&gt;&lt;version&gt;1.0&lt;/version&gt;&lt;/project</code>&gt; is accessible via <code>${project.version}</code>.</p></li>
+<li>
+<p><code>settings.x</code>: A dot (<code>.</code>) notated path in the <code>settings.xml</code> will contain the corresponding element's value. For example: <code>&lt;settings&gt;&lt;offline&gt;false&lt;/offline&gt;&lt;/settings</code>&gt; is accessible via <code>${settings.offline}</code>.</p></li>
+<li>
+<p>Java System Properties: All properties accessible via <code>java.lang.System.getProperties()</code> are available as POM properties, such as <code>${java.home}</code>.</p></li>
+<li>
+<p><code>x</code>: Set within a <code>&lt;properties /</code>&gt; element in the POM. The value of <code>&lt;properties&gt;&lt;someVar&gt;value&lt;/someVar&gt;&lt;/properties</code>&gt; may be used as <code>${someVar}</code>.</p></li>
+</ol></section><section><a id="Build_Settings"></a>
+<h2>Build Settings</h2>
+<p>Beyond the basics of the POM given above, there are two more elements that must be understood before claiming basic competency of the POM. They are the <code>&lt;build&gt;</code> element, that handles things like declaring your project's directory structure and managing plugins; and the <code>&lt;reporting&gt;</code> element, that largely mirrors the build element for reporting purposes.</p></section><section><a id="Build"></a>
+<h2>Build</h2>
+<p>According to the POM 4.0.0 XSD, the <code>build</code> element is conceptually divided into two parts: there is a <code>BaseBuild</code> type which contains the set of elements common to both <code>build</code> elements (the top-level build element under <code>project</code> and the build element under <code>profiles</code>, covered below); and there is the <code>Build</code> type, which contains the <code>BaseBuild</code> set as well as more elements for the top level definition. Let us begin with an analysis of the common elements between the two.</p>
+<p><em>Note</em>: These different <code>build</code> elements may be denoted “project build” and “profile build”.</p>
+
+<pre class="highlight"><code class="language-xml"><span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span><span class="nt">&gt;</span>
+  ...
+  <span class="c">&lt;!-- "Project Build" contains more elements than just the BaseBuild set --&gt;</span>
+  <span class="nt">&lt;build</span><span class="nt">&gt;</span>...<span class="nt">&lt;/build</span><span class="nt">&gt;</span>
+
+  <span class="nt">&lt;profiles</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;profile</span><span class="nt">&gt;</span>
+      <span class="c">&lt;!-- "Profile Build" contains a subset of "Project Build"s elements --&gt;</span>
+      <span class="nt">&lt;build</span><span class="nt">&gt;</span>...<span class="nt">&lt;/build</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;/profile</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;/profiles</span><span class="nt">&gt;</span>
+<span class="nt">&lt;/project</span><span class="nt">&gt;</span>
+</code></pre><section><section><a id="The_BaseBuild_Element_Set"></a>
+<h4>The BaseBuild Element Set</h4>
+<p><code>BaseBuild</code> is exactly as it sounds: the base set of elements between the two <code>build</code> elements in the POM.</p>
+
+<pre class="highlight"><code class="language-xml"><span class="nt">&lt;build</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;defaultGoal</span><span class="nt">&gt;</span>install<span class="nt">&lt;/defaultGoal</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;directory</span><span class="nt">&gt;</span>${project.basedir}/target<span class="nt">&lt;/directory</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;finalName</span><span class="nt">&gt;</span>${artifactId}-${version}<span class="nt">&lt;/finalName</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;filters</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;filter</span><span class="nt">&gt;</span>filters/filter1.properties<span class="nt">&lt;/filter</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;/filters</span><span class="nt">&gt;</span>
+  ...
+<span class="nt">&lt;/build</span><span class="nt">&gt;</span>
+</code></pre>
+<ul>
+
+<li>
+<p><strong>defaultGoal</strong>: the default goal or phase to execute if none is given. If a goal is given, it should be defined as it is in the command line (such as <code>jar:jar</code>). The same goes for if a phase is defined (such as install).</p></li>
+<li>
+<p><strong>directory</strong>: This is the directory where the build will dump its files or, in Maven parlance, the build's target. It aptly defaults to <code>${project.basedir}/target</code>.</p></li>
+<li>
+<p><strong>finalName</strong>: This is the name of the bundled project when it is finally built (sans the file extension, for example: <code>my-project-1.0.jar</code>). It defaults to <code>${artifactId}-${version}</code>. The term “finalName” is kind of a misnomer, however, as plugins that build the bundled project have every right to ignore/modify this name (but they usually do not). For example, if the <code>maven-jar-plugin</code> is configured to give a jar a <code>classifier</code> of <code>test</code>, then the actual jar defined above will be built as <code>my-project-1.0-test.jar</code>.</p></li>
+<li>
+<p><strong>filter</strong>: Defines <code>*.properties</code> files that contain a list of properties that apply to resources which accept their settings (covered below). In other words, the “<code>name=value</code>” pairs defined within the filter files replace <code>$\{name\}</code> strings within resources on build. The example above defines the <code>filter1.properties</code> file under the <code>filters/</code> directory. Maven's default filter directory is <code>${project.basedir}/src/main/filters/</code>.</p></li>
+</ul>
+<p>For a more comprehensive look at what filters are and what they can do, take a look at the <a href="../../guides/getting-started">quick start guide</a>.</p><section><a id="Resources"></a>
+<h5>Resources</h5>
+<p>Another feature of <code>build</code> elements is specifying where resources exist within your project. Resources are not (usually) code. They are not compiled, but are items meant to be bundled within your project or used for various other reasons, such as code generation.</p>
+<p>For example, a Plexus project requires a <code>configuration.xml</code> file (which specifies component configurations to the container) to live within the <code>META-INF/plexus</code> directory. Although we could just as easily place this file within <code>src/main/resources/META-INF/plexus</code>, we want instead to give Plexus its own directory of <code>src/main/plexus</code>. In order for the JAR plugin to bundle the resource correctly, you would specify resources similar to the following:</p>
+
+<pre class="highlight"><code class="language-xml"><span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;build</span><span class="nt">&gt;</span>
+    ...
+    <span class="nt">&lt;resources</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;resource</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;targetPath</span><span class="nt">&gt;</span>META-INF/plexus<span class="nt">&lt;/targetPath</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;filtering</span><span class="nt">&gt;</span>false<span class="nt">&lt;/filtering</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;directory</span><span class="nt">&gt;</span>\${project.basedir}/src/main/plexus<span class="nt">&lt;/directory</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;includes</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;include</span><span class="nt">&gt;</span>configuration.xml<span class="nt">&lt;/include</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;/includes</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;excludes</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;exclude</span><span class="nt">&gt;</span>**/*.properties<span class="nt">&lt;/exclude</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;/excludes</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;/resource</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;/resources</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;testResources</span><span class="nt">&gt;</span>
+      ...
+    <span class="nt">&lt;/testResources</span><span class="nt">&gt;</span>
+    ...
+  <span class="nt">&lt;/build</span><span class="nt">&gt;</span>
+<span class="nt">&lt;/project</span><span class="nt">&gt;</span>
+</code></pre>
+<ul>
+
+<li>
+<p><strong>resources</strong>: is a list of resource elements that each describe what and where to include files associated with this project.</p></li>
+<li>
+<p><strong>targetPath</strong>: Specifies the directory structure to place the set of resources from a build. Target path defaults to the base directory. A commonly specified target path for resources that will be packaged in a JAR is META-INF.</p></li>
+<li>
+<p><strong>filtering</strong>: is <code>true</code> or <code>false</code>, denoting if filtering is to be enabled for this resource. Note, that filter <code>*.properties</code> files do not have to be defined for filtering to occur - resources can also use properties that are by default defined in the POM (such as <code>${project.version}</code>), passed into the command line using the “-D” flag (for example, “<code>-Dname</code>=<code>value</code>”) or are explicitly defined by the properties' element. Filter files were covered above.</p></li>
+<li>
+<p><strong>directory</strong>: This element's value defines where the resources are to be found. The default directory for a build is <code>${project.basedir}/src/main/resources</code>.</p></li>
+<li>
+<p><strong>includes</strong>: A set of files patterns which specify the files to include as resources under that specified directory, using <code>*</code> as a wildcard.</p></li>
+<li>
+<p><strong>excludes</strong>: The same structure as <code>includes</code>, but specifies which files to ignore. In conflicts between <code>include</code> and <code>exclude</code>, <code>exclude</code> wins.</p></li>
+<li>
+<p><strong>testResources</strong>: The <code>testResources</code> element block contains <code>testResource</code> elements. Their definitions are similar to <code>resource</code> elements, but are naturally used during test phases. The one difference is that the default (Super POM defined) test resource directory for a project is <code>${project.basedir}/src/test/resources</code>. Test resources are not deployed.</p></li>
+</ul></section><section><a id="Plugins"></a>
+<h5>Plugins</h5>
+
+<pre class="highlight"><code class="language-xml"><span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;build</span><span class="nt">&gt;</span>
+    ...
+    <span class="nt">&lt;plugins</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;plugin</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;groupId</span><span class="nt">&gt;</span>org.apache.maven.plugins<span class="nt">&lt;/groupId</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;artifactId</span><span class="nt">&gt;</span>maven-jar-plugin<span class="nt">&lt;/artifactId</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;version</span><span class="nt">&gt;</span>2.6<span class="nt">&lt;/version</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;extensions</span><span class="nt">&gt;</span>false<span class="nt">&lt;/extensions</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;inherited</span><span class="nt">&gt;</span>true<span class="nt">&lt;/inherited</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;configuration</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;classifier</span><span class="nt">&gt;</span>test<span class="nt">&lt;/classifier</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;/configuration</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;dependencies</span><span class="nt">&gt;</span>...<span class="nt">&lt;/dependencies</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;executions</span><span class="nt">&gt;</span>...<span class="nt">&lt;/executions</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;/plugin</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;/plugins</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;/build</span><span class="nt">&gt;</span>
+<span class="nt">&lt;/project</span><span class="nt">&gt;</span>
+</code></pre>
+<p>Plugins are also identified by coordinates. Unlike dependencies, there is a default <code>groupId</code> for plugins. See <a href="/docs/plugins/configure-plugins.html">Configuring Plugins</a>.</p>
+<p><strong>Note</strong>: It is not allowed to declare the same plugin multiple times in the same build. Multiple declarations of the same plugin result in warnings using Maven 3 and fail the build using Maven 4.</p>
+<p>Beyond the standard coordinate of <code>groupId:artifactId:version</code>, there are elements which configure the plugin or this builds interaction with it.</p>
+<ul>
+
+<li>
+<p><strong>extensions</strong>: <code>true</code> or <code>false</code>, whether to load extensions of this plugin. It is by default false. Extensions are covered later in this document.</p></li>
+<li>
+<p><strong>inherited</strong>: <code>true</code> or <code>false</code>, whether this plugin configuration should apply to POMs which inherit from this one. Default value is <code>true</code>.</p></li>
+<li>
+<p><strong>configuration</strong>: This is specific to the individual plugin. Without going too in depth into the mechanics of how plugins work, suffice it to say that whatever properties that the plugin Mojo may expect (these are getters and setters in the Java Mojo bean) can be specified here. In the above example, we are setting the classifier property to test in the <code>maven-jar-plugin</code>'s Mojo. It may be good to note that all configuration elements, wherever they are within the POM, are intended to pass values to another underlying system, such as a plugin. In other words: values within a <code>configuration</code> element are never explicitly required by the POM schema, but a plugin goal has every right to require configuration values. If your POM declares a parent, it inherits plugin configuration from either the <code>&lt;build/plugins&gt;</code> or <code>&lt;pluginManagement&gt;</code> sections of the parent.</p></li>
+</ul><section><a id="Default_plugin_configuration_inheritance"></a>
+<h6>Default plugin configuration inheritance</h6>
+<p>To illustrate, consider the following fragment from a parent POM:</p>
+
+<pre class="highlight"><code class="language-xml"><span class="nt">&lt;plugin</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;groupId</span><span class="nt">&gt;</span>my.group<span class="nt">&lt;/groupId</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;artifactId</span><span class="nt">&gt;</span>my-plugin<span class="nt">&lt;/artifactId</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;configuration</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;items</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;item</span><span class="nt">&gt;</span>parent-1<span class="nt">&lt;/item</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;item</span><span class="nt">&gt;</span>parent-2<span class="nt">&lt;/item</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;/items</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;properties</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;parentKey</span><span class="nt">&gt;</span>parent<span class="nt">&lt;/parentKey</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;/properties</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;/configuration</span><span class="nt">&gt;</span>
+<span class="nt">&lt;/plugin</span><span class="nt">&gt;</span>
+</code></pre>
+<p>And consider the following plugin configuration from a project that uses that parent as its parent:</p>
+
+<pre class="highlight"><code class="language-xml"><span class="nt">&lt;plugin</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;groupId</span><span class="nt">&gt;</span>my.group<span class="nt">&lt;/groupId</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;artifactId</span><span class="nt">&gt;</span>my-plugin<span class="nt">&lt;/artifactId</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;configuration</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;items</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;item</span><span class="nt">&gt;</span>child-1<span class="nt">&lt;/item</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;/items</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;properties</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;childKey</span><span class="nt">&gt;</span>child<span class="nt">&lt;/childKey</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;/properties</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;/configuration</span><span class="nt">&gt;</span>
+<span class="nt">&lt;/plugin</span><span class="nt">&gt;</span>
+</code></pre>
+<p>The default behavior is to merge the content of the <code>&lt;configuration&gt;</code> element according to element name. If the child POM has a particular element, that value becomes the effective value. If the child POM does not have an element, but the parent does, the parent value becomes the effective value. Note that this is purely an operation on XML; no code or configuration of the plugin itself is involved. Only the elements, not their values, are involved.</p>
+<p>Applying those rules to the example, Maven comes up with:</p>
+
+<pre class="highlight"><code class="language-xml"><span class="nt">&lt;plugin</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;groupId</span><span class="nt">&gt;</span>my.group<span class="nt">&lt;/groupId</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;artifactId</span><span class="nt">&gt;</span>my-plugin<span class="nt">&lt;/artifactId</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;configuration</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;items</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;item</span><span class="nt">&gt;</span>child-1<span class="nt">&lt;/item</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;/items</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;properties</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;childKey</span><span class="nt">&gt;</span>child<span class="nt">&lt;/childKey</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;parentKey</span><span class="nt">&gt;</span>parent<span class="nt">&lt;/parentKey</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;/properties</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;/configuration</span><span class="nt">&gt;</span>
+<span class="nt">&lt;/plugin</span><span class="nt">&gt;</span>
+</code></pre></section><section><a id="Advanced_configuration_inheritance.3A_combine.children_and_combine.self"></a>
+<h6>Advanced configuration inheritance: <code>combine.children</code> and <code>combine.self</code></h6>
+<p>You can control how child POMs inherit configuration from parent POMs by adding attributes to the children of the <code>&lt;configuration&gt;</code> element. The attributes are <code>combine.children</code> and <code>combine.self</code>. Use these attributes in a child POM to control how Maven combines plugin configuration from the parent with the explicit configuration in the child.</p>
+<p>Here is the child configuration with illustrations of the two attributes:</p>
+
+<pre class="highlight"><code class="language-xml"><span class="nt">&lt;configuration</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;items</span> <span class="na">combine.children</span>=<span class="s">"append"</span><span class="nt">&gt;</span>
+    <span class="c">&lt;!-- combine.children="merge" is the default --&gt;</span>
+    <span class="nt">&lt;item</span><span class="nt">&gt;</span>child-1<span class="nt">&lt;/item</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;/items</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;properties</span> <span class="na">combine.self</span>=<span class="s">"override"</span><span class="nt">&gt;</span>
+    <span class="c">&lt;!-- combine.self="merge" is the default --&gt;</span>
+    <span class="nt">&lt;childKey</span><span class="nt">&gt;</span>child<span class="nt">&lt;/childKey</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;/properties</span><span class="nt">&gt;</span>
+<span class="nt">&lt;/configuration</span><span class="nt">&gt;</span>
+</code></pre>
+<p>Now, the effective result is the following:</p>
+
+<pre class="highlight"><code class="language-xml"><span class="nt">&lt;configuration</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;items</span> <span class="na">combine.children</span>=<span class="s">"append"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;item</span><span class="nt">&gt;</span>parent-1<span class="nt">&lt;/item</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;item</span><span class="nt">&gt;</span>parent-2<span class="nt">&lt;/item</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;item</span><span class="nt">&gt;</span>child-1<span class="nt">&lt;/item</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;/items</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;properties</span> <span class="na">combine.self</span>=<span class="s">"override"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;childKey</span><span class="nt">&gt;</span>child<span class="nt">&lt;/childKey</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;/properties</span><span class="nt">&gt;</span>
+<span class="nt">&lt;/configuration</span><span class="nt">&gt;</span>
+</code></pre>
+<p><code>&lt;combine.children="append"&gt;</code> results in the concatenation of parent and child elements, in that order. <code>&lt;combine.self="override"&gt;</code>, on the other hand, completely suppresses parent configuration. You cannot use both <code>&lt;combine.self="override"&gt;</code> and <code>&lt;combine.children="append"&gt;</code> on an element; if you try, <em>override</em> will prevail.</p>
+<p>Note that these attributes only apply to the configuration element they are declared on, and are not propagated to nested elements. That is if the content of an <em>item</em> element from the child POM was a complex structure instead of text, its sub-elements would still be subject to the default merge strategy unless they were themselves marked with attributes.</p>
+<p>The <code>combine.*</code> attributes are inherited from parent to child POMs. Take care when adding those attributes to a parent POM as this might affect child or grand-child POMs.</p>
+<ul>
+
+<li>
+<p><code>&lt;dependencies&gt;</code>: Dependencies are seen a lot within the POM, and are an element under all plugins element blocks. The dependencies have the same structure and function as under that base build. The major difference in this case is that instead of applying as dependencies of the project, they now apply as dependencies of the plugin that they are under. The power of this is to alter the dependency list of a plugin, perhaps by removing an unused runtime dependency via <code>exclusions</code>, or by altering the version of a required dependency. See above under <code>&lt;dependencies&gt;</code> for more information.</p></li>
+<li>
+<p><code>&lt;executions&gt;</code>: It is important to keep in mind that a plugin may have multiple goals. Each goal may have a separate configuration, possibly even binding a plugin's goal to a different phase altogether. <code>executions</code> configure the <code>execution</code> of a plugin's goals.</p></li>
+</ul>
+<p>For example, suppose you wanted to bind the <code>antrun:run</code> goal to the <code>verify</code> phase. We want the task to echo the build directory, as well as avoid passing on this configuration to its children (assuming it is a parent) by setting <code>inherited</code> to <code>false</code>. You would get an <code>execution</code> like this:</p>
+
+<pre class="highlight"><code class="language-xml"><span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span><span class="nt">&gt;</span>
+  ...
+  <span class="nt">&lt;build</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;plugins</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;plugin</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;artifactId</span><span class="nt">&gt;</span>maven-antrun-plugin<span class="nt">&lt;/artifactId</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;version</span><span class="nt">&gt;</span>1.1<span class="nt">&lt;/version</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;executions</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;execution</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;id</span><span class="nt">&gt;</span>echodir<span class="nt">&lt;/id</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;goals</span><span class="nt">&gt;</span>
+              <span class="nt">&lt;goal</span><span class="nt">&gt;</span>run<span class="nt">&lt;/goal</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;/goals</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;phase</span><span class="nt">&gt;</span>verify<span class="nt">&lt;/phase</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;inherited</span><span class="nt">&gt;</span>false<span class="nt">&lt;/inherited</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;configuration</span><span class="nt">&gt;</span>
+              <span class="nt">&lt;tasks</span><span class="nt">&gt;</span>
+                <span class="nt">&lt;echo</span><span class="nt">&gt;</span>Build Dir: \${project.build.directory}<span class="nt">&lt;/echo</span><span class="nt">&gt;</span>
+              <span class="nt">&lt;/tasks</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;/configuration</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;/execution</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;/executions</span><span class="nt">&gt;</span>
+
+      <span class="nt">&lt;/plugin</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;/plugins</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;/build</span><span class="nt">&gt;</span>
+<span class="nt">&lt;/project</span><span class="nt">&gt;</span>
+</code></pre>
+<ul>
+
+<li>
+<p><code>&lt;id&gt;</code>: It specifies this execution block between all the others. When the phase is run, it will be shown in the form: <code>[plugin:goal {execution: id}]</code>. In the case of this example: <code>[antrun:run {execution: echodir}]</code></p></li>
+<li>
+<p><code>&lt;goals&gt;</code>: Like all pluralized POM elements, this contains a list of singular elements. In this case, a list of plugin <code>goals</code> which are being specified by this <code>execution</code> block.</p></li>
+<li>
+<p><code>&lt;phase&gt;</code>: This is the phase that the list of goals will execute in. This is a very powerful option, allowing one to bind any goal to any phase in the build lifecycle, altering the default behavior of Maven.</p></li>
+<li>
+<p><code>&lt;inherited&gt;</code>: Like the <code>inherited</code> element above, setting this to false will suppress Maven from passing this execution onto its children. This element is only meaningful to parent POMs.</p></li>
+<li>
+<p><code>&lt;configuration&gt;</code>: Same as above, but confines the configuration to this specific list of goals, rather than all goals under the plugin.</p></li>
+</ul></section></section><section><a id="Plugin_Management"></a>
+<h5>Plugin Management</h5>
+<p><code>&lt;pluginManagement&gt;</code>is an element that is seen alongside plugins. Plugin Management contains plugin elements in much the same way, except that rather than configuring plugin information for this particular project build, it is intended to configure project builds that inherit from this one. However, this only configures plugins that are actually referenced within the plugins element in the children or in the current POM. The children have every right to override <code>pluginManagement</code> definitions.</p>
+
+<pre class="highlight"><code class="language-xml"><span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span><span class="nt">&gt;</span>
+  ...
+  <span class="nt">&lt;build</span><span class="nt">&gt;</span>
+    ...
+    <span class="nt">&lt;pluginManagement</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;plugins</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;plugin</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;groupId</span><span class="nt">&gt;</span>org.apache.maven.plugins<span class="nt">&lt;/groupId</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;artifactId</span><span class="nt">&gt;</span>maven-jar-plugin<span class="nt">&lt;/artifactId</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;version</span><span class="nt">&gt;</span>2.6<span class="nt">&lt;/version</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;executions</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;execution</span><span class="nt">&gt;</span>
+              <span class="nt">&lt;id</span><span class="nt">&gt;</span>pre-process-classes<span class="nt">&lt;/id</span><span class="nt">&gt;</span>
+              <span class="nt">&lt;phase</span><span class="nt">&gt;</span>compile<span class="nt">&lt;/phase</span><span class="nt">&gt;</span>
+              <span class="nt">&lt;goals</span><span class="nt">&gt;</span>
+                <span class="nt">&lt;goal</span><span class="nt">&gt;</span>jar<span class="nt">&lt;/goal</span><span class="nt">&gt;</span>
+              <span class="nt">&lt;/goals</span><span class="nt">&gt;</span>
+              <span class="nt">&lt;configuration</span><span class="nt">&gt;</span>
+                <span class="nt">&lt;classifier</span><span class="nt">&gt;</span>pre-process<span class="nt">&lt;/classifier</span><span class="nt">&gt;</span>
+              <span class="nt">&lt;/configuration</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;/execution</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;/executions</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;/plugin</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;/plugins</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;/pluginManagement</span><span class="nt">&gt;</span>
+    ...
+  <span class="nt">&lt;/build</span><span class="nt">&gt;</span>
+<span class="nt">&lt;/project</span><span class="nt">&gt;</span>
+</code></pre>
+<p>If we added these specifications to the plugins element, they would apply only to a single POM. However, if we apply them under the <code>pluginManagement</code> element, then this POM <em>and all inheriting POMs</em> that add the <code>maven-jar-plugin</code> to the build will get the <code>pre-process-classes</code> execution as well. So rather than the above mess included in every child <code>pom.xml</code>, only the following is required:</p>
+
+<pre class="highlight"><code class="language-xml"><span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span><span class="nt">&gt;</span>
+  ...
+  <span class="nt">&lt;build</span><span class="nt">&gt;</span>
+    ...
+    <span class="nt">&lt;plugins</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;plugin</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;groupId</span><span class="nt">&gt;</span>org.apache.maven.plugins<span class="nt">&lt;/groupId</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;artifactId</span><span class="nt">&gt;</span>maven-jar-plugin<span class="nt">&lt;/artifactId</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;/plugin</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;/plugins</span><span class="nt">&gt;</span>
+    ...
+  <span class="nt">&lt;/build</span><span class="nt">&gt;</span>
+<span class="nt">&lt;/project</span><span class="nt">&gt;</span>
+</code></pre></section></section><section><a id="The_Build_Element_Set"></a>
+<h4>The Build Element Set</h4>
+<p>The <code>Build</code> type in the XSD denotes those elements that are available only for the “project build”. Despite the number of extra elements (six), there are really only two groups of elements that project build contains that are missing from the profile build: directories and extensions.</p><section><a id="Directories"></a>
+<h5>Directories</h5>
+<p>The set of directory elements live in the parent build element, which set various directory structures for the POM as a whole. Since they do not exist in profile builds, these cannot be altered by profiles.</p>
+
+<pre class="highlight"><code class="language-xml"><span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span><span class="nt">&gt;</span>
+  ...
+  <span class="nt">&lt;build</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;sourceDirectory</span><span class="nt">&gt;</span>\${project.basedir}/src/main/java<span class="nt">&lt;/sourceDirectory</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;scriptSourceDirectory</span><span class="nt">&gt;</span>\${project.basedir}/src/main/scripts<span class="nt">&lt;/scriptSourceDirectory</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;testSourceDirectory</span><span class="nt">&gt;</span>\${project.basedir}/src/test/java<span class="nt">&lt;/testSourceDirectory</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;outputDirectory</span><span class="nt">&gt;</span>\${project.basedir}/target/classes<span class="nt">&lt;/outputDirectory</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;testOutputDirectory</span><span class="nt">&gt;</span>\${project.basedir}/target/test-classes<span class="nt">&lt;/testOutputDirectory</span><span class="nt">&gt;</span>
+    ...
+  <span class="nt">&lt;/build</span><span class="nt">&gt;</span>
+<span class="nt">&lt;/project</span><span class="nt">&gt;</span>
+</code></pre>
+<p>If the values of a <code>*Directory</code> element above is set as an absolute path (when their properties are expanded) then that directory is used. Otherwise, it is relative to the base build directory: <code>${project.basedir}</code>. <strong>Please note that the</strong> <code>scriptSourceDirectory</code> <strong>is nowhere used in Maven and is obsolete</strong>.</p></section><section><a id="Extensions"></a>
+<h5>Extensions</h5>
+<p>Extensions are a list of artifacts that are to be used in this build. They will be included in the running build's classpath. They can enable extensions to the build process (such as add an FTP provider for the Wagon transport mechanism), as well as make plugins active which make changes to the build lifecycle. In short, extensions are artifacts that are activated during build. The extensions do not have to actually do anything nor contain a Mojo. For this reason, extensions are excellent for specifying one out of multiple implementations of a common plugin interface.</p>
+
+<pre class="highlight"><code class="language-xml"><span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span><span class="nt">&gt;</span>
+  ...
+  <span class="nt">&lt;build</span><span class="nt">&gt;</span>
+    ...
+    <span class="nt">&lt;extensions</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;extension</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;groupId</span><span class="nt">&gt;</span>org.apache.maven.wagon<span class="nt">&lt;/groupId</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;artifactId</span><span class="nt">&gt;</span>wagon-ftp<span class="nt">&lt;/artifactId</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;version</span><span class="nt">&gt;</span>1.0-alpha-3<span class="nt">&lt;/version</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;/extension</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;/extensions</span><span class="nt">&gt;</span>
+    ...
+  <span class="nt">&lt;/build</span><span class="nt">&gt;</span>
+<span class="nt">&lt;/project</span><span class="nt">&gt;</span>
+</code></pre></section></section></section><section><a id="Reporting"></a>
+<h3>Reporting</h3>
+<p>Reporting contains the elements that correspond specifically for the <code>site</code> generation phase. Certain Maven plugins can generate reports defined and configured under the reporting element, for example: generating Javadoc reports. Much like the build element's ability to configure plugins, reporting commands the same ability. The glaring difference is that rather than fine-grained control of plug-in goals within the executions block, reporting configures goals within <code>reportSet</code> elements. And the subtler difference is that a plugin <code>configuration</code> under the <code>reporting</code> element works as <code>build</code> plugin <code>configuration</code>, although the opposite is not true (a <code>build</code> plugin <code>configuration</code> does not affect a <code>reporting</code> plugin).</p>
+<p>Possibly the only item under the <code>reporting</code> element that would not be familiar to someone who understood the <code>build</code> element is the Boolean <code>excludeDefaults</code> element. This element signifies to the site generator to exclude reports normally generated by default. When a site is generated via the <code>site</code> build cycle, a <em>Project Info</em> section is placed in the left-hand menu, chock-full of reports, such as the <code>&lt;Project Team&gt;</code> report or <code>&lt;Dependencies&gt;</code> list report. These report goals are generated by <code>maven-project-info-reports-plugin</code>. Being a plugin like any other, it may also be suppressed in the following, more verbose, way, which effectively turns off project-info reports.</p>
+
+<pre class="highlight"><code class="language-xml"><span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span><span class="nt">&gt;</span>
+  ...
+  <span class="nt">&lt;reporting</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;outputDirectory</span><span class="nt">&gt;</span>${project.basedir}/target/site<span class="nt">&lt;/outputDirectory</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;plugins</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;plugin</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;artifactId</span><span class="nt">&gt;</span>maven-project-info-reports-plugin<span class="nt">&lt;/artifactId</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;version</span><span class="nt">&gt;</span>2.0.1<span class="nt">&lt;/version</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;reportSets</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;reportSet</span><span class="nt">&gt;</span><span class="nt">&lt;/reportSet</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;/reportSets</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;/plugin</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;/plugins</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;/reporting</span><span class="nt">&gt;</span>
+  ...
+<span class="nt">&lt;/project</span><span class="nt">&gt;</span>
+</code></pre>
+<p>The other difference is the <code>outputDirectory</code> element under <code>plugin</code>. In the case of reporting, the output directory is <code>${project.basedir}/target/site</code> by default.</p><section><a id="Report_Sets"></a>
+<h4>Report Sets</h4>
+<p>It is important to keep in mind that an individual plugin may have multiple goals. Each goal may have a separate configuration. Report sets configure execution of a report plugin's goals. Does this sound familiar - deja-vu? The same thing was said about build's <code>execution</code> element with one difference: you cannot bind a report to another phase. Sorry.</p>
+<p>For example, suppose you wanted to configure the <code>javadoc:javadoc</code> goal to link to “<a href="https://docs.oracle.com/javase/1.5.0/docs/api/" class="externalLink">https://docs.oracle.com/javase/1.5.0/docs/api/</a>”, but only the <code>javadoc</code> goal (not the goal <code>maven-javadoc-plugin:jar</code>). We would also like this configuration passed to its children, and set <code>inherited</code> to true. The <code>reportSet</code> would resemble the following:</p>
+
+<pre class="highlight"><code class="language-xml"><span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span><span class="nt">&gt;</span>
+  ...
+  <span class="nt">&lt;reporting</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;plugins</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;plugin</span><span class="nt">&gt;</span>
+        ...
+        <span class="nt">&lt;reportSets</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;reportSet</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;id</span><span class="nt">&gt;</span>sunlink<span class="nt">&lt;/id</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;reports</span><span class="nt">&gt;</span>
+              <span class="nt">&lt;report</span><span class="nt">&gt;</span>javadoc<span class="nt">&lt;/report</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;/reports</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;inherited</span><span class="nt">&gt;</span>true<span class="nt">&lt;/inherited</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;configuration</span><span class="nt">&gt;</span>
+              <span class="nt">&lt;links</span><span class="nt">&gt;</span>
+                <span class="nt">&lt;link</span><span class="nt">&gt;</span>https://docs.oracle.com/javase/1.5.0/docs/api/<span class="nt">&lt;/link</span><span class="nt">&gt;</span>
+              <span class="nt">&lt;/links</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;/configuration</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;/reportSet</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;/reportSets</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;/plugin</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;/plugins</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;/reporting</span><span class="nt">&gt;</span>
+  ...
+<span class="nt">&lt;/project</span><span class="nt">&gt;</span>
+</code></pre>
+<p>Between build <code>executions</code> and reporting <code>reportSets</code>, it should be clear now as to why they exist. In the simplest sense, they drill down in configuration. The POM must have a way not only to configure plugins, but must also configure the goals of those plugins. That is where these elements come in, giving the POM ultimate granularity in control of its build destiny.</p></section></section></section><section><a id="More_Project_Information"></a>
+<h2>More Project Information</h2>
+<p>Several elements do not affect the build, but rather document the project for the convenience of developers. Many of these elements are used to fill in project details when generating the project's website. However, like all POM declarations, plugins can use them for anything. The following are the simplest elements:</p>
+<ul>
+
+<li>
+<p><code>&lt;name&gt;</code>: Projects tend to have conversational names, beyond the <code>artifactId</code>. The Sun engineers did not refer to their project as “java-1.5”, but rather just called it “Tiger”. Here is where to set that value.</p></li>
+<li>
+<p><code>&lt;description&gt;</code>: A short, human-readable description of the project. Although this should not replace formal documentation, a quick comment to any readers of the POM is always helpful.</p></li>
+<li>
+<p><code>&lt;url&gt;</code>: The project's home page.</p></li>
+<li>
+<p><code>&lt;inceptionYear&gt;</code>: The year the project was first created.</p></li>
+</ul><section><a id="Licenses"></a>
+<h3>Licenses</h3>
+
+<pre class="highlight"><code class="language-xml"><span class="nt">&lt;licenses</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;license</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;name</span><span class="nt">&gt;</span>Apache-2.0<span class="nt">&lt;/name</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;url</span><span class="nt">&gt;</span>https://www.apache.org/licenses/LICENSE-2.0.txt<span class="nt">&lt;/url</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;distribution</span><span class="nt">&gt;</span>repo<span class="nt">&lt;/distribution</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;comments</span><span class="nt">&gt;</span>A business-friendly OSS license<span class="nt">&lt;/comments</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;/license</span><span class="nt">&gt;</span>
+<span class="nt">&lt;/licenses</span><span class="nt">&gt;</span>
+</code></pre>
+<p>Licenses are legal documents defining how and when a project (or parts of a project) may be used. A project should list licenses that apply directly to this project, and not list licenses that apply to the project's dependencies.</p>
+<ul>
+
+<li>
+<p><code>&lt;name&gt;</code>, <code>&lt;url&gt;</code> and <code>&lt;comments&gt;</code>: are self-explanatory, and have been encountered before in other contexts. Using an {{{<a href="https://spdx.org/licenses/" class="externalLink">https://spdx.org/licenses/</a>}SPDX identifier}} as the license <code>&lt;name&gt;</code> is recommended. The fourth license element is:</p></li>
+<li>
+<p><code>&lt;distribution&gt;</code>: This describes how the project may be legally distributed. The two stated methods are repo (they may be downloaded from a Maven repository) or manual (they must be manually installed).</p></li>
+</ul></section><section><a id="Organization"></a>
+<h3>Organization</h3>
+<p>Most projects are run by some sort of organization (business, private group, etc.). Here is where the most basic information is set.</p>
+
+<pre class="highlight"><code class="language-xml"><span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span><span class="nt">&gt;</span>
+  ...
+  <span class="nt">&lt;organization</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;name</span><span class="nt">&gt;</span>Mojohaus<span class="nt">&lt;/name</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;url</span><span class="nt">&gt;</span>http://www.mojohaus.org<span class="nt">&lt;/url</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;/organization</span><span class="nt">&gt;</span>
+<span class="nt">&lt;/project</span><span class="nt">&gt;</span>
+</code></pre></section><section><a id="Developers"></a>
+<h3>Developers</h3>
+<p>All projects consist of files that were created, at some time, by a person. Like the other systems that surround a project, so to do the people involved with a project have a stake in the project. Developers are presumably members of the project's core development. Note that, although an organization may have many developers (programmers) as members, it is not good form to list them all as developers, but only those who are immediately responsible for the code. A good rule of thumb is, if the person should not be contacted about the project, they do not need to be listed here.</p>
+
+<pre class="highlight"><code class="language-xml"><span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span><span class="nt">&gt;</span>
+  ...
+  <span class="nt">&lt;developers</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;developer</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;id</span><span class="nt">&gt;</span>jdoe<span class="nt">&lt;/id</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;name</span><span class="nt">&gt;</span>John Doe<span class="nt">&lt;/name</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;email</span><span class="nt">&gt;</span>jdoe@example.com<span class="nt">&lt;/email</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;url</span><span class="nt">&gt;</span>http://www.example.com/jdoe<span class="nt">&lt;/url</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;organization</span><span class="nt">&gt;</span>ACME<span class="nt">&lt;/organization</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;organizationUrl</span><span class="nt">&gt;</span>http://www.example.com<span class="nt">&lt;/organizationUrl</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;roles</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;role</span><span class="nt">&gt;</span>architect<span class="nt">&lt;/role</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;role</span><span class="nt">&gt;</span>developer<span class="nt">&lt;/role</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;/roles</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;timezone</span><span class="nt">&gt;</span>America/New_York<span class="nt">&lt;/timezone</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;properties</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;picUrl</span><span class="nt">&gt;</span>http://www.example.com/jdoe/pic<span class="nt">&lt;/picUrl</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;/properties</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;/developer</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;/developers</span><span class="nt">&gt;</span>
+  ...
+<span class="nt">&lt;/project</span><span class="nt">&gt;</span>
+</code></pre>
+<ul>
+
+<li>
+<p><code>&lt;id&gt;</code>, <code>&lt;name&gt;</code>, <code>&lt;email&gt;</code>: These correspond to the developer's ID (presumably some unique ID across an organization), the developer's name and email address.</p></li>
+<li>
+<p><code>&lt;organization&gt;</code>, <code>&lt;organizationUrl&gt;</code>: As you probably guessed, these are the developer's organization name and its URL, respectively.</p></li>
+<li>
+<p><code>&lt;roles&gt;</code>: A <code>role</code> should specify the standard actions that the person is responsible for. Like a single person can wear many hats, a single person can take on multiple <code>roles</code>.</p></li>
+<li>
+<p><code>&lt;timezone&gt;</code>: A valid time zone ID like <code>America/New_York</code> or <code>Europe/Berlin</code>, or a numerical offset in hours (and fraction) from UTC where the developer lives, e.g., <code>-5</code> or <code>+1</code>. Time zone IDs are highly preferred because they are not affected by DST and time zone shifts. Refer to the <a href="https://www.iana.org/time-zones" class="externalLink">IANA</a> for the official time zone database and a listing in <a href="https://en.wikipedia.org/wiki/List_of_tz_database_time_zones" class="externalLink">the database time zones article on Wikipedia</a>.</p></li>
+<li>
+<p><code>&lt;properties&gt;</code>: This element is where any other properties about the person goes. For example, a link to a personal image or an instant messenger handle. Different plugins may use these properties, or they may simply be for other developers who read the POM.</p></li>
+</ul></section><section><a id="Contributors"></a>
+<h3>Contributors</h3>
+<p>Contributors are like developers yet play an ancillary role in a project's lifecycle. Perhaps the contributor sent in a bug fix, or added some important documentation. A healthy open source project will likely have more contributors than developers.</p>
+
+<pre class="highlight"><code class="language-xml"><span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span><span class="nt">&gt;</span>
+  ...
+  <span class="nt">&lt;contributors</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;contributor</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;name</span><span class="nt">&gt;</span>Noelle<span class="nt">&lt;/name</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;email</span><span class="nt">&gt;</span>some.name@gmail.com<span class="nt">&lt;/email</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;url</span><span class="nt">&gt;</span>http://noellemarie.com<span class="nt">&lt;/url</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;organization</span><span class="nt">&gt;</span>Noelle Marie<span class="nt">&lt;/organization</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;organizationUrl</span><span class="nt">&gt;</span>http://noellemarie.com<span class="nt">&lt;/organizationUrl</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;roles</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;role</span><span class="nt">&gt;</span>tester<span class="nt">&lt;/role</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;/roles</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;timezone</span><span class="nt">&gt;</span>America/Vancouver<span class="nt">&lt;/timezone</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;properties</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;gtalk</span><span class="nt">&gt;</span>some.name@gmail.com<span class="nt">&lt;/gtalk</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;/properties</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;/contributor</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;/contributors</span><span class="nt">&gt;</span>
+  ...
+<span class="nt">&lt;/project</span><span class="nt">&gt;</span>
+</code></pre>
+<p>Contributors contain the same set of elements than developers sans the <code>id</code> element.</p></section></section><section><a id="Environment_Settings"></a>
+<h2>Environment Settings</h2><section><a id="Issue_Management"></a>
+<h3>Issue Management</h3>
+<p>This defines the defect tracking system (<em>Bugzilla</em>, <em>TestTrack</em>, <em>ClearQuest</em>, etc.) used. Although there is nothing stopping a plugin from using this information for something, it's primarily used for generating project documentation.</p>
+
+<pre class="highlight"><code class="language-xml"><span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span><span class="nt">&gt;</span>
+  ...
+  <span class="nt">&lt;issueManagement</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;system</span><span class="nt">&gt;</span>Bugzilla<span class="nt">&lt;/system</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;url</span><span class="nt">&gt;</span>http://127.0.0.1/bugzilla/<span class="nt">&lt;/url</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;/issueManagement</span><span class="nt">&gt;</span>
+  ...
+<span class="nt">&lt;/project</span><span class="nt">&gt;</span>
+</code></pre></section><section><a id="Continuous_Integration_Management"></a>
+<h3>Continuous Integration Management</h3>
+<p>Continuous integration build systems based upon triggers or timings (such as, hourly or daily) have grown in favor over manual builds in the past few years. As build systems have become more standardized, so have the systems that run the trigger those builds. Although the majority of the configuration is up to the specific program used (Continuum, Cruise Control, etc.), there are a few configurations which may take place within the POM. Maven has captured a few of the recurring settings within the set of notifier elements. A notifier is the manner in which people are notified of certain build statuses. In the following example, this POM is setting a notifier of type <code>mail</code> (meaning email), and configuring the email address to use on the specified triggers <code>sendOnError</code>, <code>sendOnFailure</code>, and not <code>sendOnSuccess</code> or <code>sendOnWarning</code>.</p>
+
+<pre class="highlight"><code class="language-xml"><span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span><span class="nt">&gt;</span>
+  ...
+  <span class="nt">&lt;ciManagement</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;system</span><span class="nt">&gt;</span>continuum<span class="nt">&lt;/system</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;url</span><span class="nt">&gt;</span>http://127.0.0.1:8080/continuum<span class="nt">&lt;/url</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;notifiers</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;notifier</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;type</span><span class="nt">&gt;</span>mail<span class="nt">&lt;/type</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;sendOnError</span><span class="nt">&gt;</span>true<span class="nt">&lt;/sendOnError</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;sendOnFailure</span><span class="nt">&gt;</span>true<span class="nt">&lt;/sendOnFailure</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;sendOnSuccess</span><span class="nt">&gt;</span>false<span class="nt">&lt;/sendOnSuccess</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;sendOnWarning</span><span class="nt">&gt;</span>false<span class="nt">&lt;/sendOnWarning</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;configuration</span><span class="nt">&gt;</span><span class="nt">&lt;address</span><span class="nt">&gt;</span>continuum@127.0.0.1<span class="nt">&lt;/address</span><span class="nt">&gt;</span><span class="nt">&lt;/configuration</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;/notifier</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;/notifiers</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;/ciManagement</span><span class="nt">&gt;</span>
+  ...
+<span class="nt">&lt;/project</span><span class="nt">&gt;</span>
+</code></pre></section><section><a id="Mailing_Lists"></a>
+<h3>Mailing Lists</h3>
+<p>Mailing lists are a great tool for keeping in touch with people about a project. Most mailing lists are for developers and users.</p>
+
+<pre class="highlight"><code class="language-xml"><span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span><span class="nt">&gt;</span>
+  ...
+  <span class="nt">&lt;mailingLists</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;mailingList</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;name</span><span class="nt">&gt;</span>User List<span class="nt">&lt;/name</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;subscribe</span><span class="nt">&gt;</span>user-subscribe@127.0.0.1<span class="nt">&lt;/subscribe</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;unsubscribe</span><span class="nt">&gt;</span>user-unsubscribe@127.0.0.1<span class="nt">&lt;/unsubscribe</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;post</span><span class="nt">&gt;</span>user@127.0.0.1<span class="nt">&lt;/post</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;archive</span><span class="nt">&gt;</span>http://127.0.0.1/user/<span class="nt">&lt;/archive</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;otherArchives</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;otherArchive</span><span class="nt">&gt;</span>http://base.google.com/base/1/127.0.0.1<span class="nt">&lt;/otherArchive</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;/otherArchives</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;/mailingList</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;/mailingLists</span><span class="nt">&gt;</span>
+  ...
+<span class="nt">&lt;/project</span><span class="nt">&gt;</span>
+</code></pre>
+<ul>
+
+<li>
+<p><code>&lt;subscribe&gt;</code>, <code>&lt;unsubscribe&gt;</code>: There elements specify the email addresses which are used for performing the relative actions To subscribe to the user list above, a user would send an email to <a href="mailto:user-subscribe@127.0.0.1" class="externalLink">user-subscribe@127.0.0.1</a>.</p></li>
+<li>
+<p><code>&lt;archive&gt;</code>: This element specifies the url of the archive of old mailing list emails, if one exists. If there are mirrored archives, they can be specified under otherArchives.</p></li>
+<li>
+<p><code>&lt;post&gt;</code>: The email address which one would use in order to post to the mailing list. Note that not all mailing lists have the ability to post to (such as a build failure list).</p></li>
+</ul></section><section><a id="SCM"></a>
+<h3>SCM</h3>
+<p>SCM (Software Configuration Management, also called Source Code/Control Management or, succinctly, version control) is an integral part of any healthy project. If your Maven project uses an SCM system (it does, doesn't it?) then here is where you would place that information into the POM.</p>
+
+<pre class="highlight"><code class="language-xml"><span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span><span class="nt">&gt;</span>
+  ...
+  <span class="nt">&lt;scm</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;connection</span><span class="nt">&gt;</span>scm:svn:http://127.0.0.1/svn/my-project<span class="nt">&lt;/connection</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;developerConnection</span><span class="nt">&gt;</span>scm:svn:https://127.0.0.1/svn/my-project<span class="nt">&lt;/developerConnection</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;tag</span><span class="nt">&gt;</span>HEAD<span class="nt">&lt;/tag</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;url</span><span class="nt">&gt;</span>http://127.0.0.1/websvn/my-project<span class="nt">&lt;/url</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;/scm</span><span class="nt">&gt;</span>
+  ...
+<span class="nt">&lt;/project</span><span class="nt">&gt;</span>
+</code></pre>
+<ul>
+
+<li><code>&lt;connection&gt;</code>, <code>&lt;developerConnection&gt;</code>: The two connection elements convey to how one is to connect to the version control system through Maven. Where connection requires read access for Maven to be able to find the source code (for example, an update), developerConnection requires a connection that will give write access. The Maven project has spawned another project named Maven SCM, which creates a common API for any SCMs that wish to implement it. The most popular are CVS and Subversion, however, there is a growing list of other supported <a href="/scm/scms-overview.html">SCMs</a>. All SCM connections are made through a common URL structure.</li>
+</ul>
+
+<pre><code class="nohighlight nocode">scm:[provider]:[provider_specific]
+</code></pre>
+<p>Where provider is the type of SCM system. For example, connecting to a CVS repository may look like this:</p>
+
+<pre><code class="nohighlight nocode">scm:cvs:pserver:127.0.0.1:/cvs/root:my-project
+</code></pre>
+<ul>
+
+<li>
+<p><code>&lt;tag&gt;</code>: Specifies the tag that this project lives under. HEAD (meaning, the SCM root) is the default.</p></li>
+<li>
+<p><code>&lt;url&gt;</code>: A publicly browsable repository. For example, via ViewCVS.</p></li>
+</ul></section><section><a id="Prerequisites"></a>
+<h3>Prerequisites</h3>
+<p>The POM may have certain prerequisites in order to execute correctly. The only element that exists as a prerequisite in POM 4.0.0 is the <code>maven</code> element, which takes a minimum version number.</p>
+<p>Use <a href="/enforcer/enforcer-rules/requireMavenVersion.html">Maven Enforcer Plugin's <code>requireMavenVersion</code> rule</a>, or other rules for <code>&lt;build-time&gt;</code> prerequisites. For packaging <code>maven-plugin</code> this is still used at <code>&lt;run-time&gt;</code> to make sure that the minimum Maven version for the plugin is met (but only in the pom.xml of the referenced plugin).</p>
+
+<pre class="highlight"><code class="language-xml"><span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span><span class="nt">&gt;</span>
+  ...
+  <span class="nt">&lt;prerequisites</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;maven</span><span class="nt">&gt;</span>2.0.6<span class="nt">&lt;/maven</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;/prerequisites</span><span class="nt">&gt;</span>
+  ...
+<span class="nt">&lt;/project</span><span class="nt">&gt;</span>
+</code></pre></section><section><a id="Repositories"></a>
+<h3>Repositories</h3>
+<p>Repositories are collections of artifacts which adhere to the Maven repository directory layout. In order to be a Maven repository artifact, a POM file must live within the structure <code>$BASE_REPO/groupId/artifactId/version/artifactId-version.pom</code>. <code>$BASE_REPO</code> can be local (file structure) or remote (base URL); the remaining layout will be the same. Repositories exist as a place to collect and store artifacts. Whenever a project has a dependency upon an artifact, Maven will first attempt to use a local copy of the specified artifact. If that artifact does not exist in the local repository, it will then attempt to download from a remote repository. The repository elements within a POM specify those alternate repositories to search.</p>
+<p>The repository is one of the most powerful features of the Maven community. By default, Maven searches the central repository at <a href="https://repo.maven.apache.org/maven2/" class="externalLink">https://repo.maven.apache.org/maven2/</a>. Additional repositories can be configured in the pom.xml <code>repositories</code> element.</p>
+
+<pre class="highlight"><code class="language-xml"><span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span><span class="nt">&gt;</span>
+  ...
+  <span class="nt">&lt;repositories</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;repository</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;releases</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;enabled</span><span class="nt">&gt;</span>false<span class="nt">&lt;/enabled</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;/releases</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;snapshots</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;enabled</span><span class="nt">&gt;</span>true<span class="nt">&lt;/enabled</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;updatePolicy</span><span class="nt">&gt;</span>always<span class="nt">&lt;/updatePolicy</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;checksumPolicy</span><span class="nt">&gt;</span>fail<span class="nt">&lt;/checksumPolicy</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;/snapshots</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;name</span><span class="nt">&gt;</span>Nexus Snapshots<span class="nt">&lt;/name</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;id</span><span class="nt">&gt;</span>snapshots-repo<span class="nt">&lt;/id</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;url</span><span class="nt">&gt;</span>https://oss.sonatype.org/content/repositories/snapshots<span class="nt">&lt;/url</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;layout</span><span class="nt">&gt;</span>default<span class="nt">&lt;/layout</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;/repository</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;/repositories</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;pluginRepositories</span><span class="nt">&gt;</span>
+    ...
+  <span class="nt">&lt;/pluginRepositories</span><span class="nt">&gt;</span>
+  ...
+<span class="nt">&lt;/project</span><span class="nt">&gt;</span>
+</code></pre>
+<ul>
+
+<li>
+<p><code>&lt;releases&gt;</code>, <code>&lt;snapshots&gt;</code>: These are the policies for each type of artifact, Release or snapshot. With these two sets, a POM has the power to alter the policies for each type independent of the other within a single repository. For example, one may decide to enable only snapshot downloads, possibly for development purposes.</p></li>
+<li>
+<p><code>&lt;enabled&gt;</code>: <code>true</code> or <code>false</code> for whether this repository is enabled for the respective type (<code>releases</code> or <code>snapshots</code>). By default, this is <code>true</code>.</p></li>
+<li>
+<p><code>&lt;updatePolicy&gt;</code>: This element specifies how often Maven tries to update its local repository from the remote repositories. Maven will compare the local POM's timestamp (stored in a repository's maven-metadata file) to the remote. The choices are: <code>always</code>, <code>daily</code> (default), <code>interval:X</code> (where X is an integer in minutes) or <code>never</code> (only downloads if not yet existing in the local repository). As this affects both artifacts and metadata (<a href="https://issues.apache.org/jira/browse/MRESOLVER-377" class="externalLink">supposed to be changed in Maven 4</a>) be careful with <code>never</code>, as metadata changes over time (even for release repositories).</p></li>
+<li>
+<p><code>&lt;checksumPolicy&gt;</code>: When Maven deploys files to the repository, it also deploys corresponding checksum files. Your options are to <code>ignore</code>, <code>fail</code>, or <code>warn</code> on missing or incorrect checksums. The default value is <code>warn</code>.</p></li>
+<li>
+<p><code>&lt;id&gt;</code>: The repository id is mandatory and connects the repository with the servers from <code>settings.xml</code>. Its default value is <code>default</code>. The id is used also in the <a href="https://maven.apache.org/ref/3-LATEST/maven-repository-metadata/" class="externalLink">local repository metadata</a> to store the origin.</p></li>
+<li>
+<p><code>&lt;name&gt;</code>: An optional name for the repository. Used as label when emitting log messages related to this repository.</p></li>
+<li>
+<p><code>&lt;layout&gt;</code>: In the above description of repositories, it was mentioned that they all follow a common layout. This is mostly correct. The layout introduced with Maven 2 is the default layout for repositories used by Maven both 2 &amp; 3. However, Maven 1.x had a different layout. Use this element to specify whether it is <code>default</code> or <code>legacy</code>. Its default value is <code>default</code>.</p></li>
+</ul></section><section><a id="Plugin_Repositories"></a>
+<h3>Plugin Repositories</h3>
+<p>Repositories are home to two major types of artifacts. The first are artifacts that are used as dependencies of other artifacts. These are the majority of artifacts that reside within central. The other type of artifact is plugins. Maven plugins are themselves a special type of artifact. Because of this, plugin repositories may be separated from other repositories (although, I have yet to hear a convincing argument for doing so). In any case, the structure of the <code>pluginRepositories</code> element block is similar to the <code>repositories</code> element. The <code>pluginRepository</code> elements each specify a remote location of where Maven can find new plugins.</p></section><section><a id="Distribution_Management"></a>
+<h3>Distribution Management</h3>
+<p>Distribution management acts precisely as it sounds: it manages the distribution (aka. remote publication) of the artifact and supporting files generated throughout the build process.</p>
+
+<pre class="highlight"><code class="language-xml"><span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span> <span class="na">xmlns:xsi</span>=<span class="s">"http://www.w3.org/001/XMLSchema-instance"</span>
+  <span class="na">xsi:schemaLocation</span>=<span class="s">"http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd"</span><span class="nt">&gt;</span>
+  ...
+  <span class="nt">&lt;distributionManagement</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;repository</span><span class="nt">&gt;</span>...<span class="nt">&lt;/repository</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;snapshotRepository</span><span class="nt">&gt;</span>...<span class="nt">&lt;snapshotRepository</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;site</span><span class="nt">&gt;</span>...<span class="nt">&lt;/site</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;relocation</span><span class="nt">&gt;</span>...<span class="nt">&lt;/relocation</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;downloadUrl</span><span class="nt">&gt;</span>...<span class="nt">&lt;/downloadUrl</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;status</span><span class="nt">&gt;</span>...<span class="nt">&lt;/status</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;/distributionManagement</span><span class="nt">&gt;</span>
+  ...
+<span class="nt">&lt;/project</span><span class="nt">&gt;</span>
+</code></pre><section><a id="Repository"></a>
+<h4>Repository</h4>
+<p>Whereas the <code>&lt;project&gt;&lt;repositories&gt;&lt;repository&gt;</code> elements specify the location and manner in which Maven may download remote artifacts for use by the current project, <code>&lt;project&gt;&lt;distributionManagement&gt;&lt;repository&gt;</code> specifies where (and how) the artifacts generated through this project will get uploaded to a remote repository when it is deployed (aka. published to remote).</p>
+<p>The repository elements will be used for snapshot distribution if the snapshotRepository is not defined. </p>
+
+<pre class="highlight"><code class="language-xml"><span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span><span class="nt">&gt;</span>
+  ...
+  <span class="nt">&lt;distributionManagement</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;repository</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;uniqueVersion</span><span class="nt">&gt;</span>false<span class="nt">&lt;/uniqueVersion</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;id</span><span class="nt">&gt;</span>corp1<span class="nt">&lt;/id</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;name</span><span class="nt">&gt;</span>Corporate Repository<span class="nt">&lt;/name</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;url</span><span class="nt">&gt;</span>scp://repo/maven2<span class="nt">&lt;/url</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;layout</span><span class="nt">&gt;</span>default<span class="nt">&lt;/layout</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;/repository</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;snapshotRepository</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;uniqueVersion</span><span class="nt">&gt;</span>true<span class="nt">&lt;/uniqueVersion</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;id</span><span class="nt">&gt;</span>propSnap<span class="nt">&lt;/id</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;name</span><span class="nt">&gt;</span>Propellors Snapshots<span class="nt">&lt;/name</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;url</span><span class="nt">&gt;</span>sftp://propellers.net/maven<span class="nt">&lt;/url</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;layout</span><span class="nt">&gt;</span>legacy<span class="nt">&lt;/layout</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;/snapshotRepository</span><span class="nt">&gt;</span>
+    ...
+  <span class="nt">&lt;/distributionManagement</span><span class="nt">&gt;</span>
+  ...
+<span class="nt">&lt;/project</span><span class="nt">&gt;</span>
+</code></pre>
+<ul>
+
+<li>
+<p><code>&lt;id&gt;</code>, <code>&lt;name&gt;</code>: The <code>id</code> is used to uniquely identify this repository amongst many, and the <code>name</code> is a human-readable form.</p></li>
+<li>
+<p><code>&lt;uniqueVersion&gt;</code>: The unique version takes a <code>true</code> or <code>false</code> value to denote whether artifacts deployed to this repository should get a uniquely generated version number, or use the version number defined as part of the address.</p></li>
+<li>
+<p><code>&lt;url&gt;</code>: This is the core of the distributionManagement repository element. It specifies both the location and the transport protocol used to transfer a built artifact (and POM file, and checksum data) to the repository. Notice that the url to download from the repository is often different: publishing (using distributionManagement repository url) can be done by a variety of protocols (with SCP, HTTP POST, HTTP PUT, FTP, …) while download is in most cases HTTP GET. Distribution management repository url and (download) repository url are the same only when you can do upload and download based on the same URL and with the same protocol (for example HTTP PUT for upload and HTTP GET for download).</p></li>
+<li>
+<p><code>&lt;layout&gt;</code>: These are the same types and purpose as the layout element defined in the repository element. They are <code>default</code> and <code>legacy</code>.</p></li>
+</ul></section><section><a id="Site_Distribution"></a>
+<h4>Site Distribution</h4>
+<p>More than distribution to the repositories, <code>distributionManagement</code> is responsible for defining how to deploy the project's site and documentation.</p>
+
+<pre class="highlight"><code class="language-xml"><span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span><span class="nt">&gt;</span>
+  ...
+  <span class="nt">&lt;distributionManagement</span><span class="nt">&gt;</span>
+    ...
+    <span class="nt">&lt;site</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;id</span><span class="nt">&gt;</span>mojo.website<span class="nt">&lt;/id</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;name</span><span class="nt">&gt;</span>Mojo Website<span class="nt">&lt;/name</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;url</span><span class="nt">&gt;</span>scp://beaver.codehaus.org/home/projects/mojo/public_html/<span class="nt">&lt;/url</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;/site</span><span class="nt">&gt;</span>
+    ...
+  <span class="nt">&lt;/distributionManagement</span><span class="nt">&gt;</span>
+  ...
+<span class="nt">&lt;/project</span><span class="nt">&gt;</span>
+</code></pre>
+<ul>
+
+<li><code>&lt;id&gt;</code>, <code>&lt;name&gt;</code>, <code>&lt;url&gt;</code>: These elements are similar to their counterparts above in the <code>distributionManagement</code> <code>repository</code> element.</li>
+</ul></section><section><a id="Relocation"></a>
+<h4>Relocation</h4>
+
+<pre class="highlight"><code class="language-xml"><span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span><span class="nt">&gt;</span>
+  ...
+  <span class="nt">&lt;distributionManagement</span><span class="nt">&gt;</span>
+    ...
+    <span class="nt">&lt;relocation</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;groupId</span><span class="nt">&gt;</span>org.apache<span class="nt">&lt;/groupId</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;artifactId</span><span class="nt">&gt;</span>my-project<span class="nt">&lt;/artifactId</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;version</span><span class="nt">&gt;</span>1.0<span class="nt">&lt;/version</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;message</span><span class="nt">&gt;</span>We have moved the Project under Apache<span class="nt">&lt;/message</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;/relocation</span><span class="nt">&gt;</span>
+    ...
+  <span class="nt">&lt;/distributionManagement</span><span class="nt">&gt;</span>
+  ...
+<span class="nt">&lt;/project</span><span class="nt">&gt;</span>
+</code></pre>
+<p>Projects are not static; they are living things (or dying things, as the case may be). A common thing that happens as projects grow, is that they are forced to move to more suitable quarters. For example, when your next wildly successful open source project moves under the Apache umbrella, it would be good to give users a heads-up that the project is being renamed to <code>org.apache:my-project:1.0</code>. Besides specifying the new address, it is also good form to provide a message explaining why.</p></section><section><a id="downloadUrl"></a>
+<h4>downloadUrl</h4>
+
+<pre class="highlight"><code class="language-xml"><span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span> <span class="na">xmlns:xsi</span>=<span class="s">"http://www.w3.org/001/XMLSchema-instance"</span>
+  <span class="na">xsi:schemaLocation</span>=<span class="s">"http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd"</span><span class="nt">&gt;</span>
+  ...
+  <span class="nt">&lt;distributionManagement</span><span class="nt">&gt;</span>
+    ...
+    <span class="nt">&lt;downloadUrl</span><span class="nt">&gt;</span>http://www.mojohaus.org/my-project/download.html<span class="nt">&lt;/downloadUrl</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;/distributionManagement</span><span class="nt">&gt;</span>
+  ...
+<span class="nt">&lt;/project</span><span class="nt">&gt;</span>
+</code></pre>
+<p><code>&lt;downloadUrl&gt;</code> is the URL of the project's download page. If not given users will be referred to the homepage given by url. This is given to assist in locating artifacts that are not in the repository due to licensing restrictions. See for example <a href="https://issues.apache.org/jira/browse/MNG-2083" class="externalLink">MNG-2083</a> for a typical workflow.</p></section><section><a id="Status"></a>
+<h4>Status</h4>
+
+<pre class="highlight"><code class="language-xml"><span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span> <span class="na">xmlns:xsi</span>=<span class="s">"http://www.w3.org/001/XMLSchema-instance"</span>
+  <span class="na">xsi:schemaLocation</span>=<span class="s">"http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd"</span><span class="nt">&gt;</span>
+  ...
+  <span class="nt">&lt;distributionManagement</span><span class="nt">&gt;</span>
+    ...
+    <span class="nt">&lt;status</span><span class="nt">&gt;</span>deployed<span class="nt">&lt;/status</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;/distributionManagement</span><span class="nt">&gt;</span>
+  ...
+<span class="nt">&lt;/project</span><span class="nt">&gt;</span>
+</code></pre>
+<p>Warning! Like a baby bird in a nest, the status should never be touched by human hands! The reason for this is that Maven will set the status of the project when it is transported out to the repository. It is described here just for understanding, but should never be configured in your <code>pom.xml</code>.</p>
+<p><code>&lt;Status&gt;</code> valid values are as follows:</p>
+<ul>
+
+<li>
+<p><code>&lt;none&gt;</code>: No special status. This is the default for a POM.</p></li>
+<li>
+<p><code>&lt;converted&gt;</code>: The manager of the repository converted this POM from an earlier version to Maven 2.</p></li>
+<li>
+<p><code>&lt;partner&gt;</code>: This artifact has been synchronized with a partner repository.</p></li>
+<li>
+<p><code>&lt;deployed&gt;</code>: By far the most common status, meaning that this artifact was deployed from a Maven 2 or 3 instance. This is what you get when you manually deploy using the command-line deploy phase.</p></li>
+<li>
+<p><code>&lt;verified&gt;</code>: This project has been verified, and should be considered finalized.</p></li>
+</ul></section></section></section><section><a id="Profiles"></a>
+<h2>Profiles</h2>
+<p>Profiles offer the possibility to change project settings depending on the environment where it is being built. For example, a project built for a test environment may point to a different database than that of the final deployment. Or dependencies may be pulled from different repositories based upon the JDK version used.</p>
+<p>The elements of profiles are as follows. All elements are optional.</p>
+
+<pre class="highlight"><code class="language-xml"><span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span><span class="nt">&gt;</span>
+  ...
+  <span class="nt">&lt;profiles</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;profile</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;id</span><span class="nt">&gt;</span>...<span class="nt">&lt;/id</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;activation</span><span class="nt">&gt;</span>...<span class="nt">&lt;/activation</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;build</span><span class="nt">&gt;</span>...<span class="nt">&lt;/build</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;modules</span><span class="nt">&gt;</span>...<span class="nt">&lt;/modules</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;repositories</span><span class="nt">&gt;</span>...<span class="nt">&lt;/repositories</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;pluginRepositories</span><span class="nt">&gt;</span>...<span class="nt">&lt;/pluginRepositories</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;dependencies</span><span class="nt">&gt;</span>...<span class="nt">&lt;/dependencies</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;reporting</span><span class="nt">&gt;</span>...<span class="nt">&lt;/reporting</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;dependencyManagement</span><span class="nt">&gt;</span>...<span class="nt">&lt;/dependencyManagement</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;distributionManagement</span><span class="nt">&gt;</span>...<span class="nt">&lt;/distributionManagement</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;properties</span><span class="nt">&gt;</span>...<span class="nt">&lt;/properties</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;/profile</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;/profiles</span><span class="nt">&gt;</span>
+<span class="nt">&lt;/project</span><span class="nt">&gt;</span>
+</code></pre>
+<p>Extensive information about profiles, including examples, are available in <a href="../configure/profiles.html">Introduction to Build Profiles</a>.</p></section><section><a id="The_BaseBuild_Element_Set_.28revisited.29"></a>
+<h2>The BaseBuild Element Set (revisited)</h2>
+<p>As mentioned above, the reason for the two types of build elements reside in the fact that it does not make sense for a profile to configure build directories or extensions as it does in the top level of the POM. Regardless of in which environment the project is built, some values will remain constant, such as the directory structure of the source code. <em>If you find your project needing to keep two sets of code for different environments, it may be prudent to investigate refactoring the project into two or more separate projects.</em></p></section><section><a id="Final"></a>
+<h2>Final</h2>
+<p>The Maven POM is big. However, its size is also a testament to its versatility. The ability to abstract all the aspects of a project into a single artifact is powerful, to say the least. Gone are the days of dozens of disparate build scripts and scattered documentation concerning each individual project. Along with Maven's other stars that make up the Maven galaxy - a well-defined build lifecycle, easy to write and maintain plugins, centralized repositories, system-wide and user-based configurations, as well as the increasing number of tools to make developers' jobs easier to maintain complex projects - the POM is the large, but bright, center.</p>
+<p><em>Information: Aspects of this guide were originally published in the article “Maven 2 Pom Demystified The evolution of a project model” by Eric Redmond (JavaWorld.com, 2006-05-29)</em></p></section></section>
+      </div>
+      <nav class="more" aria-labelledby="more-title">
+        <h2 id="more-title">More in <a href="../../docs/reference/index.html">Reference</a></h2>
+        <ul class="more-list">
+  <li><a href="../../docs/reference/pom.html" aria-current="page">POM reference</a></li>
+  <li><a href="../../docs/reference/settings.html">Settings reference</a></li>
+  <li><a href="../../docs/reference/command-line.html">Command line: running Maven</a></li>
+  <li><a href="../../docs/reference/classloading.html">Maven classloading</a></li>
+  <li><a href="../../docs/reference/classloading-core.html">Classloading in Maven core</a></li>
+  <li><a href="../../docs/reference/glossary.html">Glossary</a></li>
+  <li><a href="../../docs/reference/bash-completion.html">Bash completion</a></li>
+  <li><a href="../../docs/reference/a-z.html">A–Z index</a></li>
+</ul>
+        <p class="steps"><a class="step step--next" href="../../docs/reference/settings.html" rel="next"><span class="step-dir">Next</span> Settings reference</a></p>
+      </nav>
+    </main>
+    <aside class="rail">
+<section class="facts" aria-label="About this page">
+  <dl>
+    <dt>Holds for</dt>
+    <dd><span class="unchecked">Not yet checked against Maven 3.9, 3.10 and 4.0</span></dd>
+    <dt>Source</dt>
+    <dd><a href="https://github.com/dashorst/maven-site/edit/doxia-demo/content/markdown/docs/reference/pom.md">Edit this page</a></dd>
+    <dt>Wrong?</dt>
+    <dd><a href="https://github.com/apache/maven-site/issues/new?title=Page%3A+POM+reference&amp;body=About+https%3A%2F%2Fmaven.apache.org%2Fdocs%2Freference%2Fpom.html">Report a problem</a></dd>
+  </dl>
+</section>
+      <nav id="on-this-page" aria-label="On this page"></nav>
+    </aside>
+  </div>
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <nav aria-label="Apache Software Foundation">
+        <ul>
+          <li><a href="https://www.apache.org/">The Apache Software Foundation</a></li>
+          <li><a href="https://www.apache.org/licenses/">License</a></li>
+          <li><a href="https://www.apache.org/foundation/sponsorship.html">Sponsorship</a></li>
+          <li><a href="https://www.apache.org/foundation/thanks.html">Thanks</a></li>
+          <li><a href="https://www.apache.org/security/">Security</a></li>
+          <li><a href="https://privacy.apache.org/policies/privacy-policy-public.html">Privacy</a></li>
+          <li><a href="https://www.apache.org/events/current-event">Events</a></li>
+        </ul>
+      </nav>
+      <p>© 2002–2026 The Apache Software Foundation. Apache Maven, Maven, Apache, the Apache feather logo and the Apache Maven project logos are trademarks of The Apache Software Foundation.</p>
+      <p class="demo-note">A demonstration of a restructured maven.apache.org, built by maven-site-plugin from <a href="https://github.com/dashorst/maven-site/tree/doxia-demo">dashorst/maven-site</a>. Not the official Apache Maven site. <a href="../../about-this-example.html">About this example</a>.</p>
+    </div>
+  </footer>
+  <script src="../../js/page.js" defer></script>
+  <script src="../../js/search.js" defer></script>
+</body>
+</html>

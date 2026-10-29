@@ -49,11 +49,11 @@
   <div class="frame has-group">
     <nav class="group-nav" aria-labelledby="group-nav-title">
       <p class="up"><a href="download.html"><svg aria-hidden="true" viewBox="0 0 16 16" width="14" height="14"><path d="M10 3.5L5.5 8l4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>All of Downloads</a></p>
-      <p class="steps"><a class="step step--next" href="security-plexus-archiver.html" rel="next"><span class="step-dir">Next</span> Zip Slip vulnerability</a></p>
+      <p class="steps"><a class="step step--next" href="downloads/security/zip-slip.html" rel="next"><span class="step-dir">Next</span> Zip Slip vulnerability</a></p>
       <h2 id="group-nav-title"><a href="downloads/security/index.html">Security</a></h2>
       <ul class="page-list">
   <li><a href="security.html" aria-current="page">Security reports</a></li>
-  <li><a href="security-plexus-archiver.html">Zip Slip vulnerability</a></li>
+  <li><a href="downloads/security/zip-slip.html">Zip Slip vulnerability</a></li>
 </ul>
     </nav>
     <main id="content">
@@ -64,7 +64,7 @@
     <dt>Holds for</dt>
     <dd><span class="unchecked">Not yet checked against Maven 3.9, 3.10 and 4.0</span></dd>
     <dt>Source</dt>
-    <dd><a href="https://github.com/apache/maven-site/edit/master/content/markdown/security.md">Edit this page</a></dd>
+    <dd><a href="https://github.com/dashorst/maven-site/edit/doxia-demo/content/markdown/security.md">Edit this page</a></dd>
     <dt>Wrong?</dt>
     <dd><a href="https://github.com/apache/maven-site/issues/new?title=Page%3A+Security+reports&amp;body=About+https%3A%2F%2Fmaven.apache.org%2Fsecurity.html">Report a problem</a></dd>
   </dl>
@@ -100,7 +100,7 @@ The decision was made to block such external HTTP repositories by default: this 
 <li>Maven Plugin Plugin 3.0 to 3.5.1</li>
 </ul>
 <p>Description: As part of a broader research, the Snyk Security Research Team discovered an arbitrary file write generic vulnerability, that can be achieved using a specially crafted zip (or bzip2, gzip, tar, xz, war) archive, that holds path traversal filenames. So when the filename gets concatenated to the target extraction directory, if the extraction tool used does not make sufficient checks, the final path ends up outside of the target directory. The affected plugins use plexus-archiver to unpack dependencies to disk and have been identified as potential triggers for exposing the vulnerability if dependencies are compromised.</p>
-<p>See <a href="./security-plexus-archiver.html">full description</a> for more details.</p>
+<p>See <a href="downloads/security/zip-slip.html">full description</a> for more details.</p>
 <p>Credit: This issue was identified by the Snyk Security Research Team</p></section><section><a id="CVE-2013-0253_Apache_Maven_3.0.4"></a>
 <h3>CVE-2013-0253 Apache Maven 3.0.4</h3>
 <p>Severity: Medium</p>
@@ -131,9 +131,9 @@ The decision was made to block such external HTTP repositories by default: this 
         <h2 id="more-title">More in <a href="downloads/security/index.html">Security</a></h2>
         <ul class="more-list">
   <li><a href="security.html" aria-current="page">Security reports</a></li>
-  <li><a href="security-plexus-archiver.html">Zip Slip vulnerability</a></li>
+  <li><a href="downloads/security/zip-slip.html">Zip Slip vulnerability</a></li>
 </ul>
-        <p class="steps"><a class="step step--next" href="security-plexus-archiver.html" rel="next"><span class="step-dir">Next</span> Zip Slip vulnerability</a></p>
+        <p class="steps"><a class="step step--next" href="downloads/security/zip-slip.html" rel="next"><span class="step-dir">Next</span> Zip Slip vulnerability</a></p>
       </nav>
     </main>
     <aside class="rail">
@@ -142,7 +142,7 @@ The decision was made to block such external HTTP repositories by default: this 
     <dt>Holds for</dt>
     <dd><span class="unchecked">Not yet checked against Maven 3.9, 3.10 and 4.0</span></dd>
     <dt>Source</dt>
-    <dd><a href="https://github.com/apache/maven-site/edit/master/content/markdown/security.md">Edit this page</a></dd>
+    <dd><a href="https://github.com/dashorst/maven-site/edit/doxia-demo/content/markdown/security.md">Edit this page</a></dd>
     <dt>Wrong?</dt>
     <dd><a href="https://github.com/apache/maven-site/issues/new?title=Page%3A+Security+reports&amp;body=About+https%3A%2F%2Fmaven.apache.org%2Fsecurity.html">Report a problem</a></dd>
   </dl>

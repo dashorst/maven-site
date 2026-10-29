@@ -4,6 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Password Encryption (Maven 4) – Apache Maven</title>
+  <meta name="description" content="This page has moved.">
   <link rel="stylesheet" href="../../css/maven.css">
   <link rel="stylesheet" href="../../css/print.css" media="print">
   <link rel="icon" href="../../images/favicon.ico">
@@ -46,87 +47,45 @@
   <div class="specimen" role="note">
     <p><strong>Specimen.</strong> A proposed redesign of maven.apache.org, built with <code>mvn site</code> and a skin of its own; not the official Apache Maven site. The official site is <a href="https://maven.apache.org/">maven.apache.org</a>. <a href="../../about-this-example.html">About this example</a></p>
   </div>
-  <div class="frame">
+  <div class="frame no-rail">
     <main id="content">
       <div class="prose">
-<section class="facts facts--inline" aria-label="About this page">
-  <dl>
-    <dt>Holds for</dt>
-    <dd><span class="unchecked">Not yet checked against Maven 3.9, 3.10 and 4.0</span></dd>
-    <dt>Source</dt>
-    <dd><a href="https://github.com/apache/maven-site/edit/master/content/markdown/guides/mini/guide-encryption-4.md">Edit this page</a></dd>
-    <dt>Wrong?</dt>
-    <dd><a href="https://github.com/apache/maven-site/issues/new?title=Page%3A+Password+Encryption+%28Maven+4%29&amp;body=About+https%3A%2F%2Fmaven.apache.org%2Fguides%2Fmini%2Fguide-encryption-4.html">Report a problem</a></dd>
-  </dl>
+        <h1>Password Encryption (Maven 4)</h1>
+        <p class="lead">This page has moved.</p>
+
+
+
+<section class="moved">
+
+<p><a id="Password_Encryption_.28Maven_4.29"></a>Its content is now on <a href="../../docs/configure/encrypt-passwords.html">Encrypt passwords in settings.xml</a>. Its sections moved to these places:</p>
+
+<ul class="moved-list">
+
+<li><a id="Introduction"></a>Introduction <span aria-hidden="true">&#x2192;</span> <a href="../../docs/configure/encrypt-passwords.html#Maven_4">Encrypt passwords in settings.xml &#x203a; Maven 4</a></li>
+
+<li><a id="Dispatchers"></a>Dispatchers <span aria-hidden="true">&#x2192;</span> <a href="../../docs/configure/encrypt-passwords.html#Configure_encryption_with_mvnenc">Encrypt passwords in settings.xml &#x203a; Configure encryption with mvnenc</a></li>
+
+<li><a id="Master"></a>Master <span aria-hidden="true">&#x2192;</span> <a href="../../docs/configure/encrypt-passwords.html#Configure_encryption_with_mvnenc">Encrypt passwords in settings.xml &#x203a; Configure encryption with mvnenc</a></li>
+
+<li><a id="Master_Source_Lookup_Dispatcher"></a>Master Source Lookup Dispatcher <span aria-hidden="true">&#x2192;</span> <a href="../../docs/configure/encrypt-passwords.html#Configure_encryption_with_mvnenc">Encrypt passwords in settings.xml &#x203a; Configure encryption with mvnenc</a></li>
+
+<li><a id="Legacy_Dispatcher"></a>Legacy Dispatcher <span aria-hidden="true">&#x2192;</span> <a href="../../docs/configure/encrypt-passwords.html#Maven_3_passwords_on_Maven_4">Encrypt passwords in settings.xml &#x203a; Maven 3 passwords on Maven 4</a></li>
+
+<li><a id="Master_Key_Sources"></a>Master Key Sources <span aria-hidden="true">&#x2192;</span> <a href="../../docs/configure/encrypt-passwords.html#Configure_encryption_with_mvnenc">Encrypt passwords in settings.xml &#x203a; Configure encryption with mvnenc</a></li>
+
+<li><a id="Setup"></a>Setup <span aria-hidden="true">&#x2192;</span> <a href="../../docs/configure/encrypt-passwords.html#Configure_encryption_with_mvnenc">Encrypt passwords in settings.xml &#x203a; Configure encryption with mvnenc</a></li>
+
+<li><a id="Create_encrypted_values"></a>Create encrypted values <span aria-hidden="true">&#x2192;</span> <a href="../../docs/configure/encrypt-passwords.html#Encrypt_a_password_with_mvnenc">Encrypt passwords in settings.xml &#x203a; Encrypt a password with mvnenc</a></li>
+
+<li><a id="Implementation"></a>Implementation <span aria-hidden="true">&#x2192;</span> <a href="../../docs/configure/encrypt-passwords.html#Maven_4">Encrypt passwords in settings.xml &#x203a; Maven 4</a></li>
+
+<li><a id="Configuration_File"></a>Configuration File <span aria-hidden="true">&#x2192;</span> <a href="../../docs/configure/encrypt-passwords.html#Configure_encryption_with_mvnenc">Encrypt passwords in settings.xml &#x203a; Configure encryption with mvnenc</a></li>
+</ul>
 </section>
-<section><a id="Password_Encryption_.28Maven_4.29"></a>
-<h1>Password Encryption (Maven 4)</h1> 
-<ul>
-<li><a href="#Introduction">Introduction</a></li>
-<li><a href="#Dispatchers">Dispatchers</a>
-<ul>
-<li><a href="#Master">Master</a></li>
-<li><a href="#Master_Source_Lookup_Dispatcher">Master Source Lookup Dispatcher</a></li>
-<li><a href="#Legacy_Dispatcher">Legacy Dispatcher</a></li></ul></li>
-<li><a href="#Master_Key_Sources">Master Key Sources</a></li>
-<li><a href="#Setup">Setup</a></li>
-<li><a href="#Create_encrypted_values">Create encrypted values</a></li>
-<li><a href="#Implementation">Implementation</a>
-<ul>
-<li><a href="#Configuration_File">Configuration File</a></li></ul></li></ul> <section><a id="Introduction"></a>
-<h2>Introduction</h2>
-<p>Maven 4 introduces an enhanced encryption providing more secure handling of passwords than provided by <a href="guide-encryption.html">the one from Maven 3</a>. It ships with multiple pluggable providers (internally referred to as dispatchers) which use different approaches for decrypting secret values from <a href="../../settings.html"><code>settings.xml</code></a>.</p></section><section><a id="Dispatchers"></a>
-<h2>Dispatchers</h2><section><a id="Master"></a>
-<h3>Master</h3>
-<p>The <code>master</code> dispatcher still sticks to the principle of keeping the <em>symmetrically encrypted values</em> directly within the <code>settings.xml</code> (same approach as in Maven 3).</p>
-<p>A single master key is used for both decrypting and encrypting and therefore should be always kept at a safe place. <em>Everyone with that key can decrypt all encrypted values from your <code>settings.xml</code>.</em> The master key may be provided from different sources therefore this dispatcher requires the configuration of a master <code>source</code>.</p>
-<p>Currently the only cipher used is <code>AES/GCM/NoPadding</code> leveraging <code>PBKDF2WithHmacSHA512</code> hashes of the master key as crypto key (this may change in the future though).</p></section><section><a id="Master_Source_Lookup_Dispatcher"></a>
-<h3>Master Source Lookup Dispatcher</h3>
-<p>The <code>masterSourceLookup</code> dispatcher (introduced in <a href="https://issues.apache.org/jira/browse/MNG-8555" class="externalLink">Maven 4.0.0-rc-3</a>) does not actually perform any crypto operations. It merely looks up a secret value references from one of Master Key Sources. Instead of using an actually encrypted value one leverages master key source configurations within the <code>settings.xml</code>. The placeholder to be used within the <code>settings.xml</code> should be created with <code>mvnenc encrypt</code> as outlined in section <em>Create encrypted values</em>. It has the format <code>{[name=masterSourceLookup,version=4.0]&lt;master source config&gt;}</code>.</p></section><section><a id="Legacy_Dispatcher"></a>
-<h3>Legacy Dispatcher</h3>
-<p>This is provided as compatibility layer with the <a href="guide-encryption.html">Maven 3 encryption</a> and should only be used if the same <code>settings.xml</code> is supposed to be used with Maven &lt; 4 and above. It is using the same decryption and master key as in Maven 3.</p></section></section><section><a id="Master_Key_Sources"></a>
-<h2>Master Key Sources</h2>
-<p>There are different master key source implementations shipping with Maven with which the master key may be retrieved. Each of them have a unique prefix used in the dispatcher's <code>source</code> property of the <code>settings-security4.xml</code> (for the Master Dispatcher) or the reference used in the <code>settings.xml</code> (for the Master Source Lookup Dispatcher). This is the list of implementations (in parentheses the format of the <code>source</code>):</p>
-<ol style="list-style-type: decimal;">
 
-<li>Plain file (<code>file:&lt;filepath&gt;</code>), the given filepath must be absolute. Only considered secure if located on a protected file system.</li>
-<li>Environment variable (<code>env:&lt;variable-name&gt;</code>), the environment variable must be externally populated via some secure means.</li>
-<li>Java System Properties (<code>system-property:&lt;property-name&gt;</code>), the Java system property must be externally populated via some secure means.</li>
-<li><a href="https://www.gnupg.org/documentation/manuals/gnupg/Invoking-GPG_002dAGENT.html" class="externalLink">GnuPG Agent</a> (<code>gpg-agent:&lt;agentSocketPath&gt;(?non-interactive)</code>), requires one manual input per user session. The default agent socket path is <code>.gnupg/S.gpg-agent</code> within the user's home directory.</li>
-<li><a href="https://www.gnupg.org/related_software/pinentry/index.html" class="externalLink">Pinentry</a> (<code>pinentry-prompt:&lt;pinentry-binary-path&gt;</code>), requires manual input of the password every time a decryption is required. The path should specify the absolute location of the pinentry binary to be used. The one used by GnuPG Agent can be found in <code>~/.gnupg/gpg-agent.conf</code> in property <code>pinentry-program</code>.</li>
-<li>1Password CLI (<code>onepassword:&lt;1Password Secret Reference URI&gt;</code>), looks up secret values from a 1Password vault leveraging the <a href="https://developer.1password.com/docs/cli/get-started" class="externalLink">1Password CLI</a>. The <a href="https://developer.1password.com/docs/cli/secret-reference-syntax" class="externalLink">1Password Secret Reference URI</a> always starts with <code>op://</code>.</li>
-</ol>
-<p>One has to pick a suitable source depending on the security and ease-of-use requirements.</p></section><section><a id="Setup"></a>
-<h2>Setup</h2>
-<p>There is a dedicated tool named <code>mvnenc</code> shipping with Maven 4 which helps both with the setup and encryption of values, as well as diagnosis in case of issues. Start by executing <code>mvnenc init</code> and then select the desired dispatcher.</p>
-<p>Depending on this choice there may be multiple subsequent configuration steps.</p>
-<p>Afterwards check with <code>mvnenc diag</code> if the configuration is valid.</p>
-<p><em>In contrast to <a href="../../settings.html"><code>settings.xml</code></a> there is no support for expressions in the security related settings</em></p></section><section><a id="Create_encrypted_values"></a>
-<h2>Create encrypted values</h2>
-<p>Execute <code>mvnenc encrypt</code> and afterwards enter the value to encrypt via the CLI. The tool emits the encrypted value in the format</p>
 
-<pre><code class="nohighlight nocode">{[name=&lt;dispatcher name&gt;,&lt;dispatcher-specific attributes&gt;,version=4.0]&lt;the encrypted value&gt;}
-</code></pre>
-<p>which can be just used as is in the <code>settings.xml</code>.</p></section><section><a id="Implementation"></a>
-<h2>Implementation</h2>
-<p>The implementation relies on the <a href="https://github.com/codehaus-plexus/plexus-sec-dispatcher" class="externalLink">Plexus Security Dispatcher Component</a> which also provides an SPI to implement your own source of the master password or other dispatcher implementations.</p><section><a id="Configuration_File"></a>
-<h3>Configuration File</h3>
-<p>The Maven 4 security configuration is stored in the <code>&lt;maven.user.conf&gt;/settings-security4.xml</code> (where <code>&lt;maven.user.conf&gt;</code> is by default<code>~/.m2</code>). The path can be overwritten with config <code>maven.settings.security</code>. The XML must adhere to the format defined by <a href="https://codehaus-plexus.github.io/plexus-sec-dispatcher/settings-security.html" class="externalLink">https://codehaus-plexus.github.io/plexus-sec-dispatcher/settings-security.html</a>. It is recommended to only write the configuration file with the aforementioned <code>mvnenc</code> CLI tool, though.</p></section></section></section>
       </div>
     </main>
-    <aside class="rail">
-<section class="facts" aria-label="About this page">
-  <dl>
-    <dt>Holds for</dt>
-    <dd><span class="unchecked">Not yet checked against Maven 3.9, 3.10 and 4.0</span></dd>
-    <dt>Source</dt>
-    <dd><a href="https://github.com/apache/maven-site/edit/master/content/markdown/guides/mini/guide-encryption-4.md">Edit this page</a></dd>
-    <dt>Wrong?</dt>
-    <dd><a href="https://github.com/apache/maven-site/issues/new?title=Page%3A+Password+Encryption+%28Maven+4%29&amp;body=About+https%3A%2F%2Fmaven.apache.org%2Fguides%2Fmini%2Fguide-encryption-4.html">Report a problem</a></dd>
-  </dl>
-</section>
-      <nav id="on-this-page" aria-label="On this page"></nav>
-    </aside>
   </div>
   <footer class="site-footer">
     <div class="footer-inner">

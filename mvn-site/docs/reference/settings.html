@@ -1,0 +1,509 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Settings reference – Apache Maven</title>
+  <link rel="stylesheet" href="../../css/maven.css">
+  <link rel="stylesheet" href="../../css/print.css" media="print">
+  <link rel="icon" href="../../images/favicon.ico">
+  <meta name="generator" content="Apache Maven Doxia Site Renderer 2.1.0">
+</head>
+<body class="page">
+  <a class="skip-link" href="#content">Skip to the text</a>
+  <header class="masthead">
+    <div class="masthead-inner">
+    <a class="brand" href="../../index.html" aria-label="Maven, home"><svg class="wordmark" viewBox="0 0 9375 2346" width="140" height="35" aria-hidden="true" focusable="false" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
+  <path d="M5126.58,975.196c46.271,-114.421 97.896,-228.613 153.292,-329.825c-82.692,-61.417 -162.092,-193.859 -194.717,-252.538c-11.716,13.313 -19.32,28.642 -22.771,41.113c-30.733,110.971 78.671,244.971 -9.45,196.012c-73.42,-40.796 -238.745,-130.137 -301.804,-41.341c70.625,90.75 255.35,319.062 375.45,386.579Z" style="fill:#dd552c;fill-rule:nonzero;" />
+  <path d="M5279.88,645.371c53.679,-98.071 110.879,-183.963 170.188,-245.842c-0,0 -59.155,85.621 -143.642,256.779c51.167,14.092 196.892,43.009 399.871,-9.425c4.991,-36.887 -19.809,-77.458 -143.384,-91.041c-80.679,-8.859 96.834,-192.646 -31.762,-279.563c-4.15,-2.812 -8.234,-5.291 -12.229,-7.512c-4.313,-1.55 -8.867,-2.967 -13.725,-4.23c-150.188,-39.191 -171.009,215.476 -230.938,160.73c-96.85,-88.467 -157.979,-67.796 -189.096,-32.434c32.625,58.68 112.025,191.121 194.717,252.538Z" style="fill:#f79a23;fill-rule:nonzero;" />
+  <path d="M5005.79,1304.85c33.904,-101.567 74.687,-215.675 120.796,-329.654c-120.101,-67.517 -304.825,-295.829 -375.45,-386.579c-12.609,17.741 -21.226,42.487 -24.096,76.325c-15.404,181.766 172.116,316.333 134.733,340.912c-49.45,32.521 -147.867,-78.108 -186.658,-7.817c56.225,72.225 170.746,202.73 330.675,306.813Z" style="fill:#d22128;fill-rule:nonzero;" />
+  <path d="M5525.38,912.842c-94.946,-33.863 99.217,-124.684 162.267,-221.029c8.066,-12.317 16.404,-28.238 18.666,-44.93c-202.979,52.434 -348.704,23.517 -399.871,9.425c-43.737,88.621 -94.241,200.3 -146.916,334.95c54.858,23.459 278.85,110.105 595.233,110.554c53.192,-138.55 -139.271,-156.845 -229.379,-188.97Z" style="fill:#dd552c;fill-rule:nonzero;" />
+  <path d="M5042.5,1323.13c55.792,17.388 240.654,69.321 436.983,61.505c26.375,-71.413 -72.233,-78.384 -80.266,-135.655c-6.217,-44.316 259.504,37.242 345,-123.904c4.325,-8.15 7.695,-15.837 10.55,-23.267c-316.384,-0.449 -540.375,-87.095 -595.234,-110.554c-38.491,98.4 -78.087,208.838 -117.033,331.875Z" style="fill:#d22128;fill-rule:nonzero;" />
+  <path d="M5042.5,1323.13c-25.067,79.196 -49.8,163.8 -73.808,253.213c-8.517,31.704 -16.929,63.996 -25.229,96.996c186.341,61.512 357.933,0.141 363.75,-75.925c0.045,-0.6 -0.063,-1.05 -0.03,-1.63c4.434,-80.562 -116.316,-35.904 -113.458,-84.345c2.867,-48.792 210.813,-0.284 275.121,-104.896c4.933,-8.021 8.146,-15.142 10.637,-21.908c-196.329,7.816 -381.191,-44.117 -436.983,-61.505Z" style="fill:#7c297d;fill-rule:nonzero;" />
+  <path d="M4675.12,998.038c-2.717,4.924 -5.167,10.616 -7.258,17.42c-36.113,117.371 219.25,275.042 184.508,309.413c-31.317,30.971 -72.133,-39.804 -122.463,-10.571c-5.512,3.213 -11.112,7.263 -16.858,13.158c-56.921,58.313 -0.892,226.305 160.6,315.98c-37.687,126.533 -75.204,267.904 -111.933,415.75c13.325,-4.667 29.271,-9.346 33.237,-21.913c5.959,-24.496 42.788,-173.558 102.584,-375.779c-0,-0 10.912,-41.421 30.891,-109.671c18.475,-63.108 44.725,-149.175 77.367,-246.975c-159.929,-104.083 -274.45,-234.588 -330.675,-306.813Z" style="fill:#7c297d;fill-rule:nonzero;" />
+  <path id="path4328" d="M8792.46,721.342c1.684,1.346 2.525,4.208 2.525,8.587c0,4.375 -0.841,8.417 -2.525,12.121l-0.504,4.042c-1.35,3.029 -2.862,5.554 -4.546,7.575c-1.345,1.683 -3.537,3.029 -6.566,4.037c-3.029,0.675 -7.238,1.013 -12.625,1.013c-5.388,-0.338 -9.934,-0.505 -13.638,-0.505l-7.575,0c-1.683,0.671 -3.2,0.842 -4.546,0.505c-1.345,-0.338 -2.695,-0.171 -4.041,0.504c-3.704,1.346 -6.9,4.546 -9.596,9.596c-1.008,1.683 -1.683,3.704 -2.021,6.062c-0.333,2.354 -0.671,4.713 -1.008,7.071l-24.242,119.192c-0.337,1.683 -0.504,3.196 -0.504,4.546c-0,1.345 -0.338,2.691 -1.013,4.037l-1.008,4.042c-0.337,1.008 -0.675,2.02 -1.012,3.029c-0,1.012 -0.505,1.854 -1.513,2.525c-1.35,2.696 -3.537,4.546 -6.567,5.558c-1.683,0.671 -3.704,1.008 -6.062,1.008l-22.725,0c-5.725,0 -9.596,-1.345 -11.617,-4.041c-1.012,-2.021 -1.346,-4.375 -1.012,-7.071c0.675,-2.692 1.35,-5.721 2.021,-9.088l23.737,-119.195c0.338,-1.684 0.675,-3.367 1.013,-5.05c0.67,-1.684 0.841,-3.196 0.504,-4.546l1.008,-7.071c0.338,-5.383 -1.346,-8.754 -5.05,-10.1c-3.029,-1.683 -7.575,-2.354 -13.637,-2.021c-5.721,0.338 -10.771,0.508 -15.15,0.508c-1.684,0 -3.367,0.167 -5.05,0.505c-1.346,-0 -2.525,-0.171 -3.534,-0.505c-1.35,-0.675 -2.529,-0.841 -3.537,-0.508c-1.009,0 -2.021,-0.167 -3.029,-0.504c-3.367,-1.683 -4.884,-4.375 -4.546,-8.079c0.337,-3.704 1.008,-8.084 2.021,-13.134c0.337,-2.02 0.67,-3.87 1.008,-5.554c0.675,-1.683 1.517,-3.366 2.525,-5.05c1.012,-1.683 2.358,-2.862 4.042,-3.537c1.683,-1.009 3.366,-1.85 5.05,-2.525c1.008,-0.338 1.683,-0.338 2.02,-0c0.671,-0 1.513,-0.167 2.525,-0.504l134.85,-0c3.03,-0 5.892,0.166 8.584,0.504c2.696,-0 4.883,0.675 6.566,2.021Zm268.688,1.012c1.346,2.354 1.683,5.05 1.008,8.079c-0.337,3.029 -0.841,6.396 -1.512,10.1l-32.829,164.142c-0.675,3.704 -1.517,7.071 -2.525,10.1c-0.675,2.696 -1.855,5.05 -3.538,7.071c-2.354,2.696 -6.058,4.041 -11.108,4.041l-14.142,0c-2.021,0 -4.208,0.167 -6.567,0.505c-2.02,-0 -3.704,-0.338 -5.05,-1.009c-3.033,-1.012 -4.883,-2.525 -5.558,-4.546c-0.333,-2.02 -0.504,-4.545 -0.504,-7.575l1.517,-8.587c-0,-1.008 0.166,-2.188 0.504,-3.533c0.337,-1.684 0.675,-3.2 1.008,-4.546l13.133,-64.142c0.675,-4.042 1.346,-8.083 2.021,-12.121c1.009,-4.041 1.513,-7.746 1.513,-11.112c-0.334,-1.684 -0.504,-3.029 -0.504,-4.042c-0,-1.346 -0.505,-2.354 -1.513,-3.029c-0.337,-0.338 -0.842,-0.504 -1.517,-0.504c-1.008,0.671 -2.187,1.346 -3.537,2.021c-3.367,4.037 -6.396,8.583 -9.088,13.633c-2.695,5.054 -5.558,9.933 -8.587,14.65c-6.058,10.437 -11.954,21.042 -17.675,31.817c-5.725,10.437 -11.617,20.708 -17.679,30.808c-2.692,4.712 -5.554,10.1 -8.584,16.162c-3.033,5.721 -6.566,9.934 -10.608,12.625c-2.021,1.346 -4.375,2.188 -7.071,2.525l-16.162,0c-1.684,-0.675 -3.196,-1.179 -4.546,-1.516c-1.346,-0.671 -2.525,-1.513 -3.533,-2.525c-1.009,-1.009 -1.684,-2.354 -2.021,-4.038c-0.338,-1.683 -0.671,-3.366 -1.009,-5.05c-1.012,-3.033 -1.683,-6.062 -2.02,-9.091c-0.338,-3.367 -0.842,-6.734 -1.517,-10.105c-2.021,-9.762 -3.704,-19.695 -5.05,-29.795c-1.346,-10.438 -3.029,-20.538 -5.05,-30.305c-1.008,-5.725 -2.021,-11.445 -3.029,-17.17c-0.675,-5.725 -2.525,-10.605 -5.559,-14.646c-0.67,-0 -1.175,0.166 -1.512,0.504l-1.013,-0c-1.683,1.346 -2.862,2.862 -3.533,4.546c-1.012,1.683 -1.683,3.366 -2.021,5.05c0,1.346 -0.337,2.862 -1.008,4.546l-1.517,8.587c-0.675,1.346 -1.179,2.692 -1.516,4.038c-0.334,1.35 -0.505,2.525 -0.505,3.537l-12.12,58.583c-0.675,4.38 -1.684,9.767 -3.03,16.163c-1.012,6.062 -2.525,10.437 -4.545,13.133c-1.013,0.671 -2.021,1.513 -3.03,2.525c-0.675,0.671 -1.516,1.179 -2.529,1.513c-1.683,0.675 -3.7,1.179 -6.058,1.516l-20.204,0c-4.375,0 -7.742,-1.008 -10.1,-3.029c-1.684,-1.346 -2.525,-3.537 -2.525,-6.566c0.337,-3.03 0.841,-6.396 1.516,-10.1l33.334,-166.667c0.671,-3.033 1.346,-5.892 2.021,-8.588c1.008,-3.029 2.187,-5.387 3.533,-7.07c1.683,-2.355 4.379,-3.871 8.083,-4.546c1.009,-0.338 1.684,-0.338 2.017,-0c0.675,-0 1.517,-0.167 2.525,-0.504l43.942,-0c3.366,-0 5.891,0.841 7.575,2.525c2.695,2.02 4.208,5.22 4.545,9.595c0.675,4.38 1.517,8.417 2.525,12.121c1.684,9.429 3.367,19.025 5.05,28.788c1.684,9.429 3.367,19.025 5.05,28.787c1.35,5.054 2.359,10.271 3.034,15.659c1.008,5.387 2.016,10.604 3.029,15.658c0.671,2.017 1.179,4.208 1.512,6.562c0.675,2.021 2.021,3.367 4.042,4.042c1.683,0.675 3.2,0.338 4.546,-1.008c1.683,-1.35 2.862,-2.525 3.537,-3.538c3.367,-3.704 6.059,-7.575 8.08,-11.616c2.358,-4.375 4.712,-8.584 7.07,-12.625c7.071,-11.113 13.638,-22.392 19.696,-33.838c6.4,-11.787 13.134,-23.233 20.204,-34.346c2.692,-4.712 5.388,-9.596 8.08,-14.646c3.029,-5.387 7.07,-9.091 12.12,-11.112c2.359,-0.671 4.713,-1.008 7.071,-1.008l36.363,-0c2.021,-0.338 3.875,-0.338 5.558,-0l2.525,-0c1.346,0.675 2.692,1.179 4.038,1.516c1.687,0.338 2.695,1.009 3.033,2.021Z" style="fill-rule:nonzero;" />
+  <path id="path1" d="M2866.07,2092.43c-150.088,-13.46 -253.806,-82.277 -287.76,-190.93c-30.902,-98.885 -17.816,-209.252 38.457,-324.325c32.852,-67.182 117.72,-150.531 186.529,-183.192c63.217,-30.007 148.971,-58.338 205.759,-67.977c59.39,-10.081 180.315,-26.556 233.658,-31.834c65.006,-6.432 196.693,-35.197 222.697,-48.644c65.175,-33.703 107.043,-114.49 91.442,-176.444c-10.744,-42.671 -24.985,-61.992 -61.436,-83.353c-26.917,-15.775 -41.492,-18.79 -104.363,-21.586c-81.589,-3.628 -134.097,5.105 -183.215,30.471c-45.565,23.532 -65.58,42.437 -102.915,97.208c-44.598,65.424 -52.14,67.683 -216.76,64.919c-117.137,-1.967 -128.696,-3.28 -137.754,-15.685c-15.065,-20.631 -12.118,-39.46 14.385,-91.891c71.44,-141.33 176.549,-226.291 347.578,-280.952c113.514,-36.279 187.988,-44.764 356.551,-40.621c117.057,2.877 158.635,6.568 204.42,18.146c147.905,37.402 237.485,118.035 252.283,227.086c7.77,57.256 -0.281,108.097 -79.93,504.633c-52.358,260.672 -75.176,389.871 -79.987,452.908c-3.703,48.509 -8.552,93.931 -10.776,100.938c-8.95,28.2 -36.919,33.521 -175.337,33.357c-146.719,-0.153 -152.134,-1.742 -171.749,-49.741c-16.018,-39.197 -29.597,-39.148 -110.793,0.409c-88.834,43.269 -179.961,67.993 -284.512,77.193c-44.116,3.883 -74.223,4.631 -83.377,4.631c-6.148,0 -30.488,-1.792 -63.095,-4.715l-0,-0.009Zm336.194,-237.704c88.4,-18.702 157.053,-64.357 204.685,-136.117c49.452,-74.503 88.258,-223.244 65.422,-250.76c-10.644,-12.826 -6.135,-13.173 -180.834,13.925c-174.259,27.029 -232.875,46.454 -288.841,95.718c-40.966,36.058 -56.872,63.208 -67.574,115.338c-10.403,50.67 -2.703,86.568 25.843,120.493c34.69,41.226 149.235,60.88 241.299,41.403Zm2994.3,233.426c-82.623,-17.451 -121.141,-29.631 -175.904,-55.623c-51.008,-24.209 -74.873,-40.975 -115.398,-81.071c-109.659,-108.498 -149.964,-234.684 -137.079,-429.165c6.777,-102.277 16.471,-147.046 53.191,-245.636c49.332,-132.45 99.583,-210.499 200.169,-310.901c117.667,-117.449 252.423,-194.316 398.217,-227.152c91.88,-20.693 240.52,-22.113 313.869,-2.999c101.302,26.396 201.55,85.476 252.41,148.753c14.621,18.191 30.255,36.974 34.741,41.739c4.487,4.768 11.977,20.463 16.646,34.884c4.67,14.421 15.546,40.344 24.172,57.606c20.098,40.223 38.228,146.034 38.154,222.681c-0.051,78.348 -11.604,176.833 -24.241,207.079c-19.658,47.046 -13.154,46.429 -474.735,45.041c-258.129,-0.777 -418.628,1.338 -430.015,5.668c-9.992,3.797 -26.321,15.701 -36.287,26.449c-15.36,16.566 -18.12,25.969 -18.12,61.741c-0,128.542 55.515,205.624 165.757,230.15c133.528,29.707 269.973,-8.456 377.217,-105.506c22.738,-20.577 49.746,-40.608 60.019,-44.514c10.273,-3.904 66.775,-7.101 125.561,-7.101c93.997,-0 108.825,1.574 122.984,13.037c14.854,12.028 15.467,15.151 7.917,40.35c-10.106,33.728 -113.754,164.482 -163.667,206.468c-100.865,84.845 -217.315,139.479 -344.842,161.786c-56.608,9.902 -234.03,13.989 -270.736,6.236Zm540.93,-836.072c16.271,-18.923 14.876,-30.52 10.797,-72.675c-11.637,-120.265 -93.477,-189.165 -225.087,-189.5c-122.497,-0.306 -228.179,55.459 -296.923,156.69c-23.051,33.944 -29.121,49.206 -29.384,73.884c-0.532,49.927 -2.734,49.551 277.529,47.496c0,0 199.143,0.871 242.987,-1.778c8.168,-0.493 20.081,-14.117 20.081,-14.117Zm-6401.11,805.714c-31.661,-12.757 -32.497,-27.151 -8.828,-151.967c40.584,-214.015 313.564,-1565.81 321.645,-1592.78c15.865,-52.952 5.386,-50.994 284.867,-53.225l249.693,-1.993l18.225,15.943c15.918,13.925 19.572,25.655 28.863,92.666c5.851,42.198 18.378,126.943 27.837,188.322c9.459,61.378 26.714,185.357 38.344,275.507c11.631,90.15 30.161,220.406 41.178,289.457c11.017,69.051 23.609,153.796 27.981,188.321c20.136,158.983 44.034,167.026 111.466,37.513c407.078,-781.853 547.301,-1044.2 569.053,-1064.65c0,0 13.13,-22.755 24.203,-22.755c44.663,-0 252.581,1.829 252.581,1.829c0,0 207.842,1.829 252.581,1.829c3.637,0 10.728,19.146 10.728,19.146c10.158,18.13 1.694,64.212 -159.503,868.371c-93.626,467.074 -174.334,859.539 -179.351,872.144c-14.861,37.34 -39.592,43.342 -178.587,43.342c-156.443,-0 -179.423,-6.395 -179.673,-49.999c-0.057,-10.237 36.154,-198.558 80.473,-418.492c44.319,-219.934 85.083,-427.019 90.586,-460.19c5.504,-33.171 14.707,-80.251 20.452,-104.623c12.611,-53.494 13.903,-121.692 2.44,-128.776c-16.699,-10.32 -63.084,63.749 -207.959,332.071c-67.174,124.414 -162.132,297.567 -198.903,362.693c-16.245,28.772 -49.308,89.976 -73.475,136.01c-44.807,85.351 -142.33,259.503 -162.885,290.874c-19.945,30.44 -42.051,35.835 -159.658,38.97c-160.163,4.267 -163.303,1.988 -182.606,-132.507c-5.666,-39.484 -16.546,-112.592 -24.177,-162.463c-7.631,-49.87 -21.795,-142.461 -31.475,-205.758c-9.68,-63.297 -31.833,-212.385 -49.228,-331.306c-34.102,-233.127 -46.052,-293.199 -61.373,-308.52c-8.461,-8.461 -11.299,-8.366 -20.341,0.674c-12.066,12.067 -32.127,69.87 -40.238,115.941c-30.626,173.965 -198.122,976.255 -206.478,989.007c-20.413,31.155 -47.66,36.43 -185.705,35.951c-70.133,-0.255 -134.372,-3.204 -142.753,-6.581l0,0.004Zm3996.39,-3.276c-13.609,-5.917 -23.706,-16.093 -25.681,-25.883c-9.369,-46.429 -20.397,-118.628 -46.143,-302.101c-15.611,-111.25 -34.401,-241.505 -41.755,-289.457c-7.354,-47.953 -18.224,-123.281 -24.156,-167.397c-5.932,-44.116 -16.86,-121.014 -24.286,-170.884c-21.042,-141.326 -35.441,-255.869 -35.348,-281.197c0.205,-56.069 21.808,-64.157 170.267,-63.756c120.917,0.307 166.904,5.974 183.455,22.526c11.54,11.539 13.095,22.522 43.679,308.477c29.083,271.915 54.086,475.932 59.379,484.495c2.458,3.976 12.201,7.233 21.649,7.233c12.742,-0 22.281,-8.045 36.932,-31.146l19.752,-31.146l22.131,34.155c12.173,18.785 43.645,54.072 69.939,78.416l47.806,44.261l-33.792,125.358c-18.585,68.947 -40.983,152.037 -49.772,184.644c-22.725,84.307 -21.269,83.751 -218.184,83.415c-115.599,-0.205 -158.978,-2.668 -175.872,-10.013Zm2873.61,3.184c-8.517,-3.429 -17.647,-14.846 -20.289,-25.374c-3.215,-12.812 25.928,-173.81 88.121,-486.799c118.691,-597.316 149.089,-739.014 163.139,-760.458c16.378,-24.996 35.27,-28.041 173.927,-28.041c143.7,-0 144.164,0.204 144.164,63.608c0,32.355 11.326,58.452 25.369,58.452c7.207,-0 33.353,-16.279 64.434,-40.114c47.566,-36.478 164.682,-91.074 220.578,-102.826c57.953,-12.185 216.555,-13.887 269.933,-2.898c56.747,11.683 133.62,52.235 166.368,87.763c15.797,17.136 38.653,52.123 50.793,77.747c22.005,46.448 22.072,46.937 22.072,161.674c0,107.728 -1.921,124.673 -30.009,265.045c-81.595,407.75 -135.246,668.355 -141.909,689.308c-14.188,44.62 -33.883,49.973 -183.992,50.002c-155.256,0.031 -163.718,-2.611 -163.718,-51.157c0,-16.207 28.144,-169.99 62.542,-341.74c87.476,-436.769 94.455,-489.786 73.68,-559.746c-12.519,-42.154 -50.694,-81.654 -93.506,-96.749c-96.417,-33.997 -245.583,7.567 -318.593,88.772c-67.235,74.781 -86.042,139.101 -185.035,632.827c-37.681,187.937 -59.325,281.05 -68.093,292.945c-7.069,9.59 -23.545,21.183 -36.612,25.762c-28.123,9.854 -259.78,11.487 -283.364,1.998l0,-0.001Z" style="fill-rule:nonzero;" />
+</svg></a>
+    <nav class="tabs" aria-label="Sections">
+      <ul>
+        <li><a href="../../docs/index.html" aria-current="true">Docs</a></li>
+        <li><a href="../../download.html">Downloads</a></li>
+        <li><a href="../../news/index.html">News</a></li>
+        <li><a href="../../extend/index.html">Extend</a></li>
+        <li><a href="../../community/index.html">Community</a></li>
+      </ul>
+    </nav>
+    <form class="search" role="search" action="../../search.html" method="get" data-index="../../search.json" data-script="../../js/minisearch-7.2.0.js">
+      <label class="visually-hidden" for="q">Search the documentation</label>
+      <div class="search-field">
+        <svg class="search-icon" aria-hidden="true" viewBox="0 0 16 16" width="16" height="16"><circle cx="7" cy="7" r="5" fill="none" stroke="currentColor" stroke-width="1.6" /><path d="M11 11l3.5 3.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" /></svg>
+        <input id="q" name="q" type="search" autocomplete="off" spellcheck="false" placeholder="Search the docs">
+      </div>
+    </form>
+    <a class="asf" href="https://www.apache.org/"><img class="asf-leaf" src="../../images/oakleaf.svg" width="14" height="22" alt=""><span>Apache</span></a>
+    </div>
+  </header>
+  <div class="specimen" role="note">
+    <p><strong>Specimen.</strong> A proposed redesign of maven.apache.org, built with <code>mvn site</code> and a skin of its own; not the official Apache Maven site. The official site is <a href="https://maven.apache.org/">maven.apache.org</a>. <a href="../../about-this-example.html">About this example</a></p>
+  </div>
+  <div class="frame has-group">
+    <nav class="group-nav" aria-labelledby="group-nav-title">
+      <p class="up"><a href="../../docs/index.html"><svg aria-hidden="true" viewBox="0 0 16 16" width="14" height="14"><path d="M10 3.5L5.5 8l4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" /></svg>All of Docs</a></p>
+      <p class="steps"><a class="step step--prev" href="../../docs/reference/pom.html" rel="prev"><span class="step-dir">Previous</span> POM reference</a><a class="step step--next" href="../../docs/reference/command-line.html" rel="next"><span class="step-dir">Next</span> Command line: running Maven</a></p>
+      <h2 id="group-nav-title"><a href="../../docs/reference/index.html">Reference</a></h2>
+      <ul class="page-list">
+  <li><a href="../../docs/reference/pom.html">POM reference</a></li>
+  <li><a href="../../docs/reference/settings.html" aria-current="page">Settings reference</a></li>
+  <li><a href="../../docs/reference/command-line.html">Command line: running Maven</a></li>
+  <li><a href="../../docs/reference/classloading.html">Maven classloading</a></li>
+  <li><a href="../../docs/reference/classloading-core.html">Classloading in Maven core</a></li>
+  <li><a href="../../docs/reference/glossary.html">Glossary</a></li>
+  <li><a href="../../docs/reference/bash-completion.html">Bash completion</a></li>
+  <li><a href="../../docs/reference/a-z.html">A–Z index</a></li>
+</ul>
+    </nav>
+    <main id="content">
+      <p class="crumbs"><a href="../../docs/index.html">Docs</a> <span aria-hidden="true">›</span> <a href="../../docs/reference/index.html">Reference</a></p>
+      <div class="prose">
+<section class="facts facts--inline" aria-label="About this page">
+  <dl>
+    <dt>Holds for</dt>
+    <dd><span class="unchecked">Not yet checked against Maven 3.9, 3.10 and 4.0</span></dd>
+    <dt>Source</dt>
+    <dd><a href="https://github.com/dashorst/maven-site/edit/doxia-demo/content/markdown/docs/reference/settings.md">Edit this page</a></dd>
+    <dt>Wrong?</dt>
+    <dd><a href="https://github.com/apache/maven-site/issues/new?title=Page%3A+Settings+reference&amp;body=About+https%3A%2F%2Fmaven.apache.org%2Fdocs%2Freference%2Fsettings.html">Report a problem</a></dd>
+  </dl>
+</section>
+<section><a id="Settings_Reference"></a>
+<h1>Settings Reference</h1> 
+<ul>
+<li><a href="#Introduction">Introduction</a>
+<ul>
+<li><a href="#Quick_Overview">Quick Overview</a></li></ul></li>
+<li><a href="#Settings_Details">Settings Details</a>
+<ul>
+<li><a href="#Simple_Values">Simple Values</a></li>
+<li><a href="#Plugin_Groups">Plugin Groups</a></li>
+<li><a href="#Servers">Servers</a>
+<ul>
+<li><a href="#Server_Aliases">Server Aliases</a></li>
+<li><a href="#Server_Repository_Origins">Server Repository Origins</a></li>
+<li><a href="#Password_Encryption">Password Encryption</a></li></ul></li>
+<li><a href="#Mirrors">Mirrors</a></li>
+<li><a href="#Proxies">Proxies</a></li>
+<li><a href="#Profiles">Profiles</a>
+<ul>
+<li><a href="#Activation">Activation</a></li>
+<li><a href="#Properties">Properties</a></li>
+<li><a href="#Repositories">Repositories</a></li>
+<li><a href="#Plugin_Repositories">Plugin Repositories</a></li></ul></li>
+<li><a href="#Active_Profiles">Active Profiles</a></li></ul></li></ul> <section><a id="Introduction"></a>
+<h2>Introduction</h2><section><a id="Quick_Overview"></a>
+<h3>Quick Overview</h3>
+<p>The <code>settings</code> element in the <code>settings.xml</code> file contains elements used to define values which configure Maven execution in various ways, like the <code>pom.xml</code>, but should not be bundled to any specific project, or distributed to an audience. These include values such as the local repository location, alternate remote repository servers, and authentication information.</p>
+<p>There are two locations where a <code>settings.xml</code> file may live:</p>
+<ul>
+
+<li>The Maven install: <code>${maven.home}/conf/settings.xml</code></li>
+<li>A user's install: <code>${user.home}/.m2/settings.xml</code></li>
+</ul>
+<p>The former <code>settings.xml</code> is also called global settings, the latter <code>settings.xml</code> is referred to as user settings. If both files exist, their contents get merged, with the user-specific <code>settings.xml</code> being dominant.</p>
+<p>Tip: If you need to create user-specific settings from scratch, it's easiest to copy the global settings from your Maven installation to your <code>${user.home}/.m2</code> directory. Maven's default <code>settings.xml</code> is a template with comments and examples so you can quickly tweak it to match your needs.</p>
+<p>Here is an overview of the top elements under <code>settings</code>:</p>
+
+<pre class="highlight"><code class="language-xml"><span class="nt">&lt;settings</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/SETTINGS/1.2.0"</span> <span class="na">xmlns:xsi</span>=<span class="s">"http://www.w3.org/2001/XMLSchema-instance"</span>
+  <span class="na">xsi:schemaLocation</span>=<span class="s">"http://maven.apache.org/SETTINGS/1.2.0 https://maven.apache.org/xsd/settings-1.2.0.xsd"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;localRepository</span><span class="nt">/&gt;</span>
+  <span class="nt">&lt;interactiveMode</span><span class="nt">/&gt;</span>
+  <span class="nt">&lt;offline</span><span class="nt">/&gt;</span>
+  <span class="nt">&lt;pluginGroups</span><span class="nt">/&gt;</span>
+  <span class="nt">&lt;servers</span><span class="nt">/&gt;</span>
+  <span class="nt">&lt;mirrors</span><span class="nt">/&gt;</span>
+  <span class="nt">&lt;proxies</span><span class="nt">/&gt;</span>
+  <span class="nt">&lt;profiles</span><span class="nt">/&gt;</span>
+  <span class="nt">&lt;activeProfiles</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;/settings</span><span class="nt">&gt;</span>
+</code></pre>
+<p>The contents of <code>settings.xml</code> can be interpolated using the following expressions:</p>
+<ol style="list-style-type: decimal;">
+
+<li><code>${user.home}</code> and all other system properties</li>
+<li><code>${env.HOME}</code> etc. for environment variables</li>
+</ol>
+<p>Note that properties defined in profiles within <code>settings.xml</code> cannot be used for interpolation.</p></section></section><section><a id="Settings_Details"></a>
+<h2>Settings Details</h2><section><a id="Simple_Values"></a>
+<h3>Simple Values</h3>
+<p>Half of the top-level <code>settings</code> elements are simple values, representing a range of values which describe elements of the build system that are active full-time.</p>
+
+<pre><code class="nohighlight nocode">    &lt;settings xmlns="http://maven.apache.org/SETTINGS/1.2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.2.0 https://maven.apache.org/xsd/settings-1.2.0.xsd"&gt;
+      &lt;localRepository&gt;${user.home}/.m2/repository&lt;/localRepository&gt;
+      &lt;interactiveMode&gt;true&lt;/interactiveMode&gt;
+      &lt;offline&gt;false&lt;/offline&gt;
+      ...
+    &lt;/settings&gt;
+</code></pre>
+<ul>
+
+<li><strong>localRepository</strong>: This value is the path of this build system's local repository. The default value is <code>${user.home}/.m2/repository</code>. This element is especially useful for a main build server allowing all logged-in users to build from a common local repository.</li>
+<li><strong>interactiveMode</strong>: <code>true</code> if Maven should attempt to interact with the user for input, <code>false</code> if not. Defaults to <code>true</code>.</li>
+<li><strong>offline</strong>: <code>true</code> if this build system should operate in offline mode, defaults to <code>false</code>. This element is useful for build servers which cannot connect to a remote repository, either because of network setup or security reasons.</li>
+</ul></section><section><a id="Plugin_Groups"></a>
+<h3>Plugin Groups</h3>
+<p>This element contains a list of <code>pluginGroup</code> elements, each contains a groupId. The list is searched when a plugin is used and the groupId is not provided in the command line. This list automatically contains <code>org.apache.maven.plugins</code> and <code>org.codehaus.mojo</code>.</p>
+
+<pre class="highlight"><code class="language-xml"><span class="nt">&lt;settings</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/SETTINGS/1.2.0"</span><span class="nt">&gt;</span>
+  ...
+  <span class="nt">&lt;pluginGroups</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;pluginGroup</span><span class="nt">&gt;</span>org.eclipse.jetty<span class="nt">&lt;/pluginGroup</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;/pluginGroups</span><span class="nt">&gt;</span>
+  ...
+<span class="nt">&lt;/settings</span><span class="nt">&gt;</span>
+</code></pre>
+<p>For example, given the above settings the Maven command line may execute <code>org.eclipse.jetty:jetty-maven-plugin:run</code> with the truncated command:</p>
+
+<pre><code class="nohighlight nocode">    mvn jetty:run
+</code></pre></section><section><a id="Servers"></a>
+<h3>Servers</h3>
+<p>The repositories for download and deployment are defined by the <a href="pom.html#Repositories"><code>repositories</code></a> and <a href="pom.html#Distribution_Management"><code>distributionManagement</code></a> elements of the POM. However, certain settings such as <code>username</code> and <code>password</code> should not be distributed along with the <code>pom.xml</code>. This type of information should exist on the build server in the <code>settings.xml</code>.</p>
+
+<pre class="highlight"><code class="language-xml"><span class="nt">&lt;settings</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/SETTINGS/1.2.0"</span><span class="nt">&gt;</span>
+  ...
+  <span class="nt">&lt;servers</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;server</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;id</span><span class="nt">&gt;</span>server001<span class="nt">&lt;/id</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;username</span><span class="nt">&gt;</span>my_login<span class="nt">&lt;/username</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;password</span><span class="nt">&gt;</span>my_password<span class="nt">&lt;/password</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;privateKey</span><span class="nt">&gt;</span>${user.home}/.ssh/id_dsa<span class="nt">&lt;/privateKey</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;passphrase</span><span class="nt">&gt;</span>some_passphrase<span class="nt">&lt;/passphrase</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;filePermissions</span><span class="nt">&gt;</span>664<span class="nt">&lt;/filePermissions</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;directoryPermissions</span><span class="nt">&gt;</span>775<span class="nt">&lt;/directoryPermissions</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;configuration</span><span class="nt">&gt;</span><span class="nt">&lt;/configuration</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;/server</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;/servers</span><span class="nt">&gt;</span>
+  ...
+<span class="nt">&lt;/settings</span><span class="nt">&gt;</span>
+</code></pre>
+<ul>
+
+<li><strong>id</strong>: This is the ID of the server <em>(not of the user to login as)</em> that matches the <code>id</code> element of the repository/mirror that Maven tries to connect to.</li>
+<li><strong>username</strong>, <strong>password</strong>: These elements appear as a pair denoting the login and password required to authenticate to this server.</li>
+<li><strong>privateKey</strong>, <strong>passphrase</strong>: Like the previous two elements, this pair specifies a path to a private key (default is <code>${user.home}/.ssh/id_dsa</code>) and a <code>passphrase</code>, if required. The <code>passphrase</code> and <code>password</code> elements may be externalized in the future, but for now they must be set plain-text in the <code>settings.xml</code> file.</li>
+<li><strong>filePermissions</strong>, <strong>directoryPermissions</strong>: When a repository file or directory is created on deployment, these are the permissions to use. The legal values of each is a three digit number corresponding to *nix file permissions, e.g. 664, or 775.</li>
+</ul>
+<p><em>Note:</em> If you use a private key to login to the server, make sure you omit the <code>&lt;password&gt;</code> element. Otherwise, the key will be ignored.</p><section><a id="Server_Aliases"></a>
+<h4>Server Aliases</h4>
+<p>Since Maven 3.10.0 and 4.0.0-rc-6 (settings model <code>1.3.0</code>), a server can declare a list of <code>aliases</code>. This is useful when the same credentials should be used for several repositories or mirrors with different IDs, without copying the whole <code>server</code> element.</p>
+
+<pre class="highlight"><code class="language-xml"><span class="nt">&lt;settings</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/SETTINGS/1.3.0"</span> <span class="na">xmlns:xsi</span>=<span class="s">"http://www.w3.org/2001/XMLSchema-instance"</span>
+  <span class="na">xsi:schemaLocation</span>=<span class="s">"http://maven.apache.org/SETTINGS/1.3.0 https://maven.apache.org/xsd/settings-1.3.0.xsd"</span><span class="nt">&gt;</span>
+  ...
+  <span class="nt">&lt;servers</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;server</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;id</span><span class="nt">&gt;</span>company-releases<span class="nt">&lt;/id</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;username</span><span class="nt">&gt;</span>my_login<span class="nt">&lt;/username</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;password</span><span class="nt">&gt;</span>my_password<span class="nt">&lt;/password</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;aliases</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;alias</span><span class="nt">&gt;</span>company-snapshots<span class="nt">&lt;/alias</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;alias</span><span class="nt">&gt;</span>company-mirror<span class="nt">&lt;/alias</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;/aliases</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;/server</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;/servers</span><span class="nt">&gt;</span>
+  ...
+<span class="nt">&lt;/settings</span><span class="nt">&gt;</span>
+</code></pre>
+<ul>
+
+<li><strong>aliases</strong>: For each <code>alias</code>, Maven creates an additional <code>server</code> entry with the same configuration as the original one, but with the <code>id</code> replaced by the alias and with an empty <code>aliases</code> list. In the example above, the servers <code>company-releases</code>, <code>company-snapshots</code> and <code>company-mirror</code> are available at runtime, all use the same credentials.</li>
+</ul>
+<p>The additional servers are created in memory when the effective settings are built, so they are visible to Maven and plugins like any other server declared in <code>settings.xml</code>: you can see them with <code>mvn help:effective-settings</code>.</p>
+<p>An alias must not be empty, and it should be unique across all server IDs and aliases. Otherwise Maven reports a warning.</p></section><section><a id="Server_Repository_Origins"></a>
+<h4>Server Repository Origins</h4>
+<p>Since Maven 3.10.0 and 4.0.0, the credentials of a server are bound to the origins (scheme, host and port) of the repositories and mirrors declared with the same ID in <code>settings.xml</code>.</p>
+<p>When Maven starts, it takes into account only the repositories from <code>settings.xml</code> profiles listed in <code>&lt;activeProfiles&gt;</code> and mirrors. Repositories from other profiles, and repositories declared in a <code>pom.xml</code> (in <code>repositories</code>, <code>pluginRepositories</code> or <code>distributionManagement</code>), are not known at that time. For such a repository, Maven reports a warning, or refuses the credentials when <code>maven.repository.credentialScope=strict</code> is set.</p>
+<p>The binding protects your credentials: before, Maven matched credentials only by server ID, so any <code>pom.xml</code>, including the POM of a dependency or a parent, could declare a repository with the same ID pointing to another host and receive your username and password. Now, once Maven knows the hosts of a server ID, its credentials are sent only to them, and <code>repositoryOrigins</code> lets you add the hosts Maven cannot find by itself.</p>
+<p>For such repositories, a server (settings model <code>1.3.0</code>) can declare a list of <code>repositoryOrigins</code> its credentials may be used with:</p>
+
+<pre class="highlight"><code class="language-xml"><span class="nt">&lt;settings</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/SETTINGS/1.3.0"</span> <span class="na">xmlns:xsi</span>=<span class="s">"http://www.w3.org/2001/XMLSchema-instance"</span>
+  <span class="na">xsi:schemaLocation</span>=<span class="s">"http://maven.apache.org/SETTINGS/1.3.0 https://maven.apache.org/xsd/settings-1.3.0.xsd"</span><span class="nt">&gt;</span>
+  ...
+  <span class="nt">&lt;servers</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;server</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;id</span><span class="nt">&gt;</span>company-releases<span class="nt">&lt;/id</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;username</span><span class="nt">&gt;</span>my_login<span class="nt">&lt;/username</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;password</span><span class="nt">&gt;</span>my_password<span class="nt">&lt;/password</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;repositoryOrigins</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;repositoryOrigin</span><span class="nt">&gt;</span>https://repo.example.com<span class="nt">&lt;/repositoryOrigin</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;repositoryOrigin</span><span class="nt">&gt;</span>https://mirror.example.com:8443<span class="nt">&lt;/repositoryOrigin</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;/repositoryOrigins</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;/server</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;/servers</span><span class="nt">&gt;</span>
+  ...
+<span class="nt">&lt;/settings</span><span class="nt">&gt;</span>
+</code></pre>
+<ul>
+
+<li><strong>repositoryOrigins</strong>: Each <code>repositoryOrigin</code> is written as <code>scheme://host</code> or <code>scheme://host:port</code>. It is an origin, not a full repository URL. If a path, query or fragment is given, Maven reports a warning and ignores it. A value without a scheme or host, or with user information, is reported as an error. The comparison is case-insensitive, and the default ports <code>80</code> (http) and <code>443</code> (https) are the same as no port.</li>
+</ul>
+<p>The declared origins are added to the origins Maven finds from repositories and mirrors. Nothing is replaced, so existing configurations keep working. Servers created from <a href="#Server_Aliases">aliases</a> get the same <code>repositoryOrigins</code>.</p>
+<p>When a server has at least one origin, from repositories, mirrors or <code>repositoryOrigins</code>, its credentials are not sent to a repository with the same ID at another origin.</p>
+<p>The binding is controlled by the <code>maven.repository.credentialScope</code> user property:</p>
+<table class="bodyTable">
+<thead>
+<tr class="a">
+<th>Value</th>
+<th>Description</th></tr></thead><tbody>
+<tr class="b">
+<td><code>origin</code> (default)</td>
+<td>Credentials are bound to the known origins. A server without any origin works as before, with a warning.</td></tr>
+<tr class="a">
+<td><code>strict</code></td>
+<td>Credentials are bound to the known origins. A server without any origin is not used.</td></tr>
+<tr class="b">
+<td><code>id</code></td>
+<td>Previous behavior: credentials are matched by server ID only.</td></tr></tbody>
+</table>
+
+<p>For Maven 4, <code>repositoryOrigins</code> in project settings (<code>.mvn/settings.xml</code>) are ignored with a warning, like credentials are, so a project cannot widen the set of hosts your credentials are sent to.</p>
+<p><em>Note:</em> The binding applies only to credentials used by Maven Resolver, for example when artifacts are downloaded or deployed with the <a href="/plugins/maven-deploy-plugin/">Maven Deploy Plugin</a>. Plugins that read a server from <code>settings.xml</code> directly, for example the <a href="/plugins/maven-release-plugin/">Maven Release Plugin</a> for SCM credentials, are not affected by it.</p></section><section><a id="Password_Encryption"></a>
+<h4>Password Encryption</h4>
+<p>Since Maven 2.1.0, server password and passphrase encryption is available and strongly encouraged: See details on <a href="../configure/encrypt-passwords.html">Guide to Password Encryption</a>.</p></section></section><section><a id="Mirrors"></a>
+<h3>Mirrors</h3>
+
+<pre class="highlight"><code class="language-xml"><span class="nt">&lt;settings</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/SETTINGS/1.2.0"</span><span class="nt">&gt;</span>
+  ...
+  <span class="nt">&lt;mirrors</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;mirror</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;id</span><span class="nt">&gt;</span>planetmirror.com<span class="nt">&lt;/id</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;name</span><span class="nt">&gt;</span>PlanetMirror Australia<span class="nt">&lt;/name</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;url</span><span class="nt">&gt;</span>http://downloads.planetmirror.com/pub/maven2<span class="nt">&lt;/url</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;mirrorOf</span><span class="nt">&gt;</span>central<span class="nt">&lt;/mirrorOf</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;/mirror</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;/mirrors</span><span class="nt">&gt;</span>
+  ...
+<span class="nt">&lt;/settings</span><span class="nt">&gt;</span>
+</code></pre>
+<ul>
+
+<li><strong>id</strong>, <strong>name</strong>: The unique identifier and user-friendly name of this mirror. The <code>id</code> is used to differentiate between <code>mirror</code> elements and to pick the corresponding credentials from the <a href="#Servers"><code>&lt;servers&gt;</code></a> section when connecting to the mirror.</li>
+<li><strong>url</strong>: The base URL of this mirror. The build system will use this URL to connect to a repository rather than the original repository URL.</li>
+<li><strong>mirrorOf</strong>: The <code>id</code> of the repository that this is a mirror of. For example, to point to a mirror of the Maven <code>central</code> repository (<code>https://repo.maven.apache.org/maven2/</code>), set this element to <code>central</code>. More advanced mappings like <code>repo1,repo2</code> or <code>*,!inhouse</code> are also possible. This must not match the mirror <code>id</code>.</li>
+</ul>
+<p>For a more in-depth introduction of mirrors, please read the <a href="../dependencies/mirror-settings.html">Guide to Mirror Settings</a>.</p></section><section><a id="Proxies"></a>
+<h3>Proxies</h3>
+
+<pre class="highlight"><code class="language-xml"><span class="nt">&lt;settings</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/SETTINGS/1.2.0"</span><span class="nt">&gt;</span>
+  ...
+  <span class="nt">&lt;proxies</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;proxy</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;id</span><span class="nt">&gt;</span>myproxy<span class="nt">&lt;/id</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;active</span><span class="nt">&gt;</span>true<span class="nt">&lt;/active</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;protocol</span><span class="nt">&gt;</span>http<span class="nt">&lt;/protocol</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;host</span><span class="nt">&gt;</span>proxy.somewhere.com<span class="nt">&lt;/host</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;port</span><span class="nt">&gt;</span>8080<span class="nt">&lt;/port</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;username</span><span class="nt">&gt;</span>proxyuser<span class="nt">&lt;/username</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;password</span><span class="nt">&gt;</span>somepassword<span class="nt">&lt;/password</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;nonProxyHosts</span><span class="nt">&gt;</span>*.google.com|ibiblio.org<span class="nt">&lt;/nonProxyHosts</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;/proxy</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;/proxies</span><span class="nt">&gt;</span>
+  ...
+<span class="nt">&lt;/settings</span><span class="nt">&gt;</span>
+</code></pre>
+<ul>
+
+<li><strong>id</strong>: The unique identifier for this proxy. This is used to differentiate between <code>proxy</code> elements.</li>
+<li><strong>active</strong>: <code>true</code> if this proxy is active. This is useful for declaring a set of proxies, but only one may be active at a time.</li>
+<li><strong>protocol</strong>, <strong>host</strong>, <strong>port</strong>: The <code>protocol://host:port</code> of the proxy, separated into discrete elements.</li>
+<li><strong>username</strong>, <strong>password</strong>: These elements appear as a pair denoting the login and password required to authenticate to this proxy server.</li>
+<li><strong>nonProxyHosts</strong>: This is a list of hosts which should not be proxied. The delimiter of the list is the expected type of the proxy server; the example above is pipe delimited - comma delimited is also common.</li>
+</ul></section><section><a id="Profiles"></a>
+<h3>Profiles</h3>
+<p>The <code>profile</code> element in the <code>settings.xml</code> is a truncated version of the <code>pom.xml</code> <code>profile</code> element. It consists of the <code>activation</code>, <code>repositories</code>, <code>pluginRepositories</code> and <code>properties</code> elements. The <code>profile</code> elements only include these four elements because they concerns themselves with the build system as a whole (which is the role of the <code>settings.xml</code> file), not about individual project object model settings.</p>
+<p>If a profile is active from <code>settings</code>, its values will override any equivalently ID'd profiles in a POM or <code>profiles.xml</code> file.</p><section><a id="Activation"></a>
+<h4>Activation</h4>
+<p>Activations are the key of a profile. Like the POM's profiles, the power of a profile comes from its ability to modify some values only under certain circumstances; those circumstances are specified via an <code>activation</code> element.</p>
+
+<pre class="highlight"><code class="language-xml"><span class="nt">&lt;settings</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/SETTINGS/1.2.0"</span><span class="nt">&gt;</span>
+  <span class="c">&lt;!-- ... --&gt;</span>
+  <span class="nt">&lt;profiles</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;profile</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;id</span><span class="nt">&gt;</span>test<span class="nt">&lt;/id</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;activation</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;activeByDefault</span><span class="nt">&gt;</span>false<span class="nt">&lt;/activeByDefault</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;jdk</span><span class="nt">&gt;</span>21<span class="nt">&lt;/jdk</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;os</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;name</span><span class="nt">&gt;</span>Windows 10<span class="nt">&lt;/name</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;family</span><span class="nt">&gt;</span>Windows<span class="nt">&lt;/family</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;arch</span><span class="nt">&gt;</span>amd64<span class="nt">&lt;/arch</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;version</span><span class="nt">&gt;</span>10.0.19045.5247<span class="nt">&lt;/version</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;/os</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;property</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;name</span><span class="nt">&gt;</span>mavenVersion<span class="nt">&lt;/name</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;value</span><span class="nt">&gt;</span>3.9.9<span class="nt">&lt;/value</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;/property</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;file</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;exists</span><span class="nt">&gt;</span>${project.basedir}/file2.properties<span class="nt">&lt;/exists</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;missing</span><span class="nt">&gt;</span>${project.basedir}/file1.properties<span class="nt">&lt;/missing</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;/file</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;/activation</span><span class="nt">&gt;</span>
+      <span class="c">&lt;!-- ... --&gt;</span>
+    <span class="nt">&lt;/profile</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;/profiles</span><span class="nt">&gt;</span>
+  <span class="c">&lt;!-- ... --&gt;</span>
+<span class="nt">&lt;/settings</span><span class="nt">&gt;</span>
+</code></pre>
+<p>Activation occurs when all specified criteria have been met, though not all are required at once.</p>
+<ul>
+
+<li><strong>jdk</strong>: <code>activation</code> has a built in, Java-centric check in the <code>jdk</code> element. This will activate if the test is run under a jdk version number that matches the prefix given. In the above example, <code>21.0.1</code> will match. Ranges are also supported. See the <a href="https://maven.apache.org/enforcer/enforcer-rules/versionRanges.html" class="externalLink">maven-enforcer-plugin</a> for more details about supported ranges.</li>
+<li><strong>os</strong>: The <code>os</code> element can define some operating system specific properties shown above. See the <a href="https://maven.apache.org/plugins/maven-enforcer-plugin/rules/requireOS.html" class="externalLink">maven-enforcer-plugin</a> for more details about OS values.</li>
+<li><strong>property</strong>: The <code>profile</code> will activate if Maven detects a property (a value which can be dereferenced within the POM by <code>${name}</code>) of the corresponding <code>name=value</code> pair.</li>
+<li><strong>file</strong>: Finally, a given filename may activate the <code>profile</code> by the <code>existence</code> of a file, or if it is <code>missing</code>.</li>
+</ul>
+<p>The <code>activation</code> element is not the only way that a <code>profile</code> may be activated. The <code>settings.xml</code> file's <code>activeProfile</code> element may contain the profile's <code>id</code>. They may also be activated explicitly through the command line via a comma separated list after the <code>-P</code> flag (e.g. <code>-P test</code>).</p>
+<p><em>To see which profile will activate in a certain build, use the</em> <code>maven-help-plugin</code>.</p>
+
+<pre><code class="nohighlight nocode">    mvn help:active-profiles
+</code></pre></section><section><a id="Properties"></a>
+<h4>Properties</h4>
+<p>Maven properties are value placeholder, like properties in Ant. Their values are accessible anywhere within a POM by using the notation <code>${X}</code>, where <code>X</code> is the property. They come in five different styles, all accessible from the <code>settings.xml</code> file:</p>
+<ol style="list-style-type: decimal;">
+
+<li><code>env.X</code>: Prefixing a variable with “env.” will return the shell's environment variable. For example, <code>${env.PATH}</code> contains the $path environment variable (<code>%PATH%</code> in Windows).</li>
+<li><code>project.x</code>: A dot (.) notated path in the POM will contain the corresponding element's value. For example: <code>&lt;project&gt;&lt;version&gt;1.0&lt;/version&gt;&lt;/project&gt;</code> is accessible via <code>${project.version}</code>.</li>
+<li><code>settings.x</code>: A dot (.) notated path in the <code>settings.xml</code> will contain the corresponding element's value. For example: <code>&lt;settings&gt;&lt;offline&gt;false&lt;/offline&gt;&lt;/settings&gt;</code> is accessible via <code>${settings.offline}</code>.</li>
+<li>Java System Properties: All properties accessible via <code>java.lang.System.getProperties()</code> are available as POM properties, such as <code>${java.home}</code>.</li>
+<li><code>x</code>: Set within a &lt;properties /&gt; element or an external files, the value may be used as <code>${someVar}</code>.</li>
+</ol> 
+<pre class="highlight"><code class="language-xml"><span class="nt">&lt;settings</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/SETTINGS/1.2.0"</span><span class="nt">&gt;</span>
+  ...
+  <span class="nt">&lt;profiles</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;profile</span><span class="nt">&gt;</span>
+      ...
+      <span class="nt">&lt;properties</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;user.install</span><span class="nt">&gt;</span>${user.home}/our-project<span class="nt">&lt;/user.install</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;/properties</span><span class="nt">&gt;</span>
+      ...
+    <span class="nt">&lt;/profile</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;/profiles</span><span class="nt">&gt;</span>
+  ...
+<span class="nt">&lt;/settings</span><span class="nt">&gt;</span>
+</code></pre>
+<p>The property <code>${user.install}</code> is accessible from a POM if this profile is active.</p></section><section><a id="Repositories"></a>
+<h4>Repositories</h4>
+<p>Repositories are remote collections of projects from which Maven uses to populate the local repository of the build system. It is from this local repository that Maven calls it plugins and dependencies. Different remote repositories may contain different projects, and under the active profile they may be searched for a matching release or snapshot artifact.</p>
+
+<pre class="highlight"><code class="language-xml"><span class="nt">&lt;settings</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/SETTINGS/1.2.0"</span><span class="nt">&gt;</span>
+  ...
+  <span class="nt">&lt;profiles</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;profile</span><span class="nt">&gt;</span>
+      ...
+      <span class="nt">&lt;repositories</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;repository</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;id</span><span class="nt">&gt;</span>Snapshots<span class="nt">&lt;/id</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;name</span><span class="nt">&gt;</span>Snapshots<span class="nt">&lt;/name</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;releases</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;enabled</span><span class="nt">&gt;</span>false<span class="nt">&lt;/enabled</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;updatePolicy</span><span class="nt">&gt;</span>always<span class="nt">&lt;/updatePolicy</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;checksumPolicy</span><span class="nt">&gt;</span>warn<span class="nt">&lt;/checksumPolicy</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;/releases</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;snapshots</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;enabled</span><span class="nt">&gt;</span>true<span class="nt">&lt;/enabled</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;updatePolicy</span><span class="nt">&gt;</span>never<span class="nt">&lt;/updatePolicy</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;checksumPolicy</span><span class="nt">&gt;</span>fail<span class="nt">&lt;/checksumPolicy</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;/snapshots</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;url</span><span class="nt">&gt;</span>https://oss.sonatype.org/content/repositories/snapshots<span class="nt">&lt;/url</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;layout</span><span class="nt">&gt;</span>default<span class="nt">&lt;/layout</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;/repository</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;/repositories</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;pluginRepositories</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;pluginRepository</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;id</span><span class="nt">&gt;</span>myPluginRepo<span class="nt">&lt;/id</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;name</span><span class="nt">&gt;</span>My Plugins repo<span class="nt">&lt;/name</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;releases</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;enabled</span><span class="nt">&gt;</span>true<span class="nt">&lt;/enabled</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;/releases</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;snapshots</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;enabled</span><span class="nt">&gt;</span>false<span class="nt">&lt;/enabled</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;/snapshots</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;url</span><span class="nt">&gt;</span>https://maven-central-eu....com/maven2/<span class="nt">&lt;/url</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;/pluginRepository</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;/pluginRepositories</span><span class="nt">&gt;</span>
+      ...
+    <span class="nt">&lt;/profile</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;/profiles</span><span class="nt">&gt;</span>
+  ...
+<span class="nt">&lt;/settings</span><span class="nt">&gt;</span>
+</code></pre>
+<ul>
+
+<li><strong>releases</strong>, <strong>snapshots</strong>: These are the policies for each type of artifact, Release or snapshot. With these two sets, a POM has the power to alter the policies for each type independent of the other within a single repository. For example, one may decide to enable only snapshot downloads, possibly for development purposes.</li>
+<li><strong>enabled</strong>: <code>true</code> or <code>false</code> for whether this repository is enabled for the respective type (<code>releases</code> or <code>snapshots</code>).</li>
+<li><strong>updatePolicy</strong>: This element specifies how often updates should attempt to occur. Maven will compare the local POM's timestamp (stored in a repository's maven-metadata file) to the remote. The choices are: <code>always</code>, <code>daily</code> (default), <code>interval:X</code> (where X is an integer in minutes) or <code>never</code>.</li>
+<li><strong>checksumPolicy</strong>: When Maven deploys files to the repository, it also deploys corresponding checksum files. Your options are to <code>ignore</code>, <code>fail</code>, or <code>warn</code> on missing or incorrect checksums.</li>
+<li><strong>layout</strong>: In the above description of repositories, it was mentioned that they all follow a common layout. This is mostly correct. Maven 2 has a default layout for its repositories; however, Maven 1.x had a different layout. Use this element to specify which if it is <code>default</code> or <code>legacy</code>.</li>
+</ul></section><section><a id="Plugin_Repositories"></a>
+<h4>Plugin Repositories</h4>
+<p>Repositories are home to two major types of artifacts. The first are artifacts that are used as dependencies of other artifacts. These are the majority of artifacts that reside within central. The other type of artifact is plugins. Maven plugins are themselves a special type of artifact. Because of this, plugin repositories may be separated from other repositories (although, I have yet to hear a convincing argument for doing so). In any case, the structure of the <code>pluginRepositories</code> element block is similar to the <code>repositories</code> element. The <code>pluginRepository</code> elements each specify a remote location of where Maven can find new plugins.</p></section></section><section><a id="Active_Profiles"></a>
+<h3>Active Profiles</h3>
+
+<pre class="highlight"><code class="language-xml"><span class="nt">&lt;settings</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/SETTINGS/1.2.0"</span><span class="nt">&gt;</span>
+  ...
+  <span class="nt">&lt;activeProfiles</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;activeProfile</span><span class="nt">&gt;</span>env-test<span class="nt">&lt;/activeProfile</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;/activeProfiles</span><span class="nt">&gt;</span>
+<span class="nt">&lt;/settings</span><span class="nt">&gt;</span>
+</code></pre>
+<p>The final piece of the <code>settings.xml</code> puzzle is the <code>activeProfiles</code> element. This contains a set of <code>activeProfile</code> elements, which each have a value of a <code>profile</code> <code>id</code>. Any <code>profile</code> <code>id</code> defined as an <code>activeProfile</code> will be active, regardless of any environment settings. If no matching profile is found nothing will happen. For example, if <code>env-test</code> is an <code>activeProfile</code>, a profile in a <code>pom.xml</code> (or <code>profile.xml</code> with a corresponding <code>id</code> will be active. If no such profile is found then execution will continue as normal.</p></section></section></section>
+      </div>
+      <nav class="more" aria-labelledby="more-title">
+        <h2 id="more-title">More in <a href="../../docs/reference/index.html">Reference</a></h2>
+        <ul class="more-list">
+  <li><a href="../../docs/reference/pom.html">POM reference</a></li>
+  <li><a href="../../docs/reference/settings.html" aria-current="page">Settings reference</a></li>
+  <li><a href="../../docs/reference/command-line.html">Command line: running Maven</a></li>
+  <li><a href="../../docs/reference/classloading.html">Maven classloading</a></li>
+  <li><a href="../../docs/reference/classloading-core.html">Classloading in Maven core</a></li>
+  <li><a href="../../docs/reference/glossary.html">Glossary</a></li>
+  <li><a href="../../docs/reference/bash-completion.html">Bash completion</a></li>
+  <li><a href="../../docs/reference/a-z.html">A–Z index</a></li>
+</ul>
+        <p class="steps"><a class="step step--prev" href="../../docs/reference/pom.html" rel="prev"><span class="step-dir">Previous</span> POM reference</a><a class="step step--next" href="../../docs/reference/command-line.html" rel="next"><span class="step-dir">Next</span> Command line: running Maven</a></p>
+      </nav>
+    </main>
+    <aside class="rail">
+<section class="facts" aria-label="About this page">
+  <dl>
+    <dt>Holds for</dt>
+    <dd><span class="unchecked">Not yet checked against Maven 3.9, 3.10 and 4.0</span></dd>
+    <dt>Source</dt>
+    <dd><a href="https://github.com/dashorst/maven-site/edit/doxia-demo/content/markdown/docs/reference/settings.md">Edit this page</a></dd>
+    <dt>Wrong?</dt>
+    <dd><a href="https://github.com/apache/maven-site/issues/new?title=Page%3A+Settings+reference&amp;body=About+https%3A%2F%2Fmaven.apache.org%2Fdocs%2Freference%2Fsettings.html">Report a problem</a></dd>
+  </dl>
+</section>
+      <nav id="on-this-page" aria-label="On this page"></nav>
+    </aside>
+  </div>
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <nav aria-label="Apache Software Foundation">
+        <ul>
+          <li><a href="https://www.apache.org/">The Apache Software Foundation</a></li>
+          <li><a href="https://www.apache.org/licenses/">License</a></li>
+          <li><a href="https://www.apache.org/foundation/sponsorship.html">Sponsorship</a></li>
+          <li><a href="https://www.apache.org/foundation/thanks.html">Thanks</a></li>
+          <li><a href="https://www.apache.org/security/">Security</a></li>
+          <li><a href="https://privacy.apache.org/policies/privacy-policy-public.html">Privacy</a></li>
+          <li><a href="https://www.apache.org/events/current-event">Events</a></li>
+        </ul>
+      </nav>
+      <p>© 2002–2026 The Apache Software Foundation. Apache Maven, Maven, Apache, the Apache feather logo and the Apache Maven project logos are trademarks of The Apache Software Foundation.</p>
+      <p class="demo-note">A demonstration of a restructured maven.apache.org, built by maven-site-plugin from <a href="https://github.com/dashorst/maven-site/tree/doxia-demo">dashorst/maven-site</a>. Not the official Apache Maven site. <a href="../../about-this-example.html">About this example</a>.</p>
+    </div>
+  </footer>
+  <script src="../../js/page.js" defer></script>
+  <script src="../../js/search.js" defer></script>
+</body>
+</html>

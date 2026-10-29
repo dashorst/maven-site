@@ -4,6 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Introduction to the Standard Directory Layout – Apache Maven</title>
+  <meta name="description" content="This page has moved.">
   <link rel="stylesheet" href="../../css/maven.css">
   <link rel="stylesheet" href="../../css/print.css" media="print">
   <link rel="icon" href="../../images/favicon.ico">
@@ -46,90 +47,22 @@
   <div class="specimen" role="note">
     <p><strong>Specimen.</strong> A proposed redesign of maven.apache.org, built with <code>mvn site</code> and a skin of its own; not the official Apache Maven site. The official site is <a href="https://maven.apache.org/">maven.apache.org</a>. <a href="../../about-this-example.html">About this example</a></p>
   </div>
-  <div class="frame">
+  <div class="frame no-rail">
     <main id="content">
       <div class="prose">
-<section class="facts facts--inline" aria-label="About this page">
-  <dl>
-    <dt>Holds for</dt>
-    <dd><span class="unchecked">Not yet checked against Maven 3.9, 3.10 and 4.0</span></dd>
-    <dt>Source</dt>
-    <dd><a href="https://github.com/apache/maven-site/edit/master/content/markdown/guides/introduction/introduction-to-the-standard-directory-layout.md">Edit this page</a></dd>
-    <dt>Wrong?</dt>
-    <dd><a href="https://github.com/apache/maven-site/issues/new?title=Page%3A+Introduction+to+the+Standard+Directory+Layout&amp;body=About+https%3A%2F%2Fmaven.apache.org%2Fguides%2Fintroduction%2Fintroduction-to-the-standard-directory-layout.html">Report a problem</a></dd>
-  </dl>
-</section>
- <section><a id="Introduction_to_the_Standard_Directory_Layout"></a>
-<h1>Introduction to the Standard Directory Layout</h1>
-<p>Having a common directory layout allows users familiar with one Maven project to immediately feel at home in another Maven project. The advantages are analogous to adopting a site-wide look-and-feel.</p>
-<p>The next section documents the directory layout expected by Maven and the directory layout created by Maven. Try to conform to this structure as much as possible. However, if you can't, these settings can be overridden via the project descriptor.</p>
-<table class="bodyTable">
-<thead>
-<tr class="a">
-<th></th>
-<th></th></tr></thead><tbody>
-<tr class="b">
-<td><code>src/main/java</code></td>
-<td>Application/Library sources</td></tr>
-<tr class="a">
-<td><code>src/main/resources</code></td>
-<td>Application/Library resources</td></tr>
-<tr class="b">
-<td><code>src/main/filters</code></td>
-<td>Resource filter files</td></tr>
-<tr class="a">
-<td><code>src/main/webapp</code></td>
-<td>Web application sources</td></tr>
-<tr class="b">
-<td><code>src/test/java</code></td>
-<td>Test sources</td></tr>
-<tr class="a">
-<td><code>src/test/resources</code></td>
-<td>Test resources</td></tr>
-<tr class="b">
-<td><code>src/test/filters</code></td>
-<td>Test resource filter files</td></tr>
-<tr class="a">
-<td><code>src/it</code></td>
-<td>Integration Tests (primarily for plugins)</td></tr>
-<tr class="b">
-<td><code>src/assembly</code></td>
-<td>Assembly descriptors</td></tr>
-<tr class="a">
-<td><code>src/site</code></td>
-<td>Site</td></tr>
-<tr class="b">
-<td><code>LICENSE.txt</code></td>
-<td>Project's license</td></tr>
-<tr class="a">
-<td><code>NOTICE.txt</code></td>
-<td>Notices and attributions required by libraries that the project depends on</td></tr>
-<tr class="b">
-<td><code>README.txt</code></td>
-<td>Project's readme</td></tr></tbody>
-</table>
+        <h1>Introduction to the Standard Directory Layout</h1>
+        <p class="lead">This page has moved.</p>
 
-<p>At the top level, files descriptive of the project: a <code>pom.xml</code> file. In addition, there are textual documents meant for the user to be able to read immediately on receiving the source: <code>README.txt</code>, <code>LICENSE.txt</code>, etc.</p>
-<p>There are just two subdirectories of this structure: <code>src</code> and <code>target</code>. The only other directories that would be expected here are metadata like <code>CVS</code>, <code>.git</code> or <code>.svn</code>, and any subprojects in a multiproject build (each of which would be laid out as above).</p>
-<p>The <code>target</code> directory is used to house all output of the build.</p>
-<p>The <code>src</code> directory contains all of the source material for building the project, its site and so on. It contains a subdirectory for each type: <code>main</code> for the main build artifact, <code>test</code> for the unit test code and resources, <code>site</code> and so on.</p>
-<p>Within artifact producing source directories (ie. <code>main</code> and <code>test</code>), there is one directory for the language <code>java</code> (under which the normal package hierarchy exists), and one for <code>resources</code> (the structure which is copied to the target classpath given the default resource definition).</p>
-<p>If there are other contributing sources to the artifact build, they would be under other subdirectories. For example <code>src/main/antlr</code> would contain Antlr grammar definition files.</p></section>
+
+
+<section class="moved">
+
+<p><a id="Introduction_to_the_Standard_Directory_Layout"></a>Its content is now on <a href="../../docs/get-started/standard-directory-layout.html">Standard directory layout</a>.</p>
+</section>
+
+
       </div>
     </main>
-    <aside class="rail">
-<section class="facts" aria-label="About this page">
-  <dl>
-    <dt>Holds for</dt>
-    <dd><span class="unchecked">Not yet checked against Maven 3.9, 3.10 and 4.0</span></dd>
-    <dt>Source</dt>
-    <dd><a href="https://github.com/apache/maven-site/edit/master/content/markdown/guides/introduction/introduction-to-the-standard-directory-layout.md">Edit this page</a></dd>
-    <dt>Wrong?</dt>
-    <dd><a href="https://github.com/apache/maven-site/issues/new?title=Page%3A+Introduction+to+the+Standard+Directory+Layout&amp;body=About+https%3A%2F%2Fmaven.apache.org%2Fguides%2Fintroduction%2Fintroduction-to-the-standard-directory-layout.html">Report a problem</a></dd>
-  </dl>
-</section>
-      <nav id="on-this-page" aria-label="On this page"></nav>
-    </aside>
   </div>
   <footer class="site-footer">
     <div class="footer-inner">
