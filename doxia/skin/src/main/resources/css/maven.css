@@ -34,6 +34,7 @@
   --paper: #ffffff;
   --paper-2: #f6f8fb;
   --code-bg: #f3f5f8;
+  --field-border: #7b8698;
   --radius: 6px;
   --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
   --mono: ui-monospace, "SF Mono", "Cascadia Mono", "JetBrains Mono", Menlo, Consolas, "Liberation Mono", monospace;
@@ -54,6 +55,8 @@ a:hover { text-decoration-thickness: 2px; }
 .visually-hidden { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 .skip-link { position: absolute; left: 1rem; top: -3rem; z-index: 10; background: var(--navy-fill); color: #fff; padding: .5rem .9rem; border-radius: var(--radius); }
 .skip-link:focus { top: .75rem; }
+/* On the navy band of the home page, a navy focus ring would not show. */
+.hero :focus-visible { outline-color: #fff; }
 
 /* ---------- Header ---------- */
 .masthead { border-bottom: 1px solid var(--line); background: var(--paper); }
@@ -76,7 +79,7 @@ a:hover { text-decoration-thickness: 2px; }
 .search-icon { position: absolute; left: .7rem; top: 50%; transform: translateY(-50%); color: var(--muted); pointer-events: none; }
 .search input {
   width: 15rem; font: inherit; font-size: .9rem; color: var(--ink); background: var(--paper-2);
-  border: 1px solid var(--line); border-radius: var(--radius); padding: .45rem .7rem .45rem 2.1rem;
+  border: 1px solid var(--field-border); border-radius: var(--radius); padding: .45rem .7rem .45rem 2.1rem;
 }
 .search input::placeholder { color: #5b6476; }
 .search input:focus { outline: 2px solid var(--navy); outline-offset: 0; background: var(--paper); }
@@ -121,7 +124,7 @@ main.wide { display: block; }
 .component-nav .page-list ul { list-style: none; margin: 0 0 .25rem; padding: 0 0 0 .8rem; }
 .page-list a[aria-current="true"] { color: var(--navy); font-weight: 600; }
 .version-list { list-style: none; margin: .4rem 0 0; padding: 0; columns: 2; font-size: .85rem; }
-.version-list a { display: block; padding: .1rem 0; }
+.version-list a { display: block; padding: .2rem 0; }
 
 .steps { display: flex; flex-direction: column; gap: .35rem; margin: 0 0 .5rem; }
 .step { display: block; text-decoration: none; color: var(--ink); padding: .35rem .5rem; border: 1px solid var(--line); border-radius: var(--radius); }
@@ -130,7 +133,7 @@ main.wide { display: block; }
 .step--next { text-align: right; }
 
 .crumbs { margin: 0 0 .5rem; font-size: .875rem; color: var(--muted); }
-.crumbs a { color: var(--muted); text-decoration: none; }
+.crumbs a { display: inline-block; padding: .25rem 0; color: var(--muted); text-decoration: none; }
 .crumbs a:hover { color: var(--navy); text-decoration: underline; }
 
 /* Page facts */
@@ -164,7 +167,8 @@ main.wide { display: block; }
 .component-more h3 { font-size: .9rem; color: var(--muted); margin: 0 0 .4rem; }
 
 /* ---------- The text ---------- */
-.prose { font-size: 1.0625rem; }
+.prose { font-size: 1.0625rem; overflow-wrap: break-word; }
+.prose p, .prose li, .prose dd { overflow-wrap: anywhere; }
 .prose > :first-child { margin-top: 0; }
 .prose h1 { font-size: clamp(1.9rem, 1.4rem + 1.6vw, 2.5rem); line-height: 1.15; letter-spacing: -0.015em; color: var(--ink-strong); margin: 0 0 .75rem; text-wrap: balance; }
 .prose h2 { font-size: 1.5rem; line-height: 1.25; color: var(--ink-strong); margin: 2.75rem 0 .75rem; text-wrap: balance; }
@@ -195,8 +199,8 @@ th, td { text-align: left; vertical-align: top; padding: .5rem .75rem; border-bo
 th { background: var(--paper-2); color: var(--ink-strong); font-weight: 600; }
 tr:last-child td { border-bottom: 0; }
 td code { white-space: nowrap; }
-/* A table that comes without a wrapper, as in generated pages, scrolls on its own on a narrow screen. */
-@media (max-width: 760px) { .prose table:not(.table-scroll table) { display: block; overflow-x: auto; } }
+/* Code in a table cell wraps, so one long line does not stretch the table past the page. */
+td pre { white-space: pre-wrap; overflow-wrap: anywhere; }
 
 blockquote { margin-left: 0; padding: .75rem 1rem; background: var(--paper-2); border-radius: var(--radius); color: var(--ink); }
 blockquote > :last-child { margin-bottom: 0; }
@@ -527,6 +531,7 @@ main a[id]:empty { position: absolute; }
     --paper: #0d1522;
     --paper-2: #131d2c;
     --code-bg: #111b29;
+    --field-border: #7d8aa0;
   }
   ::selection { background: #5a3a00; color: var(--ink-strong); }
   .search input::placeholder { color: #8a94a3; }

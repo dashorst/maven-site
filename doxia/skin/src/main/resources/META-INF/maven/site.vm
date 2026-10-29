@@ -168,6 +168,10 @@ under the License.
 #**##set( $editUrl = "https://github.com/dashorst/maven-site/edit/doxia-demo/" + $source )
 #end
 ##
+## A code block or table that is wider than the text scrolls on its own, and keyboard users reach it
+## with Tab (WCAG 2.1.1); js/page.js takes the ones that fit out of the tab order again.
+#set( $bodyContent = $bodyContent.replace( '<pre', '<pre tabindex="0"' ) )
+#set( $bodyContent = $bodyContent.replace( '<table', '<div class="table-scroll" tabindex="0"><table' ).replace( '</table>', '</table></div>' ) )
 #set( $pageTitle = $shortTitle )
 #if( $item )#set( $pageTitle = $item.name )#end
 #set( $currentYear = $date.year )
@@ -226,9 +230,9 @@ under the License.
     <a class="asf" href="https://www.apache.org/"><img class="asf-leaf" src="$relativePath/images/oakleaf.svg" width="14" height="22" alt=""><span>Apache</span></a>
     </div>
   </header>
-  <div class="specimen" role="note">
+  <aside class="specimen" aria-label="About this site">
     <p><strong>Specimen.</strong> A proposed redesign of maven.apache.org, built with <code>mvn site</code> and a skin of its own; not the official Apache Maven site. The official site is <a href="https://maven.apache.org/">maven.apache.org</a>. <a href="${root}about-this-example.html">About this example</a></p>
-  </div>
+  </aside>
 #if( $isHome )
   <main id="content" class="wide">
 $bodyContent

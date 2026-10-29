@@ -211,7 +211,7 @@ $esc.h$esc.h Maven 2
 <p>Maven 2.x has now reached its <a href="eol-maven-2.html">end of life</a>.
   The following <a href="/community/project/maven-2.html">Maven 2.x specific documentation</a> is archived for reference.</p>
 <table>
-<tr><th>2014-02-18</th><th>End of Life</th><th></th><th>
+<tr><th>2014-02-18</th><th>End of Life</th><td></td><th>
 <a href="eol-maven-2.html">EoL notes</a>,
 <a href="${archive}announce/201402.mbox/%3CCA%2BnPnMwcnChz2RUgsWAF4VpPvsycXrak-4DDpQ6u9Cs2xiCCaA%40mail.gmail.com%3E">announce</a>
 </th>

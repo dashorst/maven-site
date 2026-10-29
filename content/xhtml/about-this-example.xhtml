@@ -50,7 +50,6 @@ under the License.
   <li><strong>Explanation</strong>: why Maven works the way it does.</li>
 </ul>
 <p>Open an original next to what it became:</p>
-<div class="table-scroll">
 <table class="before-after">
   <thead><tr><th>On maven.apache.org</th><th>In this example</th><th>What it shows</th></tr></thead>
   <tbody>
@@ -86,7 +85,6 @@ under the License.
     </tr>
   </tbody>
 </table>
-</div>
 <p>The rules the guide pages follow, from front matter to how Maven 4 differences are marked, are in <a href="https://github.com/dashorst/maven-site/blob/diataxis-demo/GUIDE.md">GUIDE.md</a>. They could extend Maven’s own <a href="community/contribute/documentation-style.html">documentation style guide</a>, which so far covers dates and POM indentation.</p>
 
 <h2 id="What_turned_up_along_the_way">What turned up along the way</h2>
@@ -98,7 +96,6 @@ under the License.
 
 <h2 id="The_requirements">Measured against the requirements</h2>
 <p>The Maven project collected what a new site has to do. This is how the example does it:</p>
-<div class="table-scroll">
 <table>
   <thead><tr><th>Requirement</th><th>In this example</th></tr></thead>
   <tbody>
@@ -113,7 +110,7 @@ under the License.
     <tr><td>Sources stay close to the code</td><td>The general documentation is in maven-site; a plugin’s documentation stays in its own repository, and the skin is an artifact that both use.</td></tr>
   </tbody>
 </table>
-</div>
+<p>Not on the list, but checked as well: accessibility, against WCAG 2.2 AA. Every kind of page, of the main site and of the plugin site, in light and dark mode, passes the WCAG rules of axe-core 4.14, with one exception: the FAQ pages that Doxia’s FML module writes put an anchor directly inside a <code>&lt;dl&gt;</code>, which is for Doxia to fix. In a browser I also checked that every link and field shows where the keyboard focus is, that no page scrolls sideways at 320 pixels wide, that wider tables and code scroll on their own and can be reached with the keyboard, that the WCAG text spacing cuts nothing off, and that search works with the keyboard alone.</p>
 
 <h2 id="What_is_still_missing">What is still missing</h2>
 <ul>
