@@ -46,9 +46,9 @@
     <a class="asf" href="https://www.apache.org/"><img class="asf-leaf" src="../../images/oakleaf.svg" width="14" height="22" alt=""><span>Apache</span></a>
     </div>
   </header>
-  <div class="specimen" role="note">
+  <aside class="specimen" aria-label="About this site">
     <p><strong>Specimen.</strong> A proposed redesign of maven.apache.org, built with <code>mvn site</code> and a skin of its own; not the official Apache Maven site. The official site is <a href="https://maven.apache.org/">maven.apache.org</a>. <a href="../../about-this-example.html">About this example</a></p>
-  </div>
+  </aside>
   <div class="frame has-group">
     <nav class="group-nav" aria-labelledby="group-nav-title">
       <p class="up"><a href="../../docs/index.html"><svg aria-hidden="true" viewBox="0 0 16 16" width="14" height="14"><path d="M10 3.5L5.5 8l4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" /></svg>All of Docs</a></p>
@@ -85,14 +85,14 @@
 <p>Set the <code>maven.compiler.release</code> property to the oldest Java version the code must run on:</p>
 <p><em>pom.xml</em></p>
 
-<pre class="highlight"><code class="language-xml"><span class="nt">&lt;properties</span><span class="nt">&gt;</span>
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;properties</span><span class="nt">&gt;</span>
   <span class="nt">&lt;maven.compiler.release</span><span class="nt">&gt;</span>8<span class="nt">&lt;/maven.compiler.release</span><span class="nt">&gt;</span>
 <span class="nt">&lt;/properties</span><span class="nt">&gt;</span>
 </code></pre>
 <p>Or set it in the configuration of the compiler plugin, which has the same effect:</p>
 <p><em>pom.xml</em></p>
 
-<pre class="highlight"><code class="language-xml"><span class="nt">&lt;plugin</span><span class="nt">&gt;</span>
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;plugin</span><span class="nt">&gt;</span>
   <span class="nt">&lt;groupId</span><span class="nt">&gt;</span>org.apache.maven.plugins<span class="nt">&lt;/groupId</span><span class="nt">&gt;</span>
   <span class="nt">&lt;artifactId</span><span class="nt">&gt;</span>maven-compiler-plugin<span class="nt">&lt;/artifactId</span><span class="nt">&gt;</span>
   <span class="nt">&lt;version</span><span class="nt">&gt;</span>3.16.0<span class="nt">&lt;/version</span><span class="nt">&gt;</span>
@@ -103,17 +103,17 @@
 </code></pre>
 <p>The compiler plugin passes it to <code>javac</code> as <code>--release 8</code>, and the build log shows it:</p>
 
-<pre><code class="nohighlight nocode">[INFO] Compiling 1 source file with javac [debug release 8] to target/classes
+<pre tabindex="0"><code class="nohighlight nocode">[INFO] Compiling 1 source file with javac [debug release 8] to target/classes
 </code></pre>
 <p>Use the plain version number, <code>8</code>; with <code>1.8</code> the compiler stops with <code>release version 1.8 not supported</code>. The <code>javac</code> of JDK 21 adds warnings that <code>source value 8 is obsolete and will be removed in a future release</code>; they do not stop the build. A JDK supports only a limited number of older releases: the <code>javac</code> of JDK 21 accepts <code>8</code> but stops with <code>release version 7 not supported</code> for <code>7</code>. For a release your JDK no longer supports, build with an older JDK as in <a href="build-with-another-jdk.html">Build with a different JDK than Maven runs on</a>.</p>
 <p>To see which Java version a class was compiled for, read its class file version with <code>javap</code> from the <code>target/classes</code> directory:</p>
 
-<pre><code class="nohighlight nocode">javap -v com/example/Greeter.class | grep major
+<pre tabindex="0"><code class="nohighlight nocode">javap -v com/example/Greeter.class | grep major
 </code></pre>
 
-<pre><code class="nohighlight nocode">  major version: 52
+<pre tabindex="0"><code class="nohighlight nocode">  major version: 52
 </code></pre>
-<table class="bodyTable">
+<div class="table-scroll" tabindex="0"><table class="bodyTable">
 <thead>
 <tr class="a">
 <th>Java</th>
@@ -129,13 +129,13 @@
 <td>61</td>
 <td>65</td>
 <td>69</td></tr></tbody>
-</table>
+</table></div>
 </section><section><a id="Why_source_and_target_are_not_enough"></a>
 <h2>Why source and target are not enough</h2>
 <p>The older <code>maven.compiler.source</code> and <code>maven.compiler.target</code> properties set the language level and the class file version, but the code is still compiled against the class library of the JDK that runs the compiler. Code that calls a method the older Java does not have compiles without an error:</p>
 <p><em>src/main/java/com/example/Greeter.java</em></p>
 
-<pre class="highlight"><code class="language-java"><span class="k">public</span> String greet(String name) {
+<pre tabindex="0" class="highlight"><code class="language-java"><span class="k">public</span> String greet(String name) {
     <span class="k">if</span> (name.isBlank()) {
         <span class="k">return</span> <span class="s">"Hello"</span>;
     }
@@ -144,12 +144,12 @@
 </code></pre>
 <p>With <code>source</code> and <code>target</code> 8 on JDK 21, the build succeeds with a warning that <code>bootstrap class path not set in conjunction with -source 8</code>. The class says it is for Java 8, and fails only when Java 8 runs it:</p>
 
-<pre><code class="nohighlight nocode">Exception in thread "main" java.lang.NoSuchMethodError: java.lang.String.isBlank()Z
+<pre tabindex="0"><code class="nohighlight nocode">Exception in thread "main" java.lang.NoSuchMethodError: java.lang.String.isBlank()Z
 	at com.example.Greeter.greet(Greeter.java:5)
 </code></pre>
 <p>With <code>release</code> 8, the compiler checks the code against the Java 8 API and the build fails where the problem is:</p>
 
-<pre><code class="nohighlight nocode">[ERROR] /home/me/my-app/src/main/java/com/example/Greeter.java:[5,17] cannot find symbol
+<pre tabindex="0"><code class="nohighlight nocode">[ERROR] /home/me/my-app/src/main/java/com/example/Greeter.java:[5,17] cannot find symbol
 [ERROR]   symbol:   method isBlank()
 [ERROR]   location: variable name of type java.lang.String
 </code></pre>
@@ -158,7 +158,7 @@
 <p><code>release</code> proves that the code compiles against the older API, not that it behaves the same on the older runtime. To run the tests on Java 8, describe a Java 8 JDK in <em>~/.m2/toolchains.xml</em>:</p>
 <p><em>~/.m2/toolchains.xml</em></p>
 
-<pre class="highlight"><code class="language-xml"><span class="nt">&lt;toolchains</span><span class="nt">&gt;</span>
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;toolchains</span><span class="nt">&gt;</span>
   <span class="nt">&lt;toolchain</span><span class="nt">&gt;</span>
     <span class="nt">&lt;type</span><span class="nt">&gt;</span>jdk<span class="nt">&lt;/type</span><span class="nt">&gt;</span>
     <span class="nt">&lt;provides</span><span class="nt">&gt;</span>
@@ -173,7 +173,7 @@
 <p>and give Surefire that JDK with <code>jdkToolchain</code>:</p>
 <p><em>pom.xml</em></p>
 
-<pre class="highlight"><code class="language-xml"><span class="nt">&lt;plugin</span><span class="nt">&gt;</span>
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;plugin</span><span class="nt">&gt;</span>
   <span class="nt">&lt;groupId</span><span class="nt">&gt;</span>org.apache.maven.plugins<span class="nt">&lt;/groupId</span><span class="nt">&gt;</span>
   <span class="nt">&lt;artifactId</span><span class="nt">&gt;</span>maven-surefire-plugin<span class="nt">&lt;/artifactId</span><span class="nt">&gt;</span>
   <span class="nt">&lt;version</span><span class="nt">&gt;</span>3.6.0<span class="nt">&lt;/version</span><span class="nt">&gt;</span>
@@ -186,7 +186,7 @@
 </code></pre>
 <p>The code is compiled by the JDK Maven runs on and tested on Java 8:</p>
 
-<pre><code class="nohighlight nocode">[INFO] Compiling 1 source file with javac [debug release 8] to target/classes
+<pre tabindex="0"><code class="nohighlight nocode">[INFO] Compiling 1 source file with javac [debug release 8] to target/classes
 ...
 [INFO] Toolchain in maven-surefire-plugin: JDK[/opt/jdk/temurin-8]
 </code></pre>
@@ -195,7 +195,7 @@
 <h2>UnsupportedClassVersionError</h2>
 <p>A class compiled for a newer Java than the one that runs it does not load:</p>
 
-<pre><code class="nohighlight nocode">Exception in thread "main" java.lang.UnsupportedClassVersionError: com/example/Greeter has been compiled by a more recent version of the Java Runtime (class file version 61.0), this version of the Java Runtime only recognizes class file versions up to 52.0
+<pre tabindex="0"><code class="nohighlight nocode">Exception in thread "main" java.lang.UnsupportedClassVersionError: com/example/Greeter has been compiled by a more recent version of the Java Runtime (class file version 61.0), this version of the Java Runtime only recognizes class file versions up to 52.0
 </code></pre>
 <p>The class was compiled for Java 17 (61) and run on Java 8 (52). Lower <code>release</code> to the version that runs the code, or run it on a newer Java. When the class in the message belongs to a dependency, that dependency needs a newer Java than your release, and you need an older version of it.</p></section></section>
       </div>

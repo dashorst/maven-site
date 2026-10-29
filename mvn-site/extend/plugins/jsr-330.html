@@ -43,9 +43,9 @@
     <a class="asf" href="https://www.apache.org/"><img class="asf-leaf" src="../../images/oakleaf.svg" width="14" height="22" alt=""><span>Apache</span></a>
     </div>
   </header>
-  <div class="specimen" role="note">
+  <aside class="specimen" aria-label="About this site">
     <p><strong>Specimen.</strong> A proposed redesign of maven.apache.org, built with <code>mvn site</code> and a skin of its own; not the official Apache Maven site. The official site is <a href="https://maven.apache.org/">maven.apache.org</a>. <a href="../../about-this-example.html">About this example</a></p>
-  </div>
+  </aside>
   <div class="frame has-group">
     <nav class="group-nav" aria-labelledby="group-nav-title">
       <p class="up"><a href="../../extend/index.html"><svg aria-hidden="true" viewBox="0 0 16 16" width="14" height="14"><path d="M10 3.5L5.5 8l4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" /></svg>All of Extend</a></p>
@@ -109,7 +109,7 @@
 <p>The POM is set up for JSR-300 as previously mentioned, with the <code>javax.inject</code> dependency and the <code>sisu-maven-plugin</code> configured to create the JSR-330 component index.</p>
 <p>In addition, we add classical Maven plugin dependencies <code>maven-plugin-api</code> and <code>maven-plugin-annotations</code> to extend the <code>AbstractMojo</code> and use the Java Plugin Tools Annotations with associated <code>maven-plugin-plugin</code> (see <a href="/plugin-tools/">Maven Plugin Tools</a>).</p>
 
-<pre class="highlight"><code class="language-xml"><span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span> <span class="na">xmlns:xsi</span>=<span class="s">"http://www.w3.org/2001/XMLSchema-instance"</span>
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span> <span class="na">xmlns:xsi</span>=<span class="s">"http://www.w3.org/2001/XMLSchema-instance"</span>
   <span class="na">xsi:schemaLocation</span>=<span class="s">"http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd"</span><span class="nt">&gt;</span>
   <span class="nt">&lt;modelVersion</span><span class="nt">&gt;</span>4.0.0<span class="nt">&lt;/modelVersion</span><span class="nt">&gt;</span>
 
@@ -197,7 +197,7 @@
 </code></pre>
 <p>Now let's take a look at the plugin code. You'll notice that we're using constructor injection which makes testing a lot easier. If you want to test your <code>Jsr330Component</code>, you do not need the container to instantiate the <code>Mojo</code>. In this simple case, you can actually test this plugin without using the <a href="/plugin-testing/maven-plugin-testing-harness/index.html">plugin testing harness</a> because you can instantiate the <code>Jsr330Component</code> and <code>Jsr330Mojo</code> directly and wire everything up manually using the constructor. Constructor injection, which Plexus lacks, greatly simplifies testing.</p>
 
-<pre class="highlight"><code class="language-java"><span class="k">package</span> org.apache.maven.plugins;
+<pre tabindex="0" class="highlight"><code class="language-java"><span class="k">package</span> org.apache.maven.plugins;
 
 <span class="k">import</span> javax.inject.Inject;
 

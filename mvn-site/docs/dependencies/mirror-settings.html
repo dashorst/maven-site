@@ -46,9 +46,9 @@
     <a class="asf" href="https://www.apache.org/"><img class="asf-leaf" src="../../images/oakleaf.svg" width="14" height="22" alt=""><span>Apache</span></a>
     </div>
   </header>
-  <div class="specimen" role="note">
+  <aside class="specimen" aria-label="About this site">
     <p><strong>Specimen.</strong> A proposed redesign of maven.apache.org, built with <code>mvn site</code> and a skin of its own; not the official Apache Maven site. The official site is <a href="https://maven.apache.org/">maven.apache.org</a>. <a href="../../about-this-example.html">About this example</a></p>
-  </div>
+  </aside>
   <div class="frame has-group">
     <nav class="group-nav" aria-labelledby="group-nav-title">
       <p class="up"><a href="../../docs/index.html"><svg aria-hidden="true" viewBox="0 0 16 16" width="14" height="14"><path d="M10 3.5L5.5 8l4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" /></svg>All of Docs</a></p>
@@ -95,7 +95,7 @@
 <p>Ask the administrators of the repository manager for the URL of the repository that combines the outside repositories, often called a group or virtual repository. Add it as a mirror to your user settings:</p>
 <p><em>~/.m2/settings.xml</em></p>
 
-<pre class="highlight"><code class="language-xml"><span class="nt">&lt;settings</span><span class="nt">&gt;</span>
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;settings</span><span class="nt">&gt;</span>
   <span class="nt">&lt;mirrors</span><span class="nt">&gt;</span>
     <span class="nt">&lt;mirror</span><span class="nt">&gt;</span>
       <span class="nt">&lt;id</span><span class="nt">&gt;</span>company-repository<span class="nt">&lt;/id</span><span class="nt">&gt;</span>
@@ -116,27 +116,27 @@
 <h2>Check that Maven uses the mirror</h2>
 <p>Download lines name the mirror instead of <code>central</code>. Artifacts already in your local repository are not downloaded again, so to see the lines, run a build with an empty local repository:</p>
 
-<pre><code class="nohighlight nocode">mvn -Dmaven.repo.local=/tmp/mirror-check dependency:resolve
+<pre tabindex="0"><code class="nohighlight nocode">mvn -Dmaven.repo.local=/tmp/mirror-check dependency:resolve
 </code></pre>
 
-<pre><code class="nohighlight nocode">[INFO] Downloading from company-repository: https://repo.example.com/repository/maven-public/org/apache/commons/commons-lang3/3.17.0/commons-lang3-3.17.0.pom
+<pre tabindex="0"><code class="nohighlight nocode">[INFO] Downloading from company-repository: https://repo.example.com/repository/maven-public/org/apache/commons/commons-lang3/3.17.0/commons-lang3-3.17.0.pom
 </code></pre>
 <p>When the mirror cannot be reached, the error lists the repositories Maven had available. <code>central</code> is no longer among them:</p>
 
-<pre><code class="nohighlight nocode">[ERROR] No plugin found for prefix 'dependency' in the current project and in the plugin groups [org.apache.maven.plugins, org.codehaus.mojo] available from the repositories [local (/tmp/mirror-check), company-repository (https://repo.example.com/repository/maven-public/)]
+<pre tabindex="0"><code class="nohighlight nocode">[ERROR] No plugin found for prefix 'dependency' in the current project and in the plugin groups [org.apache.maven.plugins, org.codehaus.mojo] available from the repositories [local (/tmp/mirror-check), company-repository (https://repo.example.com/repository/maven-public/)]
 </code></pre>
 <p>If the repository manager answers with <code>401</code> or <code>Unauthorized</code>, it requires a login. Store it under the mirror's id, as described in <a href="../configure/server-credentials.html">Store credentials for a repository</a>.</p></section><section><a id="Leave_a_repository_out_of_the_mirror"></a>
 <h2>Leave a repository out of the mirror</h2>
 <p>To let one repository bypass the mirror, add its id with an exclamation mark, without spaces:</p>
 
-<pre class="highlight"><code class="language-xml"><span class="nt">&lt;mirrorOf</span><span class="nt">&gt;</span>external:*,!partner-releases<span class="nt">&lt;/mirrorOf</span><span class="nt">&gt;</span>
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;mirrorOf</span><span class="nt">&gt;</span>external:*,!partner-releases<span class="nt">&lt;/mirrorOf</span><span class="nt">&gt;</span>
 </code></pre>
 <p>Maven then connects to <code>partner-releases</code> at the URL in the POM.</p>
 <p>To send one repository to a different mirror, add a second mirror whose <code>mirrorOf</code> names that repository's id. A mirror that names the id exactly is chosen over a wildcard mirror, whatever their order in the file.</p></section><section><a id="Repositories_that_use_plain_HTTP"></a>
 <h2>Repositories that use plain HTTP</h2>
 <p>Maven refuses to download from repositories with an <code>http://</code> URL, except on <code>localhost</code>. A POM that declares such a repository fails with an error from the built-in <code>maven-default-http-blocker</code> mirror:</p>
 
-<pre><code class="nohighlight nocode">Could not transfer artifact com.example:lib-http:pom:1.0 from/to maven-default-http-blocker (http://0.0.0.0/): Blocked mirror for repositories: [insecure (http://repo.partner.example/, default, releases+snapshots)]
+<pre tabindex="0"><code class="nohighlight nocode">Could not transfer artifact com.example:lib-http:pom:1.0 from/to maven-default-http-blocker (http://0.0.0.0/): Blocked mirror for repositories: [insecure (http://repo.partner.example/, default, releases+snapshots)]
 </code></pre>
 <p>A mirror in your user settings whose <code>mirrorOf</code> matches that repository, such as <code>external:*</code>, takes precedence over the blocker, so the download goes through your repository manager instead. Excluding the repository with <code>!</code> hands it back to the blocker.</p></section><section><a id="Replace_only_Maven_Central"></a>
 <h2>Replace only Maven Central</h2>

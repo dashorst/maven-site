@@ -44,9 +44,9 @@
     <a class="asf" href="https://www.apache.org/"><img class="asf-leaf" src="../../images/oakleaf.svg" width="14" height="22" alt=""><span>Apache</span></a>
     </div>
   </header>
-  <div class="specimen" role="note">
+  <aside class="specimen" aria-label="About this site">
     <p><strong>Specimen.</strong> A proposed redesign of maven.apache.org, built with <code>mvn site</code> and a skin of its own; not the official Apache Maven site. The official site is <a href="https://maven.apache.org/">maven.apache.org</a>. <a href="../../about-this-example.html">About this example</a></p>
-  </div>
+  </aside>
   <div class="frame has-group">
     <nav class="group-nav" aria-labelledby="group-nav-title">
       <p class="up"><a href="../../docs/index.html"><svg aria-hidden="true" viewBox="0 0 16 16" width="14" height="14"><path d="M10 3.5L5.5 8l4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>All of Docs</a></p>
@@ -85,7 +85,7 @@
 <p>This page covers what is specific to Doxia. For the language itself, read the <a href="https://commonmark.org/" class="externalLink">CommonMark specification</a>.</p><section><a id="Which_Markdown"></a>
 <h2>Which Markdown</h2>
 <p>The module parses with <a href="https://github.com/vsch/flexmark-java" class="externalLink">flexmark</a>, configured for CommonMark plus these extensions:</p>
-<table class="bodyTable">
+<div class="table-scroll" tabindex="0"><table class="bodyTable">
 <thead>
 <tr class="a">
 <th>Extension</th>
@@ -117,13 +117,13 @@
 <tr class="b">
 <td>Escaped character</td>
 <td>a backslash escapes the character after it</td></tr></tbody>
-</table>
+</table></div>
 
 <p>The typographic extension is worth knowing about: <code>&quot;quoted&quot;</code> renders with curly quotes and <code>...</code> renders as a single ellipsis character. That is normally what you want in prose, but it is a surprise inside a literal string, so put those in a code span.</p></section><section><a id="Document_metadata"></a>
 <h2>Document metadata</h2>
 <p>A document may open with a YAML front matter block. It must be the very first thing in the file &#x2014; the parser only looks for it when the source begins with <code>---</code> &#x2014; so a licence header goes below it, not above.</p>
 
-<pre><code class="language-markdown">---
+<pre tabindex="0"><code class="language-markdown">---
 title: Introduction
 author:
   - Jane Developer
@@ -136,7 +136,7 @@ date: 2026-08-07
 <h2>Macros</h2>
 <p>Doxia macros are written as an HTML comment:</p>
 
-<pre><code class="language-markdown">&lt;!-- MACRO{toc|fromDepth=1|toDepth=2} --&gt;
+<pre tabindex="0"><code class="language-markdown">&lt;!-- MACRO{toc|fromDepth=1|toDepth=2} --&gt;
 
 &lt;!-- MACRO{snippet|id=example|file=src/main/resources/example.xml} --&gt;
 </code></pre>
@@ -151,13 +151,13 @@ date: 2026-08-07
 <li>
 <p>use a setext underline for a level two heading, with a blank line before the title:</p>
 
-<pre><code class="language-markdown">Goals Overview
+<pre tabindex="0"><code class="language-markdown">Goals Overview
 --------------
 </code></pre></li>
 <li>
 <p>wrap a deeper heading, or a whole block, in Velocity's unparsed markup:</p>
 
-<pre><code class="language-markdown">#[[### Configuring the plugin]]#
+<pre tabindex="0"><code class="language-markdown">#[[### Configuring the plugin]]#
 </code></pre>
 <p>This applies inside fenced code blocks too: Velocity does not know what a code block is, so a sample containing <code>##</code> needs the same treatment.</p></li>
 </ul>

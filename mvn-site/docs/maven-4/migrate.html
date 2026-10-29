@@ -43,9 +43,9 @@
     <a class="asf" href="https://www.apache.org/"><img class="asf-leaf" src="../../images/oakleaf.svg" width="14" height="22" alt=""><span>Apache</span></a>
     </div>
   </header>
-  <div class="specimen" role="note">
+  <aside class="specimen" aria-label="About this site">
     <p><strong>Specimen.</strong> A proposed redesign of maven.apache.org, built with <code>mvn site</code> and a skin of its own; not the official Apache Maven site. The official site is <a href="https://maven.apache.org/">maven.apache.org</a>. <a href="../../about-this-example.html">About this example</a></p>
-  </div>
+  </aside>
   <div class="frame has-group">
     <nav class="group-nav" aria-labelledby="group-nav-title">
       <p class="up"><a href="../../docs/index.html"><svg aria-hidden="true" viewBox="0 0 16 16" width="14" height="14"><path d="M10 3.5L5.5 8l4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" /></svg>All of Docs</a></p>
@@ -133,7 +133,7 @@
 <p>You can use the <a href="https://www.mojohaus.org/versions/versions-maven-plugin/examples/display-plugin-updates.html" class="externalLink">versions-maven-plugin's <code>display-plugin-updates</code> goal</a> to see which are the latest available versions of the plugins you use.</p>
 <p>The following example shows the output of the <a href="https://www.mojohaus.org/versions/versions-maven-plugin/" class="externalLink">Versions Maven Plugin</a> in a project using the outdated version 3.12.0 of the Maven Compiler Plugin. As you can see, it shows that 3.14.0 is the best Maven 3 compatible update, while versions 4.0.0-beta-1 and 4.0.0-beta-2 require Maven 4 versions, not yet for the current step.</p>
 
-<pre><code class="nohighlight nocode">[INFO] The following plugin updates are available:
+<pre tabindex="0"><code class="nohighlight nocode">[INFO] The following plugin updates are available:
 [INFO]   maven-compiler-plugin ............................ 3.12.0 -&gt; 3.14.0
 [INFO]
 [INFO] All plugins have a version specified.
@@ -220,7 +220,7 @@
 <h4>Use <code>&lt;subprojects&gt;</code> instead of <code>&lt;modules&gt;</code></h4>
 <p>In Maven 4 subprojects are no longer called modules, to avoid confusion between <em>Maven modules</em> and <em>Java Modules</em> introduced in Java 9. While the <code>&lt;modules&gt;</code> element is still supported, it was marked as deprecated in model version 4.1.0 and will get removed in a future version. So you should replace it with the new <code>&lt;subprojects&gt;</code> element instead.</p>
 
-<pre class="highlight"><code class="language-xml"><span class="c">&lt;!-- Requires model version 4.0.0 (Maven 3, deprecated in model version 4.1.0) --&gt;</span>
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="c">&lt;!-- Requires model version 4.0.0 (Maven 3, deprecated in model version 4.1.0) --&gt;</span>
  <span class="nt">&lt;modules</span><span class="nt">&gt;</span>
      <span class="nt">&lt;module</span><span class="nt">&gt;</span>moduleA<span class="nt">&lt;/module</span><span class="nt">&gt;</span>
      <span class="nt">&lt;module</span><span class="nt">&gt;</span>moduleB<span class="nt">&lt;/module</span><span class="nt">&gt;</span>
@@ -238,7 +238,7 @@
 <p>The following example of a <code>pom.xml</code> shows the associated part for a subproject called “subprojectB”. This subproject declares its parent and the dependency to “subprojectA”, which is also a subproject in the same multi subproject setup.</p>
 <p>In Maven 3 with model version 4.0.0 such a declaration looks like the following.</p>
 
-<pre class="highlight"><code class="language-xml"><span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span>
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span>
          <span class="na">xmlns:xsi</span>=<span class="s">"http://www.w3.org/2001/XMLSchema-instance"</span>
          <span class="na">xsi:schemaLocation</span>=<span class="s">"http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"</span><span class="nt">&gt;</span>
    
@@ -267,7 +267,7 @@
 </code></pre>
 <p>In Maven 4 and model version 4.1.0, the version declarations and parent coordinates are not needed anymore.</p>
 
-<pre class="highlight"><code class="language-xml"><span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.1.0"</span>
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.1.0"</span>
          <span class="na">xmlns:xsi</span>=<span class="s">"http://www.w3.org/2001/XMLSchema-instance"</span>
          <span class="na">xsi:schemaLocation</span>=<span class="s">"http://maven.apache.org/POM/4.1.0 http://maven.apache.org/xsd/maven-4.1.0.xsd"</span><span class="nt">&gt;</span>
    
@@ -292,7 +292,7 @@
 <p>Maven 4 introduces a dedicated <code>bom</code> packaging type to provide a <a href="https://maven.apache.org/docs/dependencies/how-dependencies-work.html#bill-of-materials-bom-poms" class="externalLink">Bill of Materials BOM POM</a>. This now differentiates between parent POMs and dependency-managing BOM POMs. The new type is only available as a build POM in Model Version 4.1.0 and later, but Maven generates a full Maven 3 compatible consumer POM during the build.</p>
 <p>The following code snippet shows an example for a BOM POM using the new <code>&lt;packaging&gt;</code> type.</p>
 
-<pre class="highlight"><code class="language-xml"><span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.1.0"</span>
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.1.0"</span>
          <span class="na">xmlns:xsi</span>=<span class="s">"http://www.w3.org/2001/XMLSchema-instance"</span>
          <span class="na">xsi:schemaLocation</span>=<span class="s">"http://maven.apache.org/POM/4.1.0 http://maven.apache.org/xsd/maven-4.1.0.xsd"</span><span class="nt">&gt;</span>
 
@@ -324,7 +324,7 @@
 <h3>New way to declare source directories</h3>
 <p>Maven 3 has two explicitly named XML elements (<code>&lt;sourceDirectory&gt;</code> and <code>&lt;testSourceDirectory&gt;</code>) to declare the root directories of source code, as shown below:</p>
 
-<pre class="highlight"><code class="language-xml"><span class="nt">&lt;project</span><span class="nt">&gt;</span>
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;project</span><span class="nt">&gt;</span>
   <span class="nt">&lt;build</span><span class="nt">&gt;</span>
     <span class="nt">&lt;sourceDirectory</span><span class="nt">&gt;</span>my-custom-dir/foo<span class="nt">&lt;/sourceDirectory</span><span class="nt">&gt;</span>
     <span class="nt">&lt;testSourceDirectory</span><span class="nt">&gt;</span>my-custom-dir/bar<span class="nt">&lt;/testSourceDirectory</span><span class="nt">&gt;</span>
@@ -333,7 +333,7 @@
 </code></pre>
 <p>Maven 4 introduces the new <code>&lt;sources&gt;</code> element for this. This makes source directory declarations more flexible for future improvements like Java Modules. When migrate to Maven 4, you should use the new element.</p>
 
-<pre class="highlight"><code class="language-xml"><span class="nt">&lt;project</span><span class="nt">&gt;</span>
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;project</span><span class="nt">&gt;</span>
   <span class="nt">&lt;build</span><span class="nt">&gt;</span>
     <span class="nt">&lt;sources</span><span class="nt">&gt;</span>
       <span class="nt">&lt;source</span><span class="nt">&gt;</span>

@@ -44,9 +44,9 @@
     <a class="asf" href="https://www.apache.org/"><img class="asf-leaf" src="./images/oakleaf.svg" width="14" height="22" alt=""><span>Apache</span></a>
     </div>
   </header>
-  <div class="specimen" role="note">
+  <aside class="specimen" aria-label="About this site">
     <p><strong>Specimen.</strong> A proposed redesign of maven.apache.org, built with <code>mvn site</code> and a skin of its own; not the official Apache Maven site. The official site is <a href="https://maven.apache.org/">maven.apache.org</a>. <a href="./about-this-example.html">About this example</a></p>
-  </div>
+  </aside>
   <main id="content" class="wide">
  
 
@@ -71,7 +71,7 @@
 
 <p class="demo-file">pom.xml</p>
 
-<pre class="demo-pom"><code><span class="t">&lt;project&gt;</span>
+<pre tabindex="0" class="demo-pom"><code><span class="t">&lt;project&gt;</span>
   <span class="t">&lt;modelVersion&gt;</span>4.0.0<span class="t">&lt;/modelVersion&gt;</span>
   <span class="t">&lt;groupId&gt;</span>com.example<span class="t">&lt;/groupId&gt;</span>
   <span class="t">&lt;artifactId&gt;</span>my-app<span class="t">&lt;/artifactId&gt;</span>
@@ -83,14 +83,14 @@
 
 <p class="demo-file">my-app/</p>
 
-<pre class="demo-tree"><code>&#x251c;&#x2500;&#x2500; pom.xml
+<pre tabindex="0" class="demo-tree"><code>&#x251c;&#x2500;&#x2500; pom.xml
 &#x2514;&#x2500;&#x2500; src/main/java/
     &#x2514;&#x2500;&#x2500; com/example/
         &#x2514;&#x2500;&#x2500; App.java</code></pre>
 </div>
 </div>
 
-<pre class="demo-run"><code><span class="prompt">$ </span>mvn verify
+<pre tabindex="0" class="demo-run"><code><span class="prompt">$ </span>mvn verify
 [INFO] --- resources:3.5.0:resources (default-resources) @ my-app ---
 [INFO] --- compiler:3.16.0:compile (default-compile) @ my-app ---
 [INFO] --- surefire:3.6.0:test (default-test) @ my-app ---
@@ -143,7 +143,7 @@
 <p><a href="docs/dependencies/how-dependencies-work.html">How dependencies work</a></p>
 </section>
 
-<pre class="feature-code"><code><span class="t">&lt;dependency&gt;</span>
+<pre tabindex="0" class="feature-code"><code><span class="t">&lt;dependency&gt;</span>
   <span class="t">&lt;groupId&gt;</span>org.apache.commons<span class="t">&lt;/groupId&gt;</span>
   <span class="t">&lt;artifactId&gt;</span>commons-lang3<span class="t">&lt;/artifactId&gt;</span>
   <span class="t">&lt;version&gt;</span>3.17.0<span class="t">&lt;/version&gt;</span>
@@ -164,7 +164,7 @@
 <p><a href="docs/recipes/reproducible-builds.html">Reproducible builds</a></p>
 </section>
 
-<pre class="feature-code"><code><span class="prompt">$ </span>mvn clean package &amp;&amp; sha256sum target/my-app-1.0.jar
+<pre tabindex="0" class="feature-code"><code><span class="prompt">$ </span>mvn clean package &amp;&amp; sha256sum target/my-app-1.0.jar
 0b9b589c9d53&#x2026;  target/my-app-1.0.jar
 <span class="prompt">$ </span>mvn clean package &amp;&amp; sha256sum target/my-app-1.0.jar
 0b9b589c9d53&#x2026;  target/my-app-1.0.jar</code></pre>
@@ -180,7 +180,7 @@
 <p><a href="docs/get-started/build-lifecycle.html">Phases, goals and plugins</a></p>
 </section>
 
-<pre class="feature-code"><code>validate &#x2192; compile &#x2192; test &#x2192; package
+<pre tabindex="0" class="feature-code"><code>validate &#x2192; compile &#x2192; test &#x2192; package
          &#x2192; verify &#x2192; install &#x2192; deploy
 
 <span class="prompt">$ </span>mvn verify   <span class="c"># validate &#x2026; verify, in order</span></code></pre>
@@ -237,7 +237,7 @@
 <p><a href="docs/multi-module/build-part-of-a-project.html">Build part of a project</a></p>
 </section>
 
-<pre class="feature-code"><code><span class="prompt">$ </span>mvn verify             <span class="c"># every module, in order</span>
+<pre tabindex="0" class="feature-code"><code><span class="prompt">$ </span>mvn verify             <span class="c"># every module, in order</span>
 <span class="prompt">$ </span>mvn -pl app -am verify <span class="c"># app and what it needs</span>
 <span class="prompt">$ </span>mvn -T 1C verify       <span class="c"># independent modules in parallel</span></code></pre>
 </div>
@@ -252,7 +252,7 @@
 <p><a href="docs/plugins/mvnd.html">Maven Daemon</a></p>
 </section>
 
-<pre class="feature-code"><code><span class="prompt">$ </span>mvnd verify</code></pre>
+<pre tabindex="0" class="feature-code"><code><span class="prompt">$ </span>mvnd verify</code></pre>
 </div>
 </section>
 

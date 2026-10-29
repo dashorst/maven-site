@@ -43,9 +43,9 @@
     <a class="asf" href="https://www.apache.org/"><img class="asf-leaf" src="../../images/oakleaf.svg" width="14" height="22" alt=""><span>Apache</span></a>
     </div>
   </header>
-  <div class="specimen" role="note">
+  <aside class="specimen" aria-label="About this site">
     <p><strong>Specimen.</strong> A proposed redesign of maven.apache.org, built with <code>mvn site</code> and a skin of its own; not the official Apache Maven site. The official site is <a href="https://maven.apache.org/">maven.apache.org</a>. <a href="../../about-this-example.html">About this example</a></p>
-  </div>
+  </aside>
   <div class="frame has-group">
     <nav class="group-nav" aria-labelledby="group-nav-title">
       <p class="up"><a href="../../docs/index.html"><svg aria-hidden="true" viewBox="0 0 16 16" width="14" height="14"><path d="M10 3.5L5.5 8l4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" /></svg>All of Docs</a></p>
@@ -98,7 +98,7 @@
 <p>Consider the case where the user wants to execute the <code>assembly:assembly</code> mojo directly on the command line, but already has a configuration for the <code>assembly:single</code> mojo that runs during the main build lifecycle. Since these configurations require different options, the user cannot use the plugin-level configuration section to specify common elements.</p>
 <p>In this case, the assembly-plugin configuration might look like this:</p>
 
-<pre class="highlight"><code class="language-xml"><span class="nt">&lt;plugin</span><span class="nt">&gt;</span>
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;plugin</span><span class="nt">&gt;</span>
   <span class="nt">&lt;artifactId</span><span class="nt">&gt;</span>maven-assembly-plugin<span class="nt">&lt;/artifactId</span><span class="nt">&gt;</span>
   <span class="nt">&lt;configuration</span><span class="nt">&gt;</span>
     <span class="nt">&lt;tarLongFileMode</span><span class="nt">&gt;</span>gnu<span class="nt">&lt;/tarLongFileMode</span><span class="nt">&gt;</span>    
@@ -136,7 +136,7 @@
 <p>Therefore, the user needs to compile the bulk of his application to target the 1.5 Java specification, then compile the rest (the entry point) to target an older specification…say, 1.3. The first execution will specify the <code>source</code> and <code>target</code> values at <code>1.5</code>, and add an <code>excludes</code> section to avoid compiling the entry point for the application. The second pass will then re-specify <code>source</code> and <code>target</code> to <code>1.3</code>, and basically invert the original <code>excludes</code> section to be an <code>includes</code> section, so as to compile <em>only</em> the entry point class.</p>
 <p>The resulting configuration might look something like this:</p>
 
-<pre class="highlight"><code class="language-xml"><span class="nt">&lt;plugin</span><span class="nt">&gt;</span>
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;plugin</span><span class="nt">&gt;</span>
   <span class="nt">&lt;artifactId</span><span class="nt">&gt;</span>maven-compiler-plugin<span class="nt">&lt;/artifactId</span><span class="nt">&gt;</span>
   <span class="nt">&lt;configuration</span><span class="nt">&gt;</span>
     <span class="nt">&lt;source</span><span class="nt">&gt;</span>1.5<span class="nt">&lt;/source</span><span class="nt">&gt;</span>
@@ -179,7 +179,7 @@
 <p>Finally, building on our use of the compiler plugin to tease out these different use cases, consider the case where a user wants to target version 1.4 of the Java specification as his runtime platform. However, he still wants the convenience and other advantages to be found in a unit-testing framework like TestNG. This forces the user to configure the <code>compile</code> mojo with one set of <code>source</code> and <code>target</code> values - specifically, <code>1.4</code> - and the <code>testCompile</code> mojo with another (<code>1.5</code>).</p>
 <p>The resulting compiler-plugin configuration might look something like the following:</p>
 
-<pre class="highlight"><code class="language-xml"><span class="nt">&lt;plugin</span><span class="nt">&gt;</span>
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;plugin</span><span class="nt">&gt;</span>
   <span class="nt">&lt;artifactId</span><span class="nt">&gt;</span>maven-compiler-plugin<span class="nt">&lt;/artifactId</span><span class="nt">&gt;</span>
   <span class="nt">&lt;executions</span><span class="nt">&gt;</span>
     <span class="nt">&lt;execution</span><span class="nt">&gt;</span>

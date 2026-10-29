@@ -46,9 +46,9 @@
     <a class="asf" href="https://www.apache.org/"><img class="asf-leaf" src="../../images/oakleaf.svg" width="14" height="22" alt=""><span>Apache</span></a>
     </div>
   </header>
-  <div class="specimen" role="note">
+  <aside class="specimen" aria-label="About this site">
     <p><strong>Specimen.</strong> A proposed redesign of maven.apache.org, built with <code>mvn site</code> and a skin of its own; not the official Apache Maven site. The official site is <a href="https://maven.apache.org/">maven.apache.org</a>. <a href="../../about-this-example.html">About this example</a></p>
-  </div>
+  </aside>
   <div class="frame has-group">
     <nav class="group-nav" aria-labelledby="group-nav-title">
       <p class="up"><a href="../../docs/index.html"><svg aria-hidden="true" viewBox="0 0 16 16" width="14" height="14"><path d="M10 3.5L5.5 8l4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" /></svg>All of Docs</a></p>
@@ -90,7 +90,7 @@
 <p>A POM with a <code>&lt;parent&gt;</code> element starts from the parent's configuration and adds its own on top. The parent is a POM like any other, with <code>pom</code> packaging, because it produces no jar of its own.</p>
 <p><em>core/pom.xml</em></p>
 
-<pre class="highlight"><code class="language-xml"><span class="nt">&lt;parent</span><span class="nt">&gt;</span>
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;parent</span><span class="nt">&gt;</span>
   <span class="nt">&lt;groupId</span><span class="nt">&gt;</span>com.example.shop<span class="nt">&lt;/groupId</span><span class="nt">&gt;</span>
   <span class="nt">&lt;artifactId</span><span class="nt">&gt;</span>shop<span class="nt">&lt;/artifactId</span><span class="nt">&gt;</span>
   <span class="nt">&lt;version</span><span class="nt">&gt;</span>1.0-SNAPSHOT<span class="nt">&lt;/version</span><span class="nt">&gt;</span>
@@ -110,7 +110,7 @@
 <p>URLs, including those in <code>&lt;scm&gt;</code>, are inherited with the child's <code>artifactId</code> appended: a parent with <code>&lt;url&gt;https://example.com/shop&lt;/url&gt;</code> gives <code>core</code> the URL <code>https://example.com/shop/core</code>.</p>
 <p>Inheritance is recursive. A parent can have a parent of its own, and at the top of every chain sits the <a href="../../ref/current/maven-model-builder/super-pom.html">Super POM</a>, built into Maven, which supplies Maven Central as repository and the default directory layout. The result of merging the whole chain is the effective POM, the configuration Maven really builds with. To see it for one module, run this in the root directory:</p>
 
-<pre><code class="nohighlight nocode">mvn help:effective-pom -pl core
+<pre tabindex="0"><code class="nohighlight nocode">mvn help:effective-pom -pl core
 </code></pre></section><section><a id="Where_Maven_finds_the_parent"></a>
 <h2>Where Maven finds the parent</h2>
 <p>Maven looks for the parent in three places, in this order:</p>
@@ -123,7 +123,7 @@
 <p>So a parent one directory up needs no <code>&lt;relativePath&gt;</code>. A parent elsewhere needs one, or Maven passes over it and looks in the repositories:</p>
 <p><em>lib/pom.xml</em></p>
 
-<pre class="highlight"><code class="language-xml"><span class="nt">&lt;parent</span><span class="nt">&gt;</span>
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;parent</span><span class="nt">&gt;</span>
   <span class="nt">&lt;groupId</span><span class="nt">&gt;</span>com.example<span class="nt">&lt;/groupId</span><span class="nt">&gt;</span>
   <span class="nt">&lt;artifactId</span><span class="nt">&gt;</span>parent<span class="nt">&lt;/artifactId</span><span class="nt">&gt;</span>
   <span class="nt">&lt;version</span><span class="nt">&gt;</span>1.0-SNAPSHOT<span class="nt">&lt;/version</span><span class="nt">&gt;</span>
@@ -139,7 +139,7 @@
 <p>An aggregator is a POM with <code>pom</code> packaging and a list of modules. Each <code>&lt;module&gt;</code> is the path from the aggregator's directory to a module's directory or POM file, usually the directory name.</p>
 <p><em>pom.xml</em></p>
 
-<pre class="highlight"><code class="language-xml"><span class="nt">&lt;packaging</span><span class="nt">&gt;</span>pom<span class="nt">&lt;/packaging</span><span class="nt">&gt;</span>
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;packaging</span><span class="nt">&gt;</span>pom<span class="nt">&lt;/packaging</span><span class="nt">&gt;</span>
 
 <span class="nt">&lt;modules</span><span class="nt">&gt;</span>
   <span class="nt">&lt;module</span><span class="nt">&gt;</span>api<span class="nt">&lt;/module</span><span class="nt">&gt;</span>
@@ -165,7 +165,7 @@
 </ul>
 <p>Only those relationships count. An entry in <code>&lt;dependencyManagement&gt;</code> or <code>&lt;pluginManagement&gt;</code> that names another module does not change the order. Where no relationship decides, the order of the <code>&lt;modules&gt;</code> list does. So the order in which you list modules does not matter for correctness: with the modules listed as <code>app</code>, <code>core</code>, <code>api</code>, where <code>app</code> depends on <code>core</code> and <code>core</code> on <code>api</code>, the reactor still prints:</p>
 
-<pre><code class="nohighlight nocode">[INFO] Reactor Build Order:
+<pre tabindex="0"><code class="nohighlight nocode">[INFO] Reactor Build Order:
 [INFO] 
 [INFO] shop                                                               [pom]
 [INFO] api                                                                [jar]

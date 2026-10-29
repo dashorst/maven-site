@@ -43,9 +43,9 @@
     <a class="asf" href="https://www.apache.org/"><img class="asf-leaf" src="../../images/oakleaf.svg" width="14" height="22" alt=""><span>Apache</span></a>
     </div>
   </header>
-  <div class="specimen" role="note">
+  <aside class="specimen" aria-label="About this site">
     <p><strong>Specimen.</strong> A proposed redesign of maven.apache.org, built with <code>mvn site</code> and a skin of its own; not the official Apache Maven site. The official site is <a href="https://maven.apache.org/">maven.apache.org</a>. <a href="../../about-this-example.html">About this example</a></p>
-  </div>
+  </aside>
   <div class="frame has-group">
     <nav class="group-nav" aria-labelledby="group-nav-title">
       <p class="up"><a href="../../community/index.html"><svg aria-hidden="true" viewBox="0 0 16 16" width="14" height="14"><path d="M10 3.5L5.5 8l4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" /></svg>All of Community</a></p>
@@ -92,7 +92,7 @@
 </ul>
 <p>The repository configuration for testing a plugin will typically look something like this (it will be provided in the vote email):</p>
 
-<pre class="highlight"><code class="language-xml">...
+<pre tabindex="0" class="highlight"><code class="language-xml">...
 <span class="nt">&lt;pluginRepositories</span><span class="nt">&gt;</span>
   <span class="nt">&lt;pluginRepository</span><span class="nt">&gt;</span>
     <span class="nt">&lt;id</span><span class="nt">&gt;</span>staged-releases<span class="nt">&lt;/id</span><span class="nt">&gt;</span>
@@ -105,7 +105,7 @@
 <h2>Checking Reproducible Builds</h2>
 <p>Checking binary output, ideally to control that the build is reproducible, can be done by running <code>verify</code> (NOT <code>install</code>) followed by <code>artifact:compare</code> against the staged content:</p>
 
-<pre><code class="nohighlight nocode">mvn -Papache-release -Dgpg.skip clean verify \
+<pre tabindex="0"><code class="nohighlight nocode">mvn -Papache-release -Dgpg.skip clean verify \
     artifact:compare -Dreference.repo=https://repository.apache.org/content/groups/staging/
 </code></pre>
 <p>Results of this check should be shared when voting, see for example:</p>
@@ -145,7 +145,7 @@
 <p>It is also quite easy to test another staged release at a later date by reusing the repository, or adding a proxy connector and remote repository for a different staging repository.</p>
 <p>If you are using the repository mirroring technique to lock down to the repository manager in your environment, you would add an additional mirror to correspond to the additional repository in the POM, such as:</p>
 
-<pre class="highlight"><code class="language-xml">...
+<pre tabindex="0" class="highlight"><code class="language-xml">...
 <span class="nt">&lt;mirror</span><span class="nt">&gt;</span>
   <span class="nt">&lt;id</span><span class="nt">&gt;</span>staged-releases-mirror<span class="nt">&lt;/id</span><span class="nt">&gt;</span>
   <span class="nt">&lt;url</span><span class="nt">&gt;</span>http://localhost:8080/archiva/repository/staged-releases/<span class="nt">&lt;/url</span><span class="nt">&gt;</span>
@@ -156,7 +156,7 @@
 <h2>Using a Settings Profile</h2>
 <p>If you regularly test staged releases and want to have a more convenient way to add the repository to a build without modifying your POM, you may add a profile to your <code>~/.m2/settings.xml</code>:</p>
 
-<pre class="highlight"><code class="language-xml">...
+<pre tabindex="0" class="highlight"><code class="language-xml">...
 <span class="nt">&lt;profiles</span><span class="nt">&gt;</span>
   <span class="nt">&lt;profile</span><span class="nt">&gt;</span>
     <span class="nt">&lt;id</span><span class="nt">&gt;</span>staged-releases<span class="nt">&lt;/id</span><span class="nt">&gt;</span>
@@ -171,7 +171,7 @@
 </code></pre>
 <p>With this in place, you can activate it by simply changing the plugin version to the one you are testing in the POM as above, then run the build with the following command:</p>
 
-<pre><code class="nohighlight nocode">mvn verify -Pstaged-releases
+<pre tabindex="0"><code class="nohighlight nocode">mvn verify -Pstaged-releases
 </code></pre>
 <p>Note that the same conditions apply as above about cleaning out the local repository to prevent pollution of your local build environment.</p></section></section>
       </div>

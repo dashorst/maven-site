@@ -21,8 +21,14 @@
 //  - "On this page" in the rail, from the h2s (and the h3s when there are two h2s or fewer),
 //  - on the search page, the list of every page filtered while you type,
 //  - on a page that has moved, straight on to the new place of the section the address points at,
-//  - on a component site, its other versions as a list instead of a link to the archive's listing.
+//  - on a component site, its other versions as a list instead of a link to the archive's listing,
+//  - code blocks and tables that fit their width leave the tab order; the skin puts every one in it,
+//    so a keyboard can scroll the ones that do not fit.
 (function () {
+    document.querySelectorAll('pre[tabindex="0"], .table-scroll[tabindex="0"]').forEach(function (block) {
+        if (block.scrollWidth <= block.clientWidth) block.removeAttribute('tabindex');
+    });
+
     var prose = document.querySelector('.prose');
     if (!prose) return;
 
@@ -49,6 +55,9 @@
 
     var other = document.querySelector('a.other-versions');
     if (other && window.fetch) {
+        // with the list, the link opens and closes it: a button to assistive technology
+        other.setAttribute('role', 'button');
+        other.setAttribute('aria-expanded', 'false');
         var compare = function (a, b) {
             var x = a.split(/[.-]/), y = b.split(/[.-]/);
             for (var i = 0; i < Math.max(x.length, y.length); i++) {
@@ -63,6 +72,7 @@
             var shown = other.parentNode.nextElementSibling;
             if (shown && shown.classList.contains('version-list')) {
                 shown.hidden = !shown.hidden;
+                other.setAttribute('aria-expanded', String(!shown.hidden));
                 return;
             }
             fetch(other.href).then(function (r) {
@@ -76,6 +86,8 @@
                 }
                 var ul = document.createElement('ul');
                 ul.className = 'version-list';
+                ul.id = 'other-versions-list';
+                other.setAttribute('aria-controls', ul.id);
                 versions.sort(compare).reverse().forEach(function (v) {
                     var li = document.createElement('li'), a = document.createElement('a');
                     a.href = new URL(prefix + v + '/', other.href).href;
@@ -84,6 +96,7 @@
                     ul.appendChild(li);
                 });
                 other.parentNode.insertAdjacentElement('afterend', ul);
+                other.setAttribute('aria-expanded', 'true');
             }).catch(function () {
                 window.location.href = other.href;
             });

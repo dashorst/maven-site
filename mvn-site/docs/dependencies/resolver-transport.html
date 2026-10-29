@@ -43,9 +43,9 @@
     <a class="asf" href="https://www.apache.org/"><img class="asf-leaf" src="../../images/oakleaf.svg" width="14" height="22" alt=""><span>Apache</span></a>
     </div>
   </header>
-  <div class="specimen" role="note">
+  <aside class="specimen" aria-label="About this site">
     <p><strong>Specimen.</strong> A proposed redesign of maven.apache.org, built with <code>mvn site</code> and a skin of its own; not the official Apache Maven site. The official site is <a href="https://maven.apache.org/">maven.apache.org</a>. <a href="../../about-this-example.html">About this example</a></p>
-  </div>
+  </aside>
   <div class="frame has-group">
     <nav class="group-nav" aria-labelledby="group-nav-title">
       <p class="up"><a href="../../docs/index.html"><svg aria-hidden="true" viewBox="0 0 16 16" width="14" height="14"><path d="M10 3.5L5.5 8l4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" /></svg>All of Docs</a></p>
@@ -104,7 +104,7 @@
 <h2>Custom HTTP Headers</h2>
 <p>In all HTTP transports, you can add your custom HTTP headers like this:</p>
 
-<pre class="highlight"><code class="language-xml"><span class="nt">&lt;settings</span><span class="nt">&gt;</span>
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;settings</span><span class="nt">&gt;</span>
   <span class="nt">&lt;servers</span><span class="nt">&gt;</span>
     <span class="nt">&lt;server</span><span class="nt">&gt;</span>
       <span class="nt">&lt;id</span><span class="nt">&gt;</span>my-server<span class="nt">&lt;/id</span><span class="nt">&gt;</span>
@@ -124,7 +124,7 @@
 <h2>Timeouts</h2>
 <p>All transport implementations that perform some network access allow configuring several timeouts, for example to allow the user to tell Maven how long to wait before giving up on a connection that has not responded.</p>
 
-<pre class="highlight"><code class="language-xml"><span class="nt">&lt;settings</span><span class="nt">&gt;</span>
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;settings</span><span class="nt">&gt;</span>
   <span class="nt">&lt;servers</span><span class="nt">&gt;</span>
     <span class="nt">&lt;server</span><span class="nt">&gt;</span>
       <span class="nt">&lt;id</span><span class="nt">&gt;</span>my-server<span class="nt">&lt;/id</span><span class="nt">&gt;</span>
@@ -141,18 +141,18 @@
 <p>Some resolver configuration properties has a flag <code>Supports Repo ID Suffix</code>.</p>
 <p>If you use property like:</p>
 
-<pre><code class="nohighlight nocode">aether.connector.http.preemptiveAuth=true
+<pre tabindex="0"><code class="nohighlight nocode">aether.connector.http.preemptiveAuth=true
 </code></pre>
 <p>it means that <code>preemptiveAuth</code> will be applied for all of your repositories.</p>
 <p>You can also add suffix to property with your repository ID in order to configure only for selected repository.</p>
 
-<pre><code class="nohighlight nocode">aether.connector.http.preemptiveAuth.myRepositoryId=true
+<pre tabindex="0"><code class="nohighlight nocode">aether.connector.http.preemptiveAuth.myRepositoryId=true
 </code></pre>
 <p>it means that <code>preemptiveAuth</code> will be applied only for repository or mirror which has <code>id</code> as <code>myRepositoryId</code></p><section><a id="System_level"></a>
 <h3>System level</h3>
 <p>Configuration can be provided on global level as properties in <code>settings.xml</code></p>
 
-<pre class="highlight"><code class="language-xml"><span class="nt">&lt;settings</span><span class="nt">&gt;</span>
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;settings</span><span class="nt">&gt;</span>
   <span class="nt">&lt;profiles</span><span class="nt">&gt;</span>
     <span class="nt">&lt;profile</span><span class="nt">&gt;</span>
       <span class="nt">&lt;id</span><span class="nt">&gt;</span>resolver-config<span class="nt">&lt;/id</span><span class="nt">&gt;</span>
@@ -179,17 +179,17 @@
 <p>Profiles activated through <code>&lt;activation&gt;</code> conditions in the profile itself — <code>&lt;activeByDefault&gt;</code>, <code>&lt;jdk&gt;</code>, <code>&lt;os&gt;</code>, <code>&lt;property&gt;</code>, <code>&lt;file&gt;</code> — are <strong>not</strong> taken into account for the resolver session config: the resolver session is built before Maven evaluates those conditions.</p>
 <p>You can also use environment variable <code>MAVEN_OPTS</code> or <code>MAVEN_ARGS</code></p>
 
-<pre><code class="nohighlight nocode">export MAVEN_ARGS="-Daether.connector.http.preemptiveAuth=true"
+<pre tabindex="0"><code class="nohighlight nocode">export MAVEN_ARGS="-Daether.connector.http.preemptiveAuth=true"
 </code></pre></section><section><a id="Project_level"></a>
 <h3>Project level</h3>
 <p>You can add configuration items per project in <code>.mvn/maven.config</code>, like:</p>
 
-<pre><code class="nohighlight nocode">-Daether.dependencyCollector.impl=bf
+<pre tabindex="0"><code class="nohighlight nocode">-Daether.dependencyCollector.impl=bf
 </code></pre></section><section><a id="Execution_level"></a>
 <h3>Execution level</h3>
 <p>For particular execution can be provided as user settings on command line:</p>
 
-<pre><code class="nohighlight nocode">$ mvn ... -Daether.enhancedLocalRepository.split \
+<pre tabindex="0"><code class="nohighlight nocode">$ mvn ... -Daether.enhancedLocalRepository.split \
           -Daether.enhancedLocalRepository.localPrefix=maven-resolver/mresolver-253
           -Daether.enhancedLocalRepository.splitRemoteRepository
 </code></pre></section></section><section><a id="How_To_Upgrade_from_Wagon.3F_.28or_.E2.80.9Cnative_transport_does_not_work.E2.80.9D.29"></a>

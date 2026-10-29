@@ -44,9 +44,9 @@
     <a class="asf" href="https://www.apache.org/"><img class="asf-leaf" src="../../images/oakleaf.svg" width="14" height="22" alt=""><span>Apache</span></a>
     </div>
   </header>
-  <div class="specimen" role="note">
+  <aside class="specimen" aria-label="About this site">
     <p><strong>Specimen.</strong> A proposed redesign of maven.apache.org, built with <code>mvn site</code> and a skin of its own; not the official Apache Maven site. The official site is <a href="https://maven.apache.org/">maven.apache.org</a>. <a href="../../about-this-example.html">About this example</a></p>
-  </div>
+  </aside>
   <div class="frame has-group">
     <nav class="group-nav" aria-labelledby="group-nav-title">
       <p class="up"><a href="../../community/index.html"><svg aria-hidden="true" viewBox="0 0 16 16" width="14" height="14"><path d="M10 3.5L5.5 8l4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>All of Community</a></p>
@@ -80,7 +80,7 @@
 <p>The goal is to commit candidate release to svn <code>dev</code> tree <a href="https://dist.apache.org/repos/dist/dev/maven/maven-3" class="externalLink">https://dist.apache.org/repos/dist/dev/maven/maven-3</a>/<code>$VERSION</code>. Once the vote has passed, svn move to <code>release</code> <a href="https://dist.apache.org/repos/dist/release/maven/maven-3" class="externalLink">https://dist.apache.org/repos/dist/release/maven/maven-3</a>/<code>$VERSION</code>.</p>
 <p>The tree directory is:</p>
 
-<pre><code class="nohighlight nocode">https://dist.apache.org/repos/dist/dev/maven/maven-3/
+<pre tabindex="0"><code class="nohighlight nocode">https://dist.apache.org/repos/dist/dev/maven/maven-3/
   `-- $VERSION/
       |-- binaries/
       |   |-- apache-maven-$VERSION-bin.tar.gz
@@ -129,7 +129,7 @@
 <p>Once the release is prepared, but before the release vote, the site needs to be staged.</p>
 <p>From the release checkout, stage the site:</p>
 
-<pre><code class="nohighlight nocode">mvn -Preporting site site:stage
+<pre tabindex="0"><code class="nohighlight nocode">mvn -Preporting site site:stage
 mvn scm-publish:publish-scm
 </code></pre>
 <p>This will publish the Maven core site in <a href="/ref/3-LATEST">/ref/3-LATEST</a>.</p></section></section><section><a id="Complete_the_release"></a>
@@ -138,7 +138,7 @@ mvn scm-publish:publish-scm
 <h3>Add New Version to ASF Distribution Directory</h3>
 <p>In addition to promoting the repository, the release archives should be moved to the release svnpubsub tree:</p>
 
-<pre><code class="nohighlight nocode">svn mv https://dist.apache.org/repos/dist/dev/maven/maven-3/$VERSION https://dist.apache.org/repos/dist/release/maven/maven-3 -m &quot;Publish Maven $VERSION Distribution Archives&quot;
+<pre tabindex="0"><code class="nohighlight nocode">svn mv https://dist.apache.org/repos/dist/dev/maven/maven-3/$VERSION https://dist.apache.org/repos/dist/release/maven/maven-3 -m &quot;Publish Maven $VERSION Distribution Archives&quot;
 </code></pre></section><section><a id="Update_the_DOAP_Information"></a>
 <h3>Update the DOAP Information</h3>
 <p>Edit <a href="https://github.com/apache/maven/blob/master/doap_Maven.rdf" class="externalLink">https://github.com/apache/maven/blob/master/doap_Maven.rdf</a> to list the new release.</p></section><section><a id="Update_the_Web_Site"></a>
@@ -151,7 +151,7 @@ mvn scm-publish:publish-scm
 <p>The reference documentation for Maven core source code references and API docs has been staged in a previous step: now it needs to be deployed to its dedicated directory before deploying the web site pointing to the new version.</p>
 <p>This consists in copying in website svn tree the staging /ref/3-LATEST directory to final /ref/<code>$VERSION</code>.</p>
 
-<pre><code class="nohighlight nocode">svn cp https://svn.apache.org/repos/asf/maven/website/components/ref/3-LATEST https://svn.apache.org/repos/asf/maven/website/components/ref/$VERSION -m &quot;Maven $VERSION released&quot;
+<pre tabindex="0"><code class="nohighlight nocode">svn cp https://svn.apache.org/repos/asf/maven/website/components/ref/3-LATEST https://svn.apache.org/repos/asf/maven/website/components/ref/$VERSION -m &quot;Maven $VERSION released&quot;
 </code></pre></section></section><section><a id="Information_on_.2Fref.2Fcurrent_mechanism"></a>
 <h2>Information on <code>/ref/current</code> mechanism</h2>
 <p>The redirection from <code>/ref/current</code> to actual Maven version reference is done through <code>.htaccess</code> published in site.</p><section><a id="Deploying_the_Release_Website"></a>

@@ -43,9 +43,9 @@
     <a class="asf" href="https://www.apache.org/"><img class="asf-leaf" src="../../images/oakleaf.svg" width="14" height="22" alt=""><span>Apache</span></a>
     </div>
   </header>
-  <div class="specimen" role="note">
+  <aside class="specimen" aria-label="About this site">
     <p><strong>Specimen.</strong> A proposed redesign of maven.apache.org, built with <code>mvn site</code> and a skin of its own; not the official Apache Maven site. The official site is <a href="https://maven.apache.org/">maven.apache.org</a>. <a href="../../about-this-example.html">About this example</a></p>
-  </div>
+  </aside>
   <div class="frame has-group">
     <nav class="group-nav" aria-labelledby="group-nav-title">
       <p class="up"><a href="../../extend/index.html"><svg aria-hidden="true" viewBox="0 0 16 16" width="14" height="14"><path d="M10 3.5L5.5 8l4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" /></svg>All of Extend</a></p>
@@ -119,28 +119,28 @@
 </dl>
 <p>Your favorite IDE probably supports XSD schema's for Xdoc and FML files. You need to specify the following:</p>
 
-<pre class="highlight"><code class="language-xml"><span class="nt">&lt;document</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/XDOC/2.0"</span>
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;document</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/XDOC/2.0"</span>
   <span class="na">xmlns:xsi</span>=<span class="s">"http://www.w3.org/2001/XMLSchema-instance"</span>
   <span class="na">xsi:schemaLocation</span>=<span class="s">"http://maven.apache.org/XDOC/2.0 http://maven.apache.org/xsd/xdoc-2.0.xsd"</span><span class="nt">&gt;</span>
   ...
 <span class="nt">&lt;/document</span><span class="nt">&gt;</span>
 </code></pre>
 
-<pre class="highlight"><code class="language-xml"><span class="nt">&lt;faqs</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/FML/1.0.1"</span>
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;faqs</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/FML/1.0.1"</span>
   <span class="na">xmlns:xsi</span>=<span class="s">"http://www.w3.org/2001/XMLSchema-instance"</span>
   <span class="na">xsi:schemaLocation</span>=<span class="s">"http://maven.apache.org/FML/1.0.1 http://maven.apache.org/xsd/fml-1.0.1.xsd"</span><span class="nt">&gt;</span>
   ...
 <span class="nt">&lt;/faqs</span><span class="nt">&gt;</span>
 </code></pre>
 
-<pre class="highlight"><code class="language-xml"><span class="nt">&lt;book</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/BOOK/1.0.0"</span>
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;book</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/BOOK/1.0.0"</span>
   <span class="na">xmlns:xsi</span>=<span class="s">"http://www.w3.org/2001/XMLSchema-instance"</span>
   <span class="na">xsi:schemaLocation</span>=<span class="s">"http://maven.apache.org/BOOK/1.0.0 http://maven.apache.org/xsd/book-1.0.0.xsd"</span><span class="nt">&gt;</span>
   ...
 <span class="nt">&lt;/book</span><span class="nt">&gt;</span>
 </code></pre>
 
-<pre class="highlight"><code class="language-xml"><span class="nt">&lt;document</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/DOCUMENT/1.0.1"</span>
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;document</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/DOCUMENT/1.0.1"</span>
   <span class="na">xmlns:xsi</span>=<span class="s">"http://www.w3.org/2001/XMLSchema-instance"</span>
   <span class="na">xsi:schemaLocation</span>=<span class="s">"http://maven.apache.org/DOCUMENT/1.0.1 http://maven.apache.org/xsd/document-1.0.1.xsd"</span>
   <span class="na">outputName</span>=<span class="s">"..."</span><span class="nt">&gt;</span>
@@ -148,7 +148,7 @@
 <span class="nt">&lt;/document</span><span class="nt">&gt;</span>
 </code></pre>
 
-<pre class="highlight"><code class="language-xml"><span class="nt">&lt;site</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/SITE/2.1.0"</span>
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;site</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/SITE/2.1.0"</span>
   <span class="na">xmlns:xsi</span>=<span class="s">"http://www.w3.org/2001/XMLSchema-instance"</span>
   <span class="na">xsi:schemaLocation</span>=<span class="s">"http://maven.apache.org/SITE/2.1.0 https://maven.apache.org/xsd/site-2.1.0.xsd"</span><span class="nt">&gt;</span>
   ...
@@ -160,7 +160,7 @@
 <p>Since it is not possible to define character entity references (like &amp;copy;) in XSDs (unlike DTDs), each XML file should have a &lt;!DOCTYPE&gt; to define the character entity set.</p>
 <p>For instance, you could add the following in your Xdoc XML files to be similar to XHTML 1.0 Transitional dtd:</p>
 
-<pre class="highlight"><code class="language-xml"><span class="cp">&lt;!DOCTYPE document [
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="cp">&lt;!DOCTYPE document [
   &lt;!-- These are the entity sets for ISO Latin 1 characters for the XHTML --&gt;</span>
   &lt;!ENTITY % HTMLlat1 PUBLIC "-//W3C//ENTITIES Latin 1 for XHTML//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml-lat1.ent"&gt;
   %HTMLlat1;

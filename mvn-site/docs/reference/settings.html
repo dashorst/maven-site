@@ -43,9 +43,9 @@
     <a class="asf" href="https://www.apache.org/"><img class="asf-leaf" src="../../images/oakleaf.svg" width="14" height="22" alt=""><span>Apache</span></a>
     </div>
   </header>
-  <div class="specimen" role="note">
+  <aside class="specimen" aria-label="About this site">
     <p><strong>Specimen.</strong> A proposed redesign of maven.apache.org, built with <code>mvn site</code> and a skin of its own; not the official Apache Maven site. The official site is <a href="https://maven.apache.org/">maven.apache.org</a>. <a href="../../about-this-example.html">About this example</a></p>
-  </div>
+  </aside>
   <div class="frame has-group">
     <nav class="group-nav" aria-labelledby="group-nav-title">
       <p class="up"><a href="../../docs/index.html"><svg aria-hidden="true" viewBox="0 0 16 16" width="14" height="14"><path d="M10 3.5L5.5 8l4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" /></svg>All of Docs</a></p>
@@ -113,7 +113,7 @@
 <p>Tip: If you need to create user-specific settings from scratch, it's easiest to copy the global settings from your Maven installation to your <code>${user.home}/.m2</code> directory. Maven's default <code>settings.xml</code> is a template with comments and examples so you can quickly tweak it to match your needs.</p>
 <p>Here is an overview of the top elements under <code>settings</code>:</p>
 
-<pre class="highlight"><code class="language-xml"><span class="nt">&lt;settings</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/SETTINGS/1.2.0"</span> <span class="na">xmlns:xsi</span>=<span class="s">"http://www.w3.org/2001/XMLSchema-instance"</span>
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;settings</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/SETTINGS/1.2.0"</span> <span class="na">xmlns:xsi</span>=<span class="s">"http://www.w3.org/2001/XMLSchema-instance"</span>
   <span class="na">xsi:schemaLocation</span>=<span class="s">"http://maven.apache.org/SETTINGS/1.2.0 https://maven.apache.org/xsd/settings-1.2.0.xsd"</span><span class="nt">&gt;</span>
   <span class="nt">&lt;localRepository</span><span class="nt">/&gt;</span>
   <span class="nt">&lt;interactiveMode</span><span class="nt">/&gt;</span>
@@ -137,7 +137,7 @@
 <h3>Simple Values</h3>
 <p>Half of the top-level <code>settings</code> elements are simple values, representing a range of values which describe elements of the build system that are active full-time.</p>
 
-<pre><code class="nohighlight nocode">    &lt;settings xmlns="http://maven.apache.org/SETTINGS/1.2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<pre tabindex="0"><code class="nohighlight nocode">    &lt;settings xmlns="http://maven.apache.org/SETTINGS/1.2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
       xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.2.0 https://maven.apache.org/xsd/settings-1.2.0.xsd"&gt;
       &lt;localRepository&gt;${user.home}/.m2/repository&lt;/localRepository&gt;
       &lt;interactiveMode&gt;true&lt;/interactiveMode&gt;
@@ -154,7 +154,7 @@
 <h3>Plugin Groups</h3>
 <p>This element contains a list of <code>pluginGroup</code> elements, each contains a groupId. The list is searched when a plugin is used and the groupId is not provided in the command line. This list automatically contains <code>org.apache.maven.plugins</code> and <code>org.codehaus.mojo</code>.</p>
 
-<pre class="highlight"><code class="language-xml"><span class="nt">&lt;settings</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/SETTINGS/1.2.0"</span><span class="nt">&gt;</span>
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;settings</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/SETTINGS/1.2.0"</span><span class="nt">&gt;</span>
   ...
   <span class="nt">&lt;pluginGroups</span><span class="nt">&gt;</span>
     <span class="nt">&lt;pluginGroup</span><span class="nt">&gt;</span>org.eclipse.jetty<span class="nt">&lt;/pluginGroup</span><span class="nt">&gt;</span>
@@ -164,12 +164,12 @@
 </code></pre>
 <p>For example, given the above settings the Maven command line may execute <code>org.eclipse.jetty:jetty-maven-plugin:run</code> with the truncated command:</p>
 
-<pre><code class="nohighlight nocode">    mvn jetty:run
+<pre tabindex="0"><code class="nohighlight nocode">    mvn jetty:run
 </code></pre></section><section><a id="Servers"></a>
 <h3>Servers</h3>
 <p>The repositories for download and deployment are defined by the <a href="pom.html#Repositories"><code>repositories</code></a> and <a href="pom.html#Distribution_Management"><code>distributionManagement</code></a> elements of the POM. However, certain settings such as <code>username</code> and <code>password</code> should not be distributed along with the <code>pom.xml</code>. This type of information should exist on the build server in the <code>settings.xml</code>.</p>
 
-<pre class="highlight"><code class="language-xml"><span class="nt">&lt;settings</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/SETTINGS/1.2.0"</span><span class="nt">&gt;</span>
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;settings</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/SETTINGS/1.2.0"</span><span class="nt">&gt;</span>
   ...
   <span class="nt">&lt;servers</span><span class="nt">&gt;</span>
     <span class="nt">&lt;server</span><span class="nt">&gt;</span>
@@ -197,7 +197,7 @@
 <h4>Server Aliases</h4>
 <p>Since Maven 3.10.0 and 4.0.0-rc-6 (settings model <code>1.3.0</code>), a server can declare a list of <code>aliases</code>. This is useful when the same credentials should be used for several repositories or mirrors with different IDs, without copying the whole <code>server</code> element.</p>
 
-<pre class="highlight"><code class="language-xml"><span class="nt">&lt;settings</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/SETTINGS/1.3.0"</span> <span class="na">xmlns:xsi</span>=<span class="s">"http://www.w3.org/2001/XMLSchema-instance"</span>
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;settings</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/SETTINGS/1.3.0"</span> <span class="na">xmlns:xsi</span>=<span class="s">"http://www.w3.org/2001/XMLSchema-instance"</span>
   <span class="na">xsi:schemaLocation</span>=<span class="s">"http://maven.apache.org/SETTINGS/1.3.0 https://maven.apache.org/xsd/settings-1.3.0.xsd"</span><span class="nt">&gt;</span>
   ...
   <span class="nt">&lt;servers</span><span class="nt">&gt;</span>
@@ -226,7 +226,7 @@
 <p>The binding protects your credentials: before, Maven matched credentials only by server ID, so any <code>pom.xml</code>, including the POM of a dependency or a parent, could declare a repository with the same ID pointing to another host and receive your username and password. Now, once Maven knows the hosts of a server ID, its credentials are sent only to them, and <code>repositoryOrigins</code> lets you add the hosts Maven cannot find by itself.</p>
 <p>For such repositories, a server (settings model <code>1.3.0</code>) can declare a list of <code>repositoryOrigins</code> its credentials may be used with:</p>
 
-<pre class="highlight"><code class="language-xml"><span class="nt">&lt;settings</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/SETTINGS/1.3.0"</span> <span class="na">xmlns:xsi</span>=<span class="s">"http://www.w3.org/2001/XMLSchema-instance"</span>
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;settings</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/SETTINGS/1.3.0"</span> <span class="na">xmlns:xsi</span>=<span class="s">"http://www.w3.org/2001/XMLSchema-instance"</span>
   <span class="na">xsi:schemaLocation</span>=<span class="s">"http://maven.apache.org/SETTINGS/1.3.0 https://maven.apache.org/xsd/settings-1.3.0.xsd"</span><span class="nt">&gt;</span>
   ...
   <span class="nt">&lt;servers</span><span class="nt">&gt;</span>
@@ -250,7 +250,7 @@
 <p>The declared origins are added to the origins Maven finds from repositories and mirrors. Nothing is replaced, so existing configurations keep working. Servers created from <a href="#Server_Aliases">aliases</a> get the same <code>repositoryOrigins</code>.</p>
 <p>When a server has at least one origin, from repositories, mirrors or <code>repositoryOrigins</code>, its credentials are not sent to a repository with the same ID at another origin.</p>
 <p>The binding is controlled by the <code>maven.repository.credentialScope</code> user property:</p>
-<table class="bodyTable">
+<div class="table-scroll" tabindex="0"><table class="bodyTable">
 <thead>
 <tr class="a">
 <th>Value</th>
@@ -264,7 +264,7 @@
 <tr class="b">
 <td><code>id</code></td>
 <td>Previous behavior: credentials are matched by server ID only.</td></tr></tbody>
-</table>
+</table></div>
 
 <p>For Maven 4, <code>repositoryOrigins</code> in project settings (<code>.mvn/settings.xml</code>) are ignored with a warning, like credentials are, so a project cannot widen the set of hosts your credentials are sent to.</p>
 <p><em>Note:</em> The binding applies only to credentials used by Maven Resolver, for example when artifacts are downloaded or deployed with the <a href="/plugins/maven-deploy-plugin/">Maven Deploy Plugin</a>. Plugins that read a server from <code>settings.xml</code> directly, for example the <a href="/plugins/maven-release-plugin/">Maven Release Plugin</a> for SCM credentials, are not affected by it.</p></section><section><a id="Password_Encryption"></a>
@@ -272,7 +272,7 @@
 <p>Since Maven 2.1.0, server password and passphrase encryption is available and strongly encouraged: See details on <a href="../configure/encrypt-passwords.html">Guide to Password Encryption</a>.</p></section></section><section><a id="Mirrors"></a>
 <h3>Mirrors</h3>
 
-<pre class="highlight"><code class="language-xml"><span class="nt">&lt;settings</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/SETTINGS/1.2.0"</span><span class="nt">&gt;</span>
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;settings</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/SETTINGS/1.2.0"</span><span class="nt">&gt;</span>
   ...
   <span class="nt">&lt;mirrors</span><span class="nt">&gt;</span>
     <span class="nt">&lt;mirror</span><span class="nt">&gt;</span>
@@ -294,7 +294,7 @@
 <p>For a more in-depth introduction of mirrors, please read the <a href="../dependencies/mirror-settings.html">Guide to Mirror Settings</a>.</p></section><section><a id="Proxies"></a>
 <h3>Proxies</h3>
 
-<pre class="highlight"><code class="language-xml"><span class="nt">&lt;settings</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/SETTINGS/1.2.0"</span><span class="nt">&gt;</span>
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;settings</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/SETTINGS/1.2.0"</span><span class="nt">&gt;</span>
   ...
   <span class="nt">&lt;proxies</span><span class="nt">&gt;</span>
     <span class="nt">&lt;proxy</span><span class="nt">&gt;</span>
@@ -325,7 +325,7 @@
 <h4>Activation</h4>
 <p>Activations are the key of a profile. Like the POM's profiles, the power of a profile comes from its ability to modify some values only under certain circumstances; those circumstances are specified via an <code>activation</code> element.</p>
 
-<pre class="highlight"><code class="language-xml"><span class="nt">&lt;settings</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/SETTINGS/1.2.0"</span><span class="nt">&gt;</span>
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;settings</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/SETTINGS/1.2.0"</span><span class="nt">&gt;</span>
   <span class="c">&lt;!-- ... --&gt;</span>
   <span class="nt">&lt;profiles</span><span class="nt">&gt;</span>
     <span class="nt">&lt;profile</span><span class="nt">&gt;</span>
@@ -365,7 +365,7 @@
 <p>The <code>activation</code> element is not the only way that a <code>profile</code> may be activated. The <code>settings.xml</code> file's <code>activeProfile</code> element may contain the profile's <code>id</code>. They may also be activated explicitly through the command line via a comma separated list after the <code>-P</code> flag (e.g. <code>-P test</code>).</p>
 <p><em>To see which profile will activate in a certain build, use the</em> <code>maven-help-plugin</code>.</p>
 
-<pre><code class="nohighlight nocode">    mvn help:active-profiles
+<pre tabindex="0"><code class="nohighlight nocode">    mvn help:active-profiles
 </code></pre></section><section><a id="Properties"></a>
 <h4>Properties</h4>
 <p>Maven properties are value placeholder, like properties in Ant. Their values are accessible anywhere within a POM by using the notation <code>${X}</code>, where <code>X</code> is the property. They come in five different styles, all accessible from the <code>settings.xml</code> file:</p>
@@ -377,7 +377,7 @@
 <li>Java System Properties: All properties accessible via <code>java.lang.System.getProperties()</code> are available as POM properties, such as <code>${java.home}</code>.</li>
 <li><code>x</code>: Set within a &lt;properties /&gt; element or an external files, the value may be used as <code>${someVar}</code>.</li>
 </ol> 
-<pre class="highlight"><code class="language-xml"><span class="nt">&lt;settings</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/SETTINGS/1.2.0"</span><span class="nt">&gt;</span>
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;settings</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/SETTINGS/1.2.0"</span><span class="nt">&gt;</span>
   ...
   <span class="nt">&lt;profiles</span><span class="nt">&gt;</span>
     <span class="nt">&lt;profile</span><span class="nt">&gt;</span>
@@ -395,7 +395,7 @@
 <h4>Repositories</h4>
 <p>Repositories are remote collections of projects from which Maven uses to populate the local repository of the build system. It is from this local repository that Maven calls it plugins and dependencies. Different remote repositories may contain different projects, and under the active profile they may be searched for a matching release or snapshot artifact.</p>
 
-<pre class="highlight"><code class="language-xml"><span class="nt">&lt;settings</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/SETTINGS/1.2.0"</span><span class="nt">&gt;</span>
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;settings</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/SETTINGS/1.2.0"</span><span class="nt">&gt;</span>
   ...
   <span class="nt">&lt;profiles</span><span class="nt">&gt;</span>
     <span class="nt">&lt;profile</span><span class="nt">&gt;</span>
@@ -449,7 +449,7 @@
 <p>Repositories are home to two major types of artifacts. The first are artifacts that are used as dependencies of other artifacts. These are the majority of artifacts that reside within central. The other type of artifact is plugins. Maven plugins are themselves a special type of artifact. Because of this, plugin repositories may be separated from other repositories (although, I have yet to hear a convincing argument for doing so). In any case, the structure of the <code>pluginRepositories</code> element block is similar to the <code>repositories</code> element. The <code>pluginRepository</code> elements each specify a remote location of where Maven can find new plugins.</p></section></section><section><a id="Active_Profiles"></a>
 <h3>Active Profiles</h3>
 
-<pre class="highlight"><code class="language-xml"><span class="nt">&lt;settings</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/SETTINGS/1.2.0"</span><span class="nt">&gt;</span>
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;settings</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/SETTINGS/1.2.0"</span><span class="nt">&gt;</span>
   ...
   <span class="nt">&lt;activeProfiles</span><span class="nt">&gt;</span>
     <span class="nt">&lt;activeProfile</span><span class="nt">&gt;</span>env-test<span class="nt">&lt;/activeProfile</span><span class="nt">&gt;</span>

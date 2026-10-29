@@ -43,9 +43,9 @@
     <a class="asf" href="https://www.apache.org/"><img class="asf-leaf" src="../../images/oakleaf.svg" width="14" height="22" alt=""><span>Apache</span></a>
     </div>
   </header>
-  <div class="specimen" role="note">
+  <aside class="specimen" aria-label="About this site">
     <p><strong>Specimen.</strong> A proposed redesign of maven.apache.org, built with <code>mvn site</code> and a skin of its own; not the official Apache Maven site. The official site is <a href="https://maven.apache.org/">maven.apache.org</a>. <a href="../../about-this-example.html">About this example</a></p>
-  </div>
+  </aside>
   <div class="frame has-group">
     <nav class="group-nav" aria-labelledby="group-nav-title">
       <p class="up"><a href="../../docs/index.html"><svg aria-hidden="true" viewBox="0 0 16 16" width="14" height="14"><path d="M10 3.5L5.5 8l4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" /></svg>All of Docs</a></p>
@@ -103,7 +103,7 @@
 <p>This or a similar warning is emitted by a plugin that processes plain text files but has not been configured to use a specific file encoding. So eliminating the warning is simply a matter of finding out which plugin emits it and how to configure the file encoding for it.</p>
 <p>This is as easy as adding the following property to your POM (or one of its parent POMs):</p>
 
-<pre class="highlight"><code class="language-xml">
+<pre tabindex="0" class="highlight"><code class="language-xml">
 <span class="nt">&lt;project</span><span class="nt">&gt;</span>
   <span class="c">&lt;!-- ... --&gt;</span>
   <span class="nt">&lt;properties</span><span class="nt">&gt;</span>
@@ -136,7 +136,7 @@
 <h2>How do I set up Maven so it will compile with a target and source JVM of my choice?</h2>
 <p>You must configure the source and target parameters in your pom. For example, to set the source and target JVM to 7, you should have in your pom:</p>
 
-<pre class="highlight"><code class="language-xml">
+<pre tabindex="0" class="highlight"><code class="language-xml">
 <span class="nt">&lt;project</span><span class="nt">&gt;</span>
   <span class="c">&lt;!-- ... --&gt;</span>
   <span class="nt">&lt;properties</span><span class="nt">&gt;</span>
@@ -148,7 +148,7 @@
 </code></pre>
 <p>Or if a parent pom overrides for compiler plugin default values, and you can't fix it, you'll have to explicitly force the values in the compiler plugin configuration:</p>
 
-<pre class="highlight"><code class="language-xml">
+<pre tabindex="0" class="highlight"><code class="language-xml">
 <span class="nt">&lt;project</span><span class="nt">&gt;</span>
   <span class="c">&lt;!-- ... --&gt;</span>
   <span class="nt">&lt;build</span><span class="nt">&gt;</span>
@@ -179,7 +179,7 @@
 <h2>I have a jar that I want to put into my local repository. How can I copy it in?</h2>
 <p>If you understand the layout of the Maven repository, you can copy the jar directly into where it is meant to go. Maven will find this file next time it is run. If you are not confident about the layout of the Maven repository, then you can adapt the following command to load in your jar file, all on one line.</p>
 
-<pre><code class="nohighlight nocode">mvn install:install-file
+<pre tabindex="0"><code class="nohighlight nocode">mvn install:install-file
   -Dfile=&lt;path-to-file&gt;
   -DgroupId=&lt;group-id&gt;
   -DartifactId=&lt;artifact-id&gt;
@@ -207,7 +207,7 @@ Where:
 <p>Configure your ide to use the correct encoding. With Eclipse, add <code>-Dfile.encoding=ISO-8859-1</code> in <code>eclipse.ini</code> file.</p>
 <p>Configure the reporting output encoding in your pom</p>
 
-<pre class="highlight"><code class="language-xml">
+<pre tabindex="0" class="highlight"><code class="language-xml">
 <span class="nt">&lt;project</span><span class="nt">&gt;</span>
   <span class="c">&lt;!-- ... --&gt;</span>
   <span class="nt">&lt;properties</span><span class="nt">&gt;</span>
@@ -218,7 +218,7 @@ Where:
 </code></pre>
 <p>or if default encoding is overridden in a parent pom that you can't change, configure the site plugin explicitly</p>
 
-<pre class="highlight"><code class="language-xml">
+<pre tabindex="0" class="highlight"><code class="language-xml">
 <span class="nt">&lt;project</span><span class="nt">&gt;</span>
   <span class="c">&lt;!-- ... --&gt;</span>
   <span class="nt">&lt;plugin</span><span class="nt">&gt;</span>
@@ -236,7 +236,7 @@ Where:
 <h2>Maven compiles my test classes but doesn't run them?</h2>
 <p>Tests are run by the <a href="/surefire/maven-surefire-plugin/">surefire plugin</a>. The surefire plugin can be configured to run certain test classes, and you may have unintentionally done so by specifying a value to <code>${test}</code>. Check your <code>settings.xml</code> and <code>pom.xml</code> for a property named <code>test</code> which would like this:</p>
 
-<pre class="highlight"><code class="language-xml">
+<pre tabindex="0" class="highlight"><code class="language-xml">
 <span class="nt">&lt;project</span><span class="nt">&gt;</span>
   <span class="c">&lt;!-- ... --&gt;</span>
   <span class="nt">&lt;properties</span><span class="nt">&gt;</span>
@@ -250,7 +250,7 @@ Where:
 </code></pre>
 <p>or</p>
 
-<pre class="highlight"><code class="language-xml">
+<pre tabindex="0" class="highlight"><code class="language-xml">
 <span class="nt">&lt;project</span><span class="nt">&gt;</span>
   <span class="c">&lt;!-- ... --&gt;</span>
   <span class="nt">&lt;properties</span><span class="nt">&gt;</span>
@@ -270,7 +270,7 @@ Where:
 </ul>
 <p>Your favorite IDE probably supports XSD schema's for <code>pom.xml</code> and <code>settings.xml</code> editing. You need to specify the following:</p>
 
-<pre class="highlight"><code class="language-xml">
+<pre tabindex="0" class="highlight"><code class="language-xml">
 <span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span>
   <span class="na">xmlns:xsi</span>=<span class="s">"http://www.w3.org/2001/XMLSchema-instance"</span>
   <span class="na">xsi:schemaLocation</span>=<span class="s">"http://maven.apache.org/POM/4.0.0
@@ -280,7 +280,7 @@ Where:
 <span class="nt">&lt;/project</span><span class="nt">&gt;</span>
 </code></pre>
 
-<pre class="highlight"><code class="language-xml">
+<pre tabindex="0" class="highlight"><code class="language-xml">
 <span class="nt">&lt;settings</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/SETTINGS/1.2.0"</span>
   <span class="na">xmlns:xsi</span>=<span class="s">"http://www.w3.org/2001/XMLSchema-instance"</span>
   <span class="na">xsi:schemaLocation</span>=<span class="s">"http://maven.apache.org/SETTINGS/1.2.0

@@ -43,9 +43,9 @@
     <a class="asf" href="https://www.apache.org/"><img class="asf-leaf" src="../../images/oakleaf.svg" width="14" height="22" alt=""><span>Apache</span></a>
     </div>
   </header>
-  <div class="specimen" role="note">
+  <aside class="specimen" aria-label="About this site">
     <p><strong>Specimen.</strong> A proposed redesign of maven.apache.org, built with <code>mvn site</code> and a skin of its own; not the official Apache Maven site. The official site is <a href="https://maven.apache.org/">maven.apache.org</a>. <a href="../../about-this-example.html">About this example</a></p>
-  </div>
+  </aside>
   <div class="frame has-group">
     <nav class="group-nav" aria-labelledby="group-nav-title">
       <p class="up"><a href="../../docs/index.html"><svg aria-hidden="true" viewBox="0 0 16 16" width="14" height="14"><path d="M10 3.5L5.5 8l4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" /></svg>All of Docs</a></p>
@@ -91,13 +91,13 @@
 <h2>Command-Line Configuration</h2>
 <p>To specify the Wagon provider from the command line, simply use the <code>-Dmaven.wagon.provider.&lt;protocol&gt;=&lt;provider-name&gt;</code> command-line option, like the following:</p>
 
-<pre><code class="nohighlight nocode">mvn -Dmaven.wagon.provider.http=httpclient clean install
+<pre tabindex="0"><code class="nohighlight nocode">mvn -Dmaven.wagon.provider.http=httpclient clean install
 </code></pre>
 <p>This instructs Maven to use the HttpClient-based Wagon implementation for connections to HTTP repositories.</p></section><section><a id="settings.xml_Configuration"></a>
 <h2><code>settings.xml</code> Configuration</h2>
 <p>To specify which Wagon provider to use for a particular server, modify your <code>settings.xml</code> file to add the <code>&lt;wagonProvider&gt;</code> configuration to your <code>&lt;server&gt;</code> entry, like the following:</p>
 
-<pre class="highlight"><code class="language-xml"><span class="nt">&lt;settings</span><span class="nt">&gt;</span>
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;settings</span><span class="nt">&gt;</span>
   [...]
   <span class="nt">&lt;servers</span><span class="nt">&gt;</span>
     <span class="nt">&lt;server</span><span class="nt">&gt;</span>
@@ -111,7 +111,7 @@
 <h2>Available Wagon Providers</h2>
 <p>Maven 2.2.1 provides two providers for HTTP/HTTPS Wagons: <code>lightweight</code> and <code>httpclient</code>. If you add a new HTTP Wagon implementation via build extension, you'll need to make sure the extension binds its Wagon components to role-hints of the form <code>&lt;protocol&gt;-&lt;provider&gt;</code> in order to allow users to specify your alternative Wagon provider. For instance, the HttpClient HTTP Wagon component definition looks like this:</p>
 
-<pre class="highlight"><code class="language-xml"><span class="nt">&lt;component</span><span class="nt">&gt;</span>
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;component</span><span class="nt">&gt;</span>
   <span class="nt">&lt;role</span><span class="nt">&gt;</span>org.apache.maven.wagon.Wagon<span class="nt">&lt;/role</span><span class="nt">&gt;</span>
   <span class="nt">&lt;role-hint</span><span class="nt">&gt;</span>http-httpclient<span class="nt">&lt;/role-hint</span><span class="nt">&gt;</span>
   <span class="nt">&lt;implementation</span><span class="nt">&gt;</span>org.apache.maven.wagon.providers.http.HttpWagon<span class="nt">&lt;/implementation</span><span class="nt">&gt;</span>

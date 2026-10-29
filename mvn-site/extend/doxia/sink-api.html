@@ -43,9 +43,9 @@
     <a class="asf" href="https://www.apache.org/"><img class="asf-leaf" src="../../images/oakleaf.svg" width="14" height="22" alt=""><span>Apache</span></a>
     </div>
   </header>
-  <div class="specimen" role="note">
+  <aside class="specimen" aria-label="About this site">
     <p><strong>Specimen.</strong> A proposed redesign of maven.apache.org, built with <code>mvn site</code> and a skin of its own; not the official Apache Maven site. The official site is <a href="https://maven.apache.org/">maven.apache.org</a>. <a href="../../about-this-example.html">About this example</a></p>
-  </div>
+  </aside>
   <div class="frame has-group">
     <nav class="group-nav" aria-labelledby="group-nav-title">
       <p class="up"><a href="../../extend/index.html"><svg aria-hidden="true" viewBox="0 0 16 16" width="14" height="14"><path d="M10 3.5L5.5 8l4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" /></svg>All of Extend</a></p>
@@ -94,7 +94,7 @@
 <h2><a id="Transforming_documents"></a>Transforming documents</h2>
 <p>Doxia can be used to transform an arbitrary input document to any supported output format. The following snippet shows how to use a Doxia <em>Parser</em> to transform an apt file to html:</p>
 
-<pre class="highlight"><code class="language-unknown">  File userDir = <span class="k">new</span> File( System.getProperty ( <span class="s">"user.dir"</span> ) );
+<pre tabindex="0" class="highlight"><code class="language-unknown">  File userDir = <span class="k">new</span> File( System.getProperty ( <span class="s">"user.dir"</span> ) );
   File inputFile = <span class="k">new</span> File( userDir, <span class="s">"test.apt"</span> );
   File outputFile = <span class="k">new</span> File( userDir, <span class="s">"test.html"</span> );
 
@@ -113,7 +113,7 @@
 <h2><a id="Generating_documents"></a>Generating documents</h2>
 <p>The snippet below gives a simple example of how to generate a document using the Doxia Sink API.</p>
 
-<pre class="highlight"><code class="language-unknown">    <span class="cm">/**
+<pre tabindex="0" class="highlight"><code class="language-unknown">    <span class="cm">/**
      * Generate a simple document and emit it
      * into the specified sink. The sink is flushed but not closed.
      *
@@ -164,7 +164,7 @@
 <h2><a id="Passing_attributes_to_Sink_events"></a>Passing attributes to Sink events</h2>
 <p>A number of methods in the Sink API enable passing a set of attributes to many sink events. A typical use case is:</p>
 
-<pre class="highlight"><code class="language-unknown">SinkEventAttributeSet atts = <span class="k">new</span> SinkEventAttributeSet();
+<pre tabindex="0" class="highlight"><code class="language-unknown">SinkEventAttributeSet atts = <span class="k">new</span> SinkEventAttributeSet();
 atts.addAttribute( SinkEventAttributes.ALIGN, <span class="s">"center"</span> );
 
 sink.paragraph( atts );
@@ -173,7 +173,7 @@ sink.paragraph( atts );
 <h2><a id="Avoid_sink.rawText.21"></a>Avoid sink.rawText!</h2>
 <p>In <strong>Doxia 1.0</strong> it was a common practice to use sink.rawText() to generate elements that were not supported by the Sink API. For example, the following snippet could be used to generate a styled HTML &lt;div&gt; block:</p>
 
-<pre><code class="language-unknown">sink.RawText( "&lt;div style=\"cool\"&gt;" );
+<pre tabindex="0"><code class="language-unknown">sink.RawText( "&lt;div style=\"cool\"&gt;" );
 sink.text( "A text with a cool style." );
 sink.rawText( "&lt;/div&gt;" );
 </code></pre>
@@ -181,7 +181,7 @@ sink.rawText( "&lt;/div&gt;" );
 <p>In <strong>Doxia 1.1</strong> a new method unknown() was added to the Sink API that can be used to emit an arbitrary event without making special assumptions about the receiving Sink. Depending on the parameters, a Sink may decide whether or not to process the event, emit it as raw text, as a comment, log it, etc.</p>
 <p>The correct way to generate the above &lt;div&gt; block is now:</p>
 
-<pre class="highlight"><code class="language-unknown">SinkEventAttributeSet atts = <span class="k">new</span> SinkEventAttributeSet();
+<pre tabindex="0" class="highlight"><code class="language-unknown">SinkEventAttributeSet atts = <span class="k">new</span> SinkEventAttributeSet();
 atts.addAttribute( SinkEventAttributes.STYLE, <span class="s">"cool"</span> );
 
 sink.unknown( <span class="s">"div"</span>, <span class="k">new</span> Object[]{<span class="k">new</span> Integer( HtmlMarkup.TAG_TYPE_START )}, atts );
@@ -193,7 +193,7 @@ sink.unknown( <span class="s">"div"</span>, <span class="k">new</span> Object[]{
 <h2><a id="How_to_inject_javascript_code_into_HTML"></a>How to inject javascript code into HTML</h2>
 <p>Related to the above, here is the correct way of injecting a javascript snippet into a Sink:</p>
 
-<pre class="highlight"><code class="language-unknown"><span class="c1">// the javascript code is emitted within a commented CDATA section</span>
+<pre tabindex="0" class="highlight"><code class="language-unknown"><span class="c1">// the javascript code is emitted within a commented CDATA section</span>
 <span class="c1">// so we have to start with a newline and comment the CDATA closing in the end</span>
 <span class="c1">// note that the sink will replace the newline by the system EOL</span>
 String javascriptCode = <span class="s">"\n function javascriptFunction() {...} \n //"</span>;

@@ -44,9 +44,9 @@
     <a class="asf" href="https://www.apache.org/"><img class="asf-leaf" src="../../images/oakleaf.svg" width="14" height="22" alt=""><span>Apache</span></a>
     </div>
   </header>
-  <div class="specimen" role="note">
+  <aside class="specimen" aria-label="About this site">
     <p><strong>Specimen.</strong> A proposed redesign of maven.apache.org, built with <code>mvn site</code> and a skin of its own; not the official Apache Maven site. The official site is <a href="https://maven.apache.org/">maven.apache.org</a>. <a href="../../about-this-example.html">About this example</a></p>
-  </div>
+  </aside>
   <div class="frame has-group">
     <nav class="group-nav" aria-labelledby="group-nav-title">
       <p class="up"><a href="../../docs/index.html"><svg aria-hidden="true" viewBox="0 0 16 16" width="14" height="14"><path d="M10 3.5L5.5 8l4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>All of Docs</a></p>
@@ -92,7 +92,7 @@
 <h1>Usage</h1>
 <p>To use Maven Shell open a command line and call <code>mvnsh</code>. A Maven process is loaded, and you are now using Maven Shell, visible by the line prefix <code>maven mvnsh&gt;</code> as shown in the example below.</p>
 
-<pre><code class="nohighlight nocode">D:\Github\Maven\maven&gt;mvnsh
+<pre tabindex="0"><code class="nohighlight nocode">D:\Github\Maven\maven&gt;mvnsh
 
 &#x2591;&#x2592;&#x2593;&#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2593;&#x2592;&#x2591; &#x2591;&#x2592;&#x2593;&#x2588;&#x2593;&#x2592;&#x2591;&#x2591;&#x2592;&#x2593;&#x2588;&#x2593;&#x2592;&#x2591;&#x2591;&#x2592;&#x2593;&#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2593;&#x2592;&#x2591;  &#x2591;&#x2592;&#x2593;&#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2593;&#x2592;&#x2591;&#x2591;&#x2592;&#x2593;&#x2588;&#x2593;&#x2592;&#x2591;&#x2591;&#x2592;&#x2593;&#x2588;&#x2593;&#x2592;&#x2591;
 &#x2591;&#x2592;&#x2593;&#x2588;&#x2593;&#x2592;&#x2591;&#x2591;&#x2592;&#x2593;&#x2588;&#x2593;&#x2592;&#x2591;&#x2591;&#x2592;&#x2593;&#x2588;&#x2593;&#x2592;&#x2591;&#x2591;&#x2592;&#x2593;&#x2588;&#x2593;&#x2592;&#x2591;&#x2591;&#x2592;&#x2593;&#x2588;&#x2593;&#x2592;&#x2591;&#x2591;&#x2592;&#x2593;&#x2588;&#x2593;&#x2592;&#x2591;&#x2591;&#x2592;&#x2593;&#x2588;&#x2593;&#x2592;&#x2591;&#x2591;&#x2592;&#x2593;&#x2588;&#x2593;&#x2592;&#x2591;       &#x2591;&#x2592;&#x2593;&#x2588;&#x2593;&#x2592;&#x2591;&#x2591;&#x2592;&#x2593;&#x2588;&#x2593;&#x2592;&#x2591;
@@ -107,7 +107,7 @@ maven mvnsh&gt;
 </code></pre>
 <p>When you run your regular Maven (<code>mvn</code>) commands, they are executed immediately without a delay to boot Java and Maven.</p>
 
-<pre><code class="nohighlight nocode">maven mvnsh&gt; mvn verify
+<pre tabindex="0"><code class="nohighlight nocode">maven mvnsh&gt; mvn verify
 [INFO] Scanning for projects...
 [INFO] --------------------------------------------------------------------------------------------------------------------------
 [INFO] Reactor Build Order:
@@ -117,7 +117,7 @@ maven mvnsh&gt;
 </code></pre>
 <p>To exit the shell and retrun to your regular command line, type <code>exit</code>.</p>
 
-<pre><code class="nohighlight nocode">maven mvnsh&gt;
+<pre tabindex="0"><code class="nohighlight nocode">maven mvnsh&gt;
 maven mvnsh&gt; exit
 
 D:\Github\Maven\maven&gt;

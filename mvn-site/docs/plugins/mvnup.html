@@ -44,9 +44,9 @@
     <a class="asf" href="https://www.apache.org/"><img class="asf-leaf" src="../../images/oakleaf.svg" width="14" height="22" alt=""><span>Apache</span></a>
     </div>
   </header>
-  <div class="specimen" role="note">
+  <aside class="specimen" aria-label="About this site">
     <p><strong>Specimen.</strong> A proposed redesign of maven.apache.org, built with <code>mvn site</code> and a skin of its own; not the official Apache Maven site. The official site is <a href="https://maven.apache.org/">maven.apache.org</a>. <a href="../../about-this-example.html">About this example</a></p>
-  </div>
+  </aside>
   <div class="frame has-group">
     <nav class="group-nav" aria-labelledby="group-nav-title">
       <p class="up"><a href="../../docs/index.html"><svg aria-hidden="true" viewBox="0 0 16 16" width="14" height="14"><path d="M10 3.5L5.5 8l4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>All of Docs</a></p>
@@ -184,7 +184,7 @@
 <p>Similar to a standard Maven build, the Maven Upgrade Tool searches for a project in the same folder in which the tool got executed. To specify another directory, the <code>--directory</code> (or <code>-d</code>) argument comes to your help.</p>
 <p>Example:</p>
 
-<pre><code class="nohighlight nocode">mvnup check --model-version 4.1.0 --directory /path/to/project
+<pre tabindex="0"><code class="nohighlight nocode">mvnup check --model-version 4.1.0 --directory /path/to/project
 </code></pre></section><section><a id="Help"></a>
 <h3>Help</h3>
 <p>A short help about the command line arguments is available using the <code>--help</code> argument or the <code>help</code> goal.</p></section></section><section><a id="Examples"></a>
@@ -193,26 +193,26 @@
 <h3>Basic upgrade workflow</h3>
 <p>Validates if a full upgrade to model version 4.1.0 is possible:</p>
 
-<pre><code class="nohighlight nocode">mvnup check --model-version 4.1.0 --all
+<pre tabindex="0"><code class="nohighlight nocode">mvnup check --model-version 4.1.0 --all
 </code></pre>
 <p>Upgrade all project parts to model version 4.1.0:</p>
 
-<pre><code class="nohighlight nocode">mvnup apply --model-version 4.1.0 --all
+<pre tabindex="0"><code class="nohighlight nocode">mvnup apply --model-version 4.1.0 --all
 </code></pre></section><section><a id="Specific_upgrades"></a>
 <h3>Specific upgrades</h3>
 <p>Upgrade all plugins and models to version 4.0.0:</p>
 
-<pre><code class="nohighlight nocode">mvnup apply --plugins
+<pre tabindex="0"><code class="nohighlight nocode">mvnup apply --plugins
 </code></pre>
 <p>Check for duplicate plugin and dependency declaration in combination with specifying the directory of the project:</p>
 
-<pre><code class="nohighlight nocode">mvnup check --infer --directory /path/to/project
+<pre tabindex="0"><code class="nohighlight nocode">mvnup check --infer --directory /path/to/project
 </code></pre></section><section><a id="Output"></a>
 <h3>Output</h3>
 <p>The following example shows the output of an execution to fully update a project to model version 4.1.0.</p>
 <p><strong>UPDATE WITH CURRENT Code, when build is fixed to include fixes of</strong> <a href="https://github.com/apache/maven/pull/10915" class="externalLink">https://github.com/apache/maven/pull/10915</a></p>
 
-<pre><code class="nohighlight nocode">D:\Github\mpmd386\PMD_314\SingleModuleRoot&gt;mvnup apply --model-version 4.1.0 --all
+<pre tabindex="0"><code class="nohighlight nocode">D:\Github\mpmd386\PMD_314\SingleModuleRoot&gt;mvnup apply --model-version 4.1.0 --all
 [INFO]
 [INFO] 1 problem was encountered while building the effective settings (use -e to see details)
 [INFO]

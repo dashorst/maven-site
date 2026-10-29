@@ -43,9 +43,9 @@
     <a class="asf" href="https://www.apache.org/"><img class="asf-leaf" src="../../images/oakleaf.svg" width="14" height="22" alt=""><span>Apache</span></a>
     </div>
   </header>
-  <div class="specimen" role="note">
+  <aside class="specimen" aria-label="About this site">
     <p><strong>Specimen.</strong> A proposed redesign of maven.apache.org, built with <code>mvn site</code> and a skin of its own; not the official Apache Maven site. The official site is <a href="https://maven.apache.org/">maven.apache.org</a>. <a href="../../about-this-example.html">About this example</a></p>
-  </div>
+  </aside>
   <div class="frame has-group">
     <nav class="group-nav" aria-labelledby="group-nav-title">
       <p class="up"><a href="../../extend/index.html"><svg aria-hidden="true" viewBox="0 0 16 16" width="14" height="14"><path d="M10 3.5L5.5 8l4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" /></svg>All of Extend</a></p>
@@ -102,7 +102,7 @@
 <p>The POM is set up for Maven DI as previously mentioned, with the <code>maven-api-di</code> dependency</p>
 <p>In addition, we add a Maven plugin dependency <code>maven-api-core</code> to implement the interface <code>Mojo</code>.</p>
 
-<pre class="highlight"><code class="language-xml"><span class="cp">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="cp">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
 <span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.1.0"</span> <span class="na">xmlns:xsi</span>=<span class="s">"http://www.w3.org/2001/XMLSchema-instance"</span> <span class="na">xsi:schemaLocation</span>=<span class="s">"http://maven.apache.org/POM/4.1.0 https://maven.apache.org/xsd/maven-4.1.0.xsd"</span><span class="nt">&gt;</span>
     <span class="nt">&lt;modelVersion</span><span class="nt">&gt;</span>4.1.0<span class="nt">&lt;/modelVersion</span><span class="nt">&gt;</span>
 
@@ -179,7 +179,7 @@
 </code></pre>
 <p>Now let's take a look at the plugin code. We are using field injection to add the <code>MavenDIComponent</code> to our Mojo.</p>
 
-<pre class="highlight"><code class="language-java"><span class="k">import</span> org.apache.maven.api.Lifecycle.Phase;
+<pre tabindex="0" class="highlight"><code class="language-java"><span class="k">import</span> org.apache.maven.api.Lifecycle.Phase;
 <span class="k">import</span> org.apache.maven.api.di.Inject;
 <span class="k">import</span> org.apache.maven.api.plugin.Log;
 <span class="k">import</span> org.apache.maven.api.plugin.annotations.Mojo;
@@ -208,7 +208,7 @@
 </code></pre>
 <p>The component that should be injected is annotated with <code>@Named</code> and <code>@Singleton</code>.</p>
 
-<pre class="highlight"><code class="language-java"><span class="k">import</span> org.apache.maven.api.di.Named;
+<pre tabindex="0" class="highlight"><code class="language-java"><span class="k">import</span> org.apache.maven.api.di.Named;
 <span class="k">import</span> org.apache.maven.api.di.Singleton;
 
 <span class="nd">@Named</span>
@@ -224,7 +224,7 @@
 <p>So the next step is to add all dependencies that are needed for testing.</p>
 <p>For the helper classes, we are adding <code>maven-testing</code>. The dependencies to <code>maven-core</code>, <code>maven-resolver-api</code> and <code>maven-api-impl</code> are only needed for the test runtime. <code>junit-jupiter</code> is the used test framework, <code>mockito-*</code> is the used mock framework and <code>assertj</code> is the used annotation lib. The last two mention dependencies are optional but helpful.</p>
 
-<pre class="highlight"><code class="language-xml">
+<pre tabindex="0" class="highlight"><code class="language-xml">
 <span class="c">&lt;!-- ... --&gt;</span>
   <span class="nt">&lt;properties</span><span class="nt">&gt;</span>
     <span class="c">&lt;!-- ... --&gt;</span>
@@ -291,7 +291,7 @@
 </code></pre>
 <p>After you configure the test dependencies, you can write the first unit test for you mojo.</p>
 
-<pre class="highlight"><code class="language-java">
+<pre tabindex="0" class="highlight"><code class="language-java">
 <span class="k">import</span> org.apache.maven.api.di.Inject;
 <span class="k">import</span> org.apache.maven.api.di.Priority;
 <span class="k">import</span> org.apache.maven.api.di.Provides;

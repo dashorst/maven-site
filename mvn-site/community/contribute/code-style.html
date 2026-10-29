@@ -43,9 +43,9 @@
     <a class="asf" href="https://www.apache.org/"><img class="asf-leaf" src="../../images/oakleaf.svg" width="14" height="22" alt=""><span>Apache</span></a>
     </div>
   </header>
-  <div class="specimen" role="note">
+  <aside class="specimen" aria-label="About this site">
     <p><strong>Specimen.</strong> A proposed redesign of maven.apache.org, built with <code>mvn site</code> and a skin of its own; not the official Apache Maven site. The official site is <a href="https://maven.apache.org/">maven.apache.org</a>. <a href="../../about-this-example.html">About this example</a></p>
-  </div>
+  </aside>
   <div class="frame has-group">
     <nav class="group-nav" aria-labelledby="group-nav-title">
       <p class="up"><a href="../../community/index.html"><svg aria-hidden="true" viewBox="0 0 16 16" width="14" height="14"><path d="M10 3.5L5.5 8l4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" /></svg>All of Community</a></p>
@@ -149,7 +149,7 @@
 <li>
 <p><strong>Line Breaks</strong>: Always use a new line with indentation for complex XML types and no line break for simple XML types. Always use a new line to separate XML sections or blocks, for instance:</p>
 
-<pre class="highlight"><code class="language-xml"><span class="nt">&lt;aTag</span><span class="nt">&gt;</span>
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;aTag</span><span class="nt">&gt;</span>
   <span class="nt">&lt;simpleType</span><span class="nt">&gt;</span>This is a simple type<span class="nt">&lt;/simpleType</span><span class="nt">&gt;</span>
 
   <span class="nt">&lt;complexType</span><span class="nt">&gt;</span>
@@ -159,11 +159,11 @@
 </code></pre>
 <p>In some cases, adding comments could improve the readability of blocks, for instance:</p>
 
-<pre class="highlight"><code class="language-xml"><span class="c">&lt;!-- Simple XML documentation                                               --&gt;</span>
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="c">&lt;!-- Simple XML documentation                                               --&gt;</span>
 </code></pre>
 <p>or</p>
 
-<pre class="highlight"><code class="language-xml"><span class="c">&lt;!-- ====================================================================== --&gt;</span>
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="c">&lt;!-- ====================================================================== --&gt;</span>
 <span class="c">&lt;!-- Block documentation                                                    --&gt;</span>
 <span class="c">&lt;!-- ====================================================================== --&gt;</span>
 </code></pre></li>
@@ -174,7 +174,7 @@
 <p>The team has <a href="https://lists.apache.org/thread/h8px5t6f3q59cnkzpj1t02wsoynr3ygk" class="externalLink">voted</a> during the end of June 2008 to follow a specific POM convention to ordering POM elements. The consequence of this vote is that the <a href="https://maven.apache.org/ref/current/maven-model/maven.html" class="externalLink">Maven project descriptor</a> is <strong>no more</strong> considered as the reference for the ordering.</p>
 <p>The following is the recommended ordering for all Maven POM files:</p>
 
-<pre class="highlight"><code class="language-xml"><span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span> <span class="na">xmlns:xsi</span>=<span class="s">"http://www.w3.org/2001/XMLSchema-instance"</span> <span class="na">xsi:schemaLocation</span>=<span class="s">"http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd"</span><span class="nt">&gt;</span>
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span> <span class="na">xmlns:xsi</span>=<span class="s">"http://www.w3.org/2001/XMLSchema-instance"</span> <span class="na">xsi:schemaLocation</span>=<span class="s">"http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd"</span><span class="nt">&gt;</span>
   <span class="nt">&lt;modelVersion</span><span class="nt">/&gt;</span>
 
   <span class="nt">&lt;parent</span><span class="nt">/&gt;</span>

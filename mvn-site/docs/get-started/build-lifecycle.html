@@ -46,9 +46,9 @@
     <a class="asf" href="https://www.apache.org/"><img class="asf-leaf" src="../../images/oakleaf.svg" width="14" height="22" alt=""><span>Apache</span></a>
     </div>
   </header>
-  <div class="specimen" role="note">
+  <aside class="specimen" aria-label="About this site">
     <p><strong>Specimen.</strong> A proposed redesign of maven.apache.org, built with <code>mvn site</code> and a skin of its own; not the official Apache Maven site. The official site is <a href="https://maven.apache.org/">maven.apache.org</a>. <a href="../../about-this-example.html">About this example</a></p>
-  </div>
+  </aside>
   <div class="frame has-group">
     <nav class="group-nav" aria-labelledby="group-nav-title">
       <p class="up"><a href="../../docs/index.html"><svg aria-hidden="true" viewBox="0 0 16 16" width="14" height="14"><path d="M10 3.5L5.5 8l4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" /></svg>All of Docs</a></p>
@@ -94,7 +94,7 @@
 <h2>A lifecycle is a fixed list of phases</h2>
 <p>Maven has three lifecycles. The default lifecycle builds, tests and ships the project. The clean lifecycle removes what an earlier build produced. The site lifecycle generates the project's website.</p>
 <p>Each lifecycle is a list of phases in a fixed order. The phases of the default lifecycle that you call from the command line are:</p>
-<table class="bodyTable">
+<div class="table-scroll" tabindex="0"><table class="bodyTable">
 <thead>
 <tr class="a">
 <th>Phase</th>
@@ -120,7 +120,7 @@
 <tr class="b">
 <td><code>deploy</code></td>
 <td>Copy the package to a remote repository, for other people.</td></tr></tbody>
-</table>
+</table></div>
 
 <p>Between these are phases such as <code>generate-sources</code>, <code>process-resources</code>, <code>test-compile</code> and <code>prepare-package</code>. The <a href="https://maven.apache.org/ref/current/maven-core/lifecycles.html" class="externalLink">lifecycles reference</a> lists every phase of the three lifecycles.</p>
 <p>When you name a phase, Maven runs all phases before it in the same lifecycle first. That is why <code>mvn package</code> runs the tests: <code>test</code> comes before <code>package</code>, and a JAR is only made from code that passed its tests. It is also why one command is enough. <code>mvn install</code> compiles, tests, packages and verifies before it installs, so there is no need to call each step.</p>
@@ -129,14 +129,14 @@
 <p>A phase is a name for a step. It does nothing by itself. The work is done by plugins: each plugin is a Java library with one or more goals, and each goal is one task. The Compiler plugin has a <code>compile</code> goal for your code and a <code>testCompile</code> goal for your tests. When a goal is bound to a phase, it runs every time the build passes that phase. A phase with no goal bound to it is skipped without notice.</p>
 <p>The build output names each goal it runs:</p>
 
-<pre><code class="nohighlight nocode">[INFO] --- compiler:3.13.0:compile (default-compile) @ my-app ---
+<pre tabindex="0"><code class="nohighlight nocode">[INFO] --- compiler:3.13.0:compile (default-compile) @ my-app ---
 </code></pre>
 <p>This line reads as: the <code>compile</code> goal of the plugin with prefix <code>compiler</code>, version 3.13.0, in the execution <code>default-compile</code>, for the project <code>my-app</code>.</p>
 <p>You can also run a goal on its own, with <code>prefix:goal</code> on the command line. <code>mvn dependency:tree</code> runs only the <code>tree</code> goal of the Dependency plugin, and no phases. Goals and phases mix: <code>mvn clean dependency:copy-dependencies package</code> cleans, then copies the dependencies, then runs the default lifecycle up to <code>package</code>, in that order.</p>
 <p>Options that seem to change the lifecycle usually belong to a goal. <code>-DskipTests</code> does not leave out the <code>test</code> phase; it tells the Surefire plugin's <code>test</code> goal to run no tests, and the goal logs <code>Tests are skipped.</code></p></section><section><a id="The_packaging_decides_the_default_goals"></a>
 <h2>The packaging decides the default goals</h2>
 <p>Which goals a phase runs depends first of all on the project's packaging, the <code>&lt;packaging&gt;</code> element of the POM. A project without one has packaging <code>jar</code>, and gets these goals:</p>
-<table class="bodyTable">
+<div class="table-scroll" tabindex="0"><table class="bodyTable">
 <thead>
 <tr class="a">
 <th>Phase</th>
@@ -165,7 +165,7 @@
 <tr class="a">
 <td><code>deploy</code></td>
 <td><code>deploy:deploy</code></td></tr></tbody>
-</table>
+</table></div>
 
 <p>Packaging <code>war</code> binds the same goals, with <code>war:war</code> instead of <code>jar:jar</code>. Packaging <code>pom</code>, used for parent projects that only hold configuration, binds nothing but <code>install:install</code> and <code>deploy:deploy</code>, because there is nothing to compile. The <a href="https://maven.apache.org/ref/current/maven-core/default-bindings.html" class="externalLink">plugin bindings reference</a> lists the bindings for every packaging.</p>
 <p>So <code>mvn package</code> means “compile, test and make a JAR” in one project and “compile, test and make a WAR” in another, and you do not need to know which before you run it.</p></section><section><a id="Plugins_in_the_POM_add_goals"></a>
@@ -173,7 +173,7 @@
 <p>To add a step to the build, you add a plugin to the <code>&lt;build&gt;</code> section of the POM, with an execution that names the goal. This makes the build also package the source code:</p>
 <p><em>pom.xml</em></p>
 
-<pre class="highlight"><code class="language-xml"><span class="nt">&lt;build</span><span class="nt">&gt;</span>
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;build</span><span class="nt">&gt;</span>
   <span class="nt">&lt;plugins</span><span class="nt">&gt;</span>
     <span class="nt">&lt;plugin</span><span class="nt">&gt;</span>
       <span class="nt">&lt;artifactId</span><span class="nt">&gt;</span>maven-source-plugin<span class="nt">&lt;/artifactId</span><span class="nt">&gt;</span>

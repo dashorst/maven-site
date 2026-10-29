@@ -44,9 +44,9 @@
     <a class="asf" href="https://www.apache.org/"><img class="asf-leaf" src="../../images/oakleaf.svg" width="14" height="22" alt=""><span>Apache</span></a>
     </div>
   </header>
-  <div class="specimen" role="note">
+  <aside class="specimen" aria-label="About this site">
     <p><strong>Specimen.</strong> A proposed redesign of maven.apache.org, built with <code>mvn site</code> and a skin of its own; not the official Apache Maven site. The official site is <a href="https://maven.apache.org/">maven.apache.org</a>. <a href="../../about-this-example.html">About this example</a></p>
-  </div>
+  </aside>
   <div class="frame">
     <main id="content">
       <div class="prose">
@@ -110,7 +110,7 @@ With every release there's a 72h+ voting period. During the vote of 3.8.0 a bug 
 <p>If the repository is defined in your <code>pom.xml</code>, please fix it in your source code.</p>
 <p>If the repository is defined in one of your dependencies POM, you'll get a message like:</p>
 
-<pre><code class="nohighlight nocode">[ERROR] Failed to execute goal on project test: Could not resolve dependencies for project xxx: Failed to collect dependencies at my.test:dependency:version -&gt; my.test.transitive:transitive:version: Failed to read artifact descriptor for my.test.transitive:transitive:jar:version: Could not transfer artifact my.test.transitive:transitive:pom:version from/to maven-default-http-blocker (http://0.0.0.0/): Blocked mirror for repositories: [blocked-repository-id (http://blocked.repository.org, default, releases+snapshots)]
+<pre tabindex="0"><code class="nohighlight nocode">[ERROR] Failed to execute goal on project test: Could not resolve dependencies for project xxx: Failed to collect dependencies at my.test:dependency:version -&gt; my.test.transitive:transitive:version: Failed to read artifact descriptor for my.test.transitive:transitive:jar:version: Could not transfer artifact my.test.transitive:transitive:pom:version from/to maven-default-http-blocker (http://0.0.0.0/): Blocked mirror for repositories: [blocked-repository-id (http://blocked.repository.org, default, releases+snapshots)]
 </code></pre>
 <p>Options to fix are:</p>
 <ul>
@@ -123,17 +123,17 @@ With every release there's a 72h+ voting period. During the vote of 3.8.0 a bug 
 <h2>The detailed issue list<a href="#Details"></a></h2>
 <p>Bug</p>
 
-<pre><code class="nohighlight nocode">    [MNG-7128] - improve error message when blocked repository defined in build POM
+<pre tabindex="0"><code class="nohighlight nocode">    [MNG-7128] - improve error message when blocked repository defined in build POM
 </code></pre>
 <p>New Feature</p>
 
-<pre><code class="nohighlight nocode">    [MNG-7116] - Add support for mirror selector on external:http:*
+<pre tabindex="0"><code class="nohighlight nocode">    [MNG-7116] - Add support for mirror selector on external:http:*
     [MNG-7117] - Add support for blocking mirrors
     [MNG-7118] - Block external HTTP repositories by default
 </code></pre>
 <p>Dependency upgrade</p>
 
-<pre><code class="nohighlight nocode">    [MNG-7119] - Upgrade Maven Wagon to 3.4.3
+<pre tabindex="0"><code class="nohighlight nocode">    [MNG-7119] - Upgrade Maven Wagon to 3.4.3
     [MNG-7123] - Upgrade Maven Resolver to 1.6.2
 </code></pre>
 <p>The full list of changes can be found in our <a href="https://issues.apache.org/jira/secure/ReleaseNote.jspa?projectId=12316922&amp;version=12350032" class="externalLink">issue management system</a>.</p></section><section><a id="Complete_Release_Notes"></a>

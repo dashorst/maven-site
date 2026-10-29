@@ -44,9 +44,9 @@
     <a class="asf" href="https://www.apache.org/"><img class="asf-leaf" src="../../images/oakleaf.svg" width="14" height="22" alt=""><span>Apache</span></a>
     </div>
   </header>
-  <div class="specimen" role="note">
+  <aside class="specimen" aria-label="About this site">
     <p><strong>Specimen.</strong> A proposed redesign of maven.apache.org, built with <code>mvn site</code> and a skin of its own; not the official Apache Maven site. The official site is <a href="https://maven.apache.org/">maven.apache.org</a>. <a href="../../about-this-example.html">About this example</a></p>
-  </div>
+  </aside>
   <div class="frame">
     <main id="content">
       <div class="prose">
@@ -119,7 +119,7 @@
 <p>The output in the reactor summary has been improved <a href="https://issues.apache.org/jira/browse/MNG-6391" class="externalLink">MNG-6391</a> cause it confused people. In Maven 3.6.0 the reactor summary now looks like the following:</p></li>
 </ul>
 
-<pre><code class="nohighlight nocode">[INFO] ------------------------------------------------------------------------
+<pre tabindex="0"><code class="nohighlight nocode">[INFO] ------------------------------------------------------------------------
 [INFO] Reactor Summary for parent 5.0.4-SNAPSHOT:
 [INFO]
 [INFO] parent ............................................. SUCCESS [  1.559 s]
@@ -141,7 +141,7 @@
 <p>The <code>parent</code> in the above output is the artifact name of the root module and the <code>5.0.4-SNAPSHOT</code> is the versions number for all modules in this reactor build.</p>
 <p>If you have an aggregator pom which contains different modules with different versions each line will contain the appropriate versions which looks like this:</p>
 
-<pre><code class="nohighlight nocode">[INFO] ------------------------------------------------------------------------
+<pre tabindex="0"><code class="nohighlight nocode">[INFO] ------------------------------------------------------------------------
 [INFO] Reactor Summary:
 [INFO]
 [INFO] Apache Maven ACR Plugin 3.0.1-SNAPSHOT ............. SUCCESS [  0.221 s]

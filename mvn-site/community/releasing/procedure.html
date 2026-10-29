@@ -44,9 +44,9 @@
     <a class="asf" href="https://www.apache.org/"><img class="asf-leaf" src="../../images/oakleaf.svg" width="14" height="22" alt=""><span>Apache</span></a>
     </div>
   </header>
-  <div class="specimen" role="note">
+  <aside class="specimen" aria-label="About this site">
     <p><strong>Specimen.</strong> A proposed redesign of maven.apache.org, built with <code>mvn site</code> and a skin of its own; not the official Apache Maven site. The official site is <a href="https://maven.apache.org/">maven.apache.org</a>. <a href="../../about-this-example.html">About this example</a></p>
-  </div>
+  </aside>
   <div class="frame has-group">
     <nav class="group-nav" aria-labelledby="group-nav-title">
       <p class="up"><a href="../../community/index.html"><svg aria-hidden="true" viewBox="0 0 16 16" width="14" height="14"><path d="M10 3.5L5.5 8l4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>All of Community</a></p>
@@ -123,7 +123,7 @@
 <h2>Make sure that site compilation works</h2>
 <p>Particularly if you update the parent or if you updated your javadoc, the site compilation process may fail, or reveal a conspicuous error. It is stressful and time-consuming to discover this <em>after</em> you stage a release and then try to follow the procedure to deploy the site for review. So you may find it more pleasant to check out the state of the site before you start:</p>
 
-<pre><code class="nohighlight nocode">mvn -Preporting site site:stage
+<pre tabindex="0"><code class="nohighlight nocode">mvn -Preporting site site:stage
 </code></pre></section><section><a id="Stage_the_Release"></a>
 <h2>Stage the Release</h2>
 <ol style="list-style-type: decimal;">
@@ -151,7 +151,7 @@
 <p>Propose a vote on the dev list with the closed issues, the issues left, the staging repository and the staging site.</p>
 <p>This can be done either by hand or with ATR's help. For instance:</p>
 
-<pre><code class="nohighlight nocode">To: &quot;Maven Developers List&quot; &lt;dev@maven.apache.org&gt;
+<pre tabindex="0"><code class="nohighlight nocode">To: &quot;Maven Developers List&quot; &lt;dev@maven.apache.org&gt;
 Subject: [VOTE] Release Apache Maven XXX Plugin version Y.Z
 
 Hi,
@@ -194,7 +194,7 @@ Vote open for at least 72 hours.
 <h3>Successful vote</h3>
 <p>Once a vote is <strong>successful</strong>, post the result to the <code>dev</code> list and cc the <code>PMC</code>. For instance:</p>
 
-<pre><code class="nohighlight nocode">To: &quot;Maven Developers List&quot; &lt;dev@maven.apache.org&gt;
+<pre tabindex="0"><code class="nohighlight nocode">To: &quot;Maven Developers List&quot; &lt;dev@maven.apache.org&gt;
 CC: &quot;Maven Project Management Committee List&quot; &lt;private@maven.apache.org&gt;
 Subject: [RESULT] [VOTE] Release Apache Maven XXX Plugin version Y.Z
 
@@ -212,7 +212,7 @@ I will promote the source release zip file to the Apache distribution area and t
 <h3>Unsuccessful vote</h3>
 <p>Once a vote is <strong>unsuccessful</strong>, post the result to the <code>dev</code> list, For instance:</p>
 
-<pre><code class="nohighlight nocode">To: &quot;Maven Developers List&quot; &lt;dev@maven.apache.org&gt;
+<pre tabindex="0"><code class="nohighlight nocode">To: &quot;Maven Developers List&quot; &lt;dev@maven.apache.org&gt;
 Subject: [CANCEL] [VOTE] Release Apache Maven XXX Plugin version Y.Z
 
 Hi,
@@ -236,11 +236,11 @@ The vote has been canceled.
 <p>This task can also be done by ATR, but following instructions remain here for manual process reference:</p>
 <p>The release area is maintained with svnpubsub. To deliver a release, you add it to <a href="https://dist.apache.org/repos/dist/release/maven" class="externalLink">the subversion repository for the dist area</a>: add the release, its signature and sha512 checksum files, copying them from <code>target/checkout/target/</code> directory created during <code>mvn release:perform</code> step. Currently this requires to be in maven-pmc group (see <a href="https://issues.apache.org/jira/browse/INFRA-5945" class="externalLink">INFRA-5945</a>). If you are not a PMC member, drop a line to <em><a href="mailto:private@maven.apache.org" class="externalLink">private@maven.apache.org</a></em> and ask them to do this step (and the next one) for you: the PMC member will get the source release bundle and its signature from Nexus staging repository and will create sha512 checksum file by hand, for example using shell:</p>
 
-<pre><code class="nohighlight nocode">for f in *.zip ; do echo -n $(sha512sum $f | cut -c -128) &gt; $f.sha512 ; done
+<pre tabindex="0"><code class="nohighlight nocode">for f in *.zip ; do echo -n $(sha512sum $f | cut -c -128) &gt; $f.sha512 ; done
 </code></pre>
 <p>For example:</p>
 
-<pre><code class="nohighlight nocode">wagon/wagon-2.2-source-release.zip
+<pre tabindex="0"><code class="nohighlight nocode">wagon/wagon-2.2-source-release.zip
 wagon/wagon-2.2-source-release.zip.asc
 wagon/wagon-2.2-source-release.zip.sha512
 </code></pre>
@@ -282,7 +282,7 @@ wagon/wagon-2.2-source-release.zip.sha512
 <p>Following instructions are done for plugins: if you are releasing anything else than a plugin, you should adapt email content to match what you are releasing.</p>
 <p><strong>Note:</strong> You must send this email from your apache email account, e.g. <code>YOUR\_APACHE\_USERNAME@apache.org</code> otherwise the email to <code>announce@maven.apache.org</code> will bounce.</p>
 
-<pre><code class="nohighlight nocode">From: YOUR_APACHE_USERNAME@apache.org
+<pre tabindex="0"><code class="nohighlight nocode">From: YOUR_APACHE_USERNAME@apache.org
 To: announce@maven.apache.org, users@maven.apache.org
 Cc: dev@maven.apache.org
 Subject: [ANN] Apache Maven XXX Plugin Y.Z Released

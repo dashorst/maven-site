@@ -44,9 +44,9 @@
     <a class="asf" href="https://www.apache.org/"><img class="asf-leaf" src="../../images/oakleaf.svg" width="14" height="22" alt=""><span>Apache</span></a>
     </div>
   </header>
-  <div class="specimen" role="note">
+  <aside class="specimen" aria-label="About this site">
     <p><strong>Specimen.</strong> A proposed redesign of maven.apache.org, built with <code>mvn site</code> and a skin of its own; not the official Apache Maven site. The official site is <a href="https://maven.apache.org/">maven.apache.org</a>. <a href="../../about-this-example.html">About this example</a></p>
-  </div>
+  </aside>
   <div class="frame has-group">
     <nav class="group-nav" aria-labelledby="group-nav-title">
       <p class="up"><a href="../../community/index.html"><svg aria-hidden="true" viewBox="0 0 16 16" width="14" height="14"><path d="M10 3.5L5.5 8l4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>All of Community</a></p>
@@ -100,7 +100,7 @@
 <p>While not mandatory, we will appreciate signed commits.</p>
 <p>If the changes is linked to an issue, the commit message should use this template:</p>
 
-<pre><code class="nohighlight nocode">Issue #1 &lt;&lt;Title from GitHub issue&gt;&gt;
+<pre tabindex="0"><code class="nohighlight nocode">Issue #1 &lt;&lt;Title from GitHub issue&gt;&gt;
 
 o Comments
 </code></pre>
@@ -112,7 +112,7 @@ o Comments
 </ul>
 <p>eg:</p>
 
-<pre><code class="nohighlight nocode">Issue #123456 Add the foo to the bar
+<pre tabindex="0"><code class="nohighlight nocode">Issue #123456 Add the foo to the bar
 Submitted by: Baz Bazman
 
 o Applied without change
@@ -129,18 +129,18 @@ o Applied without change
 <p>To keep the history of contributions clear, the committer should usually apply the patch without any <strong>major</strong> modifications, and then create his or her own commits for further modifications. However, committers should never commit code to a live branch which is not suitable to release. If a contribution requires significant work to make it useful, commit it to a branch, fix it up, and merge the branch.</p>
 <p>If the user created a pull request, the committer is responsible for closing that pull request. You do this by adding a note to a commit message:</p>
 
-<pre><code class="nohighlight nocode">Closes #NNN.
+<pre tabindex="0"><code class="nohighlight nocode">Closes #NNN.
 </code></pre>
 <p>where NNN is the number of the pull request.</p></section><section><a id="Edit_Commit_Message"></a>
 <h2>Edit Commit Message</h2>
 <p>to edit last commit comment:</p>
 
-<pre><code class="nohighlight nocode">$ git commit --amend -m &quot;new comment&quot;
+<pre tabindex="0"><code class="nohighlight nocode">$ git commit --amend -m &quot;new comment&quot;
 </code></pre></section><section><a id="Workflow"></a>
 <h2>Workflow</h2>
 <p>Workflow for svn folks is something like :</p>
 
-<pre><code class="nohighlight nocode">$ git pull
+<pre tabindex="0"><code class="nohighlight nocode">$ git pull
 $ hack hack hack
 $ git push
 // fails, because someone else has already pushed to master
@@ -150,7 +150,7 @@ $ git push
 </code></pre>
 <p>A more quiet workflow :</p>
 
-<pre><code class="nohighlight nocode">$ git pull
+<pre tabindex="0"><code class="nohighlight nocode">$ git pull
 $ hack hack hack
 $ git push
 // fails, because someone else has already pushed to master
@@ -163,7 +163,7 @@ $ git push
 <h2>Other useful Git commands while developing</h2>
 <p>If you've done a chunk of work, and you would like to ditch your changes and start from scratch use this command to revert to the original checkout:</p>
 
-<pre><code class="nohighlight nocode">$ git checkout .
+<pre tabindex="0"><code class="nohighlight nocode">$ git checkout .
 </code></pre>
 <p>TODO .gitignore</p><section><a id="power-git_checkout"></a>
 <h3>power-git checkout</h3>
@@ -171,7 +171,7 @@ $ git push
 <p>Go to <a href="https://github.com/apache/maven-surefire" class="externalLink">https://github.com/apache/maven-surefire</a> and fork surefire to your own GitHub account.</p>
 <p>Starting with nothing (no existing clone)</p>
 
-<pre><code class="nohighlight nocode">git clone https://github.com/&lt;youraccount&gt;/maven-surefire.git
+<pre tabindex="0"><code class="nohighlight nocode">git clone https://github.com/&lt;youraccount&gt;/maven-surefire.git
 git remote add asfgithub https://github.com/apache/maven-surefire.git
 git config --add remote.asfgithub.fetch &quot;+refs/pull/*/head:refs/remotes/asfgithub/pr/*&quot;
 git fetch --all
@@ -179,24 +179,24 @@ git fetch --all
 <p>(You may consider adding &#x2013;global to the git config statement above to always fetch pull requests for any remote named &#x201c;asfgithub&#x201d;)</p>
 <p>In this setup, running &#x201c;git push&#x201d; will normally push to your personal GitHub account. Furthermore, all pull requests from GitHub are also fetched to your local clone, use</p>
 
-<pre><code class="nohighlight nocode">gitk --all
+<pre tabindex="0"><code class="nohighlight nocode">gitk --all
 </code></pre>
 <p>to try to make some sense of it all. This is an important command to understand! (gitk may need to be installed additionally)</p>
 <p>gitk also has a quite excellent context menu that is far more context sensitive than most people realize at first impression. Right-clicking on a commit in a GitHub pull-request will allow you to cherry-pick straight in the gui.</p>
 <p>If you're working on the master branch, you can do stuff like this:</p>
 
-<pre><code class="nohighlight nocode">git push # your github account
+<pre tabindex="0"><code class="nohighlight nocode">git push # your github account
 git push apache # the authoritative apache repo
 </code></pre>
 <p>Using your GitHub account as a storage for half-finished work is excellent if you switch between multiple computers, always push to GitHub before leaving your current computer and start by pulling at the next computer.</p>
 <p>To merge a pull request</p>
 
-<pre><code class="nohighlight nocode">git merge pr/10 # merge pull request number 10 from asf@github into master
+<pre tabindex="0"><code class="nohighlight nocode">git merge pr/10 # merge pull request number 10 from asf@github into master
 git push apache # upload to apache
 </code></pre>
 <p>Or if you're comfortable rebasing;</p>
 
-<pre><code class="nohighlight nocode">
+<pre tabindex="0"><code class="nohighlight nocode">
 git checkout pr/10
 git rebase apache/master
 git push apache

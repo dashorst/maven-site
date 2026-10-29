@@ -46,9 +46,9 @@
     <a class="asf" href="https://www.apache.org/"><img class="asf-leaf" src="../../images/oakleaf.svg" width="14" height="22" alt=""><span>Apache</span></a>
     </div>
   </header>
-  <div class="specimen" role="note">
+  <aside class="specimen" aria-label="About this site">
     <p><strong>Specimen.</strong> A proposed redesign of maven.apache.org, built with <code>mvn site</code> and a skin of its own; not the official Apache Maven site. The official site is <a href="https://maven.apache.org/">maven.apache.org</a>. <a href="../../about-this-example.html">About this example</a></p>
-  </div>
+  </aside>
   <div class="frame has-group">
     <nav class="group-nav" aria-labelledby="group-nav-title">
       <p class="up"><a href="../../docs/index.html"><svg aria-hidden="true" viewBox="0 0 16 16" width="14" height="14"><path d="M10 3.5L5.5 8l4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" /></svg>All of Docs</a></p>
@@ -92,7 +92,7 @@
  
 <p>Maven expects the files of a project in fixed places, so a project only has to describe what is different about it, and anyone who knows one Maven project finds their way in another. The paths below are relative to the directory that holds <em>pom.xml</em>.</p><section><section><a id="Top-level_files_and_directories"></a>
 <h2>Top-level files and directories</h2>
-<table class="bodyTable">
+<div class="table-scroll" tabindex="0"><table class="bodyTable">
 <thead>
 <tr class="a">
 <th>Path</th>
@@ -130,7 +130,7 @@
 <td><code>LICENSE</code>, <code>NOTICE</code>, <code>README</code></td>
 <td>Documents for people who receive the source, in any text format.</td>
 <td>Not read by Maven</td></tr></tbody>
-</table>
+</table></div>
 
 <p>The only other directories at the top are those of the version control system, such as <code>.git</code>, and subprojects in a <a href="../multi-module/aggregation-and-inheritance.html">multi-module build</a>, each laid out the same way.</p>
 <blockquote>
@@ -139,7 +139,7 @@
 </blockquote></section><section><a id="Source_directories"></a>
 <h2>Source directories</h2>
 <p>Under <code>src</code>, <code>main</code> holds what goes into the artifact and <code>test</code> what is needed only to test it. Within each, there is one directory per kind of input.</p>
-<table class="bodyTable">
+<div class="table-scroll" tabindex="0"><table class="bodyTable">
 <thead>
 <tr class="a">
 <th>Path</th>
@@ -189,10 +189,10 @@
 <td><code>src/site</code></td>
 <td>Pages and configuration of the project website.</td>
 <td><code>site:site</code></td></tr></tbody>
-</table>
+</table></div>
 </section><section><a id="Build_output"></a>
 <h2>Build output</h2>
-<table class="bodyTable">
+<div class="table-scroll" tabindex="0"><table class="bodyTable">
 <thead>
 <tr class="a">
 <th>Path</th>
@@ -238,13 +238,13 @@
 <td><code>target/dependency</code></td>
 <td>Copies of the project's dependencies.</td>
 <td><code>dependency:copy-dependencies</code></td></tr></tbody>
-</table>
+</table></div>
 </section><section><a id="Changing_a_directory"></a>
 <h2>Changing a directory</h2>
 <p>The defaults are set in the <a href="https://maven.apache.org/ref/current/maven-model-builder/super-pom.html" class="externalLink">Super POM</a>, which every POM inherits. A project can override them in <code>&lt;build&gt;</code>, for example to compile sources from <code>src/java</code>:</p>
 <p><em>pom.xml</em></p>
 
-<pre class="highlight"><code class="language-xml"><span class="nt">&lt;build</span><span class="nt">&gt;</span>
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;build</span><span class="nt">&gt;</span>
   <span class="nt">&lt;sourceDirectory</span><span class="nt">&gt;</span>src/java<span class="nt">&lt;/sourceDirectory</span><span class="nt">&gt;</span>
 <span class="nt">&lt;/build</span><span class="nt">&gt;</span>
 </code></pre>

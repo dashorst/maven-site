@@ -43,9 +43,9 @@
     <a class="asf" href="https://www.apache.org/"><img class="asf-leaf" src="../../images/oakleaf.svg" width="14" height="22" alt=""><span>Apache</span></a>
     </div>
   </header>
-  <div class="specimen" role="note">
+  <aside class="specimen" aria-label="About this site">
     <p><strong>Specimen.</strong> A proposed redesign of maven.apache.org, built with <code>mvn site</code> and a skin of its own; not the official Apache Maven site. The official site is <a href="https://maven.apache.org/">maven.apache.org</a>. <a href="../../about-this-example.html">About this example</a></p>
-  </div>
+  </aside>
   <div class="frame has-group">
     <nav class="group-nav" aria-labelledby="group-nav-title">
       <p class="up"><a href="../../docs/index.html"><svg aria-hidden="true" viewBox="0 0 16 16" width="14" height="14"><path d="M10 3.5L5.5 8l4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" /></svg>All of Docs</a></p>
@@ -83,7 +83,7 @@
 <h2>Creating Content</h2>
 <p>The first step to creating your site is to create some content. In Maven, the site content is separated by format, as there are several available.</p>
 
-<pre><code class="nohighlight nocode">+- src/
+<pre tabindex="0"><code class="nohighlight nocode">+- src/
    +- site/
       +- markdown/
       |  +- index.md
@@ -118,7 +118,7 @@
 <h2>Generating the Site</h2>
 <p>Generating the site is very simple, and fast!</p>
 
-<pre><code class="nohighlight nocode">mvn site
+<pre tabindex="0"><code class="nohighlight nocode">mvn site
 </code></pre>
 <p>By default, the resulting site will be in <code>target/site/...</code></p>
 <p>For more information on the Maven Site Plugin, see the <a href="../../plugins/maven-site-plugin/">maven-site-plugin reference</a>.</p></section><section><a id="Deploying_the_Site"></a>
@@ -126,7 +126,7 @@
 <h3>Classical Website deployment</h3>
 <p>To be able to deploy the site with a classical network protocol (ftp, scp, webdav), you must first declare a location to distribute to in your <code>pom.xml</code>, similar to the repository for deployment:</p>
 
-<pre class="highlight"><code class="language-xml"><span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span><span class="nt">&gt;</span>
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span><span class="nt">&gt;</span>
   ...
   <span class="nt">&lt;distributionManagement</span><span class="nt">&gt;</span>
     <span class="nt">&lt;site</span><span class="nt">&gt;</span>
@@ -144,13 +144,13 @@
 </ul>
 <p>Once distribution location is configured, deploying the site is done by using the <code>site-deploy</code> phase of the site lifecycle.</p>
 
-<pre><code class="nohighlight nocode">mvn site-deploy
+<pre tabindex="0"><code class="nohighlight nocode">mvn site-deploy
 </code></pre></section><section><a id="GitHub_Pages.2C_Apache_svnpubsub.2Fgitpubsub_Deployment"></a>
 <h3>GitHub Pages, Apache svnpubsub/gitpubsub Deployment</h3>
 <p>When site publication is done with a SCM commit, like with <a href="https://pages.github.com/" class="externalLink">GitHub Pages</a> or <a href="https://infra.apache.org/project-site.html#tools" class="externalLink">Apache svnpubsub/gitpubsub</a>, deploying the site will be done with <a href="/plugins/maven-scm-publish-plugin/">Maven SCM Publish Plugin</a>.</p>
 <p>For example with a project hosted on GitHub and using GitHub Pages for its site publication:</p>
 
-<pre class="highlight"><code class="language-xml"><span class="nt">&lt;plugin</span><span class="nt">&gt;</span>
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;plugin</span><span class="nt">&gt;</span>
   <span class="nt">&lt;groupId</span><span class="nt">&gt;</span>org.apache.maven.plugins<span class="nt">&lt;/groupId</span><span class="nt">&gt;</span>
   <span class="nt">&lt;artifactId</span><span class="nt">&gt;</span>maven-scm-publish-plugin<span class="nt">&lt;/artifactId</span><span class="nt">&gt;</span>
   <span class="nt">&lt;version</span><span class="nt">&gt;</span>3.1.0<span class="nt">&lt;/version</span><span class="nt">&gt;</span>
@@ -169,7 +169,7 @@
 <h2>Creating a Site Descriptor</h2>
 <p>The <code>site.xml</code> file is used to describe the structure of the site. A sample is given below:</p>
 
-<pre class="highlight"><code class="language-xml"><span class="cp">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="cp">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
 <span class="nt">&lt;site</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/SITE/2.1.0"</span> <span class="na">xmlns:xsi</span>=<span class="s">"http://www.w3.org/2001/XMLSchema-instance"</span>
   <span class="na">xsi:schemaLocation</span>=<span class="s">"http://maven.apache.org/SITE/2.1.0 https://maven.apache.org/xsd/site-2.1.0.xsd"</span>
   <span class="na">name</span>=<span class="s">"Maven"</span><span class="nt">&gt;</span>
@@ -206,7 +206,7 @@
 <h2>Adding Extra Resources</h2>
 <p>You can add any arbitrary resource to your site by including them in a <code>resources</code> directory as shown below. Additional CSS files will be picked up when they are placed in the <code>css</code> directory within the <code>resources</code> directory.</p>
 
-<pre><code class="nohighlight nocode">+- src/
+<pre tabindex="0"><code class="nohighlight nocode">+- src/
    +- site/
       +- resources/
          +- css/
@@ -233,7 +233,7 @@
 <p>To find out more please refer to the <a href="../../plugins/maven-project-info-reports-plugin/">Project Info Reports Plugin</a>.</p>
 <p>To add these reports to your site, you must add the Project Info Reports plugin to a special <code>&lt;reporting&gt;</code> section in the POM. The following example shows how to configure the standard project information reports that display information from the POM in a friendly format:</p>
 
-<pre class="highlight"><code class="language-xml"><span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span><span class="nt">&gt;</span>
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span><span class="nt">&gt;</span>
   ...
   <span class="nt">&lt;reporting</span><span class="nt">&gt;</span>
     <span class="nt">&lt;plugins</span><span class="nt">&gt;</span>
@@ -254,7 +254,7 @@
 <p>Internationalization in Maven is very simple, as long as the reports you are using have that particular locale defined. For an overview of supported languages and instructions on how to add further languages, please see the related article <a href="../../plugins/maven-site-plugin/i18n.html">Internationalization</a> from the Maven Site Plugin.</p>
 <p>To enable multiple locales, add a configuration similar to the following to your POM:</p>
 
-<pre class="highlight"><code class="language-xml"><span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span><span class="nt">&gt;</span>
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span><span class="nt">&gt;</span>
   ...
   <span class="nt">&lt;build</span><span class="nt">&gt;</span>
     <span class="nt">&lt;plugins</span><span class="nt">&gt;</span>
@@ -274,7 +274,7 @@
 <p>This will generate both an English and a French version of the site. If <code>en</code> is your current locale, then it will be generated at the root of the site, with a copy of the French translation of the site in the <code>fr/</code> subdirectory.</p>
 <p>To add your own content for that translation instead of using the default, place a subdirectory with that locale name in your site directory and create a new site descriptor with the locale in the file name. For example:</p>
 
-<pre><code class="nohighlight nocode">+- src/
+<pre tabindex="0"><code class="nohighlight nocode">+- src/
    +- site/
       +- apt/
       |  +- index.apt     (Default version)

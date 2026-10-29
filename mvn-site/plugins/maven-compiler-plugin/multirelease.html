@@ -44,9 +44,9 @@
     <a class="asf" href="https://www.apache.org/"><img class="asf-leaf" src="./images/oakleaf.svg" width="14" height="22" alt=""><span>Apache</span></a>
     </div>
   </header>
-  <div class="specimen" role="note">
+  <aside class="specimen" aria-label="About this site">
     <p><strong>Specimen.</strong> A proposed redesign of maven.apache.org, built with <code>mvn site</code> and a skin of its own; not the official Apache Maven site. The official site is <a href="https://maven.apache.org/">maven.apache.org</a>. <a href="./../../about-this-example.html">About this example</a></p>
-  </div>
+  </aside>
   <div class="frame has-group">
     <nav class="group-nav component-nav" aria-labelledby="group-nav-title">
       <p class="up"><a href="./../../docs/plugins/index.html"><svg aria-hidden="true" viewBox="0 0 16 16" width="14" height="14"><path d="M10 3.5L5.5 8l4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>All plugins</a></p>
@@ -121,7 +121,7 @@
 <li>
 <p>Compile with the targeted JDK (i.e. Java 6) and use reflection. You can ensure that the code is Java 6 compatible, but the reflection-part is hard to verify.</p>
 
-<pre><code class="nohighlight nocode">  if ( isAtLeastJava7() ) {
+<pre tabindex="0"><code class="nohighlight nocode">  if ( isAtLeastJava7() ) {
     Method toPathMethod = f.getClass().getMethod( &quot;toPath&quot; );
     Object toPathInstance = toPathMethod.invoke( f );
     Method isSymbolicLink = Class.forName( &quot;java.nio.file.Files&quot; ).getMethod( &quot;isSymbolicLink&quot; );
@@ -135,7 +135,7 @@
 <li>
 <p>Compile with the required JDK (i.e. Java 7), but use source/target of the lowest version (i.e. 1.6). The danger here is that you cannot ensure that all code is Java 6 compatible. Depending on the code structure <a href="https://www.mojohaus.org/animal-sniffer/" class="externalLink">Animal Sniffer</a> might help.</p>
 
-<pre><code class="nohighlight nocode">  if ( isAtLeastJava7() ) {
+<pre tabindex="0"><code class="nohighlight nocode">  if ( isAtLeastJava7() ) {
     return Files.isSymbolicLink( f.toPath() );
   }
   else {
@@ -146,7 +146,7 @@
 </ol></section><section><a id="The_.E2.80.9Cforward_compatibility.E2.80.9D_solution"></a>
 <h3>The &#x201c;forward compatibility&#x201d; solution</h3>
 
-<pre><code class="nohighlight nocode">A.class
+<pre tabindex="0"><code class="nohighlight nocode">A.class
 B.class
 C.class
 D.class
@@ -208,7 +208,7 @@ META-INF/MANIFEST.MF { Multi-Release: true }
 <p>This approach introduces a new packaging type and an extra plugin takes care of the multiple executions of the maven-compiler-plugin, but these are now handled by the <code>perReleaseConfiguration</code> of the <code>multi-release-jar-maven-plugin</code>. What's not covered is how to test every class.</p></section><section><a id="Patterns_Summary"></a>
 <h1>Patterns Summary</h1>
 <p>For every pattern there are integration tests created, based on the same set of sourcefiles. See <a href="https://github.com/apache/maven-compiler-plugin/tree/master/src/it/multirelease-patterns" class="externalLink">https://github.com/apache/maven-compiler-plugin/tree/master/src/it/multirelease-patterns</a></p>
-<table class="bodyTable">
+<div class="table-scroll" tabindex="0"><table class="bodyTable">
 <thead>
 <tr class="a">
 <th></th>
@@ -266,7 +266,7 @@ META-INF/MANIFEST.MF { Multi-Release: true }
 <td>No</td>
 <td>No</td>
 <td>No</td></tr></tbody>
-</table>
+</table></div>
 
 <p>(a) Project can only be executed with highest required JDK, hence you can't test the code for all JDKs</p>
 <p>(b) Additional POM adjustments: # of executions added to the default lifecycle. This reflects the complexity of the POM.</p>

@@ -46,9 +46,9 @@
     <a class="asf" href="https://www.apache.org/"><img class="asf-leaf" src="../../images/oakleaf.svg" width="14" height="22" alt=""><span>Apache</span></a>
     </div>
   </header>
-  <div class="specimen" role="note">
+  <aside class="specimen" aria-label="About this site">
     <p><strong>Specimen.</strong> A proposed redesign of maven.apache.org, built with <code>mvn site</code> and a skin of its own; not the official Apache Maven site. The official site is <a href="https://maven.apache.org/">maven.apache.org</a>. <a href="../../about-this-example.html">About this example</a></p>
-  </div>
+  </aside>
   <div class="frame has-group">
     <nav class="group-nav" aria-labelledby="group-nav-title">
       <p class="up"><a href="../../docs/index.html"><svg aria-hidden="true" viewBox="0 0 16 16" width="14" height="14"><path d="M10 3.5L5.5 8l4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" /></svg>All of Docs</a></p>
@@ -95,12 +95,12 @@
 <h2>1. Replace the placeholder test</h2>
 <p>The project came with <em>AppTest.java</em>, a test that checks nothing. Delete it:</p>
 
-<pre class="highlight"><code class="language-shell">rm src/test/java/com/mycompany/app/AppTest.java
+<pre tabindex="0" class="highlight"><code class="language-shell">rm src/test/java/com/mycompany/app/AppTest.java
 </code></pre>
 <p>Create a test for <code>Greeter</code> in its place:</p>
 <p><em>src/test/java/com/mycompany/app/GreeterTest.java</em></p>
 
-<pre class="highlight"><code class="language-java"><span class="k">package</span> com.mycompany.app;
+<pre tabindex="0" class="highlight"><code class="language-java"><span class="k">package</span> com.mycompany.app;
 
 <span class="k">import</span> <span class="k">static</span> org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -125,11 +125,11 @@
 <h2>2. Run the tests</h2>
 <p>Run:</p>
 
-<pre class="highlight"><code class="language-shell">mvn clean test
+<pre tabindex="0" class="highlight"><code class="language-shell">mvn clean test
 </code></pre>
 <p><code>clean</code> removes the results of earlier builds, including those of the deleted test. <code>test</code> compiles your code and your tests and runs the tests; it makes no JAR.</p>
 
-<pre><code class="nohighlight nocode">[INFO] --- surefire:3.3.0:test (default-test) @ my-app ---
+<pre tabindex="0"><code class="nohighlight nocode">[INFO] --- surefire:3.3.0:test (default-test) @ my-app ---
 ...
 [INFO] Running com.mycompany.app.GreeterTest
 [INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.036 s -- in com.mycompany.app.GreeterTest
@@ -144,10 +144,10 @@
 <h2>3. Make a test fail</h2>
 <p>In <em>GreeterTest.java</em>, change the expected greeting in <code>capitalizesTheName</code> to <code>"Hello, ada!"</code> and build the JAR:</p>
 
-<pre class="highlight"><code class="language-shell">mvn package
+<pre tabindex="0" class="highlight"><code class="language-shell">mvn package
 </code></pre>
 
-<pre><code class="nohighlight nocode">[INFO] Running com.mycompany.app.GreeterTest
+<pre tabindex="0"><code class="nohighlight nocode">[INFO] Running com.mycompany.app.GreeterTest
 [ERROR] Tests run: 2, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 0.037 s &lt;&lt;&lt; FAILURE! -- in com.mycompany.app.GreeterTest
 ...
 [ERROR] Failures:
@@ -167,10 +167,10 @@
 <h2>4. Read the test report</h2>
 <p>Surefire writes a report of every test class to <code>target/surefire-reports</code>, the directory the error message points at:</p>
 
-<pre class="highlight"><code class="language-shell">ls target/surefire-reports
+<pre tabindex="0" class="highlight"><code class="language-shell">ls target/surefire-reports
 </code></pre>
 
-<pre><code class="nohighlight nocode">com.mycompany.app.GreeterTest.txt
+<pre tabindex="0"><code class="nohighlight nocode">com.mycompany.app.GreeterTest.txt
 TEST-com.mycompany.app.GreeterTest.xml
 </code></pre>
 <p>The <code>.txt</code> file holds the results of the class with the failure and its stack trace, as the build printed them. The <code>.xml</code> file holds the same results in a form that tools such as a CI server read. When the build output has scrolled away, or a test failed on a build server, these files tell you which test failed and why.</p>
@@ -178,10 +178,10 @@ TEST-com.mycompany.app.GreeterTest.xml
 <h2>5. Build and verify the project</h2>
 <p>Run:</p>
 
-<pre class="highlight"><code class="language-shell">mvn clean verify
+<pre tabindex="0" class="highlight"><code class="language-shell">mvn clean verify
 </code></pre>
 
-<pre><code class="nohighlight nocode">[INFO] --- clean:3.4.0:clean (default-clean) @ my-app ---
+<pre tabindex="0"><code class="nohighlight nocode">[INFO] --- clean:3.4.0:clean (default-clean) @ my-app ---
 [INFO] --- resources:3.3.1:resources (default-resources) @ my-app ---
 [INFO] --- compiler:3.13.0:compile (default-compile) @ my-app ---
 [INFO] --- resources:3.3.1:testResources (default-testResources) @ my-app ---
@@ -196,11 +196,11 @@ TEST-com.mycompany.app.GreeterTest.xml
 <h2>6. Install the project</h2>
 <p>Run:</p>
 
-<pre class="highlight"><code class="language-shell">mvn clean install
+<pre tabindex="0" class="highlight"><code class="language-shell">mvn clean install
 </code></pre>
 <p><code>install</code> is the phase after <code>verify</code>. It copies the JAR and the POM into your local repository, the directory <code>.m2/repository</code> in your home directory where Maven also keeps everything it downloads:</p>
 
-<pre><code class="nohighlight nocode">[INFO] --- install:3.1.2:install (default-install) @ my-app ---
+<pre tabindex="0"><code class="nohighlight nocode">[INFO] --- install:3.1.2:install (default-install) @ my-app ---
 [INFO] Installing /home/you/projects/my-app/pom.xml to /home/you/.m2/repository/com/mycompany/app/my-app/1.0-SNAPSHOT/my-app-1.0-SNAPSHOT.pom
 [INFO] Installing /home/you/projects/my-app/target/my-app-1.0-SNAPSHOT.jar to /home/you/.m2/repository/com/mycompany/app/my-app/1.0-SNAPSHOT/my-app-1.0-SNAPSHOT.jar
 </code></pre>

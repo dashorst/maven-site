@@ -44,9 +44,9 @@
     <a class="asf" href="https://www.apache.org/"><img class="asf-leaf" src="../../images/oakleaf.svg" width="14" height="22" alt=""><span>Apache</span></a>
     </div>
   </header>
-  <div class="specimen" role="note">
+  <aside class="specimen" aria-label="About this site">
     <p><strong>Specimen.</strong> A proposed redesign of maven.apache.org, built with <code>mvn site</code> and a skin of its own; not the official Apache Maven site. The official site is <a href="https://maven.apache.org/">maven.apache.org</a>. <a href="../../about-this-example.html">About this example</a></p>
-  </div>
+  </aside>
   <div class="frame has-group">
     <nav class="group-nav" aria-labelledby="group-nav-title">
       <p class="up"><a href="../../docs/index.html"><svg aria-hidden="true" viewBox="0 0 16 16" width="14" height="14"><path d="M10 3.5L5.5 8l4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>All of Docs</a></p>
@@ -92,7 +92,7 @@
 <p>When projects of the same organization are topically related, we say they belong to the same &#x201c;project group&#x201d;. The <code>groupId</code> uniquely identifies a project group across all other groups. Each <code>groupId</code> should follow <a href="https://docs.oracle.com/javase/specs/jls/se21/html/jls-6.html#d5e8762" class="externalLink">Java's package name rules</a>. This means it starts with a reversed domain name you control.</p>
 <p>Examples</p>
 
-<pre><code class="nohighlight nocode">org.apache.maven
+<pre tabindex="0"><code class="nohighlight nocode">org.apache.maven
 org.apache.commons
 com.google.guava
 </code></pre>
@@ -100,7 +100,7 @@ com.google.guava
 <p>You can create as many subgroups as you want. A good way to determine the granularity of the <code>groupId</code> is to look at the project group's structure. If there are multiple projects of the same topic or type, e.g. plugins, those may be grouped in a subgroup. Each subgroup should append a new identifier to the parent's <code>groupId</code>.</p>
 <p>Example</p>
 
-<pre><code class="nohighlight nocode">// Parent project group
+<pre tabindex="0"><code class="nohighlight nocode">// Parent project group
 org.apache.maven
 
 // Subgroups
@@ -111,21 +111,21 @@ org.apache.maven.reporting
 <p>The <code>artifactId</code> is the name of the artifact. The identifiers should only consist of <em>lowercase</em> letters, digits, and hyphens.</p>
 <p>Examples</p>
 
-<pre><code class="nohighlight nocode">commons-math
+<pre tabindex="0"><code class="nohighlight nocode">commons-math
 maven-clean-plugin
 </code></pre></section><section><a id="Version_identifier"></a>
 <h2>Version identifier</h2>
 <p>We recommend that the <code>version</code> follow the rules of <a href="https://semver.org/spec/v1.0.0.html" class="externalLink">Semantic Versioning 1.0.0</a>. It should start with the major version, followed by the minor version and the patch version. All three are numeric, separated by a dot.</p>
 <p>Examples</p>
 
-<pre><code class="nohighlight nocode">1.0.0
+<pre tabindex="0"><code class="nohighlight nocode">1.0.0
 2.3.2
 3.5.42
 </code></pre>
 <p>You can add labels for pre-releases or build metadata after the patch version. Avoid using dates in those labels, because they are usually associated with unstable versions.</p>
 <p>Examples</p>
 
-<pre><code class="nohighlight nocode">// Pre-releases
+<pre tabindex="0"><code class="nohighlight nocode">// Pre-releases
 1.0.0-beta
 1.0.0-M1
 1.0.0-rc2

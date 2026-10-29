@@ -46,9 +46,9 @@
     <a class="asf" href="https://www.apache.org/"><img class="asf-leaf" src="../../images/oakleaf.svg" width="14" height="22" alt=""><span>Apache</span></a>
     </div>
   </header>
-  <div class="specimen" role="note">
+  <aside class="specimen" aria-label="About this site">
     <p><strong>Specimen.</strong> A proposed redesign of maven.apache.org, built with <code>mvn site</code> and a skin of its own; not the official Apache Maven site. The official site is <a href="https://maven.apache.org/">maven.apache.org</a>. <a href="../../about-this-example.html">About this example</a></p>
-  </div>
+  </aside>
   <div class="frame has-group">
     <nav class="group-nav" aria-labelledby="group-nav-title">
       <p class="up"><a href="../../docs/index.html"><svg aria-hidden="true" viewBox="0 0 16 16" width="14" height="14"><path d="M10 3.5L5.5 8l4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" /></svg>All of Docs</a></p>
@@ -93,7 +93,7 @@
 <p>In this tutorial you split <code>my-app</code> into two modules: <code>greeting</code>, a library with the <code>Greeter</code> class and its test, and <code>app</code>, the application that uses it and is packed into one JAR. The top directory gets a parent POM that holds what the modules share and builds them together.</p>
 <p>Start in the <code>my-app</code> directory as you left it at the end of <a href="test-and-build.html">Test and build your project</a>. At the end of this tutorial it looks like this:</p>
 
-<pre><code class="nohighlight nocode">my-app
+<pre tabindex="0"><code class="nohighlight nocode">my-app
 |-- .mvn
 |-- pom.xml
 |-- app
@@ -108,11 +108,11 @@
 <h2>1. Move the code into module directories</h2>
 <p>Remove the output of earlier builds first, while <em>pom.xml</em> still describes the old project:</p>
 
-<pre class="highlight"><code class="language-shell">mvn clean
+<pre tabindex="0" class="highlight"><code class="language-shell">mvn clean
 </code></pre>
 <p>Then make a directory for each module, move all code into <code>app</code>, and move <code>Greeter</code> and its test on to <code>greeting</code>:</p>
 
-<pre class="highlight"><code class="language-shell">mkdir -p app greeting/src/main/java/com/mycompany/app
+<pre tabindex="0" class="highlight"><code class="language-shell">mkdir -p app greeting/src/main/java/com/mycompany/app
 mv src app/
 mv app/src/test greeting/src/
 mv app/src/main/java/com/mycompany/app/Greeter.java greeting/src/main/java/com/mycompany/app/
@@ -122,7 +122,7 @@ mv app/src/main/java/com/mycompany/app/Greeter.java greeting/src/main/java/com/m
 <p>In <em>pom.xml</em> in the <code>my-app</code> directory, add <code>&lt;packaging&gt;pom&lt;/packaging&gt;</code> after the version and a <code>&lt;modules&gt;</code> list after <code>&lt;url&gt;</code>. Remove the Commons Lang dependency and the <code>&lt;plugins&gt;</code> element with the Shade plugin; they move to the modules. The file now reads:</p>
 <p><em>pom.xml</em></p>
 
-<pre class="highlight"><code class="language-xml">&lt;project ...&gt;
+<pre tabindex="0" class="highlight"><code class="language-xml">&lt;project ...&gt;
   <span class="nt">&lt;modelVersion</span><span class="nt">&gt;</span>4.0.0<span class="nt">&lt;/modelVersion</span><span class="nt">&gt;</span>
 
   <span class="nt">&lt;groupId</span><span class="nt">&gt;</span>com.mycompany.app<span class="nt">&lt;/groupId</span><span class="nt">&gt;</span>
@@ -169,7 +169,7 @@ mv app/src/main/java/com/mycompany/app/Greeter.java greeting/src/main/java/com/m
 <p>Create a POM for <code>greeting</code>. It names <code>my-app</code> as its parent and adds the dependency its code needs:</p>
 <p><em>greeting/pom.xml</em></p>
 
-<pre class="highlight"><code class="language-xml"><span class="cp">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="cp">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
 <span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span> <span class="na">xmlns:xsi</span>=<span class="s">"http://www.w3.org/2001/XMLSchema-instance"</span>
   <span class="na">xsi:schemaLocation</span>=<span class="s">"http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"</span><span class="nt">&gt;</span>
   <span class="nt">&lt;modelVersion</span><span class="nt">&gt;</span>4.0.0<span class="nt">&lt;/modelVersion</span><span class="nt">&gt;</span>
@@ -196,7 +196,7 @@ mv app/src/main/java/com/mycompany/app/Greeter.java greeting/src/main/java/com/m
 <p>Create a POM for <code>app</code>. It depends on <code>greeting</code> and gets the Shade plugin from <a href="first-plugin.html">Add and configure your first plugin</a>:</p>
 <p><em>app/pom.xml</em></p>
 
-<pre class="highlight"><code class="language-xml"><span class="cp">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="cp">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
 <span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span> <span class="na">xmlns:xsi</span>=<span class="s">"http://www.w3.org/2001/XMLSchema-instance"</span>
   <span class="na">xsi:schemaLocation</span>=<span class="s">"http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"</span><span class="nt">&gt;</span>
   <span class="nt">&lt;modelVersion</span><span class="nt">&gt;</span>4.0.0<span class="nt">&lt;/modelVersion</span><span class="nt">&gt;</span>
@@ -249,7 +249,7 @@ mv app/src/main/java/com/mycompany/app/Greeter.java greeting/src/main/java/com/m
 <p><strong>Maven 4:</strong> With model version 4.1.0, which only Maven 4 reads, the POMs can be shorter. The parent lists <code>&lt;subprojects&gt;</code> with one <code>&lt;subproject&gt;</code> per directory instead of <code>&lt;modules&gt;</code>, a module names its parent with an empty <code>&lt;parent/&gt;</code>, and <code>app</code> can leave out the <code>&lt;version&gt;</code> of <code>greeting</code>:</p>
 <p><em>app/pom.xml</em></p>
 
-<pre class="highlight"><code class="language-xml"><span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.1.0"</span> <span class="na">xmlns:xsi</span>=<span class="s">"http://www.w3.org/2001/XMLSchema-instance"</span>
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.1.0"</span> <span class="na">xmlns:xsi</span>=<span class="s">"http://www.w3.org/2001/XMLSchema-instance"</span>
   <span class="na">xsi:schemaLocation</span>=<span class="s">"http://maven.apache.org/POM/4.1.0 https://maven.apache.org/xsd/maven-4.1.0.xsd"</span><span class="nt">&gt;</span>
   <span class="nt">&lt;modelVersion</span><span class="nt">&gt;</span>4.1.0<span class="nt">&lt;/modelVersion</span><span class="nt">&gt;</span>
 
@@ -271,11 +271,11 @@ mv app/src/main/java/com/mycompany/app/Greeter.java greeting/src/main/java/com/m
 <h2>5. Build all modules</h2>
 <p>In the <code>my-app</code> directory, run:</p>
 
-<pre class="highlight"><code class="language-shell">mvn clean verify
+<pre tabindex="0" class="highlight"><code class="language-shell">mvn clean verify
 </code></pre>
 <p>Maven reads the parent POM, finds the modules, and puts all three projects in an order in which every project comes after the projects it needs. It prints that order first:</p>
 
-<pre><code class="nohighlight nocode">[INFO] Reactor Build Order:
+<pre tabindex="0"><code class="nohighlight nocode">[INFO] Reactor Build Order:
 [INFO]
 [INFO] my-app                                                             [pom]
 [INFO] greeting                                                           [jar]
@@ -283,7 +283,7 @@ mv app/src/main/java/com/mycompany/app/Greeter.java greeting/src/main/java/com/m
 </code></pre>
 <p>Then it builds them one after the other, in one run: it tests <code>greeting</code> and makes its JAR, and then compiles <code>app</code> against that JAR and packs both, with Commons Lang, into one. The summary at the end lists each project:</p>
 
-<pre><code class="nohighlight nocode">[INFO] Reactor Summary for my-app 1.0-SNAPSHOT:
+<pre tabindex="0"><code class="nohighlight nocode">[INFO] Reactor Summary for my-app 1.0-SNAPSHOT:
 [INFO]
 [INFO] my-app ............................................. SUCCESS [  0.510 s]
 [INFO] greeting ........................................... SUCCESS [  1.180 s]
@@ -293,28 +293,28 @@ mv app/src/main/java/com/mycompany/app/Greeter.java greeting/src/main/java/com/m
 </code></pre>
 <p>The part of Maven that builds several projects together is called the reactor. Each module has its own <code>target</code> directory. Run the application from the JAR of <code>app</code>:</p>
 
-<pre class="highlight"><code class="language-shell">java -jar app/target/app-1.0-SNAPSHOT.jar ada
+<pre tabindex="0" class="highlight"><code class="language-shell">java -jar app/target/app-1.0-SNAPSHOT.jar ada
 </code></pre>
 
-<pre><code class="nohighlight nocode">Hello, Ada!
+<pre tabindex="0"><code class="nohighlight nocode">Hello, Ada!
 </code></pre></section><section><a id="a6._Build_one_module_and_what_it_needs"></a>
 <h2>6. Build one module and what it needs</h2>
 <p>You can build part of the project from the top directory with <code>-pl</code>, short for <code>--projects</code>, followed by the module's directory. Start from nothing and try <code>app</code> alone:</p>
 
-<pre class="highlight"><code class="language-shell">mvn clean
+<pre tabindex="0" class="highlight"><code class="language-shell">mvn clean
 mvn -pl app verify
 </code></pre>
 
-<pre><code class="nohighlight nocode">[ERROR] Failed to execute goal on project app: Could not resolve dependencies for project com.mycompany.app:app:jar:1.0-SNAPSHOT
+<pre tabindex="0"><code class="nohighlight nocode">[ERROR] Failed to execute goal on project app: Could not resolve dependencies for project com.mycompany.app:app:jar:1.0-SNAPSHOT
 [ERROR] dependency: com.mycompany.app:greeting:jar:1.0-SNAPSHOT (compile)
 </code></pre>
 <p><code>greeting</code> is not part of this build, so Maven looks for it in the local repository, as for any other dependency, and you never installed it. The line after these two gives a reason that differs between Maven versions: Maven 3.10 and 4 say the path is <code>NOT allowed from central</code>, which only means that Maven Central has no such library.</p>
 <p>Add <code>-am</code>, short for <code>--also-make</code>, to build the module together with the modules it needs:</p>
 
-<pre class="highlight"><code class="language-shell">mvn -pl app -am verify
+<pre tabindex="0" class="highlight"><code class="language-shell">mvn -pl app -am verify
 </code></pre>
 
-<pre><code class="nohighlight nocode">[INFO] Reactor Summary for my-app 1.0-SNAPSHOT:
+<pre tabindex="0"><code class="nohighlight nocode">[INFO] Reactor Summary for my-app 1.0-SNAPSHOT:
 [INFO]
 [INFO] my-app ............................................. SUCCESS [  0.001 s]
 [INFO] greeting ........................................... SUCCESS [  1.695 s]

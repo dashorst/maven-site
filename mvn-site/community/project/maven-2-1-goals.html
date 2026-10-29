@@ -44,9 +44,9 @@
     <a class="asf" href="https://www.apache.org/"><img class="asf-leaf" src="../../images/oakleaf.svg" width="14" height="22" alt=""><span>Apache</span></a>
     </div>
   </header>
-  <div class="specimen" role="note">
+  <aside class="specimen" aria-label="About this site">
     <p><strong>Specimen.</strong> A proposed redesign of maven.apache.org, built with <code>mvn site</code> and a skin of its own; not the official Apache Maven site. The official site is <a href="https://maven.apache.org/">maven.apache.org</a>. <a href="../../about-this-example.html">About this example</a></p>
-  </div>
+  </aside>
   <div class="frame has-group">
     <nav class="group-nav" aria-labelledby="group-nav-title">
       <p class="up"><a href="../../community/index.html"><svg aria-hidden="true" viewBox="0 0 16 16" width="14" height="14"><path d="M10 3.5L5.5 8l4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>All of Community</a></p>
@@ -104,7 +104,7 @@
 <h3>Strategies for ensuring backward compatibility</h3>
 <p>Plugin integration testing</p>
 
-<pre><code class="nohighlight nocode">jason: so when you and benjamin went through the tests you have &quot;integration-tests&quot; as the standard hook in the plugin build to grab on to?
+<pre tabindex="0"><code class="nohighlight nocode">jason: so when you and benjamin went through the tests you have &quot;integration-tests&quot; as the standard hook in the plugin build to grab on to?
 [07:59am] jason: why is the activator a property negation? why don't you just run in hudson with -Pintegration-tests?
 [08:02am] jason: i want to document what you and benjamin have done as a strategy for ensuring backward compatibility
 [08:03am] ltheussl left the chat room. (Client closed connection)
@@ -188,7 +188,7 @@
 <p>As discussed in &#x201c;Substituting of Custom Components&#x201d;, we now have two ways to insert new components into the system.</p>
 <p>Using a directory and specifying it in the Classworlds configuration. Tycho simply has a special set of components that load first before the standard maven components and they override the standard Maven components. Here's the example based on what Tycho is currently doing which allows custom components to be used.</p>
 
-<pre><code class="nohighlight nocode">main is org.apache.maven.cli.MavenCli from plexus.core
+<pre tabindex="0"><code class="nohighlight nocode">main is org.apache.maven.cli.MavenCli from plexus.core
 
 set maven.home default ${user.home}/m2
 

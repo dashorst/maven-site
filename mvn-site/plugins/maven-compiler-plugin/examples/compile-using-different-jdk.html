@@ -44,9 +44,9 @@
     <a class="asf" href="https://www.apache.org/"><img class="asf-leaf" src="../images/oakleaf.svg" width="14" height="22" alt=""><span>Apache</span></a>
     </div>
   </header>
-  <div class="specimen" role="note">
+  <aside class="specimen" aria-label="About this site">
     <p><strong>Specimen.</strong> A proposed redesign of maven.apache.org, built with <code>mvn site</code> and a skin of its own; not the official Apache Maven site. The official site is <a href="https://maven.apache.org/">maven.apache.org</a>. <a href="../../../about-this-example.html">About this example</a></p>
-  </div>
+  </aside>
   <div class="frame has-group">
     <nav class="group-nav component-nav" aria-labelledby="group-nav-title">
       <p class="up"><a href="../../../docs/plugins/index.html"><svg aria-hidden="true" viewBox="0 0 16 16" width="14" height="14"><path d="M10 3.5L5.5 8l4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>All plugins</a></p>
@@ -118,7 +118,7 @@
 <p>Outside of a toolchain, it is still possible to tell the Compiler Plugin the specific JDK to use during compilation. Note that such configuration will be specific to this plugin, and will not affect others.</p>
 <p>The <code>compilerVersion</code> parameter can be used to specify the version of the compiler that the plugin will use. However, you also need to set <code>fork</code> to <code>true</code> for this to work. For example:</p>
 
-<pre><code class="language-unknown">&lt;project&gt;
+<pre tabindex="0"><code class="language-unknown">&lt;project&gt;
   [...]
   &lt;build&gt;
     [...]
@@ -142,11 +142,11 @@
 </code></pre>
 <p>To avoid hard-coding a filesystem path for the executable, you can use a property. For example:</p>
 
-<pre><code class="language-unknown">          &lt;executable&gt;${JAVA_1_4_HOME}/bin/javac&lt;/executable&gt;
+<pre tabindex="0"><code class="language-unknown">          &lt;executable&gt;${JAVA_1_4_HOME}/bin/javac&lt;/executable&gt;
 </code></pre>
 <p>Each developer then defines this property in <a href="http://maven.apache.org/ref/current/maven-settings/settings.html" class="externalLink">settings.xml</a>, or sets an environment variable, so that the build remains portable.</p>
 
-<pre><code class="language-unknown">&lt;settings&gt;
+<pre tabindex="0"><code class="language-unknown">&lt;settings&gt;
   [...]
   &lt;profiles&gt;
     [...]

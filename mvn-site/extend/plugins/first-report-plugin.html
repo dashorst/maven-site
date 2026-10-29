@@ -43,9 +43,9 @@
     <a class="asf" href="https://www.apache.org/"><img class="asf-leaf" src="../../images/oakleaf.svg" width="14" height="22" alt=""><span>Apache</span></a>
     </div>
   </header>
-  <div class="specimen" role="note">
+  <aside class="specimen" aria-label="About this site">
     <p><strong>Specimen.</strong> A proposed redesign of maven.apache.org, built with <code>mvn site</code> and a skin of its own; not the official Apache Maven site. The official site is <a href="https://maven.apache.org/">maven.apache.org</a>. <a href="../../about-this-example.html">About this example</a></p>
-  </div>
+  </aside>
   <div class="frame has-group">
     <nav class="group-nav" aria-labelledby="group-nav-title">
       <p class="up"><a href="../../extend/index.html"><svg aria-hidden="true" viewBox="0 0 16 16" width="14" height="14"><path d="M10 3.5L5.5 8l4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" /></svg>All of Extend</a></p>
@@ -96,7 +96,7 @@
 <li>
 <p>A regular Maven project usually invokes <em>reporting goals</em> of a plugin by declaring such plugin in the <a href="/plugins/maven-site-plugin/examples/configuring-reports.html"><code>&lt;reporting&gt;</code></a> section of its <code>pom.xml</code> as in the example below:</p>
 
-<pre><code class="language-unknown">&lt;project&gt;
+<pre tabindex="0"><code class="language-unknown">&lt;project&gt;
   ...
   &lt;reporting&gt;
     &lt;plugins&gt;
@@ -155,7 +155,7 @@
 <p>The below examples can be copied and pasted as a template.</p><section><a id="a..2Fpom.xml"></a>
 <h3>./pom.xml</h3>
 
-<pre class="highlight"><code class="language-unknown"><span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span> <span class="na">xmlns:xsi</span>=<span class="s">"http://www.w3.org/2001/XMLSchema-instance"</span>
+<pre tabindex="0" class="highlight"><code class="language-unknown"><span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span> <span class="na">xmlns:xsi</span>=<span class="s">"http://www.w3.org/2001/XMLSchema-instance"</span>
     <span class="na">xsi:schemaLocation</span>=<span class="s">"http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"</span><span class="nt">&gt;</span>
 
     <span class="nt">&lt;modelVersion</span><span class="nt">&gt;</span>4.0.0<span class="nt">&lt;/modelVersion</span><span class="nt">&gt;</span>
@@ -253,7 +253,7 @@
 </code></pre></section><section><a id="a..2Fsrc.2Fmain.2Fjava.2Fcom.2Fmycompany.2Fmaven.2FSimpleReport.java"></a>
 <h3>./src/main/java/com/mycompany/maven/SimpleReport.java</h3>
 
-<pre class="highlight"><code class="language-unknown"><span class="k">package</span> com.mycompany.maven;
+<pre tabindex="0" class="highlight"><code class="language-unknown"><span class="k">package</span> com.mycompany.maven;
 
 <span class="k">import</span> java.util.Locale;
 
@@ -358,7 +358,7 @@
 <h3>Building the Simple Plugin</h3>
 <p>Building the plugin is done by executing the below command in the root directory of the plugin project:</p>
 
-<pre><code class="nohighlight nocode">$ mvn install
+<pre tabindex="0"><code class="nohighlight nocode">$ mvn install
 </code></pre>
 <p>This command will:</p>
 <ul>
@@ -369,7 +369,7 @@
 </ul>
 <p>To make sure everything went well and is properly declared, you can now execute the below command in any other Maven project directory:</p>
 
-<pre><code class="nohighlight nocode">$ mvn com.mycompany.maven:simple-maven-plugin:1.0-SNAPSHOT:help
+<pre tabindex="0"><code class="nohighlight nocode">$ mvn com.mycompany.maven:simple-maven-plugin:1.0-SNAPSHOT:help
 
 [INFO] --- simple-maven-plugin:1.0-SNAPSHOT:help (default-cli) @ hardware-connectors ---
 [INFO] Simple Plugin 1.0-SNAPSHOT
@@ -395,7 +395,7 @@ simple:simple
 <h3>Invoking the Simple Plugin</h3>
 <p>To invoke the <em>report Mojo</em> of our plugin in another Maven project, we just need to declare the plugin in the <a href="/plugins/maven-site-plugin/examples/configuring-reports.html"><code>&lt;reporting&gt;</code></a> section of its <code>pom.xml</code> as in the example below:</p>
 
-<pre class="highlight"><code class="language-unknown"><span class="nt">&lt;project</span><span class="nt">&gt;</span>
+<pre tabindex="0" class="highlight"><code class="language-unknown"><span class="nt">&lt;project</span><span class="nt">&gt;</span>
   ...
   <span class="nt">&lt;reporting</span><span class="nt">&gt;</span>
     <span class="nt">&lt;plugins</span><span class="nt">&gt;</span>
@@ -415,7 +415,7 @@ simple:simple
 <p>In your <code>executeReport()</code> method, you will leverage the <a href="/doxia/doxia/doxia-sink-api/">Doxia Sink API</a> to add elements to the report document.</p>
 <p>You will use the <a href="/doxia/doxia/doxia-sink-api/apidocs/org/apache/maven/doxia/sink/Sink.html"><code>Sink</code></a> object associated to the report:</p>
 
-<pre><code class="language-unknown">Sink sink = getSink();
+<pre tabindex="0"><code class="language-unknown">Sink sink = getSink();
 </code></pre>
 <p>This object allows you to append new elements to the report document (initially empty). Unlike some DOM manipulation APIs, you cannot insert elements in already existing elements, or remove elements.</p>
 <p>The elements that you append to the document will look familiar if you have basic knowledge of HTML. Most of the elements have opening and closing tags, like <code>sink.body()</code> (opening) and <code>sink.body_()</code> (closing).</p>
@@ -440,7 +440,7 @@ simple:simple
 <h3>Creating more than one document</h3>
 <p>You may need to create not just one HTML file, but several of them (like Javadoc produces one HTML file for each Java class). To do so, you will need to get a new <em>Sink</em> for each HTML file you need to produce. This is achieved by using the <a href="/doxia/doxia/doxia-sink-api/apidocs/org/apache/maven/doxia/sink/SinkFactory.html"><code>SinkFactory</code></a> object that you can easily obtain with the <a href="/shared/maven-reporting-impl/apidocs/org/apache/maven/reporting/AbstractMavenReport.html#getSinkFactory.28.29"><code>getSinkFactory()</code></a> method of your <a href="/shared/maven-reporting-impl/apidocs/org/apache/maven/reporting/AbstractMavenReport.html"><code>AbstractMavenReport</code></a> instance, as in the example below.</p>
 
-<pre class="highlight"><code class="language-unknown"><span class="k">public</span> <span class="k">class</span> SimpleReport <span class="k">extends</span> AbstractMavenReport {
+<pre tabindex="0" class="highlight"><code class="language-unknown"><span class="k">public</span> <span class="k">class</span> SimpleReport <span class="k">extends</span> AbstractMavenReport {
 
   ...
 

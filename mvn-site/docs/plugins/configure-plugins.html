@@ -43,9 +43,9 @@
     <a class="asf" href="https://www.apache.org/"><img class="asf-leaf" src="../../images/oakleaf.svg" width="14" height="22" alt=""><span>Apache</span></a>
     </div>
   </header>
-  <div class="specimen" role="note">
+  <aside class="specimen" aria-label="About this site">
     <p><strong>Specimen.</strong> A proposed redesign of maven.apache.org, built with <code>mvn site</code> and a skin of its own; not the official Apache Maven site. The official site is <a href="https://maven.apache.org/">maven.apache.org</a>. <a href="../../about-this-example.html">About this example</a></p>
-  </div>
+  </aside>
   <div class="frame has-group">
     <nav class="group-nav" aria-labelledby="group-nav-title">
       <p class="up"><a href="../../docs/index.html"><svg aria-hidden="true" viewBox="0 0 16 16" width="14" height="14"><path d="M10 3.5L5.5 8l4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" /></svg>All of Docs</a></p>
@@ -122,7 +122,7 @@
 <h2>Generic Configuration</h2>
 <p>Maven plugins (build and reporting) are configured by specifying a <code>&lt;configuration&gt;</code> element where the child elements of the <code>&lt;configuration&gt;</code> element are mapped to fields, or setters, inside your Mojo. (Remember that a plug-in consists of one or more Mojos where a Mojo maps to a goal.) Say, for example, you have a Mojo that performs a query against a particular URL, with a specified timeout and list of options. The Mojo might look like the following:</p>
 
-<pre class="highlight"><code class="language-xml">@Mojo( name = "query" )
+<pre tabindex="0" class="highlight"><code class="language-xml">@Mojo( name = "query" )
 public class MyQueryMojo
     extends AbstractMojo
 {
@@ -144,7 +144,7 @@ public class MyQueryMojo
 </code></pre>
 <p>To configure the Mojo from your POM with the desired URL, timeout and options you might have something like the following:</p>
 
-<pre class="highlight"><code class="language-xml"><span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span><span class="nt">&gt;</span>
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span><span class="nt">&gt;</span>
   ...
   <span class="nt">&lt;build</span><span class="nt">&gt;</span>
     <span class="nt">&lt;plugins</span><span class="nt">&gt;</span>
@@ -169,13 +169,13 @@ public class MyQueryMojo
 <p>The elements in the configuration match the names of the fields in the Mojo. The mapping is straight forward. The <code>url</code> element maps to the <code>url</code> field, the <code>timeout</code> element maps to the <code>timeout</code> field, and the <code>options</code> element maps to the <code>options</code> field. The mapping mechanism can deal with arrays by inspecting the type of the field and determining if a suitable mapping is possible.</p>
 <p>For Mojos that are intended to be executed directly from the CLI, their parameters usually provide a means to be configured via system properties instead of a <code>&lt;configuration&gt;</code> section in the POM. The plugin documentation for those parameters will list an <em>expression</em> that denotes the system properties for the configuration. In the Mojo above, the parameter <code>url</code> is associated with the expression <code>${query.url}</code>, meaning its value can be specified by the system property <code>query.url</code> as shown below:</p>
 
-<pre><code class="nohighlight nocode">mvn myquery:query -Dquery.url=http://maven.apache.org
+<pre tabindex="0"><code class="nohighlight nocode">mvn myquery:query -Dquery.url=http://maven.apache.org
 </code></pre>
 <p>The name of the system property does not necessarily match the name of the mojo parameter. While this is a rather common practice, you will often notice plugins that employ some prefix for the system properties to avoid name clashes with other system properties. Though rarely, there are also plugin parameters that (e.g. for historical reasons) employ system properties which are completely unrelated to the parameter name. So be sure to have a close look at the plugin documentation.</p><section><a id="Help_Goal"></a>
 <h3>Help Goal</h3>
 <p>Most Maven plugins have a <code>help</code> goal that prints a description of the plugin and its parameters and types. For instance, to see help for the javadoc goal, type:</p>
 
-<pre><code class="nohighlight nocode">mvn javadoc:help -Ddetail -Dgoal=javadoc
+<pre tabindex="0"><code class="nohighlight nocode">mvn javadoc:help -Ddetail -Dgoal=javadoc
 </code></pre>
 <p>And you will see all parameters for the javadoc:javadoc goal, similar to this <a href="/plugins/maven-javadoc-plugin/javadoc-mojo.html">page</a>.</p></section><section><a id="Configuring_Parameters"></a>
 <h3>Configuring Parameters</h3>
@@ -183,7 +183,7 @@ public class MyQueryMojo
 <h4>Mapping Value Objects</h4>
 <p>Mapping value types, like Boolean or Integer, is very simple. The <code>&lt;configuration&gt;</code> element might look like the following:</p>
 
-<pre class="highlight"><code class="language-xml"><span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span><span class="nt">&gt;</span>
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span><span class="nt">&gt;</span>
 ...
 <span class="nt">&lt;configuration</span><span class="nt">&gt;</span>
   <span class="nt">&lt;myString</span><span class="nt">&gt;</span>a string<span class="nt">&lt;/myString</span><span class="nt">&gt;</span>
@@ -197,7 +197,7 @@ public class MyQueryMojo
 <span class="nt">&lt;/project</span><span class="nt">&gt;</span>
 </code></pre>
 <p>The detailed type coercion is explained in the table below. For conversion to primitive types their according <a href="https://docs.oracle.com/javase/tutorial/java/data/autoboxing.html" class="externalLink">wrapper classes are used and automatically unboxed</a>.</p>
-<table class="bodyTable">
+<div class="table-scroll" tabindex="0"><table class="bodyTable">
 <thead>
 <tr class="a">
 <th>Parameter Class</th>
@@ -253,12 +253,12 @@ public class MyQueryMojo
 <tr class="b">
 <td><code>java.net.URL</code></td>
 <td><a href="https://docs.oracle.com/javase/8/docs/api/java/net/URL.html#URL-java.lang.String-" class="externalLink"><code>new URL(String)</code></a></td></tr></tbody>
-</table>
+</table></div>
 </section><section><a id="Mapping_Complex_Objects"></a>
 <h4>Mapping Complex Objects</h4>
 <p>Mapping complex types is also fairly straight forward. Let's look at a simple example where we are trying to map a configuration for Person object. The <code>&lt;configuration/&gt;</code> element might look like the following:</p>
 
-<pre class="highlight"><code class="language-xml"><span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span><span class="nt">&gt;</span>
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span><span class="nt">&gt;</span>
 ...
 <span class="nt">&lt;configuration</span><span class="nt">&gt;</span>
   <span class="nt">&lt;person</span><span class="nt">&gt;</span>
@@ -277,7 +277,7 @@ public class MyQueryMojo
 <li>If you wish to have the object to be instantiated live in a different package or have a more complicated name, specify this using an <code>implementation</code> attribute like the following:</li>
 </ul>
 
-<pre class="highlight"><code class="language-xml"><span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span><span class="nt">&gt;</span>
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span><span class="nt">&gt;</span>
 ...
 <span class="nt">&lt;configuration</span><span class="nt">&gt;</span>
   <span class="nt">&lt;person</span> <span class="na">implementation</span>=<span class="s">"com.mycompany.mojo.query.SuperPerson"</span><span class="nt">&gt;</span>
@@ -293,7 +293,7 @@ public class MyQueryMojo
 <h5>Mapping Collections and Arrays</h5>
 <p>Mapping to collections works in much the same way as mapping to arrays. Each item is given in the XML as dedicated element. The element name does not matter in that case. So if you have a mojo like the following:</p>
 
-<pre class="highlight"><code class="language-xml">public class MyAnimalMojo
+<pre tabindex="0" class="highlight"><code class="language-xml">public class MyAnimalMojo
     extends AbstractMojo
 {
     @Parameter(property = "animals")
@@ -308,7 +308,7 @@ public class MyQueryMojo
 </code></pre>
 <p>where you have a field named <code>animals</code> then your configuration for the plug-in would look like the following:</p>
 
-<pre class="highlight"><code class="language-xml"><span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span><span class="nt">&gt;</span>
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span><span class="nt">&gt;</span>
   ...
   <span class="nt">&lt;build</span><span class="nt">&gt;</span>
     <span class="nt">&lt;plugins</span><span class="nt">&gt;</span>
@@ -338,7 +338,7 @@ public class MyQueryMojo
 <li>If the element has no children, assume its type is <code>String</code>. Otherwise, the configuration will fail.</li>
 </ol>
 <p>The following collection implementations are being used when there is no <code>implementation</code> hint attribute in the XML element representing the collection:</p>
-<table class="bodyTable">
+<div class="table-scroll" tabindex="0"><table class="bodyTable">
 <thead>
 <tr class="a">
 <th>Collection Class</th>
@@ -352,11 +352,11 @@ public class MyQueryMojo
 <tr class="b">
 <td><code>ArrayList</code></td>
 <td>for every other <code>Collection</code> type which is not a <code>Map</code></td></tr></tbody>
-</table>
+</table></div>
 
 <p>Since Maven 3.3.9 (<a href="https://issues.apache.org/jira/browse/MNG-5440" class="externalLink">MNG-5440</a>), you can list individual items alternatively as comma-separated list in the XML value of animals directly. This approach is also used if configuring collection/array parameters via command line The following example is equivalent to the example above:</p>
 
-<pre class="highlight"><code class="language-xml"><span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span><span class="nt">&gt;</span>
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span><span class="nt">&gt;</span>
   ...
   <span class="nt">&lt;build</span><span class="nt">&gt;</span>
     <span class="nt">&lt;plugins</span><span class="nt">&gt;</span>
@@ -376,13 +376,13 @@ public class MyQueryMojo
 <h5>Mapping Maps</h5>
 <p>In the same way, you could define maps like the following:</p>
 
-<pre class="highlight"><code class="language-xml">...
+<pre tabindex="0" class="highlight"><code class="language-xml">...
     @Parameter
     private Map&lt;String,String&gt; myMap;
 ...
 </code></pre>
 
-<pre class="highlight"><code class="language-xml"><span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span><span class="nt">&gt;</span>
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span><span class="nt">&gt;</span>
 ...
   <span class="nt">&lt;configuration</span><span class="nt">&gt;</span>
     <span class="nt">&lt;myMap</span><span class="nt">&gt;</span>
@@ -399,13 +399,13 @@ public class MyQueryMojo
 <h5>Mapping Properties</h5>
 <p>Properties should be defined like the following:</p>
 
-<pre class="highlight"><code class="language-xml">...
+<pre tabindex="0" class="highlight"><code class="language-xml">...
     @Parameter
     private Properties myProperties;
 ...
 </code></pre>
 
-<pre class="highlight"><code class="language-xml"><span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span><span class="nt">&gt;</span>
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span><span class="nt">&gt;</span>
 ...
   <span class="nt">&lt;configuration</span><span class="nt">&gt;</span>
     <span class="nt">&lt;myProperties</span><span class="nt">&gt;</span>
@@ -428,7 +428,7 @@ public class MyQueryMojo
 <h3>Using the <code>&lt;executions&gt;</code> Tag</h3>
 <p>You can also configure a mojo using the <code>&lt;executions&gt;</code> tag. This is most commonly used for mojos that are intended to participate in some phases of the <a href="../get-started/build-lifecycle.html">build lifecycle</a>. Using <code>MyQueryMojo</code> as an example, you may have something that will look like:</p>
 
-<pre class="highlight"><code class="language-xml"><span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span><span class="nt">&gt;</span>
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span><span class="nt">&gt;</span>
   ...
   <span class="nt">&lt;build</span><span class="nt">&gt;</span>
     <span class="nt">&lt;plugins</span><span class="nt">&gt;</span>
@@ -479,7 +479,7 @@ public class MyQueryMojo
 <p>The same applies to executions that are defined by profiles.</p>
 <p>How about if we have a multiple executions with different phases bound to it? How do you think will it behave? Let us use the example POM above again, but this time we shall bind <code>execution2</code> to a phase.</p>
 
-<pre class="highlight"><code class="language-xml"><span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span><span class="nt">&gt;</span>
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span><span class="nt">&gt;</span>
   ...
   <span class="nt">&lt;build</span><span class="nt">&gt;</span>
     <span class="nt">&lt;plugins</span><span class="nt">&gt;</span>
@@ -517,7 +517,7 @@ public class MyQueryMojo
 <p>If there are multiple executions bound to different phases, then the mojo is executed once for each phase indicated. Meaning, <code>execution1</code> will be executed applying the configuration setup during the test phase, while <code>execution2</code> will be executed applying the configuration setup during the install phase.</p>
 <p>It's possible to bind multiple executions to the same phase, for example if you want to do multiple things inside the same phase. Those are executed in the same order as they are declared in the POM. This also applies to inherited definitions. A parents declaration is execution before the child's declaration. Since Maven 4 it's possible to explicit define the order of multiple executions by using square brackets with an integer at the end of the phase name. A higher number means a later execution. Using the following definition would execute <code>execution2</code> before <code>execution1</code>, but both in the test phase.</p>
 
-<pre class="highlight"><code class="language-xml"><span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span><span class="nt">&gt;</span>
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span><span class="nt">&gt;</span>
   ...
   <span class="nt">&lt;build</span><span class="nt">&gt;</span>
     <span class="nt">&lt;plugins</span><span class="nt">&gt;</span>
@@ -543,7 +543,7 @@ public class MyQueryMojo
 </code></pre>
 <p>Now, let us have another mojo example which shows a default lifecycle phase binding.</p>
 
-<pre class="highlight"><code class="language-java"><span class="nd">@Mojo</span>( name = <span class="s">"query"</span>, defaultPhase = LifecyclePhase.PACKAGE )
+<pre tabindex="0" class="highlight"><code class="language-java"><span class="nd">@Mojo</span>( name = <span class="s">"query"</span>, defaultPhase = LifecyclePhase.PACKAGE )
 <span class="k">public</span> <span class="k">class</span> MyBoundQueryMojo
     <span class="k">extends</span> AbstractMojo
 {
@@ -565,7 +565,7 @@ public class MyQueryMojo
 </code></pre>
 <p>From the above mojo example, <code>MyBoundQueryMojo</code> is by default bound to the package phase (see the <code>@phase</code> notation). But if we want to execute this mojo during the install phase and not with package we can rebind this mojo into a new lifecycle phase using the <code>&lt;phase&gt;</code> tag under <code>&lt;execution&gt;</code>.</p>
 
-<pre class="highlight"><code class="language-xml"><span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span><span class="nt">&gt;</span>
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span><span class="nt">&gt;</span>
   ...
   <span class="nt">&lt;build</span><span class="nt">&gt;</span>
     <span class="nt">&lt;plugins</span><span class="nt">&gt;</span>
@@ -599,13 +599,13 @@ public class MyQueryMojo
 <p>Now, <code>MyBoundQueryMojo</code> default phase which is package has been overridden by install phase.</p>
 <p><strong>Note:</strong> Configurations inside the <code>&lt;executions&gt;</code> element used to differ from those that are outside <code>&lt;executions&gt;</code> in that they could not be used from a direct command line invocation because they were only applied when the lifecycle phase they were bound to was invoked. So you had to move a configuration section outside of the executions section to apply it globally to all invocations of the plugin. Since Maven 3.3.1 this is not the case anymore as you can specify on the command line the execution id for direct plugin goal invocation. Hence if you want to run the above plugin and it's specific <code>execution1</code>'s configuration from the command-line, you can execute:</p>
 
-<pre><code class="nohighlight nocode">mvn myquery:query@execution1
+<pre tabindex="0"><code class="nohighlight nocode">mvn myquery:query@execution1
 </code></pre></section><section><a id="Using_the_.3Cdependencies.3E_Tag"></a>
 <h3>Using the <code>&lt;dependencies&gt;</code> Tag</h3>
 <p>You could configure the dependencies of the Build plugins, commonly to use a more recent dependency version.</p>
 <p>For instance, the Maven Antrun Plugin version 1.2 uses Ant version 1.6.5, if you want to use the latest Ant version when running this plugin, you need to add <code>&lt;dependencies&gt;</code> element like the following:</p>
 
-<pre class="highlight"><code class="language-xml"><span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span><span class="nt">&gt;</span>
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span><span class="nt">&gt;</span>
   ...
   <span class="nt">&lt;build</span><span class="nt">&gt;</span>
     <span class="nt">&lt;plugins</span><span class="nt">&gt;</span>
@@ -635,7 +635,7 @@ public class MyQueryMojo
 <h3>Using the <code>&lt;inherited&gt;</code> Tag In Build Plugins</h3>
 <p>By default, plugin configuration should be propagated to child POMs, so to break the inheritance, you could use the <code>&lt;inherited&gt;</code> tag:</p>
 
-<pre class="highlight"><code class="language-xml"><span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span><span class="nt">&gt;</span>
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span><span class="nt">&gt;</span>
   ...
   <span class="nt">&lt;build</span><span class="nt">&gt;</span>
     <span class="nt">&lt;plugins</span><span class="nt">&gt;</span>
@@ -670,7 +670,7 @@ public class MyQueryMojo
 <h3>Using the <code>&lt;reportSets&gt;</code> Tag</h3>
 <p>You can configure a reporting plugin using the <code>&lt;reportSets&gt;</code> tag. This is most commonly used to generate reports selectively when running <code>mvn site</code>. The following will generate only the project team report.</p>
 
-<pre class="highlight"><code class="language-xml"><span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span><span class="nt">&gt;</span>
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span><span class="nt">&gt;</span>
   ...
   <span class="nt">&lt;reporting</span><span class="nt">&gt;</span>
     <span class="nt">&lt;plugins</span><span class="nt">&gt;</span>
@@ -697,7 +697,7 @@ public class MyQueryMojo
 <li>
 <p>To exclude all reports, you need to use:</p>
 
-<pre class="highlight"><code class="language-xml"><span class="nt">&lt;reportSets</span><span class="nt">&gt;</span>
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;reportSets</span><span class="nt">&gt;</span>
   <span class="nt">&lt;reportSet</span><span class="nt">&gt;</span>
     <span class="nt">&lt;reports</span><span class="nt">/&gt;</span>
   <span class="nt">&lt;/reportSet</span><span class="nt">&gt;</span>
@@ -709,7 +709,7 @@ public class MyQueryMojo
 <h3>Using the <code>&lt;inherited&gt;</code> Tag In Reporting Plugins</h3>
 <p>Similar to the build plugins, to break the inheritance, you can use the <code>&lt;inherited&gt;</code> tag:</p>
 
-<pre class="highlight"><code class="language-xml"><span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span><span class="nt">&gt;</span>
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span><span class="nt">&gt;</span>
   ...
   <span class="nt">&lt;reporting</span><span class="nt">&gt;</span>
     <span class="nt">&lt;plugins</span><span class="nt">&gt;</span>

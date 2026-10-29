@@ -43,9 +43,9 @@
     <a class="asf" href="https://www.apache.org/"><img class="asf-leaf" src="../../images/oakleaf.svg" width="14" height="22" alt=""><span>Apache</span></a>
     </div>
   </header>
-  <div class="specimen" role="note">
+  <aside class="specimen" aria-label="About this site">
     <p><strong>Specimen.</strong> A proposed redesign of maven.apache.org, built with <code>mvn site</code> and a skin of its own; not the official Apache Maven site. The official site is <a href="https://maven.apache.org/">maven.apache.org</a>. <a href="../../about-this-example.html">About this example</a></p>
-  </div>
+  </aside>
   <div class="frame has-group">
     <nav class="group-nav" aria-labelledby="group-nav-title">
       <p class="up"><a href="../../docs/index.html"><svg aria-hidden="true" viewBox="0 0 16 16" width="14" height="14"><path d="M10 3.5L5.5 8l4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" /></svg>All of Docs</a></p>
@@ -91,7 +91,7 @@
 <li>XSD</li>
 </ul>
 <p>A typical modello model looks like the following:</p>
-<pre><code>&lt;model xmlns="http://codehaus-plexus.github.io/MODELLO/2.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<pre tabindex="0"><code>&lt;model xmlns="http://codehaus-plexus.github.io/MODELLO/2.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://codehaus-plexus.github.io/MODELLO/2.0.0 https://codehaus-plexus.github.io/modello/xsd/modello-2.0.0.xsd"
        xml.namespace="http://maven.apache.org/plugins/maven-archetype-plugin/archetype-descriptor/${version}"
        xml.schemaLocation="https://maven.apache.org/xsd/archetype-descriptor-${version}.xsd"&gt;
@@ -329,7 +329,7 @@
 
 <p>To utilize Modello, you would configure the <code>modello-maven-plugin</code> something like the following where you want to generate the Java sources for the model, the xpp3 serialization code and the xpp3 deserialization code (see <a href="https://codehaus-plexus.github.io/modello/modello-plugins/modello-plugin-xpp3/" class="externalLink">modello-plugin-xpp3</a> for more details):</p>
 
-<pre class="highlight"><code class="language-xml"><span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span><span class="nt">&gt;</span>
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span><span class="nt">&gt;</span>
   ...
   <span class="nt">&lt;build</span><span class="nt">&gt;</span>
     <span class="nt">&lt;plugins</span><span class="nt">&gt;</span>

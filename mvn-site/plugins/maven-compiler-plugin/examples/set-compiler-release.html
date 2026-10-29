@@ -44,9 +44,9 @@
     <a class="asf" href="https://www.apache.org/"><img class="asf-leaf" src="../images/oakleaf.svg" width="14" height="22" alt=""><span>Apache</span></a>
     </div>
   </header>
-  <div class="specimen" role="note">
+  <aside class="specimen" aria-label="About this site">
     <p><strong>Specimen.</strong> A proposed redesign of maven.apache.org, built with <code>mvn site</code> and a skin of its own; not the official Apache Maven site. The official site is <a href="https://maven.apache.org/">maven.apache.org</a>. <a href="../../../about-this-example.html">About this example</a></p>
-  </div>
+  </aside>
   <div class="frame has-group">
     <nav class="group-nav component-nav" aria-labelledby="group-nav-title">
       <p class="up"><a href="../../../docs/plugins/index.html"><svg aria-hidden="true" viewBox="0 0 16 16" width="14" height="14"><path d="M10 3.5L5.5 8l4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>All plugins</a></p>
@@ -113,7 +113,7 @@
 <p>Starting with JDK 9, the <code>javac</code> executable can accept the <code>--release</code> option to specify against which Java SE release you want to build the project. For example, you have JDK 11 installed and used by Maven, but you want to build the project against Java 8. The <code>--release</code> option ensures that the code is compiled following the rules of the programming language of the specified release, and that generated classes target the release as well as the public API of that release. This means that, unlike the old <a href="../examples/set-compiler-source-and-target.html"><code>-source</code> and <code>-target</code> options</a>, the compiler will detect and generate an error when using APIs that don't exist in previous releases of Java SE.</p>
 <p>Since version 3.6 of the Compiler Plugin, this option can be provided either via a property:</p>
 
-<pre><code class="language-unknown">&lt;project&gt;
+<pre tabindex="0"><code class="language-unknown">&lt;project&gt;
   [...]
   &lt;properties&gt;
     &lt;maven.compiler.release&gt;8&lt;/maven.compiler.release&gt;
@@ -123,7 +123,7 @@
 </code></pre>
 <p>or by configuring the plugin directly:</p>
 
-<pre><code class="language-unknown">&lt;project&gt;
+<pre tabindex="0"><code class="language-unknown">&lt;project&gt;
   [...]
   &lt;build&gt;
     [...]
@@ -148,7 +148,7 @@
 <p>To enable a project that targets Java 8 to be built using JDK 8 and also JDK 9 or later requires the conditional usage of the <code>--release</code> option, when using a plugin version below <code>3.13.0</code> or compilerId different that <code>javac</code>.</p>
 <p>This may be done through the use of a profile:</p>
 
-<pre><code class="language-unknown">&lt;project&gt;
+<pre tabindex="0"><code class="language-unknown">&lt;project&gt;
   [...]
   &lt;profiles&gt;
     [...]
@@ -169,7 +169,7 @@
 <p>Since version <code>3.13.0</code> of the Compiler Plugin together with the default <code>javac</code> compilerId you don't need conditional parametrisation of <code>release</code>. The <code>release</code> parameter will only be effective for Java 9 or above, otherwise the <code>source</code> and <code>target</code> will be passed to the compiler.</p>
 <p>So you can simply configure as:</p>
 
-<pre><code class="language-unknown">&lt;project&gt;
+<pre tabindex="0"><code class="language-unknown">&lt;project&gt;
  [...]
  &lt;build&gt;
    [...]

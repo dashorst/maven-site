@@ -44,9 +44,9 @@
     <a class="asf" href="https://www.apache.org/"><img class="asf-leaf" src="../../images/oakleaf.svg" width="14" height="22" alt=""><span>Apache</span></a>
     </div>
   </header>
-  <div class="specimen" role="note">
+  <aside class="specimen" aria-label="About this site">
     <p><strong>Specimen.</strong> A proposed redesign of maven.apache.org, built with <code>mvn site</code> and a skin of its own; not the official Apache Maven site. The official site is <a href="https://maven.apache.org/">maven.apache.org</a>. <a href="../../about-this-example.html">About this example</a></p>
-  </div>
+  </aside>
   <div class="frame has-group">
     <nav class="group-nav" aria-labelledby="group-nav-title">
       <p class="up"><a href="../../extend/index.html"><svg aria-hidden="true" viewBox="0 0 16 16" width="14" height="14"><path d="M10 3.5L5.5 8l4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>All of Extend</a></p>
@@ -95,7 +95,7 @@
 </ul>
 <p>These metadata XML files share same XML schema (model), and the reason of that is simple: one XML file may carry multiple kinds of metadata (for different Artifacts)! Consider these two artifacts: <code>org.foo:bar:1.0</code> and <code>org.foo.bar:baz:1.0</code>. With default layout, the repository path <code>org/foo/bar</code> is once A level for first, and G level for second artifact. Note: this is extreme example, and such artifact naming should be avoided!</p><section><a id="The_G_Level_Metadata"></a>
 <h2>The G Level Metadata</h2>
-<table class="bodyTable">
+<div class="table-scroll" tabindex="0"><table class="bodyTable">
 <thead>
 <tr class="a">
 <th>What</th>
@@ -109,13 +109,13 @@
 <tr class="b">
 <td>Artifacts related to them</td>
 <td>Only <code>maven-plugin</code> packaged</td></tr></tbody>
-</table>
+</table></div>
 
 <p>The group level metadata (found in directory of groupId) serves purpose only in case of Maven Plugins (POM packaging: maven-plugin). This metadata contains mapping of <code>plugin prefix</code> to <code>artifactId</code>, and the XML bit considered for this kind of metadata is <code>metadata/plugins/plugin[]</code> path only.</p>
 <p>Example: <a href="https://repo.maven.apache.org/maven2/org/apache/maven/plugins/maven-metadata.xml" class="externalLink">https://repo.maven.apache.org/maven2/org/apache/maven/plugins/maven-metadata.xml</a></p>
 <p>When user uses some plugin prefix on CLI, Maven will go through registered <code>pluginGroups</code> groupIds, download their G level metadata, and look for prefix. If found, Maven has obtained G (from pluginGroups) and A (from metadata) coordinates of plugin, and will go for given version, or attempt to discover &#x201c;latest&#x201d; version.</p></section><section><a id="The_A_Level_Metadata"></a>
 <h2>The A Level Metadata</h2>
-<table class="bodyTable">
+<div class="table-scroll" tabindex="0"><table class="bodyTable">
 <thead>
 <tr class="a">
 <th>What</th>
@@ -129,7 +129,7 @@
 <tr class="b">
 <td>Artifacts related to them</td>
 <td>All</td></tr></tbody>
-</table>
+</table></div>
 
 <p>The artifactId level metadata (found in directory of artifactId) serves purpose of version discovery. This metadata contains list of versions of given GA coordinates. The XML bit considered for this kind of metadata are only:</p>
 <ul>
@@ -143,7 +143,7 @@
 </ul>
 <p>Example: <a href="https://repo.maven.apache.org/maven2/org/apache/maven/plugins/maven-jar-plugin/maven-metadata.xml" class="externalLink">https://repo.maven.apache.org/maven2/org/apache/maven/plugins/maven-jar-plugin/maven-metadata.xml</a></p></section><section><a id="The_V_Level_Metadata"></a>
 <h2>The V Level Metadata</h2>
-<table class="bodyTable">
+<div class="table-scroll" tabindex="0"><table class="bodyTable">
 <thead>
 <tr class="a">
 <th>What</th>
@@ -157,7 +157,7 @@
 <tr class="b">
 <td>Artifacts related to them</td>
 <td>Only Snapshots</td></tr></tbody>
-</table>
+</table></div>
 
 <p>Exists only in Snapshot Remote repositories. The version level metadata (found in directory of baseVersion) serves the purpose of snapshot timestamped version resolution. This metadata contains mapping of all artifacts in this baseVersion directory with corresponding timestamps. The XML bit considered for this kind of metadata are only:</p>
 <ul>

@@ -44,9 +44,9 @@
     <a class="asf" href="https://www.apache.org/"><img class="asf-leaf" src="../../images/oakleaf.svg" width="14" height="22" alt=""><span>Apache</span></a>
     </div>
   </header>
-  <div class="specimen" role="note">
+  <aside class="specimen" aria-label="About this site">
     <p><strong>Specimen.</strong> A proposed redesign of maven.apache.org, built with <code>mvn site</code> and a skin of its own; not the official Apache Maven site. The official site is <a href="https://maven.apache.org/">maven.apache.org</a>. <a href="../../about-this-example.html">About this example</a></p>
-  </div>
+  </aside>
   <div class="frame has-group">
     <nav class="group-nav" aria-labelledby="group-nav-title">
       <p class="up"><a href="../../extend/index.html"><svg aria-hidden="true" viewBox="0 0 16 16" width="14" height="14"><path d="M10 3.5L5.5 8l4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>All of Extend</a></p>
@@ -94,13 +94,13 @@
 <li>
 <p>download <a href="https://repo.maven.apache.org/maven2/org/apache/maven/indexer/indexer-cli/5.1.1/indexer-cli-5.1.1.jar" class="externalLink">Maven Indexer CLI</a> and <a href="/maven-indexer-archives/maven-indexer-LATEST/indexer-cli/">unpack</a> the index to raw Lucene index directory:</p>
 
-<pre><code class="nohighlight nocode">java -jar indexer-cli-5.1.1.jar --unpack nexus-maven-repository-index.gz --destination central-lucene-index --type full
+<pre tabindex="0"><code class="nohighlight nocode">java -jar indexer-cli-5.1.1.jar --unpack nexus-maven-repository-index.gz --destination central-lucene-index --type full
 
 </code></pre></li>
 <li>
 <p>download and extract <a href="https://github.com/DmitryKey/luke/releases/download/luke-4.10.4/luke-with-deps.tar.gz" class="externalLink">Luke binary tarball</a> and launch it on the Central index with Lucene format:</p>
 
-<pre><code class="nohighlight nocode">luke.sh -ro -index central-lucene-index
+<pre tabindex="0"><code class="nohighlight nocode">luke.sh -ro -index central-lucene-index
 
 </code></pre>
 <p>You need an old Luke version using an old Lucene version, since Maven Indexer 5.5.1 uses Lucene 3.6.2: for this tutorial, we chose Luke version 4.10.4, but you may choose another version.</p>

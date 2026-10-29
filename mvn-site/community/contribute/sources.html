@@ -44,9 +44,9 @@
     <a class="asf" href="https://www.apache.org/"><img class="asf-leaf" src="../../images/oakleaf.svg" width="14" height="22" alt=""><span>Apache</span></a>
     </div>
   </header>
-  <div class="specimen" role="note">
+  <aside class="specimen" aria-label="About this site">
     <p><strong>Specimen.</strong> A proposed redesign of maven.apache.org, built with <code>mvn site</code> and a skin of its own; not the official Apache Maven site. The official site is <a href="https://maven.apache.org/">maven.apache.org</a>. <a href="../../about-this-example.html">About this example</a></p>
-  </div>
+  </aside>
   <div class="frame has-group">
     <nav class="group-nav" aria-labelledby="group-nav-title">
       <p class="up"><a href="../../community/index.html"><svg aria-hidden="true" viewBox="0 0 16 16" width="14" height="14"><path d="M10 3.5L5.5 8l4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>All of Community</a></p>
@@ -86,7 +86,7 @@
 <h2>Full Maven Sources</h2>
 <p>As described in the next paragraphs, Maven full source code is dispatched in more than 100 Git repos: Maven core, but also plugins or components, skins, a few svn2git read-only mirrors&#x2026;</p>
 <p>To check out full Maven source code easily, we provide a simple way using additional <a href="https://android.googlesource.com/tools/repo" class="externalLink">Google repo</a> tool and an additional Git repository for tool's manifest:</p>
-<table class="bodyTable">
+<div class="table-scroll" tabindex="0"><table class="bodyTable">
 <thead>
 <tr class="a">
 <th>Content</th>
@@ -96,7 +96,7 @@
 <td>Apache Maven <a href="https://github.com/apache/maven-sources/blob/master/default.xml" class="externalLink">full source code</a></td>
 <td><a href="https://gitbox.apache.org/repos/asf/maven-sources.git" class="externalLink"><code>https://gitbox.apache.org/repos/asf/maven-sources.git</code></a></td>
 <td><a href="https://github.com/apache/maven-sources/" class="externalLink">GitHub</a></td></tr></tbody>
-</table>
+</table></div>
 
 <ol style="list-style-type: decimal;">
 
@@ -105,7 +105,7 @@
 <li>
 <p>Check out a new repo workspace and prepare master branch:</p>
 
-<pre><code class="nohighlight nocode">repo init -u https://github.com/apache/maven-sources.git
+<pre tabindex="0"><code class="nohighlight nocode">repo init -u https://github.com/apache/maven-sources.git
 repo sync
 repo start master --all
 </code></pre></li>
@@ -127,7 +127,7 @@ repo start master --all
 <p>Each component has its own Jira project or component for issue tracking: see the <a href="/community/talk/issues.html">Issue Management report</a> to get a summary.</p></section><section><a id="Maven_Site"></a>
 <h2>Maven Site</h2>
 <p>The sources for this site are available in a distinct Git repository.</p>
-<table class="bodyTable">
+<div class="table-scroll" tabindex="0"><table class="bodyTable">
 <thead>
 <tr class="a">
 <th>Content</th>
@@ -139,12 +139,12 @@ repo start master --all
 <td><a href="https://gitbox.apache.org/repos/asf/maven-site.git" class="externalLink"><code>https://gitbox.apache.org/repos/asf/maven-site.git</code></a></td>
 <td><a href="https://github.com/apache/maven-site/" class="externalLink">GitHub</a></td>
 <td><a href="https://github.com/apache/maven-site/issues/" class="externalLink">GitHub Issues</a></td></tr></tbody>
-</table>
+</table></div>
 
 <p><em>Note</em>: If you want to submit small site amendments, for example correct a spelling mistake, you don't have to install Git locally. You can simply follow &#x201c;Edit this page&#x201d; in the facts next to the page's text. This will open the page's source file on GitHub, where you can edit it and easily open a pull request containing your change.</p></section><section><a id="Maven_Core"></a>
 <h2>Maven Core</h2>
 <p>The Git repository for <a href="/ref/current/">Maven</a> contains a master branch which is the current development version. There is also a branch for maven-2.2.X or maven-3.0.x. In addition, the <a href="/core-its/">integration tests for the Maven core</a> have their own repository.</p>
-<table class="bodyTable">
+<div class="table-scroll" tabindex="0"><table class="bodyTable">
 <thead>
 <tr class="a">
 <th>Content</th>
@@ -186,13 +186,13 @@ repo start master --all
 <td><a href="https://gitbox.apache.org/repos/asf/maven-wrapper.git" class="externalLink"><code>https://gitbox.apache.org/repos/asf/maven-wrapper.git</code></a></td>
 <td><a href="https://github.com/apache/maven-wrapper/" class="externalLink">GitHub</a></td>
 <td><a href="https://github.com/apache/maven-wrapper/issues" class="externalLink">GitHub Issues</a></td></tr></tbody>
-</table>
+</table></div>
 </section><section><a id="Other_Components"></a>
 <h2>Other Components</h2>
 <p>The source repositories for the various plugins are in Git, listed in the documentation of the respective plugin, reachable via the <a href="/docs/plugins/available-plugins.html">plugin index</a>. There are also many shared components and subsystems with their own source repositories, mainly in Git, some in Subversion.</p><section><a id="Components_in_Git"></a>
 <h3>Components in Git</h3>
 <p>The components in Git are shown in the following table.</p>
-<table class="bodyTable">
+<div class="table-scroll" tabindex="0"><table class="bodyTable">
 <thead>
 <tr class="a">
 <th>Content</th>
@@ -269,10 +269,10 @@ repo start master --all
 <td><a href="https://gitbox.apache.org/repos/asf/maven-wagon.git" class="externalLink"><code>https://gitbox.apache.org/repos/asf/maven-wagon.git</code></a></td>
 <td><a href="https://github.com/apache/maven-wagon/" class="externalLink">GitHub</a></td>
 <td><a href="https://github.com/apache/maven-wagon/issues" class="externalLink">GitHub Issues</a></td></tr></tbody>
-</table>
+</table></div>
 <section><a id="Plugins"></a>
 <h4>Plugins</h4>
-<table class="bodyTable">
+<div class="table-scroll" tabindex="0"><table class="bodyTable">
 <thead>
 <tr class="a">
 <th>Content</th>
@@ -464,10 +464,10 @@ repo start master --all
 <td><a href="https://gitbox.apache.org/repos/asf/maven-war-plugin.git" class="externalLink"><code>https://gitbox.apache.org/repos/asf/maven-war-plugin.git</code></a></td>
 <td><a href="https://github.com/apache/maven-war-plugin/" class="externalLink">GitHub</a></td>
 <td><a href="https://github.com/apache/maven-war-plugin/issues" class="externalLink">GitHub Issues</a></td></tr></tbody>
-</table>
+</table></div>
 </section><section><a id="Parent_POMs"></a>
 <h4>Parent POMs</h4>
-<table class="bodyTable">
+<div class="table-scroll" tabindex="0"><table class="bodyTable">
 <thead>
 <tr class="a">
 <th>Content</th>
@@ -489,10 +489,10 @@ repo start master --all
 <td><a href="https://gitbox.apache.org/repos/asf/maven-apache-resources.git" class="externalLink"><code>https://gitbox.apache.org/repos/asf/maven-apache-resources.git</code></a></td>
 <td><a href="https://github.com/apache/maven-apache-resources/" class="externalLink">GitHub</a></td>
 <td><a href="https://github.com/apache/maven-apache-resources/issues" class="externalLink">GitHub Issues</a></td></tr></tbody>
-</table>
+</table></div>
 </section><section><a id="Shared_Components"></a>
 <h4>Shared Components</h4>
-<table class="bodyTable">
+<div class="table-scroll" tabindex="0"><table class="bodyTable">
 <thead>
 <tr class="a">
 <th>Content</th>
@@ -579,10 +579,10 @@ repo start master --all
 <td><a href="https://gitbox.apache.org/repos/asf/maven-shared-utils.git" class="externalLink"><code>https://gitbox.apache.org/repos/asf/maven-shared-utils.git</code></a></td>
 <td><a href="https://github.com/apache/maven-shared-utils/" class="externalLink">GitHub</a></td>
 <td><a href="https://github.com/apache/maven-shared-utils/issues" class="externalLink">GitHub Issues</a></td></tr></tbody>
-</table>
+</table></div>
 </section><section><a id="Skins"></a>
 <h4>Skins</h4>
-<table class="bodyTable">
+<div class="table-scroll" tabindex="0"><table class="bodyTable">
 <thead>
 <tr class="a">
 <th>Content</th>
@@ -594,10 +594,10 @@ repo start master --all
 <td><a href="https://gitbox.apache.org/repos/asf/maven-fluido-skin.git" class="externalLink"><code>https://gitbox.apache.org/repos/asf/maven-fluido-skin.git</code></a></td>
 <td><a href="https://github.com/apache/maven-fluido-skin/" class="externalLink">GitHub</a></td>
 <td><a href="https://github.com/apache/maven-fluido-skin/issues" class="externalLink">GitHub Issues</a></td></tr></tbody>
-</table>
+</table></div>
 </section><section><a id="Doxia"></a>
 <h4>Doxia</h4>
-<table class="bodyTable">
+<div class="table-scroll" tabindex="0"><table class="bodyTable">
 <thead>
 <tr class="a">
 <th>Content</th>
@@ -619,12 +619,12 @@ repo start master --all
 <td><a href="https://gitbox.apache.org/repos/asf/maven-doxia-converter.git" class="externalLink"><code>https://gitbox.apache.org/repos/asf/maven-doxia-converter.git</code></a></td>
 <td><a href="https://github.com/apache/maven-doxia-converter/" class="externalLink">GitHub</a></td>
 <td><a href="https://github.com/apache/maven-doxia-converter/issues" class="externalLink">GitHub Issues</a></td></tr></tbody>
-</table>
+</table></div>
 </section><section><a id="Components_in_Subversion"></a>
 <h4>Components in Subversion</h4>
 <p>Everything in Subversion can be checked-out from a single entry point, referencing each part through svn:externals <a href="https://svn.apache.org/repos/asf/maven/trunks/" class="externalLink"><code>https://svn.apache.org/repos/asf/maven/trunks/</code></a>.</p>
 <p>You can also check out every component separately. The components in Subversion are:</p>
-<table class="bodyTable">
+<div class="table-scroll" tabindex="0"><table class="bodyTable">
 <thead>
 <tr class="a">
 <th>Content</th>
@@ -638,7 +638,7 @@ repo start master --all
 <td>A variety of other subsystems (including obsolete trees replaced by git)</td>
 <td><a href="https://svn.apache.org/repos/asf/maven/" class="externalLink"><code>https://svn.apache.org/viewvc/maven/</code></a></td>
 <td></td></tr></tbody>
-</table></section></section></section></section>
+</table></div></section></section></section></section>
       </div>
       <nav class="more" aria-labelledby="more-title">
         <h2 id="more-title">More in <a href="../../community/contribute/index.html">Contribute to Maven</a></h2>

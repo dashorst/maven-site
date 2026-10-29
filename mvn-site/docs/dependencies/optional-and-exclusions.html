@@ -43,9 +43,9 @@
     <a class="asf" href="https://www.apache.org/"><img class="asf-leaf" src="../../images/oakleaf.svg" width="14" height="22" alt=""><span>Apache</span></a>
     </div>
   </header>
-  <div class="specimen" role="note">
+  <aside class="specimen" aria-label="About this site">
     <p><strong>Specimen.</strong> A proposed redesign of maven.apache.org, built with <code>mvn site</code> and a skin of its own; not the official Apache Maven site. The official site is <a href="https://maven.apache.org/">maven.apache.org</a>. <a href="../../about-this-example.html">About this example</a></p>
-  </div>
+  </aside>
   <div class="frame has-group">
     <nav class="group-nav" aria-labelledby="group-nav-title">
       <p class="up"><a href="../../docs/index.html"><svg aria-hidden="true" viewBox="0 0 16 16" width="14" height="14"><path d="M10 3.5L5.5 8l4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" /></svg>All of Docs</a></p>
@@ -93,7 +93,7 @@
 <h3>How do I use the optional tag?</h3>
 <p>A dependency is declared optional by setting the <code>&lt;optional&gt;</code> element to true in its dependency declaration:</p>
 
-<pre class="highlight"><code class="language-xml">
+<pre tabindex="0" class="highlight"><code class="language-xml">
 <span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span><span class="nt">&gt;</span>
   ...
   <span class="nt">&lt;dependencies</span><span class="nt">&gt;</span>
@@ -111,13 +111,13 @@
 </code></pre></section><section><a id="How_do_optional_dependencies_work.3F"></a>
 <h3>How do optional dependencies work?</h3>
 
-<pre><code class="nohighlight nocode">
+<pre tabindex="0"><code class="nohighlight nocode">
 Project-A -&gt; Project-B
 
 </code></pre>
 <p>The diagram above says that Project-A depends on Project-B. When A declares B as an optional dependency in its POM, this relationship remains unchanged. It's just like a normal build where Project-B will be added in Project-A's classpath.</p>
 
-<pre><code class="nohighlight nocode">
+<pre tabindex="0"><code class="nohighlight nocode">
 Project-X -&gt; Project-A
 
 </code></pre>
@@ -129,7 +129,7 @@ Project-X -&gt; Project-A
 <h3>How to use dependency exclusions</h3>
 <p>Add an <code>&lt;exclusions&gt;</code> element in the <code>&lt;dependency&gt;</code> element by which the problematic jar is included.</p>
 
-<pre class="highlight"><code class="language-xml">
+<pre tabindex="0" class="highlight"><code class="language-xml">
 <span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span><span class="nt">&gt;</span>
   ...
   <span class="nt">&lt;dependencies</span><span class="nt">&gt;</span>
@@ -151,7 +151,7 @@ Project-X -&gt; Project-A
 </code></pre></section><section><a id="How_dependency_exclusion_works_and_when_to_use_it_.28_as_a_last_resort.21_.29"></a>
 <h3>How dependency exclusion works and when to use it <strong>( as a last resort! )</strong></h3>
 
-<pre><code class="nohighlight nocode">
+<pre tabindex="0"><code class="nohighlight nocode">
 Project-A
    -&gt; Project-B
         -&gt; Project-D &lt;! -- This dependency should be excluded --&gt;
@@ -162,11 +162,11 @@ Project-A
 </code></pre>
 <p>The diagram shows that Project-A depends on both Project-B and C. Project-B depends on Project-D. Project-D depends on both Project-E and F. By default, Project A's classpath will include:</p>
 
-<pre><code class="nohighlight nocode">B, C, D, E, F
+<pre tabindex="0"><code class="nohighlight nocode">B, C, D, E, F
 </code></pre>
 <p>Suppose you don't want project D and its dependencies to be added to Project A's classpath because some of Project-D's dependencies are missing from the repository, and you don't need the functionality in Project-B that depends on Project-D anyway. Project-B's developers could have marked the dependency on Project-D <code>&lt;optional&gt;true&lt;/optional&gt;</code>:</p>
 
-<pre class="highlight"><code class="language-xml"><span class="nt">&lt;dependency</span><span class="nt">&gt;</span>
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;dependency</span><span class="nt">&gt;</span>
   <span class="nt">&lt;groupId</span><span class="nt">&gt;</span>sample.ProjectD<span class="nt">&lt;/groupId</span><span class="nt">&gt;</span>
   <span class="nt">&lt;artifactId</span><span class="nt">&gt;</span>ProjectD<span class="nt">&lt;/artifactId</span><span class="nt">&gt;</span>
   <span class="nt">&lt;version</span><span class="nt">&gt;</span>1.0-SNAPSHOT<span class="nt">&lt;/version</span><span class="nt">&gt;</span>
@@ -175,7 +175,7 @@ Project-A
 </code></pre>
 <p>Unfortunately, they didn't. As a last resort, you can exclude it on your own POM for Project-A like this:</p>
 
-<pre class="highlight"><code class="language-xml">
+<pre tabindex="0" class="highlight"><code class="language-xml">
 <span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span><span class="nt">&gt;</span>
   <span class="nt">&lt;modelVersion</span><span class="nt">&gt;</span>4.0.0<span class="nt">&lt;/modelVersion</span><span class="nt">&gt;</span>
   <span class="nt">&lt;groupId</span><span class="nt">&gt;</span>sample.ProjectA<span class="nt">&lt;/groupId</span><span class="nt">&gt;</span>
@@ -201,14 +201,14 @@ Project-A
 </code></pre>
 <p>If you deploy Project-A to a repository, and Project-X declares a normal dependency on Project-A, will Project-D still be excluded from the classpath?</p>
 
-<pre><code class="nohighlight nocode">
+<pre tabindex="0"><code class="nohighlight nocode">
 Project-X -&gt; Project-A
 
 </code></pre>
 <p>The answer is <strong>Yes</strong>. Project-A has declared that it doesn't need Project-D to run, so it won't be brought in as a transitive dependency of Project-A.</p>
 <p>Now, consider that Project-X depends on Project-Y, as in the diagram below:</p>
 
-<pre><code class="nohighlight nocode">
+<pre tabindex="0"><code class="nohighlight nocode">
 Project-X -&gt; Project-Y
                -&gt; Project-B
                     -&gt; Project-D
@@ -218,7 +218,7 @@ Project-X -&gt; Project-Y
 <p>Project-Y also has a dependency on Project-B, and it does need the features supported by Project-D. Therefore, it will NOT place an exclusion on Project-D in its dependency list. It may also supply an additional repository, from which it can resolve Project-E. In this case, it's important that Project-D <strong>is not</strong> excluded globally, since it is a legitimate dependency of Project-Y.</p>
 <p>As another scenario, suppose the dependency you don't want is Project-E instead of Project-D. How do you exclude it? See the diagram below:</p>
 
-<pre><code class="nohighlight nocode">
+<pre tabindex="0"><code class="nohighlight nocode">
 Project-A
    -&gt; Project-B
         -&gt; Project-D 
@@ -229,7 +229,7 @@ Project-A
 </code></pre>
 <p>Exclusions work on the entire dependency graph below the point where they are declared. If you want to exclude Project-E instead of Project-D, simply change the exclusion to point at Project-E, but you don't move the exclusion down to Project-D. You cannot change Project-D's POM. If you could, you would use optional dependencies instead of exclusions, or split Project-D up into multiple subprojects, each with nothing but normal dependencies.</p>
 
-<pre class="highlight"><code class="language-xml">
+<pre tabindex="0" class="highlight"><code class="language-xml">
 <span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span><span class="nt">&gt;</span>
   <span class="nt">&lt;modelVersion</span><span class="nt">&gt;</span>4.0.0<span class="nt">&lt;/modelVersion</span><span class="nt">&gt;</span>
   <span class="nt">&lt;groupId</span><span class="nt">&gt;</span>sample.ProjectA<span class="nt">&lt;/groupId</span><span class="nt">&gt;</span>

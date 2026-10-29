@@ -44,9 +44,9 @@
     <a class="asf" href="https://www.apache.org/"><img class="asf-leaf" src="../../images/oakleaf.svg" width="14" height="22" alt=""><span>Apache</span></a>
     </div>
   </header>
-  <div class="specimen" role="note">
+  <aside class="specimen" aria-label="About this site">
     <p><strong>Specimen.</strong> A proposed redesign of maven.apache.org, built with <code>mvn site</code> and a skin of its own; not the official Apache Maven site. The official site is <a href="https://maven.apache.org/">maven.apache.org</a>. <a href="../../about-this-example.html">About this example</a></p>
-  </div>
+  </aside>
   <div class="frame has-group">
     <nav class="group-nav" aria-labelledby="group-nav-title">
       <p class="up"><a href="../../docs/index.html"><svg aria-hidden="true" viewBox="0 0 16 16" width="14" height="14"><path d="M10 3.5L5.5 8l4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>All of Docs</a></p>
@@ -113,29 +113,29 @@
 <h2>Usage</h2>
 <p>The tool is called using the <code>mvnval</code> command. It accepts any number of POM files; when none are given it defaults to <code>./pom.xml</code>.</p>
 
-<pre><code class="nohighlight nocode">mvnval [options] [&lt;pom&gt; ...]
+<pre tabindex="0"><code class="nohighlight nocode">mvnval [options] [&lt;pom&gt; ...]
 </code></pre><section><a id="Basic_examples"></a>
 <h3>Basic examples</h3>
 <p>Validate the POM in the current directory:</p>
 
-<pre><code class="nohighlight nocode">mvnval
+<pre tabindex="0"><code class="nohighlight nocode">mvnval
 </code></pre>
 <p>Validate a specific POM file:</p>
 
-<pre><code class="nohighlight nocode">mvnval path/to/pom.xml
+<pre tabindex="0"><code class="nohighlight nocode">mvnval path/to/pom.xml
 </code></pre>
 <p>Validate several POMs at once:</p>
 
-<pre><code class="nohighlight nocode">mvnval parent/pom.xml child/pom.xml
+<pre tabindex="0"><code class="nohighlight nocode">mvnval parent/pom.xml child/pom.xml
 </code></pre>
 <p>Validate in raw mode (offline, no repository access):</p>
 
-<pre><code class="nohighlight nocode">mvnval --mode raw pom.xml
+<pre tabindex="0"><code class="nohighlight nocode">mvnval --mode raw pom.xml
 </code></pre></section><section><a id="Output_format"></a>
 <h3>Output format</h3>
 <p>By default <code>mvnval</code> writes human-readable text output with XML context lines around each problem:</p>
 
-<pre><code class="nohighlight nocode">pom.xml:
+<pre tabindex="0"><code class="nohighlight nocode">pom.xml:
   ERROR 'dependencies.dependency.(groupId:artifactId:type:classifier)' must be unique:
         junit:junit:jar -&gt; version 4.13.2 vs 4.12 @ line 12, column 5
      10 |     &lt;dependency&gt;
@@ -149,7 +149,7 @@
 <p>The <code>-C N</code> / <code>--context N</code> option controls how many source lines are shown before and after each problem location in text output (like <code>grep -C</code>). The default is <code>2</code>; pass <code>0</code> to suppress the context entirely. Has no effect in JSON mode, which always reports raw line and column numbers.</p></section><section><a id="Local_repository_options"></a>
 <h3>Local repository options</h3>
 <p>These options are only meaningful in effective mode, which resolves parents and BOM imports:</p>
-<table class="bodyTable">
+<div class="table-scroll" tabindex="0"><table class="bodyTable">
 <thead>
 <tr class="a">
 <th>Option</th>
@@ -160,13 +160,13 @@
 <tr class="a">
 <td><code>--temp-local-repository</code></td>
 <td>Resolve into a temporary directory that is deleted when the run ends, leaving the configured local repository untouched.</td></tr></tbody>
-</table>
+</table></div>
 
 <p><code>--temp-local-repository</code> combined with <code>-o</code> (offline) proves that the named POMs are fully self-contained: if any parent or BOM is missing the run fails immediately.</p>
 <p><code>maven.repo.local</code> works as it does for a regular Maven build when neither option is given.</p>
 <p>Note: <code>-s</code>, <code>-ps</code> and <code>-is</code> (settings file redirects) are not supported, as the settings file is read during bootstrap before those flags can take effect.</p></section></section><section><a id="Exit_codes"></a>
 <h2>Exit codes</h2>
-<table class="bodyTable">
+<div class="table-scroll" tabindex="0"><table class="bodyTable">
 <thead>
 <tr class="a">
 <th>Code</th>
@@ -186,7 +186,7 @@
 <tr class="b">
 <td><code>4</code></td>
 <td>Only warnings were reported (no errors)</td></tr></tbody>
-</table>
+</table></div>
 </section><section><a id="Integration"></a>
 <h2>Integration</h2>
 <p><code>mvnval</code> is also reachable as <code>mvn --val</code> and from inside <a href="mvnsh.html"><code>mvnsh</code></a>.</p></section><section><a id="See_also"></a>

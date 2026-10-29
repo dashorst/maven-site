@@ -44,9 +44,9 @@
     <a class="asf" href="https://www.apache.org/"><img class="asf-leaf" src="../../images/oakleaf.svg" width="14" height="22" alt=""><span>Apache</span></a>
     </div>
   </header>
-  <div class="specimen" role="note">
+  <aside class="specimen" aria-label="About this site">
     <p><strong>Specimen.</strong> A proposed redesign of maven.apache.org, built with <code>mvn site</code> and a skin of its own; not the official Apache Maven site. The official site is <a href="https://maven.apache.org/">maven.apache.org</a>. <a href="../../about-this-example.html">About this example</a></p>
-  </div>
+  </aside>
   <div class="frame">
     <main id="content">
       <div class="prose">
@@ -81,7 +81,7 @@
 <h3>Support version ranges in parent elements (<a href="https://issues.apache.org/jira/browse/MNG-2199" class="externalLink">MNG-2199</a>)</h3>
 <p>Parent elements can now use bounded ranges in the version specification. You can now consistently use ranges for all intra-project dependencies, of which parents are a special case but still considered a dependency of projects that inherit from them. The following is now permissible:</p>
 
-<pre><code class="nohighlight nocode">&lt;project&gt;
+<pre tabindex="0"><code class="nohighlight nocode">&lt;project&gt;
   &lt;modelVersion&gt;4.0.0&lt;/modelVersion&gt;
   &lt;parent&gt;
     &lt;groupId&gt;org.apache&lt;/groupId&gt;
@@ -103,7 +103,7 @@
 <h3>Update maven-plugin-plugin:descriptor default binding from generate-resources phase to process-classes (<a href="https://issues.apache.org/jira/browse/MNG-5346" class="externalLink">MNG-5346</a>)</h3>
 <p>Now when you use create plugins that strictly use annotation processing to generate the descriptor, you can avoid the confusing configuration previously required. This is what you typically needed to include in order to run the descriptor generator on compiled classes and avoid errors.</p>
 
-<pre><code class="nohighlight nocode">&lt;pluginManagement&gt;
+<pre tabindex="0"><code class="nohighlight nocode">&lt;pluginManagement&gt;
   &lt;plugins&gt;
     &lt;plugin&gt;
       &lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;

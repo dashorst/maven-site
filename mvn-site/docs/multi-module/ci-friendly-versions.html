@@ -43,9 +43,9 @@
     <a class="asf" href="https://www.apache.org/"><img class="asf-leaf" src="../../images/oakleaf.svg" width="14" height="22" alt=""><span>Apache</span></a>
     </div>
   </header>
-  <div class="specimen" role="note">
+  <aside class="specimen" aria-label="About this site">
     <p><strong>Specimen.</strong> A proposed redesign of maven.apache.org, built with <code>mvn site</code> and a skin of its own; not the official Apache Maven site. The official site is <a href="https://maven.apache.org/">maven.apache.org</a>. <a href="../../about-this-example.html">About this example</a></p>
-  </div>
+  </aside>
   <div class="frame has-group">
     <nav class="group-nav" aria-labelledby="group-nav-title">
       <p class="up"><a href="../../docs/index.html"><svg aria-hidden="true" viewBox="0 0 16 16" width="14" height="14"><path d="M10 3.5L5.5 8l4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" /></svg>All of Docs</a></p>
@@ -83,7 +83,7 @@
 <h2>Single Project Setup</h2>
 <p>This can look like this:</p>
 
-<pre class="highlight"><code class="language-xml"><span class="nt">&lt;project</span><span class="nt">&gt;</span>
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;project</span><span class="nt">&gt;</span>
   <span class="nt">&lt;modelVersion</span><span class="nt">&gt;</span>4.0.0<span class="nt">&lt;/modelVersion</span><span class="nt">&gt;</span>
   <span class="nt">&lt;parent</span><span class="nt">&gt;</span>
     <span class="nt">&lt;groupId</span><span class="nt">&gt;</span>org.apache<span class="nt">&lt;/groupId</span><span class="nt">&gt;</span>
@@ -100,15 +100,15 @@
 <p>This is of course a simple situation where we use only <code>${revision}</code> for brevity to show the general course.</p>
 <p>Based on the above pom you can build your project using:</p>
 
-<pre><code class="nohighlight nocode">mvn clean package
+<pre tabindex="0"><code class="nohighlight nocode">mvn clean package
 </code></pre>
 <p>But wait there is a problem? Which version will the artifacts have? So you need to define the version for your artifacts. The first possibility is to use the command line like this:</p>
 
-<pre><code class="nohighlight nocode">mvn -Drevision=1.0.0-SNAPSHOT clean package
+<pre tabindex="0"><code class="nohighlight nocode">mvn -Drevision=1.0.0-SNAPSHOT clean package
 </code></pre>
 <p>This will become cumbersome over the time. So the other solution for this is to simply use a property inside the pom file which looks like this:</p>
 
-<pre class="highlight"><code class="language-xml"><span class="nt">&lt;project</span><span class="nt">&gt;</span>
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;project</span><span class="nt">&gt;</span>
   <span class="nt">&lt;modelVersion</span><span class="nt">&gt;</span>4.0.0<span class="nt">&lt;/modelVersion</span><span class="nt">&gt;</span>
   <span class="nt">&lt;parent</span><span class="nt">&gt;</span>
     <span class="nt">&lt;groupId</span><span class="nt">&gt;</span>org.apache<span class="nt">&lt;/groupId</span><span class="nt">&gt;</span>
@@ -128,12 +128,12 @@
 <p>So now you can simply call Maven as usual like <code>mvn clean package</code>.</p>
 <p>You can of course change the version via the command line like this:</p>
 
-<pre><code class="nohighlight nocode">mvn -Drevision=2.0.0-SNAPSHOT clean package
+<pre tabindex="0"><code class="nohighlight nocode">mvn -Drevision=2.0.0-SNAPSHOT clean package
 </code></pre>
 <p>Of course, you can use the <code>.mvn/maven.config</code> file for this.</p>
 <p>A note about the used properties. You can only use those named <code>${revision}</code>, <code>${sha1}</code> and/or <code>${changelist}</code> and not other named properties like this:</p>
 
-<pre class="highlight"><code class="language-xml"><span class="nt">&lt;project</span><span class="nt">&gt;</span>
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;project</span><span class="nt">&gt;</span>
   <span class="nt">&lt;modelVersion</span><span class="nt">&gt;</span>4.0.0<span class="nt">&lt;/modelVersion</span><span class="nt">&gt;</span>
   <span class="nt">&lt;parent</span><span class="nt">&gt;</span>
     <span class="nt">&lt;groupId</span><span class="nt">&gt;</span>org.apache<span class="nt">&lt;/groupId</span><span class="nt">&gt;</span>
@@ -152,7 +152,7 @@
 </code></pre>
 <p>The above example will <em>not work as expected</em>. If you like to have more flexibility you can use a combination of the different properties like this:</p>
 
-<pre class="highlight"><code class="language-xml"><span class="nt">&lt;project</span><span class="nt">&gt;</span>
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;project</span><span class="nt">&gt;</span>
   <span class="nt">&lt;modelVersion</span><span class="nt">&gt;</span>4.0.0<span class="nt">&lt;/modelVersion</span><span class="nt">&gt;</span>
   <span class="nt">&lt;parent</span><span class="nt">&gt;</span>
     <span class="nt">&lt;groupId</span><span class="nt">&gt;</span>org.apache<span class="nt">&lt;/groupId</span><span class="nt">&gt;</span>
@@ -173,21 +173,21 @@
 </code></pre>
 <p>If you like to make a version <code>2.0.0-SNAPSHOT</code> this can simply being achieved by using this:</p>
 
-<pre><code class="nohighlight nocode">mvn -Drevision=2.0.0 clean package
+<pre tabindex="0"><code class="nohighlight nocode">mvn -Drevision=2.0.0 clean package
 </code></pre>
 <p>Another usage example can be to make a release which can be done via (version 1.3.1):</p>
 
-<pre><code class="nohighlight nocode">mvn -Dchangelist= clean package
+<pre tabindex="0"><code class="nohighlight nocode">mvn -Dchangelist= clean package
 </code></pre>
 <p>Or if you like to make a release with another version:</p>
 
-<pre><code class="nohighlight nocode">mvn -Drevision=2.7.8 -Dchangelist= clean package
+<pre tabindex="0"><code class="nohighlight nocode">mvn -Drevision=2.7.8 -Dchangelist= clean package
 </code></pre>
 <p>Please read until the end of this documentation!</p></section><section><a id="Multi-module_Setup_.28Maven_3.29"></a>
 <h2>Multi-module Setup (Maven 3)</h2>
 <p>So now let us take a look into a situation where we have a multi-module build. We have a parent pom and one or more children. The parent pom will look like this:</p>
 
-<pre class="highlight"><code class="language-xml"><span class="nt">&lt;project</span><span class="nt">&gt;</span>
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;project</span><span class="nt">&gt;</span>
   <span class="nt">&lt;modelVersion</span><span class="nt">&gt;</span>4.0.0<span class="nt">&lt;/modelVersion</span><span class="nt">&gt;</span>
   <span class="nt">&lt;parent</span><span class="nt">&gt;</span>
     <span class="nt">&lt;groupId</span><span class="nt">&gt;</span>org.apache<span class="nt">&lt;/groupId</span><span class="nt">&gt;</span>
@@ -210,7 +210,7 @@
 </code></pre>
 <p>The child will look like this:</p>
 
-<pre class="highlight"><code class="language-xml"><span class="nt">&lt;project</span><span class="nt">&gt;</span>
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;project</span><span class="nt">&gt;</span>
   <span class="nt">&lt;modelVersion</span><span class="nt">&gt;</span>4.0.0<span class="nt">&lt;/modelVersion</span><span class="nt">&gt;</span>
   <span class="nt">&lt;parent</span><span class="nt">&gt;</span>
     <span class="nt">&lt;groupId</span><span class="nt">&gt;</span>org.apache.maven.ci<span class="nt">&lt;/groupId</span><span class="nt">&gt;</span>
@@ -227,7 +227,7 @@
 <p>A multi-module build often defines dependencies between modules. The usual way of defining dependencies and their versions has been to use <code>${project.version}</code> and this has not been changed.</p>
 <p>So the correct way to do such things can be seen in the following example:</p>
 
-<pre class="highlight"><code class="language-xml"><span class="nt">&lt;project</span><span class="nt">&gt;</span>
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;project</span><span class="nt">&gt;</span>
   <span class="nt">&lt;modelVersion</span><span class="nt">&gt;</span>4.0.0<span class="nt">&lt;/modelVersion</span><span class="nt">&gt;</span>
   <span class="nt">&lt;parent</span><span class="nt">&gt;</span>
     <span class="nt">&lt;groupId</span><span class="nt">&gt;</span>org.apache<span class="nt">&lt;/groupId</span><span class="nt">&gt;</span>
@@ -250,7 +250,7 @@
 </code></pre>
 <p>The child will look like this:</p>
 
-<pre class="highlight"><code class="language-xml"><span class="nt">&lt;project</span><span class="nt">&gt;</span>
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;project</span><span class="nt">&gt;</span>
   <span class="nt">&lt;modelVersion</span><span class="nt">&gt;</span>4.0.0<span class="nt">&lt;/modelVersion</span><span class="nt">&gt;</span>
   <span class="nt">&lt;parent</span><span class="nt">&gt;</span>
     <span class="nt">&lt;groupId</span><span class="nt">&gt;</span>org.apache.maven.ci<span class="nt">&lt;/groupId</span><span class="nt">&gt;</span>
@@ -273,7 +273,7 @@
 <h2>Install / Deploy</h2>
 <p>To install or deploy artifacts by using the above setup, you <strong>have to use</strong> the <a href="https://www.mojohaus.org/flatten-maven-plugin/" class="externalLink">Flatten Maven Plugin</a>. Otherwise, you will install/deploy artifacts in the repository which will not be consumable by Maven. Such a setup will look like this:</p>
 
-<pre class="highlight"><code class="language-xml"><span class="nt">&lt;project</span><span class="nt">&gt;</span>
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;project</span><span class="nt">&gt;</span>
   <span class="nt">&lt;modelVersion</span><span class="nt">&gt;</span>4.0.0<span class="nt">&lt;/modelVersion</span><span class="nt">&gt;</span>
   <span class="nt">&lt;parent</span><span class="nt">&gt;</span>
     <span class="nt">&lt;groupId</span><span class="nt">&gt;</span>org.apache<span class="nt">&lt;/groupId</span><span class="nt">&gt;</span>

@@ -44,9 +44,9 @@
     <a class="asf" href="https://www.apache.org/"><img class="asf-leaf" src="../../images/oakleaf.svg" width="14" height="22" alt=""><span>Apache</span></a>
     </div>
   </header>
-  <div class="specimen" role="note">
+  <aside class="specimen" aria-label="About this site">
     <p><strong>Specimen.</strong> A proposed redesign of maven.apache.org, built with <code>mvn site</code> and a skin of its own; not the official Apache Maven site. The official site is <a href="https://maven.apache.org/">maven.apache.org</a>. <a href="../../about-this-example.html">About this example</a></p>
-  </div>
+  </aside>
   <div class="frame">
     <main id="content">
       <div class="prose">
@@ -149,7 +149,7 @@
 <p>If you have are using <code>&lt;prerequisites&gt;..&lt;/prerequisites&gt;</code> for a non maven-plugin project, you will get a WARNING which looks like this:</p></li>
 </ul>
 
-<pre><code class="nohighlight nocode">[INFO] Scanning for projects...
+<pre tabindex="0"><code class="nohighlight nocode">[INFO] Scanning for projects...
 [WARNING] The project org.apache.maven:maven:pom:3.5.0-SNAPSHOT uses prerequisites which is only intended for maven-plugin projects but not for non maven-plugin projects. For such purposes you should use the maven-enforcer-plugin. See https://maven.apache.org/enforcer/enforcer-rules/requireMavenVersion.html
 </code></pre>
 <p>This will tell you to use maven-enforcer-plugin to check the version of Maven you are expecting to build your project with, instead of using <code>prerequisites</code> <a href="https://issues.apache.org/jira/browse/MNG-5297" class="externalLink">MNG-5297</a>, <a href="https://issues.apache.org/jira/browse/MNG-6092" class="externalLink">MNG-6092</a>.</p>

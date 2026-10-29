@@ -44,9 +44,9 @@
     <a class="asf" href="https://www.apache.org/"><img class="asf-leaf" src="../../images/oakleaf.svg" width="14" height="22" alt=""><span>Apache</span></a>
     </div>
   </header>
-  <div class="specimen" role="note">
+  <aside class="specimen" aria-label="About this site">
     <p><strong>Specimen.</strong> A proposed redesign of maven.apache.org, built with <code>mvn site</code> and a skin of its own; not the official Apache Maven site. The official site is <a href="https://maven.apache.org/">maven.apache.org</a>. <a href="../../about-this-example.html">About this example</a></p>
-  </div>
+  </aside>
   <div class="frame has-group">
     <nav class="group-nav" aria-labelledby="group-nav-title">
       <p class="up"><a href="../../docs/index.html"><svg aria-hidden="true" viewBox="0 0 16 16" width="14" height="14"><path d="M10 3.5L5.5 8l4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>All of Docs</a></p>
@@ -90,19 +90,19 @@
 <p>There is a maven repository at <code>https://my.server.com/maven</code>. This server only serves clients authenticated through SSL protocol by a valid certificate signed by an approved certificate authority's certificate which we call the <code>CACert</code>. In the simplest case where the server is used internally by an identified community of users (e.g. corporate intranet), the server's certificate is the certificate authority as the server is used only internally.</p>
 <p>So we assume that we have access to the trusted certificate in X.509 format stored in a file named:</p>
 
-<pre><code class="nohighlight nocode">/somewhere/in/filesystem/CACert.cert
+<pre tabindex="0"><code class="nohighlight nocode">/somewhere/in/filesystem/CACert.cert
 </code></pre>
 <p>The client's certificate has been issued by some means not described in this document in PKCS#12 format, which is the format that is accepted by browsers (at least Firefox and Internet Explorer) for import into their keystore. This file is named:</p>
 
-<pre><code class="nohighlight nocode">/home/directory/mycertificate.p12
+<pre tabindex="0"><code class="nohighlight nocode">/home/directory/mycertificate.p12
 </code></pre>
 <p>and we assume it is accessible when launching maven. This file contains the client's private key which may be very sensitive information so it is secured by a password:</p>
 
-<pre><code class="nohighlight nocode">CeRtPwD
+<pre tabindex="0"><code class="nohighlight nocode">CeRtPwD
 </code></pre>
 <p>The remote repository is referenced either through the <code>pom.xml</code> file:</p>
 
-<pre><code class="nohighlight nocode">maven.repo.remote=https://my.server.com/maven,http://www.ibiblio.org/maven
+<pre tabindex="0"><code class="nohighlight nocode">maven.repo.remote=https://my.server.com/maven,http://www.ibiblio.org/maven
 </code></pre></section><section><a id="The_solution"></a>
 <h2>The solution</h2>
 <p>For maven to use this repository, we should take the following steps:</p>
@@ -114,7 +114,7 @@
 <h3>Storing certificate</h3>
 <p>The following command line imports the certififcate authority's certificate into a JKS formatted key store named <code>trust.jks</code>, the <em>trust store</em>.</p>
 
-<pre><code class="nohighlight nocode">$&gt; keytool -v -alias mavensrv -import \
+<pre tabindex="0"><code class="nohighlight nocode">$&gt; keytool -v -alias mavensrv -import \
      -file /somewhere/in/filesystem/CACert.cert\
       -keystore trust.jks
 Enter keystore password:
@@ -164,7 +164,7 @@ $&gt;
 <p>Not all the properties must be set depending of your precise settings: type of store may left to default, password may be empty.</p>
 <p>They may be set either on maven's command-line, in <code>.mavenrc</code> file or in <code>MAVEN_OPTS</code> environment variable. For the setting defined in this document, here is an example <code>.mavenrc</code> file:</p>
 
-<pre><code class="nohighlight nocode">MAVEN_OPTS=&quot;-Xmx512m -Djavax.net.ssl.trustStore=trust.jks \
+<pre tabindex="0"><code class="nohighlight nocode">MAVEN_OPTS=&quot;-Xmx512m -Djavax.net.ssl.trustStore=trust.jks \
                      -Djavax.net.ssl.trustStorePassword=  \
                      -Djavax.net.ssl.keyStore=/home/directory/mycertificate.p12 \
                      -Djavax.net.ssl.keyStoreType=pkcs12 \

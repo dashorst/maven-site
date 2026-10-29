@@ -43,9 +43,9 @@
     <a class="asf" href="https://www.apache.org/"><img class="asf-leaf" src="../../images/oakleaf.svg" width="14" height="22" alt=""><span>Apache</span></a>
     </div>
   </header>
-  <div class="specimen" role="note">
+  <aside class="specimen" aria-label="About this site">
     <p><strong>Specimen.</strong> A proposed redesign of maven.apache.org, built with <code>mvn site</code> and a skin of its own; not the official Apache Maven site. The official site is <a href="https://maven.apache.org/">maven.apache.org</a>. <a href="../../about-this-example.html">About this example</a></p>
-  </div>
+  </aside>
   <div class="frame has-group">
     <nav class="group-nav" aria-labelledby="group-nav-title">
       <p class="up"><a href="../../extend/index.html"><svg aria-hidden="true" viewBox="0 0 16 16" width="14" height="14"><path d="M10 3.5L5.5 8l4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" /></svg>All of Extend</a></p>
@@ -103,7 +103,7 @@
 <p>For example, if developer A has UTF-8 as default encoding while developer B uses ISO-8859-1, text files are very likely to get messed up during resource filtering or similar tasks.</p>
 <p>Therefore, developers should avoid any direct or indirect usage of the classes/methods that simply employ the platform's default encoding. For instance, <code>FileWriter</code> and <code>FileReader</code> should usually be avoided:</p>
 
-<pre class="highlight"><code class="language-java"><span class="cm">/*
+<pre tabindex="0" class="highlight"><code class="language-java"><span class="cm">/*
  * FIXME: This assumes the source file is using the platform's default encoding.
  */</span>
 Reader reader = <span class="k">new</span> FileReader( javaFile );
@@ -117,7 +117,7 @@ Reader reader = <span class="k">new</span> FileReader( javaFile );
 </ul>
 <p>Finally note that XML files require special handling because they are equipped with an encoding declaration in the XML prolog. Reading or writing XML files with an encoding that does not match their XML prolog's <code>encoding</code> attribute is a bad idea:</p>
 
-<pre class="highlight"><code class="language-java"><span class="cm">/*
+<pre tabindex="0" class="highlight"><code class="language-java"><span class="cm">/*
  * FIXME: This assumes the XML encoding declaration matches the platform's default encoding.
  */</span>
 Writer writer = <span class="k">new</span> FileWriter( xmlFile );
@@ -127,7 +127,7 @@ writer.write( xmlContent );
 <h2>Converting between URLs and Filesystem Paths</h2>
 <p>URLs and filesystem paths are really two different things and converting between them is not trivial. The main source of problems is that different encoding rules apply for the strings that make up a URL or filesystem path. For example, consider the following code snippet and its associated console output:</p>
 
-<pre class="highlight"><code class="language-java">File file = <span class="k">new</span> File( <span class="s">"foo bar+foo"</span> );
+<pre tabindex="0" class="highlight"><code class="language-java">File file = <span class="k">new</span> File( <span class="s">"foo bar+foo"</span> );
 URL url = file.toURI().toURL();
 
 System.out.println( file.toURL() );
@@ -145,7 +145,7 @@ System.out.println( URLDecoder.decode( url.getPath(), <span class="s">"UTF-8"</s
 <p>First of all, please note that <a href="http://java.sun.com/javase/6/docs/api/java/io/File.html#toURL()" class="externalLink"><code>File.toURL()</code></a> does not escape the space character (and others). This yields an invalid URL, as per <a href="http://www.faqs.org/rfcs/rfc2396.html" class="externalLink">RFC 2396, section 2.4.3 “Excluded US-ASCII Characters”</a>. The class <code>java.net.URL</code> will silently accept such invalid URLs, in contrast <code>java.net.URI</code> will not (see also <a href="http://java.sun.com/javase/6/docs/api/java/net/URL.html#toURI()" class="externalLink"><code>URL.toURI()</code></a>). For this reason, <code>File.toURL()</code> has been deprecated and should be replaced with <code>File.toURI().toURL()</code>.</p>
 <p>Next, <a href="http://java.sun.com/javase/6/docs/api/java/net/URL.html#getPath()" class="externalLink"><code>URL.getPath()</code></a> does in general not return a string that can be used as a filesystem path. It returns a substring of the URL and as such can contain escape sequences. The prominent example is the space character which will show up as “%20”. People sometimes hack around this by means of <code>replace("%20", " ")</code> but that does simply not cover all cases. It's worth to mention that on the other hand the related method <a href="http://java.sun.com/javase/6/docs/api/java/net/URI.html#getPath()" class="externalLink"><code>URI.getPath()</code></a> does decode escapes but still the result is not a filesystem path (compare the source for the constructor <code>File(URI)</code>). To summarize, the following idiom is to be avoided:</p>
 
-<pre class="highlight"><code class="language-java">URL url = <span class="k">new</span> URL( <span class="s">"file:/C:/Program%20Files/Java/bin/java.exe"</span> );
+<pre tabindex="0" class="highlight"><code class="language-java">URL url = <span class="k">new</span> URL( <span class="s">"file:/C:/Program%20Files/Java/bin/java.exe"</span> );
 
 <span class="cm">/*
  * FIXME: This does not decode percent encoded characters.
@@ -155,7 +155,7 @@ File path = <span class="k">new</span> File( url.getPath() );
 <p>To decode a URL, people sometimes also choose <a href="http://java.sun.com/javase/6/docs/api/java/net/URLDecoder.html" class="externalLink"><code>java.net.URLDecoder</code></a>. The pitfall with this class is that is actually performs HTML form decoding which is yet another encoding and not the same as the URL encoding (compare the last paragraph in class javadoc about <a href="http://java.sun.com/javase/6/docs/api/java/net/URL.html" class="externalLink"><code>java.net.URL</code></a>). For instance, a <code>URLDecoder</code> will erroneously convert the character “+” into a space as illustrated by the last sysout in the example above.</p>
 <p>In an ideal world, code targetting JRE 1.4+ could easily avoid these problems by using the constructor <a href="http://java.sun.com/javase/6/docs/api/java/io/File.html#File(java.net.URI)" class="externalLink"><code>File(URI)</code></a> as suggested by the following snippet:</p>
 
-<pre class="highlight"><code class="language-java">URL url = <span class="k">new</span> URL( <span class="s">"file:/C:/Documents and Settings/user/.m2/settings.xml"</span> );
+<pre tabindex="0" class="highlight"><code class="language-java">URL url = <span class="k">new</span> URL( <span class="s">"file:/C:/Documents and Settings/user/.m2/settings.xml"</span> );
 
 <span class="cm">/*
  * FIXME: This assumes the URL is fully compliant with RFC 3986.
@@ -168,7 +168,7 @@ File path = <span class="k">new</span> File( <span class="k">new</span> URI( url
 <p>When developers need to compare strings without regard to case or want to realize a map with case-insensitive string keys, they often employ <a href="http://java.sun.com/javase/6/docs/api/java/lang/String.html#toLowerCase()" class="externalLink"><code>String.toLowerCase()</code></a> or <a href="http://java.sun.com/javase/6/docs/api/java/lang/String.html#toUpperCase()" class="externalLink"><code>String.toUpperCase()</code></a> to create a “normalized” string before doing a simple <code>String.equals()</code>. Now, the <code>to*Case()</code> methods are overloaded: One takes no arguments and one takes a <code>Locale</code> object.</p>
 <p>The gotcha with the arg-less methods is that their output depends on the default locale of the JVM but the default locale is out of control of the developer. That means the string expected by the developer (who runs/tests his code in a JVM using locale <code>xy</code>) does not necessarily match the string seen by another user (that runs a JVM with locale <code>ab</code>). For example, the comparison shown in the next code snippet is likely to fail for systems with default locale Turkish because Turkish has unusual casing rules for the characters “i” and “I”:</p>
 
-<pre class="highlight"><code class="language-java"><span class="cm">/*
+<pre tabindex="0" class="highlight"><code class="language-java"><span class="cm">/*
  * FIXME: This assumes the casing rules of the current platform
  * match the rules for the English locale.
  */</span>
@@ -181,7 +181,7 @@ File path = <span class="k">new</span> File( <span class="k">new</span> URI( url
 <p>Especially reporting plugins employ resource bundles to support internationalization. One language (usually English) is provided as the fallback/default language in the base resource bundle. Due to the lookup strategy performed by <a href="http://java.sun.com/javase/6/docs/api/java/util/ResourceBundle.html#getBundle(java.lang.String,%20java.util.Locale,%20java.lang.ClassLoader)" class="externalLink"><code>ResourceBundle.getBundle()</code></a>, one must always provide a dedicated resource bundle for this default language, too. This bundle should be empty because it inherits the strings via the parent chain from the base bundle, but it must exist.</p>
 <p>The following example illustrates this requirement. Imagine the broken resource bundle family shown below which is intended to provide localization for English, German and French:</p>
 
-<pre><code class="nohighlight nocode">src/
+<pre tabindex="0"><code class="nohighlight nocode">src/
 +- main/
    +- resources/
       +- mymojo-report.properties
@@ -193,7 +193,7 @@ File path = <span class="k">new</span> File( <span class="k">new</span> URI( url
 <h2>Using System Properties</h2>
 <p>Maven's command line supports the definition of system properties via arguments of the form <code>-D key=value</code>. While these properties are called system properties, plugins should never use <a href="http://java.sun.com/javase/6/docs/api/java/lang/System.html#getProperty(java.lang.String)" class="externalLink"><code>System.getProperty()</code></a> and related methods to query these properties. For example, the following code snippet will not work reliably when Maven is embedded, say into an IDE or a CI server:</p>
 
-<pre class="highlight"><code class="language-java"><span class="k">public</span> <span class="k">class</span> MyMojo <span class="k">extends</span> AbstractMojo
+<pre tabindex="0" class="highlight"><code class="language-java"><span class="k">public</span> <span class="k">class</span> MyMojo <span class="k">extends</span> AbstractMojo
 {
     <span class="k">public</span> <span class="k">void</span> execute()
     {
@@ -208,7 +208,7 @@ File path = <span class="k">new</span> File( <span class="k">new</span> URI( url
 <h2>Using Shutdown Hooks</h2>
 <p>People occasionally employ shutdown hooks to perform cleanup tasks, e.g. to delete temporary files as shown in the example below:</p>
 
-<pre class="highlight"><code class="language-java"><span class="k">public</span> <span class="k">class</span> MyMojo <span class="k">extends</span> AbstractMojo
+<pre tabindex="0" class="highlight"><code class="language-java"><span class="k">public</span> <span class="k">class</span> MyMojo <span class="k">extends</span> AbstractMojo
 {
     <span class="k">public</span> <span class="k">void</span> execute()
     {
@@ -241,7 +241,7 @@ File path = <span class="k">new</span> File( <span class="k">new</span> URI( url
 </ol>
 <p>Hence this example code is prone to misbehave:</p>
 
-<pre class="highlight"><code class="language-java"><span class="k">public</span> <span class="k">class</span> MyMojo <span class="k">extends</span> AbstractMojo {
+<pre tabindex="0" class="highlight"><code class="language-java"><span class="k">public</span> <span class="k">class</span> MyMojo <span class="k">extends</span> AbstractMojo {
     <span class="nd">@Parameter</span>
     <span class="k">private</span> String outputDirectory;
 
@@ -256,7 +256,7 @@ File path = <span class="k">new</span> File( <span class="k">new</span> URI( url
 </code></pre>
 <p>In order to guarantee reliable builds, Maven and its plugins must manually resolve relative paths against the project's base directory. A simple idiom like the following will do just fine:</p>
 
-<pre class="highlight"><code class="language-java">File file = <span class="k">new</span> File(path);
+<pre tabindex="0" class="highlight"><code class="language-java">File file = <span class="k">new</span> File(path);
 <span class="k">if</span> (!file.isAbsolute()) {
     file = <span class="k">new</span> File(project.getBasedir(), file);
 }
@@ -266,7 +266,7 @@ File path = <span class="k">new</span> File( <span class="k">new</span> URI( url
 <p>Most reporting plugins inherit from <code>AbstractMavenReport</code>. In doing so, they need to implement the inherited but abstract method <code>getOutputDirectory()</code>. To implement this method, plugins usually declare a field named <code>outputDirectory</code> which they return in the method. Nothing wrong so far.</p>
 <p>Now, some plugins need to create additional files in the report output directory that accompany the report generated via the sink interface. While it is tempting to use either the method <code>getOutputDirectory()</code> or the field <code>outputDirectory</code> directly in order to setup a path for the output files, this leads most likely to a bug. More precisely, those plugins will not properly output files when run by the Maven Site Plugin as part of the site lifecycle. This is best noticed when the output directory for the site is configured directly in the Maven Site Plugin such that it deviates from the expression <code>${project.reporting.outputDirectory}</code> that the plugins use by default. Multi-language site generation is another scenario to exploit this bug which is illustrated below:</p>
 
-<pre class="highlight"><code class="language-java"><span class="k">public</span> <span class="k">class</span> MyReportMojo <span class="k">extends</span> AbstractMavenReport {
+<pre tabindex="0" class="highlight"><code class="language-java"><span class="k">public</span> <span class="k">class</span> MyReportMojo <span class="k">extends</span> AbstractMavenReport {
     <span class="nd">@Parameter</span>(defaultValue = <span class="s">"${project.reporting.outputDirectory}"</span>)
     <span class="k">private</span> File outputDirectory;
 

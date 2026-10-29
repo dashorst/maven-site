@@ -46,9 +46,9 @@
     <a class="asf" href="https://www.apache.org/"><img class="asf-leaf" src="../../images/oakleaf.svg" width="14" height="22" alt=""><span>Apache</span></a>
     </div>
   </header>
-  <div class="specimen" role="note">
+  <aside class="specimen" aria-label="About this site">
     <p><strong>Specimen.</strong> A proposed redesign of maven.apache.org, built with <code>mvn site</code> and a skin of its own; not the official Apache Maven site. The official site is <a href="https://maven.apache.org/">maven.apache.org</a>. <a href="../../about-this-example.html">About this example</a></p>
-  </div>
+  </aside>
   <div class="frame has-group">
     <nav class="group-nav" aria-labelledby="group-nav-title">
       <p class="up"><a href="../../docs/index.html"><svg aria-hidden="true" viewBox="0 0 16 16" width="14" height="14"><path d="M10 3.5L5.5 8l4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" /></svg>All of Docs</a></p>
@@ -99,7 +99,7 @@
 <p><em>pom.xml</em> has two <code>&lt;dependencies&gt;</code> elements: one inside <code>&lt;dependencyManagement&gt;</code> and one directly under <code>&lt;project&gt;</code>. Add the library to the one directly under <code>&lt;project&gt;</code>, above the JUnit dependencies:</p>
 <p><em>pom.xml</em></p>
 
-<pre class="highlight"><code class="language-xml">&lt;project ...&gt;
+<pre tabindex="0" class="highlight"><code class="language-xml">&lt;project ...&gt;
   ...
   <span class="nt">&lt;dependencies</span><span class="nt">&gt;</span>
     <span class="nt">&lt;dependency</span><span class="nt">&gt;</span>
@@ -122,7 +122,7 @@
 <p>Create a class that builds the greeting. <code>StringUtils.defaultIfBlank</code> from Commons Lang replaces an empty name with <code>world</code>, and <code>StringUtils.capitalize</code> writes the first letter as a capital:</p>
 <p><em>src/main/java/com/mycompany/app/Greeter.java</em></p>
 
-<pre class="highlight"><code class="language-java"><span class="k">package</span> com.mycompany.app;
+<pre tabindex="0" class="highlight"><code class="language-java"><span class="k">package</span> com.mycompany.app;
 
 <span class="k">import</span> org.apache.commons.lang3.StringUtils;
 
@@ -135,7 +135,7 @@
 <p>Replace <em>App.java</em> so that it greets the name you give on the command line:</p>
 <p><em>src/main/java/com/mycompany/app/App.java</em></p>
 
-<pre class="highlight"><code class="language-java"><span class="k">package</span> com.mycompany.app;
+<pre tabindex="0" class="highlight"><code class="language-java"><span class="k">package</span> com.mycompany.app;
 
 <span class="k">public</span> <span class="k">class</span> App {
     <span class="k">public</span> <span class="k">static</span> <span class="k">void</span> main(String[] args) {
@@ -147,11 +147,11 @@
 <h2>4. Build the project</h2>
 <p>In the <code>my-app</code> directory, run:</p>
 
-<pre class="highlight"><code class="language-shell">mvn package
+<pre tabindex="0" class="highlight"><code class="language-shell">mvn package
 </code></pre>
 <p>Maven downloads <code>commons-lang3-3.21.0.jar</code> from Maven Central into your local repository, puts it on the classpath and compiles both classes:</p>
 
-<pre><code class="nohighlight nocode">[INFO] --- compiler:3.13.0:compile (default-compile) @ my-app ---
+<pre tabindex="0"><code class="nohighlight nocode">[INFO] --- compiler:3.13.0:compile (default-compile) @ my-app ---
 [INFO] Compiling 2 source files with javac [debug release 17] to target/classes
 ...
 [INFO] BUILD SUCCESS
@@ -161,21 +161,21 @@
 <h2>5. Run the program with its dependency</h2>
 <p>Run the program from the JAR as before:</p>
 
-<pre class="highlight"><code class="language-shell">java -cp target/my-app-1.0-SNAPSHOT.jar com.mycompany.app.App
+<pre tabindex="0" class="highlight"><code class="language-shell">java -cp target/my-app-1.0-SNAPSHOT.jar com.mycompany.app.App
 </code></pre>
 
-<pre><code class="nohighlight nocode">Exception in thread "main" java.lang.NoClassDefFoundError: org/apache/commons/lang3/StringUtils
+<pre tabindex="0"><code class="nohighlight nocode">Exception in thread "main" java.lang.NoClassDefFoundError: org/apache/commons/lang3/StringUtils
 </code></pre>
 <p>The JAR contains only your own classes. Maven puts the libraries on the classpath when it compiles and tests, but when you start the program yourself, you have to give them to <code>java</code>. Copy them into <code>target/dependency</code>, leaving out the libraries that are only for tests:</p>
 
-<pre class="highlight"><code class="language-shell">mvn dependency:copy-dependencies -DincludeScope=runtime
+<pre tabindex="0" class="highlight"><code class="language-shell">mvn dependency:copy-dependencies -DincludeScope=runtime
 </code></pre>
 <p>Then run the program with the JAR and the libraries on the classpath, and a name:</p>
 
-<pre class="highlight"><code class="language-shell">java -cp <span class="s2">"target/my-app-1.0-SNAPSHOT.jar:target/dependency/*"</span> com.mycompany.app.App ada
+<pre tabindex="0" class="highlight"><code class="language-shell">java -cp <span class="s2">"target/my-app-1.0-SNAPSHOT.jar:target/dependency/*"</span> com.mycompany.app.App ada
 </code></pre>
 
-<pre><code class="nohighlight nocode">Hello, Ada!
+<pre tabindex="0"><code class="nohighlight nocode">Hello, Ada!
 </code></pre>
 <p>Without a name, it prints <code>Hello, World!</code>. On Windows, separate the two classpath entries with <code>;</code> instead of <code>:</code>.</p>
 <p>You now have a program that uses a library from Maven Central, and Maven downloads that library for anyone who builds the project.</p></section><section><a id="Continue_with_a_plugin"></a>

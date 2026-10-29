@@ -43,9 +43,9 @@
     <a class="asf" href="https://www.apache.org/"><img class="asf-leaf" src="../../images/oakleaf.svg" width="14" height="22" alt=""><span>Apache</span></a>
     </div>
   </header>
-  <div class="specimen" role="note">
+  <aside class="specimen" aria-label="About this site">
     <p><strong>Specimen.</strong> A proposed redesign of maven.apache.org, built with <code>mvn site</code> and a skin of its own; not the official Apache Maven site. The official site is <a href="https://maven.apache.org/">maven.apache.org</a>. <a href="../../about-this-example.html">About this example</a></p>
-  </div>
+  </aside>
   <div class="frame has-group">
     <nav class="group-nav" aria-labelledby="group-nav-title">
       <p class="up"><a href="../../docs/index.html"><svg aria-hidden="true" viewBox="0 0 16 16" width="14" height="14"><path d="M10 3.5L5.5 8l4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" /></svg>All of Docs</a></p>
@@ -152,7 +152,7 @@
 <h2>Quick Overview</h2>
 <p>This is a listing of the elements directly under the POM's project element. Notice that <code>&lt;modelVersion&gt;</code> contains 4.0.0. That is currently the only supported POM version, and is always required.</p>
 
-<pre class="highlight"><code class="language-xml"><span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span> <span class="na">xmlns:xsi</span>=<span class="s">"http://www.w3.org/2001/XMLSchema-instance"</span>
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span> <span class="na">xmlns:xsi</span>=<span class="s">"http://www.w3.org/2001/XMLSchema-instance"</span>
   <span class="na">xsi:schemaLocation</span>=<span class="s">"http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd"</span><span class="nt">&gt;</span>
   <span class="nt">&lt;modelVersion</span><span class="nt">&gt;</span>4.0.0<span class="nt">&lt;/modelVersion</span><span class="nt">&gt;</span>
 
@@ -196,7 +196,7 @@
 <h2>The Basics</h2>
 <p>The POM contains all necessary information about a project, as well as configurations of plugins to be used during the build process. It is the declarative manifestation of the “who”, “what”, and “where”, while the build lifecycle is the “when” and “how”. That is not to say that the POM cannot affect the flow of the lifecycle - it can. For example, by configuring the <code>maven-antrun-plugin</code>, one can embed Apache Ant tasks inside the POM. It is ultimately a declaration, however. Whereas a <code>build.xml</code> tells Ant precisely what to do when it is run (procedural), a POM states its configuration (declarative). If some external force causes the lifecycle to skip the Ant plugin execution, it does not stop the plugins that are executed from doing their magic. This is unlike a <code>build.xml</code> file, where tasks are almost always dependent on the lines executed before it.</p>
 
-<pre class="highlight"><code class="language-xml"><span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span><span class="nt">&gt;</span>
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span><span class="nt">&gt;</span>
   <span class="nt">&lt;modelVersion</span><span class="nt">&gt;</span>4.0.0<span class="nt">&lt;/modelVersion</span><span class="nt">&gt;</span>
 
   <span class="nt">&lt;groupId</span><span class="nt">&gt;</span>org.codehaus.mojo<span class="nt">&lt;/groupId</span><span class="nt">&gt;</span>
@@ -219,7 +219,7 @@
 <h3>Packaging</h3>
 <p>Now that we have our address structure of <code>groupId:artifactId:version</code>, there is one more standard label to give us a really complete <em>what</em>: that is the project's packaging. In our case, the example POM for <code>org.codehaus.mojo:my-project:1.0</code> defined above will be packaged as a <code>jar</code>. We could make it into a <code>war</code> by declaring a different packaging:</p>
 
-<pre class="highlight"><code class="language-xml"><span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span><span class="nt">&gt;</span>
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span><span class="nt">&gt;</span>
   ...
   <span class="nt">&lt;packaging</span><span class="nt">&gt;</span>war<span class="nt">&lt;/packaging</span><span class="nt">&gt;</span>
   ...
@@ -233,7 +233,7 @@
 <h4>Dependencies</h4>
 <p>The cornerstone of the POM is its <a href="/ref/current/maven-model/maven.html#class_dependency">dependency</a> list. Most projects depend on others to build and run correctly. Maven downloads the dependencies on compilation, as well as on other goals that require them. As an added bonus, Maven brings in the dependencies of those dependencies (transitive dependencies), allowing your list to focus solely on the dependencies your project requires.</p>
 
-<pre class="highlight"><code class="language-xml"><span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span><span class="nt">&gt;</span>
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span><span class="nt">&gt;</span>
   ...
   <span class="nt">&lt;dependencies</span><span class="nt">&gt;</span>
     <span class="nt">&lt;dependency</span><span class="nt">&gt;</span>
@@ -265,7 +265,7 @@
 <li>
 <p>Install the dependency locally using the <em>Maven Install Plugin</em>. The method is the simplest recommended method. For example:</p>
 
-<pre><code class="nohighlight nocode">mvn install:install-file -Dfile=non-maven-proj.jar -DgroupId=some.group -DartifactId=non-maven-proj -Dversion=1 -Dpackaging=jar
+<pre tabindex="0"><code class="nohighlight nocode">mvn install:install-file -Dfile=non-maven-proj.jar -DgroupId=some.group -DartifactId=non-maven-proj -Dversion=1 -Dpackaging=jar
 </code></pre>
 <p>Notice that an address is still required, only this time you use the command line and the Maven Install Plugin will create a POM for you with the given address.</p></li>
 <li>
@@ -401,11 +401,11 @@
 <h5>Version Order Testing</h5>
 <p>The maven distribution includes a tool to check version order. It was used to produce the examples in the previous paragraphs. Feel free to run it yourself when in doubt. You can run it like this:</p>
 
-<pre><code class="nohighlight nocode">java -jar ${MAVEN_HOME}/lib/maven-artifact-${currentStableVersion}.jar [versions...]
+<pre tabindex="0"><code class="nohighlight nocode">java -jar ${MAVEN_HOME}/lib/maven-artifact-${currentStableVersion}.jar [versions...]
 </code></pre>
 <p>example:</p>
 
-<pre><code class="nohighlight nocode">$ java -jar ./lib/maven-artifact-${currentStableVersion}.jar  1 2 1.1
+<pre tabindex="0"><code class="nohighlight nocode">$ java -jar ./lib/maven-artifact-${currentStableVersion}.jar  1 2 1.1
 Display parameters as parsed by Maven (in canonical form and as a list of tokens) and comparison result:
 1. 1 -&gt; 1; tokens: [1]
    1 &lt; 2
@@ -416,7 +416,7 @@ Display parameters as parsed by Maven (in canonical form and as a list of tokens
 <h5>Exclusions</h5>
 <p>It is sometimes useful to limit a dependency's transitive dependencies. A dependency may have incorrectly specified scopes, or dependencies that conflict with other dependencies in your project. Exclusions tell Maven not to include a specified artifact in the classpath even if it is a dependency of one or more of this project's dependencies (a transitive dependency). For example, <code>maven-embedder</code> depends on <code>maven-core</code>. Suppose you want to depend on maven-embedder but do not want to include maven-core or its dependencies in the classpath. Then add <code>maven-core</code> as an <code>exclusion</code> in the element that declares the dependency on maven-embedder:</p>
 
-<pre class="highlight"><code class="language-xml"><span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span><span class="nt">&gt;</span>
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span><span class="nt">&gt;</span>
   ...
   <span class="nt">&lt;dependencies</span><span class="nt">&gt;</span>
     <span class="nt">&lt;dependency</span><span class="nt">&gt;</span>
@@ -438,7 +438,7 @@ Display parameters as parsed by Maven (in canonical form and as a list of tokens
 <p>This only removes the path to maven-core from this one dependency. If maven-core appears as a direct or transitive dependency elsewhere in the POM, it can still be added to the classpath.</p>
 <p>Wildcard excludes make it easy to exclude all of a dependency's transitive dependencies. In the case below, you may be working with the maven-embedder and you want to manage the dependencies you use, so you exclude all the transitive dependencies:</p>
 
-<pre class="highlight"><code class="language-xml"><span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span><span class="nt">&gt;</span>
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span><span class="nt">&gt;</span>
   ...
   <span class="nt">&lt;dependencies</span><span class="nt">&gt;</span>
     <span class="nt">&lt;dependency</span><span class="nt">&gt;</span>
@@ -461,7 +461,7 @@ Display parameters as parsed by Maven (in canonical form and as a list of tokens
 <h4>Inheritance</h4>
 <p>One powerful addition that Maven brings to build management is the concept of project inheritance. Although in build systems such as Ant inheritance can be simulated, Maven makes project inheritance explicit in the project object model.</p>
 
-<pre class="highlight"><code class="language-xml"><span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span><span class="nt">&gt;</span>
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span><span class="nt">&gt;</span>
   <span class="nt">&lt;modelVersion</span><span class="nt">&gt;</span>4.0.0<span class="nt">&lt;/modelVersion</span><span class="nt">&gt;</span>
 
   <span class="nt">&lt;groupId</span><span class="nt">&gt;</span>org.codehaus.mojo<span class="nt">&lt;/groupId</span><span class="nt">&gt;</span>
@@ -509,7 +509,7 @@ Display parameters as parsed by Maven (in canonical form and as a list of tokens
 <li>profiles (but the effects of active profiles from parent POMs are)</li>
 </ul>
 
-<pre class="highlight"><code class="language-xml"><span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span><span class="nt">&gt;</span>
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span><span class="nt">&gt;</span>
   <span class="nt">&lt;modelVersion</span><span class="nt">&gt;</span>4.0.0<span class="nt">&lt;/modelVersion</span><span class="nt">&gt;</span>
 
   <span class="nt">&lt;parent</span><span class="nt">&gt;</span>
@@ -529,7 +529,7 @@ Display parameters as parsed by Maven (in canonical form and as a list of tokens
 <p>Similar to the inheritance of objects in object-oriented programming, POMs that extend a parent POM inherit certain values from that parent. Moreover, just as Java objects ultimately inherit from <code>java.lang.Object</code>, all Project Object Models inherit from a base Super POM. The snippet below is the Super POM for Maven 3.9.12.</p>
 <p>Note: The latest Super POM for Maven 3 is available <a href="https://maven.apache.org/ref/3-LATEST/maven-model-builder/super-pom.html" class="externalLink">here</a>.</p>
 
-<pre class="highlight"><code class="language-xml"><span class="nt">&lt;project</span><span class="nt">&gt;</span>
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;project</span><span class="nt">&gt;</span>
   
   <span class="nt">&lt;modelVersion</span><span class="nt">&gt;</span>4.0.0<span class="nt">&lt;/modelVersion</span><span class="nt">&gt;</span>
   
@@ -658,7 +658,7 @@ Display parameters as parsed by Maven (in canonical form and as a list of tokens
 <h4>Aggregation (or Multi-Module)</h4>
 <p>A project with modules is known as a multi-module, or aggregator project. Modules are projects that this POM lists, and are executed as a group. A <code>pom</code> packaged project may aggregate the build of a set of projects by listing them as modules, which are relative paths to the directories or the POM files of those projects.</p>
 
-<pre class="highlight"><code class="language-xml"><span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span><span class="nt">&gt;</span>
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span><span class="nt">&gt;</span>
   <span class="nt">&lt;modelVersion</span><span class="nt">&gt;</span>4.0.0<span class="nt">&lt;/modelVersion</span><span class="nt">&gt;</span>
 
   <span class="nt">&lt;groupId</span><span class="nt">&gt;</span>org.codehaus.mojo<span class="nt">&lt;/groupId</span><span class="nt">&gt;</span>
@@ -680,7 +680,7 @@ Display parameters as parsed by Maven (in canonical form and as a list of tokens
 <h2>Properties</h2>
 <p>Properties are the last required piece to understand POM basics. Maven properties are value placeholders, like properties in Ant. Their values are accessible anywhere within a POM by using the notation <code>$\{X\}</code>, where <code>X</code> is the property. Or they can be used by plugins as default values, for example:</p>
 
-<pre class="highlight"><code class="language-xml"><span class="nt">&lt;project</span><span class="nt">&gt;</span>
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;project</span><span class="nt">&gt;</span>
   ...
   <span class="nt">&lt;properties</span><span class="nt">&gt;</span>
     <span class="nt">&lt;maven.compiler.source</span><span class="nt">&gt;</span>1.7<span class="nt">&lt;/maven.compiler.source</span><span class="nt">&gt;</span>
@@ -714,7 +714,7 @@ Display parameters as parsed by Maven (in canonical form and as a list of tokens
 <p>According to the POM 4.0.0 XSD, the <code>build</code> element is conceptually divided into two parts: there is a <code>BaseBuild</code> type which contains the set of elements common to both <code>build</code> elements (the top-level build element under <code>project</code> and the build element under <code>profiles</code>, covered below); and there is the <code>Build</code> type, which contains the <code>BaseBuild</code> set as well as more elements for the top level definition. Let us begin with an analysis of the common elements between the two.</p>
 <p><em>Note</em>: These different <code>build</code> elements may be denoted “project build” and “profile build”.</p>
 
-<pre class="highlight"><code class="language-xml"><span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span><span class="nt">&gt;</span>
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span><span class="nt">&gt;</span>
   ...
   <span class="c">&lt;!-- "Project Build" contains more elements than just the BaseBuild set --&gt;</span>
   <span class="nt">&lt;build</span><span class="nt">&gt;</span>...<span class="nt">&lt;/build</span><span class="nt">&gt;</span>
@@ -730,7 +730,7 @@ Display parameters as parsed by Maven (in canonical form and as a list of tokens
 <h4>The BaseBuild Element Set</h4>
 <p><code>BaseBuild</code> is exactly as it sounds: the base set of elements between the two <code>build</code> elements in the POM.</p>
 
-<pre class="highlight"><code class="language-xml"><span class="nt">&lt;build</span><span class="nt">&gt;</span>
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;build</span><span class="nt">&gt;</span>
   <span class="nt">&lt;defaultGoal</span><span class="nt">&gt;</span>install<span class="nt">&lt;/defaultGoal</span><span class="nt">&gt;</span>
   <span class="nt">&lt;directory</span><span class="nt">&gt;</span>${project.basedir}/target<span class="nt">&lt;/directory</span><span class="nt">&gt;</span>
   <span class="nt">&lt;finalName</span><span class="nt">&gt;</span>${artifactId}-${version}<span class="nt">&lt;/finalName</span><span class="nt">&gt;</span>
@@ -756,7 +756,7 @@ Display parameters as parsed by Maven (in canonical form and as a list of tokens
 <p>Another feature of <code>build</code> elements is specifying where resources exist within your project. Resources are not (usually) code. They are not compiled, but are items meant to be bundled within your project or used for various other reasons, such as code generation.</p>
 <p>For example, a Plexus project requires a <code>configuration.xml</code> file (which specifies component configurations to the container) to live within the <code>META-INF/plexus</code> directory. Although we could just as easily place this file within <code>src/main/resources/META-INF/plexus</code>, we want instead to give Plexus its own directory of <code>src/main/plexus</code>. In order for the JAR plugin to bundle the resource correctly, you would specify resources similar to the following:</p>
 
-<pre class="highlight"><code class="language-xml"><span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span><span class="nt">&gt;</span>
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span><span class="nt">&gt;</span>
   <span class="nt">&lt;build</span><span class="nt">&gt;</span>
     ...
     <span class="nt">&lt;resources</span><span class="nt">&gt;</span>
@@ -798,7 +798,7 @@ Display parameters as parsed by Maven (in canonical form and as a list of tokens
 </ul></section><section><a id="Plugins"></a>
 <h5>Plugins</h5>
 
-<pre class="highlight"><code class="language-xml"><span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span><span class="nt">&gt;</span>
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span><span class="nt">&gt;</span>
   <span class="nt">&lt;build</span><span class="nt">&gt;</span>
     ...
     <span class="nt">&lt;plugins</span><span class="nt">&gt;</span>
@@ -833,7 +833,7 @@ Display parameters as parsed by Maven (in canonical form and as a list of tokens
 <h6>Default plugin configuration inheritance</h6>
 <p>To illustrate, consider the following fragment from a parent POM:</p>
 
-<pre class="highlight"><code class="language-xml"><span class="nt">&lt;plugin</span><span class="nt">&gt;</span>
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;plugin</span><span class="nt">&gt;</span>
   <span class="nt">&lt;groupId</span><span class="nt">&gt;</span>my.group<span class="nt">&lt;/groupId</span><span class="nt">&gt;</span>
   <span class="nt">&lt;artifactId</span><span class="nt">&gt;</span>my-plugin<span class="nt">&lt;/artifactId</span><span class="nt">&gt;</span>
   <span class="nt">&lt;configuration</span><span class="nt">&gt;</span>
@@ -849,7 +849,7 @@ Display parameters as parsed by Maven (in canonical form and as a list of tokens
 </code></pre>
 <p>And consider the following plugin configuration from a project that uses that parent as its parent:</p>
 
-<pre class="highlight"><code class="language-xml"><span class="nt">&lt;plugin</span><span class="nt">&gt;</span>
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;plugin</span><span class="nt">&gt;</span>
   <span class="nt">&lt;groupId</span><span class="nt">&gt;</span>my.group<span class="nt">&lt;/groupId</span><span class="nt">&gt;</span>
   <span class="nt">&lt;artifactId</span><span class="nt">&gt;</span>my-plugin<span class="nt">&lt;/artifactId</span><span class="nt">&gt;</span>
   <span class="nt">&lt;configuration</span><span class="nt">&gt;</span>
@@ -865,7 +865,7 @@ Display parameters as parsed by Maven (in canonical form and as a list of tokens
 <p>The default behavior is to merge the content of the <code>&lt;configuration&gt;</code> element according to element name. If the child POM has a particular element, that value becomes the effective value. If the child POM does not have an element, but the parent does, the parent value becomes the effective value. Note that this is purely an operation on XML; no code or configuration of the plugin itself is involved. Only the elements, not their values, are involved.</p>
 <p>Applying those rules to the example, Maven comes up with:</p>
 
-<pre class="highlight"><code class="language-xml"><span class="nt">&lt;plugin</span><span class="nt">&gt;</span>
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;plugin</span><span class="nt">&gt;</span>
   <span class="nt">&lt;groupId</span><span class="nt">&gt;</span>my.group<span class="nt">&lt;/groupId</span><span class="nt">&gt;</span>
   <span class="nt">&lt;artifactId</span><span class="nt">&gt;</span>my-plugin<span class="nt">&lt;/artifactId</span><span class="nt">&gt;</span>
   <span class="nt">&lt;configuration</span><span class="nt">&gt;</span>
@@ -883,7 +883,7 @@ Display parameters as parsed by Maven (in canonical form and as a list of tokens
 <p>You can control how child POMs inherit configuration from parent POMs by adding attributes to the children of the <code>&lt;configuration&gt;</code> element. The attributes are <code>combine.children</code> and <code>combine.self</code>. Use these attributes in a child POM to control how Maven combines plugin configuration from the parent with the explicit configuration in the child.</p>
 <p>Here is the child configuration with illustrations of the two attributes:</p>
 
-<pre class="highlight"><code class="language-xml"><span class="nt">&lt;configuration</span><span class="nt">&gt;</span>
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;configuration</span><span class="nt">&gt;</span>
   <span class="nt">&lt;items</span> <span class="na">combine.children</span>=<span class="s">"append"</span><span class="nt">&gt;</span>
     <span class="c">&lt;!-- combine.children="merge" is the default --&gt;</span>
     <span class="nt">&lt;item</span><span class="nt">&gt;</span>child-1<span class="nt">&lt;/item</span><span class="nt">&gt;</span>
@@ -896,7 +896,7 @@ Display parameters as parsed by Maven (in canonical form and as a list of tokens
 </code></pre>
 <p>Now, the effective result is the following:</p>
 
-<pre class="highlight"><code class="language-xml"><span class="nt">&lt;configuration</span><span class="nt">&gt;</span>
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;configuration</span><span class="nt">&gt;</span>
   <span class="nt">&lt;items</span> <span class="na">combine.children</span>=<span class="s">"append"</span><span class="nt">&gt;</span>
     <span class="nt">&lt;item</span><span class="nt">&gt;</span>parent-1<span class="nt">&lt;/item</span><span class="nt">&gt;</span>
     <span class="nt">&lt;item</span><span class="nt">&gt;</span>parent-2<span class="nt">&lt;/item</span><span class="nt">&gt;</span>
@@ -919,7 +919,7 @@ Display parameters as parsed by Maven (in canonical form and as a list of tokens
 </ul>
 <p>For example, suppose you wanted to bind the <code>antrun:run</code> goal to the <code>verify</code> phase. We want the task to echo the build directory, as well as avoid passing on this configuration to its children (assuming it is a parent) by setting <code>inherited</code> to <code>false</code>. You would get an <code>execution</code> like this:</p>
 
-<pre class="highlight"><code class="language-xml"><span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span><span class="nt">&gt;</span>
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span><span class="nt">&gt;</span>
   ...
   <span class="nt">&lt;build</span><span class="nt">&gt;</span>
     <span class="nt">&lt;plugins</span><span class="nt">&gt;</span>
@@ -963,7 +963,7 @@ Display parameters as parsed by Maven (in canonical form and as a list of tokens
 <h5>Plugin Management</h5>
 <p><code>&lt;pluginManagement&gt;</code>is an element that is seen alongside plugins. Plugin Management contains plugin elements in much the same way, except that rather than configuring plugin information for this particular project build, it is intended to configure project builds that inherit from this one. However, this only configures plugins that are actually referenced within the plugins element in the children or in the current POM. The children have every right to override <code>pluginManagement</code> definitions.</p>
 
-<pre class="highlight"><code class="language-xml"><span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span><span class="nt">&gt;</span>
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span><span class="nt">&gt;</span>
   ...
   <span class="nt">&lt;build</span><span class="nt">&gt;</span>
     ...
@@ -994,7 +994,7 @@ Display parameters as parsed by Maven (in canonical form and as a list of tokens
 </code></pre>
 <p>If we added these specifications to the plugins element, they would apply only to a single POM. However, if we apply them under the <code>pluginManagement</code> element, then this POM <em>and all inheriting POMs</em> that add the <code>maven-jar-plugin</code> to the build will get the <code>pre-process-classes</code> execution as well. So rather than the above mess included in every child <code>pom.xml</code>, only the following is required:</p>
 
-<pre class="highlight"><code class="language-xml"><span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span><span class="nt">&gt;</span>
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span><span class="nt">&gt;</span>
   ...
   <span class="nt">&lt;build</span><span class="nt">&gt;</span>
     ...
@@ -1013,7 +1013,7 @@ Display parameters as parsed by Maven (in canonical form and as a list of tokens
 <h5>Directories</h5>
 <p>The set of directory elements live in the parent build element, which set various directory structures for the POM as a whole. Since they do not exist in profile builds, these cannot be altered by profiles.</p>
 
-<pre class="highlight"><code class="language-xml"><span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span><span class="nt">&gt;</span>
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span><span class="nt">&gt;</span>
   ...
   <span class="nt">&lt;build</span><span class="nt">&gt;</span>
     <span class="nt">&lt;sourceDirectory</span><span class="nt">&gt;</span>\${project.basedir}/src/main/java<span class="nt">&lt;/sourceDirectory</span><span class="nt">&gt;</span>
@@ -1029,7 +1029,7 @@ Display parameters as parsed by Maven (in canonical form and as a list of tokens
 <h5>Extensions</h5>
 <p>Extensions are a list of artifacts that are to be used in this build. They will be included in the running build's classpath. They can enable extensions to the build process (such as add an FTP provider for the Wagon transport mechanism), as well as make plugins active which make changes to the build lifecycle. In short, extensions are artifacts that are activated during build. The extensions do not have to actually do anything nor contain a Mojo. For this reason, extensions are excellent for specifying one out of multiple implementations of a common plugin interface.</p>
 
-<pre class="highlight"><code class="language-xml"><span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span><span class="nt">&gt;</span>
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span><span class="nt">&gt;</span>
   ...
   <span class="nt">&lt;build</span><span class="nt">&gt;</span>
     ...
@@ -1048,7 +1048,7 @@ Display parameters as parsed by Maven (in canonical form and as a list of tokens
 <p>Reporting contains the elements that correspond specifically for the <code>site</code> generation phase. Certain Maven plugins can generate reports defined and configured under the reporting element, for example: generating Javadoc reports. Much like the build element's ability to configure plugins, reporting commands the same ability. The glaring difference is that rather than fine-grained control of plug-in goals within the executions block, reporting configures goals within <code>reportSet</code> elements. And the subtler difference is that a plugin <code>configuration</code> under the <code>reporting</code> element works as <code>build</code> plugin <code>configuration</code>, although the opposite is not true (a <code>build</code> plugin <code>configuration</code> does not affect a <code>reporting</code> plugin).</p>
 <p>Possibly the only item under the <code>reporting</code> element that would not be familiar to someone who understood the <code>build</code> element is the Boolean <code>excludeDefaults</code> element. This element signifies to the site generator to exclude reports normally generated by default. When a site is generated via the <code>site</code> build cycle, a <em>Project Info</em> section is placed in the left-hand menu, chock-full of reports, such as the <code>&lt;Project Team&gt;</code> report or <code>&lt;Dependencies&gt;</code> list report. These report goals are generated by <code>maven-project-info-reports-plugin</code>. Being a plugin like any other, it may also be suppressed in the following, more verbose, way, which effectively turns off project-info reports.</p>
 
-<pre class="highlight"><code class="language-xml"><span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span><span class="nt">&gt;</span>
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span><span class="nt">&gt;</span>
   ...
   <span class="nt">&lt;reporting</span><span class="nt">&gt;</span>
     <span class="nt">&lt;outputDirectory</span><span class="nt">&gt;</span>${project.basedir}/target/site<span class="nt">&lt;/outputDirectory</span><span class="nt">&gt;</span>
@@ -1070,7 +1070,7 @@ Display parameters as parsed by Maven (in canonical form and as a list of tokens
 <p>It is important to keep in mind that an individual plugin may have multiple goals. Each goal may have a separate configuration. Report sets configure execution of a report plugin's goals. Does this sound familiar - deja-vu? The same thing was said about build's <code>execution</code> element with one difference: you cannot bind a report to another phase. Sorry.</p>
 <p>For example, suppose you wanted to configure the <code>javadoc:javadoc</code> goal to link to “<a href="https://docs.oracle.com/javase/1.5.0/docs/api/" class="externalLink">https://docs.oracle.com/javase/1.5.0/docs/api/</a>”, but only the <code>javadoc</code> goal (not the goal <code>maven-javadoc-plugin:jar</code>). We would also like this configuration passed to its children, and set <code>inherited</code> to true. The <code>reportSet</code> would resemble the following:</p>
 
-<pre class="highlight"><code class="language-xml"><span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span><span class="nt">&gt;</span>
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span><span class="nt">&gt;</span>
   ...
   <span class="nt">&lt;reporting</span><span class="nt">&gt;</span>
     <span class="nt">&lt;plugins</span><span class="nt">&gt;</span>
@@ -1112,7 +1112,7 @@ Display parameters as parsed by Maven (in canonical form and as a list of tokens
 </ul><section><a id="Licenses"></a>
 <h3>Licenses</h3>
 
-<pre class="highlight"><code class="language-xml"><span class="nt">&lt;licenses</span><span class="nt">&gt;</span>
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;licenses</span><span class="nt">&gt;</span>
   <span class="nt">&lt;license</span><span class="nt">&gt;</span>
     <span class="nt">&lt;name</span><span class="nt">&gt;</span>Apache-2.0<span class="nt">&lt;/name</span><span class="nt">&gt;</span>
     <span class="nt">&lt;url</span><span class="nt">&gt;</span>https://www.apache.org/licenses/LICENSE-2.0.txt<span class="nt">&lt;/url</span><span class="nt">&gt;</span>
@@ -1132,7 +1132,7 @@ Display parameters as parsed by Maven (in canonical form and as a list of tokens
 <h3>Organization</h3>
 <p>Most projects are run by some sort of organization (business, private group, etc.). Here is where the most basic information is set.</p>
 
-<pre class="highlight"><code class="language-xml"><span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span><span class="nt">&gt;</span>
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span><span class="nt">&gt;</span>
   ...
   <span class="nt">&lt;organization</span><span class="nt">&gt;</span>
     <span class="nt">&lt;name</span><span class="nt">&gt;</span>Mojohaus<span class="nt">&lt;/name</span><span class="nt">&gt;</span>
@@ -1143,7 +1143,7 @@ Display parameters as parsed by Maven (in canonical form and as a list of tokens
 <h3>Developers</h3>
 <p>All projects consist of files that were created, at some time, by a person. Like the other systems that surround a project, so to do the people involved with a project have a stake in the project. Developers are presumably members of the project's core development. Note that, although an organization may have many developers (programmers) as members, it is not good form to list them all as developers, but only those who are immediately responsible for the code. A good rule of thumb is, if the person should not be contacted about the project, they do not need to be listed here.</p>
 
-<pre class="highlight"><code class="language-xml"><span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span><span class="nt">&gt;</span>
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span><span class="nt">&gt;</span>
   ...
   <span class="nt">&lt;developers</span><span class="nt">&gt;</span>
     <span class="nt">&lt;developer</span><span class="nt">&gt;</span>
@@ -1182,7 +1182,7 @@ Display parameters as parsed by Maven (in canonical form and as a list of tokens
 <h3>Contributors</h3>
 <p>Contributors are like developers yet play an ancillary role in a project's lifecycle. Perhaps the contributor sent in a bug fix, or added some important documentation. A healthy open source project will likely have more contributors than developers.</p>
 
-<pre class="highlight"><code class="language-xml"><span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span><span class="nt">&gt;</span>
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span><span class="nt">&gt;</span>
   ...
   <span class="nt">&lt;contributors</span><span class="nt">&gt;</span>
     <span class="nt">&lt;contributor</span><span class="nt">&gt;</span>
@@ -1208,7 +1208,7 @@ Display parameters as parsed by Maven (in canonical form and as a list of tokens
 <h3>Issue Management</h3>
 <p>This defines the defect tracking system (<em>Bugzilla</em>, <em>TestTrack</em>, <em>ClearQuest</em>, etc.) used. Although there is nothing stopping a plugin from using this information for something, it's primarily used for generating project documentation.</p>
 
-<pre class="highlight"><code class="language-xml"><span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span><span class="nt">&gt;</span>
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span><span class="nt">&gt;</span>
   ...
   <span class="nt">&lt;issueManagement</span><span class="nt">&gt;</span>
     <span class="nt">&lt;system</span><span class="nt">&gt;</span>Bugzilla<span class="nt">&lt;/system</span><span class="nt">&gt;</span>
@@ -1220,7 +1220,7 @@ Display parameters as parsed by Maven (in canonical form and as a list of tokens
 <h3>Continuous Integration Management</h3>
 <p>Continuous integration build systems based upon triggers or timings (such as, hourly or daily) have grown in favor over manual builds in the past few years. As build systems have become more standardized, so have the systems that run the trigger those builds. Although the majority of the configuration is up to the specific program used (Continuum, Cruise Control, etc.), there are a few configurations which may take place within the POM. Maven has captured a few of the recurring settings within the set of notifier elements. A notifier is the manner in which people are notified of certain build statuses. In the following example, this POM is setting a notifier of type <code>mail</code> (meaning email), and configuring the email address to use on the specified triggers <code>sendOnError</code>, <code>sendOnFailure</code>, and not <code>sendOnSuccess</code> or <code>sendOnWarning</code>.</p>
 
-<pre class="highlight"><code class="language-xml"><span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span><span class="nt">&gt;</span>
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span><span class="nt">&gt;</span>
   ...
   <span class="nt">&lt;ciManagement</span><span class="nt">&gt;</span>
     <span class="nt">&lt;system</span><span class="nt">&gt;</span>continuum<span class="nt">&lt;/system</span><span class="nt">&gt;</span>
@@ -1242,7 +1242,7 @@ Display parameters as parsed by Maven (in canonical form and as a list of tokens
 <h3>Mailing Lists</h3>
 <p>Mailing lists are a great tool for keeping in touch with people about a project. Most mailing lists are for developers and users.</p>
 
-<pre class="highlight"><code class="language-xml"><span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span><span class="nt">&gt;</span>
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span><span class="nt">&gt;</span>
   ...
   <span class="nt">&lt;mailingLists</span><span class="nt">&gt;</span>
     <span class="nt">&lt;mailingList</span><span class="nt">&gt;</span>
@@ -1271,7 +1271,7 @@ Display parameters as parsed by Maven (in canonical form and as a list of tokens
 <h3>SCM</h3>
 <p>SCM (Software Configuration Management, also called Source Code/Control Management or, succinctly, version control) is an integral part of any healthy project. If your Maven project uses an SCM system (it does, doesn't it?) then here is where you would place that information into the POM.</p>
 
-<pre class="highlight"><code class="language-xml"><span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span><span class="nt">&gt;</span>
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span><span class="nt">&gt;</span>
   ...
   <span class="nt">&lt;scm</span><span class="nt">&gt;</span>
     <span class="nt">&lt;connection</span><span class="nt">&gt;</span>scm:svn:http://127.0.0.1/svn/my-project<span class="nt">&lt;/connection</span><span class="nt">&gt;</span>
@@ -1287,11 +1287,11 @@ Display parameters as parsed by Maven (in canonical form and as a list of tokens
 <li><code>&lt;connection&gt;</code>, <code>&lt;developerConnection&gt;</code>: The two connection elements convey to how one is to connect to the version control system through Maven. Where connection requires read access for Maven to be able to find the source code (for example, an update), developerConnection requires a connection that will give write access. The Maven project has spawned another project named Maven SCM, which creates a common API for any SCMs that wish to implement it. The most popular are CVS and Subversion, however, there is a growing list of other supported <a href="/scm/scms-overview.html">SCMs</a>. All SCM connections are made through a common URL structure.</li>
 </ul>
 
-<pre><code class="nohighlight nocode">scm:[provider]:[provider_specific]
+<pre tabindex="0"><code class="nohighlight nocode">scm:[provider]:[provider_specific]
 </code></pre>
 <p>Where provider is the type of SCM system. For example, connecting to a CVS repository may look like this:</p>
 
-<pre><code class="nohighlight nocode">scm:cvs:pserver:127.0.0.1:/cvs/root:my-project
+<pre tabindex="0"><code class="nohighlight nocode">scm:cvs:pserver:127.0.0.1:/cvs/root:my-project
 </code></pre>
 <ul>
 
@@ -1304,7 +1304,7 @@ Display parameters as parsed by Maven (in canonical form and as a list of tokens
 <p>The POM may have certain prerequisites in order to execute correctly. The only element that exists as a prerequisite in POM 4.0.0 is the <code>maven</code> element, which takes a minimum version number.</p>
 <p>Use <a href="/enforcer/enforcer-rules/requireMavenVersion.html">Maven Enforcer Plugin's <code>requireMavenVersion</code> rule</a>, or other rules for <code>&lt;build-time&gt;</code> prerequisites. For packaging <code>maven-plugin</code> this is still used at <code>&lt;run-time&gt;</code> to make sure that the minimum Maven version for the plugin is met (but only in the pom.xml of the referenced plugin).</p>
 
-<pre class="highlight"><code class="language-xml"><span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span><span class="nt">&gt;</span>
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span><span class="nt">&gt;</span>
   ...
   <span class="nt">&lt;prerequisites</span><span class="nt">&gt;</span>
     <span class="nt">&lt;maven</span><span class="nt">&gt;</span>2.0.6<span class="nt">&lt;/maven</span><span class="nt">&gt;</span>
@@ -1316,7 +1316,7 @@ Display parameters as parsed by Maven (in canonical form and as a list of tokens
 <p>Repositories are collections of artifacts which adhere to the Maven repository directory layout. In order to be a Maven repository artifact, a POM file must live within the structure <code>$BASE_REPO/groupId/artifactId/version/artifactId-version.pom</code>. <code>$BASE_REPO</code> can be local (file structure) or remote (base URL); the remaining layout will be the same. Repositories exist as a place to collect and store artifacts. Whenever a project has a dependency upon an artifact, Maven will first attempt to use a local copy of the specified artifact. If that artifact does not exist in the local repository, it will then attempt to download from a remote repository. The repository elements within a POM specify those alternate repositories to search.</p>
 <p>The repository is one of the most powerful features of the Maven community. By default, Maven searches the central repository at <a href="https://repo.maven.apache.org/maven2/" class="externalLink">https://repo.maven.apache.org/maven2/</a>. Additional repositories can be configured in the pom.xml <code>repositories</code> element.</p>
 
-<pre class="highlight"><code class="language-xml"><span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span><span class="nt">&gt;</span>
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span><span class="nt">&gt;</span>
   ...
   <span class="nt">&lt;repositories</span><span class="nt">&gt;</span>
     <span class="nt">&lt;repository</span><span class="nt">&gt;</span>
@@ -1362,7 +1362,7 @@ Display parameters as parsed by Maven (in canonical form and as a list of tokens
 <h3>Distribution Management</h3>
 <p>Distribution management acts precisely as it sounds: it manages the distribution (aka. remote publication) of the artifact and supporting files generated throughout the build process.</p>
 
-<pre class="highlight"><code class="language-xml"><span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span> <span class="na">xmlns:xsi</span>=<span class="s">"http://www.w3.org/001/XMLSchema-instance"</span>
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span> <span class="na">xmlns:xsi</span>=<span class="s">"http://www.w3.org/001/XMLSchema-instance"</span>
   <span class="na">xsi:schemaLocation</span>=<span class="s">"http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd"</span><span class="nt">&gt;</span>
   ...
   <span class="nt">&lt;distributionManagement</span><span class="nt">&gt;</span>
@@ -1380,7 +1380,7 @@ Display parameters as parsed by Maven (in canonical form and as a list of tokens
 <p>Whereas the <code>&lt;project&gt;&lt;repositories&gt;&lt;repository&gt;</code> elements specify the location and manner in which Maven may download remote artifacts for use by the current project, <code>&lt;project&gt;&lt;distributionManagement&gt;&lt;repository&gt;</code> specifies where (and how) the artifacts generated through this project will get uploaded to a remote repository when it is deployed (aka. published to remote).</p>
 <p>The repository elements will be used for snapshot distribution if the snapshotRepository is not defined. </p>
 
-<pre class="highlight"><code class="language-xml"><span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span><span class="nt">&gt;</span>
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span><span class="nt">&gt;</span>
   ...
   <span class="nt">&lt;distributionManagement</span><span class="nt">&gt;</span>
     <span class="nt">&lt;repository</span><span class="nt">&gt;</span>
@@ -1416,7 +1416,7 @@ Display parameters as parsed by Maven (in canonical form and as a list of tokens
 <h4>Site Distribution</h4>
 <p>More than distribution to the repositories, <code>distributionManagement</code> is responsible for defining how to deploy the project's site and documentation.</p>
 
-<pre class="highlight"><code class="language-xml"><span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span><span class="nt">&gt;</span>
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span><span class="nt">&gt;</span>
   ...
   <span class="nt">&lt;distributionManagement</span><span class="nt">&gt;</span>
     ...
@@ -1436,7 +1436,7 @@ Display parameters as parsed by Maven (in canonical form and as a list of tokens
 </ul></section><section><a id="Relocation"></a>
 <h4>Relocation</h4>
 
-<pre class="highlight"><code class="language-xml"><span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span><span class="nt">&gt;</span>
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span><span class="nt">&gt;</span>
   ...
   <span class="nt">&lt;distributionManagement</span><span class="nt">&gt;</span>
     ...
@@ -1454,7 +1454,7 @@ Display parameters as parsed by Maven (in canonical form and as a list of tokens
 <p>Projects are not static; they are living things (or dying things, as the case may be). A common thing that happens as projects grow, is that they are forced to move to more suitable quarters. For example, when your next wildly successful open source project moves under the Apache umbrella, it would be good to give users a heads-up that the project is being renamed to <code>org.apache:my-project:1.0</code>. Besides specifying the new address, it is also good form to provide a message explaining why.</p></section><section><a id="downloadUrl"></a>
 <h4>downloadUrl</h4>
 
-<pre class="highlight"><code class="language-xml"><span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span> <span class="na">xmlns:xsi</span>=<span class="s">"http://www.w3.org/001/XMLSchema-instance"</span>
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span> <span class="na">xmlns:xsi</span>=<span class="s">"http://www.w3.org/001/XMLSchema-instance"</span>
   <span class="na">xsi:schemaLocation</span>=<span class="s">"http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd"</span><span class="nt">&gt;</span>
   ...
   <span class="nt">&lt;distributionManagement</span><span class="nt">&gt;</span>
@@ -1467,7 +1467,7 @@ Display parameters as parsed by Maven (in canonical form and as a list of tokens
 <p><code>&lt;downloadUrl&gt;</code> is the URL of the project's download page. If not given users will be referred to the homepage given by url. This is given to assist in locating artifacts that are not in the repository due to licensing restrictions. See for example <a href="https://issues.apache.org/jira/browse/MNG-2083" class="externalLink">MNG-2083</a> for a typical workflow.</p></section><section><a id="Status"></a>
 <h4>Status</h4>
 
-<pre class="highlight"><code class="language-xml"><span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span> <span class="na">xmlns:xsi</span>=<span class="s">"http://www.w3.org/001/XMLSchema-instance"</span>
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span> <span class="na">xmlns:xsi</span>=<span class="s">"http://www.w3.org/001/XMLSchema-instance"</span>
   <span class="na">xsi:schemaLocation</span>=<span class="s">"http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd"</span><span class="nt">&gt;</span>
   ...
   <span class="nt">&lt;distributionManagement</span><span class="nt">&gt;</span>
@@ -1496,7 +1496,7 @@ Display parameters as parsed by Maven (in canonical form and as a list of tokens
 <p>Profiles offer the possibility to change project settings depending on the environment where it is being built. For example, a project built for a test environment may point to a different database than that of the final deployment. Or dependencies may be pulled from different repositories based upon the JDK version used.</p>
 <p>The elements of profiles are as follows. All elements are optional.</p>
 
-<pre class="highlight"><code class="language-xml"><span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span><span class="nt">&gt;</span>
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span><span class="nt">&gt;</span>
   ...
   <span class="nt">&lt;profiles</span><span class="nt">&gt;</span>
     <span class="nt">&lt;profile</span><span class="nt">&gt;</span>

@@ -43,9 +43,9 @@
     <a class="asf" href="https://www.apache.org/"><img class="asf-leaf" src="../../images/oakleaf.svg" width="14" height="22" alt=""><span>Apache</span></a>
     </div>
   </header>
-  <div class="specimen" role="note">
+  <aside class="specimen" aria-label="About this site">
     <p><strong>Specimen.</strong> A proposed redesign of maven.apache.org, built with <code>mvn site</code> and a skin of its own; not the official Apache Maven site. The official site is <a href="https://maven.apache.org/">maven.apache.org</a>. <a href="../../about-this-example.html">About this example</a></p>
-  </div>
+  </aside>
   <div class="frame has-group">
     <nav class="group-nav" aria-labelledby="group-nav-title">
       <p class="up"><a href="../../docs/index.html"><svg aria-hidden="true" viewBox="0 0 16 16" width="14" height="14"><path d="M10 3.5L5.5 8l4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" /></svg>All of Docs</a></p>
@@ -108,7 +108,7 @@
 <p>that demonstrates how this is normally done in Maven, as it is quite similar.</p>
 <p>Your directory will look something like this:</p>
 
-<pre><code class="nohighlight nocode">/
+<pre tabindex="0"><code class="nohighlight nocode">/
 +- pom.xml
 +- src/
    +- main/
@@ -120,7 +120,7 @@
 </code></pre>
 <p>First, you set up your <code>pom.xml</code> at the top level not to produce anything, but to include the other modules we plan to create:</p>
 
-<pre class="highlight"><code class="language-xml"><span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span><span class="nt">&gt;</span>
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span><span class="nt">&gt;</span>
   <span class="nt">&lt;artifactId</span><span class="nt">&gt;</span>my-parent<span class="nt">&lt;/artifactId</span><span class="nt">&gt;</span>
   <span class="nt">&lt;packaging</span><span class="nt">&gt;</span>pom<span class="nt">&lt;/packaging</span><span class="nt">&gt;</span>
   ...
@@ -132,7 +132,7 @@
 </code></pre>
 <p>Next, the modules themselves are created. Here is the <code>core/pom.xml</code> file you should create. The one in the <code>module</code> subdirectory will be similar.</p>
 
-<pre class="highlight"><code class="language-xml"><span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span><span class="nt">&gt;</span>
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span><span class="nt">&gt;</span>
   <span class="nt">&lt;modelVersion</span><span class="nt">&gt;</span>4.0.0<span class="nt">&lt;/modelVersion</span><span class="nt">&gt;</span>
   <span class="nt">&lt;parent</span><span class="nt">&gt;</span>
     <span class="nt">&lt;groupId</span><span class="nt">&gt;</span>my-groupId<span class="nt">&lt;/groupId</span><span class="nt">&gt;</span>
@@ -160,7 +160,7 @@
 <p>In this example, the sources are found in the parent directory <code>../src/main/java</code>, and only Java files within a <code>core</code> package are included.</p>
 <p>The final result when building will look like this:</p>
 
-<pre><code class="nohighlight nocode">/
+<pre tabindex="0"><code class="nohighlight nocode">/
 +- pom.xml
 +- src/
    +- main/

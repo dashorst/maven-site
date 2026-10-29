@@ -43,9 +43,9 @@
     <a class="asf" href="https://www.apache.org/"><img class="asf-leaf" src="../../images/oakleaf.svg" width="14" height="22" alt=""><span>Apache</span></a>
     </div>
   </header>
-  <div class="specimen" role="note">
+  <aside class="specimen" aria-label="About this site">
     <p><strong>Specimen.</strong> A proposed redesign of maven.apache.org, built with <code>mvn site</code> and a skin of its own; not the official Apache Maven site. The official site is <a href="https://maven.apache.org/">maven.apache.org</a>. <a href="../../about-this-example.html">About this example</a></p>
-  </div>
+  </aside>
   <div class="frame has-group">
     <nav class="group-nav" aria-labelledby="group-nav-title">
       <p class="up"><a href="../../docs/index.html"><svg aria-hidden="true" viewBox="0 0 16 16" width="14" height="14"><path d="M10 3.5L5.5 8l4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" /></svg>All of Docs</a></p>
@@ -221,7 +221,7 @@
 <p>So, to recap:</p>
 <p>parent:</p>
 
-<pre><code class="nohighlight nocode">&lt;configuration&gt;
+<pre tabindex="0"><code class="nohighlight nocode">&lt;configuration&gt;
   &lt;items&gt;
       &lt;item&gt;one&lt;/item&gt;
       &lt;item&gt;two&lt;/item&gt;
@@ -230,7 +230,7 @@
 </code></pre>
 <p>child:</p>
 
-<pre><code class="nohighlight nocode">&lt;configuration&gt;
+<pre tabindex="0"><code class="nohighlight nocode">&lt;configuration&gt;
   &lt;items combine.children="append"&gt;
     &lt;item&gt;three&lt;/item&gt;
   &lt;/items&gt;
@@ -238,7 +238,7 @@
 </code></pre>
 <p>result:</p>
 
-<pre><code class="nohighlight nocode">&lt;configuration&gt;
+<pre tabindex="0"><code class="nohighlight nocode">&lt;configuration&gt;
   &lt;items&gt;
     &lt;item&gt;one&lt;/item&gt;
     &lt;item&gt;two&lt;/item&gt;
@@ -250,7 +250,7 @@
 <h3>Why do I not get an index.html page generated for my project website?</h3>
 <p>The usual cause of this is configuring maven-project-info-reports plugin and leaving out the ‘index’ report.</p>
 
-<pre><code class="nohighlight nocode">&lt;plugin&gt;
+<pre tabindex="0"><code class="nohighlight nocode">&lt;plugin&gt;
   &lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;
   &lt;artifactId&gt;maven-project-info-reports-plugin&lt;/artifactId&gt;
   &lt;reportSets&gt;
@@ -282,7 +282,7 @@
 <h3>How do I install a file in my local repository along with a generic POM?</h3>
 <p>You may do this by typing this command (please take note that this is a single line only).</p>
 
-<pre><code class="nohighlight nocode">mvn install:install-file
+<pre tabindex="0"><code class="nohighlight nocode">mvn install:install-file
       -DgroupId=&lt;group-id&gt;
       -DartifactId=&lt;artifact-id&gt;
       -Dversion=&lt;version&gt;
@@ -294,7 +294,7 @@
 <h3>How do I install a file in my local repository along with my customized POM?</h3>
 <p>The solution requires the <code>-DpomFile=&lt;path-to-pom&gt;</code> parameter just like the sample below.</p>
 
-<pre><code class="nohighlight nocode">mvn install:install-file
+<pre tabindex="0"><code class="nohighlight nocode">mvn install:install-file
       -DgroupId=&lt;group-id&gt;
       -DartifactId=&lt;artifact-id&gt;
       -Dversion=&lt;version&gt;
@@ -307,7 +307,7 @@
 <h2>General</h2><section><a id="How_do_I_get_a_plugin.27s_dependencies_from_a_Mojo.3F"></a>
 <h3>How do I get a plugin's dependencies from a Mojo?</h3>
 
-<pre><code class="nohighlight nocode">public class MyMojo
+<pre tabindex="0"><code class="nohighlight nocode">public class MyMojo
     extends AbstractMojo
 {
     /**
@@ -330,7 +330,7 @@
 </code></pre></section><section><a id="How_do_I_get_the_project.27s_sources_from_a_Mojo.3F"></a>
 <h3>How do I get the project's sources from a Mojo?</h3>
 
-<pre class="highlight"><code class="language-java"><span class="k">public</span> <span class="k">class</span> MyMojo
+<pre tabindex="0" class="highlight"><code class="language-java"><span class="k">public</span> <span class="k">class</span> MyMojo
   <span class="k">extends</span> AbstractMojo {
   <span class="cm">/**
    * @parameter expression="${project.compileSourceRoots}"
@@ -360,7 +360,7 @@
 <p>Warnings from custom repositories (usually located within the organization's network, or even on the same workstation) are triggered when Maven tries to verify the integrity of the files in the repository. This verification is done via the SHA1 or MD5 sum of the file. If these sum files do not exist, then a warning appears.</p>
 <p>Support for downloading the security sum files is not yet included in the Maven2 distribution. There are free command-line utilities on the Internet that generate these sums. Below is an example of a bash script ( use <a href="http://cygwin.com" class="externalLink">Cygwin</a> if you are using a windows machine) that generates sha1sum for all jar, xml and pom files contained in the directory where it is executed:</p>
 
-<pre class="highlight"><code class="language-shell"><span class="c">#!/usr/bin/bash</span>
+<pre tabindex="0" class="highlight"><code class="language-shell"><span class="c">#!/usr/bin/bash</span>
 
 gensum(){
    shaname=$1.sha1
@@ -422,7 +422,7 @@ rm <span class="s2">"$tmpFile"</span>
 <h3>How do I specify my remote repo in Maven?</h3>
 <p>To specify a remote repo in Maven, add the <code>&lt;repositories&gt;</code> element to the POM:</p>
 
-<pre class="highlight"><code class="language-xml">
+<pre tabindex="0" class="highlight"><code class="language-xml">
 <span class="nt">&lt;repositories</span><span class="nt">&gt;</span>
   <span class="nt">&lt;repository</span><span class="nt">&gt;</span>
     <span class="nt">&lt;id</span><span class="nt">&gt;</span>my-repo2<span class="nt">&lt;/id</span><span class="nt">&gt;</span>
@@ -434,7 +434,7 @@ rm <span class="s2">"$tmpFile"</span>
 <p>Or, refer to the following page [<a href="https://maven.apache.org/guides/mini/guide-multiple-repositories.html" class="externalLink">https://maven.apache.org/guides/mini/guide-multiple-repositories.html</a>)</p></section><section><a id="How_do_I_specify_which_output_directories_the_Eclipse_plugin_puts_into_the_.classpath_file.3F"></a>
 <h3>How do I specify which output directories the Eclipse plugin puts into the .classpath file?</h3>
 
-<pre class="highlight"><code class="language-xml">
+<pre tabindex="0" class="highlight"><code class="language-xml">
 <span class="nt">&lt;build</span><span class="nt">&gt;</span>
   <span class="c">&lt;!-- ... --&gt;</span>
   <span class="nt">&lt;pluginManagement</span><span class="nt">&gt;</span>
@@ -458,7 +458,7 @@ rm <span class="s2">"$tmpFile"</span>
 <h3>How do I run an ant task twice, against two different phases?</h3>
 <p>You can specify multiple execution elements under the executions tag, giving each a different id and binding them at different phases.</p>
 
-<pre class="highlight"><code class="language-xml">
+<pre tabindex="0" class="highlight"><code class="language-xml">
 <span class="nt">&lt;plugin</span><span class="nt">&gt;</span>
   <span class="nt">&lt;artifactId</span><span class="nt">&gt;</span>maven-antrun-plugin<span class="nt">&lt;/artifactId</span><span class="nt">&gt;</span>
   <span class="nt">&lt;executions</span><span class="nt">&gt;</span>
@@ -494,7 +494,7 @@ rm <span class="s2">"$tmpFile"</span>
 <h3>How do I prevent tests from running twice, after adding a configuration for the surefire plugin?</h3>
 <p>Declare the configuration outside of the executions tag of the plugin.</p>
 
-<pre class="highlight"><code class="language-xml">
+<pre tabindex="0" class="highlight"><code class="language-xml">
 <span class="nt">&lt;plugin</span><span class="nt">&gt;</span>
   <span class="nt">&lt;groupId</span><span class="nt">&gt;</span>org.apache.maven.plugins<span class="nt">&lt;/groupId</span><span class="nt">&gt;</span>
   <span class="nt">&lt;artifactId</span><span class="nt">&gt;</span>maven-surefire-plugin<span class="nt">&lt;/artifactId</span><span class="nt">&gt;</span>
@@ -518,7 +518,7 @@ rm <span class="s2">"$tmpFile"</span>
 <li>Create your site.xml and put it in <code>$\{basedir\}/src/site</code>. An example below:</li>
 </ul>
 
-<pre class="highlight"><code class="language-xml">
+<pre tabindex="0" class="highlight"><code class="language-xml">
 <span class="nt">&lt;project</span> <span class="na">name</span>=<span class="s">"Maven War Plugin"</span><span class="nt">&gt;</span>
   <span class="nt">&lt;bannerLeft</span><span class="nt">&gt;</span>
     <span class="nt">&lt;name</span><span class="nt">&gt;</span>Maven War Plugin<span class="nt">&lt;/name</span><span class="nt">&gt;</span>
@@ -546,7 +546,7 @@ rm <span class="s2">"$tmpFile"</span>
 <li>Link the static pages by modifying the <code>&lt;menu&gt;</code> section, create items and map it with the filename of the static pages.</li>
 </ul>
 
-<pre class="highlight"><code class="language-xml">
+<pre tabindex="0" class="highlight"><code class="language-xml">
 <span class="nt">&lt;menu</span> <span class="na">name</span>=<span class="s">"Overview"</span><span class="nt">&gt;</span>
   <span class="nt">&lt;item</span> <span class="na">name</span>=<span class="s">"Introduction"</span> <span class="na">xhref</span>=<span class="s">"introduction.html"</span><span class="nt">/&gt;</span>
   <span class="nt">&lt;item</span> <span class="na">name</span>=<span class="s">"How to Use"</span> <span class="na">xhref</span>=<span class="s">"howto.html"</span><span class="nt">/&gt;</span>
@@ -565,7 +565,7 @@ rm <span class="s2">"$tmpFile"</span>
 <h3>How do I determine the stale resources in a Mojo to avoid reprocessing them?</h3>
 <p>This can be done using the following piece of code:</p>
 
-<pre><code class="nohighlight nocode">// Imports needed
+<pre tabindex="0"><code class="nohighlight nocode">// Imports needed
 
 import org.codehaus.plexus.compiler.util.scan.InclusionScanException;
 import org.codehaus.plexus.compiler.util.scan.StaleSourceScanner;
@@ -578,7 +578,7 @@ Set&lt;File&gt; staleFiles = (Set&lt;File&gt;) scanner.getIncludedSources(this.s
 </code></pre>
 <p>The second parameter to the StaleSourceScanner is the set of includes, while the third parameter is the set of excludes. You must add a source mapping to the scanner (second line). In this case we're telling the scanner what is the extension of the result file (.html) for each source file extension (.xml). Finally, we get the stale files as a <code>Set&lt;File&gt;</code> calling the <code>getIncludedSources</code> method, passing as parameters the source and target directories (of type File). The Maven API doesn't support generics, but you may cast it that way if you're using them. In order to use this API you must include the following dependency in your pom:</p>
 
-<pre class="highlight"><code class="language-xml">
+<pre tabindex="0" class="highlight"><code class="language-xml">
 <span class="nt">&lt;dependencies</span><span class="nt">&gt;</span>
   <span class="nt">&lt;dependency</span><span class="nt">&gt;</span>
     <span class="nt">&lt;groupId</span><span class="nt">&gt;</span>org.codehaus.plexus<span class="nt">&lt;/groupId</span><span class="nt">&gt;</span>
@@ -595,7 +595,7 @@ Set&lt;File&gt; staleFiles = (Set&lt;File&gt;) scanner.getIncludedSources(this.s
 <p><em>Sites &amp; Reporting, Plugins and Lifecycle, Command Line</em></p></section><section><a id="How_do_I_deploy_my_binary_during_the_deploy_phase.3F"></a>
 <h3>How do I deploy my binary during the deploy phase?</h3>
 
-<pre class="highlight"><code class="language-xml"><span class="nt">&lt;plugin</span><span class="nt">&gt;</span>
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;plugin</span><span class="nt">&gt;</span>
   <span class="nt">&lt;groupId</span><span class="nt">&gt;</span>org.apache.maven.plugins<span class="nt">&lt;/groupId</span><span class="nt">&gt;</span>
   <span class="nt">&lt;artifactId</span><span class="nt">&gt;</span>maven-assembly-plugin<span class="nt">&lt;/artifactId</span><span class="nt">&gt;</span>
   <span class="nt">&lt;executions</span><span class="nt">&gt;</span>
@@ -615,7 +615,7 @@ Set&lt;File&gt; staleFiles = (Set&lt;File&gt;) scanner.getIncludedSources(this.s
 <h3>How do I add main class in a generated jar's manifest?</h3>
 <p>Configure the maven-jar-plugin and add your main class.</p>
 
-<pre><code class="nohighlight nocode">&lt;plugin&gt;
+<pre tabindex="0"><code class="nohighlight nocode">&lt;plugin&gt;
   &lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;
   &lt;artifactId&gt;maven-jar-plugin&lt;/artifactId&gt;
   &lt;configuration&gt;
@@ -630,7 +630,7 @@ Set&lt;File&gt; staleFiles = (Set&lt;File&gt;) scanner.getIncludedSources(this.s
 <h3>How do I install artifacts to a remote repository?</h3>
 <p>You need at least 2.1-SNAPSHOT version of maven-deploy-plugin to make this work, current workaround to use this is to copy the wagon provider jar (i.e. wagon-ftp-1.0-alpha-3.jar) in your <code>%M2_HOME%/lib</code> and execute the command:</p>
 
-<pre><code class="nohighlight nocode">mvn deploy:deploy-file
+<pre tabindex="0"><code class="nohighlight nocode">mvn deploy:deploy-file
     -DgroupId=&lt;groupId&gt;
     -DartifactId=&lt;artifactId&gt;
     -Dversion=&lt;version&gt;
@@ -651,7 +651,7 @@ Set&lt;File&gt; staleFiles = (Set&lt;File&gt;) scanner.getIncludedSources(this.s
 <h3>How do I execute the assembly plugin with different configurations?</h3>
 <p>Add this to your pom,</p>
 
-<pre class="highlight"><code class="language-xml">
+<pre tabindex="0" class="highlight"><code class="language-xml">
 <span class="nt">&lt;build</span><span class="nt">&gt;</span>
   <span class="c">&lt;!--...--&gt;</span>
   <span class="nt">&lt;plugins</span><span class="nt">&gt;</span>
@@ -715,7 +715,7 @@ Set&lt;File&gt; staleFiles = (Set&lt;File&gt;) scanner.getIncludedSources(this.s
 <p>No you can't, but you may exclude the dependencies you dont want to include in your project.</p>
 <p>Following is a sample on how to exclude transitive dependencies.</p>
 
-<pre class="highlight"><code class="language-xml">
+<pre tabindex="0" class="highlight"><code class="language-xml">
 <span class="nt">&lt;project</span><span class="nt">&gt;</span>
   <span class="c">&lt;!--...--&gt;</span>
   <span class="nt">&lt;dependency</span><span class="nt">&gt;</span>
@@ -741,7 +741,7 @@ Set&lt;File&gt; staleFiles = (Set&lt;File&gt;) scanner.getIncludedSources(this.s
 <h3>How do I create a command line parameter (i.e., -Dname=value ) in my mojo?</h3>
 <p>In your mojo, put <code>expression=$\{&lt;exp&gt;\}</code> in your parameter field</p>
 
-<pre class="highlight"><code class="language-java"><span class="cm">/**
+<pre tabindex="0" class="highlight"><code class="language-java"><span class="cm">/**
  * @parameter expression="${expression.name}"
  */</span>
 <span class="k">private</span> String exp;
@@ -751,7 +751,7 @@ Set&lt;File&gt; staleFiles = (Set&lt;File&gt;) scanner.getIncludedSources(this.s
 <h3>What is the purpose of displaying read-only, plug-in fields in user documentation, if they are not configurable in the project descriptor?</h3>
 <p>Often, parameters are specified as read-only to indicate that its value should be changed indirectly, rather than in the plugins <code>&lt;configuration/&gt;</code> section. For instance, I may have a plugin that declares a parameter as such:</p>
 
-<pre class="highlight"><code class="language-java"><span class="cm">/**
+<pre tabindex="0" class="highlight"><code class="language-java"><span class="cm">/**
  * @parameter default-value="${project.build.directory}"
  * @required
  * @readonly
@@ -775,7 +775,7 @@ Set&lt;File&gt; staleFiles = (Set&lt;File&gt;) scanner.getIncludedSources(this.s
 <h3>How do I generate sources with the antrun plug-in?</h3>
 <p>To generate sources, add the following to your plugins section.</p>
 
-<pre class="highlight"><code class="language-xml">
+<pre tabindex="0" class="highlight"><code class="language-xml">
 <span class="nt">&lt;plugin</span><span class="nt">&gt;</span>
   <span class="nt">&lt;groupId</span><span class="nt">&gt;</span>org.apache.maven.plugins<span class="nt">&lt;/groupId</span><span class="nt">&gt;</span>
   <span class="nt">&lt;artifactId</span><span class="nt">&gt;</span>maven-antrun-plugin<span class="nt">&lt;/artifactId</span><span class="nt">&gt;</span>
@@ -813,7 +813,7 @@ Set&lt;File&gt; staleFiles = (Set&lt;File&gt;) scanner.getIncludedSources(this.s
 <p>Yes. You can make use of the POM's <code>&lt;properties&gt;</code> element to accomplish this.</p>
 <p>To do so, simply add the following fragment to your pom:</p>
 
-<pre class="highlight"><code class="language-xml">
+<pre tabindex="0" class="highlight"><code class="language-xml">
 <span class="nt">&lt;project</span><span class="nt">&gt;</span>
   <span class="c">&lt;!--...--&gt;</span>
   <span class="nt">&lt;build</span><span class="nt">&gt;</span>
@@ -835,7 +835,7 @@ Set&lt;File&gt; staleFiles = (Set&lt;File&gt;) scanner.getIncludedSources(this.s
 <h3>How do I compile 1.3 java sources with a 1.4.x or 1.5.x JDK?</h3>
 <p>You need to specify the <code>&lt;compilerVersion&gt;</code> element to 1.3, i.e.</p>
 
-<pre class="highlight"><code class="language-xml">
+<pre tabindex="0" class="highlight"><code class="language-xml">
 <span class="nt">&lt;project</span><span class="nt">&gt;</span>
   <span class="c">&lt;!--...--&gt;</span>
   <span class="nt">&lt;build</span><span class="nt">&gt;</span>
@@ -858,7 +858,7 @@ Set&lt;File&gt; staleFiles = (Set&lt;File&gt;) scanner.getIncludedSources(this.s
 <h3>How do I change the default remote repository?</h3>
 <p>Define in your POM a repository with “central” as the repository id.</p>
 
-<pre class="highlight"><code class="language-xml">
+<pre tabindex="0" class="highlight"><code class="language-xml">
 <span class="nt">&lt;repositories</span><span class="nt">&gt;</span>
   <span class="nt">&lt;repository</span><span class="nt">&gt;</span>
     <span class="nt">&lt;id</span><span class="nt">&gt;</span>central<span class="nt">&lt;/id</span><span class="nt">&gt;</span>
@@ -873,7 +873,7 @@ Set&lt;File&gt; staleFiles = (Set&lt;File&gt;) scanner.getIncludedSources(this.s
 <p><code>"Deployment descriptor &lt;Path&gt;\WEB-INF\web.xml does not exist"</code>?</p>
 <p>You may specify the path of your web.xml in your webapp by configuring maven-war-plugin.</p>
 
-<pre class="highlight"><code class="language-xml">
+<pre tabindex="0" class="highlight"><code class="language-xml">
 <span class="nt">&lt;build</span><span class="nt">&gt;</span>
   <span class="c">&lt;!--...--&gt;</span>
   <span class="nt">&lt;plugins</span><span class="nt">&gt;</span>
@@ -892,14 +892,14 @@ Set&lt;File&gt; staleFiles = (Set&lt;File&gt;) scanner.getIncludedSources(this.s
 <p>Yes. This can be done in two ways: 1. add the extra path in the top level POM, or 2. add extra parent poms at different levels, if appropriate.</p>
 <p>For example, you have the following structure:</p>
 
-<pre><code class="nohighlight nocode">/A/pom.xml (multi-module POM)
+<pre tabindex="0"><code class="nohighlight nocode">/A/pom.xml (multi-module POM)
 /A/B/C/pom.xml
 /A/B/C/D/pom.xml
 </code></pre>
 <p>And you want the modules at level C and D built when the multi-module POM is built.</p>
 <p>For the first solution: Add the following at the top level POM:</p>
 
-<pre class="highlight"><code class="language-xml">
+<pre tabindex="0" class="highlight"><code class="language-xml">
 <span class="nt">&lt;modules</span><span class="nt">&gt;</span>
   <span class="nt">&lt;module</span><span class="nt">&gt;</span>A/B<span class="nt">&lt;/module</span><span class="nt">&gt;</span>
   <span class="c">&lt;!-- ... --&gt;</span>
@@ -907,21 +907,21 @@ Set&lt;File&gt; staleFiles = (Set&lt;File&gt;) scanner.getIncludedSources(this.s
 </code></pre>
 <p>For the second solution: Add the following at the top level POM:</p>
 
-<pre class="highlight"><code class="language-xml">
+<pre tabindex="0" class="highlight"><code class="language-xml">
 <span class="nt">&lt;modules</span><span class="nt">&gt;</span>
   <span class="nt">&lt;module</span><span class="nt">&gt;</span>B<span class="nt">&lt;/module</span><span class="nt">&gt;</span>
 <span class="nt">&lt;/modules</span><span class="nt">&gt;</span>
 </code></pre>
 <p>And in directory A/B/, add an extra parent POM and add the following:</p>
 
-<pre class="highlight"><code class="language-xml">
+<pre tabindex="0" class="highlight"><code class="language-xml">
 <span class="nt">&lt;modules</span><span class="nt">&gt;</span>
   <span class="nt">&lt;module</span><span class="nt">&gt;</span>C<span class="nt">&lt;/module</span><span class="nt">&gt;</span>
 <span class="nt">&lt;/modules</span><span class="nt">&gt;</span>
 </code></pre>
 <p>Both ways are effectively the same, but if you have that inheritance structure, the second gives a more natural grouping (eg, you can <code>cd</code> into “B” and build all its subprojects only). If you do the first solution, the children poms should have the following hint in the parent element:</p>
 
-<pre class="highlight"><code class="language-xml">
+<pre tabindex="0" class="highlight"><code class="language-xml">
 <span class="nt">&lt;parent</span><span class="nt">&gt;</span>
   <span class="c">&lt;!--...--&gt;</span>
   <span class="nt">&lt;artifactId</span><span class="nt">&gt;</span>A<span class="nt">&lt;/artifactId</span><span class="nt">&gt;</span>
@@ -935,7 +935,7 @@ Set&lt;File&gt; staleFiles = (Set&lt;File&gt;) scanner.getIncludedSources(this.s
 <p><code>mvn projecthelp:describe -Dplugin=org.apache.maven.plugins:maven-eclipse-plugin -Dfull=true</code></p>
 <p>This would display all the goals and descriptions of the parameters used by maven-eclipse-plugin. To get a quick overview about available mojos you can use the ‘help’ mojo which automatically gets generated in newer plugins.</p>
 
-<pre><code class="nohighlight nocode">mvn [pluginname]:help
+<pre tabindex="0"><code class="nohighlight nocode">mvn [pluginname]:help
 e.g. mvn eclipse:help
 </code></pre>
 <p><em>Plugins and Lifecycle, IDEs</em></p></section><section><a id="What_does_aggregator_mean_in_mojo.3F"></a>
@@ -947,7 +947,7 @@ e.g. mvn eclipse:help
 <h3>Why does Maven compile my test classes but doesn't run them?</h3>
 <p>Tests are run by the surefire plugin. The surefire plugin can be configured to run certain test classes and you may have unintentionally done so by specifying a value to <code>${test}</code>. Check your settings.xml and pom.xml for a property named “test” which would like this:</p>
 
-<pre class="highlight"><code class="language-xml"><span class="c">&lt;!-- ... --&gt;</span>
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="c">&lt;!-- ... --&gt;</span>
 <span class="nt">&lt;properties</span><span class="nt">&gt;</span>
   <span class="nt">&lt;property</span><span class="nt">&gt;</span>
     <span class="nt">&lt;name</span><span class="nt">&gt;</span>test<span class="nt">&lt;/name</span><span class="nt">&gt;</span>
@@ -958,7 +958,7 @@ e.g. mvn eclipse:help
 </code></pre>
 <p>or</p>
 
-<pre class="highlight"><code class="language-xml"><span class="c">&lt;!-- ... --&gt;</span>
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="c">&lt;!-- ... --&gt;</span>
 <span class="nt">&lt;properties</span><span class="nt">&gt;</span>
   <span class="nt">&lt;test</span><span class="nt">&gt;</span>some-value<span class="nt">&lt;/test</span><span class="nt">&gt;</span>
 <span class="nt">&lt;/properties</span><span class="nt">&gt;</span>
@@ -972,7 +972,7 @@ e.g. mvn eclipse:help
 <h3>List of available Maven mirrors.</h3>
 <p>Here is the list of available mirrors you can use, just use one of the following mirror entries in your settings.xml</p>
 
-<pre class="highlight"><code class="language-xml">
+<pre tabindex="0" class="highlight"><code class="language-xml">
 <span class="nt">&lt;settings</span><span class="nt">&gt;</span>
 
   <span class="nt">&lt;mirrors</span><span class="nt">&gt;</span>
@@ -1026,7 +1026,7 @@ e.g. mvn eclipse:help
 <h3>How can I have a child project not inherit a goal (like install) from the parent?</h3>
 <p>Use the <code>inherited</code> property. Set it to <code>false</code> in the plugin configuration. So for example, if you want your parent project to be installed but not your child, configure the install-plugin like this:</p>
 
-<pre class="highlight"><code class="language-xml">
+<pre tabindex="0" class="highlight"><code class="language-xml">
 <span class="nt">&lt;plugin</span><span class="nt">&gt;</span>
   <span class="nt">&lt;artifactId</span><span class="nt">&gt;</span>maven-install-plugin<span class="nt">&lt;/artifactId</span><span class="nt">&gt;</span>
   <span class="nt">&lt;configuration</span><span class="nt">&gt;</span>
@@ -1042,7 +1042,7 @@ e.g. mvn eclipse:help
 <p>There is no tools.jar on a mac. The classes are included in the normal java runtime ( <code>/System/Library/Frameworks/ JavaVM.framework/Classes/classes.jar</code>). Refer to this link [http://lists.apple.com/archives/java-dev/2002/Jun/msg00901.html] )</p>
 <p>You only have to modify the <code>&lt;systemPath&gt;</code> pointing to your <code>classes.jar</code> on MacOSX.</p>
 
-<pre class="highlight"><code class="language-xml">
+<pre tabindex="0" class="highlight"><code class="language-xml">
 <span class="nt">&lt;dependency</span><span class="nt">&gt;</span>
   <span class="nt">&lt;groupId</span><span class="nt">&gt;</span>sun.jdk<span class="nt">&lt;/groupId</span><span class="nt">&gt;</span>
   <span class="nt">&lt;artifactId</span><span class="nt">&gt;</span>tools<span class="nt">&lt;/artifactId</span><span class="nt">&gt;</span>
@@ -1054,7 +1054,7 @@ e.g. mvn eclipse:help
 <h3>How do I include tools.jar in my dependencies?</h3>
 <p>The following code includes tools.jar on Sun JDKs (it is already included in the runtime for Mac OS X and some free JDKs).</p>
 
-<pre class="highlight"><code class="language-xml"><span class="c">&lt;!-- ... --&gt;</span>
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="c">&lt;!-- ... --&gt;</span>
 <span class="nt">&lt;profiles</span><span class="nt">&gt;</span>
   <span class="nt">&lt;profile</span><span class="nt">&gt;</span>
     <span class="nt">&lt;id</span><span class="nt">&gt;</span>default-tools.jar<span class="nt">&lt;/id</span><span class="nt">&gt;</span>
@@ -1082,7 +1082,7 @@ e.g. mvn eclipse:help
 <h3>How to make a war artifact as a dependency?</h3>
 <p>When specifying a war as dependency, make sure that you have set the <code>&lt;type&gt;</code> to war.</p>
 
-<pre class="highlight"><code class="language-xml">
+<pre tabindex="0" class="highlight"><code class="language-xml">
 <span class="nt">&lt;dependency</span><span class="nt">&gt;</span>
   <span class="nt">&lt;groupId</span><span class="nt">&gt;</span><span class="c">&lt;!-- groupId of the war --&gt;</span><span class="nt">&lt;/groupId</span><span class="nt">&gt;</span>
   <span class="nt">&lt;artifactId</span><span class="nt">&gt;</span><span class="c">&lt;!-- artifactId of the war --&gt;</span><span class="nt">&lt;/artifactId</span><span class="nt">&gt;</span>
@@ -1093,7 +1093,7 @@ e.g. mvn eclipse:help
 <h3>How can I change the default location of the generated jar when I command “mvn package”?</h3>
 <p>By default, the location of the generated jar is in <code>$\{project.build.directory\}</code> or in your target directory. We can change this by configuring the outputDirectory of maven-jar-plugin.</p>
 
-<pre class="highlight"><code class="language-xml">
+<pre tabindex="0" class="highlight"><code class="language-xml">
 <span class="nt">&lt;plugin</span><span class="nt">&gt;</span>
   <span class="nt">&lt;groupId</span><span class="nt">&gt;</span>org.apache.maven.plugins<span class="nt">&lt;/groupId</span><span class="nt">&gt;</span>
   <span class="nt">&lt;artifactId</span><span class="nt">&gt;</span>maven-jar-plugin<span class="nt">&lt;/artifactId</span><span class="nt">&gt;</span>
@@ -1120,11 +1120,11 @@ e.g. mvn eclipse:help
 <h3>How do I get the top line of a table to be “headers” for that column in APT?</h3>
 <p>With the snapshot you can do:</p>
 
-<pre><code class="nohighlight nocode">](]( header 1 ](]( header 2 ](]( header 3 ](](
+<pre tabindex="0"><code class="nohighlight nocode">](]( header 1 ](]( header 2 ](]( header 3 ](](
 </code></pre>
 <p>Example:</p>
 
-<pre><code class="nohighlight nocode">*----------------+----------------*--------------------------+
+<pre tabindex="0"><code class="nohighlight nocode">*----------------+----------------*--------------------------+
 ](]( header 1 ](](   ]( ](]( header 2 ](]( ]( ](]( header 2 ](](
 *----------------+----------------*--------------------------+
 cell1            ]( cell1          ](  cell3
@@ -1134,13 +1134,13 @@ cell1            ]( cell1          ](  cell3
 <p>Wagon is really for repository interaction, though it could be used for this.</p>
 <p>To get the wagon:</p>
 
-<pre class="highlight"><code class="language-java"><span class="cm">/* @component roleHint="http" */</span>
+<pre tabindex="0" class="highlight"><code class="language-java"><span class="cm">/* @component roleHint="http" */</span>
 Wagon wagon;
 </code></pre></section><section><a id="How_do_I_set_the_base_directory_for_creating_the_packages_created_by_assembly.3F"></a>
 <h3>How do I set the base directory for creating the packages created by assembly?</h3>
 <p>The assembly plugin, by default, saves the packages to your <code>project.build.directory</code> directory from your pom or</p>
 
-<pre class="highlight"><code class="language-xml">
+<pre tabindex="0" class="highlight"><code class="language-xml">
 <span class="nt">&lt;project</span><span class="nt">&gt;</span>
   <span class="c">&lt;!-- ... --&gt;</span>
   <span class="nt">&lt;build</span><span class="nt">&gt;</span>
@@ -1154,7 +1154,7 @@ Wagon wagon;
 <h3>How do I filter which classes should be put inside the packaged jar?</h3>
 <p>All compiled classes are always put into the packaged jar. However, you can configure the compiler plugin to exclude compiling some of the java sources using the compiler parameter <code>excludes</code> as follows:</p>
 
-<pre class="highlight"><code class="language-xml">
+<pre tabindex="0" class="highlight"><code class="language-xml">
 <span class="nt">&lt;project</span><span class="nt">&gt;</span>
   <span class="c">&lt;!-- ... --&gt;</span>
   <span class="nt">&lt;build</span><span class="nt">&gt;</span>
@@ -1179,7 +1179,7 @@ Wagon wagon;
 <h3>Is it possible to use HashMap as configurable parameter in a plugin? How do I configure that in pom.xml?</h3>
 <p>Yes. It's possible to use a HashMap field as a parameter in your plugin. To use it, your pom configuration should look like this:</p>
 
-<pre class="highlight"><code class="language-xml">
+<pre tabindex="0" class="highlight"><code class="language-xml">
 <span class="nt">&lt;myMap</span><span class="nt">&gt;</span>
   <span class="nt">&lt;yourkey</span><span class="nt">&gt;</span>yourvalue<span class="nt">&lt;/yourkey</span><span class="nt">&gt;</span>
   <span class="c">&lt;!-- ... --&gt;</span>
@@ -1213,7 +1213,7 @@ Wagon wagon;
 <h3>How can I create an archetype with resources mapped to the class files directory?</h3>
 <p>Specify the resources to be sources as shown below:</p>
 
-<pre class="highlight"><code class="language-xml">
+<pre tabindex="0" class="highlight"><code class="language-xml">
 <span class="nt">&lt;sources</span><span class="nt">&gt;</span>
   <span class="nt">&lt;source</span><span class="nt">&gt;</span>src/main/resources/sampleXml.xml<span class="nt">&lt;/source</span><span class="nt">&gt;</span>
   <span class="nt">&lt;source</span><span class="nt">&gt;</span>src/main/resources/sampleProperties.properties<span class="nt">&lt;/source</span><span class="nt">&gt;</span>
@@ -1222,7 +1222,7 @@ Wagon wagon;
 <h3>How do I add a description to the welcome page of the generated site when I execute mvn site?</h3>
 <p>Fill up the <code>&lt;description&gt;</code> in the pom.xml as shown below:</p>
 
-<pre class="highlight"><code class="language-xml">
+<pre tabindex="0" class="highlight"><code class="language-xml">
 <span class="nt">&lt;project</span><span class="nt">&gt;</span>
   <span class="c">&lt;!--...--&gt;</span>
   <span class="nt">&lt;description</span><span class="nt">&gt;</span>put your description here<span class="nt">&lt;/description</span><span class="nt">&gt;</span>
@@ -1253,7 +1253,7 @@ Wagon wagon;
 <p>For an example, let's say you have a Java source at <code>src/main/java/com/junk/JunkBean.java</code>. For it to compile correctly, it needs to have a <code>package com.junk;</code> in it. When XDoclet walks the source starting at <code>src/main</code>, it finds a source file that identifies itself as being in package <code>com.junk</code> but it finds the source in package <code>java.com.junk</code>. Since the two don't match, XDoclet assumes that there is a serious problem with the source file and ignores it.</p></section><section><a id="How_do_I_indicate_array_types_in_a_MOJO_configuration.3F"></a>
 <h3>How do I indicate array types in a MOJO configuration?</h3>
 
-<pre class="highlight"><code class="language-xml">
+<pre tabindex="0" class="highlight"><code class="language-xml">
 <span class="nt">&lt;tags</span><span class="nt">&gt;</span>
   <span class="nt">&lt;tag</span><span class="nt">&gt;</span>value1<span class="nt">&lt;/tag</span><span class="nt">&gt;</span>
   <span class="nt">&lt;tag</span><span class="nt">&gt;</span>value2<span class="nt">&lt;/tag</span><span class="nt">&gt;</span>
@@ -1264,7 +1264,7 @@ Wagon wagon;
 <h3>How do I access downloaded sources in eclipse?</h3>
 <p>I issued <code>mvn -Declipse.downloadSources=true eclipse eclipse</code> goal. It created <code>.classpath</code> and <code>.project</code> for both modules, and in my local repository it downloaded sources. How do I access them in eclipse?</p>
 
-<pre class="highlight"><code class="language-xml">
+<pre tabindex="0" class="highlight"><code class="language-xml">
 <span class="nt">&lt;build</span><span class="nt">&gt;</span>
   <span class="nt">&lt;pluginManagement</span><span class="nt">&gt;</span>
     <span class="nt">&lt;plugins</span><span class="nt">&gt;</span>
@@ -1282,14 +1282,14 @@ Wagon wagon;
 </code></pre>
 <p>Make sure the generated <code>.classpath</code> actually contains sourcepath attributes, like this:</p>
 
-<pre class="highlight"><code class="language-xml">
+<pre tabindex="0" class="highlight"><code class="language-xml">
 <span class="nt">&lt;classpathentry</span> <span class="na">kind</span>=<span class="s">"var"</span>
   <span class="na">path</span>=<span class="s">"M2_REPO/javax/servlet/servlet-api/ 2.4/servlet-api-2.4.jar"</span>
   <span class="na">sourcepath</span>=<span class="s">"M2_REPO/javax/servlet/servlet- api/2.4/servlet-api-2.4-sources.jar"</span><span class="nt">/&gt;</span>
 </code></pre></section><section><a id="Is_there_a_setting_for_testing.2C_where_I_can_add_a_directory_to_the_classpath.2C_which_will_allow_the_tests_to_access_the_files.3F"></a>
 <h3>Is there a setting for testing, where I can add a directory to the classpath, which will allow the tests to access the files?</h3>
 
-<pre class="highlight"><code class="language-xml">
+<pre tabindex="0" class="highlight"><code class="language-xml">
 <span class="nt">&lt;testResources</span><span class="nt">&gt;</span>
   <span class="nt">&lt;testResource</span><span class="nt">&gt;</span>
     <span class="nt">&lt;targetPath</span><span class="nt">&gt;</span>org/apache/struts/resources<span class="nt">&lt;/targetPath</span><span class="nt">&gt;</span>
@@ -1323,7 +1323,7 @@ Wagon wagon;
 <p>For example, <code>&lt;repositories&gt;</code> in pom.xml would tell all users of the project to use the <code>&lt;repositories&gt;</code> specified in the pom.xml. However, some users may prefer to use a mirror instead, so they'll put <code>&lt;mirrors&gt;</code> in their settings.xml so they can choose a faster repository server.</p>
 <p>so there you go:</p>
 
-<pre><code class="nohighlight nocode">settings.xml &gt; user scope
+<pre tabindex="0"><code class="nohighlight nocode">settings.xml &gt; user scope
 pom.xml &gt; project scope
 </code></pre></section><section><a id="What_is_reactorProjects.3F_executedProject.3F"></a>
 <h3>What is reactorProjects? executedProject?</h3>
@@ -1331,7 +1331,7 @@ pom.xml &gt; project scope
 <h3>What is a Snapshot?</h3>
 <p>A snapshot is a development version. e.g, 2.0-SNAPSHOT is the “still-in-development future 2.0”. If you want to use a snapshot, juste use <code>&lt;version&gt;</code> , e.g. <code>&lt;version&gt;2.0-SNAPSHOT&lt;/version&gt;</code>. But first you must ensure that you have access to the repository containing this version. For example, for Maven snapshots as stated below, you could use :</p>
 
-<pre class="highlight"><code class="language-xml">
+<pre tabindex="0" class="highlight"><code class="language-xml">
 <span class="nt">&lt;repositories</span><span class="nt">&gt;</span>
   <span class="nt">&lt;repository</span><span class="nt">&gt;</span>
     <span class="nt">&lt;id</span><span class="nt">&gt;</span>maven-snapshots<span class="nt">&lt;/id</span><span class="nt">&gt;</span>
@@ -1341,7 +1341,7 @@ pom.xml &gt; project scope
 </code></pre>
 <p>or, for plugins :</p>
 
-<pre class="highlight"><code class="language-xml">
+<pre tabindex="0" class="highlight"><code class="language-xml">
 <span class="nt">&lt;pluginRepositories</span><span class="nt">&gt;</span>
   <span class="nt">&lt;pluginRepository</span><span class="nt">&gt;</span>
     <span class="nt">&lt;id</span><span class="nt">&gt;</span>maven-snapshots<span class="nt">&lt;/id</span><span class="nt">&gt;</span>
@@ -1361,13 +1361,13 @@ pom.xml &gt; project scope
 <h3>If two versions of the same dependency are at the same depth, how do you know or predict which version will be used?</h3>
 <p>The order in which dependencies are declared effectively becomes the tie-breaker when two dependency versions are declared at the same depth. Example</p>
 
-<pre><code class="nohighlight nocode">A -&gt; B, C
+<pre tabindex="0"><code class="nohighlight nocode">A -&gt; B, C
 B -&gt; D (v2)
 C -&gt; D (v3)
 </code></pre>
 <p>and A declares the following:</p>
 
-<pre class="highlight"><code class="language-xml">
+<pre tabindex="0" class="highlight"><code class="language-xml">
 <span class="nt">&lt;dependencies</span><span class="nt">&gt;</span>
   <span class="nt">&lt;dependency</span><span class="nt">&gt;</span>
     <span class="c">&lt;!-- ... --&gt;</span>
@@ -1383,7 +1383,7 @@ C -&gt; D (v3)
 <h3>How do I configure a project to use a specific version of a JDK?</h3>
 <p>Use the following plugin:</p>
 
-<pre class="highlight"><code class="language-xml">
+<pre tabindex="0" class="highlight"><code class="language-xml">
 <span class="nt">&lt;plugin</span><span class="nt">&gt;</span>
   <span class="nt">&lt;groupId</span><span class="nt">&gt;</span>org.apache.maven.plugins<span class="nt">&lt;/groupId</span><span class="nt">&gt;</span>
   <span class="nt">&lt;artifactId</span><span class="nt">&gt;</span>maven-compiler-plugin<span class="nt">&lt;/artifactId</span><span class="nt">&gt;</span>
@@ -1398,7 +1398,7 @@ C -&gt; D (v3)
 <h3>Is there a way to use the current date in the POM?</h3>
 <p>Take a look at the buildnumber plugin. It can be used to generate a build date each time I do a build, as follows:</p>
 
-<pre class="highlight"><code class="language-xml">
+<pre tabindex="0" class="highlight"><code class="language-xml">
 <span class="nt">&lt;plugin</span><span class="nt">&gt;</span>
   <span class="nt">&lt;groupId</span><span class="nt">&gt;</span>org.codehaus.mojo<span class="nt">&lt;/groupId</span><span class="nt">&gt;</span>
   <span class="nt">&lt;artifactId</span><span class="nt">&gt;</span>maven-buildnumber-plugin<span class="nt">&lt;/artifactId</span><span class="nt">&gt;</span>
@@ -1437,7 +1437,7 @@ C -&gt; D (v3)
 <p>However, the tag does not exist. What is wrong?</p>
 <p>The full failure will look something like this: <code>/stuff/tags/example/pom.xml</code></p>
 
-<pre><code class="nohighlight nocode">[INFO] Tagging release with the label stuff-1.0.0...
+<pre tabindex="0"><code class="nohighlight nocode">[INFO] Tagging release with the label stuff-1.0.0...
 [INFO] Executing: svn \--non-interactive copy \--file C:\DOCUME~1\G980143\LOCALS~1\Temp\maven-scm-1259783654.commit . http://www.example.com/subversion/repo/example/tags/stuff-1.0.0
 [INFO] Working directory: C:\projects\stuff\branches\1.0.x
 [INFO] \-----------------------------------------------------------------------\-
@@ -1460,7 +1460,7 @@ svn: File 'subversion/repo/example/tags/stuff-1.0.0/pom.xml' already exists
 <h3>How do I read the version from the pom.xml and then using Java display the version on my application?</h3>
 <p>If you want to read a pom file, you can use the <code>MavenXpp3Reader#read(... )</code>. But if you simply want to get the version of your currently running maven project inside your pom (which is usually the case), you can simply do:</p>
 
-<pre class="highlight"><code class="language-java"><span class="cm">/**
+<pre tabindex="0" class="highlight"><code class="language-java"><span class="cm">/**
  * @parameter expression="${project.version}"
  */</span>
 <span class="k">private</span> String version;
@@ -1470,7 +1470,7 @@ svn: File 'subversion/repo/example/tags/stuff-1.0.0/pom.xml' already exists
 <p>You can do this by using the maven-buildhelper-plugin. It allows you to add additional source directories.</p></section><section><a id="How_do_I_add_properties_to_a_pom.3F"></a>
 <h3>How do I add properties to a pom?</h3>
 
-<pre class="highlight"><code class="language-xml">
+<pre tabindex="0" class="highlight"><code class="language-xml">
 <span class="nt">&lt;properties</span><span class="nt">&gt;</span>
   <span class="nt">&lt;myproperty</span><span class="nt">&gt;</span>propertyvalue<span class="nt">&lt;/myproperty</span><span class="nt">&gt;</span>
 <span class="nt">&lt;/properties</span><span class="nt">&gt;</span>

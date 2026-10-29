@@ -43,9 +43,9 @@
     <a class="asf" href="https://www.apache.org/"><img class="asf-leaf" src="../../images/oakleaf.svg" width="14" height="22" alt=""><span>Apache</span></a>
     </div>
   </header>
-  <div class="specimen" role="note">
+  <aside class="specimen" aria-label="About this site">
     <p><strong>Specimen.</strong> A proposed redesign of maven.apache.org, built with <code>mvn site</code> and a skin of its own; not the official Apache Maven site. The official site is <a href="https://maven.apache.org/">maven.apache.org</a>. <a href="../../about-this-example.html">About this example</a></p>
-  </div>
+  </aside>
   <div class="frame has-group">
     <nav class="group-nav" aria-labelledby="group-nav-title">
       <p class="up"><a href="../../community/index.html"><svg aria-hidden="true" viewBox="0 0 16 16" width="14" height="14"><path d="M10 3.5L5.5 8l4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" /></svg>All of Community</a></p>
@@ -90,7 +90,7 @@
 <p>Other sites may publish their own - for example, the MojoHaus project hosts theirs at <a href="https://oss.sonatype.org/content/repositories/snapshots/" class="externalLink">https://oss.sonatype.org/content/repositories/snapshots/</a></p>
 <p>The first step is to include this in your project:</p>
 
-<pre class="highlight"><code class="language-xml"><span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span><span class="nt">&gt;</span>
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span><span class="nt">&gt;</span>
   ...
   <span class="nt">&lt;pluginRepositories</span><span class="nt">&gt;</span>
     <span class="nt">&lt;pluginRepository</span><span class="nt">&gt;</span>
@@ -111,7 +111,7 @@
 <li>
 <p>You can have Maven automatically check for updates on a given interval, for example:</p>
 
-<pre class="highlight"><code class="language-xml"><span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span><span class="nt">&gt;</span>
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span><span class="nt">&gt;</span>
   ...
   <span class="nt">&lt;pluginRepositories</span><span class="nt">&gt;</span>
     <span class="nt">&lt;pluginRepository</span><span class="nt">&gt;</span>
@@ -134,7 +134,7 @@
 <p>If you are using the goals from the command line on a number of projects, you should include this in your <code>settings.xml</code> file instead.</p>
 <p>You need to modify your <code>${user.home}/.m2/settings.xml</code> file to include two new profiles and then when you need access to the plugin snapshots use <code>-Papache</code>. The profile only needs to be enabled once so that the plugins can be downloaded into you local repository. Once in your local repository Maven can successfully resolve the dependencies and the profile no longer needs to be activated.</p>
 
-<pre class="highlight"><code class="language-xml"><span class="nt">&lt;settings</span><span class="nt">&gt;</span>
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;settings</span><span class="nt">&gt;</span>
   ...
   <span class="nt">&lt;profiles</span><span class="nt">&gt;</span>
     <span class="nt">&lt;profile</span><span class="nt">&gt;</span>
@@ -159,7 +159,7 @@
 </code></pre>
 <p>When invoking Maven for Apache profile, do it like this:</p>
 
-<pre><code class="nohighlight nocode">mvn -Papache &lt;phase|goal&gt;
+<pre tabindex="0"><code class="nohighlight nocode">mvn -Papache &lt;phase|goal&gt;
 </code></pre></section><section><a id="Using_a_Repository_Manager"></a>
 <h2>Using a Repository Manager</h2>
 <p>In addition to the above you may want to use a repository manager so that you can retain the builds you have been using. For information on this technique, see the <a href="test-staged-releases.html">Guide to Testing Staged Releases</a>.</p></section><section><a id="How_do_I_make_changes_to_the_source_and_test_development_versions_of_the_plugins.3F"></a>

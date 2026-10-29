@@ -44,9 +44,9 @@
     <a class="asf" href="https://www.apache.org/"><img class="asf-leaf" src="../images/oakleaf.svg" width="14" height="22" alt=""><span>Apache</span></a>
     </div>
   </header>
-  <div class="specimen" role="note">
+  <aside class="specimen" aria-label="About this site">
     <p><strong>Specimen.</strong> A proposed redesign of maven.apache.org, built with <code>mvn site</code> and a skin of its own; not the official Apache Maven site. The official site is <a href="https://maven.apache.org/">maven.apache.org</a>. <a href="../../../about-this-example.html">About this example</a></p>
-  </div>
+  </aside>
   <div class="frame has-group">
     <nav class="group-nav component-nav" aria-labelledby="group-nav-title">
       <p class="up"><a href="../../../docs/plugins/index.html"><svg aria-hidden="true" viewBox="0 0 16 16" width="14" height="14"><path d="M10 3.5L5.5 8l4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>All plugins</a></p>
@@ -123,7 +123,7 @@
 </ul>
 <p>The <code>--patch-module</code> values are different compared to the original values passed to the compiler. According to the specification it looks like <code>--patch-module &lt;module&gt;=&lt;file&gt;(&lt;pathsep&gt;&lt;file&gt;)*</code> However, files are system specific. For that reason the module names are used. If the jar itself contains the patchcode, then an <code>_</code> (underscore) is used. As separators a <code>,</code> (comma + space) is used.</p>
 
-<pre><code class="language-unknown">  --patch-module
+<pre tabindex="0"><code class="language-unknown">  --patch-module
   &lt;module&gt;=&lt;module&gt;(, &lt;module&gt;)*
 </code></pre></section>
       </div>

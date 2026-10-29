@@ -44,9 +44,9 @@
     <a class="asf" href="https://www.apache.org/"><img class="asf-leaf" src="../../images/oakleaf.svg" width="14" height="22" alt=""><span>Apache</span></a>
     </div>
   </header>
-  <div class="specimen" role="note">
+  <aside class="specimen" aria-label="About this site">
     <p><strong>Specimen.</strong> A proposed redesign of maven.apache.org, built with <code>mvn site</code> and a skin of its own; not the official Apache Maven site. The official site is <a href="https://maven.apache.org/">maven.apache.org</a>. <a href="../../about-this-example.html">About this example</a></p>
-  </div>
+  </aside>
   <div class="frame has-group">
     <nav class="group-nav" aria-labelledby="group-nav-title">
       <p class="up"><a href="../../docs/index.html"><svg aria-hidden="true" viewBox="0 0 16 16" width="14" height="14"><path d="M10 3.5L5.5 8l4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>All of Docs</a></p>
@@ -87,7 +87,7 @@
 <p>Maven since versions 3.9.x and 4.x introduced <strong>Plugin Validation</strong> in order to help Maven users and Maven Plugin developers discover issues with the plugins they use or maintain that may break in the future.</p>
 <p>These issues are displayed as WARNING either when plugin goal is executed or at the end of the build:</p>
 
-<pre><code class="nohighlight nocode">[WARNING] Plugin validation issues were detected in x plugin(s)
+<pre tabindex="0"><code class="nohighlight nocode">[WARNING] Plugin validation issues were detected in x plugin(s)
 </code></pre>
 <p>and split in two categories based on what actions should be taken:</p><section><a id="Internal_issues"></a>
 <h2>Internal issues</h2>
@@ -111,7 +111,7 @@
 <h2>Exclude plugins from validation</h2>
 <p>In some case we know about issues in some plugin and we want exclude it from validation. We can do it by property <code>maven.plugin.validation.excludes</code>, eg:</p>
 
-<pre><code class="nohighlight nocode">mvn -Dmaven.plugin.validation.excludes=plugin1-goupId:plugin1-artifactId:plugin1-version,plugin2-goupId:plugin2-artifactId:plugin2-version
+<pre tabindex="0"><code class="nohighlight nocode">mvn -Dmaven.plugin.validation.excludes=plugin1-goupId:plugin1-artifactId:plugin1-version,plugin2-goupId:plugin2-artifactId:plugin2-version
 </code></pre>
 <p>Property <code>maven.plugin.validation</code> has tha same rule as <code>maven.plugin.validation</code> - can only be used on command line (not as property in POM)</p></section><section><a id="Manage_Plugin_Validation_verbosity"></a>
 <h2>Manage Plugin Validation verbosity</h2>
@@ -127,7 +127,7 @@
 </ul>
 <p>Configuration values for <code>maven.plugin.validation</code> are case insensitive, can only be used on command line (not as property in POM), like:</p>
 
-<pre><code class="nohighlight nocode">mvn -Dmaven.plugin.validation=verbose ...
+<pre tabindex="0"><code class="nohighlight nocode">mvn -Dmaven.plugin.validation=verbose ...
 </code></pre>
 <p>As a consequence:</p>
 <ul>

@@ -43,9 +43,9 @@
     <a class="asf" href="https://www.apache.org/"><img class="asf-leaf" src="../../images/oakleaf.svg" width="14" height="22" alt=""><span>Apache</span></a>
     </div>
   </header>
-  <div class="specimen" role="note">
+  <aside class="specimen" aria-label="About this site">
     <p><strong>Specimen.</strong> A proposed redesign of maven.apache.org, built with <code>mvn site</code> and a skin of its own; not the official Apache Maven site. The official site is <a href="https://maven.apache.org/">maven.apache.org</a>. <a href="../../about-this-example.html">About this example</a></p>
-  </div>
+  </aside>
   <div class="frame has-group">
     <nav class="group-nav" aria-labelledby="group-nav-title">
       <p class="up"><a href="../../extend/index.html"><svg aria-hidden="true" viewBox="0 0 16 16" width="14" height="14"><path d="M10 3.5L5.5 8l4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" /></svg>All of Extend</a></p>
@@ -84,7 +84,7 @@
 <h2>1. Create a new project and pom.xml for the archetype artifact</h2>
 <p>An example <code>pom.xml</code> for an archetype artifact looks as follows:</p>
 
-<pre class="highlight"><code class="language-xml"><span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span> <span class="na">xmlns:xsi</span>=<span class="s">"http://www.w3.org/2001/XMLSchema-instance"</span>
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span> <span class="na">xmlns:xsi</span>=<span class="s">"http://www.w3.org/2001/XMLSchema-instance"</span>
   <span class="na">xsi:schemaLocation</span>=<span class="s">"http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd"</span><span class="nt">&gt;</span>
   <span class="nt">&lt;modelVersion</span><span class="nt">&gt;</span>4.0.0<span class="nt">&lt;/modelVersion</span><span class="nt">&gt;</span>
 
@@ -108,7 +108,7 @@
 <h2>2. Create the archetype descriptor</h2>
 <p>The <a href="/archetype/archetype-models/archetype-descriptor/archetype-descriptor.html">archetype descriptor</a> is a file called <code>archetype-metadata.xml</code> which must be located in the <code>src/main/resources/META-INF/maven/</code> directory. An example of an archetype descriptor can be found in the quickstart archetype:</p>
 
-<pre class="highlight"><code class="language-xml"><span class="nt">&lt;archetype-descriptor</span>
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;archetype-descriptor</span>
         <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/plugins/maven-archetype-plugin/archetype-descriptor/1.2.0"</span> <span class="na">xmlns:xsi</span>=<span class="s">"http://www.w3.org/2001/XMLSchema-instance"</span>
         <span class="na">xsi:schemaLocation</span>=<span class="s">"http://maven.apache.org/plugins/maven-archetype-plugin/archetype-descriptor/1.2.0 https://maven.apache.org/xsd/archetype-descriptor-1.2.0.xsd"</span>
         <span class="na">name</span>=<span class="s">"quickstart"</span><span class="nt">&gt;</span>
@@ -134,7 +134,7 @@
 <p>At this point one can only specify individual files to be created but not empty directories.</p>
 <p>Thus the quickstart archetype shown above defines the following directory structure:</p>
 
-<pre><code class="nohighlight nocode">archetype
+<pre tabindex="0"><code class="nohighlight nocode">archetype
 |-- pom.xml
 `-- src
     `-- main
@@ -156,7 +156,7 @@
 <p>The next component of the archetype to be created is the prototype <code>pom.xml</code>. Any <code>pom.xml</code> will do, just don't forget to the set <code>artifactId</code> and <code>groupId</code> as variables ( <code>${artifactId}</code> / <code>${groupId}</code> ). Both variables will be initialized from the commandline when calling <code>archetype:generate</code>.</p>
 <p>An example for a prototype <code>pom.xml</code> is:</p>
 
-<pre class="highlight"><code class="language-xml"><span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span> <span class="na">xmlns:xsi</span>=<span class="s">"http://www.w3.org/2001/XMLSchema-instance"</span>
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span> <span class="na">xmlns:xsi</span>=<span class="s">"http://www.w3.org/2001/XMLSchema-instance"</span>
     <span class="na">xsi:schemaLocation</span>=<span class="s">"http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd"</span><span class="nt">&gt;</span>
     <span class="nt">&lt;modelVersion</span><span class="nt">&gt;</span>4.0.0<span class="nt">&lt;/modelVersion</span><span class="nt">&gt;</span>
 
@@ -181,11 +181,11 @@
 <h2>4. Install the archetype and run the archetype plugin</h2>
 <p>Now you are ready to install the archetype:</p>
 
-<pre><code class="nohighlight nocode">mvn install
+<pre tabindex="0"><code class="nohighlight nocode">mvn install
 </code></pre>
 <p>Now that you have created an archetype, you can try it on your local system by using the following command. In this command, you need to specify the full information about the archetype you want to use (its <code>groupId</code>, its <code>artifactId</code>, its <code>version</code>) and the information about the new project you want to create (<code>artifactId</code> and <code>groupId</code>). Don't forget to include the version of your archetype (if you don't include the version, you archetype creation may fail with a message that version:RELEASE was not found)</p>
 
-<pre><code class="nohighlight nocode">mvn archetype:generate                                  \
+<pre tabindex="0"><code class="nohighlight nocode">mvn archetype:generate                                  \
   -DarchetypeGroupId=&lt;archetype-groupId&gt;                \
   -DarchetypeArtifactId=&lt;archetype-artifactId&gt;          \
   -DarchetypeVersion=&lt;archetype-version&gt;                \
@@ -196,7 +196,7 @@
 <h2>Alternative way to start creating your Archetype</h2>
 <p>Instead of manually creating the directory structure needed for an archetype, simply use</p>
 
-<pre><code class="nohighlight nocode">mvn archetype:generate
+<pre tabindex="0"><code class="nohighlight nocode">mvn archetype:generate
   -DgroupId=[your project's group id]
   -DartifactId=[your project's artifact id]
   -DarchetypeGroupId=org.apache.maven.archetypes

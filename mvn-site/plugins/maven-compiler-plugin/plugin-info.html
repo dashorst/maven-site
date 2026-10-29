@@ -44,9 +44,9 @@
     <a class="asf" href="https://www.apache.org/"><img class="asf-leaf" src="./images/oakleaf.svg" width="14" height="22" alt=""><span>Apache</span></a>
     </div>
   </header>
-  <div class="specimen" role="note">
+  <aside class="specimen" aria-label="About this site">
     <p><strong>Specimen.</strong> A proposed redesign of maven.apache.org, built with <code>mvn site</code> and a skin of its own; not the official Apache Maven site. The official site is <a href="https://maven.apache.org/">maven.apache.org</a>. <a href="./../../about-this-example.html">About this example</a></p>
-  </div>
+  </aside>
   <div class="frame has-group">
     <nav class="group-nav component-nav" aria-labelledby="group-nav-title">
       <p class="up"><a href="./../../docs/plugins/index.html"><svg aria-hidden="true" viewBox="0 0 16 16" width="14" height="14"><path d="M10 3.5L5.5 8l4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>All plugins</a></p>
@@ -117,7 +117,7 @@
 <p>This report describes goals, parameters details, requirements and sample usage of this plugin.</p><section><a id="Goals"></a>
 <h2>Goals</h2>
 <p>Goals available for this plugin:</p>
-<table class="bodyTable">
+<div class="table-scroll" tabindex="0"><table class="bodyTable">
 <tr class="a">
 <th>Goal</th>
 <th>Description</th></tr>
@@ -131,19 +131,19 @@
  Call <code>mvn compiler:help -Ddetail=true -Dgoal=&lt;goal-name&gt;</code> to display parameter details.</td></tr>
 <tr class="b">
 <td><a href="./testCompile-mojo.html">compiler:testCompile</a></td>
-<td>Compiles application test sources. By default uses the <a href="https://docs.oracle.com/en/java/javase/17/docs/specs/man/javac.html">javac</a> compiler of the JDK used to execute Maven. This can be overwritten through <a href="https://maven.apache.org/guides/mini/guide-using-toolchains.html">Toolchains</a> or parameter <a href="#compilerId"><code>compilerId</code></a>.<br /><strong>See also:</strong> <a href="https://docs.oracle.com/en/java/javase/17/docs/specs/man/javac.html">javac Command</a></td></tr></table></section><section><a id="System_Requirements"></a>
+<td>Compiles application test sources. By default uses the <a href="https://docs.oracle.com/en/java/javase/17/docs/specs/man/javac.html">javac</a> compiler of the JDK used to execute Maven. This can be overwritten through <a href="https://maven.apache.org/guides/mini/guide-using-toolchains.html">Toolchains</a> or parameter <a href="#compilerId"><code>compilerId</code></a>.<br /><strong>See also:</strong> <a href="https://docs.oracle.com/en/java/javase/17/docs/specs/man/javac.html">javac Command</a></td></tr></table></div></section><section><a id="System_Requirements"></a>
 <h2>System Requirements</h2>
 <p>The following specifies the minimum requirements to run this Maven plugin:</p>
-<table class="bodyTable">
+<div class="table-scroll" tabindex="0"><table class="bodyTable">
 <tr class="a">
 <td>Maven</td>
 <td>3.6.3</td></tr>
 <tr class="b">
 <td>JDK</td>
-<td>1.8</td></tr></table></section><section><a id="System_Requirements_History"></a>
+<td>1.8</td></tr></table></div></section><section><a id="System_Requirements_History"></a>
 <h2>System Requirements History</h2>
 <p>The following specifies the minimum requirements to run this Maven plugin for historical versions:</p>
-<table class="bodyTable">
+<div class="table-scroll" tabindex="0"><table class="bodyTable">
 <tr class="a">
 <th>Plugin Version</th>
 <th>Maven</th>
@@ -203,10 +203,10 @@
 <tr class="a">
 <td>from 2.0-beta-1 to 2.0.1</td>
 <td>-</td>
-<td>-</td></tr></table></section><section><a id="Usage"></a>
+<td>-</td></tr></table></div></section><section><a id="Usage"></a>
 <h2>Usage</h2>
 <p>You should specify the version in your project's plugin configuration:</p>
-<pre><code>&lt;project&gt;
+<pre tabindex="0"><code>&lt;project&gt;
   ...
   &lt;build&gt;
     &lt;!-- To define the plugin version in your parent POM --&gt;

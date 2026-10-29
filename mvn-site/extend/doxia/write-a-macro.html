@@ -43,9 +43,9 @@
     <a class="asf" href="https://www.apache.org/"><img class="asf-leaf" src="../../images/oakleaf.svg" width="14" height="22" alt=""><span>Apache</span></a>
     </div>
   </header>
-  <div class="specimen" role="note">
+  <aside class="specimen" aria-label="About this site">
     <p><strong>Specimen.</strong> A proposed redesign of maven.apache.org, built with <code>mvn site</code> and a skin of its own; not the official Apache Maven site. The official site is <a href="https://maven.apache.org/">maven.apache.org</a>. <a href="../../about-this-example.html">About this example</a></p>
-  </div>
+  </aside>
   <div class="frame has-group">
     <nav class="group-nav" aria-labelledby="group-nav-title">
       <p class="up"><a href="../../extend/index.html"><svg aria-hidden="true" viewBox="0 0 16 16" width="14" height="14"><path d="M10 3.5L5.5 8l4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" /></svg>All of Extend</a></p>
@@ -85,7 +85,7 @@
 <h1>Create a New Doxia Macro</h1>
 <p>You need to add the following <a href="https://codehaus-plexus.github.io/plexus-containers/plexus-component-metadata/" class="externalLink">plexus-component-metadata plugin</a> configuration to generate the correct Plexus <em>component.xml</em> file from annotations for the project containing your macro:</p>
 
-<pre class="highlight"><code class="language-unknown"><span class="nt">&lt;project</span><span class="nt">&gt;</span>
+<pre tabindex="0" class="highlight"><code class="language-unknown"><span class="nt">&lt;project</span><span class="nt">&gt;</span>
   ...
   <span class="nt">&lt;build</span><span class="nt">&gt;</span>
     ...
@@ -110,7 +110,7 @@
 </code></pre>
 <p>You should implement the <em>AbstractMacro</em> class:</p>
 
-<pre class="highlight"><code class="language-unknown"><span class="k">import</span> org.apache.maven.doxia.macro.AbstractMacro;
+<pre tabindex="0" class="highlight"><code class="language-unknown"><span class="k">import</span> org.apache.maven.doxia.macro.AbstractMacro;
 
 <span class="cm">/**
  * @plexus.component role="org.apache.maven.doxia.macro.Macro" role-hint="my"
@@ -134,12 +134,12 @@
 <li>
 <p>APT</p>
 
-<pre><code class="language-unknown">%{my|myParam=myValue} &lt;!-- my is the macro name defined by role-hint --&gt;
+<pre tabindex="0"><code class="language-unknown">%{my|myParam=myValue} &lt;!-- my is the macro name defined by role-hint --&gt;
 </code></pre></li>
 <li>
 <p>XDoc</p>
 
-<pre class="highlight"><code class="language-unknown"><span class="nt">&lt;macro</span> <span class="na">name</span>=<span class="s">"my"</span><span class="nt">&gt;</span> <span class="c">&lt;!-- my is the required macro name defined by role-hint --&gt;</span>
+<pre tabindex="0" class="highlight"><code class="language-unknown"><span class="nt">&lt;macro</span> <span class="na">name</span>=<span class="s">"my"</span><span class="nt">&gt;</span> <span class="c">&lt;!-- my is the required macro name defined by role-hint --&gt;</span>
   <span class="nt">&lt;param</span> <span class="na">name</span>=<span class="s">"myParam"</span> <span class="na">value</span>=<span class="s">"myValue"</span><span class="nt">/&gt;</span>
 <span class="nt">&lt;/macro</span><span class="nt">&gt;</span>
 </code></pre></li>

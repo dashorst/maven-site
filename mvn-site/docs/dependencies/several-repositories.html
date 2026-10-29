@@ -43,9 +43,9 @@
     <a class="asf" href="https://www.apache.org/"><img class="asf-leaf" src="../../images/oakleaf.svg" width="14" height="22" alt=""><span>Apache</span></a>
     </div>
   </header>
-  <div class="specimen" role="note">
+  <aside class="specimen" aria-label="About this site">
     <p><strong>Specimen.</strong> A proposed redesign of maven.apache.org, built with <code>mvn site</code> and a skin of its own; not the official Apache Maven site. The official site is <a href="https://maven.apache.org/">maven.apache.org</a>. <a href="../../about-this-example.html">About this example</a></p>
-  </div>
+  </aside>
   <div class="frame has-group">
     <nav class="group-nav" aria-labelledby="group-nav-title">
       <p class="up"><a href="../../docs/index.html"><svg aria-hidden="true" viewBox="0 0 16 16" width="14" height="14"><path d="M10 3.5L5.5 8l4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" /></svg>All of Docs</a></p>
@@ -86,7 +86,7 @@
 <h1>Setting up Multiple Repositories</h1>
 <p>There are two different ways that you can specify the use of multiple repositories. The first way is to specify in a POM which repositories you want to use. That is supported both inside and outside of build profiles:</p>
 
-<pre class="highlight"><code class="language-xml"><span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span><span class="nt">&gt;</span>
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span><span class="nt">&gt;</span>
 ...
   <span class="nt">&lt;repositories</span><span class="nt">&gt;</span>
     <span class="nt">&lt;repository</span><span class="nt">&gt;</span>
@@ -106,7 +106,7 @@
 <p><strong>NOTE:</strong> You will also get the standard set of repositories as defined in the <a href="../get-started/the-pom.html#Super_POM">Super POM</a>.</p>
 <p>The other way you can specify multiple repositories is by creating a profile in the <code>${user.home}/.m2/settings.xml</code> or <code>${maven.home}/conf/settings.xml</code> file like the following:</p>
 
-<pre class="highlight"><code class="language-xml"><span class="nt">&lt;settings</span><span class="nt">&gt;</span>
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;settings</span><span class="nt">&gt;</span>
  ...
  <span class="nt">&lt;profiles</span><span class="nt">&gt;</span>
    ...
@@ -132,7 +132,7 @@
 <p>If you specify repositories in profiles you must remember to activate that particular profile! As you can see above we do this by registering a profile to be active in the <code>activeProfiles</code> element.</p>
 <p>You could also activate this profile on the command like by executing the following command:</p>
 
-<pre><code class="nohighlight nocode">mvn -Pmyprofile ...
+<pre tabindex="0"><code class="nohighlight nocode">mvn -Pmyprofile ...
 </code></pre>
 <p>In fact the <code>-P</code> option will take a CSV list of profiles to activate if you wish to activate multiple profiles simultaneously.</p>
 <p><strong>Note</strong>: The settings descriptor documentation can be found on the <a href="../../maven-settings/settings.html">Maven Local Settings Model Website</a>.</p><section><a id="Repository_Order"></a>

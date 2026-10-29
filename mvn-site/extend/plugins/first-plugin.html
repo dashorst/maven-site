@@ -43,9 +43,9 @@
     <a class="asf" href="https://www.apache.org/"><img class="asf-leaf" src="../../images/oakleaf.svg" width="14" height="22" alt=""><span>Apache</span></a>
     </div>
   </header>
-  <div class="specimen" role="note">
+  <aside class="specimen" aria-label="About this site">
     <p><strong>Specimen.</strong> A proposed redesign of maven.apache.org, built with <code>mvn site</code> and a skin of its own; not the official Apache Maven site. The official site is <a href="https://maven.apache.org/">maven.apache.org</a>. <a href="../../about-this-example.html">About this example</a></p>
-  </div>
+  </aside>
   <div class="frame has-group">
     <nav class="group-nav" aria-labelledby="group-nav-title">
       <p class="up"><a href="../../extend/index.html"><svg aria-hidden="true" viewBox="0 0 16 16" width="14" height="14"><path d="M10 3.5L5.5 8l4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" /></svg>All of Extend</a></p>
@@ -121,7 +121,7 @@
 <h4>A Simple Mojo</h4>
 <p>Listed below is a simple mojo class which has no parameters. This is about as simple as a mojo can be. After the listing is a description of the various parts of the source.</p>
 
-<pre class="highlight"><code class="language-unknown"><span class="k">package</span> sample.plugin;
+<pre tabindex="0" class="highlight"><code class="language-unknown"><span class="k">package</span> sample.plugin;
 
 <span class="k">import</span> org.apache.maven.plugin.AbstractMojo;
 <span class="k">import</span> org.apache.maven.plugin.MojoExecutionException;
@@ -151,7 +151,7 @@
 <p>All Mojo annotations are described by the <a href="mojo-api.html#The_Descriptor_and_Annotations">Mojo API Specification</a>.</p></section></section><section><a id="Project_Definition"></a>
 <h3>Project Definition</h3>
 <p>Once the mojos have been written for the plugin, it is time to build the plugin. To do this properly, the project's pom.xml must set these things:</p>
-<table class="bodyTable">
+<div class="table-scroll" tabindex="0"><table class="bodyTable">
 <thead>
 <tr class="a">
 <th></th>
@@ -171,11 +171,11 @@
 <tr class="b">
 <td><code>dependencies</code></td>
 <td>A dependency must be declared on the Maven Plugin Tools API to resolve “<code>AbstractMojo</code>” and related classes</td></tr></tbody>
-</table>
+</table></div>
 
 <p>Listed below is an illustration of the sample mojo project's pom with the parameters set as described in the above table:</p>
 
-<pre class="highlight"><code class="language-unknown"><span class="nt">&lt;project</span><span class="nt">&gt;</span>
+<pre tabindex="0" class="highlight"><code class="language-unknown"><span class="nt">&lt;project</span><span class="nt">&gt;</span>
   <span class="nt">&lt;modelVersion</span><span class="nt">&gt;</span>4.0.0<span class="nt">&lt;/modelVersion</span><span class="nt">&gt;</span>
 
   <span class="nt">&lt;groupId</span><span class="nt">&gt;</span>sample.plugin<span class="nt">&lt;/groupId</span><span class="nt">&gt;</span>
@@ -241,7 +241,7 @@
 </code></pre></section><section><a id="Building_a_Plugin"></a>
 <h3>Building a Plugin</h3>
 <p>There are few plugin goals bound to the standard build lifecycle defined with the <code>maven-plugin</code> packaging:</p>
-<table class="bodyTable">
+<div class="table-scroll" tabindex="0"><table class="bodyTable">
 <thead>
 <tr class="a">
 <th></th>
@@ -264,13 +264,13 @@
 <tr class="a">
 <td><code>deploy</code></td>
 <td>Deploys the plugin jar to the remote repository</td></tr></tbody>
-</table>
+</table></div>
 
 <p>For more details, you can look at <a href="/ref/current/maven-core/default-bindings.html#Plugin_bindings_for_maven-plugin_packaging">detailed bindings for <code>maven-plugin</code> packaging</a>.</p></section><section><a id="Executing_Your_First_Mojo"></a>
 <h3>Executing Your First Mojo</h3>
 <p>The most direct means of executing your new plugin is to specify the plugin goal directly on the command line. To do this, configure the <code>hello-maven-plugin</code> plugin in the project:</p>
 
-<pre class="highlight"><code class="language-unknown"><span class="nt">&lt;project</span><span class="nt">&gt;</span>
+<pre tabindex="0" class="highlight"><code class="language-unknown"><span class="nt">&lt;project</span><span class="nt">&gt;</span>
 ...
   <span class="nt">&lt;build</span><span class="nt">&gt;</span>
     <span class="nt">&lt;pluginManagement</span><span class="nt">&gt;</span>
@@ -288,7 +288,7 @@
 </code></pre>
 <p>Then on the command line specify a fully-qualified goal in the form of:</p>
 
-<pre><code class="nohighlight nocode">mvn groupId:artifactId:version:goal
+<pre tabindex="0"><code class="nohighlight nocode">mvn groupId:artifactId:version:goal
 </code></pre>
 <p>For example, to run the simple mojo in the sample plugin, enter “<code>mvn sample.plugin:hello-maven-plugin:1.0-SNAPSHOT:sayhi</code>” on the command line.</p>
 <p><strong>Tips</strong>: <code>version</code> is not required to run a standalone goal.</p><section><a id="Shortening_the_Command_Line"></a>
@@ -303,7 +303,7 @@
 <li>
 <p>Finally, you can also add your plugin's group ID to the list of group IDs searched by default. To do this, add the following to your <code>${user.home}/.m2/settings.xml</code> file:</p>
 
-<pre class="highlight"><code class="language-unknown"><span class="nt">&lt;pluginGroups</span><span class="nt">&gt;</span>
+<pre tabindex="0" class="highlight"><code class="language-unknown"><span class="nt">&lt;pluginGroups</span><span class="nt">&gt;</span>
   <span class="nt">&lt;pluginGroup</span><span class="nt">&gt;</span>sample.plugin<span class="nt">&lt;/pluginGroup</span><span class="nt">&gt;</span>
 <span class="nt">&lt;/pluginGroups</span><span class="nt">&gt;</span>
 </code></pre></li>
@@ -312,7 +312,7 @@
 <h4>Attaching the Mojo to the Build Lifecycle</h4>
 <p>You can also configure the plugin to attach specific goals to a particular phase of the build lifecycle. Here is an example:</p>
 
-<pre class="highlight"><code class="language-unknown">  <span class="nt">&lt;build</span><span class="nt">&gt;</span>
+<pre tabindex="0" class="highlight"><code class="language-unknown">  <span class="nt">&lt;build</span><span class="nt">&gt;</span>
     <span class="nt">&lt;pluginManagement</span><span class="nt">&gt;</span>
       <span class="nt">&lt;plugins</span><span class="nt">&gt;</span>
         <span class="nt">&lt;plugin</span><span class="nt">&gt;</span>
@@ -342,7 +342,7 @@
 <h2>Mojo archetype</h2>
 <p>To create a new plugin project, you can use the Mojo <a href="../archetypes/introduction.html">archetype</a> with the following command line:</p>
 
-<pre><code class="nohighlight nocode">mvn archetype:generate \
+<pre tabindex="0"><code class="nohighlight nocode">mvn archetype:generate \
   -DgroupId=sample.plugin \
   -DartifactId=hello-maven-plugin \
   -DarchetypeGroupId=org.apache.maven.archetypes \
@@ -358,7 +358,7 @@
 <h3>Defining Parameters Within a Mojo</h3>
 <p>Defining a parameter is as simple as creating an instance variable in the mojo and adding the proper annotations. Listed below is an example of a parameter for the simple mojo:</p>
 
-<pre class="highlight"><code class="language-unknown">    <span class="cm">/**
+<pre tabindex="0" class="highlight"><code class="language-unknown">    <span class="cm">/**
      * The greeting to display.
      */</span>
     <span class="nd">@Parameter</span>(property = <span class="s">"sayhi.greeting"</span>, defaultValue = <span class="s">"Hello World!"</span> )
@@ -368,7 +368,7 @@
 <h3>Configuring Parameters in a Project</h3>
 <p>Each Maven project can configure the plugins it uses in the <code>pluginManagement</code> section of the pom.xml. For example:</p>
 
-<pre class="highlight"><code class="language-unknown"><span class="nt">&lt;plugin</span><span class="nt">&gt;</span>
+<pre tabindex="0" class="highlight"><code class="language-unknown"><span class="nt">&lt;plugin</span><span class="nt">&gt;</span>
   <span class="nt">&lt;groupId</span><span class="nt">&gt;</span>sample.plugin<span class="nt">&lt;/groupId</span><span class="nt">&gt;</span>
   <span class="nt">&lt;artifactId</span><span class="nt">&gt;</span>hello-maven-plugin<span class="nt">&lt;/artifactId</span><span class="nt">&gt;</span>
   <span class="nt">&lt;version</span><span class="nt">&gt;</span>1.0-SNAPSHOT<span class="nt">&lt;/version</span><span class="nt">&gt;</span>
@@ -383,7 +383,7 @@
 <p>You are not restricted to using private field mapping which is helpful if you are trying to make your Mojos reusable outside the context of Maven. In the example above, we could define public setter methods that the configuration mapping mechanism can use. You can also add an <code>@Parameter</code> annotation on the setter method (from version 3.7.0 of `plugin-tools`)</p>
 <p>So the Mojo would look like the following:</p>
 
-<pre class="highlight"><code class="language-unknown">
+<pre tabindex="0" class="highlight"><code class="language-unknown">
 <span class="k">public</span> <span class="k">class</span> MyQueryMojo <span class="k">extends</span> AbstractMojo {
 
     <span class="c1">// provide name for non matching field and setter name</span>

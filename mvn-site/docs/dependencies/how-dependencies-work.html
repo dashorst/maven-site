@@ -43,9 +43,9 @@
     <a class="asf" href="https://www.apache.org/"><img class="asf-leaf" src="../../images/oakleaf.svg" width="14" height="22" alt=""><span>Apache</span></a>
     </div>
   </header>
-  <div class="specimen" role="note">
+  <aside class="specimen" aria-label="About this site">
     <p><strong>Specimen.</strong> A proposed redesign of maven.apache.org, built with <code>mvn site</code> and a skin of its own; not the official Apache Maven site. The official site is <a href="https://maven.apache.org/">maven.apache.org</a>. <a href="../../about-this-example.html">About this example</a></p>
-  </div>
+  </aside>
   <div class="frame has-group">
     <nav class="group-nav" aria-labelledby="group-nav-title">
       <p class="up"><a href="../../docs/index.html"><svg aria-hidden="true" viewBox="0 0 16 16" width="14" height="14"><path d="M10 3.5L5.5 8l4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" /></svg>All of Docs</a></p>
@@ -110,7 +110,7 @@
 <li>
 <p>“nearest definition” means that the version used will be the closest one to your project in the tree of dependencies. Consider this tree of dependencies:</p>
 
-<pre><code class="nohighlight nocode">  A
+<pre tabindex="0"><code class="nohighlight nocode">  A
   ├── B
   │   └── C
   │       └── D 2.0
@@ -120,7 +120,7 @@
 </code></pre>
 <p>In text, dependencies for A, B, and C are defined as A -&gt; B -&gt; C -&gt; D 2.0 and A -&gt; E -&gt; D 1.0, then D 1.0 will be used when building A because the path from A to D through E is shorter. You could explicitly add a dependency to D 2.0 in A to force the use of D 2.0, as shown here:</p>
 
-<pre><code class="nohighlight nocode">  A
+<pre tabindex="0"><code class="nohighlight nocode">  A
   ├── B
   │   └── C
   │       └── D 2.0
@@ -168,7 +168,7 @@ This scope is only supported on a dependency of type <code>pom</code> in the <co
 
 <div style="width: 90%; text-align: center; vertical-align: center; margin: 20px;">
 
-<table class="bordered" style="table-layout: fixed; width: 100%;">
+<div class="table-scroll" tabindex="0"><table class="bordered" style="table-layout: fixed; width: 100%;">
 <thead>
 
 <tr class="a">
@@ -245,14 +245,14 @@ This scope is only supported on a dependency of type <code>pom</code> in the <co
 <td class="bordered">-</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 </div>
 </section><section><a id="Dependency_Management"></a>
 <h2>Dependency Management</h2>
 <p>The dependency management section is a mechanism for centralizing dependency information. When you have a set of projects that inherit from a common parent, it's possible to put all information about the dependency in the common POM and have simpler references to the artifacts in the child POMs. The mechanism is best illustrated through some examples. Given these two POMs which extend the same parent:</p>
 <p>Project A:</p>
 
-<pre class="highlight"><code class="language-xml">
+<pre tabindex="0" class="highlight"><code class="language-xml">
 <span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span><span class="nt">&gt;</span>
   ...
   <span class="nt">&lt;dependencies</span><span class="nt">&gt;</span>
@@ -280,7 +280,7 @@ This scope is only supported on a dependency of type <code>pom</code> in the <co
 </code></pre>
 <p>Project B:</p>
 
-<pre class="highlight"><code class="language-xml">
+<pre tabindex="0" class="highlight"><code class="language-xml">
 <span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span><span class="nt">&gt;</span>
   ...
   <span class="nt">&lt;dependencies</span><span class="nt">&gt;</span>
@@ -304,7 +304,7 @@ This scope is only supported on a dependency of type <code>pom</code> in the <co
 </code></pre>
 <p>These two example POMs share a common dependency and each has one non-trivial dependency. This information can be put in the parent POM like this:</p>
 
-<pre class="highlight"><code class="language-xml">
+<pre tabindex="0" class="highlight"><code class="language-xml">
 <span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span><span class="nt">&gt;</span>
   ...
   <span class="nt">&lt;dependencyManagement</span><span class="nt">&gt;</span>
@@ -345,7 +345,7 @@ This scope is only supported on a dependency of type <code>pom</code> in the <co
 </code></pre>
 <p>Then the two child POMs become much simpler:</p>
 
-<pre class="highlight"><code class="language-xml">
+<pre tabindex="0" class="highlight"><code class="language-xml">
 <span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span><span class="nt">&gt;</span>
   ...
   <span class="nt">&lt;dependencies</span><span class="nt">&gt;</span>
@@ -365,7 +365,7 @@ This scope is only supported on a dependency of type <code>pom</code> in the <co
 
 </code></pre>
 
-<pre class="highlight"><code class="language-xml">
+<pre tabindex="0" class="highlight"><code class="language-xml">
 <span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span><span class="nt">&gt;</span>
   ...
   <span class="nt">&lt;dependencies</span><span class="nt">&gt;</span>
@@ -390,7 +390,7 @@ This scope is only supported on a dependency of type <code>pom</code> in the <co
 <p>A second, and very important use of the dependency management section is to control the versions of artifacts used in transitive dependencies. As an example consider these projects:</p>
 <p>Project A:</p>
 
-<pre class="highlight"><code class="language-xml">
+<pre tabindex="0" class="highlight"><code class="language-xml">
 <span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span><span class="nt">&gt;</span>
  <span class="nt">&lt;modelVersion</span><span class="nt">&gt;</span>4.0.0<span class="nt">&lt;/modelVersion</span><span class="nt">&gt;</span>
  <span class="nt">&lt;groupId</span><span class="nt">&gt;</span>maven<span class="nt">&lt;/groupId</span><span class="nt">&gt;</span>
@@ -429,7 +429,7 @@ This scope is only supported on a dependency of type <code>pom</code> in the <co
 </code></pre>
 <p>Project B:</p>
 
-<pre class="highlight"><code class="language-xml">
+<pre tabindex="0" class="highlight"><code class="language-xml">
 <span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span><span class="nt">&gt;</span>
   <span class="nt">&lt;parent</span><span class="nt">&gt;</span>
     <span class="nt">&lt;artifactId</span><span class="nt">&gt;</span>A<span class="nt">&lt;/artifactId</span><span class="nt">&gt;</span>
@@ -482,7 +482,7 @@ This scope is only supported on a dependency of type <code>pom</code> in the <co
 <p>The examples in the previous section describe how to specify managed dependencies through inheritance. However, in larger projects it may be impossible to accomplish this since a project can only inherit from a single parent. To accommodate this, projects can import managed dependencies from other projects. This is accomplished by declaring a POM artifact as a dependency with a scope of “import”.</p>
 <p>Project B:</p>
 
-<pre class="highlight"><code class="language-xml">
+<pre tabindex="0" class="highlight"><code class="language-xml">
 <span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span><span class="nt">&gt;</span>
   <span class="nt">&lt;modelVersion</span><span class="nt">&gt;</span>4.0.0<span class="nt">&lt;/modelVersion</span><span class="nt">&gt;</span>
   <span class="nt">&lt;groupId</span><span class="nt">&gt;</span>maven<span class="nt">&lt;/groupId</span><span class="nt">&gt;</span>
@@ -527,7 +527,7 @@ This scope is only supported on a dependency of type <code>pom</code> in the <co
 <p>Assuming A is the POM defined in the preceding example, the end result would be the same. All of A's managed dependencies would be incorporated into B except for d since it is defined in this POM.</p>
 <p>Project X:</p>
 
-<pre class="highlight"><code class="language-xml">
+<pre tabindex="0" class="highlight"><code class="language-xml">
 <span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span><span class="nt">&gt;</span>
  <span class="nt">&lt;modelVersion</span><span class="nt">&gt;</span>4.0.0<span class="nt">&lt;/modelVersion</span><span class="nt">&gt;</span>
  <span class="nt">&lt;groupId</span><span class="nt">&gt;</span>maven<span class="nt">&lt;/groupId</span><span class="nt">&gt;</span>
@@ -556,7 +556,7 @@ This scope is only supported on a dependency of type <code>pom</code> in the <co
 </code></pre>
 <p>Project Y:</p>
 
-<pre class="highlight"><code class="language-xml">
+<pre tabindex="0" class="highlight"><code class="language-xml">
 <span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span><span class="nt">&gt;</span>
  <span class="nt">&lt;modelVersion</span><span class="nt">&gt;</span>4.0.0<span class="nt">&lt;/modelVersion</span><span class="nt">&gt;</span>
  <span class="nt">&lt;groupId</span><span class="nt">&gt;</span>maven<span class="nt">&lt;/groupId</span><span class="nt">&gt;</span>
@@ -585,7 +585,7 @@ This scope is only supported on a dependency of type <code>pom</code> in the <co
 </code></pre>
 <p>Project Z:</p>
 
-<pre class="highlight"><code class="language-xml">
+<pre tabindex="0" class="highlight"><code class="language-xml">
 <span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span><span class="nt">&gt;</span>
   <span class="nt">&lt;modelVersion</span><span class="nt">&gt;</span>4.0.0<span class="nt">&lt;/modelVersion</span><span class="nt">&gt;</span>
   <span class="nt">&lt;groupId</span><span class="nt">&gt;</span>maven<span class="nt">&lt;/groupId</span><span class="nt">&gt;</span>
@@ -621,7 +621,7 @@ This scope is only supported on a dependency of type <code>pom</code> in the <co
 <p>Imports are most effective when used for defining a “library” of related artifacts that are generally part of a multiproject build. It is fairly common for one project to use one or more artifacts from these libraries. However, it has sometimes been difficult to keep the versions in the project using the artifacts in synch with the versions distributed in the library. The pattern below illustrates how a “bill of materials” (BOM) can be created for use by other projects.</p>
 <p>The root of the project is the BOM POM. It defines the versions of all the artifacts that will be created in the library. Other projects that wish to use the library should import this POM into the dependencyManagement section of their POM.</p>
 
-<pre class="highlight"><code class="language-xml">
+<pre tabindex="0" class="highlight"><code class="language-xml">
 <span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span> <span class="na">xmlns:xsi</span>=<span class="s">"http://www.w3.org/2001/XMLSchema-instance"</span>
     <span class="na">xsi:schemaLocation</span>=<span class="s">"http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"</span><span class="nt">&gt;</span>
   <span class="nt">&lt;modelVersion</span><span class="nt">&gt;</span>4.0.0<span class="nt">&lt;/modelVersion</span><span class="nt">&gt;</span>
@@ -657,7 +657,7 @@ This scope is only supported on a dependency of type <code>pom</code> in the <co
 </code></pre>
 <p>The parent subproject has the BOM POM as its parent. It is a normal multiproject pom.</p>
 
-<pre class="highlight"><code class="language-xml">
+<pre tabindex="0" class="highlight"><code class="language-xml">
 <span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span> <span class="na">xmlns:xsi</span>=<span class="s">"http://www.w3.org/2001/XMLSchema-instance"</span>
      <span class="na">xsi:schemaLocation</span>=<span class="s">"http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"</span><span class="nt">&gt;</span>
   <span class="nt">&lt;modelVersion</span><span class="nt">&gt;</span>4.0.0<span class="nt">&lt;/modelVersion</span><span class="nt">&gt;</span>
@@ -695,7 +695,7 @@ This scope is only supported on a dependency of type <code>pom</code> in the <co
 </code></pre>
 <p>Next are the actual project POMs.</p>
 
-<pre class="highlight"><code class="language-xml">
+<pre tabindex="0" class="highlight"><code class="language-xml">
 <span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span> <span class="na">xmlns:xsi</span>=<span class="s">"http://www.w3.org/2001/XMLSchema-instance"</span>
      <span class="na">xsi:schemaLocation</span>=<span class="s">"http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"</span><span class="nt">&gt;</span>
   <span class="nt">&lt;modelVersion</span><span class="nt">&gt;</span>4.0.0<span class="nt">&lt;/modelVersion</span><span class="nt">&gt;</span>
@@ -741,7 +741,7 @@ This scope is only supported on a dependency of type <code>pom</code> in the <co
 </code></pre>
 <p>The project that follows shows how the library can now be used in another project without having to specify the dependent project's versions.</p>
 
-<pre class="highlight"><code class="language-xml"><span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span> <span class="na">xmlns:xsi</span>=<span class="s">"http://www.w3.org/2001/XMLSchema-instance"</span>
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span> <span class="na">xmlns:xsi</span>=<span class="s">"http://www.w3.org/2001/XMLSchema-instance"</span>
      <span class="na">xsi:schemaLocation</span>=<span class="s">"http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"</span><span class="nt">&gt;</span>
   <span class="nt">&lt;modelVersion</span><span class="nt">&gt;</span>4.0.0<span class="nt">&lt;/modelVersion</span><span class="nt">&gt;</span>
   <span class="nt">&lt;groupId</span><span class="nt">&gt;</span>com.test<span class="nt">&lt;/groupId</span><span class="nt">&gt;</span>
@@ -782,7 +782,7 @@ This scope is only supported on a dependency of type <code>pom</code> in the <co
 </ul>
 <p>Starting from Maven 4.0, a new specific BOM packaging has been introduced. It allows defining a BOM which is not used as a parent in a project leveraging the newer 4.1.0 model, while still providing full compatibility with Maven 3.X clients and projects. This BOM packaging is translated into a more usual POM packaging at installation / deployment time, leveraging the build/consumer POM feature from Maven 4. This thus provides full compatibility with Maven 3.x.</p>
 
-<pre class="highlight"><code class="language-xml">
+<pre tabindex="0" class="highlight"><code class="language-xml">
 <span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.1.0"</span> <span class="na">xmlns:xsi</span>=<span class="s">"http://www.w3.org/2001/XMLSchema-instance"</span>
     <span class="na">xsi:schemaLocation</span>=<span class="s">"http://maven.apache.org/POM/4.1.0 https://maven.apache.org/xsd/maven-4.1.0.xsd"</span><span class="nt">&gt;</span>
   <span class="nt">&lt;parent</span><span class="nt">&gt;</span>
@@ -818,7 +818,7 @@ This scope is only supported on a dependency of type <code>pom</code> in the <co
 <h2>System Dependencies</h2>
 <p>In rare occurrences it's necessary to use a dependency which is not available in any repository, but only on local machine; For example, a jar of some commercial application. To include such a dependency in the build, the <em>system</em> scope can be used. Dependencies with the scope <em>system</em> are not looked up in the Maven repository system. Instead, the <code>dependency</code> element contains a <code>systemPath</code> pointing to a jar on the local file system.</p>
 
-<pre class="highlight"><code class="language-xml"><span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span><span class="nt">&gt;</span>
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span><span class="nt">&gt;</span>
   ...
   <span class="nt">&lt;dependencies</span><span class="nt">&gt;</span>
     <span class="nt">&lt;dependency</span><span class="nt">&gt;</span>
@@ -836,7 +836,7 @@ This scope is only supported on a dependency of type <code>pom</code> in the <co
 <h3>Historical usage: Java EE (<code>javax</code>) libraries of the JDK</h3>
 <p>In the past, the system scope was commonly used to tell Maven about Java EE (<code>javax</code> package) dependencies provided by the JDK that were available as separate downloads earlier. A typical examples is the Java Authentication and Authorization Service (JAAS):</p>
 
-<pre class="highlight"><code class="language-xml"><span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span><span class="nt">&gt;</span>
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span><span class="nt">&gt;</span>
   ...
   <span class="nt">&lt;dependencies</span><span class="nt">&gt;</span>
     <span class="nt">&lt;dependency</span><span class="nt">&gt;</span>

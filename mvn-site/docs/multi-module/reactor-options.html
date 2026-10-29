@@ -47,9 +47,9 @@
     <a class="asf" href="https://www.apache.org/"><img class="asf-leaf" src="../../images/oakleaf.svg" width="14" height="22" alt=""><span>Apache</span></a>
     </div>
   </header>
-  <div class="specimen" role="note">
+  <aside class="specimen" aria-label="About this site">
     <p><strong>Specimen.</strong> A proposed redesign of maven.apache.org, built with <code>mvn site</code> and a skin of its own; not the official Apache Maven site. The official site is <a href="https://maven.apache.org/">maven.apache.org</a>. <a href="../../about-this-example.html">About this example</a></p>
-  </div>
+  </aside>
   <div class="frame has-group">
     <nav class="group-nav" aria-labelledby="group-nav-title">
       <p class="up"><a href="../../docs/index.html"><svg aria-hidden="true" viewBox="0 0 16 16" width="14" height="14"><path d="M10 3.5L5.5 8l4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>All of Docs</a></p>
@@ -88,7 +88,7 @@
  
 <p>These options change which modules of a multi-module build Maven builds, from where, and what happens when one fails. Without them, Maven builds the project in the current directory and all its modules. The complete list of command-line options is in the <a href="../../ref/current/maven-embedder/cli.html">CLI options reference</a>; <code>mvn --help</code> prints it for the Maven you run. <a href="build-part-of-a-project.html">Build part of a multi-module project</a> shows the common combinations.</p><section><section><a id="Selecting_modules"></a>
 <h2>Selecting modules</h2>
-<table class="bodyTable">
+<div class="table-scroll" tabindex="0"><table class="bodyTable">
 <thead>
 <tr class="a">
 <th>Option</th>
@@ -130,13 +130,13 @@
 <td><code>--file</code></td>
 <td>Starts from another POM file, or the <code>pom.xml</code> in another directory, as if Maven ran there.</td>
 <td>3.9, 3.10, 4.0</td></tr></tbody>
-</table>
+</table></div>
 
 <p><code>-am</code> and <code>-amd</code> without <code>-pl</code> select nothing extra on Maven 3. On Maven 4 they apply to the project in the current directory, and reach the whole project even when you start in a subproject's directory.</p>
 <p>Maven 3 does not know <code>-r</code> and stops with <code>Unrecognized option: -r</code>. The CLI options reference describes the latest Maven 3 release; Maven 4 lists <code>-r</code> in <code>mvn --help</code>.</p></section><section><a id="Project_selectors"></a>
 <h2>Project selectors</h2>
 <p><code>-pl</code> takes a comma-separated list of selectors, <code>-rf</code> takes one. Each selector names one module of the build.</p>
-<table class="bodyTable">
+<div class="table-scroll" tabindex="0"><table class="bodyTable">
 <thead>
 <tr class="a">
 <th>Selector</th>
@@ -154,11 +154,11 @@
 <td><code>groupId:artifactId</code></td>
 <td>the module with that group and artifact id</td>
 <td><code>com.example.shop:core</code></td></tr></tbody>
-</table>
+</table></div>
 
 <p>A selector without a colon is always a path. When the directory name differs from the artifact id, the artifact id alone does not select the module: write it with a colon in front.</p>
 <p>Prefixes go before the selector:</p>
-<table class="bodyTable">
+<div class="table-scroll" tabindex="0"><table class="bodyTable">
 <thead>
 <tr class="a">
 <th>Prefix</th>
@@ -180,12 +180,12 @@
 <td>do not fail when no module matches; goes after <code>!</code>, <code>-</code> or <code>+</code></td>
 <td><code>-pl '?docs'</code>, <code>-pl '!?docs'</code></td>
 <td>4.0</td></tr></tbody>
-</table>
+</table></div>
 
 <p>Quote selectors with <code>!</code> or <code>?</code> in the shell: Bash treats <code>!</code> as a history command and <code>?</code> as a wildcard.</p>
 <p>A selector that matches no module stops the build before anything is built. Maven 3 reports <code>Could not find the selected project in the reactor: docs</code>, Maven 4 <code>The requested required projects docs do not exist.</code> Maven 3 reports <code>?docs</code> the same way, as it does not know the <code>?</code> prefix.</p>
 <p>Selecting or excluding an aggregator differs between the lines:</p>
-<table class="bodyTable">
+<div class="table-scroll" tabindex="0"><table class="bodyTable">
 <thead>
 <tr class="a">
 <th>Selector on an aggregator <code>services</code> with subprojects <code>billing</code> and <code>shipping</code></th>
@@ -203,10 +203,10 @@
 <td><code>-pl '!services'</code></td>
 <td>everything except <code>services</code></td>
 <td>everything except <code>services</code>, <code>billing</code> and <code>shipping</code></td></tr></tbody>
-</table>
+</table></div>
 </section><section><a id="Failures"></a>
 <h2>Failures</h2>
-<table class="bodyTable">
+<div class="table-scroll" tabindex="0"><table class="bodyTable">
 <thead>
 <tr class="a">
 <th>Option</th>
@@ -232,12 +232,12 @@
 <td>Builds all other modules, including those that depend on the failed one.</td>
 <td>success, although the log ends with <code>BUILD FAILURE</code></td>
 <td>3.9, 3.10, 4.0</td></tr></tbody>
-</table>
+</table></div>
 
 <p>With <code>-fn</code>, a module that depends on the failed module is built against whatever version of it Maven can find, such as an older one in the local repository.</p>
 <p>After a failure, Maven 3 prints the command to resume with, <code>mvn &lt;args&gt; -rf :core</code>. Maven 4 prints <code>mvn [args] -r</code>, and its <code>target/resume.properties</code> lists the failed and skipped modules. After a successful build, Maven 4 deletes that file.</p></section><section><a id="Parallel_builds"></a>
 <h2>Parallel builds</h2>
-<table class="bodyTable">
+<div class="table-scroll" tabindex="0"><table class="bodyTable">
 <thead>
 <tr class="a">
 <th>Option</th>
@@ -249,7 +249,7 @@
 <td><code>--threads</code></td>
 <td>Builds modules that do not depend on each other at the same time. Takes a thread count, <code>-T 4</code>, or a count per CPU core with <code>C</code>, <code>-T 1C</code>.</td>
 <td>3.9, 3.10, 4.0</td></tr></tbody>
-</table>
+</table></div>
 
 <p>The order of the modules still holds: a module starts only after the modules it depends on are finished. Maven logs <code>Using the MultiThreadedBuilder implementation with a thread count of 4</code>.</p></section></section>
       </div>

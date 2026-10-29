@@ -43,9 +43,9 @@
     <a class="asf" href="https://www.apache.org/"><img class="asf-leaf" src="../../images/oakleaf.svg" width="14" height="22" alt=""><span>Apache</span></a>
     </div>
   </header>
-  <div class="specimen" role="note">
+  <aside class="specimen" aria-label="About this site">
     <p><strong>Specimen.</strong> A proposed redesign of maven.apache.org, built with <code>mvn site</code> and a skin of its own; not the official Apache Maven site. The official site is <a href="https://maven.apache.org/">maven.apache.org</a>. <a href="../../about-this-example.html">About this example</a></p>
-  </div>
+  </aside>
   <div class="frame has-group">
     <nav class="group-nav" aria-labelledby="group-nav-title">
       <p class="up"><a href="../../extend/index.html"><svg aria-hidden="true" viewBox="0 0 16 16" width="14" height="14"><path d="M10 3.5L5.5 8l4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" /></svg>All of Extend</a></p>
@@ -97,7 +97,7 @@
 <p>When using injections in your Mojo, you can simply use a mocking framework such as Mockito to create mock instances of the injected dependencies, and pass them to the Mojo constructor (if using constructor injection) or set them on the Mojo instance (if using field injection).</p>
 <p>Simple example using Mockito with constructor injection:</p>
 
-<pre class="highlight"><code class="language-java"><span class="nd">@Mojo</span>(name = <span class="s">"sayhi"</span>)
+<pre tabindex="0" class="highlight"><code class="language-java"><span class="nd">@Mojo</span>(name = <span class="s">"sayhi"</span>)
 <span class="k">public</span> <span class="k">class</span> GreetingMojo <span class="k">extends</span> AbstractMojo {
     
     <span class="k">private</span> <span class="k">final</span> MavenProject project;
@@ -115,7 +115,7 @@
 </code></pre>
 <p>and the corresponding unit test:</p>
 
-<pre class="highlight"><code class="language-java"><span class="nd">@ExtendWith</span>(MockitoExtension.<span class="k">class</span>)
+<pre tabindex="0" class="highlight"><code class="language-java"><span class="nd">@ExtendWith</span>(MockitoExtension.<span class="k">class</span>)
 <span class="k">class</span> GreetingMojoTest {
     <span class="nd">@Mock</span>
     <span class="k">private</span> MavenProject mavenProject;
@@ -141,7 +141,7 @@
 <p>The <a href="/plugin-testing/maven-plugin-testing-harness/">maven-plugin-testing-harness</a> is explicitly intended to test the Maven plugin <code>Mojo</code> implementation.</p>
 <p>In general, you need to include <code>maven-plugin-testing-harness</code> as a test-scoped dependency, and create a <code>MojoTest</code>.</p>
 
-<pre class="highlight"><code class="language-xml">...
+<pre tabindex="0" class="highlight"><code class="language-xml">...
   <span class="nt">&lt;dependencies</span><span class="nt">&gt;</span>
     ...
     <span class="nt">&lt;dependency</span><span class="nt">&gt;</span>
@@ -155,7 +155,7 @@
 ...
 </code></pre>
 
-<pre class="highlight"><code class="language-java">
+<pre tabindex="0" class="highlight"><code class="language-java">
 <span class="nd">@MojoTest</span>
 <span class="k">class</span> YourMojoTest {
     
@@ -194,7 +194,7 @@
 <p>You can use <a href="https://maven.apache.org/plugins/maven-invoker-plugin/" class="externalLink">maven-invoker-plugin</a> to invoke Maven and to provide some BeanShell/Groovy tests. Tests written in this way don't run under JUnit/TestNG; instead, they're run by Maven itself.</p>
 <p>You can take a look at the <a href="https://svn.apache.org/repos/asf/maven/plugins/trunk/maven-install-plugin/src/it/" class="externalLink">maven-install-plugin</a> to see how integration tests are written.</p>
 
-<pre class="highlight"><code class="language-xml"><span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span> <span class="na">xmlns:xsi</span>=<span class="s">"http://www.w3.org/2001/XMLSchema-instance"</span>
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span> <span class="na">xmlns:xsi</span>=<span class="s">"http://www.w3.org/2001/XMLSchema-instance"</span>
   <span class="na">xsi:schemaLocation</span>=<span class="s">"http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd"</span><span class="nt">&gt;</span>
   ...
   <span class="nt">&lt;build</span><span class="nt">&gt;</span>

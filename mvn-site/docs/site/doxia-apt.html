@@ -43,9 +43,9 @@
     <a class="asf" href="https://www.apache.org/"><img class="asf-leaf" src="../../images/oakleaf.svg" width="14" height="22" alt=""><span>Apache</span></a>
     </div>
   </header>
-  <div class="specimen" role="note">
+  <aside class="specimen" aria-label="About this site">
     <p><strong>Specimen.</strong> A proposed redesign of maven.apache.org, built with <code>mvn site</code> and a skin of its own; not the official Apache Maven site. The official site is <a href="https://maven.apache.org/">maven.apache.org</a>. <a href="../../about-this-example.html">About this example</a></p>
-  </div>
+  </aside>
   <div class="frame has-group">
     <nav class="group-nav" aria-labelledby="group-nav-title">
       <p class="up"><a href="../../docs/index.html"><svg aria-hidden="true" viewBox="0 0 16 16" width="14" height="14"><path d="M10 3.5L5.5 8l4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" /></svg>All of Docs</a></p>
@@ -92,33 +92,33 @@
 <h2><a id="Paragraphs_in_list_items"></a>Paragraphs in list items</h2> 
 <p>Contrary to the original APT parser, the Doxia APT parser does not put list items within paragraphs. Eg, the example given in the APT guide:</p>
 
-<pre><code class="language-unknown">    * List item 1.
+<pre tabindex="0"><code class="language-unknown">    * List item 1.
 </code></pre>
 <p>will, for instance, produce the following html:</p>
 
-<pre class="highlight"><code class="language-unknown">    <span class="nt">&lt;li</span><span class="nt">&gt;</span>List item 1.<span class="nt">&lt;/li</span><span class="nt">&gt;</span>
+<pre tabindex="0" class="highlight"><code class="language-unknown">    <span class="nt">&lt;li</span><span class="nt">&gt;</span>List item 1.<span class="nt">&lt;/li</span><span class="nt">&gt;</span>
 </code></pre>
 <p>To get the same result as aptconvert, use</p>
 
-<pre><code class="language-unknown">    *
+<pre tabindex="0"><code class="language-unknown">    *
 
       List item 1.
 </code></pre>
 <p>which will produce:</p>
 
-<pre class="highlight"><code class="language-unknown">    <span class="nt">&lt;li</span><span class="nt">&gt;</span><span class="nt">&lt;p</span><span class="nt">&gt;</span>List item 1.<span class="nt">&lt;/p</span><span class="nt">&gt;</span><span class="nt">&lt;/li</span><span class="nt">&gt;</span>
+<pre tabindex="0" class="highlight"><code class="language-unknown">    <span class="nt">&lt;li</span><span class="nt">&gt;</span><span class="nt">&lt;p</span><span class="nt">&gt;</span>List item 1.<span class="nt">&lt;/p</span><span class="nt">&gt;</span><span class="nt">&lt;/li</span><span class="nt">&gt;</span>
 </code></pre></section><section>
 <h2><a id="Table_header_cells"></a>Table header cells</h2> 
 <p>Header cells are defined by an additional pipe character '|' at the beginning of the cell:</p>
 
-<pre><code class="language-unknown">*-----------+-----------+
+<pre tabindex="0"><code class="language-unknown">*-----------+-----------+
 || Header 1 || Header 2 |
 *-----------+-----------+
 | Cell 1    | Cell 2    |
 *-----------+-----------+
 </code></pre>
 <p>produces:</p>
-<table class="bodyTable">
+<div class="table-scroll" tabindex="0"><table class="bodyTable">
 <thead>
 <tr class="a">
 <th>Header 1</th>
@@ -126,12 +126,12 @@
 <tr class="b">
 <td>Cell 1</td>
 <td>Cell 2</td></tr></tbody>
-</table>
+</table></div>
 </section><section>
 <h2><a id="Multi-lines_cells_in_table"></a>Multi-lines cells in table</h2> 
 <p>Since 1.1, multi-lines cells are recognized with the character '\' at the end of the cells:</p>
 
-<pre><code class="language-unknown">*-----------+-----------+
+<pre tabindex="0"><code class="language-unknown">*-----------+-----------+
 || Header 1 || Header 2 |
 *-----------+-----------+
 | Cell\     | Cell 2    |
@@ -139,7 +139,7 @@
 *-----------+-----------+
 </code></pre>
 <p>produces:</p>
-<table class="bodyTable">
+<div class="table-scroll" tabindex="0"><table class="bodyTable">
 <thead>
 <tr class="a">
 <th>Header 1</th>
@@ -149,13 +149,13 @@
 <tr class="a">
 <td>1</td>
 <td>Cell 2</td></tr></tbody>
-</table>
+</table></div>
 </section><section>
 <h2><a id="Anchors"></a>Anchors</h2> <section>
 <h3><a id="Anchors_for_section_titles"></a>Anchors for section titles</h3>
 <p>When a document is rendered as part of a Maven site, Doxia gives every section title an anchor of its own, built from the title text by the rules below. Because that name follows the wording, rewording a title moves the anchor and breaks links aimed at it. Define the anchor explicitly where a reference has to hold:</p>
 
-<pre><code class="language-unknown">* {Anchors for section titles}
+<pre tabindex="0"><code class="language-unknown">* {Anchors for section titles}
 </code></pre></section><section>
 <h3><a id="Anchor_construction"></a>Anchor construction</h3>
 <p>Contrary to the original APT format, an anchor/link is <strong>not</strong> its text with all non alphanumeric characters stripped. Ideally, an anchor should be a valid Doxia id, ie it must begin with a letter ([A-Za-z]) and may be followed by any number of letters, digits ([0-9]), hyphens ("-"), underscores ("_"), colons (":"), and periods ("."). Any anchor that does not satisfy this pattern is transformed according to the following rules:</p>
@@ -179,15 +179,15 @@
 <p>A <strong>local</strong> link is a link to another document within the same site.</p>
 <p>In the APT format used by <strong>Doxia-1.1</strong>, local links <strong>have to</strong> start with either <code>./</code> or <code>../</code> to distinguish them from internal links. E.g.,</p>
 
-<pre><code class="nohighlight nocode">  {{{doc/standalone.html}Standalone}}
+<pre tabindex="0"><code class="nohighlight nocode">  {{{doc/standalone.html}Standalone}}
 </code></pre>
 <p>is not valid, it should be</p>
 
-<pre><code class="nohighlight nocode">  {{{./doc/standalone.html}Standalone}}
+<pre tabindex="0"><code class="nohighlight nocode">  {{{./doc/standalone.html}Standalone}}
 </code></pre>
 <p>Note in particular that the following link</p>
 
-<pre><code class="nohighlight nocode">  {{{standalone.html}Standalone}}
+<pre tabindex="0"><code class="nohighlight nocode">  {{{standalone.html}Standalone}}
 </code></pre>
 <p>will be interpreted as an internal link (dots are valid characters in anchor names). Since you most likely meant to link to another source document, you should again prepend a "./".</p></li>
 <li>
@@ -197,12 +197,12 @@
 <p>Anchors are always translated to a valid id, including escaping. In some situation this can cause issues, especially when referring to a javadoc-link.<br>
 Since Doxia 1.4 there is support for literal anchors, by using 2 hashed (##) instead of 1. This implies that the writer is responsible for using the right URL encoding!</p>
 
-<pre><code class="nohighlight nocode">  {{{../apidocs/groovyx/net/http/ParserRegistry.html##parseText(org.apache.http.HttpResponse)}ParserRegistry}}
+<pre tabindex="0"><code class="nohighlight nocode">  {{{../apidocs/groovyx/net/http/ParserRegistry.html##parseText(org.apache.http.HttpResponse)}ParserRegistry}}
 </code></pre></section><section>
 <h2><a id="Figure_extensions"></a>Figure extensions</h2> 
 <p>Contrary to the original APT format, a figure name has to be given fully <strong>with</strong> extension. For instance:</p>
 
-<pre><code class="language-unknown">[/home/joe/docs/mylogo.jpeg] Figure caption
+<pre tabindex="0"><code class="language-unknown">[/home/joe/docs/mylogo.jpeg] Figure caption
 </code></pre></section></section>
       </div>
       <nav class="more" aria-labelledby="more-title">

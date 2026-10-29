@@ -46,9 +46,9 @@
     <a class="asf" href="https://www.apache.org/"><img class="asf-leaf" src="../../images/oakleaf.svg" width="14" height="22" alt=""><span>Apache</span></a>
     </div>
   </header>
-  <div class="specimen" role="note">
+  <aside class="specimen" aria-label="About this site">
     <p><strong>Specimen.</strong> A proposed redesign of maven.apache.org, built with <code>mvn site</code> and a skin of its own; not the official Apache Maven site. The official site is <a href="https://maven.apache.org/">maven.apache.org</a>. <a href="../../about-this-example.html">About this example</a></p>
-  </div>
+  </aside>
   <div class="frame has-group">
     <nav class="group-nav" aria-labelledby="group-nav-title">
       <p class="up"><a href="../../docs/index.html"><svg aria-hidden="true" viewBox="0 0 16 16" width="14" height="14"><path d="M10 3.5L5.5 8l4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" /></svg>All of Docs</a></p>
@@ -85,7 +85,7 @@
 <p>List the JDKs installed on your machine in <em>toolchains.xml</em> in the <code>.m2</code> directory of your home directory. Each <code>&lt;toolchain&gt;</code> names a JDK's home directory and the version you will ask for:</p>
 <p><em>~/.m2/toolchains.xml</em></p>
 
-<pre class="highlight"><code class="language-xml"><span class="nt">&lt;toolchains</span><span class="nt">&gt;</span>
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;toolchains</span><span class="nt">&gt;</span>
   <span class="nt">&lt;toolchain</span><span class="nt">&gt;</span>
     <span class="nt">&lt;type</span><span class="nt">&gt;</span>jdk<span class="nt">&lt;/type</span><span class="nt">&gt;</span>
     <span class="nt">&lt;provides</span><span class="nt">&gt;</span>
@@ -111,14 +111,14 @@
 <p>The version and vendor are labels you choose; Maven does not read them from the JDK. Write versions the way your POMs will ask for them: a requirement of <code>17</code> matches <code>&lt;version&gt;17&lt;/version&gt;</code>, not <code>&lt;version&gt;17.0.20&lt;/version&gt;</code>. <a href="toolchains-xml.html">toolchains.xml</a> describes every element and how requirements match.</p>
 <p>To start from the JDKs Maven can find on your machine, let the toolchains plugin write the entries for you, and copy the ones you want:</p>
 
-<pre><code class="nohighlight nocode">mvn toolchains:generate-jdk-toolchains-xml -Dtoolchain.file=discovered-toolchains.xml
+<pre tabindex="0"><code class="nohighlight nocode">mvn toolchains:generate-jdk-toolchains-xml -Dtoolchain.file=discovered-toolchains.xml
 </code></pre>
 <p>The generated entries carry the full version of each JDK, such as <code>17.0.20</code>, so ask for them with a range.</p></section><section><a id="Select_the_JDK_in_the_POM"></a>
 <h2>Select the JDK in the POM</h2>
 <p>Add the maven-toolchains-plugin to the build with an execution of its <code>toolchain</code> goal, and state the JDK the project needs:</p>
 <p><em>pom.xml</em></p>
 
-<pre class="highlight"><code class="language-xml"><span class="nt">&lt;build</span><span class="nt">&gt;</span>
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;build</span><span class="nt">&gt;</span>
   <span class="nt">&lt;plugins</span><span class="nt">&gt;</span>
     <span class="nt">&lt;plugin</span><span class="nt">&gt;</span>
       <span class="nt">&lt;groupId</span><span class="nt">&gt;</span>org.apache.maven.plugins<span class="nt">&lt;/groupId</span><span class="nt">&gt;</span>
@@ -147,11 +147,11 @@
 <h2>Check which JDK compiled and ran the tests</h2>
 <p>Run the build:</p>
 
-<pre><code class="nohighlight nocode">mvn verify
+<pre tabindex="0"><code class="nohighlight nocode">mvn verify
 </code></pre>
 <p>The toolchains plugin reports the JDK it selected, and each plugin that uses it says so:</p>
 
-<pre><code class="nohighlight nocode">[INFO] --- toolchains:3.3.0:toolchain (default) @ my-app ---
+<pre tabindex="0"><code class="nohighlight nocode">[INFO] --- toolchains:3.3.0:toolchain (default) @ my-app ---
 [INFO] Required toolchain: jdk [ version='17' ]
 [INFO] Found matching toolchain for type jdk: JDK[/opt/jdk/temurin-17]
 ...
@@ -166,14 +166,14 @@
 <p>A plugin that has no such line ran with the JDK Maven runs on. To see the Java version of the test JVM itself, print it from a test:</p>
 <p><em>src/test/java/com/example/GreeterTest.java</em></p>
 
-<pre class="highlight"><code class="language-java"><span class="nd">@Test</span>
+<pre tabindex="0" class="highlight"><code class="language-java"><span class="nd">@Test</span>
 <span class="k">void</span> greets() {
     System.out.println(<span class="s">"Tests run on Java "</span> + System.getProperty(<span class="s">"java.version"</span>));
     assertEquals(<span class="s">"Hello, Maven"</span>, <span class="k">new</span> Greeter().greet(<span class="s">"Maven"</span>));
 }
 </code></pre>
 
-<pre><code class="nohighlight nocode">Tests run on Java 17.0.20
+<pre tabindex="0"><code class="nohighlight nocode">Tests run on Java 17.0.20
 </code></pre>
 <blockquote>
 
@@ -181,7 +181,7 @@
 </blockquote>
 <p>When no entry matches, the build stops in the <code>validate</code> phase:</p>
 
-<pre><code class="nohighlight nocode">[ERROR] No toolchain matched from 2 found for type jdk
+<pre tabindex="0"><code class="nohighlight nocode">[ERROR] No toolchain matched from 2 found for type jdk
 [ERROR] Cannot find matching toolchain definitions for the following toolchain types:
 jdk [ version='25' ]
 </code></pre>
@@ -189,10 +189,10 @@ jdk [ version='25' ]
 <h2>Select a JDK without toolchains.xml</h2>
 <p>Since version 3.2.0, the toolchains plugin can find the JDKs installed on your machine by itself. It looks in <code>JAVA_HOME</code> and in variables such as <code>JAVA17_HOME</code>, and in the directories where SDKMAN!, IntelliJ IDEA, Gradle, asdf, jenv and the operating system's packages put JDKs. List what it finds:</p>
 
-<pre><code class="nohighlight nocode">mvn toolchains:display-discovered-jdk-toolchains
+<pre tabindex="0"><code class="nohighlight nocode">mvn toolchains:display-discovered-jdk-toolchains
 </code></pre>
 
-<pre><code class="nohighlight nocode">[INFO] Discovered 4 JDK toolchains:
+<pre tabindex="0"><code class="nohighlight nocode">[INFO] Discovered 4 JDK toolchains:
 [INFO]   - /home/me/.sdkman/candidates/java/21.0.12+1.1-tem
 [INFO]     provides:
 [INFO]       version: 21.0.12.1
@@ -209,7 +209,7 @@ jdk [ version='25' ]
 <p>Then use the <code>select-jdk-toolchain</code> goal instead of <code>toolchain</code>, and give the version as a range in the <code>toolchain.jdk.version</code> property:</p>
 <p><em>pom.xml</em></p>
 
-<pre class="highlight"><code class="language-xml"><span class="nt">&lt;properties</span><span class="nt">&gt;</span>
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;properties</span><span class="nt">&gt;</span>
   <span class="nt">&lt;toolchain.jdk.version</span><span class="nt">&gt;</span>[17,18)<span class="nt">&lt;/toolchain.jdk.version</span><span class="nt">&gt;</span>
 <span class="nt">&lt;/properties</span><span class="nt">&gt;</span>
 
@@ -231,14 +231,14 @@ jdk [ version='25' ]
 <span class="nt">&lt;/build</span><span class="nt">&gt;</span>
 </code></pre>
 
-<pre><code class="nohighlight nocode">[INFO] --- toolchains:3.3.0:select-jdk-toolchain (default) @ my-app ---
+<pre tabindex="0"><code class="nohighlight nocode">[INFO] --- toolchains:3.3.0:select-jdk-toolchain (default) @ my-app ---
 ...
 [INFO] Selected JDK toolchain: JDK[/home/me/.sdkman/candidates/java/17.0.20-tem]
 </code></pre>
 <p>The version must be a range: a discovered JDK 17 has a version such as <code>17.0.20</code>, which a plain <code>17</code> does not match. Java 8 reports itself as <code>1.8.0_504</code>, so ask for it with <code>[1.8,9)</code>. When the JDK Maven runs on falls in the range, the goal keeps that JDK and selects no toolchain; <code>[17,)</code> on Maven running on Java 21 builds with Java 21. The goal also uses the entries of <em>toolchains.xml</em>, and it remembers what it found in <em>~/.m2/discovered-jdk-toolchains-cache.xml</em>.</p>
 <p>To try a JDK without changing the POM, run the goal from the command line before the phase:</p>
 
-<pre><code class="nohighlight nocode">mvn toolchains:select-jdk-toolchain -Dtoolchain.jdk.version="[17,18)" verify
+<pre tabindex="0"><code class="nohighlight nocode">mvn toolchains:select-jdk-toolchain -Dtoolchain.jdk.version="[17,18)" verify
 </code></pre>
 <p>The <a href="../../plugins/maven-toolchains-plugin/toolchains/jdk-discovery.html">JDK discovery page of the plugin</a> lists the other requirements it accepts, such as a vendor or an environment variable, and how it orders JDKs that all match.</p></section><section><a id="Use_another_JDK_for_one_plugin"></a>
 <h2>Use another JDK for one plugin</h2>

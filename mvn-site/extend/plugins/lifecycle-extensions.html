@@ -43,9 +43,9 @@
     <a class="asf" href="https://www.apache.org/"><img class="asf-leaf" src="../../images/oakleaf.svg" width="14" height="22" alt=""><span>Apache</span></a>
     </div>
   </header>
-  <div class="specimen" role="note">
+  <aside class="specimen" aria-label="About this site">
     <p><strong>Specimen.</strong> A proposed redesign of maven.apache.org, built with <code>mvn site</code> and a skin of its own; not the official Apache Maven site. The official site is <a href="https://maven.apache.org/">maven.apache.org</a>. <a href="../../about-this-example.html">About this example</a></p>
-  </div>
+  </aside>
   <div class="frame has-group">
     <nav class="group-nav" aria-labelledby="group-nav-title">
       <p class="up"><a href="../../extend/index.html"><svg aria-hidden="true" viewBox="0 0 16 16" width="14" height="14"><path d="M10 3.5L5.5 8l4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" /></svg>All of Extend</a></p>
@@ -97,7 +97,7 @@
 <h2>Build Your Extension</h2>
 <p>Create a Maven project with a dependency on <code>org.apache.maven:maven-core:3.10.0</code> and other dependencies:</p>
 
-<pre class="highlight"><code class="language-xml">    <span class="nt">&lt;groupId</span><span class="nt">&gt;</span>org.apache.maven.extensions<span class="nt">&lt;/groupId</span><span class="nt">&gt;</span>
+<pre tabindex="0" class="highlight"><code class="language-xml">    <span class="nt">&lt;groupId</span><span class="nt">&gt;</span>org.apache.maven.extensions<span class="nt">&lt;/groupId</span><span class="nt">&gt;</span>
     <span class="nt">&lt;artifactId</span><span class="nt">&gt;</span>beer-maven-lifecycle<span class="nt">&lt;/artifactId</span><span class="nt">&gt;</span>
     <span class="nt">&lt;version</span><span class="nt">&gt;</span>1.0-SNAPSHOT<span class="nt">&lt;/version</span><span class="nt">&gt;</span>
 
@@ -118,7 +118,7 @@
 </code></pre>
 <p>Create your extension class; your extension must be a <a href="https://www.eclipse.org/sisu" class="externalLink">Sisu component</a>, therefore mark it with the JSR 330 (or legacy Plexus container) annotation:</p>
 
-<pre class="highlight"><code class="language-java"><span class="nd">@Named</span>( <span class="s">"beer"</span>)
+<pre tabindex="0" class="highlight"><code class="language-java"><span class="nd">@Named</span>( <span class="s">"beer"</span>)
 <span class="nd">@Singleton</span>
 <span class="k">public</span> <span class="k">class</span> BeerMavenLifecycleParticipant <span class="k">extends</span> AbstractMavenLifecycleParticipant
 {
@@ -142,7 +142,7 @@
 </code></pre>
 <p>Generate <a href="https://eclipse.github.io/sisu.mojos/" class="externalLink">Sisu index files</a> during the build of your extension jar:</p>
 
-<pre class="highlight"><code class="language-xml">  <span class="nt">&lt;build</span><span class="nt">&gt;</span>
+<pre tabindex="0" class="highlight"><code class="language-xml">  <span class="nt">&lt;build</span><span class="nt">&gt;</span>
     ...
     <span class="nt">&lt;plugins</span><span class="nt">&gt;</span>
       ...

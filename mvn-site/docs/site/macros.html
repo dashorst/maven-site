@@ -43,9 +43,9 @@
     <a class="asf" href="https://www.apache.org/"><img class="asf-leaf" src="../../images/oakleaf.svg" width="14" height="22" alt=""><span>Apache</span></a>
     </div>
   </header>
-  <div class="specimen" role="note">
+  <aside class="specimen" aria-label="About this site">
     <p><strong>Specimen.</strong> A proposed redesign of maven.apache.org, built with <code>mvn site</code> and a skin of its own; not the official Apache Maven site. The official site is <a href="https://maven.apache.org/">maven.apache.org</a>. <a href="../../about-this-example.html">About this example</a></p>
-  </div>
+  </aside>
   <div class="frame has-group">
     <nav class="group-nav" aria-labelledby="group-nav-title">
       <p class="up"><a href="../../docs/index.html"><svg aria-hidden="true" viewBox="0 0 16 16" width="14" height="14"><path d="M10 3.5L5.5 8l4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" /></svg>All of Docs</a></p>
@@ -84,11 +84,11 @@
 <p>Macros are supported by the APT, Xdoc, FML, XHTML and Markdown formats.</p>
 <p>A macro in an APT source file is a <strong>non-indented</strong> line that looks like this:</p>
 
-<pre><code class="language-unknown">%{macro_name|param1=value1|param2=value2|...}
+<pre tabindex="0"><code class="language-unknown">%{macro_name|param1=value1|param2=value2|...}
 </code></pre>
 <p>An Xdoc or FML macro has the following syntax:</p>
 
-<pre class="highlight"><code class="language-unknown"><span class="nt">&lt;macro</span> <span class="na">name</span>=<span class="s">"macro_name"</span><span class="nt">&gt;</span>
+<pre tabindex="0" class="highlight"><code class="language-unknown"><span class="nt">&lt;macro</span> <span class="na">name</span>=<span class="s">"macro_name"</span><span class="nt">&gt;</span>
   <span class="nt">&lt;param</span> <span class="na">name</span>=<span class="s">"param1"</span> <span class="na">value</span>=<span class="s">"value1"</span><span class="nt">/&gt;</span>
   <span class="nt">&lt;param</span> <span class="na">name</span>=<span class="s">"param2"</span> <span class="na">value</span>=<span class="s">"value2"</span><span class="nt">/&gt;</span>
   ...
@@ -96,7 +96,7 @@
 </code></pre>
 <p>Since Doxia 1.7, an XHTML or Markdown macro has the following syntax:</p>
 
-<pre class="highlight"><code class="language-unknown"><span class="c">&lt;!-- MACRO{macro_name|param1=value1|param2=value2|...} --&gt;</span>
+<pre tabindex="0" class="highlight"><code class="language-unknown"><span class="c">&lt;!-- MACRO{macro_name|param1=value1|param2=value2|...} --&gt;</span>
 </code></pre>
 <p>The following macros are available:</p>
 <ul>
@@ -108,28 +108,28 @@
 <h2><a id="Echo_Macro"></a>Echo Macro</h2>
 <p>The <em>Echo</em> macro is a very simple macro: it prints out the key and value of any supplied parameters. For instance, in an APT file, you could write:</p>
 
-<pre><code class="language-unknown">%{echo|param1=value1|param2=value2}
+<pre tabindex="0"><code class="language-unknown">%{echo|param1=value1|param2=value2}
 </code></pre>
 <p>Similarly, it will be for xdoc file:</p>
 
-<pre class="highlight"><code class="language-unknown"><span class="nt">&lt;macro</span> <span class="na">name</span>=<span class="s">"echo"</span><span class="nt">&gt;</span>
+<pre tabindex="0" class="highlight"><code class="language-unknown"><span class="nt">&lt;macro</span> <span class="na">name</span>=<span class="s">"echo"</span><span class="nt">&gt;</span>
   <span class="nt">&lt;param</span> <span class="na">name</span>=<span class="s">"param1"</span> <span class="na">value</span>=<span class="s">"value1"</span><span class="nt">/&gt;</span>
   <span class="nt">&lt;param</span> <span class="na">name</span>=<span class="s">"param2"</span> <span class="na">value</span>=<span class="s">"value2"</span><span class="nt">/&gt;</span>
 <span class="nt">&lt;/macro</span><span class="nt">&gt;</span>
 </code></pre>
 <p>and it will output</p>
 
-<pre><code class="language-unknown">  param1 ---&gt; value1
+<pre tabindex="0"><code class="language-unknown">  param1 ---&gt; value1
   param2 ---&gt; value2
 </code></pre></section><section>
 <h2><a id="Snippet_Macro"></a>Snippet Macro</h2>
 <p>The <em>Snippet</em> macro is a very useful macro: it prints out the content of a file or a URL. For instance, in an APT file, you could write:</p>
 
-<pre><code class="language-unknown">%{snippet|id=myid|url=http://myserver/path/to/file.txt}
+<pre tabindex="0"><code class="language-unknown">%{snippet|id=myid|url=http://myserver/path/to/file.txt}
 </code></pre>
 <p>In a xdoc file, it will be:</p>
 
-<pre class="highlight"><code class="language-unknown"><span class="nt">&lt;macro</span> <span class="na">name</span>=<span class="s">"snippet"</span><span class="nt">&gt;</span>
+<pre tabindex="0" class="highlight"><code class="language-unknown"><span class="nt">&lt;macro</span> <span class="na">name</span>=<span class="s">"snippet"</span><span class="nt">&gt;</span>
   <span class="nt">&lt;param</span> <span class="na">name</span>=<span class="s">"id"</span> <span class="na">value</span>=<span class="s">"myid"</span><span class="nt">/&gt;</span>
   <span class="nt">&lt;param</span> <span class="na">name</span>=<span class="s">"url"</span> <span class="na">value</span>=<span class="s">"http://myserver/path/to/file.txt"</span><span class="nt">/&gt;</span>
 <span class="nt">&lt;/macro</span><span class="nt">&gt;</span>
@@ -140,7 +140,7 @@
 <li>
 <p>Start and end snippets in a Java file</p>
 
-<pre class="highlight"><code class="language-unknown"><span class="k">public</span> <span class="k">class</span> MyClass
+<pre tabindex="0" class="highlight"><code class="language-unknown"><span class="k">public</span> <span class="k">class</span> MyClass
 {
     <span class="c1">// START SNIPPET: myid</span>
     <span class="k">public</span> <span class="k">static</span> <span class="k">void</span> main( String[] args ) <span class="k">throws</span> Exception
@@ -153,7 +153,7 @@
 <li>
 <p>Start and end snippets in a XML file</p>
 
-<pre class="highlight"><code class="language-unknown"><span class="nt">&lt;project</span><span class="nt">&gt;</span>
+<pre tabindex="0" class="highlight"><code class="language-unknown"><span class="nt">&lt;project</span><span class="nt">&gt;</span>
 ...
   <span class="nt">&lt;build</span><span class="nt">&gt;</span>
     <span class="nt">&lt;plugins</span><span class="nt">&gt;</span>
@@ -167,7 +167,7 @@
 <span class="nt">&lt;/project</span><span class="nt">&gt;</span>
 </code></pre></li>
 </ul>
-<table class="bodyTable">
+<div class="table-scroll" tabindex="0"><table class="bodyTable">
 <thead>
 <tr class="a">
 <th>Parameter</th>
@@ -187,24 +187,24 @@
 <tr class="b">
 <td>encoding</td>
 <td>The encoding of the file to read (since Doxia 1.6). If omitted the default JVM encoding will be used.</td></tr></tbody>
-</table>
+</table></div>
 </section><section>
 <h2><a id="TOC_Macro"></a>TOC Macro</h2>
 <p>The <em>TOC</em> macro prints a Table Of Content of a document. It is useful if you have several sections and subsections in your document. For instance, in an APT file, you could write:</p>
 
-<pre><code class="language-unknown">%{toc|section=2|fromDepth=2|toDepth=3}
+<pre tabindex="0"><code class="language-unknown">%{toc|section=2|fromDepth=2|toDepth=3}
 </code></pre>
 <p>This displays a TOC for the second section in the document, including all subsections (depth 2) and sub-subsections (depth 3).</p>
 <p><strong>Note</strong> that when a site is rendered, Doxia anchors each section title for you, so the entries this macro emits resolve without further work. Define an anchor explicitly (see <a href="doxia-apt.html">Enhancements to the APT format</a>) where a link has to survive the title being reworded.</p>
 <p>In a xdoc file, it will be:</p>
 
-<pre class="highlight"><code class="language-unknown"><span class="nt">&lt;macro</span> <span class="na">name</span>=<span class="s">"toc"</span><span class="nt">&gt;</span>
+<pre tabindex="0" class="highlight"><code class="language-unknown"><span class="nt">&lt;macro</span> <span class="na">name</span>=<span class="s">"toc"</span><span class="nt">&gt;</span>
   <span class="nt">&lt;param</span> <span class="na">name</span>=<span class="s">"section"</span> <span class="na">value</span>=<span class="s">"2"</span><span class="nt">/&gt;</span>
   <span class="nt">&lt;param</span> <span class="na">name</span>=<span class="s">"fromDepth"</span> <span class="na">value</span>=<span class="s">"0"</span><span class="nt">/&gt;</span>
   <span class="nt">&lt;param</span> <span class="na">name</span>=<span class="s">"toDepth"</span> <span class="na">value</span>=<span class="s">"4"</span><span class="nt">/&gt;</span>
 <span class="nt">&lt;/macro</span><span class="nt">&gt;</span>
 </code></pre>
-<table class="bodyTable">
+<div class="table-scroll" tabindex="0"><table class="bodyTable">
 <thead>
 <tr class="a">
 <th>Parameter</th>
@@ -218,11 +218,11 @@
 <tr class="b">
 <td>toDepth</td>
 <td>Maximum section depth to include in the TOC. Positive int, not mandatory, 5 by default.</td></tr></tbody>
-</table>
+</table></div>
 
 <p>From <strong>Doxia 1.1.1</strong> on you may also specify any of the html base attributes (<em>i.e.</em> any of <code>id</code>, <code>class</code>, <code>style</code>, <code>lang</code>, <code>title</code>) as parameters, e.g.:</p>
 
-<pre><code class="language-unknown">%{toc|class=myTOC}
+<pre tabindex="0"><code class="language-unknown">%{toc|class=myTOC}
 </code></pre>
 <p>This can be used for styling the TOC via css.</p></section><section>
 <h2><a id="Removed_Macros"></a>Removed Macros</h2>

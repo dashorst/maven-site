@@ -43,9 +43,9 @@
     <a class="asf" href="https://www.apache.org/"><img class="asf-leaf" src="../../images/oakleaf.svg" width="14" height="22" alt=""><span>Apache</span></a>
     </div>
   </header>
-  <div class="specimen" role="note">
+  <aside class="specimen" aria-label="About this site">
     <p><strong>Specimen.</strong> A proposed redesign of maven.apache.org, built with <code>mvn site</code> and a skin of its own; not the official Apache Maven site. The official site is <a href="https://maven.apache.org/">maven.apache.org</a>. <a href="../../about-this-example.html">About this example</a></p>
-  </div>
+  </aside>
   <div class="frame has-group">
     <nav class="group-nav" aria-labelledby="group-nav-title">
       <p class="up"><a href="../../docs/index.html"><svg aria-hidden="true" viewBox="0 0 16 16" width="14" height="14"><path d="M10 3.5L5.5 8l4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" /></svg>All of Docs</a></p>
@@ -88,7 +88,7 @@
 <h3>Declaring Mixins</h3>
 <p>Mixins are declared in the <code>&lt;mixins&gt;</code> section of your POM:</p>
 
-<pre class="highlight"><code class="language-xml"><span class="nt">&lt;project</span><span class="nt">&gt;</span>
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;project</span><span class="nt">&gt;</span>
     <span class="nt">&lt;modelVersion</span><span class="nt">&gt;</span>4.2.0<span class="nt">&lt;/modelVersion</span><span class="nt">&gt;</span>
     
     <span class="nt">&lt;groupId</span><span class="nt">&gt;</span>com.example<span class="nt">&lt;/groupId</span><span class="nt">&gt;</span>
@@ -116,7 +116,7 @@
 <h2>Creating Mixin POMs</h2>
 <p>A mixin is simply a regular Maven POM that contains reusable configuration. Here's an example of a Java compilation mixin:</p>
 
-<pre class="highlight"><code class="language-xml"><span class="nt">&lt;project</span><span class="nt">&gt;</span>
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;project</span><span class="nt">&gt;</span>
     <span class="nt">&lt;modelVersion</span><span class="nt">&gt;</span>4.2.0<span class="nt">&lt;/modelVersion</span><span class="nt">&gt;</span>
     
     <span class="nt">&lt;groupId</span><span class="nt">&gt;</span>com.example.mixins<span class="nt">&lt;/groupId</span><span class="nt">&gt;</span>
@@ -155,7 +155,7 @@
 <h3>Mixin Composition Order</h3>
 <p>Mixins are applied in the order they are declared. Later mixins can override configuration from earlier mixins:</p>
 
-<pre class="highlight"><code class="language-xml"><span class="nt">&lt;mixins</span><span class="nt">&gt;</span>
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;mixins</span><span class="nt">&gt;</span>
     <span class="nt">&lt;mixin</span><span class="nt">&gt;</span>
         <span class="nt">&lt;groupId</span><span class="nt">&gt;</span>com.example.mixins<span class="nt">&lt;/groupId</span><span class="nt">&gt;</span>
         <span class="nt">&lt;artifactId</span><span class="nt">&gt;</span>base-mixin<span class="nt">&lt;/artifactId</span><span class="nt">&gt;</span>
@@ -177,7 +177,7 @@
 <li>Current POM configuration</li>
 </ol>
 
-<pre class="highlight"><code class="language-xml"><span class="nt">&lt;project</span><span class="nt">&gt;</span>
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;project</span><span class="nt">&gt;</span>
     <span class="nt">&lt;modelVersion</span><span class="nt">&gt;</span>4.2.0<span class="nt">&lt;/modelVersion</span><span class="nt">&gt;</span>
     
     <span class="nt">&lt;parent</span><span class="nt">&gt;</span>
@@ -201,7 +201,7 @@
 <h3>Version Management</h3>
 <p>Like dependencies, mixin versions can be managed centrally:</p>
 
-<pre class="highlight"><code class="language-xml"><span class="nt">&lt;project</span><span class="nt">&gt;</span>
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;project</span><span class="nt">&gt;</span>
     <span class="nt">&lt;modelVersion</span><span class="nt">&gt;</span>4.2.0<span class="nt">&lt;/modelVersion</span><span class="nt">&gt;</span>
     
     <span class="nt">&lt;mixinManagement</span><span class="nt">&gt;</span>
@@ -232,7 +232,7 @@
 <h3>1. Technology Stack Mixins</h3>
 <p>Create mixins for specific technology stacks:</p>
 
-<pre class="highlight"><code class="language-xml"><span class="c">&lt;!-- spring-boot-mixin --&gt;</span>
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="c">&lt;!-- spring-boot-mixin --&gt;</span>
 <span class="nt">&lt;project</span><span class="nt">&gt;</span>
     <span class="nt">&lt;modelVersion</span><span class="nt">&gt;</span>4.2.0<span class="nt">&lt;/modelVersion</span><span class="nt">&gt;</span>
     <span class="nt">&lt;groupId</span><span class="nt">&gt;</span>com.example.mixins<span class="nt">&lt;/groupId</span><span class="nt">&gt;</span>
@@ -270,7 +270,7 @@
 <h3>2. Quality Assurance Mixins</h3>
 <p>Standardize code quality tools across projects:</p>
 
-<pre class="highlight"><code class="language-xml"><span class="c">&lt;!-- quality-mixin --&gt;</span>
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="c">&lt;!-- quality-mixin --&gt;</span>
 <span class="nt">&lt;project</span><span class="nt">&gt;</span>
     <span class="nt">&lt;modelVersion</span><span class="nt">&gt;</span>4.2.0<span class="nt">&lt;/modelVersion</span><span class="nt">&gt;</span>
     <span class="nt">&lt;groupId</span><span class="nt">&gt;</span>com.example.mixins<span class="nt">&lt;/groupId</span><span class="nt">&gt;</span>
@@ -316,7 +316,7 @@
 <h3>3. Testing Mixins</h3>
 <p>Standardize testing configurations:</p>
 
-<pre class="highlight"><code class="language-xml"><span class="c">&lt;!-- testing-mixin --&gt;</span>
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="c">&lt;!-- testing-mixin --&gt;</span>
 <span class="nt">&lt;project</span><span class="nt">&gt;</span>
     <span class="nt">&lt;modelVersion</span><span class="nt">&gt;</span>4.2.0<span class="nt">&lt;/modelVersion</span><span class="nt">&gt;</span>
     <span class="nt">&lt;groupId</span><span class="nt">&gt;</span>com.example.mixins<span class="nt">&lt;/groupId</span><span class="nt">&gt;</span>
@@ -384,7 +384,7 @@
 <h3>3. Document Your Mixins</h3>
 <p>Include clear documentation in your mixin POMs:</p>
 
-<pre class="highlight"><code class="language-xml"><span class="nt">&lt;project</span><span class="nt">&gt;</span>
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;project</span><span class="nt">&gt;</span>
     <span class="nt">&lt;modelVersion</span><span class="nt">&gt;</span>4.2.0<span class="nt">&lt;/modelVersion</span><span class="nt">&gt;</span>
     <span class="nt">&lt;groupId</span><span class="nt">&gt;</span>com.example.mixins<span class="nt">&lt;/groupId</span><span class="nt">&gt;</span>
     <span class="nt">&lt;artifactId</span><span class="nt">&gt;</span>java-mixin<span class="nt">&lt;/artifactId</span><span class="nt">&gt;</span>
@@ -408,7 +408,7 @@
 <h3>4. Test Your Mixins</h3>
 <p>Create test projects that use your mixins to ensure they work correctly:</p>
 
-<pre><code class="nohighlight nocode">maven-mixins/
+<pre tabindex="0"><code class="nohighlight nocode">maven-mixins/
 ├── java-mixin/
 │   └── pom.xml
 ├── testing-mixin/
@@ -422,7 +422,7 @@
 <h3>5. Organize Mixins in a Dedicated Repository</h3>
 <p>Consider organizing your mixins in a dedicated repository or module:</p>
 
-<pre><code class="nohighlight nocode">company-maven-mixins/
+<pre tabindex="0"><code class="nohighlight nocode">company-maven-mixins/
 ├── pom.xml (parent for all mixins)
 ├── java-mixin/
 ├── spring-boot-mixin/
@@ -433,7 +433,7 @@
 <h2>Migration from Parent POMs</h2><section><a id="Before_.28Traditional_Inheritance.29"></a>
 <h3>Before (Traditional Inheritance)</h3>
 
-<pre class="highlight"><code class="language-xml"><span class="c">&lt;!-- parent-pom --&gt;</span>
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="c">&lt;!-- parent-pom --&gt;</span>
 <span class="nt">&lt;project</span><span class="nt">&gt;</span>
     <span class="nt">&lt;modelVersion</span><span class="nt">&gt;</span>4.0.0<span class="nt">&lt;/modelVersion</span><span class="nt">&gt;</span>
     <span class="nt">&lt;groupId</span><span class="nt">&gt;</span>com.example<span class="nt">&lt;/groupId</span><span class="nt">&gt;</span>
@@ -467,7 +467,7 @@
 </code></pre></section><section><a id="After_.28With_Mixins.29"></a>
 <h3>After (With Mixins)</h3>
 
-<pre class="highlight"><code class="language-xml"><span class="c">&lt;!-- my-project --&gt;</span>
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="c">&lt;!-- my-project --&gt;</span>
 <span class="nt">&lt;project</span><span class="nt">&gt;</span>
     <span class="nt">&lt;modelVersion</span><span class="nt">&gt;</span>4.2.0<span class="nt">&lt;/modelVersion</span><span class="nt">&gt;</span>
 
@@ -503,26 +503,26 @@
 <li>
 <p><strong>Model Version Error</strong></p>
 
-<pre><code class="nohighlight nocode">Error: mixins require model version 4.2.0 or higher
+<pre tabindex="0"><code class="nohighlight nocode">Error: mixins require model version 4.2.0 or higher
 </code></pre>
 <p>Solution: Update your <code>&lt;modelVersion&gt;</code> to <code>4.2.0</code></p></li>
 <li>
 <p><strong>Mixin Not Found</strong></p>
 
-<pre><code class="nohighlight nocode">Error: Could not resolve mixin com.example:my-mixin:1.0.0
+<pre tabindex="0"><code class="nohighlight nocode">Error: Could not resolve mixin com.example:my-mixin:1.0.0
 </code></pre>
 <p>Solution: Ensure the mixin is deployed to your repository</p></li>
 <li>
 <p><strong>Circular Dependencies</strong></p>
 
-<pre><code class="nohighlight nocode">Error: Circular mixin dependency detected
+<pre tabindex="0"><code class="nohighlight nocode">Error: Circular mixin dependency detected
 </code></pre>
 <p>Solution: Review your mixin dependencies and remove cycles</p></li>
 </ol></section><section><a id="Debugging_Mixin_Resolution"></a>
 <h3>Debugging Mixin Resolution</h3>
 <p>Use the Maven help plugin to see the effective POM after mixin resolution:</p>
 
-<pre class="highlight"><code class="language-bash">mvn help:effective-pom
+<pre tabindex="0" class="highlight"><code class="language-bash">mvn help:effective-pom
 </code></pre></section></section><section><a id="Conclusion"></a>
 <h2>Conclusion</h2>
 <p>Maven Mixins provide a powerful and flexible way to share configuration across projects while avoiding the limitations of traditional inheritance. By composing your project configuration from focused, reusable mixins, you can:</p>

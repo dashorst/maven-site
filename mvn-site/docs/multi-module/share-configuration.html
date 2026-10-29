@@ -46,9 +46,9 @@
     <a class="asf" href="https://www.apache.org/"><img class="asf-leaf" src="../../images/oakleaf.svg" width="14" height="22" alt=""><span>Apache</span></a>
     </div>
   </header>
-  <div class="specimen" role="note">
+  <aside class="specimen" aria-label="About this site">
     <p><strong>Specimen.</strong> A proposed redesign of maven.apache.org, built with <code>mvn site</code> and a skin of its own; not the official Apache Maven site. The official site is <a href="https://maven.apache.org/">maven.apache.org</a>. <a href="../../about-this-example.html">About this example</a></p>
-  </div>
+  </aside>
   <div class="frame has-group">
     <nav class="group-nav" aria-labelledby="group-nav-title">
       <p class="up"><a href="../../docs/index.html"><svg aria-hidden="true" viewBox="0 0 16 16" width="14" height="14"><path d="M10 3.5L5.5 8l4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" /></svg>All of Docs</a></p>
@@ -91,7 +91,7 @@
 <p>Properties defined in the parent are available in every module. Use them for settings that plugins read, and for version numbers you use in more than one place.</p>
 <p><em>pom.xml</em></p>
 
-<pre class="highlight"><code class="language-xml"><span class="nt">&lt;properties</span><span class="nt">&gt;</span>
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;properties</span><span class="nt">&gt;</span>
   <span class="nt">&lt;maven.compiler.release</span><span class="nt">&gt;</span>17<span class="nt">&lt;/maven.compiler.release</span><span class="nt">&gt;</span>
   <span class="nt">&lt;project.build.sourceEncoding</span><span class="nt">&gt;</span>UTF-8<span class="nt">&lt;/project.build.sourceEncoding</span><span class="nt">&gt;</span>
   <span class="nt">&lt;slf4j.version</span><span class="nt">&gt;</span>2.0.17<span class="nt">&lt;/slf4j.version</span><span class="nt">&gt;</span>
@@ -102,7 +102,7 @@
 <p><code>&lt;dependencyManagement&gt;</code> in the parent sets the version of a dependency without adding the dependency to any module. A module that needs it declares it without a version and gets the managed one. List your own modules there as well, with <code>${project.version}</code>, so that modules can depend on each other without a version.</p>
 <p><em>pom.xml</em></p>
 
-<pre class="highlight"><code class="language-xml"><span class="nt">&lt;dependencyManagement</span><span class="nt">&gt;</span>
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;dependencyManagement</span><span class="nt">&gt;</span>
   <span class="nt">&lt;dependencies</span><span class="nt">&gt;</span>
     <span class="nt">&lt;dependency</span><span class="nt">&gt;</span>
       <span class="nt">&lt;groupId</span><span class="nt">&gt;</span>com.example.shop<span class="nt">&lt;/groupId</span><span class="nt">&gt;</span>
@@ -124,7 +124,7 @@
 </code></pre>
 <p><em>core/pom.xml</em></p>
 
-<pre class="highlight"><code class="language-xml"><span class="nt">&lt;dependencies</span><span class="nt">&gt;</span>
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;dependencies</span><span class="nt">&gt;</span>
   <span class="nt">&lt;dependency</span><span class="nt">&gt;</span>
     <span class="nt">&lt;groupId</span><span class="nt">&gt;</span>com.example.shop<span class="nt">&lt;/groupId</span><span class="nt">&gt;</span>
     <span class="nt">&lt;artifactId</span><span class="nt">&gt;</span>api<span class="nt">&lt;/artifactId</span><span class="nt">&gt;</span>
@@ -141,7 +141,7 @@
 <p>Many libraries publish a bill of materials (BOM): a POM that holds only a <code>&lt;dependencyManagement&gt;</code> section with the versions of all their artifacts that belong together. Import it into the parent's <code>&lt;dependencyManagement&gt;</code> with type <code>pom</code> and scope <code>import</code>:</p>
 <p><em>pom.xml</em></p>
 
-<pre class="highlight"><code class="language-xml"><span class="nt">&lt;dependencyManagement</span><span class="nt">&gt;</span>
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;dependencyManagement</span><span class="nt">&gt;</span>
   <span class="nt">&lt;dependencies</span><span class="nt">&gt;</span>
     <span class="nt">&lt;dependency</span><span class="nt">&gt;</span>
       <span class="nt">&lt;groupId</span><span class="nt">&gt;</span>org.junit<span class="nt">&lt;/groupId</span><span class="nt">&gt;</span>
@@ -156,7 +156,7 @@
 <p>Modules then declare the artifacts of that library without a version:</p>
 <p><em>core/pom.xml</em></p>
 
-<pre class="highlight"><code class="language-xml"><span class="nt">&lt;dependency</span><span class="nt">&gt;</span>
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;dependency</span><span class="nt">&gt;</span>
   <span class="nt">&lt;groupId</span><span class="nt">&gt;</span>org.junit.jupiter<span class="nt">&lt;/groupId</span><span class="nt">&gt;</span>
   <span class="nt">&lt;artifactId</span><span class="nt">&gt;</span>junit-jupiter<span class="nt">&lt;/artifactId</span><span class="nt">&gt;</span>
   <span class="nt">&lt;scope</span><span class="nt">&gt;</span>test<span class="nt">&lt;/scope</span><span class="nt">&gt;</span>
@@ -167,7 +167,7 @@
 <p><code>&lt;pluginManagement&gt;</code> does for plugins what <code>&lt;dependencyManagement&gt;</code> does for dependencies: it sets the version and configuration of a plugin without running it. The compiler, Surefire and the other plugins of the <a href="../get-started/build-lifecycle.html">build lifecycle</a> run in every <code>jar</code> module anyway, so for them the managed version and configuration take effect in every module.</p>
 <p><em>pom.xml</em></p>
 
-<pre class="highlight"><code class="language-xml"><span class="nt">&lt;build</span><span class="nt">&gt;</span>
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;build</span><span class="nt">&gt;</span>
   <span class="nt">&lt;pluginManagement</span><span class="nt">&gt;</span>
     <span class="nt">&lt;plugins</span><span class="nt">&gt;</span>
       <span class="nt">&lt;plugin</span><span class="nt">&gt;</span>
@@ -198,7 +198,7 @@
 <p>A plugin that is not part of the lifecycle runs only in modules that declare it. Put its version and executions in the parent's <code>&lt;pluginManagement&gt;</code>, here the source plugin that packages a jar with the sources:</p>
 <p><em>pom.xml</em></p>
 
-<pre class="highlight"><code class="language-xml"><span class="nt">&lt;pluginManagement</span><span class="nt">&gt;</span>
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;pluginManagement</span><span class="nt">&gt;</span>
   <span class="nt">&lt;plugins</span><span class="nt">&gt;</span>
     <span class="nt">&lt;plugin</span><span class="nt">&gt;</span>
       <span class="nt">&lt;groupId</span><span class="nt">&gt;</span>org.apache.maven.plugins<span class="nt">&lt;/groupId</span><span class="nt">&gt;</span>
@@ -219,7 +219,7 @@
 <p>Then declare it, without a version, in the modules that need it:</p>
 <p><em>api/pom.xml</em></p>
 
-<pre class="highlight"><code class="language-xml"><span class="nt">&lt;build</span><span class="nt">&gt;</span>
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;build</span><span class="nt">&gt;</span>
   <span class="nt">&lt;plugins</span><span class="nt">&gt;</span>
     <span class="nt">&lt;plugin</span><span class="nt">&gt;</span>
       <span class="nt">&lt;groupId</span><span class="nt">&gt;</span>org.apache.maven.plugins<span class="nt">&lt;/groupId</span><span class="nt">&gt;</span>
@@ -232,7 +232,7 @@
 <h2>Check what a module gets</h2>
 <p>The effective POM shows a module's configuration after inheritance and imports, with every managed version filled in. In the root directory:</p>
 
-<pre><code class="nohighlight nocode">mvn help:effective-pom -pl core
+<pre tabindex="0"><code class="nohighlight nocode">mvn help:effective-pom -pl core
 </code></pre>
 <p>Search the output for a dependency or plugin to see the version and configuration <code>core</code> builds with.</p></section></section>
       </div>

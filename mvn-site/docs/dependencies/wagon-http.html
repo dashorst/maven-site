@@ -43,9 +43,9 @@
     <a class="asf" href="https://www.apache.org/"><img class="asf-leaf" src="../../images/oakleaf.svg" width="14" height="22" alt=""><span>Apache</span></a>
     </div>
   </header>
-  <div class="specimen" role="note">
+  <aside class="specimen" aria-label="About this site">
     <p><strong>Specimen.</strong> A proposed redesign of maven.apache.org, built with <code>mvn site</code> and a skin of its own; not the official Apache Maven site. The official site is <a href="https://maven.apache.org/">maven.apache.org</a>. <a href="../../about-this-example.html">About this example</a></p>
-  </div>
+  </aside>
   <div class="frame has-group">
     <nav class="group-nav" aria-labelledby="group-nav-title">
       <p class="up"><a href="../../docs/index.html"><svg aria-hidden="true" viewBox="0 0 16 16" width="14" height="14"><path d="M10 3.5L5.5 8l4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" /></svg>All of Docs</a></p>
@@ -118,7 +118,7 @@
 <h2>The Basics</h2>
 <p>Without any special configuration, Maven's HTTP wagon uses some default HTTP headers and client parameters when managing artifacts. The default headers are:</p>
 
-<pre><code class="nohighlight nocode">Cache-control: no-cache
+<pre tabindex="0"><code class="nohighlight nocode">Cache-control: no-cache
 Cache-store: no-store
 Pragma: no-cache
 Expires: 0
@@ -126,11 +126,11 @@ Accept-Encoding: gzip
 </code></pre>
 <p>In addition, PUT requests made with the HTTP wagon use the following HttpClient parameter:</p>
 
-<pre><code class="nohighlight nocode">http.protocol.expect-continue=true
+<pre tabindex="0"><code class="nohighlight nocode">http.protocol.expect-continue=true
 </code></pre>
 <p>From the HttpClient documentation[2], this parameter provides the following functionality:</p>
 
-<pre><code class="nohighlight nocode">Activates 'Expect: 100-Continue' handshake for the entity enclosing methods. 
+<pre tabindex="0"><code class="nohighlight nocode">Activates 'Expect: 100-Continue' handshake for the entity enclosing methods. 
 The 'Expect: 100-Continue' handshake allows a client that is sending a request 
 message with a request body to determine if the origin server is willing to 
 accept the request (based on the request headers) before the client sends the 
@@ -150,7 +150,7 @@ problems with HTTP servers and proxies that do not support HTTP/1.1 protocol.
 <p><strong>Starting with Maven 3.9.0 native HTTP transport will pick up the “all” settings only (get, head, put are neglected!)" but it will WARN about its deprecation. For users sticking with Wagon nothing changes.</strong></p>
 <p>In all of the examples below, it's important to understand that you can configure the HTTP settings for all requests made to a given server, or for only one method. To configure all methods for a server, use the following section of the <code>settings.xml</code> file:</p>
 
-<pre class="highlight"><code class="language-xml"><span class="nt">&lt;settings</span><span class="nt">&gt;</span>
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;settings</span><span class="nt">&gt;</span>
   [...]
   <span class="nt">&lt;servers</span><span class="nt">&gt;</span>
     <span class="nt">&lt;server</span><span class="nt">&gt;</span>
@@ -168,7 +168,7 @@ problems with HTTP servers and proxies that do not support HTTP/1.1 protocol.
 </code></pre>
 <p>On the other hand, if you can live with the default configuration for most requests — say, HEAD and GET requests, which are used to check for the existence of a file and retrieve a file respectively — maybe you only need to configure the PUT method:</p>
 
-<pre class="highlight"><code class="language-xml"><span class="nt">&lt;settings</span><span class="nt">&gt;</span>
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;settings</span><span class="nt">&gt;</span>
   [...]
   <span class="nt">&lt;servers</span><span class="nt">&gt;</span>
     <span class="nt">&lt;server</span><span class="nt">&gt;</span>
@@ -189,7 +189,7 @@ problems with HTTP servers and proxies that do not support HTTP/1.1 protocol.
 <p>As you may have noticed above, the default HTTP headers do have the potential to cause problems. For instance, some websites set the encoding for downloading GZipped files as <code>gzip</code>, in spite of the fact that the HTTP request itself isn't being sent using GZip compression. If the client is using the <code>Accept-Encoding: gzip</code> header, this can result in the client itself decompressing the GZipped file <em>during the transfer</em> and writing the decompressed file to the local disk with the original filename. This can be misleading to say the least, and can use up an inordinate amount of disk space on the local computer.</p>
 <p>To turn off this default behavior, simply disable the default headers. Then, respecify the other headers that you are still interested in, like this:</p>
 
-<pre class="highlight"><code class="language-xml"><span class="nt">&lt;settings</span><span class="nt">&gt;</span>
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;settings</span><span class="nt">&gt;</span>
   [...]
   <span class="nt">&lt;servers</span><span class="nt">&gt;</span>
     <span class="nt">&lt;server</span><span class="nt">&gt;</span>
@@ -246,7 +246,7 @@ problems with HTTP servers and proxies that do not support HTTP/1.1 protocol.
 <li>
 <p><strong>collection of strings:</strong> <code>%c,&lt;value1&gt;,&lt;value2&gt;,&lt;value3&gt;,...</code>, which could also be specified as:</p>
 
-<pre><code class="nohighlight nocode">%c,
+<pre tabindex="0"><code class="nohighlight nocode">%c,
 &lt;value1&gt;,
 &lt;value2&gt;,
 &lt;value3&gt;,
@@ -257,7 +257,7 @@ problems with HTTP servers and proxies that do not support HTTP/1.1 protocol.
 <h4>Example: Using Preemptive Authentication</h4>
 <p>Using the above syntax, you can configure preemptive authentication for PUT requests using the boolean HttpClient parameter <code>http.authentication.preemptive</code>, like this:</p>
 
-<pre class="highlight"><code class="language-xml"><span class="nt">&lt;settings</span><span class="nt">&gt;</span>
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;settings</span><span class="nt">&gt;</span>
   <span class="nt">&lt;servers</span><span class="nt">&gt;</span>
     <span class="nt">&lt;server</span><span class="nt">&gt;</span>
       <span class="nt">&lt;id</span><span class="nt">&gt;</span>my-server<span class="nt">&lt;/id</span><span class="nt">&gt;</span>
@@ -279,7 +279,7 @@ problems with HTTP servers and proxies that do not support HTTP/1.1 protocol.
 </code></pre>
 <p>Another option is to make write it like this:</p>
 
-<pre class="highlight"><code class="language-xml"><span class="nt">&lt;settings</span><span class="nt">&gt;</span>
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;settings</span><span class="nt">&gt;</span>
   <span class="nt">&lt;servers</span><span class="nt">&gt;</span>
     <span class="nt">&lt;server</span><span class="nt">&gt;</span>
       <span class="nt">&lt;id</span><span class="nt">&gt;</span>my-server<span class="nt">&lt;/id</span><span class="nt">&gt;</span>
@@ -299,7 +299,7 @@ problems with HTTP servers and proxies that do not support HTTP/1.1 protocol.
 <h3>Ignoring Cookies</h3>
 <p>Like the example above, telling the HttpClient to ignore cookies for all methods of request is a simple matter of configuring the <code>http.protocol.cookie-policy</code> parameter (it uses a regular string value, so no special syntax is required):</p>
 
-<pre class="highlight"><code class="language-xml"><span class="nt">&lt;settings</span><span class="nt">&gt;</span>
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;settings</span><span class="nt">&gt;</span>
   <span class="nt">&lt;servers</span><span class="nt">&gt;</span>
     <span class="nt">&lt;server</span><span class="nt">&gt;</span>
       <span class="nt">&lt;id</span><span class="nt">&gt;</span>my-server<span class="nt">&lt;/id</span><span class="nt">&gt;</span>
@@ -325,7 +325,7 @@ problems with HTTP servers and proxies that do not support HTTP/1.1 protocol.
 <h3>HTTP Headers</h3>
 <p>In all HTTP Wagon implementations, you can add your own HTTP headers like this:</p>
 
-<pre class="highlight"><code class="language-xml"><span class="nt">&lt;settings</span><span class="nt">&gt;</span>
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;settings</span><span class="nt">&gt;</span>
   <span class="nt">&lt;servers</span><span class="nt">&gt;</span>
     <span class="nt">&lt;server</span><span class="nt">&gt;</span>
       <span class="nt">&lt;id</span><span class="nt">&gt;</span>my-server<span class="nt">&lt;/id</span><span class="nt">&gt;</span>
@@ -345,7 +345,7 @@ problems with HTTP servers and proxies that do not support HTTP/1.1 protocol.
 <h3>Connection Timeouts</h3>
 <p>All wagon implementations that extend the <code>AbstractWagon</code> class, including those for SCP, HTTP, FTP, and more, allow the configuration of a connection timeout, to allow the user to tell Maven how long to wait before giving up on a connection that has not responded. This option is preserved in the HttpClient-based wagon, but this wagon also provides a fine-grained alternative configuration that can allow you to specify timeouts per-method for a given server. The old configuration option - which is still supported - looks like this:</p>
 
-<pre class="highlight"><code class="language-xml"><span class="nt">&lt;settings</span><span class="nt">&gt;</span>
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;settings</span><span class="nt">&gt;</span>
   <span class="nt">&lt;servers</span><span class="nt">&gt;</span>
     <span class="nt">&lt;server</span><span class="nt">&gt;</span>
       <span class="nt">&lt;id</span><span class="nt">&gt;</span>my-server<span class="nt">&lt;/id</span><span class="nt">&gt;</span>
@@ -358,7 +358,7 @@ problems with HTTP servers and proxies that do not support HTTP/1.1 protocol.
 </code></pre>
 <p>…while the new configuration option looks more like this:</p>
 
-<pre class="highlight"><code class="language-xml"><span class="nt">&lt;settings</span><span class="nt">&gt;</span>
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;settings</span><span class="nt">&gt;</span>
   <span class="nt">&lt;servers</span><span class="nt">&gt;</span>
     <span class="nt">&lt;server</span><span class="nt">&gt;</span>
       <span class="nt">&lt;id</span><span class="nt">&gt;</span>my-server<span class="nt">&lt;/id</span><span class="nt">&gt;</span>
@@ -377,7 +377,7 @@ problems with HTTP servers and proxies that do not support HTTP/1.1 protocol.
 <h3>Read time out</h3>
 <p>The default timeout is 30 minutes. If you want to change this value, you can add the following setup in your settings:</p>
 
-<pre class="highlight"><code class="language-xml"><span class="nt">&lt;settings</span><span class="nt">&gt;</span>
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;settings</span><span class="nt">&gt;</span>
   <span class="nt">&lt;servers</span><span class="nt">&gt;</span>
     <span class="nt">&lt;server</span><span class="nt">&gt;</span>
       <span class="nt">&lt;id</span><span class="nt">&gt;</span>my-server<span class="nt">&lt;/id</span><span class="nt">&gt;</span>

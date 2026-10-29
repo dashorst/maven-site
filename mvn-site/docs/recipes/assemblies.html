@@ -43,9 +43,9 @@
     <a class="asf" href="https://www.apache.org/"><img class="asf-leaf" src="../../images/oakleaf.svg" width="14" height="22" alt=""><span>Apache</span></a>
     </div>
   </header>
-  <div class="specimen" role="note">
+  <aside class="specimen" aria-label="About this site">
     <p><strong>Specimen.</strong> A proposed redesign of maven.apache.org, built with <code>mvn site</code> and a skin of its own; not the official Apache Maven site. The official site is <a href="https://maven.apache.org/">maven.apache.org</a>. <a href="../../about-this-example.html">About this example</a></p>
-  </div>
+  </aside>
   <div class="frame has-group">
     <nav class="group-nav" aria-labelledby="group-nav-title">
       <p class="up"><a href="../../docs/index.html"><svg aria-hidden="true" viewBox="0 0 16 16" width="14" height="14"><path d="M10 3.5L5.5 8l4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" /></svg>All of Docs</a></p>
@@ -83,7 +83,7 @@
 <h1>Guide to creating assemblies</h1>
 <p>The assembly mechanism in Maven provides an easy way to create distributions using a assembly descriptor and dependency information found in you POM. In order to use the assembly plug-in you need to configure the assembly plug-in in your POM and it might look like the following:</p>
 
-<pre class="highlight"><code class="language-xml"><span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span><span class="nt">&gt;</span>
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span><span class="nt">&gt;</span>
   <span class="nt">&lt;parent</span><span class="nt">&gt;</span>
     <span class="nt">&lt;artifactId</span><span class="nt">&gt;</span>maven<span class="nt">&lt;/artifactId</span><span class="nt">&gt;</span>
     <span class="nt">&lt;groupId</span><span class="nt">&gt;</span>org.apache.maven<span class="nt">&lt;/groupId</span><span class="nt">&gt;</span>
@@ -123,7 +123,7 @@
 <h2>Creating a binary assembly</h2>
 <p>This is the most typical usage of the assembly plugin where you are creating a distribution for standard use.</p>
 
-<pre class="highlight"><code class="language-xml"><span class="nt">&lt;assembly</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/plugins/maven-assembly-plugin/assembly/1.1.2"</span> <span class="na">xmlns:xsi</span>=<span class="s">"http://www.w3.org/2001/XMLSchema-instance"</span>
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;assembly</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/plugins/maven-assembly-plugin/assembly/1.1.2"</span> <span class="na">xmlns:xsi</span>=<span class="s">"http://www.w3.org/2001/XMLSchema-instance"</span>
   <span class="na">xsi:schemaLocation</span>=<span class="s">"http://maven.apache.org/plugins/maven-assembly-plugin/assembly/1.1.2 http://maven.apache.org/xsd/assembly-1.1.2.xsd"</span><span class="nt">&gt;</span>
   <span class="nt">&lt;id</span><span class="nt">&gt;</span>bin<span class="nt">&lt;/id</span><span class="nt">&gt;</span>
   <span class="nt">&lt;formats</span><span class="nt">&gt;</span>
@@ -158,7 +158,7 @@
 <p>You can use a manually defined assembly descriptor as mentioned before but it is simpler to use the <a href="/plugins/maven-assembly-plugin/descriptor-refs.html#bin">pre-defined assembly descriptor bin</a> in such cases.</p>
 <p>How to use such pre-defined assembly descriptors is described in the <a href="/plugins/maven-assembly-plugin/usage.html#Configuration">documentation of maven-assembly-plugin</a>.</p>
 
-<pre class="highlight"><code class="language-xml"><span class="nt">&lt;assembly</span> 
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;assembly</span> 
   <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/plugins/maven-assembly-plugin/assembly/1.1.2"</span> <span class="na">xmlns:xsi</span>=<span class="s">"http://www.w3.org/2001/XMLSchema-instance"</span>
   <span class="na">xsi:schemaLocation</span>=<span class="s">"http://maven.apache.org/plugins/maven-assembly-plugin/assembly/1.1.2 
   http://maven.apache.org/xsd/assembly-1.1.2.xsd"</span><span class="nt">&gt;</span>
@@ -195,7 +195,7 @@
 </code></pre>
 <p>If you like to create a source distribution package the best solution is to use the <a href="/plugins/maven-assembly-plugin/descriptor-refs.html#src">pre-defined assembly descriptor src</a> for such purposes.</p>
 
-<pre class="highlight"><code class="language-xml"><span class="nt">&lt;assembly</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/plugins/maven-assembly-plugin/assembly/1.1.2"</span> <span class="na">xmlns:xsi</span>=<span class="s">"http://www.w3.org/2001/XMLSchema-instance"</span>
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;assembly</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/plugins/maven-assembly-plugin/assembly/1.1.2"</span> <span class="na">xmlns:xsi</span>=<span class="s">"http://www.w3.org/2001/XMLSchema-instance"</span>
   <span class="na">xsi:schemaLocation</span>=<span class="s">"http://maven.apache.org/plugins/maven-assembly-plugin/assembly/1.1.2 http://maven.apache.org/xsd/assembly-1.1.2.xsd"</span><span class="nt">&gt;</span>
   <span class="nt">&lt;id</span><span class="nt">&gt;</span>src<span class="nt">&lt;/id</span><span class="nt">&gt;</span>
   <span class="nt">&lt;formats</span><span class="nt">&gt;</span>
@@ -223,7 +223,7 @@
 </code></pre>
 <p>You can now create the defined distribution packages via command line like this:</p>
 
-<pre><code class="nohighlight nocode">mvn package
+<pre tabindex="0"><code class="nohighlight nocode">mvn package
 </code></pre></section></section>
       </div>
       <nav class="more" aria-labelledby="more-title">

@@ -46,9 +46,9 @@
     <a class="asf" href="https://www.apache.org/"><img class="asf-leaf" src="../../images/oakleaf.svg" width="14" height="22" alt=""><span>Apache</span></a>
     </div>
   </header>
-  <div class="specimen" role="note">
+  <aside class="specimen" aria-label="About this site">
     <p><strong>Specimen.</strong> A proposed redesign of maven.apache.org, built with <code>mvn site</code> and a skin of its own; not the official Apache Maven site. The official site is <a href="https://maven.apache.org/">maven.apache.org</a>. <a href="../../about-this-example.html">About this example</a></p>
-  </div>
+  </aside>
   <div class="frame has-group">
     <nav class="group-nav" aria-labelledby="group-nav-title">
       <p class="up"><a href="../../docs/index.html"><svg aria-hidden="true" viewBox="0 0 16 16" width="14" height="14"><path d="M10 3.5L5.5 8l4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" /></svg>All of Docs</a></p>
@@ -94,19 +94,19 @@
 <h2>1. Check Java and Maven</h2>
 <p>Open a terminal and check which Java you have:</p>
 
-<pre class="highlight"><code class="language-shell">java -version
+<pre tabindex="0" class="highlight"><code class="language-shell">java -version
 </code></pre>
 
-<pre><code class="nohighlight nocode">openjdk version "21.0.12.1" 2026-08-18 LTS
+<pre tabindex="0"><code class="nohighlight nocode">openjdk version "21.0.12.1" 2026-08-18 LTS
 ...
 </code></pre>
 <p>The project you generate in the next step is compiled for Java 17, so the version must be 17 or higher.</p>
 <p>Then check Maven:</p>
 
-<pre class="highlight"><code class="language-shell">mvn --version
+<pre tabindex="0" class="highlight"><code class="language-shell">mvn --version
 </code></pre>
 
-<pre><code class="nohighlight nocode">Apache Maven 3.10.0 (c43a36b8d67be7e0805a411bc0898af1a51f5472)
+<pre tabindex="0"><code class="nohighlight nocode">Apache Maven 3.10.0 (c43a36b8d67be7e0805a411bc0898af1a51f5472)
 Maven home: /opt/apache-maven-3.10.0
 Java version: 21.0.12.1, vendor: Eclipse Adoptium, runtime: /usr/lib/jvm/temurin-21
 Default locale: en_US, platform encoding: UTF-8, time zone: Europe/Amsterdam
@@ -120,13 +120,13 @@ OS name: "linux", version: "6.17.0", arch: "amd64", family: "unix"
 <h2>2. Generate the project</h2>
 <p>Go to the directory where you keep your projects and run, on one line:</p>
 
-<pre class="highlight"><code class="language-shell">mvn archetype:generate -DgroupId=com.mycompany.app -DartifactId=my-app -DarchetypeArtifactId=maven-archetype-quickstart -DarchetypeVersion=1.5 -DinteractiveMode=false
+<pre tabindex="0" class="highlight"><code class="language-shell">mvn archetype:generate -DgroupId=com.mycompany.app -DartifactId=my-app -DarchetypeArtifactId=maven-archetype-quickstart -DarchetypeVersion=1.5 -DinteractiveMode=false
 </code></pre>
 <p>An archetype is a project template. <code>archetype:generate</code> runs the <code>generate</code> goal of the Archetype plugin, which copies the template <code>maven-archetype-quickstart</code>, version 1.5, and fills in your <code>groupId</code> and <code>artifactId</code>. <code>-DinteractiveMode=false</code> makes it use the values on the command line instead of asking for them. Keep <code>-DarchetypeVersion=1.5</code>: without it, you get version 1.0 of the template, which generates a project for JUnit 3.</p>
 <p>The first time, Maven prints many <code>Downloading from central</code> lines. It fetches the plugins it needs from Maven Central and keeps them in its local repository, the directory <code>.m2/repository</code> in your home directory, so later runs use those copies.</p>
 <p>The run ends with:</p>
 
-<pre><code class="nohighlight nocode">[INFO] Project created from Archetype in dir: /home/you/projects/my-app
+<pre tabindex="0"><code class="nohighlight nocode">[INFO] Project created from Archetype in dir: /home/you/projects/my-app
 [INFO] ------------------------------------------------------------------------
 [INFO] BUILD SUCCESS
 [INFO] ------------------------------------------------------------------------
@@ -135,11 +135,11 @@ OS name: "linux", version: "6.17.0", arch: "amd64", family: "unix"
 <h2>3. Look at the generated project</h2>
 <p>Go into the new directory:</p>
 
-<pre class="highlight"><code class="language-shell">cd my-app
+<pre tabindex="0" class="highlight"><code class="language-shell">cd my-app
 </code></pre>
 <p>It contains:</p>
 
-<pre><code class="nohighlight nocode">my-app
+<pre tabindex="0"><code class="nohighlight nocode">my-app
 |-- .mvn
 |   |-- jvm.config
 |   `-- maven.config
@@ -162,7 +162,7 @@ OS name: "linux", version: "6.17.0", arch: "amd64", family: "unix"
 <p><em>pom.xml</em> describes the project. It starts with the coordinates that identify the project, and two properties:</p>
 <p><em>pom.xml</em></p>
 
-<pre class="highlight"><code class="language-xml">&lt;project ...&gt;
+<pre tabindex="0" class="highlight"><code class="language-xml">&lt;project ...&gt;
   <span class="nt">&lt;modelVersion</span><span class="nt">&gt;</span>4.0.0<span class="nt">&lt;/modelVersion</span><span class="nt">&gt;</span>
 
   <span class="nt">&lt;groupId</span><span class="nt">&gt;</span>com.mycompany.app<span class="nt">&lt;/groupId</span><span class="nt">&gt;</span>
@@ -185,7 +185,7 @@ OS name: "linux", version: "6.17.0", arch: "amd64", family: "unix"
 <p>The program prints a greeting:</p>
 <p><em>src/main/java/com/mycompany/app/App.java</em></p>
 
-<pre class="highlight"><code class="language-java"><span class="k">public</span> <span class="k">class</span> App {
+<pre tabindex="0" class="highlight"><code class="language-java"><span class="k">public</span> <span class="k">class</span> App {
     <span class="k">public</span> <span class="k">static</span> <span class="k">void</span> main(String[] args) {
         System.out.println(<span class="s">"Hello World!"</span>);
     }
@@ -195,11 +195,11 @@ OS name: "linux", version: "6.17.0", arch: "amd64", family: "unix"
 <h2>4. Build the project</h2>
 <p>In the <code>my-app</code> directory, run:</p>
 
-<pre class="highlight"><code class="language-shell">mvn package
+<pre tabindex="0" class="highlight"><code class="language-shell">mvn package
 </code></pre>
 <p>Maven compiles the code, runs the test, and packages the classes into a JAR file. The output shows one line for each step, after the downloads:</p>
 
-<pre><code class="nohighlight nocode">[INFO] --- resources:3.3.1:resources (default-resources) @ my-app ---
+<pre tabindex="0"><code class="nohighlight nocode">[INFO] --- resources:3.3.1:resources (default-resources) @ my-app ---
 [INFO] --- compiler:3.13.0:compile (default-compile) @ my-app ---
 [INFO] Compiling 1 source file with javac [debug release 17] to target/classes
 [INFO] --- resources:3.3.1:testResources (default-testResources) @ my-app ---
@@ -216,10 +216,10 @@ OS name: "linux", version: "6.17.0", arch: "amd64", family: "unix"
 <h2>5. Run the program</h2>
 <p>Run the <code>App</code> class from the JAR:</p>
 
-<pre class="highlight"><code class="language-shell">java -cp target/my-app-1.0-SNAPSHOT.jar com.mycompany.app.App
+<pre tabindex="0" class="highlight"><code class="language-shell">java -cp target/my-app-1.0-SNAPSHOT.jar com.mycompany.app.App
 </code></pre>
 
-<pre><code class="nohighlight nocode">Hello World!
+<pre tabindex="0"><code class="nohighlight nocode">Hello World!
 </code></pre>
 <p>You now have a Maven project that compiles, tests and packages itself with one command.</p></section><section><a id="Continue_with_a_dependency"></a>
 <h2>Continue with a dependency</h2>

@@ -43,9 +43,9 @@
     <a class="asf" href="https://www.apache.org/"><img class="asf-leaf" src="../../images/oakleaf.svg" width="14" height="22" alt=""><span>Apache</span></a>
     </div>
   </header>
-  <div class="specimen" role="note">
+  <aside class="specimen" aria-label="About this site">
     <p><strong>Specimen.</strong> A proposed redesign of maven.apache.org, built with <code>mvn site</code> and a skin of its own; not the official Apache Maven site. The official site is <a href="https://maven.apache.org/">maven.apache.org</a>. <a href="../../about-this-example.html">About this example</a></p>
-  </div>
+  </aside>
   <div class="frame has-group">
     <nav class="group-nav" aria-labelledby="group-nav-title">
       <p class="up"><a href="../../docs/index.html"><svg aria-hidden="true" viewBox="0 0 16 16" width="14" height="14"><path d="M10 3.5L5.5 8l4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" /></svg>All of Docs</a></p>
@@ -171,7 +171,7 @@
 <p>Maven 4 introduces a dedicated <code>bom</code> packaging type to provide a <a href="https://maven.apache.org/docs/dependencies/how-dependencies-work.html#bill-of-materials-bom-poms" class="externalLink">Bill of Materials BOM POM</a>. This now differentiates between parent POMs and dependency-managing BOMs. The new type is only available as a build POM in Model Version 4.1.0 and later, but Maven generates a full Maven 3 compatible consumer POM during the build. For an example, see the link above or the <a href="https://www.youtube.com/watch?v=ZD_YxTmQ16Q&amp;t=16710s" class="externalLink">live coding by Maven maintainer Karl Heinz Marbaise at IntelliJ IDEA Conf 2024</a>.</p>
 <p><strong>Note</strong>: With Maven 4, it's also possible to exclude dependencies that are declared by BOMs using the existing <code>&lt;exclusions&gt;</code> element. Also note that in Maven 4 (model version 4.1.0 and later), importing BOMs with a classifier is possible by using the standard <code>&lt;classifier&gt;</code> element on the import dependency:</p>
 
-<pre class="highlight"><code class="language-xml"><span class="nt">&lt;dependencyManagement</span><span class="nt">&gt;</span>
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;dependencyManagement</span><span class="nt">&gt;</span>
   <span class="nt">&lt;dependencies</span><span class="nt">&gt;</span>
     <span class="nt">&lt;dependency</span><span class="nt">&gt;</span>
       <span class="nt">&lt;groupId</span><span class="nt">&gt;</span>org.example<span class="nt">&lt;/groupId</span><span class="nt">&gt;</span>
@@ -194,7 +194,7 @@
 <li>The column “consumer POM” does not apply to artifacts that are of type “pom”, because “pom”-artifacts are designed to contain build information, for example plugin configuration!</li>
 <li>Some of the build-related content which is (as of now) still available in the consumer POM might be available only in the build POM in the future.</li>
 </ul>
-<table class="bodyTable">
+<div class="table-scroll" tabindex="0"><table class="bodyTable">
 <thead>
 <tr class="a">
 <th>Content</th>
@@ -228,13 +228,13 @@
 <td>Deployment to remote repository</td>
 <td>✅</td>
 <td>✅</td></tr></tbody>
-</table>
+</table></div>
 
 <p><strong>Warning</strong>: There are rare situations where Maven 4 will produce a consumer POM based on version 4.1.0, for example when condition-based profiles (see below) can't be transformed to version 4.0.0. Maven will show a warning in such situations.</p></section><section><a id="Declaring_the_root_directory_and_directory_properties"></a>
 <h3>Declaring the root directory and directory properties</h3>
 <p>Every time Maven executes a build, it has to determine the project's root to identify things like the parent project, directory information, and so on. To “help” Maven find the root folder, you can create a <code>.mvn</code> folder in your root directory. This folder is intended to contain project-specific configuration to run Maven, for example a <code>maven.config</code> or <code>jvm.config</code> file, and therefore was also considered as the root folder. With Maven 4, there is a second option to clearly define the root folder. Model version 4.1.0, usable for the build POM, adds a boolean attribute called <code>root</code> in the <code>&lt;project&gt;</code> element. When this attribute is set to true (default is false), the directory of this POM file is considered the root directory.</p>
 <p>Another pain point in relation to the root directory is that until Maven 4, there was no official property to make use of the root folder in your POM files, for example when you want to define the path to a <code>checkstyle-suppressions.xml</code> file for the checkstyle plugin. Maven 4 now provides official properties to reference the root directory in your POM configuration. The following table shows the official properties.</p>
-<table class="bodyTable">
+<div class="table-scroll" tabindex="0"><table class="bodyTable">
 <thead>
 <tr class="a">
 <th>Property</th>
@@ -256,7 +256,7 @@
 <td>Session</td>
 <td><code>.mvn</code> folder or <code>root</code> attribute in pom for the <code>topDirectory</code> project</td>
 <td>No</td></tr></tbody>
-</table>
+</table></div>
 
 <p>As you can see, these properties differentiate by their scope, where <code>project</code> is always related to the Maven project's definition (you could interpret this as the POM files) and <code>session</code> is the actual execution of a Maven build and is the current working directory. The <code>rootDirectory</code> can only contain a value when either a <code>.mvn</code> directory is defined or the <code>root</code> attribute is set to true. However, if defined, it should always have the same value for a given project, whereas the value of the <code>topDirectory</code> property can change depending on the execution point.</p>
 <p>Keep in mind that the root directory of the whole project (when considering multiple subprojects) is different from each subproject's own base directory, which is accessible via the <code>${basedir}</code> property for use in POM files and will always have a value.</p>
@@ -264,7 +264,7 @@
 <h3>New way to declare source directories</h3>
 <p>Maven 3 has two explicitly named XML elements (<code>&lt;sourceDirectory&gt;</code> and <code>&lt;testSourceDirectory&gt;</code>) to declare the root directories of source code, as shown below:</p>
 
-<pre class="highlight"><code class="language-xml"><span class="nt">&lt;project</span><span class="nt">&gt;</span>
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;project</span><span class="nt">&gt;</span>
   <span class="nt">&lt;build</span><span class="nt">&gt;</span>
     <span class="nt">&lt;sourceDirectory</span><span class="nt">&gt;</span>my-custom-dir/foo<span class="nt">&lt;/sourceDirectory</span><span class="nt">&gt;</span>
     <span class="nt">&lt;testSourceDirectory</span><span class="nt">&gt;</span>my-custom-dir/bar<span class="nt">&lt;/testSourceDirectory</span><span class="nt">&gt;</span>
@@ -274,7 +274,7 @@
 <p>Maven 4 introduces the new <code>&lt;sources&gt;</code> element for this. Multiple <code>&lt;source&gt;</code> elements can be repeated, thus allowing multiple source directories without the need to resort to external plugins (like <a href="https://www.mojohaus.org/build-helper-maven-plugin/" class="externalLink">Build Helper Maven Plugin</a>). It also provides a unified way to declare include/exclude filters, makes easier to set up projects targeting multi Java releases, and enables Java module source hierarchy.</p>
 <p>The documentation of the Maven Compiler Plugin gives <a href="/plugins/maven-compiler-plugin-4.x/sources.html">some examples</a> and more details.</p>
 
-<pre class="highlight"><code class="language-xml"><span class="nt">&lt;project</span><span class="nt">&gt;</span>
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;project</span><span class="nt">&gt;</span>
   <span class="nt">&lt;build</span><span class="nt">&gt;</span>
     <span class="nt">&lt;sources</span><span class="nt">&gt;</span>
       <span class="nt">&lt;source</span><span class="nt">&gt;</span>
@@ -317,7 +317,7 @@
 <h4>Example</h4>
 <p>The following code snippet shows the parent and dependency definition without the version tag.</p>
 
-<pre class="highlight"><code class="language-xml"><span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.1.0"</span> <span class="na">xmlns:xsi</span>=<span class="s">"http://www.w3.org/2001/XMLSchema-instance"</span>
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.1.0"</span> <span class="na">xmlns:xsi</span>=<span class="s">"http://www.w3.org/2001/XMLSchema-instance"</span>
   <span class="na">xsi:schemaLocation</span>=<span class="s">"http://maven.apache.org/POM/4.1.0 https://maven.apache.org/xsd/maven-4.1.0.xsd"</span><span class="nt">&gt;</span>
 
   <span class="nt">&lt;parent</span><span class="nt">&gt;</span>
@@ -339,7 +339,7 @@
 <p>Maven 3.5.0 introduced partial support for CI-friendly variables, like <code>${revision}</code>, in your POM files. However, this still required using the <a href="https://www.mojohaus.org/flatten-maven-plugin/" class="externalLink">Flatten Maven Plugin</a> for full functionality. Since Maven 4, no additional plugin is needed; full built-in support is provided. You can now use <strong>any variable</strong> as a version in your configuration, not just predefined ones.</p>
 <p>Example</p>
 
-<pre class="highlight"><code class="language-xml"><span class="nt">&lt;groupId</span><span class="nt">&gt;</span>my.groupId<span class="nt">&lt;/groupId</span><span class="nt">&gt;</span>
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;groupId</span><span class="nt">&gt;</span>my.groupId<span class="nt">&lt;/groupId</span><span class="nt">&gt;</span>
 <span class="nt">&lt;artifactId</span><span class="nt">&gt;</span>my.artifactId<span class="nt">&lt;/artifactId</span><span class="nt">&gt;</span>
 <span class="nt">&lt;version</span><span class="nt">&gt;</span>${revision}<span class="nt">&lt;/version</span><span class="nt">&gt;</span>
 </code></pre>
@@ -379,12 +379,12 @@ With Maven 4, it's also aware of subfolder builds <a href="https://issues.apache
 <h3>Improvements to profiles</h3>
 <p>Trying to use a nonexistent profile in a build causes the build to fail, as the following command line snippet shows:</p>
 
-<pre><code class="nohighlight nocode">&gt; mvn compile -Pnonexistent
+<pre tabindex="0"><code class="nohighlight nocode">&gt; mvn compile -Pnonexistent
 [ERROR] The requested profiles [nonexistent] could not be activated or deactivated because they do not exist.
 </code></pre>
 <p>Maven 4 introduces the possibility to use profiles only when they exist, like Maven 3. To do so, the <code>?</code> argument was added to the profile parameter. When using this, the build won't break if a profile does not exist. Instead, an information message will be printed twice (at the start and end). See the following snippet for an example:</p>
 
-<pre><code class="nohighlight nocode">&gt; mvn compile -P?nonexistent
+<pre tabindex="0"><code class="nohighlight nocode">&gt; mvn compile -P?nonexistent
 [INFO] The requested optional profiles [nonexistent] could not be activated or deactivated because they do not exist.
 [...]
 [INFO] BUILD SUCCESS
@@ -413,7 +413,7 @@ With Maven 4, it's also aware of subfolder builds <a href="https://issues.apache
 <p>If this is not enough, perhaps because you want to do multiple things inside the same phase, you can order each execution inside a phase by using square brackets with an integer at the end of the phase name.</p>
 <p>Example</p>
 
-<pre><code class="nohighlight nocode">before:integration-test[100]
+<pre tabindex="0"><code class="nohighlight nocode">before:integration-test[100]
 before:integration-test[200]
 </code></pre>
 <p><strong>Warning</strong>: The conceptual <code>pre-*</code> and <code>post-*</code> phases, which were only available for selected phases and had inconsistent naming, are deprecated. They only act as aliases now and might be removed in the future. Don't use them! This is especially important when binding a plugin to a <code>post-*</code> phase of a lifecycle phase because the corresponding <code>pre-*</code> phase of the desired phase doesn't exist — for example, binding to the <code>process-resources</code> phase due to the absence of a <code>pre-compile</code> phase.</p></section><section><a id="Behavioral_change.3A_phase_execution_scope"></a>
@@ -422,7 +422,7 @@ before:integration-test[200]
 <p>The following example shows that this change might affect existing builds.</p>
 <p>Given the following plugin configuration, where a plugin is bound to the <code>post-clean</code> phase.</p>
 
-<pre class="highlight"><code class="language-xml"><span class="nt">&lt;plugin</span><span class="nt">&gt;</span>
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;plugin</span><span class="nt">&gt;</span>
   <span class="nt">&lt;groupId</span><span class="nt">&gt;</span>org.example<span class="nt">&lt;/groupId</span><span class="nt">&gt;</span>
   <span class="nt">&lt;artifactId</span><span class="nt">&gt;</span>some-plugin<span class="nt">&lt;/artifactId</span><span class="nt">&gt;</span>
   <span class="nt">&lt;executions</span><span class="nt">&gt;</span>

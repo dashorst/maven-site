@@ -44,9 +44,9 @@
     <a class="asf" href="https://www.apache.org/"><img class="asf-leaf" src="../../images/oakleaf.svg" width="14" height="22" alt=""><span>Apache</span></a>
     </div>
   </header>
-  <div class="specimen" role="note">
+  <aside class="specimen" aria-label="About this site">
     <p><strong>Specimen.</strong> A proposed redesign of maven.apache.org, built with <code>mvn site</code> and a skin of its own; not the official Apache Maven site. The official site is <a href="https://maven.apache.org/">maven.apache.org</a>. <a href="../../about-this-example.html">About this example</a></p>
-  </div>
+  </aside>
   <div class="frame has-group">
     <nav class="group-nav" aria-labelledby="group-nav-title">
       <p class="up"><a href="../../docs/index.html"><svg aria-hidden="true" viewBox="0 0 16 16" width="14" height="14"><path d="M10 3.5L5.5 8l4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>All of Docs</a></p>
@@ -81,15 +81,15 @@
 <h1>Running Apache Maven</h1> 
 <p>The syntax for running Maven is as follows:</p>
 
-<pre><code class="nohighlight nocode">    mvn [options] [&lt;goal(s)&gt;] [&lt;phase(s)&gt;]
+<pre tabindex="0"><code class="nohighlight nocode">    mvn [options] [&lt;goal(s)&gt;] [&lt;phase(s)&gt;]
 </code></pre>
 <p>All available options are documented in the built-in help that you can access with</p>
 
-<pre><code class="nohighlight nocode">    mvn -h
+<pre tabindex="0"><code class="nohighlight nocode">    mvn -h
 </code></pre>
 <p>The typical invocation for building a Maven project uses a Maven lifecycle phase. E.g.</p>
 
-<pre><code class="nohighlight nocode">    mvn verify
+<pre tabindex="0"><code class="nohighlight nocode">    mvn verify
 </code></pre>
 <p>The built-in lifecycles and their most used phases, in order, are:</p>
 <ul>
@@ -103,24 +103,24 @@
 </ul>
 <p>A fresh build of a project generating all packaged outputs and the documentation site and deploying it to a repository manager could be done with</p>
 
-<pre><code class="nohighlight nocode">    mvn clean deploy site-deploy
+<pre tabindex="0"><code class="nohighlight nocode">    mvn clean deploy site-deploy
 </code></pre>
 <p>Just creating the package and installing it in the local repository for re-use from other projects can be done with</p>
 
-<pre><code class="nohighlight nocode">    mvn install
+<pre tabindex="0"><code class="nohighlight nocode">    mvn install
 </code></pre>
 <p>And if you don't expect to re-use from other projects, use</p>
 
-<pre><code class="nohighlight nocode">    mvn verify
+<pre tabindex="0"><code class="nohighlight nocode">    mvn verify
 </code></pre>
 <p>This is the most common build invocation for a Maven project.</p>
 <p>When not working with a project, and in some other use cases, you might want to invoke a specific task implemented by a part of Maven - this is called a <strong>goal</strong> of a plugin. E.g.:</p>
 
-<pre><code class="nohighlight nocode">    mvn archetype:generate
+<pre tabindex="0"><code class="nohighlight nocode">    mvn archetype:generate
 </code></pre>
 <p>or</p>
 
-<pre><code class="nohighlight nocode">    mvn checkstyle:check
+<pre tabindex="0"><code class="nohighlight nocode">    mvn checkstyle:check
 </code></pre>
 <p>There are many different <a href="/docs/plugins/available-plugins.html">plugins available</a> and they all implement different goals.</p>
 <p>Further resources:</p>

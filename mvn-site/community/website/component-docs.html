@@ -44,9 +44,9 @@
     <a class="asf" href="https://www.apache.org/"><img class="asf-leaf" src="../../images/oakleaf.svg" width="14" height="22" alt=""><span>Apache</span></a>
     </div>
   </header>
-  <div class="specimen" role="note">
+  <aside class="specimen" aria-label="About this site">
     <p><strong>Specimen.</strong> A proposed redesign of maven.apache.org, built with <code>mvn site</code> and a skin of its own; not the official Apache Maven site. The official site is <a href="https://maven.apache.org/">maven.apache.org</a>. <a href="../../about-this-example.html">About this example</a></p>
-  </div>
+  </aside>
   <div class="frame has-group">
     <nav class="group-nav" aria-labelledby="group-nav-title">
       <p class="up"><a href="../../community/index.html"><svg aria-hidden="true" viewBox="0 0 16 16" width="14" height="14"><path d="M10 3.5L5.5 8l4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>All of Community</a></p>
@@ -97,18 +97,18 @@
 <p>prerequisite: eventually build the component if it has not been done previously, or some reports may miss build or integration information:</p>
 <p>Notice: In cases where you have prepared a release you can simple change into <code>target/checkout</code> directory and continue with 2.</p>
 
-<pre><code class="nohighlight nocode">mvn -Prun-its install
+<pre tabindex="0"><code class="nohighlight nocode">mvn -Prun-its install
 </code></pre></li>
 <li>
 <p>build the reference documentation:</p>
 
-<pre><code class="nohighlight nocode">mvn -Preporting site site:stage
+<pre tabindex="0"><code class="nohighlight nocode">mvn -Preporting site site:stage
 </code></pre>
 <p>Notice: <code>site:stage</code> is really necessary only for multi-modules components, but added unconditionally in these instructions to keep them as straightforward as possible.</p></li>
 <li>
 <p>stage the reference documentation to website production svn area, using <a href="/plugins/maven-scm-publish-plugin">maven-scm-publish-plugin</a>: (TODO: explanations on configuration in pom to yyy-LATEST)</p>
 
-<pre><code class="nohighlight nocode">mvn scm-publish:publish-scm
+<pre tabindex="0"><code class="nohighlight nocode">mvn scm-publish:publish-scm
 </code></pre>
 <p>svnpubsub mechanism transfers svn production content to live production site</p></li>
 </ol>
@@ -127,7 +127,7 @@
 <li>
 <p>Unix:</p>
 
-<pre><code class="nohighlight nocode">SVNPUBSUB=https://svn.apache.org/repos/asf/maven/website/components
+<pre tabindex="0"><code class="nohighlight nocode">SVNPUBSUB=https://svn.apache.org/repos/asf/maven/website/components
 
 svn cp $SVNPUBSUB/xxx-archives/yyy-LATEST $SVNPUBSUB/xxx-archives/yyy-$version -m &quot;Archive versioned site.&quot;
 
@@ -137,7 +137,7 @@ svn cp $SVNPUBSUB/xxx-archives/yyy-$version $SVNPUBSUB/xxx/yyy -m &quot;Publish 
 <li>
 <p>Windows:</p>
 
-<pre><code class="nohighlight nocode">set SVNPUBSUB=https://svn.apache.org/repos/asf/maven/website/components
+<pre tabindex="0"><code class="nohighlight nocode">set SVNPUBSUB=https://svn.apache.org/repos/asf/maven/website/components
 
 svn cp %SVNPUBSUB%/xxx-archives/yyy-LATEST %SVNPUBSUB%/xxx-archives/yyy-$version -m &quot;Archive versioned site.&quot;
 
@@ -147,7 +147,7 @@ svn cp %SVNPUBSUB%/xxx-archives/yyy-$version %SVNPUBSUB%/xxx/yyy -m &quot;Publis
 </ul>
 <p>or with <a href="http://svnbook.red-bean.com/en/1.8/svn.ref.svnmucc.re.html" class="externalLink"><code>svnmucc</code> command</a>:</p>
 
-<pre><code class="nohighlight nocode">svnmucc -m &quot;Publish yyy $version documentation&quot; \
+<pre tabindex="0"><code class="nohighlight nocode">svnmucc -m &quot;Publish yyy $version documentation&quot; \
   -U https://svn.apache.org/repos/asf/maven/website/components \
   cp HEAD xxx-archives/yyy-LATEST xxx-archives/yyy-$version \
   rm xxx/yyy \

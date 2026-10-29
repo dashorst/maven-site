@@ -44,9 +44,9 @@
     <a class="asf" href="https://www.apache.org/"><img class="asf-leaf" src="../../images/oakleaf.svg" width="14" height="22" alt=""><span>Apache</span></a>
     </div>
   </header>
-  <div class="specimen" role="note">
+  <aside class="specimen" aria-label="About this site">
     <p><strong>Specimen.</strong> A proposed redesign of maven.apache.org, built with <code>mvn site</code> and a skin of its own; not the official Apache Maven site. The official site is <a href="https://maven.apache.org/">maven.apache.org</a>. <a href="../../about-this-example.html">About this example</a></p>
-  </div>
+  </aside>
   <div class="frame">
     <main id="content">
       <div class="prose">
@@ -129,7 +129,7 @@
 <li>If you are using Maven reporting, it might happen that you will get an exception which looks like this:</li>
 </ul>
 
-<pre><code class="nohighlight nocode">[INFO] Scanning for projects...
+<pre tabindex="0"><code class="nohighlight nocode">[INFO] Scanning for projects...
 [ERROR] Internal error: java.lang.NullPointerException -&gt; [Help 1]
 org.apache.maven.InternalErrorException: Internal error: java.lang.NullPointerException
     at org.apache.maven.DefaultMaven.execute (DefaultMaven.java:120)
@@ -176,18 +176,18 @@ Caused by: java.lang.NullPointerException
 <li>Maven has now a an option to suppress the transfer progress when downloading/uploading in interactive mode.</li>
 </ul>
 
-<pre><code class="nohighlight nocode">mvn --no-transfer-progress ....
+<pre tabindex="0"><code class="nohighlight nocode">mvn --no-transfer-progress ....
 </code></pre>
 <p>or in short:</p>
 
-<pre><code class="nohighlight nocode">mvn -ntp ... ....
+<pre tabindex="0"><code class="nohighlight nocode">mvn -ntp ... ....
 </code></pre>
 <ul>
 
 <li>There had been an issues like <a href="http://issues.apache.org/jira/browse/MNG-6505" class="externalLink">MNG-6505</a> and <a href="http://issues.apache.org/jira/browse/MNG-6059" class="externalLink">MNG-6059</a> related to the construction of URL's etc. within <code>project</code>, <code>distributionManagement</code> and <code>scm</code> part in the pom for multi module builds like this:</li>
 </ul>
 
-<pre><code class="nohighlight nocode">&lt;project child.project.url.inherit.append.path=&quot;false&quot;&gt;
+<pre tabindex="0"><code class="nohighlight nocode">&lt;project child.project.url.inherit.append.path=&quot;false&quot;&gt;
   &lt;url&gt;...&lt;/url&gt;
 
   &lt;scm child.scm.connection.inherit.append.path=&quot;false&quot;

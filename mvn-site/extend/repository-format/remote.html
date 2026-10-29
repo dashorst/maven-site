@@ -44,9 +44,9 @@
     <a class="asf" href="https://www.apache.org/"><img class="asf-leaf" src="../../images/oakleaf.svg" width="14" height="22" alt=""><span>Apache</span></a>
     </div>
   </header>
-  <div class="specimen" role="note">
+  <aside class="specimen" aria-label="About this site">
     <p><strong>Specimen.</strong> A proposed redesign of maven.apache.org, built with <code>mvn site</code> and a skin of its own; not the official Apache Maven site. The official site is <a href="https://maven.apache.org/">maven.apache.org</a>. <a href="../../about-this-example.html">About this example</a></p>
-  </div>
+  </aside>
   <div class="frame has-group">
     <nav class="group-nav" aria-labelledby="group-nav-title">
       <p class="up"><a href="../../extend/index.html"><svg aria-hidden="true" viewBox="0 0 16 16" width="14" height="14"><path d="M10 3.5L5.5 8l4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>All of Extend</a></p>
@@ -92,14 +92,14 @@
 <p>Your POM locally usually contains snapshot versions in a form of a string that ends with &#x201c;SNAPSHOT&#x201d; constant string (for example &#x201c;1.0-SNAPSHOT&#x201d;). But, in case of deploy, this version is being transformed to a &#x201c;timestamped snapshot&#x201d; on the fly (by Maven) and when you check the deployed result, you will see that artifact file does not end up with &#x201c;SNAPSHOT&#x201d; anymore, but a timestamp and build number. Also, during deploy, Maven will deploy required Maven V Level Metadata as well that will describe for consumers of this snapshot how to &#x201c;reverse&#x201d; this process.</p>
 <p>So, in case of snapshot deploy, version transformation happens in form of:</p>
 
-<pre><code class="nohighlight nocode">1.0-SNAPSHOT -&gt; Maven (on the fly) -&gt; 1.0-${YYYYMMDD.HHMMSS}-${counter}
+<pre tabindex="0"><code class="nohighlight nocode">1.0-SNAPSHOT -&gt; Maven (on the fly) -&gt; 1.0-${YYYYMMDD.HHMMSS}-${counter}
 </code></pre>
 <p>Where the date in <code>Etc/UTC</code> timezone (used in <code>YYYYMMDD.HHMMSS</code> format) is constant across deploy from same session (is time when Maven Session was created), and counter is increased counter from previously deployed metadata (or if no remote metadata exists, is initialized with 1).</p></section><section><a id="Consuming_Snapshot_Artifacts"></a>
 <h3>Consuming Snapshot Artifacts</h3>
 <p>If your project depends on SNAPSHOT dependencies, the POM of your project usually contains <code>version</code> value that ends with &#x201c;SNAPSHOT&#x201d; (for example &#x201c;1.0-SNAPSHOT&#x201d;), still, as we see above, remote repositories do NOT contain such versions, but only timestamped ones. Maven snapshots are &#x201c;moving targets&#x201d;, hence, during resolution Maven will use the deployed metadata first, to figure out <code>baseVersion</code> -&gt; <code>version</code> (timestamped) mapping, and only then will fetch the required files.</p>
 <p>In case of consuming snapshot, the following transformation happens:</p>
 
-<pre><code class="nohighlight nocode">1.0-SNAPSHOT -&gt; Remote V Level Repository Metadata -&gt; 1.0-YYYYMMDD.HHMMS-X
+<pre tabindex="0"><code class="nohighlight nocode">1.0-SNAPSHOT -&gt; Remote V Level Repository Metadata -&gt; 1.0-YYYYMMDD.HHMMS-X
 </code></pre>
 <p>Due this indirection (the real filename of artifact, the version part) is figured from deployed Maven repository metadata, the snapshot artifacts are &#x201c;moving target&#x201d;: each snapshot deployment as above will deploy new metadata, hence, will alter this transformation here (Maven will download different snapshot artifact).</p>
 <p>Note: it is possible to &#x201c;lock down&#x201d; snapshot artifacts, by using timestamped version in version field of a dependency, and it will ensure Maven downloads always same artifact (is not &#x201c;moving target&#x201d; anymore), but <strong>Maven will still consider that dependency as snapshot</strong>, and all the fine print applies (for example, release plugin will refuse to release such a project).</p></section></section></section>

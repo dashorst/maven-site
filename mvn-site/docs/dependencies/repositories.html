@@ -43,9 +43,9 @@
     <a class="asf" href="https://www.apache.org/"><img class="asf-leaf" src="../../images/oakleaf.svg" width="14" height="22" alt=""><span>Apache</span></a>
     </div>
   </header>
-  <div class="specimen" role="note">
+  <aside class="specimen" aria-label="About this site">
     <p><strong>Specimen.</strong> A proposed redesign of maven.apache.org, built with <code>mvn site</code> and a skin of its own; not the official Apache Maven site. The official site is <a href="https://maven.apache.org/">maven.apache.org</a>. <a href="../../about-this-example.html">About this example</a></p>
-  </div>
+  </aside>
   <div class="frame has-group">
     <nav class="group-nav" aria-labelledby="group-nav-title">
       <p class="up"><a href="../../docs/index.html"><svg aria-hidden="true" viewBox="0 0 16 16" width="14" height="14"><path d="M10 3.5L5.5 8l4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" /></svg>All of Docs</a></p>
@@ -106,7 +106,7 @@
 <h2>Building Offline</h2>
 <p>If you are temporarily disconnected from the internet and you need to build your projects offline, you can use the offline switch on the CLI:</p>
 
-<pre><code class="nohighlight nocode">mvn -o package
+<pre tabindex="0"><code class="nohighlight nocode">mvn -o package
 </code></pre>
 <p>Many plugins honor the offline setting and do not perform any operations that connect to the internet. Some examples are resolving Javadoc links and link checking the site.</p></section><section><a id="Uploading_to_a_Remote_Repository"></a>
 <h2>Uploading to a Remote Repository</h2>
@@ -123,7 +123,7 @@
 <h2>Using the Internal Repository</h2>
 <p>Using the internal repository is quite simple. Simply make a change to add a <code>repositories</code> element:</p>
 
-<pre class="highlight"><code class="language-xml">
+<pre tabindex="0" class="highlight"><code class="language-xml">
 <span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span><span class="nt">&gt;</span>
   ...
   <span class="nt">&lt;repositories</span><span class="nt">&gt;</span>

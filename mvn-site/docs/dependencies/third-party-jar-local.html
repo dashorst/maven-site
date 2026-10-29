@@ -44,9 +44,9 @@
     <a class="asf" href="https://www.apache.org/"><img class="asf-leaf" src="../../images/oakleaf.svg" width="14" height="22" alt=""><span>Apache</span></a>
     </div>
   </header>
-  <div class="specimen" role="note">
+  <aside class="specimen" aria-label="About this site">
     <p><strong>Specimen.</strong> A proposed redesign of maven.apache.org, built with <code>mvn site</code> and a skin of its own; not the official Apache Maven site. The official site is <a href="https://maven.apache.org/">maven.apache.org</a>. <a href="../../about-this-example.html">About this example</a></p>
-  </div>
+  </aside>
   <div class="frame has-group">
     <nav class="group-nav" aria-labelledby="group-nav-title">
       <p class="up"><a href="../../docs/index.html"><svg aria-hidden="true" viewBox="0 0 16 16" width="14" height="14"><path d="M10 3.5L5.5 8l4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>All of Docs</a></p>
@@ -89,15 +89,15 @@
 <p>To make this easier, and less error prone, we have provided an <code>install-file</code> goal in the <a href="/plugins/maven-install-plugin/">maven-install-plugin</a> which should make this relatively painless.</p>
 <p>To install a JAR in the local repository use the following command:</p>
 
-<pre><code class="nohighlight nocode">mvn install:install-file -Dfile=&lt;path-to-file&gt; -DgroupId=&lt;group-id&gt; -DartifactId=&lt;artifact-id&gt; -Dversion=&lt;version&gt; -Dpackaging=&lt;packaging&gt;
+<pre tabindex="0"><code class="nohighlight nocode">mvn install:install-file -Dfile=&lt;path-to-file&gt; -DgroupId=&lt;group-id&gt; -DartifactId=&lt;artifact-id&gt; -Dversion=&lt;version&gt; -Dpackaging=&lt;packaging&gt;
 </code></pre>
 <p>If there's a pom-file as well, you can install it with the following command:</p>
 
-<pre><code class="nohighlight nocode">mvn install:install-file -Dfile=&lt;path-to-file&gt; -DpomFile=&lt;path-to-pomfile&gt;
+<pre tabindex="0"><code class="nohighlight nocode">mvn install:install-file -Dfile=&lt;path-to-file&gt; -DpomFile=&lt;path-to-pomfile&gt;
 </code></pre>
 <p>With version 2.5 of the maven-install-plugin, it can get even simpler: if the JAR was built by Apache Maven, it'll contain a pom.xml in a subdirectory of the META-INF/ directory, which will be read by default. In that case, all you need to do is:</p>
 
-<pre><code class="nohighlight nocode">mvn org.apache.maven.plugins:maven-install-plugin:2.5.2:install-file -Dfile=&lt;path-to-file&gt;
+<pre tabindex="0"><code class="nohighlight nocode">mvn org.apache.maven.plugins:maven-install-plugin:2.5.2:install-file -Dfile=&lt;path-to-file&gt;
 </code></pre></section>
       </div>
       <nav class="more" aria-labelledby="more-title">

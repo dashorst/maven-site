@@ -44,9 +44,9 @@
     <a class="asf" href="https://www.apache.org/"><img class="asf-leaf" src="../../images/oakleaf.svg" width="14" height="22" alt=""><span>Apache</span></a>
     </div>
   </header>
-  <div class="specimen" role="note">
+  <aside class="specimen" aria-label="About this site">
     <p><strong>Specimen.</strong> A proposed redesign of maven.apache.org, built with <code>mvn site</code> and a skin of its own; not the official Apache Maven site. The official site is <a href="https://maven.apache.org/">maven.apache.org</a>. <a href="../../about-this-example.html">About this example</a></p>
-  </div>
+  </aside>
   <div class="frame">
     <main id="content">
       <div class="prose">
@@ -91,7 +91,7 @@
 <p>This Maven distribution is now Reproducible: if you <a href="/download.cgi">download Maven source archive</a> (<code>apache-maven-3.6.3-src.zip</code> or <code>.tar.gz</code>), build it on Windows with JDK 8 using following command:</p></li>
 </ul>
 
-<pre><code class="nohighlight nocode">mvn -DbuildNumber=cecedd343002696d0abb50b32b541b8a6ba2883f package
+<pre tabindex="0"><code class="nohighlight nocode">mvn -DbuildNumber=cecedd343002696d0abb50b32b541b8a6ba2883f package
 </code></pre>
 <p>you'll get bit-by-bit identical output (<code>apache-maven-3.6.3-bin.zip</code> and <code>.tar.gz</code> in <code>apache-maven/target/</code>) that you can check with sha512 fingerprints against official release.<br />
 If you're building on any Unix system, you'll need to add &#x201c;<code>-Dline.separator=$'\r\n'</code>&#x201d;.<br />
@@ -99,11 +99,11 @@ See the <a href="/docs/recipes/reproducible-builds.html">Maven - Guide to Config
 <h2>The detailed issue list<a href="#Details"></a></h2>
 <p>Sub-task</p>
 
-<pre><code class="nohighlight nocode">    [MNG-6779] - fix jcl-over-slf4j license: Apache 2.0 instead of MIT
+<pre tabindex="0"><code class="nohighlight nocode">    [MNG-6779] - fix jcl-over-slf4j license: Apache 2.0 instead of MIT
 </code></pre>
 <p>Bug</p>
 
-<pre><code class="nohighlight nocode">    [MNG-6584] - Maven version 3.6.0 does not show ReasonPhrase anymore
+<pre tabindex="0"><code class="nohighlight nocode">    [MNG-6584] - Maven version 3.6.0 does not show ReasonPhrase anymore
     [MNG-6759] - [REGRESSION] Maven fails to use &lt;repositories&gt; section from dependency when resolving transitive dependencies in some cases
     [MNG-6760] - [REGRESSION] ExclusionArtifactFilter result invalid when wildcard exclusion is followed by other exclusions
     [MNG-6765] - [REGRESSION] tycho pom-less builds fails with 3.6.2
@@ -111,12 +111,12 @@ See the <a href="/docs/recipes/reproducible-builds.html">Maven - Guide to Config
 </code></pre>
 <p>Improvement</p>
 
-<pre><code class="nohighlight nocode">    [MNG-6778] - Use https for schemaLocations
+<pre tabindex="0"><code class="nohighlight nocode">    [MNG-6778] - Use https for schemaLocations
     [MNG-6799] - avoid model interpolation instability risk: ensure StringVisitorModelInterpolator replaces StringSearchModelInterpolator
 </code></pre>
 <p>Task</p>
 
-<pre><code class="nohighlight nocode">    [MNG-6777] - Remove duplicate resolveFile methods
+<pre tabindex="0"><code class="nohighlight nocode">    [MNG-6777] - Remove duplicate resolveFile methods
     [MNG-6789] - Make Maven distribution build Reproducible
 </code></pre>
 <p>The full list of changes can be found in our <a href="https://issues.apache.org/jira/secure/ReleaseNote.jspa?projectId=12316922&amp;version=12346152" class="externalLink">issue management system</a>.</p></section><section><a id="Complete_Release_Notes"></a>

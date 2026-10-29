@@ -43,9 +43,9 @@
     <a class="asf" href="https://www.apache.org/"><img class="asf-leaf" src="../../images/oakleaf.svg" width="14" height="22" alt=""><span>Apache</span></a>
     </div>
   </header>
-  <div class="specimen" role="note">
+  <aside class="specimen" aria-label="About this site">
     <p><strong>Specimen.</strong> A proposed redesign of maven.apache.org, built with <code>mvn site</code> and a skin of its own; not the official Apache Maven site. The official site is <a href="https://maven.apache.org/">maven.apache.org</a>. <a href="../../about-this-example.html">About this example</a></p>
-  </div>
+  </aside>
   <div class="frame has-group">
     <nav class="group-nav" aria-labelledby="group-nav-title">
       <p class="up"><a href="../../extend/index.html"><svg aria-hidden="true" viewBox="0 0 16 16" width="14" height="14"><path d="M10 3.5L5.5 8l4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" /></svg>All of Extend</a></p>
@@ -97,7 +97,7 @@
 <p><strong>Notice</strong>: if you're targeting components for Maven 3.1.0+, using <a href="/extend/plugins/jsr-330.html"><code>@Named</code>/<code>@Inject</code> JSR-330 annotations</a> instead of <code>@Component</code>/<code>@Requirement</code> Plexus Java Annotations may be a good next step</p></section><section><a id="Prerequisite_Plugins"></a>
 <h2>Prerequisite Plugins</h2>
 <p>Here is the list of the plugins used:</p>
-<table class="bodyTable">
+<div class="table-scroll" tabindex="0"><table class="bodyTable">
 <thead>
 <tr class="a">
 <th><strong>Plugin</strong></th>
@@ -108,10 +108,10 @@
 <tr class="a">
 <td><a href="https://codehaus-plexus.github.io/plexus-containers/plexus-component-metadata/" class="externalLink"><code>plexus-component-metadata</code></a></td>
 <td>1.7.1</td></tr></tbody>
-</table>
+</table></div>
 </section><section><a id="Equivalence_Table"></a>
 <h2>Equivalence Table</h2>
-<table class="bodyTable">
+<div class="table-scroll" tabindex="0"><table class="bodyTable">
 <thead>
 <tr class="a">
 <th></th>
@@ -161,13 +161,13 @@
 <td>javadoc tags + <a href="https://codehaus-plexus.github.io/plexus-containers/plexus-component-annotations/" class="externalLink"><code>plexus-component-annotations</code></a> Java 5 annotations:&nbsp;</td></tr>
 <tr class="b">
 <td><a href="https://codehaus-plexus.github.io/plexus-containers/plexus-component-annotations/apidocs/org/codehaus/plexus/component/annotations/Component.html" class="externalLink"><code>@Component</code></a>, <a href="https://codehaus-plexus.github.io/plexus-containers/plexus-component-annotations/apidocs/org/codehaus/plexus/component/annotations/Requirement.html" class="externalLink"><code>@Requirement</code></a>, <a href="https://codehaus-plexus.github.io/plexus-containers/plexus-component-annotations/apidocs/org/codehaus/plexus/component/annotations/Configuration.html" class="externalLink"><code>@Configuration</code></a>,</td></tr></tbody>
-</table>
+</table></div>
 </section><section><a id="Recipe"></a>
 <h2>Recipe</h2><section><a id="Plugin_Configuration"></a>
 <h3>Plugin Configuration</h3>
 <p>In your <code>pom.xml</code>, replace <code>plexus-maven-plugin</code> configuration:</p>
 
-<pre class="highlight"><code class="language-xml"><span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span><span class="nt">&gt;</span>
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span><span class="nt">&gt;</span>
   <span class="nt">&lt;build</span><span class="nt">&gt;</span>
     <span class="nt">&lt;plugins</span><span class="nt">&gt;</span>
       <span class="nt">&lt;plugin</span><span class="nt">&gt;</span>
@@ -187,7 +187,7 @@
 </code></pre>
 <p>with corresponding <code>plexus-component-metadata</code> configuration:</p>
 
-<pre class="highlight"><code class="language-xml"><span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span><span class="nt">&gt;</span>
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span><span class="nt">&gt;</span>
   <span class="nt">&lt;build</span><span class="nt">&gt;</span>
     <span class="nt">&lt;plugins</span><span class="nt">&gt;</span>
       <span class="nt">&lt;plugin</span><span class="nt">&gt;</span>
@@ -209,7 +209,7 @@
 <h3>Replacing Plexus Javadoc Tags with Plexus Java 5 Annotations</h3>
 <p>In your <code>pom.xml</code>, add <code>plexus-component-annotations</code> dependency:</p>
 
-<pre class="highlight"><code class="language-xml"><span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span><span class="nt">&gt;</span>
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span><span class="nt">&gt;</span>
   <span class="nt">&lt;dependencies</span><span class="nt">&gt;</span>
     <span class="nt">&lt;dependency</span><span class="nt">&gt;</span>
       <span class="nt">&lt;groupId</span><span class="nt">&gt;</span>org.codehaus.plexus<span class="nt">&lt;/groupId</span><span class="nt">&gt;</span>
@@ -221,7 +221,7 @@
 </code></pre>
 <p>In your java sources, replace javadoc tags:</p>
 
-<pre class="highlight"><code class="language-java"><span class="cm">/**
+<pre tabindex="0" class="highlight"><code class="language-java"><span class="cm">/**
  * @plexus.component role="foo.MyComponent" role-hint="hint-value"
  */</span>
 <span class="k">public</span> <span class="k">class</span> MyComponentImplementation
@@ -235,7 +235,7 @@
 </code></pre>
 <p>with corresponding Java 5 annotations</p>
 
-<pre class="highlight"><code class="language-java"><span class="k">import</span> org.codehaus.plexus.component.annotations.Component;
+<pre tabindex="0" class="highlight"><code class="language-java"><span class="k">import</span> org.codehaus.plexus.component.annotations.Component;
 <span class="k">import</span> org.codehaus.plexus.component.annotations.Requirement;
 
 <span class="nd">@Component</span>( role = MyComponent.<span class="k">class</span>, hint = <span class="s">"hint-value"</span> )

@@ -44,9 +44,9 @@
     <a class="asf" href="https://www.apache.org/"><img class="asf-leaf" src="../../images/oakleaf.svg" width="14" height="22" alt=""><span>Apache</span></a>
     </div>
   </header>
-  <div class="specimen" role="note">
+  <aside class="specimen" aria-label="About this site">
     <p><strong>Specimen.</strong> A proposed redesign of maven.apache.org, built with <code>mvn site</code> and a skin of its own; not the official Apache Maven site. The official site is <a href="https://maven.apache.org/">maven.apache.org</a>. <a href="../../about-this-example.html">About this example</a></p>
-  </div>
+  </aside>
   <div class="frame has-group">
     <nav class="group-nav" aria-labelledby="group-nav-title">
       <p class="up"><a href="../../docs/index.html"><svg aria-hidden="true" viewBox="0 0 16 16" width="14" height="14"><path d="M10 3.5L5.5 8l4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>All of Docs</a></p>
@@ -146,7 +146,7 @@
 <h2>Command Line Options</h2>
 <p>No special configuration is required to take advantage of the reactor, however it is possible to customize its behavior.</p>
 <p>The following command line switches are available:</p>
-<table class="bodyTable">
+<div class="table-scroll" tabindex="0"><table class="bodyTable">
 <thead>
 <tr class="a">
 <th>Long</th>
@@ -203,12 +203,12 @@
 <td><code>-fn</code></td>
 <td>Never fails the build, regardless of the project result.</td>
 <td><a href="#dealing-with-failures">Dealing with failures</a></td></tr></tbody>
-</table>
+</table></div>
 </section><section><a id="Differences_between_Maven_3_and_4"></a>
 <h2>Differences between Maven 3 and 4</h2>
 <p><img src="../../multi-subproject.svg" alt="Sample multi-subproject setup" /></p>
 <p>The table below illustrates multiple scenarios which have changed between Maven 3 and 4. They assume a project structure as depicted above.</p>
-<table class="bodyTable">
+<div class="table-scroll" tabindex="0"><table class="bodyTable">
 <thead>
 <tr class="a">
 <th>Scenario</th>
@@ -245,7 +245,7 @@
 <td>subproject-c-2</td>
 <td><code>mvn install &amp;&amp; mvn jetty:run -f subproject-c/subproject-c-2</code></td>
 <td><code>mvn compile &amp;&amp; mvn jetty:run -f subproject-c/subproject-c-2</code></td></tr></tbody>
-</table>
+</table></div>
 </section><section><a id="More_information"></a>
 <h2>More information</h2>
 <ul>

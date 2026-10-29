@@ -43,9 +43,9 @@
     <a class="asf" href="https://www.apache.org/"><img class="asf-leaf" src="../../images/oakleaf.svg" width="14" height="22" alt=""><span>Apache</span></a>
     </div>
   </header>
-  <div class="specimen" role="note">
+  <aside class="specimen" aria-label="About this site">
     <p><strong>Specimen.</strong> A proposed redesign of maven.apache.org, built with <code>mvn site</code> and a skin of its own; not the official Apache Maven site. The official site is <a href="https://maven.apache.org/">maven.apache.org</a>. <a href="../../about-this-example.html">About this example</a></p>
-  </div>
+  </aside>
   <div class="frame has-group">
     <nav class="group-nav" aria-labelledby="group-nav-title">
       <p class="up"><a href="../../docs/index.html"><svg aria-hidden="true" viewBox="0 0 16 16" width="14" height="14"><path d="M10 3.5L5.5 8l4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" /></svg>All of Docs</a></p>
@@ -91,12 +91,12 @@
 <li>
 <p>Upgrade your plugins to reproducible versions: to easily detect <a href="/plugins/maven-artifact-plugin/plugin-issues.html">required upgrades</a>, run</p>
 
-<pre><code class="nohighlight nocode">mvn artifact:check-buildplan
+<pre tabindex="0"><code class="nohighlight nocode">mvn artifact:check-buildplan
 </code></pre></li>
 <li>
 <p>Enable Reproducible Builds mode for plugins, by adding <a href="https://cwiki.apache.org/confluence/pages/viewpage.action?pageId=74682318#Reproducible/VerifiableBuilds-OutputArchiveEntriesTimestamp" class="externalLink"><code>project.build.outputTimestamp</code> property</a> to the project's <code>pom.xml</code>:</p>
 
-<pre class="highlight"><code class="language-xml"><span class="nt">&lt;properties</span><span class="nt">&gt;</span>
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;properties</span><span class="nt">&gt;</span>
   <span class="nt">&lt;project.build.outputTimestamp</span><span class="nt">&gt;</span>2023-01-01T00:00:00Z<span class="nt">&lt;/project.build.outputTimestamp</span><span class="nt">&gt;</span>
 <span class="nt">&lt;/properties</span><span class="nt">&gt;</span>
 </code></pre></li>
@@ -110,19 +110,19 @@
 <li>
 <p>build and <code>install</code> your project (don't hesitate to customize arguments to better match your project):</p>
 
-<pre><code class="nohighlight nocode">mvn clean install 
+<pre tabindex="0"><code class="nohighlight nocode">mvn clean install 
 </code></pre></li>
 <li>
 <p>rebuild (<code>verify</code> only, without installing) and check against the previous install:</p>
 
-<pre><code class="nohighlight nocode">mvn clean verify artifact:compare
+<pre tabindex="0"><code class="nohighlight nocode">mvn clean verify artifact:compare
 </code></pre></li>
 </ol>
 <p>Notice that this local test does NOT really prove that your build is yet reproducible by a third party, because it may still suffer from environment leaks (username, current directory, …). But it is easy to do, and prevents basic non-reproducible issues like timestamps. Really checking reproducibility requires to rebuild from a completely different setup: this is harder to do, even if containers may ease the task.</p><section><a id="Staging"></a>
 <h3>Staging</h3>
 <p>If the first build is done with `deploy` to a private remote repository, the rebuild and its verification can be done by someone else referencing the staging location, like for example at Apache during votes on staged releases candidates:</p>
 
-<pre><code class="nohighlight nocode">mvn verify artifact:compare -Dreference.repo=https://repository.apache.org/content/repositories/staging/
+<pre tabindex="0"><code class="nohighlight nocode">mvn verify artifact:compare -Dreference.repo=https://repository.apache.org/content/repositories/staging/
 </code></pre></section></section><section><a id="How_to_fix_my_Maven_build_reproducibility.3F"></a>
 <h2>How to fix my Maven build reproducibility?</h2>
 <p>If something is still not reproducible after initial setup and <a href="/plugins/maven-artifact-plugin/plugin-issues.html">automatic check from <code>artifact:check-buildplan</code></a>:</p>

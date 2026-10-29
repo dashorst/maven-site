@@ -44,9 +44,9 @@
     <a class="asf" href="https://www.apache.org/"><img class="asf-leaf" src="../../images/oakleaf.svg" width="14" height="22" alt=""><span>Apache</span></a>
     </div>
   </header>
-  <div class="specimen" role="note">
+  <aside class="specimen" aria-label="About this site">
     <p><strong>Specimen.</strong> A proposed redesign of maven.apache.org, built with <code>mvn site</code> and a skin of its own; not the official Apache Maven site. The official site is <a href="https://maven.apache.org/">maven.apache.org</a>. <a href="../../about-this-example.html">About this example</a></p>
-  </div>
+  </aside>
   <div class="frame has-group">
     <nav class="group-nav" aria-labelledby="group-nav-title">
       <p class="up"><a href="../../docs/index.html"><svg aria-hidden="true" viewBox="0 0 16 16" width="14" height="14"><path d="M10 3.5L5.5 8l4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>All of Docs</a></p>
@@ -87,7 +87,7 @@
 <h1>Building a Project with Maven</h1>
 <p>The vast majority of Maven-built projects can be built with the following command:</p>
 
-<pre><code class="nohighlight nocode">mvn verify
+<pre tabindex="0"><code class="nohighlight nocode">mvn verify
 </code></pre>
 <p>This command tells Maven to build all the subprojects, and to check if all integration tests succeeded (when any was defined). That's it! If you look in the <code>target</code> subdirectory, you should find the build output and the final library or application that was being built.</p>
 <p><strong>Note:</strong> Some projects have multiple subprojects, so the library or application you are looking for may be in a subproject's subdirectory.</p>
@@ -99,7 +99,7 @@
 <h3>Missing Dependencies</h3>
 <p>A missing dependency presents with an error like the following:</p>
 
-<pre><code class="nohighlight nocode">[INFO] Failed to resolve artifact.
+<pre tabindex="0"><code class="nohighlight nocode">[INFO] Failed to resolve artifact.
 
 Missing:
  ----------

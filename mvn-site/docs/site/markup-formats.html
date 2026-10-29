@@ -43,9 +43,9 @@
     <a class="asf" href="https://www.apache.org/"><img class="asf-leaf" src="../../images/oakleaf.svg" width="14" height="22" alt=""><span>Apache</span></a>
     </div>
   </header>
-  <div class="specimen" role="note">
+  <aside class="specimen" aria-label="About this site">
     <p><strong>Specimen.</strong> A proposed redesign of maven.apache.org, built with <code>mvn site</code> and a skin of its own; not the official Apache Maven site. The official site is <a href="https://maven.apache.org/">maven.apache.org</a>. <a href="../../about-this-example.html">About this example</a></p>
-  </div>
+  </aside>
   <div class="frame has-group">
     <nav class="group-nav" aria-labelledby="group-nav-title">
       <p class="up"><a href="../../docs/index.html"><svg aria-hidden="true" viewBox="0 0 16 16" width="14" height="14"><path d="M10 3.5L5.5 8l4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" /></svg>All of Docs</a></p>
@@ -89,7 +89,7 @@
 <p>if a <em>Sink</em> is available, it means you can generate output in this format.</p></li>
 </ul>
 <p>The source directory is the directory under which Maven expects source documents in this format (e.g. <code>src/site/apt/</code> for Apt), the file extension is the default file extension, and the parser id is the unique identifier used to look up the corresponding component.</p>
-<table class="bodyTable">
+<div class="table-scroll" tabindex="0"><table class="bodyTable">
 <thead>
 <tr class="a">
 <th>Format</th>
@@ -163,12 +163,12 @@
 <td><code>xhtml</code></td>
 <td><a href="../../doxia/doxia/doxia-modules/doxia-module-xhtml5/"><code>doxia-module-xhtml5</code></a></td>
 <td><code>xhtml</code></td></tr></tbody>
-</table>
+</table></div>
 
 <p>Note some modules are not included per default with the site plugin. Have a look at the available modules here: <a href="https://repo.maven.apache.org/maven2/org/apache/maven/doxia/" class="externalLink">https://repo.maven.apache.org/maven2/org/apache/maven/doxia/</a>.</p>
 <p>If you need to add module for the <code>maven-site-plugin</code> simply add it as a dependency of the plugin:</p>
 
-<pre class="highlight"><code class="language-unknown"><span class="nt">&lt;plugin</span><span class="nt">&gt;</span>
+<pre tabindex="0" class="highlight"><code class="language-unknown"><span class="nt">&lt;plugin</span><span class="nt">&gt;</span>
   <span class="nt">&lt;groupId</span><span class="nt">&gt;</span>org.apache.maven.plugins<span class="nt">&lt;/groupId</span><span class="nt">&gt;</span>
   <span class="nt">&lt;artifactId</span><span class="nt">&gt;</span>maven-site-plugin<span class="nt">&lt;/artifactId</span><span class="nt">&gt;</span>
   <span class="nt">&lt;version</span><span class="nt">&gt;</span>...<span class="nt">&lt;/version</span><span class="nt">&gt;</span>
@@ -183,7 +183,7 @@
 </code></pre><section><a id="Former_Doxia_Formats"></a>
 <h2>Former Doxia Formats</h2>
 <p>The following table gives an overview of the formats which used to be supported mostly as Parser in former versions of Doxia:</p>
-<table class="bodyTable">
+<div class="table-scroll" tabindex="0"><table class="bodyTable">
 <thead>
 <tr class="a">
 <th>Format</th>
@@ -230,7 +230,7 @@
 <td>XHTML 1.0, superseded by the XHTML5 module</td>
 <td><a href="../../doxia/doxia-archives/doxia-1.11.1/doxia-modules/doxia-module-xhtml/"><code>doxia-module-xhtml</code></a></td>
 <td>2.0</td></tr></tbody>
-</table></section></section>
+</table></div></section></section>
       </div>
       <nav class="more" aria-labelledby="more-title">
         <h2 id="more-title">More in <a href="../../docs/site/index.html">Project site</a></h2>

@@ -47,9 +47,9 @@
     <a class="asf" href="https://www.apache.org/"><img class="asf-leaf" src="../../images/oakleaf.svg" width="14" height="22" alt=""><span>Apache</span></a>
     </div>
   </header>
-  <div class="specimen" role="note">
+  <aside class="specimen" aria-label="About this site">
     <p><strong>Specimen.</strong> A proposed redesign of maven.apache.org, built with <code>mvn site</code> and a skin of its own; not the official Apache Maven site. The official site is <a href="https://maven.apache.org/">maven.apache.org</a>. <a href="../../about-this-example.html">About this example</a></p>
-  </div>
+  </aside>
   <div class="frame has-group">
     <nav class="group-nav" aria-labelledby="group-nav-title">
       <p class="up"><a href="../../docs/index.html"><svg aria-hidden="true" viewBox="0 0 16 16" width="14" height="14"><path d="M10 3.5L5.5 8l4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>All of Docs</a></p>
@@ -88,7 +88,7 @@
 <p>The elements of <em>settings.xml</em> are described in the <a href="../reference/settings.html">settings reference</a>. <a href="configuration-files.html">Where Maven reads its configuration</a> explains why the configuration is split this way.</p><section><section><a id="Files"></a>
 <h2>Files</h2>
 <p><em>~</em> is the home directory of the user running Maven, as Java reports it in <code>user.home</code>; <em>conf</em> is the <em>conf</em> directory of the Maven installation; <em>.mvn</em> is the <em>.mvn</em> directory in the top directory of the project, the first directory upward from the current one that contains <em>.mvn</em>.</p>
-<table class="bodyTable">
+<div class="table-scroll" tabindex="0"><table class="bodyTable">
 <thead>
 <tr class="a">
 <th>File</th>
@@ -175,11 +175,11 @@
 <td>user</td>
 <td>Shell script the <code>mvn</code> script runs before starting Java, usually to set <code>MAVEN_OPTS</code>. Also <em>/etc/mavenrc</em> and <em>/usr/local/etc/mavenrc</em>. On Windows <em>%USERPROFILE%\mavenrc_pre.cmd</em>; Maven 4 also <em>%USERPROFILE%\mavenrc.cmd</em>.</td>
 <td>3.9, 3.10, 4.0</td></tr></tbody>
-</table>
+</table></div>
 
 <p>When the same extension appears in more than one <em>extensions.xml</em>, the project file wins over the user file, and the user file over the installation file.</p></section><section><a id="Environment_variables"></a>
 <h2>Environment variables</h2>
-<table class="bodyTable">
+<div class="table-scroll" tabindex="0"><table class="bodyTable">
 <thead>
 <tr class="a">
 <th>Variable</th>
@@ -205,11 +205,11 @@
 <td><code>JAVA_HOME</code></td>
 <td>The JDK that runs Maven.</td>
 <td>3.9, 3.10, 4.0</td></tr></tbody>
-</table>
+</table></div>
 
 <p><em>settings.xml</em> can read any environment variable as <code>${env.NAME}</code>, and any Java system property as <code>${name}</code>, such as <code>${user.home}</code>.</p></section><section><a id="Command-line_options_and_properties_for_settings_files"></a>
 <h2>Command-line options and properties for settings files</h2>
-<table class="bodyTable">
+<div class="table-scroll" tabindex="0"><table class="bodyTable">
 <thead>
 <tr class="a">
 <th>Option or property</th>
@@ -243,11 +243,11 @@
 <td><code>-Dmaven.repo.local=</code></td>
 <td>Use another local repository directory.</td>
 <td>3.9, 3.10, 4.0</td></tr></tbody>
-</table>
+</table></div>
 
 <p>A file named with <code>-s</code>, <code>-gs</code>, <code>-is</code> or <code>-ps</code> must exist, or Maven stops with <code>The specified user settings file does not exist</code> (or <code>global</code>, <code>installation</code>). A file in a default location that does not exist is skipped.</p></section><section><a id="How_settings_files_are_merged"></a>
 <h2>How settings files are merged</h2>
-<table class="bodyTable">
+<div class="table-scroll" tabindex="0"><table class="bodyTable">
 <thead>
 <tr class="a">
 <th>Content</th>
@@ -261,12 +261,12 @@
 <tr class="b">
 <td>Single values, such as <code>&lt;localRepository&gt;</code></td>
 <td>Taken from the file that ranks highest.</td></tr></tbody>
-</table>
+</table></div>
 
 <p><code>mvn help:effective-settings</code> prints the merged settings, with passwords shown as <code>***</code>.</p></section><section><a id="mirrorOf_patterns"></a>
 <h2>mirrorOf patterns</h2>
 <p><code>&lt;mirrorOf&gt;</code> holds a repository id or a pattern. Several are separated by commas, without spaces: <code>!repo1, *</code> contains the entry <code>*</code> with a space, which matches no repository, so the mirror replaces nothing.</p>
-<table class="bodyTable">
+<div class="table-scroll" tabindex="0"><table class="bodyTable">
 <thead>
 <tr class="a">
 <th>Pattern</th>
@@ -292,7 +292,7 @@
 <tr class="b">
 <td><code>external:*,!repo1</code></td>
 <td>Every external repository except <code>repo1</code>.</td></tr></tbody>
-</table>
+</table></div>
 </section><section><a id="How_Maven_picks_a_mirror"></a>
 <h2>How Maven picks a mirror</h2>
 <p>For each repository, Maven takes at most one mirror:</p>

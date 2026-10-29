@@ -43,9 +43,9 @@
     <a class="asf" href="https://www.apache.org/"><img class="asf-leaf" src="../../images/oakleaf.svg" width="14" height="22" alt=""><span>Apache</span></a>
     </div>
   </header>
-  <div class="specimen" role="note">
+  <aside class="specimen" aria-label="About this site">
     <p><strong>Specimen.</strong> A proposed redesign of maven.apache.org, built with <code>mvn site</code> and a skin of its own; not the official Apache Maven site. The official site is <a href="https://maven.apache.org/">maven.apache.org</a>. <a href="../../about-this-example.html">About this example</a></p>
-  </div>
+  </aside>
   <div class="frame has-group">
     <nav class="group-nav" aria-labelledby="group-nav-title">
       <p class="up"><a href="../../docs/index.html"><svg aria-hidden="true" viewBox="0 0 16 16" width="14" height="14"><path d="M10 3.5L5.5 8l4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" /></svg>All of Docs</a></p>
@@ -153,11 +153,11 @@
 <p>Profiles can be explicitly specified using the <code>-P</code> command line flag.</p>
 <p>This flag is followed by a comma-delimited list of profile IDs to use. The profile(s) specified in the option are activated in addition to any profiles which are activated by their activation configuration or the <code>&lt;activeProfiles&gt;</code> section in <code>settings.xml</code>. From Maven 4 onward, Maven will refuse to activate or deactivate a profile that cannot be resolved. To prevent this, prefix the profile identifier with an <code>?</code>, marking it as optional:</p>
 
-<pre><code class="nohighlight nocode">mvn groupId:artifactId:goal -P profile-1,profile-2,?profile-3
+<pre tabindex="0"><code class="nohighlight nocode">mvn groupId:artifactId:goal -P profile-1,profile-2,?profile-3
 </code></pre>
 <p>Profiles can be activated in the Maven settings, via the <code>&lt;activeProfiles&gt;</code> section. This section takes a list of <code>&lt;activeProfile&gt;</code> elements, each containing a profile-id inside.</p>
 
-<pre class="highlight"><code class="language-xml"><span class="nt">&lt;settings</span><span class="nt">&gt;</span>
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;settings</span><span class="nt">&gt;</span>
   ...
   <span class="nt">&lt;activeProfiles</span><span class="nt">&gt;</span>
     <span class="nt">&lt;activeProfile</span><span class="nt">&gt;</span>profile-1<span class="nt">&lt;/activeProfile</span><span class="nt">&gt;</span>
@@ -168,7 +168,7 @@
 <p>Profiles listed in the <code>&lt;activeProfiles&gt;</code> tag would be activated by default every time a project use it.</p>
 <p>Profiles can also be active by default using a configuration like the following in a POM:</p>
 
-<pre class="highlight"><code class="language-xml"><span class="nt">&lt;profiles</span><span class="nt">&gt;</span>
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;profiles</span><span class="nt">&gt;</span>
   <span class="nt">&lt;profile</span><span class="nt">&gt;</span>
     <span class="nt">&lt;id</span><span class="nt">&gt;</span>profile-1<span class="nt">&lt;/id</span><span class="nt">&gt;</span>
     <span class="nt">&lt;activation</span><span class="nt">&gt;</span>
@@ -185,7 +185,7 @@
 <p>Boolean flag which determines if the profile is active by default. Is <code>false</code> by default. This flag is only evaluated if no other profile is explicitly activated via command line, <code>settings.xml</code> or activated through some other activator. Otherwise, it has no effect.</p>
 <p>Example to set a profile active by default.</p>
 
-<pre class="highlight"><code class="language-xml"><span class="nt">&lt;profiles</span><span class="nt">&gt;</span>
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;profiles</span><span class="nt">&gt;</span>
   <span class="nt">&lt;profile</span><span class="nt">&gt;</span>
     <span class="nt">&lt;activation</span><span class="nt">&gt;</span>
       <span class="nt">&lt;activeByDefault</span><span class="nt">&gt;</span>true<span class="nt">&lt;/activeByDefault</span><span class="nt">&gt;</span>
@@ -198,7 +198,7 @@
 <h5>JDK</h5>
 <p>The following configuration will trigger the profile when the JDK's version <em>starts with</em> <code>1.4</code> (for example <code>1.4.0_08</code>, <code>1.4.2_07</code>, <code>1.4</code>), in particular it <em>won't be active</em> for <strong>newer</strong> versions like <code>1.8</code> or <code>11</code>:</p>
 
-<pre class="highlight"><code class="language-xml"><span class="nt">&lt;profiles</span><span class="nt">&gt;</span>
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;profiles</span><span class="nt">&gt;</span>
   <span class="nt">&lt;profile</span><span class="nt">&gt;</span>
     <span class="nt">&lt;activation</span><span class="nt">&gt;</span>
       <span class="nt">&lt;jdk</span><span class="nt">&gt;</span>1.4<span class="nt">&lt;/jdk</span><span class="nt">&gt;</span>
@@ -209,7 +209,7 @@
 </code></pre>
 <p><a href="/enforcer/enforcer-rules/versionRanges.html">Ranges</a> can also be used. Range values must start with either <code>[</code> or <code>(</code>. The following honours versions <code>1.3</code>, <code>1.4</code>, and <code>1.5</code>.</p>
 
-<pre class="highlight"><code class="language-xml"><span class="nt">&lt;profiles</span><span class="nt">&gt;</span>
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;profiles</span><span class="nt">&gt;</span>
   <span class="nt">&lt;profile</span><span class="nt">&gt;</span>
     <span class="nt">&lt;activation</span><span class="nt">&gt;</span>
       <span class="nt">&lt;jdk</span><span class="nt">&gt;</span>[1.3,1.6)<span class="nt">&lt;/jdk</span><span class="nt">&gt;</span>
@@ -221,7 +221,7 @@
 <p><em>Note:</em> The value ranges match if the JDK version used for running Maven is between the lower and upper bounds (either inclusive or exclusive). An upper bound such as <code>,1.5]</code> likely does not include most releases of 1.5, since they will have an additional “patch” release such as <code>_05</code> that is not taken into consideration in the above range.</p>
 <p>If the range does not start with <code>[</code> or <code>(</code>, the value is interpreted as a vendor prefix. A prefix is negated if the value starts with <code>!</code>. (Negated) prefix values match if the JDK version used for running Maven starts/doesn't start with the given prefix (excluding the potentially leading <code>!</code>). The following profile would be active, when any <code>zulu64</code> JDK is used.</p>
 
-<pre class="highlight"><code class="language-xml"><span class="nt">&lt;profiles</span><span class="nt">&gt;</span>
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;profiles</span><span class="nt">&gt;</span>
   <span class="nt">&lt;profile</span><span class="nt">&gt;</span>
     <span class="nt">&lt;activation</span><span class="nt">&gt;</span>
       <span class="nt">&lt;jdk</span><span class="nt">&gt;</span>zulu64<span class="nt">&lt;/jdk</span><span class="nt">&gt;</span>
@@ -233,7 +233,7 @@
 <h5>OS</h5>
 <p>This next one will activate based on the detected operating system. See the <a href="https://maven.apache.org/enforcer/enforcer-rules/requireOS.html" class="externalLink">Maven Enforcer Plugin</a> for more details about OS values.</p>
 
-<pre class="highlight"><code class="language-xml"><span class="nt">&lt;profiles</span><span class="nt">&gt;</span>
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;profiles</span><span class="nt">&gt;</span>
   <span class="nt">&lt;profile</span><span class="nt">&gt;</span>
     <span class="nt">&lt;activation</span><span class="nt">&gt;</span>
       <span class="nt">&lt;os</span><span class="nt">&gt;</span>
@@ -257,7 +257,7 @@
 <p>The <code>profile</code> will activate if Maven detects a system property or CLI user property (a value which can be dereferenced within the POM by <code>${name}</code>) of the corresponding <code>name=value</code> pair, and it matches the given value (if given).</p>
 <p>The profile below will be activated when the system property <code>debug</code> is specified with any value:</p>
 
-<pre class="highlight"><code class="language-xml"><span class="nt">&lt;profiles</span><span class="nt">&gt;</span>
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;profiles</span><span class="nt">&gt;</span>
   <span class="nt">&lt;profile</span><span class="nt">&gt;</span>
     <span class="nt">&lt;activation</span><span class="nt">&gt;</span>
       <span class="nt">&lt;property</span><span class="nt">&gt;</span>
@@ -270,7 +270,7 @@
 </code></pre>
 <p>The following profile will be activated when the system property <code>debug</code> is not defined at all:</p>
 
-<pre class="highlight"><code class="language-xml"><span class="nt">&lt;profiles</span><span class="nt">&gt;</span>
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;profiles</span><span class="nt">&gt;</span>
   <span class="nt">&lt;profile</span><span class="nt">&gt;</span>
     <span class="nt">&lt;activation</span><span class="nt">&gt;</span>
       <span class="nt">&lt;property</span><span class="nt">&gt;</span>
@@ -283,7 +283,7 @@
 </code></pre>
 <p>The following profile will be activated when the system property <code>debug</code> is defined with no value, or is defined with the value <code>true</code>.</p>
 
-<pre class="highlight"><code class="language-xml"><span class="nt">&lt;profiles</span><span class="nt">&gt;</span>
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;profiles</span><span class="nt">&gt;</span>
   <span class="nt">&lt;profile</span><span class="nt">&gt;</span>
     <span class="nt">&lt;activation</span><span class="nt">&gt;</span>
       <span class="nt">&lt;property</span><span class="nt">&gt;</span>
@@ -297,12 +297,12 @@
 </code></pre>
 <p>To activate this you would type one of those on the command line:</p>
 
-<pre><code class="nohighlight nocode">mvn groupId:artifactId:goal -Ddebug
+<pre tabindex="0"><code class="nohighlight nocode">mvn groupId:artifactId:goal -Ddebug
 mvn groupId:artifactId:goal -Ddebug=true
 </code></pre>
 <p>The following profile will be activated when the system property <code>debug</code> is not defined, or is defined with a value which is not <code>true</code>.</p>
 
-<pre class="highlight"><code class="language-xml"><span class="nt">&lt;profiles</span><span class="nt">&gt;</span>
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;profiles</span><span class="nt">&gt;</span>
   <span class="nt">&lt;profile</span><span class="nt">&gt;</span>
     <span class="nt">&lt;activation</span><span class="nt">&gt;</span>
       <span class="nt">&lt;property</span><span class="nt">&gt;</span>
@@ -316,12 +316,12 @@ mvn groupId:artifactId:goal -Ddebug=true
 </code></pre>
 <p>To activate this you would type one of those on the command line:</p>
 
-<pre><code class="nohighlight nocode">mvn groupId:artifactId:goal
+<pre tabindex="0"><code class="nohighlight nocode">mvn groupId:artifactId:goal
 mvn groupId:artifactId:goal -Ddebug=false
 </code></pre>
 <p>The next example will trigger the profile when the system property <code>environment</code> is specified with the value <code>test</code>:</p>
 
-<pre class="highlight"><code class="language-xml"><span class="nt">&lt;profiles</span><span class="nt">&gt;</span>
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;profiles</span><span class="nt">&gt;</span>
   <span class="nt">&lt;profile</span><span class="nt">&gt;</span>
     <span class="nt">&lt;activation</span><span class="nt">&gt;</span>
       <span class="nt">&lt;property</span><span class="nt">&gt;</span>
@@ -335,14 +335,14 @@ mvn groupId:artifactId:goal -Ddebug=false
 </code></pre>
 <p>To activate this you would type this on the command line:</p>
 
-<pre><code class="nohighlight nocode">mvn groupId:artifactId:goal -Denvironment=test
+<pre tabindex="0"><code class="nohighlight nocode">mvn groupId:artifactId:goal -Denvironment=test
 </code></pre>
 <p>Profiles in the POM can also be activated based on properties from active profiles from the <code>settings.xml</code>.</p>
 <p><strong>Note</strong>: Environment variables like <code>FOO</code> are available as properties of the form <code>env.FOO</code>. Further note that environment variable names are normalized to all upper-case on Windows.</p></section><section><a id="Packaging_property"></a>
 <h6>Packaging property</h6>
 <p>Since Maven 3.9.0 one can also evaluate the POM's packaging value by referencing property <code>packaging</code>. This is only useful where the profile activation is defined in a common parent POM which is reused among multiple Maven projects. The next example will trigger the profile when a project with packaging <code>war</code> is built:</p>
 
-<pre class="highlight"><code class="language-xml"><span class="nt">&lt;profiles</span><span class="nt">&gt;</span>
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;profiles</span><span class="nt">&gt;</span>
   <span class="nt">&lt;profile</span><span class="nt">&gt;</span>
     <span class="nt">&lt;activation</span><span class="nt">&gt;</span>
       <span class="nt">&lt;property</span><span class="nt">&gt;</span>
@@ -358,7 +358,7 @@ mvn groupId:artifactId:goal -Ddebug=false
 <p>A given filename may activate the <code>profile</code> by the <code>existence</code> of a file, or if it is <code>missing</code>. <strong>NOTE</strong>: Interpolation for this element is limited to <code>${project.basedir}</code>, System properties, and request properties.</p>
 <p>This example will trigger the profile when the generated file <code>target/generated-sources/axistools/wsdl2java/org/apache/maven</code> is missing.</p>
 
-<pre class="highlight"><code class="language-xml"><span class="nt">&lt;profiles</span><span class="nt">&gt;</span>
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;profiles</span><span class="nt">&gt;</span>
   <span class="nt">&lt;profile</span><span class="nt">&gt;</span>
     <span class="nt">&lt;activation</span><span class="nt">&gt;</span>
       <span class="nt">&lt;file</span><span class="nt">&gt;</span>
@@ -377,7 +377,7 @@ mvn groupId:artifactId:goal -Ddebug=false
 <p>When a POM profile is activated and defines <code>&lt;properties&gt;</code>, those properties are immediately available to trigger the activation of other profiles in the same POM. Maven iterates through the remaining inactive profiles until no new profiles are activated (a fixed-point is reached). This is called <strong>cascading profile activation</strong>.</p>
 <p>This allows building chains or groups of profiles where one profile acts as a trigger that enables a set of related profiles, eliminating the need for external scripts, wrapper POMs, or duplicating activation conditions.</p>
 
-<pre class="highlight"><code class="language-xml"><span class="nt">&lt;profiles</span><span class="nt">&gt;</span>
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;profiles</span><span class="nt">&gt;</span>
   <span class="c">&lt;!-- Activated by -Dstart.cascade=true --&gt;</span>
   <span class="nt">&lt;profile</span><span class="nt">&gt;</span>
     <span class="nt">&lt;id</span><span class="nt">&gt;</span>trigger<span class="nt">&lt;/id</span><span class="nt">&gt;</span>
@@ -408,7 +408,7 @@ mvn groupId:artifactId:goal -Ddebug=false
 <p>Running <code>mvn validate -Dstart.cascade=true</code> activates <code>trigger</code>, which sets <code>enable.checks=true</code>, which in turn cascades to activate both <code>run-checkstyle</code> and <code>run-spotbugs</code>.</p>
 <p>Cascading also works with the traditional <code>&lt;property&gt;</code> activation element:</p>
 
-<pre class="highlight"><code class="language-xml"><span class="nt">&lt;profiles</span><span class="nt">&gt;</span>
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;profiles</span><span class="nt">&gt;</span>
   <span class="nt">&lt;profile</span><span class="nt">&gt;</span>
     <span class="nt">&lt;id</span><span class="nt">&gt;</span>quality<span class="nt">&lt;/id</span><span class="nt">&gt;</span>
     <span class="nt">&lt;activation</span><span class="nt">&gt;</span>
@@ -456,11 +456,11 @@ mvn groupId:artifactId:goal -Ddebug=false
 <p>One or more profiles can be deactivated using the command line by prefixing their identifier with either the character ‘!’ or ‘-’ as shown below.</p>
 <p><strong>Note</strong> that <code>!</code> needs to be escaped with <code>\</code> or quoted in Bash, ZSH and other shells as it has <a href="https://www.gnu.org/software/bash/manual/html_node/Event-Designators.html" class="externalLink">a special meaning</a>. Also there is a known bug with command line option values starting with <code>-</code> (<a href="https://issues.apache.org/jira/browse/CLI-309" class="externalLink">CLI-309</a>), therefore it is recommended to use it with the syntax <code>-P=-profilename</code>.</p>
 
-<pre><code class="nohighlight nocode">mvn groupId:artifactId:goal -P !profile-1,!profile-2,!?profile-3
+<pre tabindex="0"><code class="nohighlight nocode">mvn groupId:artifactId:goal -P !profile-1,!profile-2,!?profile-3
 </code></pre>
 <p>or</p>
 
-<pre><code class="nohighlight nocode">mvn groupId:artifactId:goal -P=-profile-1,-profile-2,-?profile-3
+<pre tabindex="0"><code class="nohighlight nocode">mvn groupId:artifactId:goal -P=-profile-1,-profile-2,-?profile-3
 </code></pre>
 <p>This can be used to deactivate profiles marked as activeByDefault or profiles that would otherwise be activated through their activation config.</p></section></section><section><a id="Which_areas_of_a_POM_can_be_customized_by_each_type_of_profile.3F_Why.3F"></a>
 <h2>Which areas of a POM can be customized by each type of profile? Why?</h2>
@@ -501,7 +501,7 @@ mvn groupId:artifactId:goal -Ddebug=false
 <h4>Examples</h4>
 <p>The following example defines a profile to execute the <a href="https://maven.apache.org/plugins/maven-invoker-plugin/" class="externalLink">Maven Invoker Plugin</a>:</p>
 
-<pre class="highlight"><code class="language-xml"><span class="nt">&lt;profile</span><span class="nt">&gt;</span>
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;profile</span><span class="nt">&gt;</span>
   <span class="nt">&lt;id</span><span class="nt">&gt;</span>run-its<span class="nt">&lt;/id</span><span class="nt">&gt;</span>
   <span class="nt">&lt;build</span><span class="nt">&gt;</span>
     <span class="nt">&lt;plugins</span><span class="nt">&gt;</span>
@@ -535,7 +535,7 @@ mvn groupId:artifactId:goal -Ddebug=false
 <p>All profile elements in a POM from active profiles overwrite the global elements with the same name of the POM or extend those in case of collections. In case multiple profiles are active in the same POM or external file, the ones which are defined <strong>later</strong> take precedence over the ones defined <strong>earlier</strong> (independent of their profile id and activation order).</p>
 <p>Example:</p>
 
-<pre class="highlight"><code class="language-xml"><span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span><span class="nt">&gt;</span>
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span><span class="nt">&gt;</span>
   ...
   <span class="nt">&lt;repositories</span><span class="nt">&gt;</span>
     <span class="nt">&lt;repository</span><span class="nt">&gt;</span>
@@ -581,7 +581,7 @@ mvn groupId:artifactId:goal -Ddebug=false
 <h3>External Properties</h3>
 <p>External property definition concerns any property value defined outside the <code>pom.xml</code> but not defined in a corresponding profile inside it. The most obvious usage of properties in the POM is in plugin configuration. While it is certainly possible to break project portability without properties, these critters can have subtle effects that cause builds to fail. For example, specifying appserver paths in a profile that is specified in the <code>settings.xml</code> may cause your integration test plugin to fail when another user on the team attempts to build without a similar <code>settings.xml</code>. Consider the following <code>pom.xml</code> snippet for a web application project:</p>
 
-<pre class="highlight"><code class="language-xml"><span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span><span class="nt">&gt;</span>
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span><span class="nt">&gt;</span>
   ...
   <span class="nt">&lt;build</span><span class="nt">&gt;</span>
     <span class="nt">&lt;plugins</span><span class="nt">&gt;</span>
@@ -601,7 +601,7 @@ mvn groupId:artifactId:goal -Ddebug=false
 </code></pre>
 <p>Now, in your local <code>${user.home}/.m2/settings.xml</code>, you have:</p>
 
-<pre class="highlight"><code class="language-xml"><span class="nt">&lt;settings</span><span class="nt">&gt;</span>
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;settings</span><span class="nt">&gt;</span>
   ...
   <span class="nt">&lt;profiles</span><span class="nt">&gt;</span>
     <span class="nt">&lt;profile</span><span class="nt">&gt;</span>
@@ -625,7 +625,7 @@ mvn groupId:artifactId:goal -Ddebug=false
 <h3>Incomplete Specification of a Natural Profile Set</h3>
 <p>In addition to the above portability-breaker, it's easy to fail to cover all cases with your profiles. When you do this, you're usually leaving one of your target environments high and dry. Let's take the example <code>pom.xml</code> snippet from above one more time:</p>
 
-<pre class="highlight"><code class="language-xml"><span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span><span class="nt">&gt;</span>
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span><span class="nt">&gt;</span>
   ...
   <span class="nt">&lt;build</span><span class="nt">&gt;</span>
     <span class="nt">&lt;plugins</span><span class="nt">&gt;</span>
@@ -645,7 +645,7 @@ mvn groupId:artifactId:goal -Ddebug=false
 </code></pre>
 <p>Now, consider the following profile, which would be specified inline in the <code>pom.xml</code>:</p>
 
-<pre class="highlight"><code class="language-xml"><span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span><span class="nt">&gt;</span>
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span><span class="nt">&gt;</span>
   ...
   <span class="nt">&lt;profiles</span><span class="nt">&gt;</span>
     <span class="nt">&lt;profile</span><span class="nt">&gt;</span>
@@ -679,59 +679,59 @@ mvn groupId:artifactId:goal -Ddebug=false
 </code></pre>
 <p>This profile looks quite similar to the one from the last example, with a few important exceptions: it's plainly geared toward a development environment, a new profile named <code>appserverConfig-dev-2</code> is added and it has an activation section that will trigger its inclusion when the system properties contain “env=dev” for a profile named <code>appserverConfig-dev</code> and “env=dev-2” for a profile named <code>appserverConfig-dev-2</code>. So, executing:</p>
 
-<pre><code class="nohighlight nocode">mvn -Denv=dev-2 integration-test
+<pre tabindex="0"><code class="nohighlight nocode">mvn -Denv=dev-2 integration-test
 </code></pre>
 <p>will result in a successful build, applying the properties given by profile named <code>appserverConfig-dev-2</code>. And when we execute</p>
 
-<pre><code class="nohighlight nocode">mvn -Denv=dev integration-test
+<pre tabindex="0"><code class="nohighlight nocode">mvn -Denv=dev integration-test
 </code></pre>
 <p>it will result in a successful build applying the properties given by the profile named <code>appserverConfig-dev</code>. However, executing:</p>
 
-<pre><code class="nohighlight nocode">mvn -Denv=production integration-test
+<pre tabindex="0"><code class="nohighlight nocode">mvn -Denv=production integration-test
 </code></pre>
 <p>will not do a successful build. Why? Because, the resulting non-interpolated literal value of <code>${appserver.home}</code> will not be a valid path for deploying and testing your web application. We haven't considered the case for the production environment when writing our profiles. The “production” environment (env=production), along with “test” and possibly even “local” constitute a natural set of target environments for which we may want to build the integration-test lifecycle phase. The incomplete specification of this natural set means we have effectively limited our valid target environments to the development environment. Your teammates - and probably your manager - will not see the humor in this. When you construct profiles to handle cases such as these, be sure to address the entire set of target permutations.</p>
 <p>As a quick aside, it's possible for user-specific profiles to act in a similar way. This means that profiles for handling different environments which are keyed to the user can act up when the team adds a new developer. While I suppose this <em>could</em> act as useful training for the newbie, it just wouldn't be nice to throw them to the wolves in this way. Again, be sure to think of the <em>whole</em> set of profiles.</p></section></section><section><a id="How_can_I_tell_which_profiles_are_in_effect_during_a_build.3F"></a>
 <h2>How can I tell which profiles are in effect during a build?</h2>
 <p>Determining active profiles will help the user to know what particular profiles has been executed during a build. We can use the <a href="/plugins/maven-help-plugin/">Maven Help Plugin</a> to tell what profiles are in effect during a build.</p>
 
-<pre><code class="nohighlight nocode">mvn help:active-profiles
+<pre tabindex="0"><code class="nohighlight nocode">mvn help:active-profiles
 </code></pre>
 <p>Let us have some small samples that will help us to understand more on the <em>active-profiles</em> goal of that plugin.</p>
 <p>From the last example of profiles in the <code>pom.xml</code>, you'll notice that there are two profiles named <code>appserverConfig-dev</code> and <code>appserverConfig-dev-2</code> which has been given different values for properties. If we go ahead and execute:</p>
 
-<pre><code class="nohighlight nocode">mvn help:active-profiles -Denv=dev
+<pre tabindex="0"><code class="nohighlight nocode">mvn help:active-profiles -Denv=dev
 </code></pre>
 <p>The result will be a bulleted list of the id of the profile with an activation property of “env=dev” together with the source where it was declared. See sample below.</p>
 
-<pre><code class="nohighlight nocode">The following profiles are active:
+<pre tabindex="0"><code class="nohighlight nocode">The following profiles are active:
 
  - appserverConfig-dev (source: pom)
 </code></pre>
 <p>Now if we have a profile declared in <code>settings.xml</code> (refer to the sample of profile in <code>settings.xml</code>) and that have been set to be an active profile and execute:</p>
 
-<pre><code class="nohighlight nocode">mvn help:active-profiles
+<pre tabindex="0"><code class="nohighlight nocode">mvn help:active-profiles
 </code></pre>
 <p>The result should be something like this</p>
 
-<pre><code class="nohighlight nocode">The following profiles are active:
+<pre tabindex="0"><code class="nohighlight nocode">The following profiles are active:
 
  - appserverConfig (source: settings.xml)
 </code></pre>
 <p>Even though we don't have an activation property, a profile has been listed as active. Why? Like we mentioned before, a profile that has been set as an active profile in the <code>settings.xml</code> is automatically activated.</p>
 <p>Now if we have something like a profile in the <code>settings.xml</code> that has been set as an active profile and also triggered a profile in the POM. Which profile do you think will have an effect on the build?</p>
 
-<pre><code class="nohighlight nocode">mvn help:active-profiles -P appserverConfig-dev
+<pre tabindex="0"><code class="nohighlight nocode">mvn help:active-profiles -P appserverConfig-dev
 </code></pre>
 <p>This will list the activated profiles:</p>
 
-<pre><code class="nohighlight nocode">The following profiles are active:
+<pre tabindex="0"><code class="nohighlight nocode">The following profiles are active:
 
  - appserverConfig-dev (source: pom)
  - appserverConfig (source: settings.xml)
 </code></pre>
 <p>Even though it listed the two active profiles, we are not sure which one of them has been applied. To see the effect on the build execute:</p>
 
-<pre><code class="nohighlight nocode">mvn help:effective-pom -P appserverConfig-dev
+<pre tabindex="0"><code class="nohighlight nocode">mvn help:effective-pom -P appserverConfig-dev
 </code></pre>
 <p>This will print the effective POM for this build configuration out to the console. Take note that profiles in the <code>settings.xml</code> takes higher priority than profiles in the POM. So the profile that has been applied here is <code>appserverConfig</code> not <code>appserverConfig-dev</code>.</p>
 <p>If you want to redirect the output from the plugin to a file called <code>effective-pom.xml</code>, use the command-line option <code>-Doutput=effective-pom.xml</code>.</p></section><section><a id="Naming_Conventions"></a>
@@ -739,7 +739,7 @@ mvn groupId:artifactId:goal -Ddebug=false
 <p>By now you've noticed that profiles are a natural way of addressing the problem of different build configuration requirements for different target environments. Above, we discussed the concept of a “natural set” of profiles to address this situation, and the importance of considering the whole set of profiles that will be required.</p>
 <p>However, the question of how to organize and manage the evolution of that set is non-trivial as well. Just as a good developer strives to write self-documenting code, it's important that your profile id's give a hint to their intended use. One good way to do this is to use the common system property trigger as part of the name for the profile. This might result in names like <strong>env-dev</strong>, <strong>env-test</strong>, and <strong>env-prod</strong> for profiles that are triggered by the system property <strong>env</strong>. Such a system leaves a highly intuitive hint on how to activate a build targeted at a particular environment. Thus, to activate a build for the test environment, you need to activate <strong>env-test</strong> by issuing:</p>
 
-<pre><code class="nohighlight nocode">mvn -Denv=test &lt;phase&gt;
+<pre tabindex="0"><code class="nohighlight nocode">mvn -Denv=test &lt;phase&gt;
 </code></pre>
 <p>The right command-line option can be had by simply substituting “=” for “-” in the profile id.</p></section></section>
       </div>

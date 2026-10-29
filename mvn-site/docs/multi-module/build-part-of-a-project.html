@@ -47,9 +47,9 @@
     <a class="asf" href="https://www.apache.org/"><img class="asf-leaf" src="../../images/oakleaf.svg" width="14" height="22" alt=""><span>Apache</span></a>
     </div>
   </header>
-  <div class="specimen" role="note">
+  <aside class="specimen" aria-label="About this site">
     <p><strong>Specimen.</strong> A proposed redesign of maven.apache.org, built with <code>mvn site</code> and a skin of its own; not the official Apache Maven site. The official site is <a href="https://maven.apache.org/">maven.apache.org</a>. <a href="../../about-this-example.html">About this example</a></p>
-  </div>
+  </aside>
   <div class="frame has-group">
     <nav class="group-nav" aria-labelledby="group-nav-title">
       <p class="up"><a href="../../docs/index.html"><svg aria-hidden="true" viewBox="0 0 16 16" width="14" height="14"><path d="M10 3.5L5.5 8l4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>All of Docs</a></p>
@@ -90,11 +90,11 @@
 <h2>Build one module</h2>
 <p>Select the module with <code>-pl</code>, followed by its directory:</p>
 
-<pre><code class="nohighlight nocode">mvn verify -pl core
+<pre tabindex="0"><code class="nohighlight nocode">mvn verify -pl core
 </code></pre>
 <p>Maven builds <code>core</code> and nothing else. The modules <code>core</code> depends on are not part of this build, so Maven takes them from the local repository, like any other dependency. If you have never installed them, the build stops:</p>
 
-<pre><code class="nohighlight nocode">[ERROR] Failed to execute goal on project core: Could not resolve dependencies for project com.example.shop:core:jar:1.0-SNAPSHOT
+<pre tabindex="0"><code class="nohighlight nocode">[ERROR] Failed to execute goal on project core: Could not resolve dependencies for project com.example.shop:core:jar:1.0-SNAPSHOT
 </code></pre>
 <p>Either install the whole project once with <code>mvn install</code> in the root directory, so that <code>-pl</code> finds the other modules in the local repository, or build the modules it needs along with it, as in the next section. An installed module stays at the version you installed until you install it again.</p>
 <blockquote>
@@ -104,10 +104,10 @@
 <h2>Build a module with the modules it needs</h2>
 <p>Add <code>-am</code> (also make) to build the selected module together with every module it depends on, directly or indirectly:</p>
 
-<pre><code class="nohighlight nocode">mvn verify -pl app -am
+<pre tabindex="0"><code class="nohighlight nocode">mvn verify -pl app -am
 </code></pre>
 
-<pre><code class="nohighlight nocode">[INFO] Reactor Summary for shop 1.0-SNAPSHOT:
+<pre tabindex="0"><code class="nohighlight nocode">[INFO] Reactor Summary for shop 1.0-SNAPSHOT:
 [INFO] 
 [INFO] shop ............................................... SUCCESS [  0.001 s]
 [INFO] api ................................................ SUCCESS [  0.546 s]
@@ -120,10 +120,10 @@
 <h2>Build a module with the modules that use it</h2>
 <p>Add <code>-amd</code> (also make dependents) after changing a module, to check that the modules depending on it still compile and pass their tests:</p>
 
-<pre><code class="nohighlight nocode">mvn verify -pl core -amd
+<pre tabindex="0"><code class="nohighlight nocode">mvn verify -pl core -amd
 </code></pre>
 
-<pre><code class="nohighlight nocode">[INFO] Reactor Summary for core 1.0-SNAPSHOT:
+<pre tabindex="0"><code class="nohighlight nocode">[INFO] Reactor Summary for core 1.0-SNAPSHOT:
 [INFO] 
 [INFO] core ............................................... SUCCESS [  0.586 s]
 [INFO] app ................................................ SUCCESS [  0.017 s]
@@ -134,7 +134,7 @@
 <h2>Build several modules or leave one out</h2>
 <p><code>-pl</code> takes a comma-separated list, <code>-pl api,app</code>. To build everything except some modules, put <code>!</code> before them:</p>
 
-<pre><code class="nohighlight nocode">mvn verify -pl '!app'
+<pre tabindex="0"><code class="nohighlight nocode">mvn verify -pl '!app'
 </code></pre>
 <p>The quotes keep shells such as Bash from treating <code>!</code> as a history command. <code>-</code> works as well as <code>!</code>: <code>-pl -app</code>.</p>
 <blockquote>
@@ -144,12 +144,12 @@
 <h2>Resume a failed build</h2>
 <p>When a module fails, Maven skips the modules after it and prints where to pick up again:</p>
 
-<pre><code class="nohighlight nocode">[ERROR] After correcting the problems, you can resume the build with the command
+<pre tabindex="0"><code class="nohighlight nocode">[ERROR] After correcting the problems, you can resume the build with the command
 [ERROR]   mvn &lt;args&gt; -rf :core
 </code></pre>
 <p>Fix the problem and run the same command with <code>-rf</code> (resume from). Maven skips the modules that came before <code>core</code> in the build order:</p>
 
-<pre><code class="nohighlight nocode">mvn verify -rf :core
+<pre tabindex="0"><code class="nohighlight nocode">mvn verify -rf :core
 </code></pre>
 <p>The modules before it are not rebuilt, so <code>core</code> takes them from the local repository, as with <code>-pl</code>.</p>
 <blockquote>
@@ -159,7 +159,7 @@
 <h2>Build from a module's directory</h2>
 <p>Running Maven in a module's directory builds that module alone, like <code>-pl</code>, and needs the other modules installed:</p>
 
-<pre><code class="nohighlight nocode">cd app
+<pre tabindex="0"><code class="nohighlight nocode">cd app
 mvn verify
 </code></pre>
 <blockquote>

@@ -43,9 +43,9 @@
     <a class="asf" href="https://www.apache.org/"><img class="asf-leaf" src="../../images/oakleaf.svg" width="14" height="22" alt=""><span>Apache</span></a>
     </div>
   </header>
-  <div class="specimen" role="note">
+  <aside class="specimen" aria-label="About this site">
     <p><strong>Specimen.</strong> A proposed redesign of maven.apache.org, built with <code>mvn site</code> and a skin of its own; not the official Apache Maven site. The official site is <a href="https://maven.apache.org/">maven.apache.org</a>. <a href="../../about-this-example.html">About this example</a></p>
-  </div>
+  </aside>
   <div class="frame has-group">
     <nav class="group-nav" aria-labelledby="group-nav-title">
       <p class="up"><a href="../../extend/index.html"><svg aria-hidden="true" viewBox="0 0 16 16" width="14" height="14"><path d="M10 3.5L5.5 8l4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" /></svg>All of Extend</a></p>
@@ -90,19 +90,19 @@
 <p>The <em>Sink</em> interface is a generic markup language interface. It contains several methods that encapsulate common text syntax. A start tag is denoted by <em>xxxx()</em> method and a end of tag by <em>xxxx_()</em> method.</p>
 <p>For instance, you could do things like:</p>
 
-<pre><code class="language-unknown">sink.paragraph();
+<pre tabindex="0"><code class="language-unknown">sink.paragraph();
 sink.text( "my text" );
 sink.paragraph_(); 
 </code></pre>
 <p>similar to this HTML markup:</p>
 
-<pre class="highlight"><code class="language-unknown"><span class="nt">&lt;p</span><span class="nt">&gt;</span>my text<span class="nt">&lt;/p</span><span class="nt">&gt;</span>
+<pre tabindex="0" class="highlight"><code class="language-unknown"><span class="nt">&lt;p</span><span class="nt">&gt;</span>my text<span class="nt">&lt;/p</span><span class="nt">&gt;</span>
 </code></pre>
 <p>To find out more about the Sink API, you could read the Javadoc <a href="https://maven.apache.org/doxia/doxia/doxia-sink-api/apidocs/org/apache/maven/doxia/sink/Sink.html" class="externalLink">here</a>.</p></section><section><a id="Doxia_Core"></a>
 <h2>Doxia Core</h2>
 <p>The <em>Core</em> is the API to parse a source and populate it in a <em>Sink</em> object. The <em>Parser</em> interface contains only one method:</p>
 
-<pre><code class="language-unknown">void parse( Reader source, Sink sink )
+<pre tabindex="0"><code class="language-unknown">void parse( Reader source, Sink sink )
     throws ParseException; 
 </code></pre>
 <p>The <em>ParseException</em> class has the responsibility to catch all parsing exceptions. It provides an helper method, <em>getLineNumber()</em>, which helps to find where an error occurred.</p>

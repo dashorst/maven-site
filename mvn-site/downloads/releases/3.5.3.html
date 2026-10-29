@@ -44,9 +44,9 @@
     <a class="asf" href="https://www.apache.org/"><img class="asf-leaf" src="../../images/oakleaf.svg" width="14" height="22" alt=""><span>Apache</span></a>
     </div>
   </header>
-  <div class="specimen" role="note">
+  <aside class="specimen" aria-label="About this site">
     <p><strong>Specimen.</strong> A proposed redesign of maven.apache.org, built with <code>mvn site</code> and a skin of its own; not the official Apache Maven site. The official site is <a href="https://maven.apache.org/">maven.apache.org</a>. <a href="../../about-this-example.html">About this example</a></p>
-  </div>
+  </aside>
   <div class="frame">
     <main id="content">
       <div class="prose">
@@ -121,19 +121,19 @@
 <li>
 <p>The log output contains now some progress informations related to the number of modules which looks like this <a href="https://issues.apache.org/jira/browse/MNG-6302" class="externalLink">MNG-6302</a>:</p>
 
-<pre><code class="nohighlight nocode">[INFO] Building parent 5.0.1-SNAPSHOT                                     [1/9]
+<pre tabindex="0"><code class="nohighlight nocode">[INFO] Building parent 5.0.1-SNAPSHOT                                     [1/9]
 </code></pre>
 <p>The number <code>1</code> is the current number which is being built where the <code>9</code> in this case is the number of modules which have to be built overall. So we are in module 1 of 9.</p>
 <p>Furthermore the information about the packaging type and the groupId/artifactId are now being shown during the build like the following <a href="https://issues.apache.org/jira/browse/MNG-6308" class="externalLink">MNG-6308</a>:</p>
 
-<pre><code class="nohighlight nocode">[INFO] ------------------&lt; com.soebes.examples.j2ee:parent &gt;-------------------
+<pre tabindex="0"><code class="nohighlight nocode">[INFO] ------------------&lt; com.soebes.examples.j2ee:parent &gt;-------------------
 [INFO] Building parent 5.0.1-SNAPSHOT                                     [1/9]
 [INFO] --------------------------------[ pom ]---------------------------------
 [INFO]
 </code></pre>
 <p>And finally we have added the version of the modules or the reactor at the end of the build <a href="https://issues.apache.org/jira/browse/MNG-6352" class="externalLink">MNG-6352</a>:</p>
 
-<pre><code class="nohighlight nocode">[INFO] ------------------------------------------------------------------------
+<pre tabindex="0"><code class="nohighlight nocode">[INFO] ------------------------------------------------------------------------
 [INFO] Reactor Summary:
 [INFO]
 [INFO] parent 5.0.1-SNAPSHOT .............................. SUCCESS [  0.238 s]
@@ -151,7 +151,7 @@
 <li>
 <p>One more thing has been optimized. We have removed the <code>System.gc()</code> call at the end of the build because this can cause costs for example on AWS systems related to the time taken to run Garbage Collection which is not really necessary <a href="https://issues.apache.org/jira/browse/MNG-6340" class="externalLink">MNG-6340</a>. This means also the resulting output will change a little bit like this:</p>
 
-<pre><code class="nohighlight nocode">[INFO] ------------------------------------------------------------------------
+<pre tabindex="0"><code class="nohighlight nocode">[INFO] ------------------------------------------------------------------------
 [INFO] BUILD SUCCESS
 [INFO] ------------------------------------------------------------------------
 [INFO] Total time: 6.111 s

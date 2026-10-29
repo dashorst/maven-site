@@ -46,9 +46,9 @@
     <a class="asf" href="https://www.apache.org/"><img class="asf-leaf" src="../../images/oakleaf.svg" width="14" height="22" alt=""><span>Apache</span></a>
     </div>
   </header>
-  <div class="specimen" role="note">
+  <aside class="specimen" aria-label="About this site">
     <p><strong>Specimen.</strong> A proposed redesign of maven.apache.org, built with <code>mvn site</code> and a skin of its own; not the official Apache Maven site. The official site is <a href="https://maven.apache.org/">maven.apache.org</a>. <a href="../../about-this-example.html">About this example</a></p>
-  </div>
+  </aside>
   <div class="frame has-group">
     <nav class="group-nav" aria-labelledby="group-nav-title">
       <p class="up"><a href="../../docs/index.html"><svg aria-hidden="true" viewBox="0 0 16 16" width="14" height="14"><path d="M10 3.5L5.5 8l4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" /></svg>All of Docs</a></p>
@@ -95,10 +95,10 @@
 <h2>1. Try to run the JAR on its own</h2>
 <p>Run the JAR the way Java runs an application:</p>
 
-<pre class="highlight"><code class="language-shell">java -jar target/my-app-1.0-SNAPSHOT.jar
+<pre tabindex="0" class="highlight"><code class="language-shell">java -jar target/my-app-1.0-SNAPSHOT.jar
 </code></pre>
 
-<pre><code class="nohighlight nocode">no main manifest attribute, in target/my-app-1.0-SNAPSHOT.jar
+<pre tabindex="0"><code class="nohighlight nocode">no main manifest attribute, in target/my-app-1.0-SNAPSHOT.jar
 </code></pre>
 <p><code>java -jar</code> reads the name of the class to start from the JAR's manifest, the file <code>META-INF/MANIFEST.MF</code> inside the JAR, and this JAR names none. It also has no room for Commons Lang: <code>java -jar</code> ignores <code>-cp</code>, so the library has to be inside the JAR.</p></section><section><a id="a2._Find_the_plugin"></a>
 <h2>2. Find the plugin</h2>
@@ -108,7 +108,7 @@
 <p>Add a <code>&lt;plugins&gt;</code> element to <code>&lt;build&gt;</code> in <em>pom.xml</em>, after <code>&lt;/pluginManagement&gt;</code>:</p>
 <p><em>pom.xml</em></p>
 
-<pre class="highlight"><code class="language-xml">&lt;project ...&gt;
+<pre tabindex="0" class="highlight"><code class="language-xml">&lt;project ...&gt;
   ...
   <span class="nt">&lt;build</span><span class="nt">&gt;</span>
     <span class="nt">&lt;pluginManagement</span><span class="nt">&gt;</span>
@@ -135,12 +135,12 @@
 <p>A plugin does its work in goals, and the Shade plugin's goal is <code>shade</code>. The <code>&lt;execution&gt;</code> binds that goal to the <code>package</code> phase: every build that reaches <code>package</code> now runs <code>shade</code>, right after the JAR plugin has made the JAR.</p>
 <p>Build the project with:</p>
 
-<pre class="highlight"><code class="language-shell">mvn clean package
+<pre tabindex="0" class="highlight"><code class="language-shell">mvn clean package
 </code></pre>
 <p><code>clean</code> deletes the <code>target</code> directory before the build. Use it from now on: the Shade plugin replaces the JAR with its own, and when nothing changed since the last build, the JAR plugin keeps that JAR, Shade gets its own output as input, and it warns about hundreds of overlapping classes.</p>
 <p>The build now ends with the Shade plugin:</p>
 
-<pre><code class="nohighlight nocode">[INFO] --- jar:3.4.2:jar (default-jar) @ my-app ---
+<pre tabindex="0"><code class="nohighlight nocode">[INFO] --- jar:3.4.2:jar (default-jar) @ my-app ---
 [INFO] Building jar: /home/you/projects/my-app/target/my-app-1.0-SNAPSHOT.jar
 [INFO]
 [INFO] --- shade:3.6.2:shade (default) @ my-app ---
@@ -154,17 +154,17 @@
 </code></pre>
 <p><code>(default)</code> is the name of the execution, because you gave it none. The warning says that both JARs have a manifest, and that the new JAR keeps only one; that is expected here. <code>target/my-app-1.0-SNAPSHOT.jar</code> now holds the classes of Commons Lang as well, so the program runs without <code>target/dependency</code>, which <code>clean</code> removed:</p>
 
-<pre class="highlight"><code class="language-shell">java -cp target/my-app-1.0-SNAPSHOT.jar com.mycompany.app.App ada
+<pre tabindex="0" class="highlight"><code class="language-shell">java -cp target/my-app-1.0-SNAPSHOT.jar com.mycompany.app.App ada
 </code></pre>
 
-<pre><code class="nohighlight nocode">Hello, Ada!
+<pre tabindex="0"><code class="nohighlight nocode">Hello, Ada!
 </code></pre>
 <p>The JAR without the library is kept as <code>target/original-my-app-1.0-SNAPSHOT.jar</code>.</p></section><section><a id="a4._Configure_the_main_class"></a>
 <h2>4. Configure the main class</h2>
 <p>A goal has parameters, and you set them in a <code>&lt;configuration&gt;</code> element. Inside an <code>&lt;execution&gt;</code>, the configuration applies to that execution only. Add the main class to the execution:</p>
 <p><em>pom.xml</em></p>
 
-<pre class="highlight"><code class="language-xml"><span class="nt">&lt;execution</span><span class="nt">&gt;</span>
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;execution</span><span class="nt">&gt;</span>
   <span class="nt">&lt;phase</span><span class="nt">&gt;</span>package<span class="nt">&lt;/phase</span><span class="nt">&gt;</span>
   <span class="nt">&lt;goals</span><span class="nt">&gt;</span>
     <span class="nt">&lt;goal</span><span class="nt">&gt;</span>shade<span class="nt">&lt;/goal</span><span class="nt">&gt;</span>
@@ -181,19 +181,19 @@
 <p>The <code>transformers</code> parameter takes a list of transformers, which change files while the Shade plugin copies them into the JAR. <code>ManifestResourceTransformer</code> writes the main class into the manifest.</p>
 <p>Build and run the JAR:</p>
 
-<pre class="highlight"><code class="language-shell">mvn clean package
+<pre tabindex="0" class="highlight"><code class="language-shell">mvn clean package
 java -jar target/my-app-1.0-SNAPSHOT.jar ada
 </code></pre>
 
-<pre><code class="nohighlight nocode">Hello, Ada!
+<pre tabindex="0"><code class="nohighlight nocode">Hello, Ada!
 </code></pre></section><section><a id="a5._Look_up_a_parameter"></a>
 <h2>5. Look up a parameter</h2>
 <p>List the <code>my-app</code> directory:</p>
 
-<pre class="highlight"><code class="language-shell">ls
+<pre tabindex="0" class="highlight"><code class="language-shell">ls
 </code></pre>
 
-<pre><code class="nohighlight nocode">dependency-reduced-pom.xml
+<pre tabindex="0"><code class="nohighlight nocode">dependency-reduced-pom.xml
 pom.xml
 src
 target
@@ -202,7 +202,7 @@ target
 <p>To find out whether a plugin can leave something out, look at its goal. On the plugin's site, under “Plugin Documentation”, the page of <a href="../../plugins/maven-shade-plugin/shade-mojo.html">shade:shade</a> lists every parameter of the goal, with its type, its default value and what it does. One of them is <code>createDependencyReducedPom</code>, default <code>true</code>. Set it to <code>false</code> in the configuration, next to <code>&lt;transformers&gt;</code>. The plugin now reads:</p>
 <p><em>pom.xml</em></p>
 
-<pre class="highlight"><code class="language-xml"><span class="nt">&lt;plugin</span><span class="nt">&gt;</span>
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;plugin</span><span class="nt">&gt;</span>
   <span class="nt">&lt;artifactId</span><span class="nt">&gt;</span>maven-shade-plugin<span class="nt">&lt;/artifactId</span><span class="nt">&gt;</span>
   <span class="nt">&lt;version</span><span class="nt">&gt;</span>3.6.2<span class="nt">&lt;/version</span><span class="nt">&gt;</span>
   <span class="nt">&lt;executions</span><span class="nt">&gt;</span>
@@ -225,7 +225,7 @@ target
 </code></pre>
 <p>Delete the file and build again:</p>
 
-<pre class="highlight"><code class="language-shell">rm dependency-reduced-pom.xml
+<pre tabindex="0" class="highlight"><code class="language-shell">rm dependency-reduced-pom.xml
 mvn clean package
 </code></pre>
 <p>The line <code>Dependency-reduced POM written at</code> is gone from the output, and so is the file. <code>java -jar target/my-app-1.0-SNAPSHOT.jar ada</code> still prints <code>Hello, Ada!</code>.</p>

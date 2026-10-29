@@ -43,9 +43,9 @@
     <a class="asf" href="https://www.apache.org/"><img class="asf-leaf" src="../../images/oakleaf.svg" width="14" height="22" alt=""><span>Apache</span></a>
     </div>
   </header>
-  <div class="specimen" role="note">
+  <aside class="specimen" aria-label="About this site">
     <p><strong>Specimen.</strong> A proposed redesign of maven.apache.org, built with <code>mvn site</code> and a skin of its own; not the official Apache Maven site. The official site is <a href="https://maven.apache.org/">maven.apache.org</a>. <a href="../../about-this-example.html">About this example</a></p>
-  </div>
+  </aside>
   <div class="frame has-group">
     <nav class="group-nav" aria-labelledby="group-nav-title">
       <p class="up"><a href="../../docs/index.html"><svg aria-hidden="true" viewBox="0 0 16 16" width="14" height="14"><path d="M10 3.5L5.5 8l4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" /></svg>All of Docs</a></p>
@@ -123,7 +123,7 @@
 </ul>
 <p>Here's an example:</p>
 
-<pre class="highlight"><code class="language-xml"><span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span><span class="nt">&gt;</span>
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span><span class="nt">&gt;</span>
   <span class="nt">&lt;modelVersion</span><span class="nt">&gt;</span>4.0.0<span class="nt">&lt;/modelVersion</span><span class="nt">&gt;</span>
 
   <span class="nt">&lt;groupId</span><span class="nt">&gt;</span>com.mycompany.app<span class="nt">&lt;/groupId</span><span class="nt">&gt;</span>
@@ -151,7 +151,7 @@
 <h4>The Scenario</h4>
 <p>As an example, let us reuse our previous artifact, com.mycompany.app:my-app:1. And let us introduce another artifact, com.mycompany.app:my-module:1.</p>
 
-<pre class="highlight"><code class="language-xml"><span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span><span class="nt">&gt;</span>
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span><span class="nt">&gt;</span>
   <span class="nt">&lt;modelVersion</span><span class="nt">&gt;</span>4.0.0<span class="nt">&lt;/modelVersion</span><span class="nt">&gt;</span>
 
   <span class="nt">&lt;groupId</span><span class="nt">&gt;</span>com.mycompany.app<span class="nt">&lt;/groupId</span><span class="nt">&gt;</span>
@@ -161,7 +161,7 @@
 </code></pre>
 <p>And let us specify their directory structure as the following:</p>
 
-<pre><code class="nohighlight nocode">.
+<pre tabindex="0"><code class="nohighlight nocode">.
  |-- my-module
  |   `-- pom.xml
  `-- pom.xml
@@ -171,7 +171,7 @@
 <p>Now, if we were to turn com.mycompany.app:my-app:1 into a parent artifact of com.mycompany.app:my-module:1,we will have to modify com.mycompany.app:my-module:1's POM to the following configuration:</p>
 <p><strong>com.mycompany.app:my-module:1's POM</strong></p>
 
-<pre class="highlight"><code class="language-xml"><span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span><span class="nt">&gt;</span>
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span><span class="nt">&gt;</span>
   <span class="nt">&lt;modelVersion</span><span class="nt">&gt;</span>4.0.0<span class="nt">&lt;/modelVersion</span><span class="nt">&gt;</span>
 
   <span class="nt">&lt;parent</span><span class="nt">&gt;</span>
@@ -188,7 +188,7 @@
 <p>Notice that we now have an added section, the parent section. This section allows us to specify which artifact is the parent of our POM. And we do so by specifying the fully qualified artifact name of the parent POM. With this setup, our module can now inherit some of the properties of our parent POM.</p>
 <p>Alternatively, if you want the groupId or the version of your modules to be the same as their parents, you can remove the groupId or the version identity of your module in its POM.</p>
 
-<pre class="highlight"><code class="language-xml"><span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span><span class="nt">&gt;</span>
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span><span class="nt">&gt;</span>
   <span class="nt">&lt;modelVersion</span><span class="nt">&gt;</span>4.0.0<span class="nt">&lt;/modelVersion</span><span class="nt">&gt;</span>
 
   <span class="nt">&lt;parent</span><span class="nt">&gt;</span>
@@ -207,7 +207,7 @@
 <p>However, that would work if the parent project was already installed in our local repository or was in that specific directory structure (parent <code>pom.xml</code> is one directory higher than that of the module's <code>pom.xml</code>).</p>
 <p>But what if the parent is not yet installed and if the directory structure is as in the following example?</p>
 
-<pre><code class="nohighlight nocode">.
+<pre tabindex="0"><code class="nohighlight nocode">.
  |-- my-module
  |   `-- pom.xml
  `-- parent
@@ -216,7 +216,7 @@
 <h4>The Solution</h4>
 <p>To address this directory structure (or any other directory structure), we would have to add the <code>&lt;relativePath&gt;</code> element to our parent section.</p>
 
-<pre class="highlight"><code class="language-xml"><span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span><span class="nt">&gt;</span>
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span><span class="nt">&gt;</span>
   <span class="nt">&lt;modelVersion</span><span class="nt">&gt;</span>4.0.0<span class="nt">&lt;/modelVersion</span><span class="nt">&gt;</span>
 
   <span class="nt">&lt;parent</span><span class="nt">&gt;</span>
@@ -243,7 +243,7 @@
 <p>Given the previous original artifact POMs and directory structure:</p>
 <p><strong>com.mycompany.app:my-app:1's POM</strong></p>
 
-<pre class="highlight"><code class="language-xml"><span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span><span class="nt">&gt;</span>
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span><span class="nt">&gt;</span>
   <span class="nt">&lt;modelVersion</span><span class="nt">&gt;</span>4.0.0<span class="nt">&lt;/modelVersion</span><span class="nt">&gt;</span>
 
   <span class="nt">&lt;groupId</span><span class="nt">&gt;</span>com.mycompany.app<span class="nt">&lt;/groupId</span><span class="nt">&gt;</span>
@@ -253,7 +253,7 @@
 </code></pre>
 <p><strong>com.mycompany.app:my-module:1's POM</strong></p>
 
-<pre class="highlight"><code class="language-xml"><span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span><span class="nt">&gt;</span>
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span><span class="nt">&gt;</span>
   <span class="nt">&lt;modelVersion</span><span class="nt">&gt;</span>4.0.0<span class="nt">&lt;/modelVersion</span><span class="nt">&gt;</span>
 
   <span class="nt">&lt;groupId</span><span class="nt">&gt;</span>com.mycompany.app<span class="nt">&lt;/groupId</span><span class="nt">&gt;</span>
@@ -263,7 +263,7 @@
 </code></pre>
 <p><strong>directory structure</strong></p>
 
-<pre><code class="nohighlight nocode">.
+<pre tabindex="0"><code class="nohighlight nocode">.
  |-- my-module
  |   `-- pom.xml
  `-- pom.xml
@@ -271,7 +271,7 @@
 <h4>The Solution</h4>
 <p>If we are to aggregate my-module into my-app, we would only have to modify my-app.</p>
 
-<pre class="highlight"><code class="language-xml"><span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span><span class="nt">&gt;</span>
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span><span class="nt">&gt;</span>
   <span class="nt">&lt;modelVersion</span><span class="nt">&gt;</span>4.0.0<span class="nt">&lt;/modelVersion</span><span class="nt">&gt;</span>
 
   <span class="nt">&lt;groupId</span><span class="nt">&gt;</span>com.mycompany.app<span class="nt">&lt;/groupId</span><span class="nt">&gt;</span>
@@ -291,7 +291,7 @@
 <h4>The Scenario</h4>
 <p>But what if we change the directory structure to the following:</p>
 
-<pre><code class="nohighlight nocode">.
+<pre tabindex="0"><code class="nohighlight nocode">.
  |-- my-module
  |   `-- pom.xml
  `-- parent
@@ -301,7 +301,7 @@
 <h4>The Solution</h4>
 <p>The answer? - the same way as Example 3, by specifying the path to the module.</p>
 
-<pre class="highlight"><code class="language-xml"><span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span><span class="nt">&gt;</span>
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span><span class="nt">&gt;</span>
   <span class="nt">&lt;modelVersion</span><span class="nt">&gt;</span>4.0.0<span class="nt">&lt;/modelVersion</span><span class="nt">&gt;</span>
 
   <span class="nt">&lt;groupId</span><span class="nt">&gt;</span>com.mycompany.app<span class="nt">&lt;/groupId</span><span class="nt">&gt;</span>
@@ -330,7 +330,7 @@
 <p>Given the previous original artifact POMs again,</p>
 <p><strong>com.mycompany.app:my-app:1's POM</strong></p>
 
-<pre class="highlight"><code class="language-xml"><span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span><span class="nt">&gt;</span>
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span><span class="nt">&gt;</span>
   <span class="nt">&lt;modelVersion</span><span class="nt">&gt;</span>4.0.0<span class="nt">&lt;/modelVersion</span><span class="nt">&gt;</span>
 
   <span class="nt">&lt;groupId</span><span class="nt">&gt;</span>com.mycompany.app<span class="nt">&lt;/groupId</span><span class="nt">&gt;</span>
@@ -340,7 +340,7 @@
 </code></pre>
 <p><strong>com.mycompany.app:my-module:1's POM</strong></p>
 
-<pre class="highlight"><code class="language-xml"><span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span><span class="nt">&gt;</span>
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span><span class="nt">&gt;</span>
   <span class="nt">&lt;modelVersion</span><span class="nt">&gt;</span>4.0.0<span class="nt">&lt;/modelVersion</span><span class="nt">&gt;</span>
 
   <span class="nt">&lt;groupId</span><span class="nt">&gt;</span>com.mycompany.app<span class="nt">&lt;/groupId</span><span class="nt">&gt;</span>
@@ -350,7 +350,7 @@
 </code></pre>
 <p>and this <strong>directory structure</strong></p>
 
-<pre><code class="nohighlight nocode">.
+<pre tabindex="0"><code class="nohighlight nocode">.
  |-- my-module
  |   `-- pom.xml
  `-- parent
@@ -360,7 +360,7 @@
 <p>To do both project inheritance and aggregation, you only have to apply all three rules.</p>
 <p><strong>com.mycompany.app:my-app:1's POM</strong></p>
 
-<pre class="highlight"><code class="language-xml"><span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span><span class="nt">&gt;</span>
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span><span class="nt">&gt;</span>
   <span class="nt">&lt;modelVersion</span><span class="nt">&gt;</span>4.0.0<span class="nt">&lt;/modelVersion</span><span class="nt">&gt;</span>
 
   <span class="nt">&lt;groupId</span><span class="nt">&gt;</span>com.mycompany.app<span class="nt">&lt;/groupId</span><span class="nt">&gt;</span>
@@ -375,7 +375,7 @@
 </code></pre>
 <p><strong>com.mycompany.app:my-module:1's POM</strong></p>
 
-<pre class="highlight"><code class="language-xml"><span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span><span class="nt">&gt;</span>
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span><span class="nt">&gt;</span>
   <span class="nt">&lt;modelVersion</span><span class="nt">&gt;</span>4.0.0<span class="nt">&lt;/modelVersion</span><span class="nt">&gt;</span>
 
   <span class="nt">&lt;parent</span><span class="nt">&gt;</span>
@@ -394,7 +394,7 @@
 <p>One of the practices that Maven encourages is <em>don't repeat yourself</em>. However, there are circumstances where you will need to use the same value in several different locations. To assist in ensuring the value is only specified once, Maven allows you to use both your own and pre-defined variables in the POM.</p>
 <p>For example, to access the <code>project.version</code> variable, you would reference it like so:</p>
 
-<pre class="highlight"><code class="language-xml"><span class="nt">&lt;version</span><span class="nt">&gt;</span>${project.version}<span class="nt">&lt;/version</span><span class="nt">&gt;</span>
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;version</span><span class="nt">&gt;</span>${project.version}<span class="nt">&lt;/version</span><span class="nt">&gt;</span>
 </code></pre>
 <p>One factor to note is that these variables are processed <em>after</em> inheritance as outlined above. This means that if a parent project uses a variable, then its definition in the child, not the parent, will be the one eventually used.</p><section><a id="Available_Variables"></a>
 <h3>Available Variables</h3><section><a id="Project_Model_Variables"></a>
@@ -402,7 +402,7 @@
 <p>Any field of the model that is a single value element can be referenced as a variable. For example, <code>${project.groupId}</code>, <code>${project.version}</code>, <code>${project.build.sourceDirectory}</code> and so on. Refer to the <a href="/docs/reference/pom.html">POM reference</a> to see a full list of properties.</p>
 <p>These variables are all referenced by the prefix “<code>project.</code>”. You may also see references with <code>pom.</code> as the prefix, or the prefix omitted entirely - these forms are now deprecated and should not be used.</p></section><section><a id="Special_Variables"></a>
 <h4>Special Variables</h4>
-<table class="bodyTable">
+<div class="table-scroll" tabindex="0"><table class="bodyTable">
 <thead>
 <tr class="a">
 <th></th>
@@ -416,11 +416,11 @@
 <tr class="b">
 <td><code>maven.build.timestamp</code></td>
 <td>The timestamp that denotes the start of the build (UTC). <em>Since Maven 2.1.0-M1</em></td></tr></tbody>
-</table>
+</table></div>
 
 <p>The format of the build timestamp can be customized by declaring the property <code>maven.build.timestamp.format</code> as shown in the example below:</p>
 
-<pre class="highlight"><code class="language-xml"><span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span><span class="nt">&gt;</span>
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span><span class="nt">&gt;</span>
   ...
   <span class="nt">&lt;properties</span><span class="nt">&gt;</span>
     <span class="nt">&lt;maven.build.timestamp.format</span><span class="nt">&gt;</span>yyyy-MM-dd'T'HH:mm:ss'Z'<span class="nt">&lt;/maven.build.timestamp.format</span><span class="nt">&gt;</span>
@@ -432,7 +432,7 @@
 <h4>Properties</h4>
 <p>You are also able to reference any properties defined in the project as a variable. Consider the following example:</p>
 
-<pre class="highlight"><code class="language-xml"><span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span><span class="nt">&gt;</span>
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span><span class="nt">&gt;</span>
   ...
   <span class="nt">&lt;properties</span><span class="nt">&gt;</span>
     <span class="nt">&lt;mavenVersion</span><span class="nt">&gt;</span>3.0<span class="nt">&lt;/mavenVersion</span><span class="nt">&gt;</span>

@@ -44,9 +44,9 @@
     <a class="asf" href="https://www.apache.org/"><img class="asf-leaf" src="../../images/oakleaf.svg" width="14" height="22" alt=""><span>Apache</span></a>
     </div>
   </header>
-  <div class="specimen" role="note">
+  <aside class="specimen" aria-label="About this site">
     <p><strong>Specimen.</strong> A proposed redesign of maven.apache.org, built with <code>mvn site</code> and a skin of its own; not the official Apache Maven site. The official site is <a href="https://maven.apache.org/">maven.apache.org</a>. <a href="../../about-this-example.html">About this example</a></p>
-  </div>
+  </aside>
   <div class="frame has-group">
     <nav class="group-nav" aria-labelledby="group-nav-title">
       <p class="up"><a href="../../community/index.html"><svg aria-hidden="true" viewBox="0 0 16 16" width="14" height="14"><path d="M10 3.5L5.5 8l4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>All of Community</a></p>
@@ -95,22 +95,22 @@
 <h3>Building a Maven Plugin or Component</h3>
 <p>Building a Maven plugin or component is like any Maven build:</p>
 
-<pre><code class="nohighlight nocode">mvn verify
+<pre tabindex="0"><code class="nohighlight nocode">mvn verify
 </code></pre><section><a id="Running_Integration_Tests"></a>
 <h4>Running Integration Tests</h4>
 <p>Before submitting a patch, it is advised to run the integration tests, which are available in the <code>run-its</code> profile:</p>
 
-<pre><code class="nohighlight nocode">mvn -Prun-its verify
+<pre tabindex="0"><code class="nohighlight nocode">mvn -Prun-its verify
 </code></pre></section></section><section><a id="Building_Maven_core"></a>
 <h3>Building Maven core</h3>
 <p>Until Maven 3.3, Maven core build could be bootstrapped with an Ant build. This bootstrap has been removed in Maven 3.5: you need a pre-built Maven to build Maven from source.</p>
 <p>To do this, run from the source directory:</p>
 
-<pre><code class="nohighlight nocode">mvn install
+<pre tabindex="0"><code class="nohighlight nocode">mvn install
 </code></pre>
 <p>The assemblies will be created in <code>apache-maven</code>, and can be manually unzipped to the location where you'd like the resulting Maven installed. If you want to have the resulting Maven directly copied to a directory, you can use the <code>distributionTargetDir</code> property:</p>
 
-<pre><code class="nohighlight nocode">mvn -DdistributionTargetDir=&quot;$HOME/app/maven/apache-maven-SNAPSHOT&quot; install
+<pre tabindex="0"><code class="nohighlight nocode">mvn -DdistributionTargetDir=&quot;$HOME/app/maven/apache-maven-SNAPSHOT&quot; install
 </code></pre><section><a id="Running_Core_Integration_Tests"></a>
 <h4>Running Core Integration Tests</h4>
 <p>See <a href="/core-its/">Core ITs documentation</a> for core-specific details.</p></section></section></section></section>

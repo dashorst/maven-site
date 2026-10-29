@@ -43,9 +43,9 @@
     <a class="asf" href="https://www.apache.org/"><img class="asf-leaf" src="../../images/oakleaf.svg" width="14" height="22" alt=""><span>Apache</span></a>
     </div>
   </header>
-  <div class="specimen" role="note">
+  <aside class="specimen" aria-label="About this site">
     <p><strong>Specimen.</strong> A proposed redesign of maven.apache.org, built with <code>mvn site</code> and a skin of its own; not the official Apache Maven site. The official site is <a href="https://maven.apache.org/">maven.apache.org</a>. <a href="../../about-this-example.html">About this example</a></p>
-  </div>
+  </aside>
   <div class="frame has-group">
     <nav class="group-nav" aria-labelledby="group-nav-title">
       <p class="up"><a href="../../docs/index.html"><svg aria-hidden="true" viewBox="0 0 16 16" width="14" height="14"><path d="M10 3.5L5.5 8l4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" /></svg>All of Docs</a></p>
@@ -127,11 +127,11 @@
 <p>We are going to jump headlong into creating your first Maven project! To create our first Maven project we are going to use Maven's archetype mechanism. An archetype is defined as <em>an original pattern or model from which all other things of the same kind are made</em>. In Maven, an archetype is a template of a project which is combined with some user input to produce a working Maven project that has been tailored to the user's requirements. We are going to show you how the archetype mechanism works now, but if you would like to know more about archetypes please refer to our <a href="../../extend/archetypes/introduction.html">Introduction to Archetypes</a>.</p>
 <p>On to creating your first project! In order to create the simplest of Maven projects, execute the following from the command line:</p>
 
-<pre><code class="nohighlight nocode">mvn archetype:generate -DgroupId=com.mycompany.app -DartifactId=my-app -DarchetypeArtifactId=maven-archetype-quickstart -DarchetypeVersion=1.5 -DinteractiveMode=false
+<pre tabindex="0"><code class="nohighlight nocode">mvn archetype:generate -DgroupId=com.mycompany.app -DartifactId=my-app -DarchetypeArtifactId=maven-archetype-quickstart -DarchetypeVersion=1.5 -DinteractiveMode=false
 </code></pre>
 <p>Once you have executed this command, you will notice a few things have happened. First, you will notice that a directory named <code>my-app</code> has been created for the new project, and this directory contains a file named <code>pom.xml</code> that should look like this:</p>
 
-<pre class="highlight"><code class="language-xml"><span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span> <span class="na">xmlns:xsi</span>=<span class="s">"http://www.w3.org/2001/XMLSchema-instance"</span>
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span> <span class="na">xmlns:xsi</span>=<span class="s">"http://www.w3.org/2001/XMLSchema-instance"</span>
   <span class="na">xsi:schemaLocation</span>=<span class="s">"http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"</span><span class="nt">&gt;</span>
   <span class="nt">&lt;modelVersion</span><span class="nt">&gt;</span>4.0.0<span class="nt">&lt;/modelVersion</span><span class="nt">&gt;</span>
 
@@ -199,7 +199,7 @@
 <p>For a complete reference of what elements are available for use in the POM please refer to our <a href="/ref/current/maven-model/maven.html">POM Reference</a>. Now let's get back to the project at hand.</p>
 <p>After the archetype generation of your first project you will also notice that the following directory structure has been created:</p>
 
-<pre><code class="nohighlight nocode">my-app
+<pre tabindex="0"><code class="nohighlight nocode">my-app
 |-- pom.xml
 `-- src
     |-- main
@@ -221,11 +221,11 @@
 <h2>How do I compile my application sources?</h2>
 <p>Change to the directory where <code>pom.xml</code> is created by archetype:generate and execute the following command to compile your application sources:</p>
 
-<pre><code class="nohighlight nocode">mvn compile
+<pre tabindex="0"><code class="nohighlight nocode">mvn compile
 </code></pre>
 <p>Upon executing this command you should see output like the following:</p>
 
-<pre><code class="nohighlight nocode">[INFO] Scanning for projects...
+<pre tabindex="0"><code class="nohighlight nocode">[INFO] Scanning for projects...
 [INFO]
 [INFO] ----------------------&lt; com.mycompany.app:my-app &gt;----------------------
 [INFO] Building my-app 1.0-SNAPSHOT
@@ -252,11 +252,11 @@
 <p>Now you're successfully compiling your application's sources and now you've got some unit tests that you want to compile and execute (because every programmer always writes and executes their unit tests <em>nudge nudge wink wink</em>).</p>
 <p>Execute the following command:</p>
 
-<pre><code class="nohighlight nocode">mvn test
+<pre tabindex="0"><code class="nohighlight nocode">mvn test
 </code></pre>
 <p>Upon executing this command you should see output like the following:</p>
 
-<pre><code class="nohighlight nocode">[INFO] Scanning for projects...
+<pre tabindex="0"><code class="nohighlight nocode">[INFO] Scanning for projects...
 [INFO]
 [INFO] ----------------------&lt; com.mycompany.app:my-app &gt;----------------------
 [INFO] Building my-app 1.0-SNAPSHOT
@@ -304,21 +304,21 @@
 </ul>
 <p>If you simply want to compile your test sources (but not execute the tests), you can execute the following:</p>
 
-<pre><code class="nohighlight nocode">mvn test-compile
+<pre tabindex="0"><code class="nohighlight nocode">mvn test-compile
 </code></pre>
 <p>Now that you can compile your application sources, compile your tests, and execute the tests, you'll want to move on to the next logical step so you'll be asking …</p></section><section><a id="How_do_I_create_a_JAR_and_install_it_in_my_local_repository.3F"></a>
 <h2>How do I create a JAR and install it in my local repository?</h2>
 <p>Making a JAR file is straight forward enough and can be accomplished by executing the following command:</p> 
-<pre><code class="nohighlight nocode">mvn package
+<pre tabindex="0"><code class="nohighlight nocode">mvn package
 </code></pre>
 <p>You can now take a look in the <code>${project.basedir}/target</code> directory and you will see the generated JAR file.</p>
 <p>Now you'll want to install the artifact you've generated (the JAR file) in your local repository (<code>${user.home}/.m2/repository</code> is the default location). For more information on repositories you can refer to our <a href="../dependencies/repositories.html">Introduction to Repositories</a> but let's move on to installing our artifact! To do so execute the following command:</p>
 
-<pre><code class="nohighlight nocode">mvn install
+<pre tabindex="0"><code class="nohighlight nocode">mvn install
 </code></pre>
 <p>Upon executing this command you should see the following output:</p>
 
-<pre><code class="nohighlight nocode">[INFO] Scanning for projects...
+<pre tabindex="0"><code class="nohighlight nocode">[INFO] Scanning for projects...
 [INFO]
 [INFO] ----------------------&lt; com.mycompany.app:my-app &gt;----------------------
 [INFO] Building my-app 1.0-SNAPSHOT
@@ -376,17 +376,17 @@
 <p>You have walked through the process for setting up, building, testing, packaging, and installing a typical Maven project. This is likely the vast majority of what projects will be doing with Maven and if you've noticed, everything you've been able to do up to this point has been driven by an 18-line file, namely the project's model or POM. If you look at a typical Ant <a href="../../ant/build-a1.xml">build file</a> that provides the same functionality that we've achieved thus far you'll notice it's already twice the size of the POM and we're just getting started! There is far more functionality available to you from Maven without requiring any additions to our POM as it currently stands. To get any more functionality out of our example Ant build file you must keep making error-prone additions.</p>
 <p>So what else can you get for free? There are a great number of Maven plugins that work out of the box with even a simple POM like we have above. We'll mention one here specifically as it is one of the highly prized features of Maven: without any work on your part this POM has enough information to generate a web site for your project! You will most likely want to customize your Maven site but if you're pressed for time all you need to do to provide basic information about your project is execute the following command:</p>
 
-<pre><code class="nohighlight nocode">mvn site
+<pre tabindex="0"><code class="nohighlight nocode">mvn site
 </code></pre>
 <p>There are plenty of other standalone goals that can be executed as well, for example:</p>
 
-<pre><code class="nohighlight nocode">mvn clean
+<pre tabindex="0"><code class="nohighlight nocode">mvn clean
 </code></pre>
 <p>This will remove the <code>target</code> directory with all the build data before starting so that it is fresh.</p></section><section><a id="What_is_a_SNAPSHOT_version.3F"></a>
 <h2>What is a SNAPSHOT version?</h2>
 <p>Notice the value of the <strong>version</strong> tag in the <code>pom.xml</code> file shown below has the suffix: <code>-SNAPSHOT</code>.</p>
 
-<pre class="highlight"><code class="language-xml">&lt;project xmlns="http://maven.apache.org/POM/4.0.0"
+<pre tabindex="0" class="highlight"><code class="language-xml">&lt;project xmlns="http://maven.apache.org/POM/4.0.0"
   ...
   <span class="nt">&lt;groupId</span><span class="nt">&gt;</span>...<span class="nt">&lt;/groupId</span><span class="nt">&gt;</span>
   <span class="nt">&lt;artifactId</span><span class="nt">&gt;</span>my-app<span class="nt">&lt;/artifactId</span><span class="nt">&gt;</span>
@@ -402,7 +402,7 @@
 <p>Whenever you want to customise the build for a Maven project, this is done by adding or reconfiguring plugins.</p>
 <p>For this example, we will configure the Java compiler to allow JDK 5.0 sources. This is as simple as adding this to your POM:</p>
 
-<pre class="highlight"><code class="language-xml">...
+<pre tabindex="0" class="highlight"><code class="language-xml">...
 <span class="nt">&lt;build</span><span class="nt">&gt;</span>
   <span class="nt">&lt;plugins</span><span class="nt">&gt;</span>
     <span class="nt">&lt;plugin</span><span class="nt">&gt;</span>
@@ -425,7 +425,7 @@
 <p>Another common use case that can be satisfied which requires no changes to the POM that we have above is packaging resources in the JAR file. For this common task, Maven again relies on the <a href="standard-directory-layout.html">Standard Directory Layout</a>, which means by using standard Maven conventions you can package resources within JARs simply by placing those resources in a standard directory structure.</p>
 <p>You see below in our example we have added the directory <code>${project.basedir}/src/main/resources</code> into which we place any resources we wish to package in our JAR. The simple rule employed by Maven is this: any directories or files placed within the <code>${project.basedir}/src/main/resources</code> directory are packaged in your JAR with the exact same structure starting at the base of the JAR.</p>
 
-<pre><code class="nohighlight nocode">my-app
+<pre tabindex="0"><code class="nohighlight nocode">my-app
 |-- pom.xml
 `-- src
     |-- main
@@ -446,7 +446,7 @@
 </code></pre>
 <p>So you can see in our example that we have a <code>META-INF</code> directory with an <code>application.properties</code> file within that directory. If you unpacked the JAR that Maven created for you and took a look at it you would see the following:</p>
 
-<pre><code class="nohighlight nocode">|-- META-INF
+<pre tabindex="0"><code class="nohighlight nocode">|-- META-INF
 |   |-- MANIFEST.MF
 |   `-- application.properties
 |   `-- maven
@@ -461,7 +461,7 @@
 </code></pre>
 <p>As you can see, the contents of <code>${project.basedir}/src/main/resources</code> can be found starting at the base of the JAR and our <code>application.properties</code> file is there in the <code>META-INF</code> directory. You will also notice some other files there like <code>META-INF/MANIFEST.MF</code> as well as a <code>pom.xml</code> and <code>pom.properties</code> file. These come standard with generation of a JAR in Maven. You can create your own manifest if you choose, but Maven will generate one by default if you don't. (You can also modify the entries in the default manifest. We will touch on this later.) The <code>pom.xml</code> and <code>pom.properties</code> files are packaged up in the JAR so that each artifact produced by Maven is self-describing and also allows you to utilize the metadata in your own application if the need arises. One simple use might be to retrieve the version of your application. Operating on the POM file would require you to use some Maven utilities but the properties can be utilized using the standard Java API and look like the following:</p>
 
-<pre><code class="nohighlight nocode">#Generated by Maven
+<pre tabindex="0"><code class="nohighlight nocode">#Generated by Maven
 #Tue Oct 04 15:43:21 GMT-05:00 2005
 version=1.0-SNAPSHOT
 groupId=com.mycompany.app
@@ -469,7 +469,7 @@ artifactId=my-app
 </code></pre>
 <p>To add resources to the classpath for your unit tests, you follow the same pattern as you do for adding resources to the JAR except the directory you place resources in is <code>${project.basedir}/src/test/resources</code>. At this point you would have a project directory structure that would look like the following:</p>
 
-<pre><code class="nohighlight nocode">my-app
+<pre tabindex="0"><code class="nohighlight nocode">my-app
 |-- pom.xml
 `-- src
     |-- main
@@ -492,7 +492,7 @@ artifactId=my-app
 </code></pre>
 <p>In a unit test you could use a simple snippet of code like the following to access the resource required for testing:</p>
 
-<pre class="highlight"><code class="language-xml">...
+<pre tabindex="0" class="highlight"><code class="language-xml">...
 
 // Retrieve resource
 InputStream is = getClass().getResourceAsStream( "/test.properties" );
@@ -505,7 +505,7 @@ InputStream is = getClass().getResourceAsStream( "/test.properties" );
 <p>Sometimes a resource file will need to contain a value that can only be supplied at build time. To accomplish this in Maven, put a reference to the property that will contain the value into your resource file using the syntax <code>${&lt;property name&gt;}</code>. The property can be one of the values defined in your <code>pom.xml</code>, a value defined in the user's <code>settings.xml</code>, a property defined in an external properties file, or a system property.</p>
 <p>To have Maven filter resources when copying, simply set <code>filtering</code> to true for the resource directory in your <code>pom.xml</code>:</p>
 
-<pre class="highlight"><code class="language-xml"><span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span> <span class="na">xmlns:xsi</span>=<span class="s">"http://www.w3.org/2001/XMLSchema-instance"</span>
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span> <span class="na">xmlns:xsi</span>=<span class="s">"http://www.w3.org/2001/XMLSchema-instance"</span>
   <span class="na">xsi:schemaLocation</span>=<span class="s">"http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd"</span><span class="nt">&gt;</span>
   <span class="nt">&lt;modelVersion</span><span class="nt">&gt;</span>4.0.0<span class="nt">&lt;/modelVersion</span><span class="nt">&gt;</span>
 
@@ -540,28 +540,28 @@ InputStream is = getClass().getResourceAsStream( "/test.properties" );
 <p>To reference a property defined in your <code>pom.xml</code>, the property name uses the names of the XML elements that define the value, with “pom” being allowed as an alias for the project (root) element. So <code>${project.name}</code> refers to the name of the project, <code>${project.version}</code> refers to the version of the project, <code>${project.build.finalName}</code> refers to the final name of the file created when the built project is packaged, etc. Note that some elements of the POM have default values, so don't need to be explicitly defined in your <code>pom.xml</code> for the values to be available here. Similarly, values in the user's <code>settings.xml</code> can be referenced using property names beginning with “settings” (for example, <code>${settings.localRepository}</code> refers to the path of the user's local repository).</p>
 <p>To continue our example, let's add a couple of properties to the <code>application.properties</code> file (which we put in the <code>src/main/resources</code> directory) whose values will be supplied when the resource is filtered:</p>
 
-<pre><code class="nohighlight nocode"># application.properties
+<pre tabindex="0"><code class="nohighlight nocode"># application.properties
 application.name=${project.name}
 application.version=${project.version}
 </code></pre>
 <p>With that in place, you can execute the following command (process-resources is the build lifecycle phase where the resources are copied and filtered):</p>
 
-<pre><code class="nohighlight nocode">mvn process-resources
+<pre tabindex="0"><code class="nohighlight nocode">mvn process-resources
 </code></pre>
 <p>and the <code>application.properties</code> file under <code>target/classes</code> (and will eventually go into the jar) looks like this:</p>
 
-<pre><code class="nohighlight nocode"># application.properties
+<pre tabindex="0"><code class="nohighlight nocode"># application.properties
 application.name=Maven Quick Start Archetype
 application.version=1.0-SNAPSHOT
 </code></pre>
 <p>To reference a property defined in an external file, all you need to do is add a reference to this external file in your <code>pom.xml</code>. First, let's create our external properties file and call it <code>src/main/filters/filter.properties</code>:</p>
 
-<pre><code class="nohighlight nocode"># filter.properties
+<pre tabindex="0"><code class="nohighlight nocode"># filter.properties
 my.filter.value=hello!
 </code></pre>
 <p>Next, we'll add a reference to this new file in the <code>pom.xml</code>:</p>
 
-<pre class="highlight"><code class="language-xml"><span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span> <span class="na">xmlns:xsi</span>=<span class="s">"http://www.w3.org/2001/XMLSchema-instance"</span>
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span> <span class="na">xmlns:xsi</span>=<span class="s">"http://www.w3.org/2001/XMLSchema-instance"</span>
   <span class="na">xsi:schemaLocation</span>=<span class="s">"http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd"</span><span class="nt">&gt;</span>
   <span class="nt">&lt;modelVersion</span><span class="nt">&gt;</span>4.0.0<span class="nt">&lt;/modelVersion</span><span class="nt">&gt;</span>
 
@@ -597,14 +597,14 @@ my.filter.value=hello!
 </code></pre>
 <p>Then, if we add a reference to this property in the <code>application.properties</code> file:</p>
 
-<pre><code class="nohighlight nocode"># application.properties
+<pre tabindex="0"><code class="nohighlight nocode"># application.properties
 application.name=${project.name}
 application.version=${project.version}
 message=${my.filter.value}
 </code></pre>
 <p>the next execution of the <code>mvn process-resources</code> command will put our new property value into <code>application.properties</code>. As an alternative to defining the my.filter.value property in an external file, you could also have defined it in the <code>properties</code> section of your <code>pom.xml</code> and you'd get the same effect (notice I don't need the references to <code>src/main/filters/filter.properties</code> either):</p>
 
-<pre class="highlight"><code class="language-xml"><span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span> <span class="na">xmlns:xsi</span>=<span class="s">"http://www.w3.org/2001/XMLSchema-instance"</span>
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span> <span class="na">xmlns:xsi</span>=<span class="s">"http://www.w3.org/2001/XMLSchema-instance"</span>
   <span class="na">xsi:schemaLocation</span>=<span class="s">"http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd"</span><span class="nt">&gt;</span>
   <span class="nt">&lt;modelVersion</span><span class="nt">&gt;</span>4.0.0<span class="nt">&lt;/modelVersion</span><span class="nt">&gt;</span>
 
@@ -641,19 +641,19 @@ message=${my.filter.value}
 </code></pre>
 <p>Filtering resources can also get values from system properties; either the system properties built into Java (like <code>java.version</code> or <code>user.home</code>) or properties defined on the command line using the standard Java -D parameter. To continue the example, let's change our <code>application.properties</code> file to look like this:</p>
 
-<pre><code class="nohighlight nocode"># application.properties
+<pre tabindex="0"><code class="nohighlight nocode"># application.properties
 java.version=${java.version}
 command.line.prop=${command.line.prop}
 </code></pre>
 <p>Now, when you execute the following command (note the definition of the command.line.prop property on the command line), the <code>application.properties</code> file will contain the values from the system properties.</p>
 
-<pre><code class="nohighlight nocode">mvn process-resources "-Dcommand.line.prop=hello again"
+<pre tabindex="0"><code class="nohighlight nocode">mvn process-resources "-Dcommand.line.prop=hello again"
 </code></pre></section><section><a id="How_do_I_use_external_dependencies.3F"></a>
 <h2>How do I use external dependencies?</h2>
 <p>You've probably already noticed a <code>dependencies</code> element in the POM we've been using as an example. You have, in fact, been using an external dependency all this time, but here we'll talk about how this works in a bit more detail. For a more thorough introduction, please refer to our <a href="../dependencies/how-dependencies-work.html">Introduction to Dependency Mechanism</a>.</p>
 <p>The <code>dependencies</code> section of the <code>pom.xml</code> lists all of the external dependencies that our project needs in order to build (whether it needs that dependency at compile time, test time, run time, or whatever). Right now, our project is depending on JUnit only (I took out all of the resource filtering stuff for clarity):</p>
 
-<pre class="highlight"><code class="language-xml"><span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span> <span class="na">xmlns:xsi</span>=<span class="s">"http://www.w3.org/2001/XMLSchema-instance"</span>
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span> <span class="na">xmlns:xsi</span>=<span class="s">"http://www.w3.org/2001/XMLSchema-instance"</span>
   <span class="na">xsi:schemaLocation</span>=<span class="s">"http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd"</span><span class="nt">&gt;</span>
   <span class="nt">&lt;modelVersion</span><span class="nt">&gt;</span>4.0.0<span class="nt">&lt;/modelVersion</span><span class="nt">&gt;</span>
 
@@ -679,7 +679,7 @@ command.line.prop=${command.line.prop}
 <p>For more information about the dependency mechanism as a whole, see <a href="../dependencies/how-dependencies-work.html">Introduction to Dependency Mechanism</a>.</p>
 <p>With this information about a dependency, Maven will be able to reference the dependency when it builds the project. Where does Maven reference the dependency from? Maven looks in your local repository (<code>${user.home}/.m2/repository</code> is the default location) to find all dependencies. In a <a href="#How_do_I_create_a_JAR_and_install_it_in_my_local_repository">previous section</a>, we installed the artifact from our project (my-app-1.0-SNAPSHOT.jar) into the local repository. Once it's installed there, another project can reference that jar as a dependency simply by adding the dependency information to its <code>pom.xml</code>:</p>
 
-<pre class="highlight"><code class="language-xml"><span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span> <span class="na">xmlns:xsi</span>=<span class="s">"http://www.w3.org/2001/XMLSchema-instance"</span>
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span> <span class="na">xmlns:xsi</span>=<span class="s">"http://www.w3.org/2001/XMLSchema-instance"</span>
   <span class="na">xsi:schemaLocation</span>=<span class="s">"http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd"</span><span class="nt">&gt;</span>
   <span class="nt">&lt;groupId</span><span class="nt">&gt;</span>com.mycompany.app<span class="nt">&lt;/groupId</span><span class="nt">&gt;</span>
   <span class="nt">&lt;artifactId</span><span class="nt">&gt;</span>my-other-app<span class="nt">&lt;/artifactId</span><span class="nt">&gt;</span>
@@ -698,7 +698,7 @@ command.line.prop=${command.line.prop}
 <p>What about dependencies built somewhere else? How do they get into my local repository? Whenever a project references a dependency that isn't available in the local repository, Maven will download the dependency from a remote repository into the local repository. You probably noticed Maven downloading a lot of things when you built your very first project (these downloads were dependencies for the various plugins used to build the project). By default, the remote repository Maven uses can be found (and browsed) at <a href="https://repo.maven.apache.org/maven2/" class="externalLink">https://repo.maven.apache.org/maven2/</a>. You can also set up your own remote repository (maybe a central repository for your company) to use instead of or in addition to the default remote repository. For more information on repositories you can refer to the <a href="../dependencies/repositories.html">Introduction to Repositories</a>.</p>
 <p>Let's add another dependency to our project. Let's say we've added some logging to the code and need to add log4j as a dependency. First, we need to know what the groupId, artifactId, and version are for log4j. The appropriate directory on Maven Central is called <a href="https://repo.maven.apache.org/maven2/log4j/log4j/" class="externalLink">/maven2/log4j/log4j</a>. In that directory is a file called maven-metadata.xml. Here's what the maven-metadata.xml for log4j looks like:</p>
 
-<pre class="highlight"><code class="language-xml"><span class="nt">&lt;metadata</span><span class="nt">&gt;</span>
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;metadata</span><span class="nt">&gt;</span>
   <span class="nt">&lt;groupId</span><span class="nt">&gt;</span>log4j<span class="nt">&lt;/groupId</span><span class="nt">&gt;</span>
   <span class="nt">&lt;artifactId</span><span class="nt">&gt;</span>log4j<span class="nt">&lt;/artifactId</span><span class="nt">&gt;</span>
   <span class="nt">&lt;version</span><span class="nt">&gt;</span>1.1.3<span class="nt">&lt;/version</span><span class="nt">&gt;</span>
@@ -720,7 +720,7 @@ command.line.prop=${command.line.prop}
 <p>From this file, we can see that the groupId we want is “log4j” and the artifactId is “log4j”. We see lots of different version values to choose from; for now, we'll just use the latest version, 1.2.12 (some maven-metadata.xml files may also specify which version is the current release version: see <a href="/ref/current/maven-repository-metadata/repository-metadata.html">repository metadata reference</a>). Alongside the maven-metadata.xml file, we can see a directory corresponding to each version of the log4j library. Inside each of these, we'll find the actual jar file (e.g. log4j-1.2.12.jar) as well as a pom file (this is the <code>pom.xml</code> for the dependency, indicating any further dependencies it might have and other information) and another maven-metadata.xml file. There's also an md5 file corresponding to each of these, which contains an MD5 hash for these files. You can use this to authenticate the library or to figure out which version of a particular library you may be using already.</p>
 <p>Now that we know the information we need, we can add the dependency to our pom.xml:</p>
 
-<pre class="highlight"><code class="language-xml"><span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span> <span class="na">xmlns:xsi</span>=<span class="s">"http://www.w3.org/2001/XMLSchema-instance"</span>
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span> <span class="na">xmlns:xsi</span>=<span class="s">"http://www.w3.org/2001/XMLSchema-instance"</span>
   <span class="na">xsi:schemaLocation</span>=<span class="s">"http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd"</span><span class="nt">&gt;</span>
   <span class="nt">&lt;modelVersion</span><span class="nt">&gt;</span>4.0.0<span class="nt">&lt;/modelVersion</span><span class="nt">&gt;</span>
 
@@ -753,7 +753,7 @@ command.line.prop=${command.line.prop}
 <p>For deploying jars to an external repository, you have to configure the repository url in the <code>pom.xml</code> and the authentication information for connecting to the repository in the <code>settings.xml</code>.</p>
 <p>Here is an example using scp and username/password authentication:</p>
 
-<pre class="highlight"><code class="language-xml"><span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span> <span class="na">xmlns:xsi</span>=<span class="s">"http://www.w3.org/2001/XMLSchema-instance"</span>
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span> <span class="na">xmlns:xsi</span>=<span class="s">"http://www.w3.org/2001/XMLSchema-instance"</span>
   <span class="na">xsi:schemaLocation</span>=<span class="s">"http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd"</span><span class="nt">&gt;</span>
   <span class="nt">&lt;modelVersion</span><span class="nt">&gt;</span>4.0.0<span class="nt">&lt;/modelVersion</span><span class="nt">&gt;</span>
 
@@ -805,7 +805,7 @@ command.line.prop=${command.line.prop}
 <span class="nt">&lt;/project</span><span class="nt">&gt;</span>
 </code></pre>
 
-<pre class="highlight"><code class="language-xml"><span class="nt">&lt;settings</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/SETTINGS/1.2.0"</span> <span class="na">xmlns:xsi</span>=<span class="s">"http://www.w3.org/2001/XMLSchema-instance"</span>
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;settings</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/SETTINGS/1.2.0"</span> <span class="na">xmlns:xsi</span>=<span class="s">"http://www.w3.org/2001/XMLSchema-instance"</span>
   <span class="na">xsi:schemaLocation</span>=<span class="s">"http://maven.apache.org/SETTINGS/1.2.0 https://maven.apache.org/xsd/settings-1.2.0.xsd"</span><span class="nt">&gt;</span>
   ...
   <span class="nt">&lt;servers</span><span class="nt">&gt;</span>
@@ -825,7 +825,7 @@ command.line.prop=${command.line.prop}
 <h2>How do I create documentation?</h2>
 <p>To get you jump started with Maven's documentation system you can use the archetype mechanism to generate a site for your existing project using the following command:</p>
 
-<pre><code class="nohighlight nocode">mvn archetype:generate \
+<pre tabindex="0"><code class="nohighlight nocode">mvn archetype:generate \
   -DarchetypeGroupId=org.apache.maven.archetypes \
   -DarchetypeArtifactId=maven-archetype-site \
   -DgroupId=com.mycompany.app \
@@ -835,7 +835,7 @@ command.line.prop=${command.line.prop}
 <h2>How do I build other types of projects?</h2>
 <p>Note that the lifecycle applies to any project type. For example, back in the base directory we can create a simple web application:</p>
 
-<pre><code class="nohighlight nocode">mvn archetype:generate \
+<pre tabindex="0"><code class="nohighlight nocode">mvn archetype:generate \
     -DarchetypeGroupId=org.apache.maven.archetypes \
     -DarchetypeArtifactId=maven-archetype-webapp \
     -DgroupId=com.mycompany.app \
@@ -843,7 +843,7 @@ command.line.prop=${command.line.prop}
 </code></pre>
 <p>Note that these must all be on a single line. This will create a directory called <code>my-webapp</code> containing the following project descriptor:</p>
 
-<pre class="highlight"><code class="language-xml"><span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span> <span class="na">xmlns:xsi</span>=<span class="s">"http://www.w3.org/2001/XMLSchema-instance"</span>
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span> <span class="na">xmlns:xsi</span>=<span class="s">"http://www.w3.org/2001/XMLSchema-instance"</span>
   <span class="na">xsi:schemaLocation</span>=<span class="s">"http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd"</span><span class="nt">&gt;</span>
   <span class="nt">&lt;modelVersion</span><span class="nt">&gt;</span>4.0.0<span class="nt">&lt;/modelVersion</span><span class="nt">&gt;</span>
 
@@ -868,14 +868,14 @@ command.line.prop=${command.line.prop}
 </code></pre>
 <p>Note the <code>&lt;packaging&gt;</code> element - this tells Maven to build as a WAR. Change into the webapp project's directory and try:</p>
 
-<pre><code class="nohighlight nocode">mvn package
+<pre tabindex="0"><code class="nohighlight nocode">mvn package
 </code></pre>
 <p>You'll see <code>target/my-webapp.war</code> is built, and that all the normal steps were executed.</p></section><section><a id="How_do_I_build_more_than_one_project_at_once.3F"></a>
 <h2>How do I build more than one project at once?</h2>
 <p>The concept of dealing with multiple modules is built in to Maven. In this section, we will show how to build the WAR above, and include the previous JAR as well in one step.</p>
 <p>Firstly, we need to add a parent <code>pom.xml</code> file in the directory above the other two, so it should look like this:</p>
 
-<pre><code class="nohighlight nocode">+- pom.xml
+<pre tabindex="0"><code class="nohighlight nocode">+- pom.xml
 +- my-app
 | +- pom.xml
 | +- src
@@ -889,7 +889,7 @@ command.line.prop=${command.line.prop}
 </code></pre>
 <p>The POM file you'll create should contain the following:</p>
 
-<pre class="highlight"><code class="language-xml"><span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span> <span class="na">xmlns:xsi</span>=<span class="s">"http://www.w3.org/2001/XMLSchema-instance"</span>
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span> <span class="na">xmlns:xsi</span>=<span class="s">"http://www.w3.org/2001/XMLSchema-instance"</span>
   <span class="na">xsi:schemaLocation</span>=<span class="s">"http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd"</span><span class="nt">&gt;</span>
   <span class="nt">&lt;modelVersion</span><span class="nt">&gt;</span>4.0.0<span class="nt">&lt;/modelVersion</span><span class="nt">&gt;</span>
 
@@ -906,7 +906,7 @@ command.line.prop=${command.line.prop}
 </code></pre>
 <p>We'll need a dependency on the JAR from the webapp, so add this to <code>my-webapp/pom.xml</code>:</p>
 
-<pre class="highlight"><code class="language-xml">...
+<pre tabindex="0" class="highlight"><code class="language-xml">...
 <span class="nt">&lt;dependencies</span><span class="nt">&gt;</span>
   <span class="nt">&lt;dependency</span><span class="nt">&gt;</span>
     <span class="nt">&lt;groupId</span><span class="nt">&gt;</span>com.mycompany.app<span class="nt">&lt;/groupId</span><span class="nt">&gt;</span>
@@ -918,7 +918,7 @@ command.line.prop=${command.line.prop}
 </code></pre>
 <p>Finally, add the following <code>&lt;parent&gt;</code> element to both of the other <code>pom.xml</code> files in the subdirectories:</p>
 
-<pre class="highlight"><code class="language-xml"><span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span> <span class="na">xmlns:xsi</span>=<span class="s">"http://www.w3.org/2001/XMLSchema-instance"</span>
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span> <span class="na">xmlns:xsi</span>=<span class="s">"http://www.w3.org/2001/XMLSchema-instance"</span>
   <span class="na">xsi:schemaLocation</span>=<span class="s">"http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd"</span><span class="nt">&gt;</span>
   <span class="nt">&lt;parent</span><span class="nt">&gt;</span>
     <span class="nt">&lt;groupId</span><span class="nt">&gt;</span>com.mycompany.app<span class="nt">&lt;/groupId</span><span class="nt">&gt;</span>
@@ -929,11 +929,11 @@ command.line.prop=${command.line.prop}
 </code></pre>
 <p>Now, try it… from the top level directory, run:</p>
 
-<pre><code class="nohighlight nocode">mvn verify
+<pre tabindex="0"><code class="nohighlight nocode">mvn verify
 </code></pre>
 <p>The WAR has now been created in <code>my-webapp/target/my-webapp.war</code>, and the JAR is included:</p>
 
-<pre><code class="nohighlight nocode">$ jar tvf my-webapp/target/my-webapp-1.0-SNAPSHOT.war
+<pre tabindex="0"><code class="nohighlight nocode">$ jar tvf my-webapp/target/my-webapp-1.0-SNAPSHOT.war
    0 Fri Jun 24 10:59:56 EST 2005 META-INF/
  222 Fri Jun 24 10:59:54 EST 2005 META-INF/MANIFEST.MF
    0 Fri Jun 24 10:59:56 EST 2005 META-INF/maven/

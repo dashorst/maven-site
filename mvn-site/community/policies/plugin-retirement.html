@@ -44,9 +44,9 @@
     <a class="asf" href="https://www.apache.org/"><img class="asf-leaf" src="../../images/oakleaf.svg" width="14" height="22" alt=""><span>Apache</span></a>
     </div>
   </header>
-  <div class="specimen" role="note">
+  <aside class="specimen" aria-label="About this site">
     <p><strong>Specimen.</strong> A proposed redesign of maven.apache.org, built with <code>mvn site</code> and a skin of its own; not the official Apache Maven site. The official site is <a href="https://maven.apache.org/">maven.apache.org</a>. <a href="../../about-this-example.html">About this example</a></p>
-  </div>
+  </aside>
   <div class="frame has-group">
     <nav class="group-nav" aria-labelledby="group-nav-title">
       <p class="up"><a href="../../community/index.html"><svg aria-hidden="true" viewBox="0 0 16 16" width="14" height="14"><path d="M10 3.5L5.5 8l4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>All of Community</a></p>
@@ -85,7 +85,7 @@
 </ol>
 <p>Here's a template for scenario A that can be used for the vote email:</p>
 
-<pre><code class="nohighlight nocode">To: &quot;Maven Developers List&quot; &lt;dev@maven.apache.org&gt;
+<pre tabindex="0"><code class="nohighlight nocode">To: &quot;Maven Developers List&quot; &lt;dev@maven.apache.org&gt;
 Cc: &quot;Maven Users List&quot; &lt;users@maven.apache.org&gt;
 Subject: [VOTE] Retire Maven Foo Plugin
 
@@ -110,7 +110,7 @@ The vote is open for 72 hours.
 </code></pre>
 <p>If the vote is successful, post the result to the dev list and cc the PMC and users list. For instance:</p>
 
-<pre><code class="nohighlight nocode">To: &quot;Maven Developers List&quot; &lt;dev@maven.apache.org&gt;
+<pre tabindex="0"><code class="nohighlight nocode">To: &quot;Maven Developers List&quot; &lt;dev@maven.apache.org&gt;
 Cc: &quot;Maven Users List&quot; &lt;users@maven.apache.org&gt;
 CC: &quot;Maven Project Management Committee List&quot; &lt;private@maven.apache.org&gt;
 Subject: [RESULT] [VOTE] Retire Maven Foo Plugin
@@ -136,11 +136,11 @@ https://maven.apache.org/developers/retirement-plan-plugins.html
 <li>
 <p>Add a prominent notice on the front page of the plugin's site, informing that the plugin is retired. Suggested text:</p>
 
-<pre><code class="nohighlight nocode">Note: This plugin is retired. It is no longer maintained.
+<pre tabindex="0"><code class="nohighlight nocode">Note: This plugin is retired. It is no longer maintained.
 </code></pre>
 <p>If the plugin is moved elsewhere, that should also be added to the plugin's site. Suggested text:</p>
 
-<pre><code class="nohighlight nocode">Note: This plugin has retired from the Apache Maven project,
+<pre tabindex="0"><code class="nohighlight nocode">Note: This plugin has retired from the Apache Maven project,
 but has moved to the &lt;Organization&gt; &lt;Project&gt; project.
 </code></pre></li>
 <li>
@@ -202,7 +202,7 @@ but has moved to the &lt;Organization&gt; &lt;Project&gt; project.
 <li>
 <p>Announce the fact that the plugin has been retired/moved on the announce and users mailing lists. Explain to people what they should do if they would like to continue development of the plugin. Example for retirement email:</p>
 
-<pre><code class="nohighlight nocode">To: announce@maven.apache.org, users@maven.apache.org
+<pre tabindex="0"><code class="nohighlight nocode">To: announce@maven.apache.org, users@maven.apache.org
 Subject: [ANN] Retirement Maven Foo Plugin
 
 Hi,

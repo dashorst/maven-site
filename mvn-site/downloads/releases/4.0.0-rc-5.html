@@ -43,9 +43,9 @@
     <a class="asf" href="https://www.apache.org/"><img class="asf-leaf" src="../../images/oakleaf.svg" width="14" height="22" alt=""><span>Apache</span></a>
     </div>
   </header>
-  <div class="specimen" role="note">
+  <aside class="specimen" aria-label="About this site">
     <p><strong>Specimen.</strong> A proposed redesign of maven.apache.org, built with <code>mvn site</code> and a skin of its own; not the official Apache Maven site. The official site is <a href="https://maven.apache.org/">maven.apache.org</a>. <a href="../../about-this-example.html">About this example</a></p>
-  </div>
+  </aside>
   <div class="frame">
     <main id="content">
       <div class="prose">
@@ -110,16 +110,16 @@
 <h4>macOS: JLine native library may be blocked by Gatekeeper on first use</h4>
 <p>On macOS (especially Apple Silicon), the first invocation of mvn may fail to load the JLine native terminal library with an error such as:</p>
 
-<pre><code class="nohighlight nocode">java.lang.UnsatisfiedLinkError: .../libjline-native/Mac/arm64/libjlinenative.jnilib: dlopen(...): code signature ... not valid for use in process: library load disallowed by system policy
+<pre tabindex="0"><code class="nohighlight nocode">java.lang.UnsatisfiedLinkError: .../libjline-native/Mac/arm64/libjlinenative.jnilib: dlopen(...): code signature ... not valid for use in process: library load disallowed by system policy
 </code></pre>
 <p>This occurs when the binary distribution is downloaded via a web browser, which applies the <code>com.apple.quarantine extended</code> attribute.</p>
 <p>Workaround (one-time fix):</p>
 
-<pre class="highlight"><code class="language-bash">xattr -r -d com.apple.quarantine /path/to/apache-maven-4.0.0-rc-5/lib/jline-native
+<pre tabindex="0" class="highlight"><code class="language-bash">xattr -r -d com.apple.quarantine /path/to/apache-maven-4.0.0-rc-5/lib/jline-native
 </code></pre>
 <p>Recommended download method (avoids the issue entirely):</p>
 
-<pre class="highlight"><code class="language-bash">curl -L -O https://archive.apache.org/dist/maven/maven-4/4.0.0-rc-5/binaries/apache-maven-4.0.0-rc-5-bin.tar.gz
+<pre tabindex="0" class="highlight"><code class="language-bash">curl -L -O https://archive.apache.org/dist/maven/maven-4/4.0.0-rc-5/binaries/apache-maven-4.0.0-rc-5-bin.tar.gz
 tar -xzf apache-maven-4.0.0-rc-5-bin.tar.gz
 </code></pre>
 <p>This is a known issue <a href="https://github.com/apache/maven/pull/10747" class="externalLink">#10747</a> and will be addressed in a future release.</p></section></section></section><section><a id="Changelog"></a>

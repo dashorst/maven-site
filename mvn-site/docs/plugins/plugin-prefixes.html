@@ -43,9 +43,9 @@
     <a class="asf" href="https://www.apache.org/"><img class="asf-leaf" src="../../images/oakleaf.svg" width="14" height="22" alt=""><span>Apache</span></a>
     </div>
   </header>
-  <div class="specimen" role="note">
+  <aside class="specimen" aria-label="About this site">
     <p><strong>Specimen.</strong> A proposed redesign of maven.apache.org, built with <code>mvn site</code> and a skin of its own; not the official Apache Maven site. The official site is <a href="https://maven.apache.org/">maven.apache.org</a>. <a href="../../about-this-example.html">About this example</a></p>
-  </div>
+  </aside>
   <div class="frame has-group">
     <nav class="group-nav" aria-labelledby="group-nav-title">
       <p class="up"><a href="../../docs/index.html"><svg aria-hidden="true" viewBox="0 0 16 16" width="14" height="14"><path d="M10 3.5L5.5 8l4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" /></svg>All of Docs</a></p>
@@ -95,7 +95,7 @@
 </ul>
 <p>If your plugin's artifactId fits this pattern, Maven will automatically map your plugin to the correct prefix in the metadata stored within your plugin's groupId path on the repository. However, if you want to customize the prefix used to reference your plugin, you can specify the prefix directly through a configuration parameter on the <code>maven-plugin-plugin</code> in your plugin's POM:</p>
 
-<pre class="highlight"><code class="language-unknown"><span class="nt">&lt;project</span><span class="nt">&gt;</span>
+<pre tabindex="0" class="highlight"><code class="language-unknown"><span class="nt">&lt;project</span><span class="nt">&gt;</span>
   ...
   <span class="nt">&lt;build</span><span class="nt">&gt;</span>
     ...
@@ -115,7 +115,7 @@
 </code></pre>
 <p>The above configuration will allow users to refer to your plugin by the prefix <strong>somePrefix</strong>, as in the following example:</p>
 
-<pre><code class="nohighlight nocode">mvn somePrefix:goal
+<pre tabindex="0"><code class="nohighlight nocode">mvn somePrefix:goal
 </code></pre></section><section><a id="Mapping_Prefixes_to_Plugins"></a>
 <h2>Mapping Prefixes to Plugins</h2>
 <p>For each groupId configured for searching, Maven will:</p>
@@ -130,13 +130,13 @@
 <p>By default, Maven will search the groupId <strong>org.apache.maven.plugins</strong> for prefix-to-artifactId mappings for the plugins it needs to perform a given build. However, as previously mentioned, the user may have a need for third-party plugins. Since the Maven project is assumed to have control over the default plugin groupId, this means configuring Maven to search other groupId locations for plugin-prefix mappings.</p>
 <p>As it turns out, this is simple. In the Maven settings file (per-user: <code>${user.home}/.m2/settings.xml</code>; global: <code>${maven.home}/conf/settings.xml</code>), you can provide a custom <strong>pluginGroups</strong> section, listing the plugin groupIds you want to search (each groupId goes in its own <strong>pluginGroup</strong> sub-element). For example, if my project uses a Modello model file, I might have the following in my settings:</p>
 
-<pre class="highlight"><code class="language-unknown"><span class="nt">&lt;pluginGroups</span><span class="nt">&gt;</span>
+<pre tabindex="0" class="highlight"><code class="language-unknown"><span class="nt">&lt;pluginGroups</span><span class="nt">&gt;</span>
   <span class="nt">&lt;pluginGroup</span><span class="nt">&gt;</span>org.codehaus.modello<span class="nt">&lt;/pluginGroup</span><span class="nt">&gt;</span>
 <span class="nt">&lt;/pluginGroups</span><span class="nt">&gt;</span>
 </code></pre>
 <p>This allows me to execute the following, which will generate Java classes from the model:</p>
 
-<pre><code class="nohighlight nocode">mvn -Dversion=4.0.0 -Dmodel=maven.mdo modello:java
+<pre tabindex="0"><code class="nohighlight nocode">mvn -Dversion=4.0.0 -Dmodel=maven.mdo modello:java
 </code></pre>
 <p>Maven will always search the following groupId's <strong>after</strong> searching any plugin groups specified in the user's settings:</p>
 <ul>

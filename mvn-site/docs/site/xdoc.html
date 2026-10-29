@@ -43,9 +43,9 @@
     <a class="asf" href="https://www.apache.org/"><img class="asf-leaf" src="../../images/oakleaf.svg" width="14" height="22" alt=""><span>Apache</span></a>
     </div>
   </header>
-  <div class="specimen" role="note">
+  <aside class="specimen" aria-label="About this site">
     <p><strong>Specimen.</strong> A proposed redesign of maven.apache.org, built with <code>mvn site</code> and a skin of its own; not the official Apache Maven site. The official site is <a href="https://maven.apache.org/">maven.apache.org</a>. <a href="../../about-this-example.html">About this example</a></p>
-  </div>
+  </aside>
   <div class="frame has-group">
     <nav class="group-nav" aria-labelledby="group-nav-title">
       <p class="up"><a href="../../docs/index.html"><svg aria-hidden="true" viewBox="0 0 16 16" width="14" height="14"><path d="M10 3.5L5.5 8l4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" /></svg>All of Docs</a></p>
@@ -104,7 +104,7 @@
 <h2>XDoc Sample</h2>
 <p>The following is a sample XDoc document:</p>
 
-<pre class="highlight"><code class="language-unknown"><span class="cp">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
+<pre tabindex="0" class="highlight"><code class="language-unknown"><span class="cp">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
 <span class="nt">&lt;document</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/XDOC/2.0"</span>
   <span class="na">xmlns:xsi</span>=<span class="s">"http://www.w3.org/2001/XMLSchema-instance"</span>
   <span class="na">xsi:schemaLocation</span>=<span class="s">"http://maven.apache.org/XDOC/2.0 http://maven.apache.org/xsd/xdoc-2.0.xsd"</span><span class="nt">&gt;</span>
@@ -152,13 +152,13 @@ code line 2
 <h2>The &lt;source&gt; tag</h2>
 <p><code>&lt;source&gt;</code> tags are special. Anything within this tag is rendered within a "verbatim box" as pre-formatted text. If you are embedding other XML/XHTML markup within the source tags, then you need to place a CDATA section within the source section. Example:</p>
 
-<pre class="highlight"><code class="language-unknown"><span class="nt">&lt;source</span><span class="nt">&gt;</span><span class="cp">&lt;![CDATA[ content here &lt;a href=""&gt;foo&lt;/a&gt;]]&gt;</span><span class="nt">&lt;/source</span><span class="nt">&gt;</span>
+<pre tabindex="0" class="highlight"><code class="language-unknown"><span class="nt">&lt;source</span><span class="nt">&gt;</span><span class="cp">&lt;![CDATA[ content here &lt;a href=""&gt;foo&lt;/a&gt;]]&gt;</span><span class="nt">&lt;/source</span><span class="nt">&gt;</span>
 </code></pre>
 <p><a id="Additional_sectioning"></a></p></section><section><a id="Additional_sectioning"></a>
 <h2>Additional sectioning</h2>
 <p>Since Doxia 2.0, <code>&lt;section&gt;</code> and <code>&lt;subsection&gt;</code> elements produce <code>&lt;h1&gt;</code> and <code>&lt;h2&gt;</code> headings respectively; before 2.0 they started at <code>&lt;h2&gt;</code>. It is therefore perfectly valid to put some sub-headings (<code>&lt;h3&gt;</code> to <code>&lt;h6&gt;</code>) inside a subsection. For instance,</p>
 
-<pre class="highlight"><code class="language-unknown"><span class="nt">&lt;h3</span><span class="nt">&gt;</span>A subsubsection<span class="nt">&lt;/h3</span><span class="nt">&gt;</span>
+<pre tabindex="0" class="highlight"><code class="language-unknown"><span class="nt">&lt;h3</span><span class="nt">&gt;</span>A subsubsection<span class="nt">&lt;/h3</span><span class="nt">&gt;</span>
 </code></pre>
 <p>will produce:</p><section><a id="A_subsubsection"></a>
 <h3>A subsubsection</h3>
@@ -167,7 +167,7 @@ code line 2
 <p>When a document is rendered as part of a Maven site, Doxia creates an anchor for every section and subsection title by itself, deriving the name from the title text and making it unique within the document. A title that is reworded therefore gets a different anchor, which silently breaks links pointing at it.</p>
 <p>For a reference that has to survive editing, name the anchor yourself. Either provide an explicit anchor:</p>
 
-<pre class="highlight"><code class="language-unknown"><span class="nt">&lt;a</span> <span class="na">name</span>=<span class="s">"Section1"</span><span class="nt">/&gt;</span>
+<pre tabindex="0" class="highlight"><code class="language-unknown"><span class="nt">&lt;a</span> <span class="na">name</span>=<span class="s">"Section1"</span><span class="nt">/&gt;</span>
 <span class="nt">&lt;section</span> <span class="na">name</span>=<span class="s">"Section"</span><span class="nt">&gt;</span>
 
   <span class="nt">&lt;a</span> <span class="na">name</span>=<span class="s">"SubSection1"</span><span class="nt">/&gt;</span>
@@ -178,7 +178,7 @@ code line 2
 </code></pre>
 <p>or use an <code>id</code> attribute for section and subsections (note that <code>id</code>'s have to be unique within one xdoc source document):</p>
 
-<pre class="highlight"><code class="language-unknown"><span class="nt">&lt;section</span> <span class="na">name</span>=<span class="s">"Section"</span> <span class="na">id</span>=<span class="s">"Section1"</span><span class="nt">&gt;</span>
+<pre tabindex="0" class="highlight"><code class="language-unknown"><span class="nt">&lt;section</span> <span class="na">name</span>=<span class="s">"Section"</span> <span class="na">id</span>=<span class="s">"Section1"</span><span class="nt">&gt;</span>
 
   <span class="nt">&lt;subsection</span> <span class="na">name</span>=<span class="s">"SubSection"</span> <span class="na">id</span>=<span class="s">"SubSection1"</span><span class="nt">&gt;</span>
   <span class="nt">&lt;/subsection</span><span class="nt">&gt;</span>
@@ -194,7 +194,7 @@ code line 2
 <h3>Don't nest block level elements</h3>
 <p>Wrong:</p>
 
-<pre class="highlight"><code class="language-unknown"><span class="nt">&lt;p</span><span class="nt">&gt;</span>
+<pre tabindex="0" class="highlight"><code class="language-unknown"><span class="nt">&lt;p</span><span class="nt">&gt;</span>
   Here's a list:
   <span class="nt">&lt;ul</span><span class="nt">&gt;</span>
     <span class="nt">&lt;li</span><span class="nt">&gt;</span>item 1<span class="nt">&lt;/li</span><span class="nt">&gt;</span>
@@ -205,7 +205,7 @@ code line 2
 </code></pre>
 <p>Correct:</p>
 
-<pre class="highlight"><code class="language-unknown"><span class="nt">&lt;p</span><span class="nt">&gt;</span>
+<pre tabindex="0" class="highlight"><code class="language-unknown"><span class="nt">&lt;p</span><span class="nt">&gt;</span>
   Here's a list:
 <span class="nt">&lt;/p</span><span class="nt">&gt;</span>
 <span class="nt">&lt;ul</span><span class="nt">&gt;</span>
@@ -221,13 +221,13 @@ code line 2
 <h3>Put inline elements inside block level elements</h3>
 <p>Wrong:</p>
 
-<pre class="highlight"><code class="language-unknown"><span class="nt">&lt;section</span> <span class="na">name</span>=<span class="s">"Downloads"</span><span class="nt">&gt;</span>
+<pre tabindex="0" class="highlight"><code class="language-unknown"><span class="nt">&lt;section</span> <span class="na">name</span>=<span class="s">"Downloads"</span><span class="nt">&gt;</span>
   <span class="nt">&lt;a</span> <span class="na">href</span>=<span class="s">"downloads.html"</span><span class="nt">&gt;</span>Downloads<span class="nt">&lt;/a</span><span class="nt">&gt;</span>
 <span class="nt">&lt;/section</span><span class="nt">&gt;</span>
 </code></pre>
 <p>Correct:</p>
 
-<pre class="highlight"><code class="language-unknown"><span class="nt">&lt;section</span> <span class="na">name</span>=<span class="s">"Downloads"</span><span class="nt">&gt;</span>
+<pre tabindex="0" class="highlight"><code class="language-unknown"><span class="nt">&lt;section</span> <span class="na">name</span>=<span class="s">"Downloads"</span><span class="nt">&gt;</span>
   <span class="nt">&lt;p</span><span class="nt">&gt;</span>
     <span class="nt">&lt;a</span> <span class="na">href</span>=<span class="s">"downloads.html"</span><span class="nt">&gt;</span>Downloads<span class="nt">&lt;/a</span><span class="nt">&gt;</span>
   <span class="nt">&lt;/p</span><span class="nt">&gt;</span>
@@ -241,14 +241,14 @@ code line 2
 <h3>Don't put &lt;source&gt; inside paragraphs</h3>
 <p>Wrong:</p>
 
-<pre class="highlight"><code class="language-unknown"><span class="nt">&lt;p</span><span class="nt">&gt;</span>
+<pre tabindex="0" class="highlight"><code class="language-unknown"><span class="nt">&lt;p</span><span class="nt">&gt;</span>
   The following command executes the program:
   <span class="nt">&lt;source</span><span class="nt">&gt;</span>java -jar CoolApp.jar<span class="nt">&lt;/source</span><span class="nt">&gt;</span>
 <span class="nt">&lt;/p</span><span class="nt">&gt;</span>
 </code></pre>
 <p>Correct:</p>
 
-<pre class="highlight"><code class="language-unknown"><span class="nt">&lt;p</span><span class="nt">&gt;</span>
+<pre tabindex="0" class="highlight"><code class="language-unknown"><span class="nt">&lt;p</span><span class="nt">&gt;</span>
   The following command executes the program:
 <span class="nt">&lt;/p</span><span class="nt">&gt;</span>
 <span class="nt">&lt;source</span><span class="nt">&gt;</span>java -jar CoolApp.jar<span class="nt">&lt;/source</span><span class="nt">&gt;</span>

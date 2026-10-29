@@ -44,9 +44,9 @@
     <a class="asf" href="https://www.apache.org/"><img class="asf-leaf" src="../../images/oakleaf.svg" width="14" height="22" alt=""><span>Apache</span></a>
     </div>
   </header>
-  <div class="specimen" role="note">
+  <aside class="specimen" aria-label="About this site">
     <p><strong>Specimen.</strong> A proposed redesign of maven.apache.org, built with <code>mvn site</code> and a skin of its own; not the official Apache Maven site. The official site is <a href="https://maven.apache.org/">maven.apache.org</a>. <a href="../../about-this-example.html">About this example</a></p>
-  </div>
+  </aside>
   <div class="frame has-group">
     <nav class="group-nav" aria-labelledby="group-nav-title">
       <p class="up"><a href="../../extend/index.html"><svg aria-hidden="true" viewBox="0 0 16 16" width="14" height="14"><path d="M10 3.5L5.5 8l4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>All of Extend</a></p>
@@ -82,7 +82,7 @@
 <p>This above implies following: if the repository contains a file that is &#x201c;not on layout&#x201d; (does not obey layout transformation rules discussed below), that file is &#x201c;not addressable&#x201d; by Maven coordinates, you cannot address that file in Maven nor make it to download it using GAV coordinates!</p>
 <p>The original premise of layout was simplicity: from historical perspective, a remote repository was expected to be run by some computer with file storage (where artifacts were laid down) and served by a HTTP server, essentially publishing the files on file paths for consumption (mainly for HTTP GET requests).</p>
 <p>The transformation rule is quite simple for that matter: consider artifact properties below:</p>
-<table class="bodyTable">
+<div class="table-scroll" tabindex="0"><table class="bodyTable">
 <thead>
 <tr class="a">
 <th>Name</th>
@@ -112,23 +112,23 @@
 <td>extension</td>
 <td>none</td>
 <td><code>tar.gz</code></td></tr></tbody>
-</table>
+</table></div>
 
 <p>And using these properties transformed as above, we can construct following path (if classifier not present):</p>
 
-<pre><code class="nohighlight nocode">${groupId as directory}/${artifactId}/${baseVersion}/${artifactId}-${version}.${extension}
+<pre tabindex="0"><code class="nohighlight nocode">${groupId as directory}/${artifactId}/${baseVersion}/${artifactId}-${version}.${extension}
 </code></pre>
 <p>or if classifier present:</p>
 
-<pre><code class="nohighlight nocode">${groupId as directory}/${artifactId}/${baseVersion}/${artifactId}-${version}-${classifier}.${extension}
+<pre tabindex="0"><code class="nohighlight nocode">${groupId as directory}/${artifactId}/${baseVersion}/${artifactId}-${version}-${classifier}.${extension}
 </code></pre>
 <p>So the example artifact above noted as GAV:</p>
 
-<pre><code class="nohighlight nocode">org.apache.maven:apache-maven:3.8.4:bin:tar.gz
+<pre tabindex="0"><code class="nohighlight nocode">org.apache.maven:apache-maven:3.8.4:bin:tar.gz
 </code></pre>
 <p>is translated to path as:</p>
 
-<pre><code class="nohighlight nocode">org/apache/maven/apache-maven/3.8.4/apache-maven-3.8.4-bin.tar.gz
+<pre tabindex="0"><code class="nohighlight nocode">org/apache/maven/apache-maven/3.8.4/apache-maven-3.8.4-bin.tar.gz
 </code></pre>
 <p>And that is it! By applying this &#x201c;algorithm&#x201d; above to ANY Artifact we can build up the path segment that artifact is expected to be.</p>
 <p>Important note: in case of locally installed artifacts (those you built locally and invoked <code>mvn install</code>) will use Artifact baseVersion property instead of version. The full-blown &#x201c;timestamped&#x201d; versions are used only in remote repositories, when the artifact is deployed.</p></section>

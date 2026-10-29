@@ -44,9 +44,9 @@
     <a class="asf" href="https://www.apache.org/"><img class="asf-leaf" src="../../images/oakleaf.svg" width="14" height="22" alt=""><span>Apache</span></a>
     </div>
   </header>
-  <div class="specimen" role="note">
+  <aside class="specimen" aria-label="About this site">
     <p><strong>Specimen.</strong> A proposed redesign of maven.apache.org, built with <code>mvn site</code> and a skin of its own; not the official Apache Maven site. The official site is <a href="https://maven.apache.org/">maven.apache.org</a>. <a href="../../about-this-example.html">About this example</a></p>
-  </div>
+  </aside>
   <div class="frame has-group">
     <nav class="group-nav" aria-labelledby="group-nav-title">
       <p class="up"><a href="../../community/index.html"><svg aria-hidden="true" viewBox="0 0 16 16" width="14" height="14"><path d="M10 3.5L5.5 8l4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>All of Community</a></p>
@@ -88,20 +88,20 @@
 <p>Then the only difference is with commands to stage the site:</p>
 <p>In Maven Apache Parent POM:</p>
 
-<pre><code class="nohighlight nocode">cd target/checkout
+<pre tabindex="0"><code class="nohighlight nocode">cd target/checkout
 mvn -f docs site
 mvn -f docs scm-publish:publish-scm
 </code></pre>
 <p>In Maven Projects Parent POM:</p>
 
-<pre><code class="nohighlight nocode">cd target/checkout
+<pre tabindex="0"><code class="nohighlight nocode">cd target/checkout
 mvn -f docs site site:stage
 mvn -f docs scm-publish:publish-scm
 </code></pre></section><section><a id="Call_the_vote"></a>
 <h2>Call the vote</h2>
 <p>In the vote, additional to providing links to GitHub release, the parent POMs should include a link to the Git changes since the last release:</p>
 
-<pre><code class="nohighlight nocode">Hi,
+<pre tabindex="0"><code class="nohighlight nocode">Hi,
 
 Changes since the last release:
 for Maven Apache Parent POM:

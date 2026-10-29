@@ -46,9 +46,9 @@
     <a class="asf" href="https://www.apache.org/"><img class="asf-leaf" src="../../images/oakleaf.svg" width="14" height="22" alt=""><span>Apache</span></a>
     </div>
   </header>
-  <div class="specimen" role="note">
+  <aside class="specimen" aria-label="About this site">
     <p><strong>Specimen.</strong> A proposed redesign of maven.apache.org, built with <code>mvn site</code> and a skin of its own; not the official Apache Maven site. The official site is <a href="https://maven.apache.org/">maven.apache.org</a>. <a href="../../about-this-example.html">About this example</a></p>
-  </div>
+  </aside>
   <div class="frame has-group">
     <nav class="group-nav" aria-labelledby="group-nav-title">
       <p class="up"><a href="../../docs/index.html"><svg aria-hidden="true" viewBox="0 0 16 16" width="14" height="14"><path d="M10 3.5L5.5 8l4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" /></svg>All of Docs</a></p>
@@ -83,7 +83,7 @@
 <p><em>toolchains.xml</em> describes the tools installed on a machine, most often JDKs, so that a build can ask for one without naming its path. <a href="toolchains.html">Toolchains and the JDK Maven runs on</a> explains the idea; <a href="build-with-another-jdk.html">Build with a different JDK than Maven runs on</a> puts it to use.</p><section><section><a id="Where_Maven_reads_it"></a>
 <h2>Where Maven reads it</h2>
 <p>Maven reads two files and puts their toolchains in one list, those of the user file first.</p>
-<table class="bodyTable">
+<div class="table-scroll" tabindex="0"><table class="bodyTable">
 <thead>
 <tr class="a">
 <th>File</th>
@@ -100,7 +100,7 @@
 <td><em>conf/toolchains.xml</em> in the Maven installation</td>
 <td><code>-gt</code>, <code>--global-toolchains</code></td>
 <td></td></tr></tbody>
-</table>
+</table></div>
 
 <p>A file in a default location that does not exist is skipped. A file named with <code>-t</code> or <code>-gt</code> must exist, or Maven stops with <code>The specified user toolchains file does not exist</code> or <code>The specified global toolchains file does not exist</code>. The global file that comes with Maven contains only comments, so out of the box all toolchains come from the user file.</p>
 <blockquote>
@@ -110,7 +110,7 @@
 <h2>Elements</h2>
 <p><em>~/.m2/toolchains.xml</em></p>
 
-<pre class="highlight"><code class="language-xml"><span class="nt">&lt;toolchains</span><span class="nt">&gt;</span>
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;toolchains</span><span class="nt">&gt;</span>
   <span class="nt">&lt;toolchain</span><span class="nt">&gt;</span>
     <span class="nt">&lt;type</span><span class="nt">&gt;</span>jdk<span class="nt">&lt;/type</span><span class="nt">&gt;</span>
     <span class="nt">&lt;provides</span><span class="nt">&gt;</span>
@@ -123,7 +123,7 @@
   <span class="nt">&lt;/toolchain</span><span class="nt">&gt;</span>
 <span class="nt">&lt;/toolchains</span><span class="nt">&gt;</span>
 </code></pre>
-<table class="bodyTable">
+<div class="table-scroll" tabindex="0"><table class="bodyTable">
 <thead>
 <tr class="a">
 <th>Element</th>
@@ -146,14 +146,14 @@
 <tr class="a">
 <td><code>&lt;jdkHome&gt;</code></td>
 <td>For type <code>jdk</code>: the JDK's home directory, the directory that contains <code>bin/javac</code>. When it does not exist, the toolchains plugin stops with <code>Misconfigured toolchains. Non-existing JDK home configuration at</code> and the path.</td></tr></tbody>
-</table>
+</table></div>
 
 <p>The root element may carry the namespace <code>http://maven.apache.org/TOOLCHAINS/1.1.0</code>, which Maven 3 uses, or <code>http://maven.apache.org/TOOLCHAINS/1.2.0</code>, which Maven 4 uses, or none. Maven 3.9, 3.10 and 4.0 read all three forms.</p></section><section><a id="How_requirements_match"></a>
 <h2>How requirements match</h2>
 <p>A requirement is the set of labels a project asks for, in the configuration of the toolchains plugin or in a plugin's <code>jdkToolchain</code> parameter:</p>
 <p><em>pom.xml</em></p>
 
-<pre class="highlight"><code class="language-xml"><span class="nt">&lt;toolchains</span><span class="nt">&gt;</span>
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;toolchains</span><span class="nt">&gt;</span>
   <span class="nt">&lt;jdk</span><span class="nt">&gt;</span>
     <span class="nt">&lt;version</span><span class="nt">&gt;</span>[11,18)<span class="nt">&lt;/version</span><span class="nt">&gt;</span>
     <span class="nt">&lt;vendor</span><span class="nt">&gt;</span>temurin<span class="nt">&lt;/vendor</span><span class="nt">&gt;</span>
@@ -170,7 +170,7 @@
 </ul>
 <p>When no toolchain matches, the toolchains plugin stops the build:</p>
 
-<pre><code class="nohighlight nocode">[ERROR] No toolchain matched from 3 found for type jdk
+<pre tabindex="0"><code class="nohighlight nocode">[ERROR] No toolchain matched from 3 found for type jdk
 [ERROR] Cannot find matching toolchain definitions for the following toolchain types:
 jdk [ version='25' ]
 </code></pre></section><section><a id="Discovered_JDK_toolchains"></a>
@@ -188,7 +188,7 @@ jdk [ version='25' ]
 </ul>
 <p>A directory without <code>bin/javac</code> is skipped. The goal keeps what it found in <em>~/.m2/discovered-jdk-toolchains-cache.xml</em>.</p>
 <p>A discovered JDK provides these labels, read from the JDK itself:</p>
-<table class="bodyTable">
+<div class="table-scroll" tabindex="0"><table class="bodyTable">
 <thead>
 <tr class="a">
 <th>Label</th>
@@ -217,10 +217,10 @@ jdk [ version='25' ]
 <tr class="a">
 <td><code>env</code></td>
 <td>The environment variables that point to it, such as <code>JAVA17_HOME</code></td></tr></tbody>
-</table>
+</table></div>
 
 <p>The goal takes its requirement from these parameters:</p>
-<table class="bodyTable">
+<div class="table-scroll" tabindex="0"><table class="bodyTable">
 <thead>
 <tr class="a">
 <th>Parameter</th>
@@ -258,12 +258,12 @@ jdk [ version='25' ]
 <td><code>discoverToolchains</code></td>
 <td><code>toolchain.jdk.discover</code></td>
 <td><code>false</code> to use only the entries of <em>toolchains.xml</em>. Default <code>true</code>.</td></tr></tbody>
-</table>
+</table></div>
 
 <p>The plugin's <a href="../../plugins/maven-toolchains-plugin/toolchains/jdk-discovery.html">JDK discovery page</a> and the <a href="../../plugins/maven-toolchains-plugin/select-jdk-toolchain-mojo.html">description of the goal</a> have the details. The goals <code>display-discovered-jdk-toolchains</code> and <code>generate-jdk-toolchains-xml</code> print the discovered JDKs, the second one in the format of <em>toolchains.xml</em>.</p></section><section><a id="Plugins_that_use_toolchains"></a>
 <h2>Plugins that use toolchains</h2>
 <p>These plugins use the JDK toolchain selected for the module. The plugins with a version in the last column also accept a requirement of their own in a <code>jdkToolchain</code> parameter, which overrides the module's selection for that plugin and is matched against <em>toolchains.xml</em> only.</p>
-<table class="bodyTable">
+<div class="table-scroll" tabindex="0"><table class="bodyTable">
 <thead>
 <tr class="a">
 <th>Plugin</th>
@@ -329,7 +329,7 @@ jdk [ version='25' ]
 <td><a href="https://www.mojohaus.org/keytool/" class="externalLink">keytool-maven-plugin</a> (MojoHaus)</td>
 <td>1.4 to 1.7; not in 2.x</td>
 <td></td></tr></tbody>
-</table>
+</table></div>
 
 <p>The <a href="https://www.xolstice.org/protobuf-maven-plugin/examples/protobuf-toolchain.html" class="externalLink">protobuf-maven-plugin</a> of org.xolstice uses a toolchain of type <code>protobuf</code> for the <code>protoc</code> compiler, since version 0.5.0. A plugin can define its own toolchain type; see <a href="../../plugins/maven-toolchains-plugin/toolchains/custom.html">Custom Toolchains</a>.</p></section></section>
       </div>

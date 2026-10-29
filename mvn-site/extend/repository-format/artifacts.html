@@ -43,9 +43,9 @@
     <a class="asf" href="https://www.apache.org/"><img class="asf-leaf" src="../../images/oakleaf.svg" width="14" height="22" alt=""><span>Apache</span></a>
     </div>
   </header>
-  <div class="specimen" role="note">
+  <aside class="specimen" aria-label="About this site">
     <p><strong>Specimen.</strong> A proposed redesign of maven.apache.org, built with <code>mvn site</code> and a skin of its own; not the official Apache Maven site. The official site is <a href="https://maven.apache.org/">maven.apache.org</a>. <a href="../../about-this-example.html">About this example</a></p>
-  </div>
+  </aside>
   <div class="frame has-group">
     <nav class="group-nav" aria-labelledby="group-nav-title">
       <p class="up"><a href="../../extend/index.html"><svg aria-hidden="true" viewBox="0 0 16 16" width="14" height="14"><path d="M10 3.5L5.5 8l4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" /></svg>All of Extend</a></p>
@@ -82,7 +82,7 @@
 <p>A word about uniqueness: as stated above, GAV coordinates uniquely identify an artifact, but only <strong>within one repository</strong>. Different repositories can contain artifacts with the same GAV. (This is normal with mirror repositories.) If those files are not identical, it can cause severe issues without you noticing it. In short, these cases should be avoided.</p><section><a id="Artifact_Properties"></a>
 <h2>Artifact Properties</h2>
 <p>The artifacts that Maven uses have the following coordinate properties:</p>
-<table class="bodyTable">
+<div class="table-scroll" tabindex="0"><table class="bodyTable">
 <thead>
 <tr class="a">
 <th>Name</th>
@@ -105,7 +105,7 @@
 <tr class="a">
 <td>extension</td>
 <td>The artifact extension (default: “jar”)</td></tr></tbody>
-</table>
+</table></div>
 
 <p>One property worth explaining is a bit of special one: <code>baseVersion</code> is derived from/linked to <code>version</code> (or the other way around, depending on the context). For release artifacts, it has the same value as <code>version</code>, whereas for snapshot artifacts, it has the “non-timestamped snapshot version”. For example, snapshot version “1.0-20220119.164608-1” has the <code>baseVersion</code> “1.0-SNAPSHOT”. So, <code>version</code> and <code>baseVersion</code> are linked, derived from each other, but <strong>they have different values only in the case of snapshots</strong>.</p>
 <p>Maven pom.xml files identify artifacts via coordinates in four different ways, depending on what the artifact is and how it will be used.</p>
@@ -118,7 +118,7 @@
 </ul><section><a id="Coordinates_of_Dependencies"></a>
 <h3>Coordinates of Dependencies</h3>
 <p>Artifact coordinates for dependencies are calculated from a <code>dependency</code> element:</p>
-<table class="bodyTable">
+<div class="table-scroll" tabindex="0"><table class="bodyTable">
 <thead>
 <tr class="a">
 <th>Artifact Coordinate</th>
@@ -144,11 +144,11 @@
 <td>extension</td>
 <td><code>project/dependencies/dependency/type</code></td>
 <td>-&gt; type handler provided, or same as type</td></tr></tbody>
-</table>
+</table></div>
 
 <p>This also applies when the <code>dependency</code> element is a child of a <code>dependencyManagement</code> element.</p>
 <p>Notice that the <code>dependency</code> element does not have an <code>extension</code> element. Instead it has a <code>type</code> element which is used to derive the extension and sometimes the classifier. Out of the box, Maven Core defines 11 “types” <a href="/ref/current/maven-core/artifact-handlers.html">(handled by the same named <code>ArtifactHandler</code> components)</a>:</p>
-<table class="bodyTable">
+<div class="table-scroll" tabindex="0"><table class="bodyTable">
 <thead>
 <tr class="a">
 <th>Type Name</th>
@@ -202,12 +202,12 @@
 <td><strong>any</strong></td>
 <td>any</td>
 <td></td></tr></tbody>
-</table>
+</table></div>
 
 <p>From the table above, you can see that if the dependency type is “war”, the extension is also <code>war</code> and the classifier is the value of the <code>classifier</code> element (if present) or the empty string if the <code>classifier</code> element is not present. If the type is “test-jar”, the extension is “jar” and the classifier is “tests”. If the type is not one of these 11 names, then the value of the “type” is used as the extension. For example, if the <code>type</code> element is <code>&lt;type&gt;tar.gz&lt;/type&gt;</code>, the extension will be <code>tar.gz</code>, and the classifier will be set by the <code>classifier</code> element. This table may be extended by plugins and extensions used in the build.</p>
 <p>This has “interesting” consequences. Consider the artifact <code>org.project:reusable-test-support:1.0:tests:jar</code>. Maybe surprisingly, a dependency on this artifact can be described in two ways:</p>
 
-<pre class="highlight"><code class="language-xml"><span class="nt">&lt;dependency</span><span class="nt">&gt;</span>
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;dependency</span><span class="nt">&gt;</span>
   <span class="nt">&lt;groupId</span><span class="nt">&gt;</span>org.project<span class="nt">&lt;/groupId</span><span class="nt">&gt;</span>
   <span class="nt">&lt;artifactId</span><span class="nt">&gt;</span>reusable-test-support<span class="nt">&lt;/artifactId</span><span class="nt">&gt;</span>
   <span class="nt">&lt;version</span><span class="nt">&gt;</span>1.0<span class="nt">&lt;/version</span><span class="nt">&gt;</span>
@@ -216,7 +216,7 @@
 </code></pre>
 <p>and the equivalent dependency would be:</p>
 
-<pre class="highlight"><code class="language-xml"><span class="nt">&lt;dependency</span><span class="nt">&gt;</span>
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;dependency</span><span class="nt">&gt;</span>
   <span class="nt">&lt;groupId</span><span class="nt">&gt;</span>org.project<span class="nt">&lt;/groupId</span><span class="nt">&gt;</span>
   <span class="nt">&lt;artifactId</span><span class="nt">&gt;</span>reusable-test-support<span class="nt">&lt;/artifactId</span><span class="nt">&gt;</span>
   <span class="nt">&lt;version</span><span class="nt">&gt;</span>1.0<span class="nt">&lt;/version</span><span class="nt">&gt;</span>
@@ -227,7 +227,7 @@
 <p>Note: In this case, the first way is somewhat “explicit”, and is recommended. When the type handler carries important extra information such as custom packaging, using <code>type</code> is more appropriate. Simply put, in this example the type “test-jar” is like an alias for ordinary JARs with the “tests” classifier.</p></section><section><a id="Coordinates_of_POM_Files"></a>
 <h3>Coordinates of POM Files</h3>
 <p>The coordinates of a POM artifact that contain a project's pom.xml file are derived from the top-level <code>groupId</code>, <code>artifactId</code>, and <code>version</code> elements in that pom.xml file:</p>
-<table class="bodyTable">
+<div class="table-scroll" tabindex="0"><table class="bodyTable">
 <thead>
 <tr class="a">
 <th>Artifact Coordinate</th>
@@ -253,12 +253,12 @@
 <td>extension</td>
 <td>-</td>
 <td>“pom” (always)</td></tr></tbody>
-</table>
+</table></div>
 
 <p>Coordinate values are computed after the POM is made into an effective POM; that is, after parent values have been inherited.</p></section><section><a id="Coordinates_of_Build_Plugins_and_Build_Extensions"></a>
 <h3>Coordinates of Build Plugins and Build Extensions</h3>
 <p>Build plugin and build extension artifacts are JARs. For build plugins, this is how the corresponding coordinates are computed from a <code>plugin</code> element:</p>
-<table class="bodyTable">
+<div class="table-scroll" tabindex="0"><table class="bodyTable">
 <thead>
 <tr class="a">
 <th>Artifact Coordinate</th>
@@ -284,11 +284,11 @@
 <td>extension</td>
 <td>-</td>
 <td>-&gt; “jar” (always)</td></tr></tbody>
-</table>
+</table></div>
 
 <p>This also applies when the <code>plugin</code> element is a child of a <code>pluginManagement</code> element.</p>
 <p>Build extensions are similarly computed from an <code>extension</code> element (which is not the same as and should not be confused with the extension artifact coordinate):</p>
-<table class="bodyTable">
+<div class="table-scroll" tabindex="0"><table class="bodyTable">
 <thead>
 <tr class="a">
 <th>Artifact Coordinate</th>
@@ -314,7 +314,7 @@
 <td>extension</td>
 <td>-</td>
 <td>-&gt; “jar” (always)</td></tr></tbody>
-</table>
+</table></div>
 
 <p>Note: The <em>extension artifact coordinate</em> and a <em>Maven build extension</em> are two completely different things that unfortunately share the name “extension”. A <a href="https://maven.apache.org/docs/plugins/use-extensions.html" class="externalLink">Maven build extension</a> is a JAR archive that is added to the project class loader's classpath. It is referenced by an <code>extension</code> element in pom.xml. An extension coordinate is usually the filename extension of an artifact's JAR file such as jar, zip, or txt. This extension is most often set to an implicit default value, but can be changed by the <code>type</code> child of a <code>dependency</code> element.</p></section></section><section><a id="Summary"></a>
 <h2>Summary</h2>
