@@ -53,9 +53,13 @@ https://dashorst.github.io/maven-site/.
 
 ## Component sites
 
-The skin also draws the sites of plugins and other components. A site without the "Site" menu gets
-the five sections of the main site as tabs, the crumbs Docs › Plugins, and its own menus in the side
-panel (at the bottom of the page on a phone), with its version and a link to its other versions. Its
+The skin also draws the sites of plugins and other components. A site without the "Site" menu keeps
+the five sections of the main site as tabs, and gets a bar of its own under them: crumbs (Docs ›
+Plugins for a plugin, Extend › Building blocks for anything else), its name, version and other
+versions, its description from the POM, and its own sections, made from the menus of its `site.xml`
+(each page of the first menu is a section, Plugin Documentation as Goals; every other menu is one
+section). The side panel lists the pages of the current section. The home page opens with the
+`<plugin>` or `<dependency>` to add to a POM. Its
 `site.xml` can set `<custom><mavenSite>`: `main` (the main site, default https://maven.apache.org/),
 `section`, `group`, `groupHref` and `archives`; see `site.vm`. `doxia/plugin-demo.sh` builds the 37
 active plugins that have a repository of their own (`doxia/plugin-sites.txt`), each at the release on

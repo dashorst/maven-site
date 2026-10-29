@@ -16,13 +16,11 @@ KIND, either express or implied.  See the License for the
 specific language governing permissions and limitations
 under the License.
 *#
-## What a page of a component site says about itself: the version it documents, where to edit it, or
-## for a page generated from the code (a goal, a report), where that code is.
+## What a page of a component site says about itself: where to edit it, or for a page generated from the
+## code (a goal, a report), where that code is. The version is in the component's bar.
 ## Set by site.vm: $factsClass, $editUrl, $sourceUrl, $pageTitle.
 <section class="$factsClass" aria-label="About this page">
   <dl>
-    <dt>Version</dt>
-    <dd>$esc.xml( $project.version )</dd>
 #if( $editUrl )
     <dt>Source</dt>
     <dd><a href="$editUrl">Edit this page</a></dd>

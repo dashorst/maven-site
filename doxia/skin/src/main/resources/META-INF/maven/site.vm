@@ -69,8 +69,9 @@ under the License.
 ##   <custom><mavenSite>
 ##     <main>https://maven.apache.org/</main>          the main site, for the tabs and the search; a
 ##                                                      relative URL is relative to the component's root
-##     <section>Docs</section>                          the tab the component belongs to
-##     <group>Plugins</group> <groupHref>docs/plugins/index.html</groupHref>
+##     <section>Docs</section>                          the tab the component belongs to: Docs for a
+##                                                      plugin, Extend for anything else
+##     <group>Plugins</group> <groupHref>docs/plugins/index.html</groupHref>   or Building blocks
 ##     <archives>https://maven.apache.org/plugins-archives/</archives>   its other versions
 ##   </mavenSite></custom>
 ## ---------------------------------------------------------------------------------------------
@@ -85,9 +86,15 @@ under the License.
 #if( $isComponent )
 #**##custom( "main" "https://maven.apache.org/" )#set( $root = $customValue )
 #**##if( !$root.contains( "://" ) )#set( $root = "$relativePath/$root" )#end
-#**##custom( "section" "Docs" )#set( $componentSection = $customValue )
-#**##custom( "group" "Plugins" )#set( $componentGroup = $customValue )
-#**##custom( "groupHref" "docs/plugins/index.html" )#set( $componentGroupHref = "$root$customValue" )
+#**##set( $isPlugin = $project.packaging == "maven-plugin" )
+#**##if( $isPlugin )
+#*  *##set( $defaults = ["Docs", "Plugins", "docs/plugins/index.html"] )
+#**##else
+#*  *##set( $defaults = ["Extend", "Building blocks", "extend/building-blocks/index.html"] )
+#**##end
+#**##custom( "section" $defaults.get( 0 ) )#set( $componentSection = $customValue )
+#**##custom( "group" $defaults.get( 1 ) )#set( $componentGroup = $customValue )
+#**##custom( "groupHref" $defaults.get( 2 ) )#set( $componentGroupHref = "$root$customValue" )
 #**##custom( "archives" "" )#set( $archives = $customValue )
 #**##foreach( $t in [ ["Docs", "docs/index.html"], ["Downloads", "download.html"], ["News", "news/index.html"], ["Extend", "extend/index.html"], ["Community", "community/index.html"] ] )
 #*  *##set( $current = $t.get( 0 ) == $componentSection )
@@ -95,6 +102,57 @@ under the License.
 #**##end
 #else
 #**##set( $root = "$relativePath/" )
+#end
+##
+## A component's own sections, the tabs of its bar, from the menus of its site.xml: each page of the
+## first menu ("Overview") is a section of its own, Introduction as Overview and Plugin Documentation as
+## Goals; every other menu is one section, with its pages and their sub-pages. A goal page belongs to
+## Goals. The menus the parent adds for all of maven.apache.org are left out: the header has them.
+#set( $parts = [] )
+#set( $part = false )
+#if( $isComponent )
+#**##foreach( $t in $tabs )#if( $t.current )#set( $componentSectionHref = $t.href )#end#end
+#**##set( $componentName = $project.name.replaceFirst( "^Apache Maven ", "" ) )
+#**##set( $componentDescription = false )
+#**##if( $project.description )#set( $componentDescription = $project.description.replaceAll( "\s+", " " ).trim() )#end
+#**##set( $first = true )
+#**##foreach( $m in $site.body.menus )
+#*  *##if( $m.name != "Maven Projects" && $m.name != "ASF" && !$m.items.isEmpty() )
+#*    *##if( $first )
+#*      *##foreach( $p in $m.items )
+#*        *##if( !$site.isLink( $p.href ) )
+#*          *##set( $label = $p.name )
+#*          *##if( $label == "Introduction" )#set( $label = "Overview" )#elseif( $label == "Plugin Documentation" )#set( $label = "Goals" )#end
+#*          *##set( $h = "#href( $p )" )
+#*          *##set( $pages = [ { "name": $p.name, "href": $h, "sub": false } ] )
+#*          *##foreach( $c in $p.items )#set( $ch = "#href( $c )" )#set( $added = $pages.add( { "name": $c.name, "href": $ch, "sub": true } ) )#end
+#*          *##set( $added = $parts.add( { "name": $label, "href": $h, "pages": $pages } ) )
+#*        *##end
+#*      *##end
+#*      *##set( $first = false )
+#*    *##else
+#*      *##set( $pages = [] )
+#*      *##foreach( $p in $m.items )
+#*        *##if( !$site.isLink( $p.href ) )
+#*          *##set( $h = "#href( $p )" )
+#*          *##set( $added = $pages.add( { "name": $p.name, "href": $h, "sub": false } ) )
+#*          *##foreach( $c in $p.items )#set( $ch = "#href( $c )" )#set( $added = $pages.add( { "name": $c.name, "href": $ch, "sub": true } ) )#end
+#*        *##end
+#*      *##end
+#*      *##if( !$pages.isEmpty() )
+#*        *##set( $label = $m.name )
+#*        *##if( $label == "Project Documentation" )#set( $label = "Project" )#end
+#*        *##set( $added = $parts.add( { "name": $label, "href": $pages.get( 0 ).href, "pages": $pages } ) )
+#*      *##end
+#*    *##end
+#*  *##end
+#**##end
+#**##foreach( $pt in $parts )
+#*  *##foreach( $p in $pt.pages )#if( !$part && $p.href == $alignedFileName )#set( $part = $pt )#end#end
+#**##end
+#**##if( !$part && $alignedFileName.endsWith( "-mojo.html" ) )
+#*  *##foreach( $pt in $parts )#if( !$part && $pt.href == "plugin-info.html" )#set( $part = $pt )#end#end
+#**##end
 #end
 #set( $section = false )
 #set( $group = false )
@@ -131,7 +189,7 @@ under the License.
 #**##if( $index < $group.items.size() - 1 )#set( $next = $group.items.get( $index + 1 ) )#end
 #end
 #set( $isHome = !$isComponent && $alignedFileName == "index.html" && $relativePath == "." )
-#set( $showGroup = $isComponent || $group && !$isLanding && $group.items.size() > 1 )
+#set( $showGroup = ( $isComponent && $part && $part.pages.size() > 1 ) || ( !$isComponent && $group && !$isLanding && $group.items.size() > 1 ) )
 ##
 ## What the page says about itself. Overview pages (home, sections, groups, and pages whose front
 ## matter says `facts: none`) say nothing.
@@ -172,6 +230,30 @@ under the License.
 ## with Tab (WCAG 2.1.1); js/page.js takes the ones that fit out of the tab order again.
 #set( $bodyContent = $bodyContent.replace( '<pre', '<pre tabindex="0"' ) )
 #set( $bodyContent = $bodyContent.replace( '<table', '<div class="table-scroll" tabindex="0"><table' ).replace( '</table>', '</table></div>' ) )
+## A component's home page opens with how to use it: the plugin or dependency to add to a POM.
+#if( $isComponent && $alignedFileName == "index.html" )
+#**##if( $isPlugin )
+#*  *##define( $snippet )<p class="snippet-label">In the <code>&lt;build&gt;&lt;plugins&gt;</code> of your <code>pom.xml</code>:</p>
+<pre class="highlight" tabindex="0"><code><span class="nt">&lt;plugin&gt;</span>
+  <span class="nt">&lt;groupId&gt;</span>$esc.xml( $project.groupId )<span class="nt">&lt;/groupId&gt;</span>
+  <span class="nt">&lt;artifactId&gt;</span>$esc.xml( $project.artifactId )<span class="nt">&lt;/artifactId&gt;</span>
+  <span class="nt">&lt;version&gt;</span>$esc.xml( $project.version )<span class="nt">&lt;/version&gt;</span>
+<span class="nt">&lt;/plugin&gt;</span></code></pre>#end
+#**##else
+#*  *##define( $snippet )<p class="snippet-label">In the <code>&lt;dependencies&gt;</code> of your <code>pom.xml</code>:</p>
+<pre class="highlight" tabindex="0"><code><span class="nt">&lt;dependency&gt;</span>
+  <span class="nt">&lt;groupId&gt;</span>$esc.xml( $project.groupId )<span class="nt">&lt;/groupId&gt;</span>
+  <span class="nt">&lt;artifactId&gt;</span>$esc.xml( $project.artifactId )<span class="nt">&lt;/artifactId&gt;</span>
+  <span class="nt">&lt;version&gt;</span>$esc.xml( $project.version )<span class="nt">&lt;/version&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span></code></pre>#end
+#**##end
+#**##set( $snippetHtml = "$snippet" )
+#**##if( $bodyContent.contains( "</h1>" ) )
+#*  *##set( $bodyContent = $bodyContent.replaceFirst( "</h1>", "</h1>$snippetHtml" ) )
+#**##else
+#*  *##set( $bodyContent = "$snippetHtml$bodyContent" )
+#**##end
+#end
 #set( $pageTitle = $shortTitle )
 #if( $item )#set( $pageTitle = $item.name )#end
 #set( $currentYear = $date.year )
@@ -233,39 +315,43 @@ under the License.
   <aside class="specimen" aria-label="About this site">
     <p><strong>Specimen.</strong> A proposed redesign of maven.apache.org, built with <code>mvn site</code> and a skin of its own; not the official Apache Maven site. The official site is <a href="https://maven.apache.org/">maven.apache.org</a>. <a href="${root}about-this-example.html">About this example</a></p>
   </aside>
+#if( $isComponent )
+  <section class="component-bar" aria-label="$esc.xml( $componentName )">
+    <div class="component-bar-inner">
+      <p class="crumbs"><a href="$componentSectionHref">$esc.xml( $componentSection )</a> <span aria-hidden="true">›</span> <a href="$componentGroupHref">$esc.xml( $componentGroup )</a></p>
+      <div class="component-title">
+        <a class="component-name" href="$relativePath/index.html">$esc.xml( $componentName )</a>
+        <span class="component-version">$esc.xml( $project.version )#if( $archives ) · <a class="other-versions" href="$archives" data-prefix="${project.artifactId}-">Other versions</a>#end</span>
+#**##if( $componentDescription )
+        <p class="component-description">$esc.xml( $componentDescription )</p>
+#**##end
+      </div>
+#**##if( !$parts.isEmpty() )
+      <nav class="component-tabs" aria-label="$esc.xml( $componentName )">
+        <ul>
+#*  *##foreach( $pt in $parts )
+          <li><a href="$pt.href"#if( $pt == $part ) aria-current="#if( $pt.href == $alignedFileName )page#{else}true#end"#end>$esc.xml( $pt.name )</a></li>
+#*  *##end
+        </ul>
+      </nav>
+#**##end
+    </div>
+  </section>
+#end
 #if( $isHome )
   <main id="content" class="wide">
 $bodyContent
   </main>
 #else
   <div class="frame#if( $showGroup ) has-group#end#if( !$showFacts ) no-rail#end">
-#**##if( $isComponent )
-    <nav class="group-nav component-nav" aria-labelledby="group-nav-title">
-      <p class="up"><a href="$componentGroupHref"><svg aria-hidden="true" viewBox="0 0 16 16" width="14" height="14"><path d="M10 3.5L5.5 8l4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>All $esc.xml( $componentGroup.toLowerCase() )</a></p>
-      <h2 id="group-nav-title"><a href="$relativePath/index.html">$esc.xml( $project.name )</a></h2>
-      <p class="component-version">Version $esc.xml( $project.version )#if( $archives ) · <a class="other-versions" href="$archives" data-prefix="${project.artifactId}-">Other versions</a>#end</p>
-#*  *##foreach( $m in $site.body.menus )
-#*    *##if( $m.name != "Maven Projects" && $m.name != "ASF" && !$m.items.isEmpty() )
-      <h3>$esc.xml( $m.name )</h3>
+#**##if( $isComponent && $showGroup )
+    <nav class="group-nav" aria-labelledby="group-nav-title">
+      <h2 id="group-nav-title"><a href="$part.href">$esc.xml( $part.name )</a></h2>
       <ul class="page-list">
-#*      *##foreach( $p in $m.items )
-#*        *##set( $h = "#href( $p )" )
-#*        *##set( $open = $h == $alignedFileName || $h == "plugin-info.html" && $alignedFileName.endsWith( "-mojo.html" ) )
-#*        *##foreach( $c in $p.items )#if( "#href( $c )" == $alignedFileName )#set( $open = true )#end#end
-        <li><a href="$h"#if( $h == $alignedFileName ) aria-current="page"#elseif( $open ) aria-current="true"#end>$esc.xml( $p.name )</a>
-#*        *##if( $open && !$p.items.isEmpty() )
-          <ul>
-#*          *##foreach( $c in $p.items )
-#*            *##set( $ch = "#href( $c )" )
-            <li><a href="$ch"#if( $ch == $alignedFileName ) aria-current="page"#end>$esc.xml( $c.name )</a></li>
-#*          *##end
-          </ul>
-#*        *##end
-        </li>
-#*      *##end
-      </ul>
-#*    *##end
+#*  *##foreach( $p in $part.pages )
+        <li#if( $p.sub ) class="sub"#end><a href="$p.href"#if( $p.href == $alignedFileName ) aria-current="page"#end>$esc.xml( $p.name )</a></li>
 #*  *##end
+      </ul>
     </nav>
 #**##elseif( $showGroup )
     <nav class="group-nav" aria-labelledby="group-nav-title">
@@ -276,9 +362,7 @@ $bodyContent
     </nav>
 #**##end
     <main id="content"#if( $kind ) data-kind="$kind"#end#if( $since ) data-since="$since"#end>
-#**##if( $isComponent )
-      <p class="crumbs"><a href="${root}docs/index.html">$esc.xml( $componentSection )</a> <span aria-hidden="true">›</span> <a href="$componentGroupHref">$esc.xml( $componentGroup )</a>#if( $alignedFileName != "index.html" ) <span aria-hidden="true">›</span> <a href="$relativePath/index.html">$esc.xml( $project.name )</a>#end</p>
-#**##elseif( $section && "#href( $section )" != $alignedFileName )
+#**##if( !$isComponent && $section && "#href( $section )" != $alignedFileName )
       <p class="crumbs"><a href="#href( $section )">$esc.xml( $section.name )</a>#if( $group && "#href( $group )" != $alignedFileName ) <span aria-hidden="true">›</span> <a href="#href( $group )">$esc.xml( $group.name )</a>#end</p>
 #**##end
       <div class="prose">
@@ -294,16 +378,14 @@ $bodyContent
 #**##end
 $bodyContent
       </div>
-#**##if( $isComponent )
+#**##if( $isComponent && $showGroup )
       <nav class="more component-more" aria-labelledby="more-title">
-        <h2 id="more-title">More in <a href="$relativePath/index.html">$esc.xml( $project.name )</a></h2>
-        <p class="component-version">Version $esc.xml( $project.version )#if( $archives ) · <a href="$archives">Other versions</a>#end</p>
-#*  *##foreach( $m in $site.body.menus )
-#*    *##if( $m.name != "Maven Projects" && $m.name != "ASF" && !$m.items.isEmpty() )
-        <h3>$esc.xml( $m.name )</h3>
-        #pageList( $m.items "more-list" )
-#*    *##end
+        <h2 id="more-title">More in <a href="$part.href">$esc.xml( $part.name )</a></h2>
+        <ul class="more-list">
+#*  *##foreach( $p in $part.pages )
+          <li><a href="$p.href"#if( $p.href == $alignedFileName ) aria-current="page"#end>$esc.xml( $p.name )</a></li>
 #*  *##end
+        </ul>
       </nav>
 #**##end
 #**##if( $showGroup && $group )
