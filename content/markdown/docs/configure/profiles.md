@@ -507,7 +507,7 @@ _Note_: A profile which tries to modify other elements of the `<build>` element 
 
 #### Examples
 
-The following example defines a profile to execute the [Maven Invoker Plugin](https://maven.apache.org/plugins/maven-invoker-plugin/):
+The following example defines a profile to execute the [Maven Invoker Plugin](../../plugins/maven-invoker-plugin/):
 
 ```xml
 <profile>

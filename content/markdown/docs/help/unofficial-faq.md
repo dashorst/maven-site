@@ -1829,7 +1829,7 @@ change and then edit the release.properties file to reflect the fact that taggin
 ### How do I filter resources in the war?
 
 The best resource for filtering resources in the war can be found here:
-[Adding filtering webresources](https://maven.apache.org/plugins/maven-war-plugin/examples/adding-filtering-webresources.html)
+[Adding filtering webresources](../../plugins/maven-war-plugin/examples/adding-filtering-webresources.html)
 
 ### Does maven support automated build and test from non-Java applications?
 

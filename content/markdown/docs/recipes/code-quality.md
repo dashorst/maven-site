@@ -35,7 +35,7 @@ the Maven community:
 - [Squale](http://www.squale.org/)
 - [XRadar](http://xradar.sourceforge.net)
 
-[PMD]: https://maven.apache.org/plugins/maven-pmd-plugin/
-[Checkstyle]: https://maven.apache.org/plugins/maven-checkstyle-plugin/
+[PMD]: ../../plugins/maven-pmd-plugin/
+[Checkstyle]: ../../plugins/maven-checkstyle-plugin/
 [JDepend]: https://mojohaus.org/jdepend-maven-plugin/
 

@@ -1,7 +1,7 @@
 #!/bin/bash
 # Publishes the version built by `mvn site` on GitHub Pages of the fork, next to the Jekyll
-# example: https://dashorst.github.io/maven-site/mvn-site/, with maven-compiler-plugin's site in the
-# same skin (doxia/plugin-demo.sh). Builds with doxia/build.sh and
+# example: https://dashorst.github.io/maven-site/mvn-site/, with the plugin sites in the same skin
+# (doxia/plugin-demo.sh; REUSE_PLUGINS=1 publishes the ones already built). Builds with doxia/build.sh and
 # commits target/site/ as mvn-site/ on the gh-pages branch, kept in the worktree .gh-pages/
 # (see jekyll/publish.sh, which leaves mvn-site/ in place).
 #
@@ -28,9 +28,16 @@ java -cp "$classpath" src/main/java/org/apache/maven/site/check/Addresses.java p
 # The build links the component sites (ref, surefire, ...) to ../components/, as on the ASF
 # server; GitHub Pages refuses to publish links that lead nowhere.
 find "$TREE/mvn-site" -type l -delete
-# one plugin site in the same skin, where maven.apache.org has it
-doxia/plugin-demo.sh "$@"
-cp -a target/plugin-demo/site "$TREE/mvn-site/plugins/maven-compiler-plugin"
+# the plugin sites in the same skin, where maven.apache.org has them
+[[ -n "${REUSE_PLUGINS:-}" ]] || doxia/plugin-demo.sh "$@"
+cp -a target/plugin-demo/sites/. "$TREE/mvn-site/"
+# GitHub Pages serves the example under /maven-site/mvn-site/, not at the root of a host as
+# maven.apache.org does: links from the root (/plugins/...) become relative to the page.
+find "$TREE/mvn-site" -name '*.html' -print0 | while IFS= read -r -d '' page; do
+    depth=$(tr -cd / <<< "${page#"$TREE/mvn-site/"}" | wc -c)
+    up=./; (( depth > 0 )) && up=$(printf '../%.0s' $(seq 1 "$depth"))
+    perl -pi -e "s#((?:href|src)=\")/(?!/)#\${1}$up#g" "$page"
+done
 git -C "$TREE" add -A mvn-site
 git -C "$TREE" commit -q -m "Publish doxia-demo at $commit in mvn-site/" || echo "Nothing changed."
 if $push; then

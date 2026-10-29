@@ -81,7 +81,7 @@ For more information on modules, read the [Doxia Module Guide](modules.html).
 
 ## Doxia Site Tools
 
-The _Site Tools_ are a collection of tools to renderer an output. The main tool used by Maven, specifically the [Maven Site Plugin](https://maven.apache.org/plugins/maven-site-plugin/), is the _doxia-site-renderer_ which renders in HTML any documents written with supported markup syntax. It uses [Velocity templates](http://velocity.apache.org/) to customize the renderer and the _site-decoration-model_ tool to decorate the renderer. This component describes the layout of the site defined in the _site.xml_ file. 
+The _Site Tools_ are a collection of tools to renderer an output. The main tool used by Maven, specifically the [Maven Site Plugin](../../plugins/maven-site-plugin/), is the _doxia-site-renderer_ which renders in HTML any documents written with supported markup syntax. It uses [Velocity templates](http://velocity.apache.org/) to customize the renderer and the _site-decoration-model_ tool to decorate the renderer. This component describes the layout of the site defined in the _site.xml_ file. 
 
 The _doxia-doc-renderer_ tool is used to renderer any document in another document. 
 

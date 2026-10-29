@@ -1,0 +1,60 @@
+# Licensed to the Apache Software Foundation (ASF) under one
+# or more contributor license agreements.  See the NOTICE file
+# distributed with this work for additional information
+# regarding copyright ownership.  The ASF licenses this file
+# to you under the Apache License, Version 2.0 (the
+# "License"); you may not use this file except in compliance
+# with the License.  You may obtain a copy of the License at
+#
+#   http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing,
+# software distributed under the License is distributed on an
+# "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+# KIND, either express or implied.  See the License for the
+# specific language governing permissions and limitations
+# under the License.
+
+# The plugin sites doxia/plugin-demo.sh builds with the example's skin: the active plugins that have a
+# repository of their own, at the version on maven.apache.org (content/markdown/docs/plugins/available-plugins.md).
+# <path on the site> <repository in github.com/apache> <release tag> [Maven options]
+# Plugins released on a parent older than maven-parent 44 use maven-site-plugin 3.12 (Doxia 1); the
+# skin needs Doxia Sitetools 2, so they are built with the site plugin of a newer parent, and without
+# the team page's Gravatar images, as newer parents do.
+plugins/maven-clean-plugin maven-clean-plugin maven-clean-plugin-3.5.0
+plugins/maven-compiler-plugin maven-compiler-plugin maven-compiler-plugin-3.16.0
+plugins/maven-deploy-plugin maven-deploy-plugin maven-deploy-plugin-3.2.0
+plugins/maven-install-plugin maven-install-plugin maven-install-plugin-3.2.0
+plugins/maven-resources-plugin maven-resources-plugin maven-resources-plugin-3.5.0
+plugins/maven-site-plugin maven-site-plugin maven-site-plugin-3.22.0
+plugins/maven-ear-plugin maven-ear-plugin maven-ear-plugin-3.4.0
+plugins/maven-ejb-plugin maven-ejb-plugin maven-ejb-plugin-3.3.0
+plugins/maven-jar-plugin maven-jar-plugin maven-jar-plugin-3.5.1
+plugins/maven-rar-plugin maven-rar-plugin maven-rar-plugin-3.1.0
+plugins/maven-war-plugin maven-war-plugin maven-war-plugin-3.5.1
+plugins/maven-acr-plugin maven-acr-plugin maven-acr-plugin-3.2.0
+plugins/maven-shade-plugin maven-shade-plugin maven-shade-plugin-3.6.2
+plugins/maven-source-plugin maven-source-plugin maven-source-plugin-3.4.0
+plugins/maven-jlink-plugin maven-jlink-plugin maven-jlink-plugin-3.3.0
+plugins/maven-jmod-plugin maven-jmod-plugin maven-jmod-plugin-3.0.0
+plugins/maven-changelog-plugin maven-changelog-plugin maven-changelog-plugin-3.0.0-M2
+plugins/maven-changes-plugin maven-changes-plugin maven-changes-plugin-3.0.0-M3
+plugins/maven-checkstyle-plugin maven-checkstyle-plugin maven-checkstyle-plugin-3.6.0 -Dversion.maven-site-plugin=3.22.0 -Dversion.maven-project-info-reports-plugin=3.9.0 -Dteamlist.showAvatarImages=false
+plugins/maven-doap-plugin maven-doap-plugin maven-doap-plugin-3.0.0-M2
+plugins/maven-javadoc-plugin maven-javadoc-plugin maven-javadoc-plugin-3.12.0
+plugins/maven-jdeps-plugin maven-jdeps-plugin maven-jdeps-plugin-3.2.0
+plugins/maven-pmd-plugin maven-pmd-plugin maven-pmd-plugin-3.28.0
+plugins/maven-project-info-reports-plugin maven-project-info-reports-plugin maven-project-info-reports-plugin-3.9.0 -Dversion.maven-site-plugin=3.22.0 -Dversion.maven-project-info-reports-plugin=3.9.0 -Dteamlist.showAvatarImages=false
+plugins/maven-antrun-plugin maven-antrun-plugin maven-antrun-plugin-3.2.0
+plugins/maven-artifact-plugin maven-artifact-plugin maven-artifact-plugin-3.7.0
+plugins/maven-assembly-plugin maven-assembly-plugin maven-assembly-plugin-3.8.0
+plugins/maven-dependency-plugin maven-dependency-plugin maven-dependency-plugin-3.11.0
+plugins/maven-gpg-plugin maven-gpg-plugin maven-gpg-plugin-3.2.8
+plugins/maven-help-plugin maven-help-plugin maven-help-plugin-3.5.2
+plugins/maven-invoker-plugin maven-invoker-plugin maven-invoker-plugin-3.10.1
+plugins/maven-jarsigner-plugin maven-jarsigner-plugin maven-jarsigner-plugin-3.1.0 -Dversion.maven-site-plugin=3.22.0 -Dversion.maven-project-info-reports-plugin=3.9.0 -Dteamlist.showAvatarImages=false
+plugins/maven-jdeprscan-plugin maven-jdeprscan-plugin maven-jdeprscan-plugin-3.0.0
+plugins/maven-remote-resources-plugin maven-remote-resources-plugin maven-remote-resources-plugin-3.3.0 -Dversion.maven-site-plugin=3.22.0 -Dversion.maven-project-info-reports-plugin=3.9.0 -Dteamlist.showAvatarImages=false
+plugins/maven-scm-publish-plugin maven-scm-publish-plugin maven-scm-publish-plugin-3.3.0 -Dversion.maven-site-plugin=3.22.0 -Dversion.maven-project-info-reports-plugin=3.9.0 -Dteamlist.showAvatarImages=false
+plugins/maven-scripting-plugin maven-scripting-plugin maven-scripting-plugin-3.1.0
+plugins/maven-toolchains-plugin maven-toolchains-plugin maven-toolchains-plugin-3.3.0

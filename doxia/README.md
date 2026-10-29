@@ -23,7 +23,7 @@ The same restructured site as the Jekyll example in `jekyll/`, built by maven-si
 Doxia from `content/`, the way maven.apache.org is built today.
 
     doxia/build.sh                 # skin install, mvn site; result in target/site/
-    doxia/plugin-demo.sh           # maven-compiler-plugin's site in the same skin; target/plugin-demo/site/
+    doxia/plugin-demo.sh           # the plugin sites in the same skin; target/plugin-demo/sites/
     doxia/publish.sh               # both, then on GitHub Pages in mvn-site/
 
 Without the scripts it is two Maven commands:
@@ -57,9 +57,12 @@ The skin also draws the sites of plugins and other components. A site without th
 the five sections of the main site as tabs, the crumbs Docs › Plugins, and its own menus in the side
 panel (at the bottom of the page on a phone), with its version and a link to its other versions. Its
 `site.xml` can set `<custom><mavenSite>`: `main` (the main site, default https://maven.apache.org/),
-`section`, `group`, `groupHref` and `archives`; see `site.vm`. `doxia/plugin-demo.sh` builds
-maven-compiler-plugin 3.16.0 this way: the only change to the plugin is that its `site.xml` names the
-skin. For every component at once, that would be the `site.xml` of maven-parent.
+`section`, `group`, `groupHref` and `archives`; see `site.vm`. `doxia/plugin-demo.sh` builds the 37
+active plugins that have a repository of their own (`doxia/plugin-sites.txt`), each at the release on
+maven.apache.org: the only change to a plugin is that its `site.xml` names the skin. For every
+component at once, that would be the `site.xml` of maven-parent. A plugin released on a parent older
+than maven-parent 44 uses maven-site-plugin 3.12 (Doxia 1), which cannot use this skin; those are
+built with the site plugin of a newer parent.
 
 Dark mode follows the reader's system setting, with `prefers-color-scheme`; there is no switch.
 
