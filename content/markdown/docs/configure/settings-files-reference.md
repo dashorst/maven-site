@@ -7,6 +7,25 @@ keywords: configuration locations, conf directory, ~/.m2, user home, environment
 terms: settings.xml | settings-security.xml | settings-security4.xml | .mvn/maven.config | .mvn/jvm.config | .mvn/extensions.xml | .mvn/settings.xml | maven-user.properties | maven-system.properties | .mavenrc | MAVEN_OPTS | MAVEN_ARGS | MAVEN_SKIP_RC | MAVEN_REPO_CENTRAL | <mirrorOf> | -s | -gs | -is | -ps | external:* | external:http:*
 ---
 
+<!--
+Licensed to the Apache Software Foundation (ASF) under one
+or more contributor license agreements.  See the NOTICE file
+distributed with this work for additional information
+regarding copyright ownership.  The ASF licenses this file
+to you under the Apache License, Version 2.0 (the
+"License"); you may not use this file except in compliance
+with the License.  You may obtain a copy of the License at
+
+  http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing,
+software distributed under the License is distributed on an
+"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+KIND, either express or implied.  See the License for the
+specific language governing permissions and limitations
+under the License.
+-->
+
 
 The elements of *settings.xml* are described in the [settings reference](../reference/settings.html). [Where Maven reads its configuration](configuration-files.html) explains why the configuration is split this way.
 

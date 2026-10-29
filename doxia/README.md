@@ -1,18 +1,35 @@
+<!--
+Licensed to the Apache Software Foundation (ASF) under one
+or more contributor license agreements.  See the NOTICE file
+distributed with this work for additional information
+regarding copyright ownership.  The ASF licenses this file
+to you under the Apache License, Version 2.0 (the
+"License"); you may not use this file except in compliance
+with the License.  You may obtain a copy of the License at
+
+  http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing,
+software distributed under the License is distributed on an
+"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+KIND, either express or implied.  See the License for the
+specific language governing permissions and limitations
+under the License.
+-->
+
 # The example, built with `mvn site`
 
 The same restructured site as the Jekyll example in `jekyll/`, built by maven-site-plugin and
 Doxia from `content/`, the way maven.apache.org is built today.
 
     doxia/build.sh                 # skin install, mvn site; result in target/site/
-    doxia/publish.sh               # the same, then on GitHub Pages in mvn-site/
+    doxia/plugin-demo.sh           # maven-compiler-plugin's site in the same skin; target/plugin-demo/site/
+    doxia/publish.sh               # both, then on GitHub Pages in mvn-site/
 
 Without the scripts it is two Maven commands:
 
     mvn -f doxia/skin/pom.xml install
-    mvn site -Drat.skip
-
-`-Drat.skip` because the files of the example have no Apache license header yet, which
-apache-rat-plugin checks before the site is built.
+    mvn site
 
 Published at https://dashorst.github.io/maven-site/mvn-site/, next to the Jekyll example at
 https://dashorst.github.io/maven-site/.
@@ -31,7 +48,20 @@ https://dashorst.github.io/maven-site/.
   after `site:site`, from the rendered pages: a record per page and per h2 section, for
   `js/search.js`. The pom runs it with exec-maven-plugin in the `site` phase.
 - `src/main/java/org/apache/maven/site/check/Addresses.java` keeps every address the site has
-  published working; see below.
+  published working; see below. `ThirdParty.java` fails the build when a page loads anything (a
+  script, a stylesheet, a font, an image) from a host outside apache.org.
+
+## Component sites
+
+The skin also draws the sites of plugins and other components. A site without the "Site" menu gets
+the five sections of the main site as tabs, the crumbs Docs › Plugins, and its own menus in the side
+panel (at the bottom of the page on a phone), with its version and a link to its other versions. Its
+`site.xml` can set `<custom><mavenSite>`: `main` (the main site, default https://maven.apache.org/),
+`section`, `group`, `groupHref` and `archives`; see `site.vm`. `doxia/plugin-demo.sh` builds
+maven-compiler-plugin 3.16.0 this way: the only change to the plugin is that its `site.xml` names the
+skin. For every component at once, that would be the `site.xml` of maven-parent.
+
+Dark mode follows the reader's system setting, with `prefers-color-scheme`; there is no switch.
 
 A page's facts come from its front matter: Doxia's Markdown parser writes every key as a
 `<meta>` element, which the skin reads. `facts: none` leaves them out.

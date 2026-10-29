@@ -7,6 +7,25 @@ keywords: single module, one submodule, selected projects, skip module, exclude 
 terms: -pl | --projects | -am | --also-make | -amd | --also-make-dependents | -rf | --resume-from | -r | --resume
 ---
 
+<!--
+Licensed to the Apache Software Foundation (ASF) under one
+or more contributor license agreements.  See the NOTICE file
+distributed with this work for additional information
+regarding copyright ownership.  The ASF licenses this file
+to you under the Apache License, Version 2.0 (the
+"License"); you may not use this file except in compliance
+with the License.  You may obtain a copy of the License at
+
+  http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing,
+software distributed under the License is distributed on an
+"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+KIND, either express or implied.  See the License for the
+specific language governing permissions and limitations
+under the License.
+-->
+
 
 Build part of a project when you changed one module and do not want to wait for all of them, or when a build failed halfway. You run these commands in the root directory and select modules with options; [Reactor options](reactor-options.html) lists every option and the ways to name a module. The examples use a project `shop` with the modules `api`, `core` and `app`, where `app` depends on `core` and `core` on `api`.
 

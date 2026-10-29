@@ -5,4 +5,6 @@
 set -euo pipefail
 cd "$(dirname "$0")/.."
 mvn -B -q -f doxia/skin/pom.xml install "$@"
-mvn -B -Dspotless.skip -Drat.skip site "$@"
+# the site plugin copies a skin file only when it is newer than the copy in target/site
+rm -rf target/site
+mvn -B site "$@"

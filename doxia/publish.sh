@@ -1,6 +1,7 @@
 #!/bin/bash
 # Publishes the version built by `mvn site` on GitHub Pages of the fork, next to the Jekyll
-# example: https://dashorst.github.io/maven-site/mvn-site/. Builds with doxia/build.sh and
+# example: https://dashorst.github.io/maven-site/mvn-site/, with maven-compiler-plugin's site in the
+# same skin (doxia/plugin-demo.sh). Builds with doxia/build.sh and
 # commits target/site/ as mvn-site/ on the gh-pages branch, kept in the worktree .gh-pages/
 # (see jekyll/publish.sh, which leaves mvn-site/ in place).
 #
@@ -27,6 +28,9 @@ java -cp "$classpath" src/main/java/org/apache/maven/site/check/Addresses.java p
 # The build links the component sites (ref, surefire, ...) to ../components/, as on the ASF
 # server; GitHub Pages refuses to publish links that lead nowhere.
 find "$TREE/mvn-site" -type l -delete
+# one plugin site in the same skin, where maven.apache.org has it
+doxia/plugin-demo.sh "$@"
+cp -a target/plugin-demo/site "$TREE/mvn-site/plugins/maven-compiler-plugin"
 git -C "$TREE" add -A mvn-site
 git -C "$TREE" commit -q -m "Publish doxia-demo at $commit in mvn-site/" || echo "Nothing changed."
 if $push; then

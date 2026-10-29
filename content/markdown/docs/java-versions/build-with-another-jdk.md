@@ -7,6 +7,25 @@ keywords: JDK 17, JDK 11, Java 8, other JDK, specific JDK, switch JDK, javac ver
 terms: toolchains.xml | maven-toolchains-plugin | toolchains:toolchain | select-jdk-toolchain | display-discovered-jdk-toolchains | generate-jdk-toolchains-xml | toolchain.jdk.version | JAVA_HOME
 ---
 
+<!--
+Licensed to the Apache Software Foundation (ASF) under one
+or more contributor license agreements.  See the NOTICE file
+distributed with this work for additional information
+regarding copyright ownership.  The ASF licenses this file
+to you under the Apache License, Version 2.0 (the
+"License"); you may not use this file except in compliance
+with the License.  You may obtain a copy of the License at
+
+  http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing,
+software distributed under the License is distributed on an
+"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+KIND, either express or implied.  See the License for the
+specific language governing permissions and limitations
+under the License.
+-->
+
 
 Use a toolchain when the project must be built with a particular JDK and you do not want to change `JAVA_HOME`, or cannot, because Maven 4 needs Java 17 or later to run. The steps below build a project with JDK 17 while Maven runs on JDK 21. [Toolchains and the JDK Maven runs on](toolchains.html) explains how the two JDKs relate.
 

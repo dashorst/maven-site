@@ -129,7 +129,8 @@ public class Addresses {
         }
         // the component sites are links to directories this build does not write, as on the server
         try (Stream<Path> top = Files.list(site)) {
-            top.filter(Files::isSymbolicLink).forEach(p -> outsideRoots.add(p.getFileName().toString()));
+            top.filter(Files::isSymbolicLink)
+                    .forEach(p -> outsideRoots.add(p.getFileName().toString()));
         }
     }
 
@@ -137,8 +138,10 @@ public class Addresses {
         List<Rule> list = new ArrayList<>();
         for (String line : Files.readAllLines(file, StandardCharsets.UTF_8)) {
             String[] w = line.trim().split("\\s+");
-            if (w.length < 2 || !(w[0].equalsIgnoreCase("Redirect") || w[0].equalsIgnoreCase("RedirectMatch")
-                    || w[0].equalsIgnoreCase("RedirectPermanent"))) {
+            if (w.length < 2
+                    || !(w[0].equalsIgnoreCase("Redirect")
+                            || w[0].equalsIgnoreCase("RedirectMatch")
+                            || w[0].equalsIgnoreCase("RedirectPermanent"))) {
                 continue;
             }
             int i = 1;
@@ -316,7 +319,8 @@ public class Addresses {
         for (Map.Entry<String, Set<String>> a : addresses.entrySet()) {
             Outcome o = follow(a.getKey());
             if (o.problem != null) {
-                problems.add(a.getKey() + " " + o.problem + (o.hops.isEmpty() ? "" : " (" + String.join(" > ", o.hops) + ")"));
+                problems.add(a.getKey() + " " + o.problem
+                        + (o.hops.isEmpty() ? "" : " (" + String.join(" > ", o.hops) + ")"));
                 continue;
             }
             if (o.gone) {
@@ -339,8 +343,8 @@ public class Addresses {
                     missing.removeIf(id -> html.contains("id=\"" + id + "\"") || html.contains("name=\"" + id + "\""));
                 }
                 if (!missing.isEmpty()) {
-                    problems.add(a.getKey() + (o.path.equals(a.getKey()) ? "" : " > " + o.path)
-                            + " lacks #" + String.join(" #", missing));
+                    problems.add(a.getKey() + (o.path.equals(a.getKey()) ? "" : " > " + o.path) + " lacks #"
+                            + String.join(" #", missing));
                 }
             }
         }
@@ -375,7 +379,8 @@ public class Addresses {
                     + "<link rel=\"canonical\" href=\"" + canonical + "\">\n"
                     + "<meta name=\"robots\" content=\"noindex\">\n"
                     + "<script>location.replace('" + to + "' + location.hash)</script></head>\n"
-                    + "<body><p>This page has moved to <a href=\"" + to + "\">" + canonical + "</a>.</p></body></html>\n";
+                    + "<body><p>This page has moved to <a href=\"" + to + "\">" + canonical
+                    + "</a>.</p></body></html>\n";
             Files.createDirectories(file(path).getParent());
             Files.write(file(path), html.getBytes(StandardCharsets.UTF_8));
             written++;
@@ -397,7 +402,8 @@ public class Addresses {
             case "record":
                 Map<String, Set<String>> published = addresses.published();
                 int before = known.size();
-                published.forEach((path, ids) -> known.computeIfAbsent(path, k -> new TreeSet<>()).addAll(ids));
+                published.forEach((path, ids) ->
+                        known.computeIfAbsent(path, k -> new TreeSet<>()).addAll(ids));
                 write(list, known);
                 System.out.printf("Addresses: %d new, %d listed%n", known.size() - before, known.size());
                 break;

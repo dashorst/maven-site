@@ -1,8 +1,28 @@
+#*
+Licensed to the Apache Software Foundation (ASF) under one
+or more contributor license agreements.  See the NOTICE file
+distributed with this work for additional information
+regarding copyright ownership.  The ASF licenses this file
+to you under the Apache License, Version 2.0 (the
+"License"); you may not use this file except in compliance
+with the License.  You may obtain a copy of the License at
+
+  http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing,
+software distributed under the License is distributed on an
+"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+KIND, either express or implied.  See the License for the
+specific language governing permissions and limitations
+under the License.
+*#
 ## The frame of every page: the header with the five sections, the side panel with the pages of
 ## the group the page belongs to, the text, and a rail with what the page says about itself.
 ##
 ## The navigation comes from the one <menu> in site.xml, three levels deep: sections (the tabs),
-## groups, and the pages of a group in reading order. A page's facts come from its front matter,
+## groups, and the pages of a group in reading order. A component site (a plugin, a shared
+## library) has no such menu: it gets the sections of the main site as tabs, and its own menus in
+## the side panel; see "A component site" below. A page's facts come from its front matter,
 ## which Doxia's Markdown parser turns into <meta> elements in $headContent.
 ## Everything works without JavaScript; js/page.js only adds "On this page", heading anchors and
 ## narrows the search page's list, js/search.js answers from search.json (written after site:site
@@ -42,6 +62,40 @@
 ## ---------------------------------------------------------------------------------------------
 #set( $sections = [] )
 #foreach( $m in $site.body.menus )#if( $m.name == "Site" )#set( $sections = $m.items )#end#end
+##
+## ---------------------------------------------------------------------------------------------
+## A component site: no "Site" menu. Its site.xml (or the parent's) says where the main site is and
+## where the component sits in it, all optional:
+##   <custom><mavenSite>
+##     <main>https://maven.apache.org/</main>          the main site, for the tabs and the search; a
+##                                                      relative URL is relative to the component's root
+##     <section>Docs</section>                          the tab the component belongs to
+##     <group>Plugins</group> <groupHref>docs/plugins/index.html</groupHref>
+##     <archives>https://maven.apache.org/plugins-archives/</archives>   its other versions
+##   </mavenSite></custom>
+## ---------------------------------------------------------------------------------------------
+#set( $isComponent = $sections.isEmpty() )
+#macro( custom $key $default )
+#**##set( $customValue = $default )
+#**##if( $site.custom && $site.custom.getChild( "mavenSite" ) && $site.custom.getChild( "mavenSite" ).getChild( $key ) )
+#*  *##set( $customValue = $site.custom.getChild( "mavenSite" ).getChild( $key ).value.trim() )
+#**##end
+#end
+#set( $tabs = [] )
+#if( $isComponent )
+#**##custom( "main" "https://maven.apache.org/" )#set( $root = $customValue )
+#**##if( !$root.contains( "://" ) )#set( $root = "$relativePath/$root" )#end
+#**##custom( "section" "Docs" )#set( $componentSection = $customValue )
+#**##custom( "group" "Plugins" )#set( $componentGroup = $customValue )
+#**##custom( "groupHref" "docs/plugins/index.html" )#set( $componentGroupHref = "$root$customValue" )
+#**##custom( "archives" "" )#set( $archives = $customValue )
+#**##foreach( $t in [ ["Docs", "docs/index.html"], ["Downloads", "download.html"], ["News", "news/index.html"], ["Extend", "extend/index.html"], ["Community", "community/index.html"] ] )
+#*  *##set( $current = $t.get( 0 ) == $componentSection )
+#*  *##set( $added = $tabs.add( { "name": $t.get( 0 ), "href": "$root$t.get( 1 )", "current": $current } ) )
+#**##end
+#else
+#**##set( $root = "$relativePath/" )
+#end
 #set( $section = false )
 #set( $group = false )
 #set( $item = false )
@@ -76,8 +130,8 @@
 #**##if( $index > 0 )#set( $prev = $group.items.get( $index - 1 ) )#end
 #**##if( $index < $group.items.size() - 1 )#set( $next = $group.items.get( $index + 1 ) )#end
 #end
-#set( $isHome = $alignedFileName == "index.html" && $relativePath == "." )
-#set( $showGroup = $group && !$isLanding && $group.items.size() > 1 )
+#set( $isHome = !$isComponent && $alignedFileName == "index.html" && $relativePath == "." )
+#set( $showGroup = $isComponent || $group && !$isLanding && $group.items.size() > 1 )
 ##
 ## What the page says about itself. Overview pages (home, sections, groups, and pages whose front
 ## matter says `facts: none`) say nothing.
@@ -87,7 +141,7 @@
 #readMeta( "keywords" )#set( $keywords = $metaValue )
 #readMeta( "terms" )#set( $terms = $metaValue )
 #readMeta( "facts" )#set( $noFacts = $metaValue == "none" )
-#set( $showFacts = !$isHome && !$isLanding && !$noFacts && $docRenderingContext.isDoxiaSource() )
+#set( $showFacts = $isComponent || !$isHome && !$isLanding && !$noFacts && $docRenderingContext.isDoxiaSource() )
 #set( $series = [] )
 #if( $kind )
 #**##foreach( $line in ["3.9", "3.10", "4.0"] )
@@ -95,10 +149,22 @@
 #**##end
 #end
 #set( $kinds = { "tutorial": "Tutorial", "howto": "How-to guide", "reference": "Reference", "explanation": "Explanation" } )
+#set( $source = false )
 #set( $source = $docRenderingContext.getDoxiaSourcePath() )
 ## The example's sources are on its own branch: most pages have moved, so apache/maven-site has no file at
-## their new path yet.
-#if( $source )
+## their new path yet. A component's pages are edited in its own repository; a page generated from its
+## code (a goal, a report) links to that code.
+#set( $sourceUrl = false )
+#set( $editUrl = false )
+#if( $isComponent )
+#**##set( $repo = false )
+#**##if( $project.scm && $project.scm.url )#set( $repo = $project.scm.url.replaceAll( "/tree/.*$", "" ).replaceAll( "/$", "" ) )#end
+#**##if( $repo && $source )
+#*  *##set( $editUrl = "$repo/edit/master/$source" )
+#**##elseif( $repo )
+#*  *##set( $sourceUrl = "$repo/tree/master/src/main/java" )
+#**##end
+#elseif( $source )
 #**##set( $editUrl = "https://github.com/dashorst/maven-site/edit/doxia-demo/" + $source )
 #end
 ##
@@ -129,7 +195,7 @@
   <a class="skip-link" href="#content">Skip to the text</a>
   <header class="masthead">
     <div class="masthead-inner">
-    <a class="brand" href="$relativePath/index.html" aria-label="Maven, home"><svg class="wordmark" viewBox="0 0 9375 2346" width="140" height="35" aria-hidden="true" focusable="false" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
+    <a class="brand" href="${root}index.html" aria-label="Maven, home"><svg class="wordmark" viewBox="0 0 9375 2346" width="140" height="35" aria-hidden="true" focusable="false" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
   <path d="M5126.58,975.196c46.271,-114.421 97.896,-228.613 153.292,-329.825c-82.692,-61.417 -162.092,-193.859 -194.717,-252.538c-11.716,13.313 -19.32,28.642 -22.771,41.113c-30.733,110.971 78.671,244.971 -9.45,196.012c-73.42,-40.796 -238.745,-130.137 -301.804,-41.341c70.625,90.75 255.35,319.062 375.45,386.579Z" style="fill:#dd552c;fill-rule:nonzero;"/>
   <path d="M5279.88,645.371c53.679,-98.071 110.879,-183.963 170.188,-245.842c-0,0 -59.155,85.621 -143.642,256.779c51.167,14.092 196.892,43.009 399.871,-9.425c4.991,-36.887 -19.809,-77.458 -143.384,-91.041c-80.679,-8.859 96.834,-192.646 -31.762,-279.563c-4.15,-2.812 -8.234,-5.291 -12.229,-7.512c-4.313,-1.55 -8.867,-2.967 -13.725,-4.23c-150.188,-39.191 -171.009,215.476 -230.938,160.73c-96.85,-88.467 -157.979,-67.796 -189.096,-32.434c32.625,58.68 112.025,191.121 194.717,252.538Z" style="fill:#f79a23;fill-rule:nonzero;"/>
   <path d="M5005.79,1304.85c33.904,-101.567 74.687,-215.675 120.796,-329.654c-120.101,-67.517 -304.825,-295.829 -375.45,-386.579c-12.609,17.741 -21.226,42.487 -24.096,76.325c-15.404,181.766 172.116,316.333 134.733,340.912c-49.45,32.521 -147.867,-78.108 -186.658,-7.817c56.225,72.225 170.746,202.73 330.675,306.813Z" style="fill:#d22128;fill-rule:nonzero;"/>
@@ -145,9 +211,12 @@
 #foreach( $s in $sections )
         <li><a href="#href( $s )"#if( $section == $s ) aria-current="#if( "#href( $s )" == $alignedFileName )page#{else}true#end"#end>$esc.xml( $s.name )</a></li>
 #end
+#foreach( $t in $tabs )
+        <li><a href="$t.href"#if( $t.current ) aria-current="true"#end>$esc.xml( $t.name )</a></li>
+#end
       </ul>
     </nav>
-    <form class="search" role="search" action="$relativePath/search.html" method="get" data-index="$relativePath/search.json" data-script="$relativePath/js/minisearch-7.2.0.js">
+    <form class="search" role="search" action="${root}search.html" method="get" data-index="${root}search.json" data-script="$relativePath/js/minisearch-7.2.0.js">
       <label class="visually-hidden" for="q">Search the documentation</label>
       <div class="search-field">
         <svg class="search-icon" aria-hidden="true" viewBox="0 0 16 16" width="16" height="16"><circle cx="7" cy="7" r="5" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M11 11l3.5 3.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
@@ -158,7 +227,7 @@
     </div>
   </header>
   <div class="specimen" role="note">
-    <p><strong>Specimen.</strong> A proposed redesign of maven.apache.org, built with <code>mvn site</code> and a skin of its own; not the official Apache Maven site. The official site is <a href="https://maven.apache.org/">maven.apache.org</a>. <a href="$relativePath/about-this-example.html">About this example</a></p>
+    <p><strong>Specimen.</strong> A proposed redesign of maven.apache.org, built with <code>mvn site</code> and a skin of its own; not the official Apache Maven site. The official site is <a href="https://maven.apache.org/">maven.apache.org</a>. <a href="${root}about-this-example.html">About this example</a></p>
   </div>
 #if( $isHome )
   <main id="content" class="wide">
@@ -166,7 +235,35 @@ $bodyContent
   </main>
 #else
   <div class="frame#if( $showGroup ) has-group#end#if( !$showFacts ) no-rail#end">
-#**##if( $showGroup )
+#**##if( $isComponent )
+    <nav class="group-nav component-nav" aria-labelledby="group-nav-title">
+      <p class="up"><a href="$componentGroupHref"><svg aria-hidden="true" viewBox="0 0 16 16" width="14" height="14"><path d="M10 3.5L5.5 8l4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>All $esc.xml( $componentGroup.toLowerCase() )</a></p>
+      <h2 id="group-nav-title"><a href="$relativePath/index.html">$esc.xml( $project.name )</a></h2>
+      <p class="component-version">Version $esc.xml( $project.version )#if( $archives ) · <a class="other-versions" href="$archives" data-prefix="${project.artifactId}-">Other versions</a>#end</p>
+#*  *##foreach( $m in $site.body.menus )
+#*    *##if( $m.name != "Maven Projects" && $m.name != "ASF" && !$m.items.isEmpty() )
+      <h3>$esc.xml( $m.name )</h3>
+      <ul class="page-list">
+#*      *##foreach( $p in $m.items )
+#*        *##set( $h = "#href( $p )" )
+#*        *##set( $open = $h == $alignedFileName || $h == "plugin-info.html" && $alignedFileName.endsWith( "-mojo.html" ) )
+#*        *##foreach( $c in $p.items )#if( "#href( $c )" == $alignedFileName )#set( $open = true )#end#end
+        <li><a href="$h"#if( $h == $alignedFileName ) aria-current="page"#elseif( $open ) aria-current="true"#end>$esc.xml( $p.name )</a>
+#*        *##if( $open && !$p.items.isEmpty() )
+          <ul>
+#*          *##foreach( $c in $p.items )
+#*            *##set( $ch = "#href( $c )" )
+            <li><a href="$ch"#if( $ch == $alignedFileName ) aria-current="page"#end>$esc.xml( $c.name )</a></li>
+#*          *##end
+          </ul>
+#*        *##end
+        </li>
+#*      *##end
+      </ul>
+#*    *##end
+#*  *##end
+    </nav>
+#**##elseif( $showGroup )
     <nav class="group-nav" aria-labelledby="group-nav-title">
       <p class="up"><a href="#href( $section )"><svg aria-hidden="true" viewBox="0 0 16 16" width="14" height="14"><path d="M10 3.5L5.5 8l4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>All of $esc.xml( $section.name )</a></p>
       #steps()
@@ -175,7 +272,9 @@ $bodyContent
     </nav>
 #**##end
     <main id="content"#if( $kind ) data-kind="$kind"#end#if( $since ) data-since="$since"#end>
-#**##if( $section && "#href( $section )" != $alignedFileName )
+#**##if( $isComponent )
+      <p class="crumbs"><a href="${root}docs/index.html">$esc.xml( $componentSection )</a> <span aria-hidden="true">›</span> <a href="$componentGroupHref">$esc.xml( $componentGroup )</a>#if( $alignedFileName != "index.html" ) <span aria-hidden="true">›</span> <a href="$relativePath/index.html">$esc.xml( $project.name )</a>#end</p>
+#**##elseif( $section && "#href( $section )" != $alignedFileName )
       <p class="crumbs"><a href="#href( $section )">$esc.xml( $section.name )</a>#if( $group && "#href( $group )" != $alignedFileName ) <span aria-hidden="true">›</span> <a href="#href( $group )">$esc.xml( $group.name )</a>#end</p>
 #**##end
       <div class="prose">
@@ -187,11 +286,23 @@ $bodyContent
 #**##end
 #**##if( $showFacts )
 #*  *##set( $factsClass = "facts facts--inline" )
-#*  *##parse( "facts.vm" )
+#*  *##if( $isComponent )#parse( "component-facts.vm" )#else#parse( "facts.vm" )#end
 #**##end
 $bodyContent
       </div>
-#**##if( $showGroup )
+#**##if( $isComponent )
+      <nav class="more component-more" aria-labelledby="more-title">
+        <h2 id="more-title">More in <a href="$relativePath/index.html">$esc.xml( $project.name )</a></h2>
+        <p class="component-version">Version $esc.xml( $project.version )#if( $archives ) · <a href="$archives">Other versions</a>#end</p>
+#*  *##foreach( $m in $site.body.menus )
+#*    *##if( $m.name != "Maven Projects" && $m.name != "ASF" && !$m.items.isEmpty() )
+        <h3>$esc.xml( $m.name )</h3>
+        #pageList( $m.items "more-list" )
+#*    *##end
+#*  *##end
+      </nav>
+#**##end
+#**##if( $showGroup && $group )
       <nav class="more" aria-labelledby="more-title">
         <h2 id="more-title">More in <a href="#href( $group )">$esc.xml( $group.name )</a></h2>
         #pageList( $group.items "more-list" )
@@ -202,7 +313,7 @@ $bodyContent
 #**##if( $showFacts )
     <aside class="rail">
 #*  *##set( $factsClass = "facts" )
-#*  *##parse( "facts.vm" )
+#*  *##if( $isComponent )#parse( "component-facts.vm" )#else#parse( "facts.vm" )#end
       <nav id="on-this-page" aria-label="On this page"></nav>
     </aside>
 #**##end
@@ -210,6 +321,9 @@ $bodyContent
 #end
   <footer class="site-footer">
     <div class="footer-inner">
+#if( !$showFacts && $editUrl )
+      <p class="page-edit"><a href="$editUrl">Edit this page</a></p>
+#end
       <nav aria-label="Apache Software Foundation"#if( $isHome ) id="Apache_Software_Foundation"#end>
         <ul>
           <li><a href="https://www.apache.org/">The Apache Software Foundation</a></li>
@@ -222,7 +336,7 @@ $bodyContent
         </ul>
       </nav>
       <p>© 2002–$currentYear The Apache Software Foundation. Apache Maven, Maven, Apache, the Apache feather logo and the Apache Maven project logos are trademarks of The Apache Software Foundation.</p>
-      <p class="demo-note">A demonstration of a restructured maven.apache.org, built by maven-site-plugin from <a href="https://github.com/dashorst/maven-site/tree/doxia-demo">dashorst/maven-site</a>. Not the official Apache Maven site. <a href="$relativePath/about-this-example.html">About this example</a>.</p>
+      <p class="demo-note">A demonstration of a restructured maven.apache.org, built by maven-site-plugin from <a href="https://github.com/dashorst/maven-site/tree/doxia-demo">dashorst/maven-site</a>. Not the official Apache Maven site. <a href="${root}about-this-example.html">About this example</a>.</p>
     </div>
   </footer>
   <script src="$relativePath/js/page.js" defer></script>

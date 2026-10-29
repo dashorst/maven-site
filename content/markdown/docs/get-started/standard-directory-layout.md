@@ -7,6 +7,25 @@ keywords: project structure, folder structure, convention over configuration, so
 terms: src/main/java | src/main/resources | src/test/java | src/test/resources | src/main/webapp | src/site | src/it | target | .mvn | .mvn/maven.config | .mvn/jvm.config | .mvn/extensions.xml | <sourceDirectory>
 ---
 
+<!--
+Licensed to the Apache Software Foundation (ASF) under one
+or more contributor license agreements.  See the NOTICE file
+distributed with this work for additional information
+regarding copyright ownership.  The ASF licenses this file
+to you under the Apache License, Version 2.0 (the
+"License"); you may not use this file except in compliance
+with the License.  You may obtain a copy of the License at
+
+  http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing,
+software distributed under the License is distributed on an
+"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+KIND, either express or implied.  See the License for the
+specific language governing permissions and limitations
+under the License.
+-->
+
 
 Maven expects the files of a project in fixed places, so a project only has to describe what is different about it, and anyone who knows one Maven project finds their way in another. The paths below are relative to the directory that holds *pom.xml*.
 

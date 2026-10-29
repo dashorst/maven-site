@@ -7,6 +7,25 @@ keywords: command line, CLI flags, project selector, exclude module, optional pr
 terms: -pl | --projects | -am | --also-make | -amd | --also-make-dependents | -rf | --resume-from | -r | --resume | -N | --non-recursive | -f | -fae | --fail-at-end | -ff | --fail-fast | -fn | --fail-never | -T | --threads
 ---
 
+<!--
+Licensed to the Apache Software Foundation (ASF) under one
+or more contributor license agreements.  See the NOTICE file
+distributed with this work for additional information
+regarding copyright ownership.  The ASF licenses this file
+to you under the Apache License, Version 2.0 (the
+"License"); you may not use this file except in compliance
+with the License.  You may obtain a copy of the License at
+
+  http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing,
+software distributed under the License is distributed on an
+"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+KIND, either express or implied.  See the License for the
+specific language governing permissions and limitations
+under the License.
+-->
+
 
 These options change which modules of a multi-module build Maven builds, from where, and what happens when one fails. Without them, Maven builds the project in the current directory and all its modules. The complete list of command-line options is in the [CLI options reference](../../ref/current/maven-embedder/cli.html); `mvn --help` prints it for the Maven you run. [Build part of a multi-module project](build-part-of-a-project.html) shows the common combinations.
 

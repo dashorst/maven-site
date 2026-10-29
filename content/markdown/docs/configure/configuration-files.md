@@ -7,6 +7,25 @@ keywords: global settings, user settings, installation settings, project setting
 terms: settings.xml | .mvn/maven.config | .mvn/jvm.config | .mvn/extensions.xml | .mvn/settings.xml | MAVEN_OPTS | MAVEN_ARGS | .mavenrc | maven-user.properties | maven-system.properties | help:effective-settings
 ---
 
+<!--
+Licensed to the Apache Software Foundation (ASF) under one
+or more contributor license agreements.  See the NOTICE file
+distributed with this work for additional information
+regarding copyright ownership.  The ASF licenses this file
+to you under the Apache License, Version 2.0 (the
+"License"); you may not use this file except in compliance
+with the License.  You may obtain a copy of the License at
+
+  http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing,
+software distributed under the License is distributed on an
+"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+KIND, either express or implied.  See the License for the
+specific language governing permissions and limitations
+under the License.
+-->
+
 
 Maven reads its configuration from two sides. The project side lives in the project's directory and in version control: the POM and the files in the *.mvn* directory. It is the same for everyone who builds the project. The machine side lives in your home directory, the Maven installation and the environment: *settings.xml* and a few environment variables. It describes this machine and this person: where artifacts come from, how the network is reached, and which credentials to use.
 

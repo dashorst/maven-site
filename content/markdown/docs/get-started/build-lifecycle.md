@@ -7,6 +7,25 @@ keywords: build lifecycle, default lifecycle, clean lifecycle, site lifecycle, m
 terms: mvn package | mvn verify | mvn install | mvn clean | <packaging> | <executions> | <phase> | <goal> | <pluginManagement> | integration-test | pre-integration-test | post-integration-test
 ---
 
+<!--
+Licensed to the Apache Software Foundation (ASF) under one
+or more contributor license agreements.  See the NOTICE file
+distributed with this work for additional information
+regarding copyright ownership.  The ASF licenses this file
+to you under the Apache License, Version 2.0 (the
+"License"); you may not use this file except in compliance
+with the License.  You may obtain a copy of the License at
+
+  http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing,
+software distributed under the License is distributed on an
+"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+KIND, either express or implied.  See the License for the
+specific language governing permissions and limitations
+under the License.
+-->
+
 
 Every Maven project builds with the same commands. `mvn package` makes a JAR of a library and a WAR of a web application; `mvn verify` builds and checks either one. The person who runs the build says how far the build should go. The project decides what happens on the way there. Three ideas make that split work: the lifecycle, its phases, and the plugin goals bound to those phases.
 

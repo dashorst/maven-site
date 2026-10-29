@@ -7,6 +7,25 @@ keywords: JDK, javac, java version, multiple JDKs, different JDK, build JDK, run
 terms: toolchains.xml | maven-toolchains-plugin | JAVA_HOME | jdkToolchain | select-jdk-toolchain | maven.compiler.release
 ---
 
+<!--
+Licensed to the Apache Software Foundation (ASF) under one
+or more contributor license agreements.  See the NOTICE file
+distributed with this work for additional information
+regarding copyright ownership.  The ASF licenses this file
+to you under the Apache License, Version 2.0 (the
+"License"); you may not use this file except in compliance
+with the License.  You may obtain a copy of the License at
+
+  http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing,
+software distributed under the License is distributed on an
+"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+KIND, either express or implied.  See the License for the
+specific language governing permissions and limitations
+under the License.
+-->
+
 
 Maven is a Java program. The `mvn` command starts it on the JDK that `JAVA_HOME` points to, or on the `java` command on your path when `JAVA_HOME` is not set. Unless you say otherwise, every plugin that needs a JDK tool takes it from that same JDK: the compiler plugin compiles with its compiler, Surefire starts the tests with its `java`, and the Javadoc plugin runs its `javadoc`. The JDK that runs Maven and the JDK that builds your code are then the same JDK.
 
