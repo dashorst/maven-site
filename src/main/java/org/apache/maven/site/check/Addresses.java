@@ -19,6 +19,7 @@
 package org.apache.maven.site.check;
 
 import java.io.IOException;
+import java.io.Reader;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -27,6 +28,7 @@ import java.util.ArrayList;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Properties;
 import java.util.Set;
 import java.util.TreeMap;
 import java.util.TreeSet;
@@ -157,12 +159,13 @@ public class Addresses {
                 continue;
             }
             if (name.equals("components.links")) {
-                // properties for the symlinks that the server has in place of these paths
-                for (String line : Files.readAllLines(f, StandardCharsets.UTF_8)) {
-                    int eq = line.indexOf('=');
-                    if (!line.startsWith("#") && eq > 0) {
-                        outsideRoots.add(dir + line.substring(0, eq).trim());
-                    }
+                // the symlinks the build makes in place of these paths, read by Ant as properties
+                Properties links = new Properties();
+                try (Reader in = Files.newBufferedReader(f, StandardCharsets.UTF_8)) {
+                    links.load(in);
+                }
+                for (String link : links.stringPropertyNames()) {
+                    outsideRoots.add(dir + link);
                 }
             }
             String path = dir + name;
@@ -234,6 +237,7 @@ public class Addresses {
     Outcome follow(String path) {
         Outcome o = new Outcome();
         while (true) {
+            path = normalize(path);
             String next = null;
             for (Rule r : rulesFor(path)) {
                 next = r.apply(path);
@@ -274,14 +278,19 @@ public class Addresses {
             }
             path = next;
         }
-        if (path.endsWith("/")) {
-            path += "index.html";
-        } else if (Files.isDirectory(file(path))) {
-            path += "/index.html";
+        path = normalize(path);
+        String dir = path.endsWith("/") ? path : Files.isDirectory(file(path)) ? path + "/" : null;
+        if (dir != null) {
+            path = dir + "index.html";
+            if (!Files.exists(file(path)) && Files.isDirectory(file(dir))) {
+                // the server lists a directory without an index page
+                o.path = dir;
+                return o;
+            }
         }
         o.path = path;
         if (!Files.exists(file(path))) {
-            if (!o.hops.isEmpty() && isOutside(path)) {
+            if (isOutside(path)) {
                 o.outside = true;
             } else {
                 o.problem = o.hops.isEmpty()
@@ -292,6 +301,30 @@ public class Addresses {
             o.problem = "leads to " + path + "#" + o.anchor + ", which lacks that anchor";
         }
         return o;
+    }
+
+    /**
+     * The path as the server matches it: repeated slashes merged, as httpd does (MergeSlashes), and
+     * the segments . and .. resolved, as the browser does.
+     */
+    static String normalize(String path) {
+        List<String> segments = new ArrayList<>();
+        String[] parts = path.split("/+", -1);
+        for (int i = 1; i < parts.length; i++) {
+            String part = parts[i];
+            if (part.equals("..")) {
+                if (!segments.isEmpty()) {
+                    segments.remove(segments.size() - 1);
+                }
+            } else if (!part.equals(".")) {
+                segments.add(part);
+            }
+            // a path that ends in . or .. names a directory
+            if ((part.equals(".") || part.equals("..")) && i == parts.length - 1) {
+                segments.add("");
+            }
+        }
+        return "/" + String.join("/", segments);
     }
 
     /** True when path is in a part of the server that another build writes, or the download script. */
