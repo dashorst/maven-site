@@ -49,18 +49,21 @@
   <div class="frame has-group">
     <nav class="group-nav" aria-labelledby="group-nav-title">
       <p class="up"><a href="../../docs/index.html"><svg aria-hidden="true" viewBox="0 0 16 16" width="14" height="14"><path d="M10 3.5L5.5 8l4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" /></svg>All of Docs</a></p>
-      <p class="steps"><a class="step step--prev" href="../../docs/site/apt.html" rel="prev"><span class="step-dir">Previous</span> APT format</a><a class="step step--next" href="../../docs/site/fml.html" rel="next"><span class="step-dir">Next</span> FML format</a></p>
+      <p class="steps"><a class="step step--prev" href="../../docs/site/apt.html" rel="prev"><span class="step-dir">Previous</span> APT format</a><a class="step step--next" href="../../docs/site/apt-to-markdown.html" rel="next"><span class="step-dir">Next</span> Migrate from APT to Markdown</a></p>
       <h2 id="group-nav-title"><a href="../../docs/site/index.html">Project site</a></h2>
       <ul class="page-list">
   <li><a href="../../docs/site/create-a-site.html">Create a project site</a></li>
+  <li><a href="../../docs/site/multi-module-site.html">Build a multi-module site</a></li>
   <li><a href="../../docs/site/markup-formats.html">Write pages in Markdown</a></li>
   <li><a href="../../docs/site/markdown.html">Markdown format</a></li>
   <li><a href="../../docs/site/apt.html">APT format</a></li>
   <li><a href="../../docs/site/doxia-apt.html" aria-current="page">Doxia's APT enhancements</a></li>
+  <li><a href="../../docs/site/apt-to-markdown.html">Migrate from APT to Markdown</a></li>
   <li><a href="../../docs/site/fml.html">FML format</a></li>
   <li><a href="../../docs/site/xdoc.html">Xdoc format</a></li>
   <li><a href="../../docs/site/snippet-macro.html">Snippet macro</a></li>
   <li><a href="../../docs/site/macros.html">All Doxia macros</a></li>
+  <li><a href="../../docs/site/mermaid.html">Mermaid diagrams</a></li>
   <li><a href="../../docs/site/skins.html">Choose a skin</a></li>
 </ul>
     </nav>
@@ -92,26 +95,26 @@
 <h2><a id="Paragraphs_in_list_items"></a>Paragraphs in list items</h2> 
 <p>Contrary to the original APT parser, the Doxia APT parser does not put list items within paragraphs. Eg, the example given in the APT guide:</p>
 
-<pre tabindex="0"><code class="language-unknown">    * List item 1.
+<pre tabindex="0"><code class="language-text">    * List item 1.
 </code></pre>
 <p>will, for instance, produce the following html:</p>
 
-<pre tabindex="0" class="highlight"><code class="language-unknown">    <span class="nt">&lt;li</span><span class="nt">&gt;</span>List item 1.<span class="nt">&lt;/li</span><span class="nt">&gt;</span>
+<pre tabindex="0" class="highlight"><code class="language-xml">    <span class="nt">&lt;li</span><span class="nt">&gt;</span>List item 1.<span class="nt">&lt;/li</span><span class="nt">&gt;</span>
 </code></pre>
 <p>To get the same result as aptconvert, use</p>
 
-<pre tabindex="0"><code class="language-unknown">    *
+<pre tabindex="0"><code class="language-text">    *
 
       List item 1.
 </code></pre>
 <p>which will produce:</p>
 
-<pre tabindex="0" class="highlight"><code class="language-unknown">    <span class="nt">&lt;li</span><span class="nt">&gt;</span><span class="nt">&lt;p</span><span class="nt">&gt;</span>List item 1.<span class="nt">&lt;/p</span><span class="nt">&gt;</span><span class="nt">&lt;/li</span><span class="nt">&gt;</span>
+<pre tabindex="0" class="highlight"><code class="language-xml">    <span class="nt">&lt;li</span><span class="nt">&gt;</span><span class="nt">&lt;p</span><span class="nt">&gt;</span>List item 1.<span class="nt">&lt;/p</span><span class="nt">&gt;</span><span class="nt">&lt;/li</span><span class="nt">&gt;</span>
 </code></pre></section><section>
 <h2><a id="Table_header_cells"></a>Table header cells</h2> 
 <p>Header cells are defined by an additional pipe character '|' at the beginning of the cell:</p>
 
-<pre tabindex="0"><code class="language-unknown">*-----------+-----------+
+<pre tabindex="0"><code class="language-text">*-----------+-----------+
 || Header 1 || Header 2 |
 *-----------+-----------+
 | Cell 1    | Cell 2    |
@@ -131,7 +134,7 @@
 <h2><a id="Multi-lines_cells_in_table"></a>Multi-lines cells in table</h2> 
 <p>Since 1.1, multi-lines cells are recognized with the character '\' at the end of the cells:</p>
 
-<pre tabindex="0"><code class="language-unknown">*-----------+-----------+
+<pre tabindex="0"><code class="language-text">*-----------+-----------+
 || Header 1 || Header 2 |
 *-----------+-----------+
 | Cell\     | Cell 2    |
@@ -145,9 +148,7 @@
 <th>Header 1</th>
 <th>Header 2</th></tr></thead><tbody>
 <tr class="b">
-<td>Cell�</td></tr>
-<tr class="a">
-<td>1</td>
+<td>Cell<br>1</td>
 <td>Cell 2</td></tr></tbody>
 </table></div>
 </section><section>
@@ -155,7 +156,7 @@
 <h3><a id="Anchors_for_section_titles"></a>Anchors for section titles</h3>
 <p>When a document is rendered as part of a Maven site, Doxia gives every section title an anchor of its own, built from the title text by the rules below. Because that name follows the wording, rewording a title moves the anchor and breaks links aimed at it. Define the anchor explicitly where a reference has to hold:</p>
 
-<pre tabindex="0"><code class="language-unknown">* {Anchors for section titles}
+<pre tabindex="0"><code class="language-text">* {Anchors for section titles}
 </code></pre></section><section>
 <h3><a id="Anchor_construction"></a>Anchor construction</h3>
 <p>Contrary to the original APT format, an anchor/link is <strong>not</strong> its text with all non alphanumeric characters stripped. Ideally, an anchor should be a valid Doxia id, ie it must begin with a letter ([A-Za-z]) and may be followed by any number of letters, digits ([0-9]), hyphens ("-"), underscores ("_"), colons (":"), and periods ("."). Any anchor that does not satisfy this pattern is transformed according to the following rules:</p>
@@ -202,24 +203,27 @@ Since Doxia 1.4 there is support for literal anchors, by using 2 hashed (##) ins
 <h2><a id="Figure_extensions"></a>Figure extensions</h2> 
 <p>Contrary to the original APT format, a figure name has to be given fully <strong>with</strong> extension. For instance:</p>
 
-<pre tabindex="0"><code class="language-unknown">[/home/joe/docs/mylogo.jpeg] Figure caption
+<pre tabindex="0"><code class="language-text">[/home/joe/docs/mylogo.jpeg] Figure caption
 </code></pre></section></section>
       </div>
       <nav class="more" aria-labelledby="more-title">
         <h2 id="more-title">More in <a href="../../docs/site/index.html">Project site</a></h2>
         <ul class="more-list">
   <li><a href="../../docs/site/create-a-site.html">Create a project site</a></li>
+  <li><a href="../../docs/site/multi-module-site.html">Build a multi-module site</a></li>
   <li><a href="../../docs/site/markup-formats.html">Write pages in Markdown</a></li>
   <li><a href="../../docs/site/markdown.html">Markdown format</a></li>
   <li><a href="../../docs/site/apt.html">APT format</a></li>
   <li><a href="../../docs/site/doxia-apt.html" aria-current="page">Doxia's APT enhancements</a></li>
+  <li><a href="../../docs/site/apt-to-markdown.html">Migrate from APT to Markdown</a></li>
   <li><a href="../../docs/site/fml.html">FML format</a></li>
   <li><a href="../../docs/site/xdoc.html">Xdoc format</a></li>
   <li><a href="../../docs/site/snippet-macro.html">Snippet macro</a></li>
   <li><a href="../../docs/site/macros.html">All Doxia macros</a></li>
+  <li><a href="../../docs/site/mermaid.html">Mermaid diagrams</a></li>
   <li><a href="../../docs/site/skins.html">Choose a skin</a></li>
 </ul>
-        <p class="steps"><a class="step step--prev" href="../../docs/site/apt.html" rel="prev"><span class="step-dir">Previous</span> APT format</a><a class="step step--next" href="../../docs/site/fml.html" rel="next"><span class="step-dir">Next</span> FML format</a></p>
+        <p class="steps"><a class="step step--prev" href="../../docs/site/apt.html" rel="prev"><span class="step-dir">Previous</span> APT format</a><a class="step step--next" href="../../docs/site/apt-to-markdown.html" rel="next"><span class="step-dir">Next</span> Migrate from APT to Markdown</a></p>
       </nav>
     </main>
     <aside class="rail">

@@ -62,6 +62,7 @@
   <li><a href="../../extend/plugins/logging.html">Logging in plugins</a></li>
   <li><a href="../../extend/plugins/dependency-injection.html">Dependency injection (Maven 4)</a></li>
   <li><a href="../../extend/plugins/jsr-330.html">JSR-330</a></li>
+  <li><a href="../../extend/plugins/custom-toolchains.html">Custom toolchains</a></li>
   <li><a href="../../extend/plugins/null-annotations.html">Null annotations</a></li>
   <li><a href="../../extend/plugins/plexus-annotations.html">Upgrade from Plexus Javadoc tags</a></li>
   <li><a href="../../extend/plugins/lifecycle-extensions.html">Lifecycle extensions example</a></li>
@@ -121,7 +122,7 @@
 <h4>A Simple Mojo</h4>
 <p>Listed below is a simple mojo class which has no parameters. This is about as simple as a mojo can be. After the listing is a description of the various parts of the source.</p>
 
-<pre tabindex="0" class="highlight"><code class="language-unknown"><span class="k">package</span> sample.plugin;
+<pre tabindex="0" class="highlight"><code class="language-java"><span class="k">package</span> sample.plugin;
 
 <span class="k">import</span> org.apache.maven.plugin.AbstractMojo;
 <span class="k">import</span> org.apache.maven.plugin.MojoExecutionException;
@@ -175,7 +176,7 @@
 
 <p>Listed below is an illustration of the sample mojo project's pom with the parameters set as described in the above table:</p>
 
-<pre tabindex="0" class="highlight"><code class="language-unknown"><span class="nt">&lt;project</span><span class="nt">&gt;</span>
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;project</span><span class="nt">&gt;</span>
   <span class="nt">&lt;modelVersion</span><span class="nt">&gt;</span>4.0.0<span class="nt">&lt;/modelVersion</span><span class="nt">&gt;</span>
 
   <span class="nt">&lt;groupId</span><span class="nt">&gt;</span>sample.plugin<span class="nt">&lt;/groupId</span><span class="nt">&gt;</span>
@@ -270,7 +271,7 @@
 <h3>Executing Your First Mojo</h3>
 <p>The most direct means of executing your new plugin is to specify the plugin goal directly on the command line. To do this, configure the <code>hello-maven-plugin</code> plugin in the project:</p>
 
-<pre tabindex="0" class="highlight"><code class="language-unknown"><span class="nt">&lt;project</span><span class="nt">&gt;</span>
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;project</span><span class="nt">&gt;</span>
 ...
   <span class="nt">&lt;build</span><span class="nt">&gt;</span>
     <span class="nt">&lt;pluginManagement</span><span class="nt">&gt;</span>
@@ -303,7 +304,7 @@
 <li>
 <p>Finally, you can also add your plugin's group ID to the list of group IDs searched by default. To do this, add the following to your <code>${user.home}/.m2/settings.xml</code> file:</p>
 
-<pre tabindex="0" class="highlight"><code class="language-unknown"><span class="nt">&lt;pluginGroups</span><span class="nt">&gt;</span>
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;pluginGroups</span><span class="nt">&gt;</span>
   <span class="nt">&lt;pluginGroup</span><span class="nt">&gt;</span>sample.plugin<span class="nt">&lt;/pluginGroup</span><span class="nt">&gt;</span>
 <span class="nt">&lt;/pluginGroups</span><span class="nt">&gt;</span>
 </code></pre></li>
@@ -312,7 +313,7 @@
 <h4>Attaching the Mojo to the Build Lifecycle</h4>
 <p>You can also configure the plugin to attach specific goals to a particular phase of the build lifecycle. Here is an example:</p>
 
-<pre tabindex="0" class="highlight"><code class="language-unknown">  <span class="nt">&lt;build</span><span class="nt">&gt;</span>
+<pre tabindex="0" class="highlight"><code class="language-xml">  <span class="nt">&lt;build</span><span class="nt">&gt;</span>
     <span class="nt">&lt;pluginManagement</span><span class="nt">&gt;</span>
       <span class="nt">&lt;plugins</span><span class="nt">&gt;</span>
         <span class="nt">&lt;plugin</span><span class="nt">&gt;</span>
@@ -358,7 +359,7 @@
 <h3>Defining Parameters Within a Mojo</h3>
 <p>Defining a parameter is as simple as creating an instance variable in the mojo and adding the proper annotations. Listed below is an example of a parameter for the simple mojo:</p>
 
-<pre tabindex="0" class="highlight"><code class="language-unknown">    <span class="cm">/**
+<pre tabindex="0" class="highlight"><code class="language-java">    <span class="cm">/**
      * The greeting to display.
      */</span>
     <span class="nd">@Parameter</span>(property = <span class="s">"sayhi.greeting"</span>, defaultValue = <span class="s">"Hello World!"</span> )
@@ -368,7 +369,7 @@
 <h3>Configuring Parameters in a Project</h3>
 <p>Each Maven project can configure the plugins it uses in the <code>pluginManagement</code> section of the pom.xml. For example:</p>
 
-<pre tabindex="0" class="highlight"><code class="language-unknown"><span class="nt">&lt;plugin</span><span class="nt">&gt;</span>
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;plugin</span><span class="nt">&gt;</span>
   <span class="nt">&lt;groupId</span><span class="nt">&gt;</span>sample.plugin<span class="nt">&lt;/groupId</span><span class="nt">&gt;</span>
   <span class="nt">&lt;artifactId</span><span class="nt">&gt;</span>hello-maven-plugin<span class="nt">&lt;/artifactId</span><span class="nt">&gt;</span>
   <span class="nt">&lt;version</span><span class="nt">&gt;</span>1.0-SNAPSHOT<span class="nt">&lt;/version</span><span class="nt">&gt;</span>
@@ -380,10 +381,10 @@
 <p>In the configuration section, the element name (“<code>greeting</code>”) is the parameter name and the content of the element (“<code>Welcome</code>”) is the value to be assigned to the parameter.</p>
 <p><strong>Note</strong>: More details can be found in the <a href="../../docs/plugins/configure-plugins.html">Guide to Configuring Plugins</a>.</p></section></section><section><a id="Using_Setters"></a>
 <h2>Using Setters</h2>
-<p>You are not restricted to using private field mapping which is helpful if you are trying to make your Mojos reusable outside the context of Maven. In the example above, we could define public setter methods that the configuration mapping mechanism can use. You can also add an <code>@Parameter</code> annotation on the setter method (from version 3.7.0 of `plugin-tools`)</p>
+<p>You are not restricted to using private field mapping which is helpful if you are trying to make your Mojos reusable outside the context of Maven. In the example above, we could define public setter methods that the configuration mapping mechanism can use. You can also add an <code>@Parameter</code> annotation on the setter method (from version 3.7.0 of <code>plugin-tools</code>)</p>
 <p>So the Mojo would look like the following:</p>
 
-<pre tabindex="0" class="highlight"><code class="language-unknown">
+<pre tabindex="0" class="highlight"><code class="language-java">
 <span class="k">public</span> <span class="k">class</span> MyQueryMojo <span class="k">extends</span> AbstractMojo {
 
     <span class="c1">// provide name for non matching field and setter name</span>
@@ -443,6 +444,7 @@
   <li><a href="../../extend/plugins/logging.html">Logging in plugins</a></li>
   <li><a href="../../extend/plugins/dependency-injection.html">Dependency injection (Maven 4)</a></li>
   <li><a href="../../extend/plugins/jsr-330.html">JSR-330</a></li>
+  <li><a href="../../extend/plugins/custom-toolchains.html">Custom toolchains</a></li>
   <li><a href="../../extend/plugins/null-annotations.html">Null annotations</a></li>
   <li><a href="../../extend/plugins/plexus-annotations.html">Upgrade from Plexus Javadoc tags</a></li>
   <li><a href="../../extend/plugins/lifecycle-extensions.html">Lifecycle extensions example</a></li>

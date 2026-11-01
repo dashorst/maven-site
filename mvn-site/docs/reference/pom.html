@@ -49,10 +49,11 @@
   <div class="frame has-group">
     <nav class="group-nav" aria-labelledby="group-nav-title">
       <p class="up"><a href="../../docs/index.html"><svg aria-hidden="true" viewBox="0 0 16 16" width="14" height="14"><path d="M10 3.5L5.5 8l4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" /></svg>All of Docs</a></p>
-      <p class="steps"><a class="step step--next" href="../../docs/reference/settings.html" rel="next"><span class="step-dir">Next</span> Settings reference</a></p>
+      <p class="steps"><a class="step step--next" href="../../docs/reference/pom-scm-urls.html" rel="next"><span class="step-dir">Next</span> SCM URLs</a></p>
       <h2 id="group-nav-title"><a href="../../docs/reference/index.html">Reference</a></h2>
       <ul class="page-list">
   <li><a href="../../docs/reference/pom.html" aria-current="page">POM reference</a></li>
+  <li><a href="../../docs/reference/pom-scm-urls.html">SCM URLs</a></li>
   <li><a href="../../docs/reference/settings.html">Settings reference</a></li>
   <li><a href="../../docs/reference/command-line.html">Command line: running Maven</a></li>
   <li><a href="../../docs/reference/classloading.html">Maven classloading</a></li>
@@ -1284,15 +1285,16 @@ Display parameters as parsed by Maven (in canonical form and as a list of tokens
 </code></pre>
 <ul>
 
-<li><code>&lt;connection&gt;</code>, <code>&lt;developerConnection&gt;</code>: The two connection elements convey to how one is to connect to the version control system through Maven. Where connection requires read access for Maven to be able to find the source code (for example, an update), developerConnection requires a connection that will give write access. The Maven project has spawned another project named Maven SCM, which creates a common API for any SCMs that wish to implement it. The most popular are CVS and Subversion, however, there is a growing list of other supported <a href="../../scm/scms-overview.html">SCMs</a>. All SCM connections are made through a common URL structure.</li>
+<li><code>&lt;connection&gt;</code>, <code>&lt;developerConnection&gt;</code>: The two connection elements convey to how one is to connect to the version control system through Maven. Where connection requires read access for Maven to be able to find the source code (for example, an update), developerConnection requires a connection that will give write access. The Maven project has spawned another project named Maven SCM, which creates a common API for any SCMs that wish to implement it. All SCM connections are made through a common URL structure.</li>
 </ul>
 
 <pre tabindex="0"><code class="nohighlight nocode">scm:[provider]:[provider_specific]
 </code></pre>
-<p>Where provider is the type of SCM system. For example, connecting to a CVS repository may look like this:</p>
+<p>Where provider is the type of SCM system. For example, connecting to a Git repository may look like this:</p>
 
-<pre tabindex="0"><code class="nohighlight nocode">scm:cvs:pserver:127.0.0.1:/cvs/root:my-project
+<pre tabindex="0"><code class="nohighlight nocode">scm:git:https://github.com/example/my-project.git
 </code></pre>
+<p>The <a href="./pom-scm-urls.html">SCM URLs</a> page describes the URL format and the URLs of the supported SCMs.</p>
 <ul>
 
 <li>
@@ -1526,6 +1528,7 @@ Display parameters as parsed by Maven (in canonical form and as a list of tokens
         <h2 id="more-title">More in <a href="../../docs/reference/index.html">Reference</a></h2>
         <ul class="more-list">
   <li><a href="../../docs/reference/pom.html" aria-current="page">POM reference</a></li>
+  <li><a href="../../docs/reference/pom-scm-urls.html">SCM URLs</a></li>
   <li><a href="../../docs/reference/settings.html">Settings reference</a></li>
   <li><a href="../../docs/reference/command-line.html">Command line: running Maven</a></li>
   <li><a href="../../docs/reference/classloading.html">Maven classloading</a></li>
@@ -1534,7 +1537,7 @@ Display parameters as parsed by Maven (in canonical form and as a list of tokens
   <li><a href="../../docs/reference/bash-completion.html">Bash completion</a></li>
   <li><a href="../../docs/reference/a-z.html">A–Z index</a></li>
 </ul>
-        <p class="steps"><a class="step step--next" href="../../docs/reference/settings.html" rel="next"><span class="step-dir">Next</span> Settings reference</a></p>
+        <p class="steps"><a class="step step--next" href="../../docs/reference/pom-scm-urls.html" rel="next"><span class="step-dir">Next</span> SCM URLs</a></p>
       </nav>
     </main>
     <aside class="rail">

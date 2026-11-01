@@ -53,14 +53,17 @@
       <h2 id="group-nav-title"><a href="../../docs/site/index.html">Project site</a></h2>
       <ul class="page-list">
   <li><a href="../../docs/site/create-a-site.html">Create a project site</a></li>
+  <li><a href="../../docs/site/multi-module-site.html">Build a multi-module site</a></li>
   <li><a href="../../docs/site/markup-formats.html">Write pages in Markdown</a></li>
   <li><a href="../../docs/site/markdown.html">Markdown format</a></li>
   <li><a href="../../docs/site/apt.html">APT format</a></li>
   <li><a href="../../docs/site/doxia-apt.html">Doxia's APT enhancements</a></li>
+  <li><a href="../../docs/site/apt-to-markdown.html">Migrate from APT to Markdown</a></li>
   <li><a href="../../docs/site/fml.html">FML format</a></li>
   <li><a href="../../docs/site/xdoc.html" aria-current="page">Xdoc format</a></li>
   <li><a href="../../docs/site/snippet-macro.html">Snippet macro</a></li>
   <li><a href="../../docs/site/macros.html">All Doxia macros</a></li>
+  <li><a href="../../docs/site/mermaid.html">Mermaid diagrams</a></li>
   <li><a href="../../docs/site/skins.html">Choose a skin</a></li>
 </ul>
     </nav>
@@ -104,7 +107,7 @@
 <h2>XDoc Sample</h2>
 <p>The following is a sample XDoc document:</p>
 
-<pre tabindex="0" class="highlight"><code class="language-unknown"><span class="cp">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="cp">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
 <span class="nt">&lt;document</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/XDOC/2.0"</span>
   <span class="na">xmlns:xsi</span>=<span class="s">"http://www.w3.org/2001/XMLSchema-instance"</span>
   <span class="na">xsi:schemaLocation</span>=<span class="s">"http://maven.apache.org/XDOC/2.0 http://maven.apache.org/xsd/xdoc-2.0.xsd"</span><span class="nt">&gt;</span>
@@ -152,13 +155,13 @@ code line 2
 <h2>The &lt;source&gt; tag</h2>
 <p><code>&lt;source&gt;</code> tags are special. Anything within this tag is rendered within a "verbatim box" as pre-formatted text. If you are embedding other XML/XHTML markup within the source tags, then you need to place a CDATA section within the source section. Example:</p>
 
-<pre tabindex="0" class="highlight"><code class="language-unknown"><span class="nt">&lt;source</span><span class="nt">&gt;</span><span class="cp">&lt;![CDATA[ content here &lt;a href=""&gt;foo&lt;/a&gt;]]&gt;</span><span class="nt">&lt;/source</span><span class="nt">&gt;</span>
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;source</span><span class="nt">&gt;</span><span class="cp">&lt;![CDATA[ content here &lt;a href=""&gt;foo&lt;/a&gt;]]&gt;</span><span class="nt">&lt;/source</span><span class="nt">&gt;</span>
 </code></pre>
 <p><a id="Additional_sectioning"></a></p></section><section><a id="Additional_sectioning"></a>
 <h2>Additional sectioning</h2>
 <p>Since Doxia 2.0, <code>&lt;section&gt;</code> and <code>&lt;subsection&gt;</code> elements produce <code>&lt;h1&gt;</code> and <code>&lt;h2&gt;</code> headings respectively; before 2.0 they started at <code>&lt;h2&gt;</code>. It is therefore perfectly valid to put some sub-headings (<code>&lt;h3&gt;</code> to <code>&lt;h6&gt;</code>) inside a subsection. For instance,</p>
 
-<pre tabindex="0" class="highlight"><code class="language-unknown"><span class="nt">&lt;h3</span><span class="nt">&gt;</span>A subsubsection<span class="nt">&lt;/h3</span><span class="nt">&gt;</span>
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;h3</span><span class="nt">&gt;</span>A subsubsection<span class="nt">&lt;/h3</span><span class="nt">&gt;</span>
 </code></pre>
 <p>will produce:</p><section><a id="A_subsubsection"></a>
 <h3>A subsubsection</h3>
@@ -167,7 +170,7 @@ code line 2
 <p>When a document is rendered as part of a Maven site, Doxia creates an anchor for every section and subsection title by itself, deriving the name from the title text and making it unique within the document. A title that is reworded therefore gets a different anchor, which silently breaks links pointing at it.</p>
 <p>For a reference that has to survive editing, name the anchor yourself. Either provide an explicit anchor:</p>
 
-<pre tabindex="0" class="highlight"><code class="language-unknown"><span class="nt">&lt;a</span> <span class="na">name</span>=<span class="s">"Section1"</span><span class="nt">/&gt;</span>
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;a</span> <span class="na">name</span>=<span class="s">"Section1"</span><span class="nt">/&gt;</span>
 <span class="nt">&lt;section</span> <span class="na">name</span>=<span class="s">"Section"</span><span class="nt">&gt;</span>
 
   <span class="nt">&lt;a</span> <span class="na">name</span>=<span class="s">"SubSection1"</span><span class="nt">/&gt;</span>
@@ -178,7 +181,7 @@ code line 2
 </code></pre>
 <p>or use an <code>id</code> attribute for section and subsections (note that <code>id</code>'s have to be unique within one xdoc source document):</p>
 
-<pre tabindex="0" class="highlight"><code class="language-unknown"><span class="nt">&lt;section</span> <span class="na">name</span>=<span class="s">"Section"</span> <span class="na">id</span>=<span class="s">"Section1"</span><span class="nt">&gt;</span>
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;section</span> <span class="na">name</span>=<span class="s">"Section"</span> <span class="na">id</span>=<span class="s">"Section1"</span><span class="nt">&gt;</span>
 
   <span class="nt">&lt;subsection</span> <span class="na">name</span>=<span class="s">"SubSection"</span> <span class="na">id</span>=<span class="s">"SubSection1"</span><span class="nt">&gt;</span>
   <span class="nt">&lt;/subsection</span><span class="nt">&gt;</span>
@@ -194,7 +197,7 @@ code line 2
 <h3>Don't nest block level elements</h3>
 <p>Wrong:</p>
 
-<pre tabindex="0" class="highlight"><code class="language-unknown"><span class="nt">&lt;p</span><span class="nt">&gt;</span>
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;p</span><span class="nt">&gt;</span>
   Here's a list:
   <span class="nt">&lt;ul</span><span class="nt">&gt;</span>
     <span class="nt">&lt;li</span><span class="nt">&gt;</span>item 1<span class="nt">&lt;/li</span><span class="nt">&gt;</span>
@@ -205,7 +208,7 @@ code line 2
 </code></pre>
 <p>Correct:</p>
 
-<pre tabindex="0" class="highlight"><code class="language-unknown"><span class="nt">&lt;p</span><span class="nt">&gt;</span>
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;p</span><span class="nt">&gt;</span>
   Here's a list:
 <span class="nt">&lt;/p</span><span class="nt">&gt;</span>
 <span class="nt">&lt;ul</span><span class="nt">&gt;</span>
@@ -221,13 +224,13 @@ code line 2
 <h3>Put inline elements inside block level elements</h3>
 <p>Wrong:</p>
 
-<pre tabindex="0" class="highlight"><code class="language-unknown"><span class="nt">&lt;section</span> <span class="na">name</span>=<span class="s">"Downloads"</span><span class="nt">&gt;</span>
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;section</span> <span class="na">name</span>=<span class="s">"Downloads"</span><span class="nt">&gt;</span>
   <span class="nt">&lt;a</span> <span class="na">href</span>=<span class="s">"downloads.html"</span><span class="nt">&gt;</span>Downloads<span class="nt">&lt;/a</span><span class="nt">&gt;</span>
 <span class="nt">&lt;/section</span><span class="nt">&gt;</span>
 </code></pre>
 <p>Correct:</p>
 
-<pre tabindex="0" class="highlight"><code class="language-unknown"><span class="nt">&lt;section</span> <span class="na">name</span>=<span class="s">"Downloads"</span><span class="nt">&gt;</span>
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;section</span> <span class="na">name</span>=<span class="s">"Downloads"</span><span class="nt">&gt;</span>
   <span class="nt">&lt;p</span><span class="nt">&gt;</span>
     <span class="nt">&lt;a</span> <span class="na">href</span>=<span class="s">"downloads.html"</span><span class="nt">&gt;</span>Downloads<span class="nt">&lt;/a</span><span class="nt">&gt;</span>
   <span class="nt">&lt;/p</span><span class="nt">&gt;</span>
@@ -241,14 +244,14 @@ code line 2
 <h3>Don't put &lt;source&gt; inside paragraphs</h3>
 <p>Wrong:</p>
 
-<pre tabindex="0" class="highlight"><code class="language-unknown"><span class="nt">&lt;p</span><span class="nt">&gt;</span>
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;p</span><span class="nt">&gt;</span>
   The following command executes the program:
   <span class="nt">&lt;source</span><span class="nt">&gt;</span>java -jar CoolApp.jar<span class="nt">&lt;/source</span><span class="nt">&gt;</span>
 <span class="nt">&lt;/p</span><span class="nt">&gt;</span>
 </code></pre>
 <p>Correct:</p>
 
-<pre tabindex="0" class="highlight"><code class="language-unknown"><span class="nt">&lt;p</span><span class="nt">&gt;</span>
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;p</span><span class="nt">&gt;</span>
   The following command executes the program:
 <span class="nt">&lt;/p</span><span class="nt">&gt;</span>
 <span class="nt">&lt;source</span><span class="nt">&gt;</span>java -jar CoolApp.jar<span class="nt">&lt;/source</span><span class="nt">&gt;</span>
@@ -259,14 +262,17 @@ code line 2
         <h2 id="more-title">More in <a href="../../docs/site/index.html">Project site</a></h2>
         <ul class="more-list">
   <li><a href="../../docs/site/create-a-site.html">Create a project site</a></li>
+  <li><a href="../../docs/site/multi-module-site.html">Build a multi-module site</a></li>
   <li><a href="../../docs/site/markup-formats.html">Write pages in Markdown</a></li>
   <li><a href="../../docs/site/markdown.html">Markdown format</a></li>
   <li><a href="../../docs/site/apt.html">APT format</a></li>
   <li><a href="../../docs/site/doxia-apt.html">Doxia's APT enhancements</a></li>
+  <li><a href="../../docs/site/apt-to-markdown.html">Migrate from APT to Markdown</a></li>
   <li><a href="../../docs/site/fml.html">FML format</a></li>
   <li><a href="../../docs/site/xdoc.html" aria-current="page">Xdoc format</a></li>
   <li><a href="../../docs/site/snippet-macro.html">Snippet macro</a></li>
   <li><a href="../../docs/site/macros.html">All Doxia macros</a></li>
+  <li><a href="../../docs/site/mermaid.html">Mermaid diagrams</a></li>
   <li><a href="../../docs/site/skins.html">Choose a skin</a></li>
 </ul>
         <p class="steps"><a class="step step--prev" href="../../docs/site/fml.html" rel="prev"><span class="step-dir">Previous</span> FML format</a><a class="step step--next" href="../../docs/site/snippet-macro.html" rel="next"><span class="step-dir">Next</span> Snippet macro</a></p>

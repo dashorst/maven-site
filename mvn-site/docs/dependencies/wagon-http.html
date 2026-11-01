@@ -64,6 +64,8 @@
   <li><a href="../../docs/dependencies/resolver-transport.html">Resolver transport</a></li>
   <li><a href="../../docs/dependencies/wagon-http.html" aria-current="page">HTTP options of the Wagon transport</a></li>
   <li><a href="../../docs/dependencies/wagon-providers.html">Alternative Wagon providers</a></li>
+  <li><a href="../../docs/dependencies/deployment-transports.html">Deploy over HTTP, FTP and SSH</a></li>
+  <li><a href="../../docs/dependencies/resolution-misconceptions.html">Dependency resolution misconceptions</a></li>
   <li><a href="../../docs/dependencies/centralized-deployments.html">Large centralized deployments</a></li>
   <li><a href="../../docs/dependencies/naming-coordinates.html">Naming your coordinates</a></li>
 </ul>
@@ -84,321 +86,511 @@
 </section>
  <section><a id="Advanced_configuration_to_HttpClient_HTTP_Wagon"></a>
 <h1>Advanced configuration to HttpClient HTTP Wagon</h1>
+<p><a id="Introduction"></a></p>
 <p><strong>This page contains Wagon specific information, but the default transport in Maven 3.9.0+ is NOT Wagon anymore. Make sure to check the <a href="resolver-transport.html">Resolver Transport guide</a> first, as things have changed.</strong></p>
 <ul>
 <li><a href="#Advanced_configuration_to_HttpClient_HTTP_Wagon">Advanced configuration to HttpClient HTTP Wagon</a>
 <ul>
-<li><a href="#Introduction">Introduction</a></li>
-<li><a href="#The_Basics">The Basics</a></li>
-<li><a href="#Configuring_GET.2C_HEAD.2C_PUT.2C_or_All_of_the_Above">Configuring GET, HEAD, PUT, or All of the Above</a></li>
-<li><a href="#Taking_Control_of_Your_HTTP_Headers">Taking Control of Your HTTP Headers</a></li>
-<li><a href="#Fine-Tuning_HttpClient_Parameters">Fine-Tuning HttpClient Parameters</a>
+<li><a href="#Where_configuration_goes">Where configuration goes</a></li>
+<li><a href="#httpConfiguration">httpConfiguration</a>
 <ul>
-<li><a href="#Non-String_Parameter_Values">Non-String Parameter Values</a>
+<li><a href="#How_all_and_the_per-method_block_are_combined">How all and the per-method block are combined</a></li>
+<li><a href="#Writing_headers_and_params">Writing headers and params</a></li>
+<li><a href="#headers">headers</a></li>
+<li><a href="#useDefaultHeaders">useDefaultHeaders</a></li>
+<li><a href="#params">params</a></li>
+<li><a href="#Ignoring_cookies">Ignoring cookies</a></li></ul></li>
+<li><a href="#Authentication">Authentication</a>
 <ul>
-<li><a href="#Example.3A_Using_Preemptive_Authentication">Example: Using Preemptive Authentication</a></li></ul></li>
-<li><a href="#Example.3A_Lifting_auth_scope_restriction_for_external_authentication_systems">Example: Lifting auth scope restriction for external authentication systems</a></li>
-<li><a href="#Ignoring_Cookies">Ignoring Cookies</a></li></ul></li>
-<li><a href="#Support_for_General-Wagon_Configuration_Standards">Support for General-Wagon Configuration Standards</a>
+<li><a href="#Target_server_credentials">Target server credentials</a></li>
+<li><a href="#Preemptive_authentication">Preemptive authentication</a></li>
+<li><a href="#basicAuth_and_proxyAuth_.E2.80.94_overriding_the_authentication_scope">basicAuth and proxyAuth — overriding the authentication scope</a></li></ul></li>
+<li><a href="#Proxies">Proxies</a></li>
+<li><a href="#Connection_timeout">Connection timeout</a></li>
+<li><a href="#Deprecated.3A_httpHeaders">Deprecated: httpHeaders</a></li>
+<li><a href="#Backoff_on_429">Backoff on 429</a></li>
+<li><a href="#System_properties">System properties</a>
 <ul>
-<li><a href="#HTTP_Headers">HTTP Headers</a></li>
-<li><a href="#Connection_Timeouts">Connection Timeouts</a></li>
-<li><a href="#Read_time_out">Read time out</a></li></ul></li>
+<li><a href="#Connection_pool">Connection pool</a></li>
+<li><a href="#Timeouts">Timeouts</a></li>
+<li><a href="#TLS">TLS</a></li>
+<li><a href="#Retries">Retries</a></li>
+<li><a href="#Backoff">Backoff</a></li></ul></li>
+<li><a href="#Worked_example">Worked example</a></li>
 <li><a href="#Resources">Resources</a></li></ul></li></ul>
 
-<p>You can use the default wagon implementation for a given protocol, or you can select an alternative wagon <code>provider</code> on a per-protocol basis. For more information, see the <a href="wagon-providers.html">Guide to Wagon Providers</a> [3]. The default wagon http(s) is the HttpClient based on <a href="https://hc.apache.org/httpcomponents-client-4.5.x/" class="externalLink">Apache Http Client 4.5</a>. HTTP connection pooling prevents reopening new connections to the same server for each request. This pool feature is configurable with some parameters [4]. The default wagon comes with some default configuration:</p>
+<p>Maven bundles <code>wagon-http</code> for HTTP and HTTPS; see the <a href="wagon-providers.html">Guide to Wagon Providers</a>. With Maven 3.9.0 and later, Wagon is used when you select it with <code>-Dmaven.resolver.transport=wagon</code>. The native HTTP transport reads only the <code>&lt;all&gt;</code> block of <code>httpConfiguration</code> (<code>get</code>, <code>head</code> and <code>put</code> are ignored) and warns about the deprecation, so the per-method configuration below applies to Wagon only.</p>
+<p>This page documents the <code>&lt;configuration&gt;</code> block that <a href="https://maven.apache.org/wagon/wagon-providers/wagon-http/" class="externalLink">wagon-http</a> reads — headers, request parameters, timeouts, preemptive authentication and authentication scope — and how each setting maps onto Apache HttpClient 4.5. It describes Wagon 3.5.3, the version Maven 3.9.x and 3.10.x ship with. Four behaviours marked “Wagon 3.5.3” below change in later Wagon releases, so check the release notes of the Wagon version you use.</p>
+<p>Everything here comes from <code>AbstractHttpClientWagon</code> in <code>wagon-http-shared</code>, so it applies equally to <a href="https://maven.apache.org/wagon/wagon-providers/wagon-webdav-jackrabbit/" class="externalLink">wagon-webdav-jackrabbit</a>, which extends the same class. It does <strong>not</strong> apply to <a href="https://maven.apache.org/wagon/wagon-providers/wagon-http-lightweight/" class="externalLink">wagon-http-lightweight</a>, which is a different implementation built on <code>java.net.HttpURLConnection</code>.</p>
+<p>Settings that are global rather than per-server are exposed as system properties instead; see <a href="#System_properties">System properties</a> at the end.</p>
+<p><a id="The_Basics"></a></p><section><a id="Where_configuration_goes"></a>
+<h2>Where configuration goes</h2>
+<p>In a Maven build, per-server configuration lives in <code>settings.xml</code>, inside the <code>&lt;server&gt;</code> whose <code>&lt;id&gt;</code> matches the repository or <code>distributionManagement</code> id:</p>
+
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;settings</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;servers</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;server</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;id</span><span class="nt">&gt;</span>my-repository<span class="nt">&lt;/id</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;username</span><span class="nt">&gt;</span>deploy<span class="nt">&lt;/username</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;password</span><span class="nt">&gt;</span>secret<span class="nt">&lt;/password</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;configuration</span><span class="nt">&gt;</span>
+        <span class="c">&lt;!-- everything on this page goes here --&gt;</span>
+      <span class="nt">&lt;/configuration</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;/server</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;/servers</span><span class="nt">&gt;</span>
+<span class="nt">&lt;/settings</span><span class="nt">&gt;</span>
+</code></pre>
+<p>The elements inside <code>&lt;configuration&gt;</code> are mapped onto the Wagon instance as Plexus component configuration: element names correspond to the fields and setters of the provider class. Programmatically the same settings are the <code>setHttpConfiguration</code>, <code>setHttpHeaders</code>, <code>setBasicAuthScope</code>, <code>setProxyBasicAuthScope</code> and <code>setInitialBackoffSeconds</code> methods of <code>AbstractHttpClientWagon</code>.</p>
+<p><a id="Configuring_GET.2C_HEAD.2C_PUT.2C_or_All_of_the_Above"></a> <a id="Read_time_out"></a></p></section><section><a id="httpConfiguration"></a>
+<h2><code>httpConfiguration</code></h2>
+<p><code>httpConfiguration</code> is the main entry point. It is an <a href="https://maven.apache.org/wagon/apidocs/org/apache/maven/wagon/shared/http/HttpConfiguration.html" class="externalLink"><code>HttpConfiguration</code></a> with five optional children, one for “every method” plus one per HTTP method the providers issue:</p>
+<div class="table-scroll" tabindex="0"><table class="bodyTable">
+<thead>
+<tr class="a">
+<th>Element</th>
+<th>Applies to</th></tr></thead><tbody>
+<tr class="b">
+<td><code>all</code></td>
+<td>every request</td></tr>
+<tr class="a">
+<td><code>get</code></td>
+<td><code>GET</code> — downloads</td></tr>
+<tr class="b">
+<td><code>put</code></td>
+<td><code>PUT</code> — uploads</td></tr>
+<tr class="a">
+<td><code>head</code></td>
+<td><code>HEAD</code> — <code>resourceExists</code></td></tr>
+<tr class="b">
+<td><code>mkcol</code></td>
+<td><code>MKCOL</code> — WebDAV collection creation</td></tr></tbody>
+</table></div>
+
+<p>Each is an <a href="https://maven.apache.org/wagon/apidocs/org/apache/maven/wagon/shared/http/HttpMethodConfiguration.html" class="externalLink"><code>HttpMethodConfiguration</code></a> with the same six properties:</p>
+<div class="table-scroll" tabindex="0"><table class="bodyTable">
+<thead>
+<tr class="a">
+<th>Property</th>
+<th>Type</th>
+<th>Default</th></tr></thead><tbody>
+<tr class="b">
+<td><code>useDefaultHeaders</code></td>
+<td>boolean</td>
+<td><code>true</code></td></tr>
+<tr class="a">
+<td><code>headers</code></td>
+<td><code>Properties</code></td>
+<td>empty</td></tr>
+<tr class="b">
+<td><code>params</code></td>
+<td><code>Properties</code></td>
+<td>empty</td></tr>
+<tr class="a">
+<td><code>connectionTimeout</code></td>
+<td>int, milliseconds</td>
+<td>60000</td></tr>
+<tr class="b">
+<td><code>readTimeout</code></td>
+<td>int, milliseconds</td>
+<td>1800000, or the value of the <code>maven.wagon.rto</code> system property</td></tr>
+<tr class="a">
+<td><code>usePreemptive</code></td>
+<td>boolean</td>
+<td><code>false</code></td></tr></tbody>
+</table></div>
+
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;configuration</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;httpConfiguration</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;all</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;connectionTimeout</span><span class="nt">&gt;</span>10000<span class="nt">&lt;/connectionTimeout</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;readTimeout</span><span class="nt">&gt;</span>60000<span class="nt">&lt;/readTimeout</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;headers</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;User-Agent</span><span class="nt">&gt;</span>my-build/1.0<span class="nt">&lt;/User-Agent</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;/headers</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;params</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;http.protocol.max-redirects</span><span class="nt">&gt;</span>5<span class="nt">&lt;/http.protocol.max-redirects</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;/params</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;/all</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;put</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;readTimeout</span><span class="nt">&gt;</span>600000<span class="nt">&lt;/readTimeout</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;/put</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;/httpConfiguration</span><span class="nt">&gt;</span>
+<span class="nt">&lt;/configuration</span><span class="nt">&gt;</span>
+</code></pre><section><a id="How_all_and_the_per-method_block_are_combined"></a>
+<h3>How <code>all</code> and the per-method block are combined</h3>
+<p>For each request, <code>HttpConfiguration.getMethodConfiguration(HttpUriRequest)</code> looks at the method name and merges <code>all</code> with the matching block. Anything that is not <code>GET</code>, <code>PUT</code>, <code>HEAD</code> or <code>MKCOL</code> gets <code>all</code> alone.</p>
+<p>The merge, in <code>ConfigurationUtils.merge(base, local)</code>:</p>
 <ul>
 
-<li>http(s) connection pool: default to 20.</li>
-<li>readTimeout: default to 1800000 (~30 minutes) (see section <code>Read time out</code> below)</li>
-<li>default Preemptive Authentication only with PUT (GET doesn't use anymore default Preemptive Authentication)</li>
-</ul><section><a id="Introduction"></a>
-<h2>Introduction</h2>
-<p>The HttpClient-based HTTP wagon offers more control over the configuration used to access HTTP-based Maven repositories. For starters, you have fine-grained control over what HTTP headers are used when resolving artifacts. In addition, you can also configure a wide range of parameters to control the behavior of HttpClient itself. Best of all, you have the ability to control these headers and parameters for all requests, or individual request types (GET, HEAD, and PUT).</p></section><section><a id="The_Basics"></a>
-<h2>The Basics</h2>
-<p>Without any special configuration, Maven's HTTP wagon uses some default HTTP headers and client parameters when managing artifacts. The default headers are:</p>
+<li>if only one of the two is present, it is used as-is;</li>
+<li>otherwise <code>all</code> is copied and then the per-method block is layered on top: <code>headers</code> and <code>params</code> are merged key by key (the per-method value wins); <code>useDefaultHeaders</code> is taken from the per-method block if it was set explicitly; <code>connectionTimeout</code> and <code>readTimeout</code> are taken from the per-method block only if they differ from <code>Wagon.DEFAULT_CONNECTION_TIMEOUT</code> and <code>Wagon.DEFAULT_READ_TIMEOUT</code> respectively.</li>
+</ul>
+<p>That last rule has a consequence worth knowing in Wagon 3.5.3: you cannot use a per-method block to set a timeout <em>back</em> to the default value. Writing <code>&lt;readTimeout&gt;1800000&lt;/readTimeout&gt;</code> inside <code>&lt;get&gt;</code> is indistinguishable from not writing it at all, and the value from <code>&lt;all&gt;</code> survives.</p>
+<p><strong>Wagon 3.5.3: <code>usePreemptive</code> is not carried through the merge at all.</strong> The copy step does not copy it and the merge step does not apply it, so if both <code>&lt;all&gt;</code> and the block for the method in question are present, the effective <code>usePreemptive</code> is always <code>false</code>. Set it in <code>&lt;all&gt;</code> and leave that method's own block out, or set it only in the method block and leave <code>&lt;all&gt;</code> out. This is what <code>HttpWagonPreemptiveTest</code> does — it configures nothing but <code>setAll(new HttpMethodConfiguration().setUsePreemptive(true))</code>.</p>
+<p><a id="Non-String_Parameter_Values"></a></p></section><section><a id="Writing_headers_and_params"></a>
+<h3>Writing <code>headers</code> and <code>params</code></h3>
+<p>Both are <code>java.util.Properties</code>, and Plexus accepts two spellings for those. The short form uses the key as the element name:</p>
+
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;headers</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;User-Agent</span><span class="nt">&gt;</span>my-build/1.0<span class="nt">&lt;/User-Agent</span><span class="nt">&gt;</span>
+<span class="nt">&lt;/headers</span><span class="nt">&gt;</span>
+</code></pre>
+<p>The long form spells out each entry and works with every Plexus component configurator:</p>
+
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;headers</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;property</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;name</span><span class="nt">&gt;</span>User-Agent<span class="nt">&lt;/name</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;value</span><span class="nt">&gt;</span>my-build/1.0<span class="nt">&lt;/value</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;/property</span><span class="nt">&gt;</span>
+<span class="nt">&lt;/headers</span><span class="nt">&gt;</span>
+</code></pre>
+<p>Use the long form for keys that are not valid XML element names — most of the <code>params</code> keys below contain dots, which is fine, but nothing stops a header name from containing characters that are not.</p>
+<p><a id="Taking_Control_of_Your_HTTP_Headers"></a></p></section><section><a id="headers"></a>
+<h3><code>headers</code></h3>
+<p>Headers from the configuration are applied with <code>setHeader</code>, so they replace any header of the same name that the provider had already added.</p>
+<p><code>User-Agent</code> gets special handling: <code>getUserAgent(HttpUriRequest)</code> looks it up in <code>httpHeaders</code> first, then in the merged method configuration's <code>headers</code>, and the result is set on the request. If nothing supplies one, no <code>User-Agent</code> is added by Wagon.</p></section><section><a id="useDefaultHeaders"></a>
+<h3><code>useDefaultHeaders</code></h3>
+<p>When <code>true</code> — the default — every request gets</p>
 
 <pre tabindex="0"><code class="nohighlight nocode">Cache-control: no-cache
-Cache-store: no-store
 Pragma: no-cache
-Expires: 0
-Accept-Encoding: gzip
 </code></pre>
-<p>In addition, PUT requests made with the HTTP wagon use the following HttpClient parameter:</p>
+<p>before your own headers are applied. Set it to <code>false</code> to suppress them.</p>
+<p><a id="Fine-Tuning_HttpClient_Parameters"></a></p></section><section><a id="params"></a>
+<h3><code>params</code></h3>
+<p><code>&lt;params&gt;</code> is an escape hatch onto HttpClient's <code>RequestConfig</code>. Only the keys below are recognised; anything else is silently ignored. Values may optionally be prefixed with a legacy type coercion of the form <code>%type,value</code> — for example <code>%Integer,3</code> — in which case only the part after the comma is used.</p>
+<div class="table-scroll" tabindex="0"><table class="bodyTable">
+<thead>
+<tr class="a">
+<th>Parameter</th>
+<th><code>RequestConfig</code> setting</th></tr></thead><tbody>
+<tr class="b">
+<td><code>http.socket.timeout</code></td>
+<td><code>setSocketTimeout(int)</code></td></tr>
+<tr class="a">
+<td><code>http.connection.timeout</code></td>
+<td><code>setConnectTimeout(int)</code></td></tr>
+<tr class="b">
+<td><code>http.connection.stalecheck</code></td>
+<td><code>setStaleConnectionCheckEnabled(boolean)</code></td></tr>
+<tr class="a">
+<td><code>http.conn-manager.timeout</code></td>
+<td><code>setConnectionRequestTimeout(int)</code></td></tr>
+<tr class="b">
+<td><code>http.protocol.expect-continue</code></td>
+<td><code>setExpectContinueEnabled(boolean)</code></td></tr>
+<tr class="a">
+<td><code>http.protocol.handle-authentication</code></td>
+<td><code>setAuthenticationEnabled(boolean)</code></td></tr>
+<tr class="b">
+<td><code>http.protocol.handle-redirects</code></td>
+<td><code>setRedirectsEnabled(boolean)</code></td></tr>
+<tr class="a">
+<td><code>http.protocol.max-redirects</code></td>
+<td><code>setMaxRedirects(int)</code></td></tr>
+<tr class="b">
+<td><code>http.protocol.allow-circular-redirects</code></td>
+<td><code>setCircularRedirectsAllowed(boolean)</code></td></tr>
+<tr class="a">
+<td><code>http.protocol.reject-relative-redirect</code></td>
+<td><code>setRelativeRedirectsAllowed(!value)</code></td></tr>
+<tr class="b">
+<td><code>http.protocol.handle-content-compression</code></td>
+<td><code>setContentCompressionEnabled(boolean)</code></td></tr>
+<tr class="a">
+<td><code>http.protocol.handle-uri-normalization</code></td>
+<td><code>setNormalizeUri(boolean)</code></td></tr>
+<tr class="b">
+<td><code>http.protocol.cookie-policy</code></td>
+<td><code>setCookieSpec(String)</code></td></tr>
+<tr class="a">
+<td><code>http.route.default-proxy</code></td>
+<td><code>setProxy(HttpHost.create(value))</code></td></tr>
+<tr class="b">
+<td><code>http.route.local-address</code></td>
+<td><code>setLocalAddress(InetAddress)</code>; an unresolvable name is ignored</td></tr>
+<tr class="a">
+<td><code>http.auth.target-scheme-pref</code></td>
+<td><code>setTargetPreferredAuthSchemes(...)</code>, comma-separated</td></tr>
+<tr class="b">
+<td><code>http.auth.proxy-scheme-pref</code></td>
+<td><code>setProxyPreferredAuthSchemes(...)</code>, comma-separated</td></tr></tbody>
+</table></div>
 
-<pre tabindex="0"><code class="nohighlight nocode">http.protocol.expect-continue=true
+<p>Two of these interact with settings applied elsewhere. <code>params</code> are applied <em>after</em> the request has already been given the Wagon's own connect and read timeouts, so <code>http.socket.timeout</code> and <code>http.connection.timeout</code> take precedence over <code>connectionTimeout</code>/<code>readTimeout</code> and over <code>setTimeout</code>/<code>setReadTimeout</code>. Also, the cookie policy is set to <code>CookieSpecs.BROWSER_COMPATIBILITY</code> before <code>params</code> are applied, so <code>http.protocol.cookie-policy</code> overrides that default.</p>
+<p><code>Expect: 100-continue</code> is enabled unconditionally for <code>PUT</code> requests, before <code>params</code> are applied; <code>http.protocol.expect-continue</code> can therefore turn it off. It is deliberately not enabled for <code>MKCOL</code>, which has no body.</p>
+<p><a id="Ignoring_Cookies"></a></p></section><section><a id="Ignoring_cookies"></a>
+<h3>Ignoring cookies</h3>
+<p>Some repositories send session cookies, often by mistake, alongside HTTP redirection. The cookie's <code>Path</code> can then disagree with the path the client uses, and requests fail. If you know you do not need the session cookie, ignore cookies for the server:</p>
+
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;configuration</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;httpConfiguration</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;all</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;params</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;http.protocol.cookie-policy</span><span class="nt">&gt;</span>ignore<span class="nt">&lt;/http.protocol.cookie-policy</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;/params</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;/all</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;/httpConfiguration</span><span class="nt">&gt;</span>
+<span class="nt">&lt;/configuration</span><span class="nt">&gt;</span>
+</code></pre></section></section><section><a id="Authentication"></a>
+<h2>Authentication</h2><section><a id="Target_server_credentials"></a>
+<h3>Target server credentials</h3>
+<p>At <code>connect</code> time, if the <code>AuthenticationInfo</code> has a non-empty user name <em>and</em> a non-empty password, a <code>UsernamePasswordCredentials</code> is registered in the <code>CredentialsProvider</code> under an <code>AuthScope</code> derived from the repository's host and port. A user name without a password registers nothing.</p>
+<p>The client is built with an auth scheme registry containing exactly three schemes:</p>
+<div class="table-scroll" tabindex="0"><table class="bodyTable">
+<thead>
+<tr class="a">
+<th>Scheme</th>
+<th>Factory</th></tr></thead><tbody>
+<tr class="b">
+<td>Basic</td>
+<td><code>BasicSchemeFactory</code>, UTF-8</td></tr>
+<tr class="a">
+<td>Digest</td>
+<td><code>DigestSchemeFactory</code>, UTF-8</td></tr>
+<tr class="b">
+<td>NTLM</td>
+<td><code>NTLMSchemeFactory</code></td></tr></tbody>
+</table></div>
+
+<p>Basic and Digest both work against the target server with a plain user name and password, negotiated in response to the server's challenge. Use <code>http.auth.target-scheme-pref</code> if you need to force the order in which schemes are tried.</p>
+<p><strong>NTLM against the target server is not supported.</strong> The target credentials are always <code>UsernamePasswordCredentials</code>, never <code>NTCredentials</code>, so the registered NTLM scheme has nothing usable to offer. NTLM is only wired up for proxies — see below.</p>
+<p><a id="Example.3A_Using_Preemptive_Authentication"></a></p></section><section><a id="Preemptive_authentication"></a>
+<h3>Preemptive authentication</h3>
+<p>By default HttpClient waits for a <code>401</code> challenge before sending credentials. With <code>usePreemptive</code> set, a <code>BasicScheme</code> is placed in the <code>AuthCache</code> for the target host before the request goes out, provided credentials for that scope exist — so the first request already carries an <code>Authorization: Basic</code> header:</p>
+
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;configuration</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;httpConfiguration</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;all</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;usePreemptive</span><span class="nt">&gt;</span>true<span class="nt">&lt;/usePreemptive</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;/all</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;/httpConfiguration</span><span class="nt">&gt;</span>
+<span class="nt">&lt;/configuration</span><span class="nt">&gt;</span>
 </code></pre>
-<p>From the HttpClient documentation[2], this parameter provides the following functionality:</p>
+<p>Note the merge caveat above: adding a <code>&lt;get&gt;</code> block alongside this would switch preemptive authentication back off.</p>
+<p>Without <code>Expect: 100-continue</code>, a <code>PUT</code> that needs authentication would send its whole payload before the server issues the challenge, and then send it again with credentials: twice the bandwidth and time per artifact. Preemptive authentication avoids that by sending the credentials with the first request, at a price. An unused <code>&lt;server&gt;</code> entry with a wrong user name or password can make some servers answer <code>401 Unauthorized</code> even for requests that need no authentication, and sending credentials blindly can leak them to paths the server does not protect.</p>
+<p>Preemptive Basic authentication is only ever Basic — the cache entry is a <code>BasicScheme</code>. It has no effect on Digest or NTLM.</p>
+<p><code>PUT</code> is a special case in Wagon 3.5.3: <code>AbstractHttpClientWagon.put</code> primes the <code>AuthCache</code> with a <code>BasicScheme</code> for the target host whenever credentials exist, regardless of <code>usePreemptive</code>. Uploads are therefore preemptively authenticated by default. The source marks this as a known wart (“FIXME Perform only when preemptive has been configured”).</p>
+<p><a id="Example.3A_Lifting_auth_scope_restriction_for_external_authentication_systems"></a></p></section><section><a id="basicAuth_and_proxyAuth_.E2.80.94_overriding_the_authentication_scope"></a>
+<h3><code>basicAuth</code> and <code>proxyAuth</code> — overriding the authentication scope</h3>
+<p>By default the <code>AuthScope</code> for the target is built from the repository's own host and port with <code>AuthScope.ANY_REALM</code>, and a port of <code>-1</code> becomes <code>AuthScope.ANY_PORT</code>. <a href="https://maven.apache.org/wagon/apidocs/org/apache/maven/wagon/shared/http/BasicAuthScope.html" class="externalLink"><code>BasicAuthScope</code></a> lets you override <code>host</code>, <code>port</code> and <code>realm</code>.</p>
+<p><code>host</code> and <code>port</code> accept the literal string <code>ANY</code> to mean “match anything”, and setting <code>host</code>, <code>port</code> and <code>realm</code> all to <code>ANY</code> yields <code>AuthScope.ANY</code>.</p>
+<p><code>realm</code> does not work that way, and it is worth being explicit about it because the asymmetry is easy to trip over in Wagon 3.5.3. Omitting <code>realm</code> gives you <code>AuthScope.ANY_REALM</code>, which is what “match any realm” means. Setting it to any value — <em>including</em> <code>ANY</code>, unless <code>host</code> and <code>port</code> are <code>ANY</code> too — matches that string verbatim, so <code>&lt;realm&gt;ANY&lt;/realm&gt;</code> on its own produces a scope that only matches a server whose realm is literally <code>ANY</code>. Leave <code>realm</code> out unless you mean to pin it.</p>
+<p>This is the setting to reach for when credentials are not being sent because the server's realm or port does not match what Wagon derived from the URL — for instance a repository fronted by a redirect to another host, or one that delegates authentication to an external system that challenges from a different host.</p>
+<p>The two scopes are held in fields named <code>basicAuth</code> (for the target) and <code>proxyAuth</code> (for the proxy), reachable through <code>setBasicAuthScope</code> and <code>setProxyBasicAuthScope</code>.</p>
 
-<pre tabindex="0"><code class="nohighlight nocode">Activates 'Expect: 100-Continue' handshake for the entity enclosing methods. 
-The 'Expect: 100-Continue' handshake allows a client that is sending a request 
-message with a request body to determine if the origin server is willing to 
-accept the request (based on the request headers) before the client sends the 
-request body.
-
-The use of the 'Expect: 100-continue' handshake can result in noticeable performance 
-improvement for entity enclosing requests (such as POST and PUT) that require 
-the target server's authentication.
-
-'Expect: 100-continue' handshake should be used with caution, as it may cause 
-problems with HTTP servers and proxies that do not support HTTP/1.1 protocol.
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;configuration</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;basicAuth</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;host</span><span class="nt">&gt;</span>ANY<span class="nt">&lt;/host</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;port</span><span class="nt">&gt;</span>ANY<span class="nt">&lt;/port</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;realm</span><span class="nt">&gt;</span>ANY<span class="nt">&lt;/realm</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;/basicAuth</span><span class="nt">&gt;</span>
+<span class="nt">&lt;/configuration</span><span class="nt">&gt;</span>
 </code></pre>
-<p>Without this setting, PUT requests that require authentication transfer their entire payload to the server before that server issues an authentication challenge. In order to complete the PUT request, the client must then re-send the payload with the proper credentials specified in the HTTP headers. This results in twice the bandwidth usage, and twice the time to transfer each artifact.</p>
-<p>Another option to avoid this double transfer is what's known as preemptive authentication, which involves sending the authentication headers along with the original PUT request. However, there are a few potential issues with this approach. For one thing, in the event you have an unused <code>&lt;server&gt;</code> entry that specifies an invalid username/password combination, some servers may respond with a <code>401 Unauthorized</code> even if the server doesn't actually require any authentication for the request. In addition, blindly sending authentication credentials with every request regardless of whether the server has made a challenge can result in a security hole, since the server may not make provisions to secure credentials for paths that don't require authentication.</p>
-<p>We'll discuss preemptive authentication in another example, below.</p></section><section><a id="Configuring_GET.2C_HEAD.2C_PUT.2C_or_All_of_the_Above"></a>
-<h2>Configuring GET, HEAD, PUT, or All of the Above</h2>
-<p><strong>Starting with Maven 3.9.0 native HTTP transport will pick up the “all” settings only (get, head, put are neglected!)" but it will WARN about its deprecation. For users sticking with Wagon nothing changes.</strong></p>
-<p>In all of the examples below, it's important to understand that you can configure the HTTP settings for all requests made to a given server, or for only one method. To configure all methods for a server, use the following section of the <code>settings.xml</code> file:</p>
+<p>That is the all-<code>ANY</code> case, which short-circuits to <code>AuthScope.ANY</code> and so does match any realm. To widen only the host and port, omit <code>realm</code> rather than setting it to <code>ANY</code>:</p>
 
-<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;settings</span><span class="nt">&gt;</span>
-  [...]
-  <span class="nt">&lt;servers</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;server</span><span class="nt">&gt;</span>
-      <span class="nt">&lt;id</span><span class="nt">&gt;</span>the-server<span class="nt">&lt;/id</span><span class="nt">&gt;</span>
-      <span class="nt">&lt;configuration</span><span class="nt">&gt;</span>
-        <span class="nt">&lt;httpConfiguration</span><span class="nt">&gt;</span>
-          <span class="nt">&lt;all</span><span class="nt">&gt;</span>
-            [ Your configuration here. ]
-          <span class="nt">&lt;/all</span><span class="nt">&gt;</span>
-        <span class="nt">&lt;/httpConfiguration</span><span class="nt">&gt;</span>
-      <span class="nt">&lt;/configuration</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;/server</span><span class="nt">&gt;</span>
-  <span class="nt">&lt;/servers</span><span class="nt">&gt;</span>
-<span class="nt">&lt;/settings</span><span class="nt">&gt;</span>
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;configuration</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;basicAuth</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;host</span><span class="nt">&gt;</span>ANY<span class="nt">&lt;/host</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;port</span><span class="nt">&gt;</span>ANY<span class="nt">&lt;/port</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;/basicAuth</span><span class="nt">&gt;</span>
+<span class="nt">&lt;/configuration</span><span class="nt">&gt;</span>
+</code></pre></section></section><section><a id="Proxies"></a>
+<h2>Proxies</h2>
+<p>Proxy settings come from Maven's <code>&lt;proxy&gt;</code> configuration rather than from <code>&lt;server&gt;&lt;configuration&gt;</code>; Wagon receives them as a <a href="https://maven.apache.org/wagon/apidocs/org/apache/maven/wagon/proxy/ProxyInfo.html" class="externalLink"><code>ProxyInfo</code></a>. What the HTTP provider does with them:</p>
+<ul>
+
+<li>The proxy is only used when the <code>ProxyInfo</code>'s <code>type</code> matches the repository's protocol and the target host does not match <code>nonProxyHosts</code>. See <a href="../configure/proxy-settings.html">Configuring a proxy</a>.</li>
+<li>If the <code>ProxyInfo</code> carries a user name and a password, credentials are registered under a scope derived from the proxy host and port, overridable through <code>proxyAuth</code> exactly as <code>basicAuth</code> overrides the target scope.</li>
+<li><strong>NTLM.</strong> If either <code>ntlmHost</code> or <code>ntlmDomain</code> is set on the <code>ProxyInfo</code>, the proxy credentials become <code>NTCredentials(username, password, ntlmHost, ntlmDomain)</code> instead of <code>UsernamePasswordCredentials</code>, and the registered <code>NTLMSchemeFactory</code> handles the challenge. Use <code>http.auth.proxy-scheme-pref</code> to control which scheme is preferred when the proxy offers several.</li>
+<li>Proxy authentication is always primed preemptively: whenever proxy credentials exist, a <code>BasicScheme</code> with <code>ChallengeState.PROXY</code> is put in the <code>AuthCache</code> for the proxy host.</li>
+</ul>
+<p><a id="Support_for_General-Wagon_Configuration_Standards"></a> <a id="Connection_Timeouts"></a></p></section><section><a id="Connection_timeout"></a>
+<h2>Connection timeout</h2>
+<p>Every Wagon that extends <code>AbstractWagon</code> (SCP, HTTP, FTP and others) accepts a flat connection timeout in milliseconds, which applies to all methods:</p>
+
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;configuration</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;timeout</span><span class="nt">&gt;</span>6000<span class="nt">&lt;/timeout</span><span class="nt">&gt;</span>
+<span class="nt">&lt;/configuration</span><span class="nt">&gt;</span>
 </code></pre>
-<p>On the other hand, if you can live with the default configuration for most requests — say, HEAD and GET requests, which are used to check for the existence of a file and retrieve a file respectively — maybe you only need to configure the PUT method:</p>
+<p><code>connectionTimeout</code> inside <code>httpConfiguration</code> is the per-method alternative. The <code>params</code> <code>http.socket.timeout</code> and <code>http.connection.timeout</code> still take precedence over both.</p>
+<p><a id="HTTP_Headers"></a></p></section><section><a id="Deprecated.3A_httpHeaders"></a>
+<h2>Deprecated: <code>httpHeaders</code></h2>
 
-<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;settings</span><span class="nt">&gt;</span>
-  [...]
-  <span class="nt">&lt;servers</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;server</span><span class="nt">&gt;</span>
-      <span class="nt">&lt;id</span><span class="nt">&gt;</span>the-server<span class="nt">&lt;/id</span><span class="nt">&gt;</span>
-      <span class="nt">&lt;configuration</span><span class="nt">&gt;</span>
-        <span class="nt">&lt;httpConfiguration</span><span class="nt">&gt;</span>
-          <span class="nt">&lt;put</span><span class="nt">&gt;</span>
-            [ Your configuration here. ]
-          <span class="nt">&lt;/put</span><span class="nt">&gt;</span>
-        <span class="nt">&lt;/httpConfiguration</span><span class="nt">&gt;</span>
-      <span class="nt">&lt;/configuration</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;/server</span><span class="nt">&gt;</span>
-  <span class="nt">&lt;/servers</span><span class="nt">&gt;</span>
-<span class="nt">&lt;/settings</span><span class="nt">&gt;</span>
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;configuration</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;httpHeaders</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;property</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;name</span><span class="nt">&gt;</span>User-Agent<span class="nt">&lt;/name</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;value</span><span class="nt">&gt;</span>my-build/1.0<span class="nt">&lt;/value</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;/property</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;/httpHeaders</span><span class="nt">&gt;</span>
+<span class="nt">&lt;/configuration</span><span class="nt">&gt;</span>
 </code></pre>
-<p>For clarity, the other two sections are <code>&lt;get&gt;</code> for GET requests, and <code>&lt;head&gt;</code> for HEAD requests. I know that's going to be hard to remember…</p></section><section><a id="Taking_Control_of_Your_HTTP_Headers"></a>
-<h2>Taking Control of Your HTTP Headers</h2>
-<p>As you may have noticed above, the default HTTP headers do have the potential to cause problems. For instance, some websites set the encoding for downloading GZipped files as <code>gzip</code>, in spite of the fact that the HTTP request itself isn't being sent using GZip compression. If the client is using the <code>Accept-Encoding: gzip</code> header, this can result in the client itself decompressing the GZipped file <em>during the transfer</em> and writing the decompressed file to the local disk with the original filename. This can be misleading to say the least, and can use up an inordinate amount of disk space on the local computer.</p>
-<p>To turn off this default behavior, simply disable the default headers. Then, respecify the other headers that you are still interested in, like this:</p>
+<p><code>httpHeaders</code> is a flat <code>Properties</code> of headers applied to every request. It predates <code>httpConfiguration</code> and is marked deprecated in the source in favour of it. It is still honoured, and it is applied <em>before</em> the <code>httpConfiguration</code> headers, so a header set in both places takes its value from <code>httpConfiguration</code>. The one exception is <code>User-Agent</code> lookup, which consults <code>httpHeaders</code> first.</p></section><section><a id="Backoff_on_429"></a>
+<h2>Backoff on 429</h2>
+<p>When the server answers <code>429 Too Many Requests</code>, the provider sleeps and retries, doubling the wait each time until it would reach the maximum, at which point it throws <code>TransferFailedException</code>. The initial wait is 5 seconds and the maximum is 180 seconds; both are system properties (below), and the initial value is also settable per server:</p>
 
-<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;settings</span><span class="nt">&gt;</span>
-  [...]
-  <span class="nt">&lt;servers</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;server</span><span class="nt">&gt;</span>
-      <span class="nt">&lt;id</span><span class="nt">&gt;</span>openssl<span class="nt">&lt;/id</span><span class="nt">&gt;</span>
-      <span class="nt">&lt;configuration</span><span class="nt">&gt;</span>
-        <span class="nt">&lt;httpConfiguration</span><span class="nt">&gt;</span>
-          <span class="nt">&lt;put</span><span class="nt">&gt;</span>
-            <span class="nt">&lt;useDefaultHeaders</span><span class="nt">&gt;</span>false<span class="nt">&lt;/useDefaultHeaders</span><span class="nt">&gt;</span>
-            <span class="nt">&lt;headers</span><span class="nt">&gt;</span>
-              <span class="nt">&lt;property</span><span class="nt">&gt;</span>
-                <span class="nt">&lt;name</span><span class="nt">&gt;</span>Cache-control<span class="nt">&lt;/name</span><span class="nt">&gt;</span>
-                <span class="nt">&lt;value</span><span class="nt">&gt;</span>no-cache<span class="nt">&lt;/value</span><span class="nt">&gt;</span>
-              <span class="nt">&lt;/property</span><span class="nt">&gt;</span>
-              <span class="nt">&lt;property</span><span class="nt">&gt;</span>
-                <span class="nt">&lt;name</span><span class="nt">&gt;</span>Cache-store<span class="nt">&lt;/name</span><span class="nt">&gt;</span>
-                <span class="nt">&lt;value</span><span class="nt">&gt;</span>no-store<span class="nt">&lt;/value</span><span class="nt">&gt;</span>
-              <span class="nt">&lt;/property</span><span class="nt">&gt;</span>
-              <span class="nt">&lt;property</span><span class="nt">&gt;</span>
-                <span class="nt">&lt;name</span><span class="nt">&gt;</span>Pragma<span class="nt">&lt;/name</span><span class="nt">&gt;</span>
-                <span class="nt">&lt;value</span><span class="nt">&gt;</span>no-cache<span class="nt">&lt;/value</span><span class="nt">&gt;</span>
-              <span class="nt">&lt;/property</span><span class="nt">&gt;</span>
-              <span class="nt">&lt;property</span><span class="nt">&gt;</span>
-                <span class="nt">&lt;name</span><span class="nt">&gt;</span>Expires<span class="nt">&lt;/name</span><span class="nt">&gt;</span>
-                <span class="nt">&lt;value</span><span class="nt">&gt;</span>0<span class="nt">&lt;/value</span><span class="nt">&gt;</span>
-              <span class="nt">&lt;/property</span><span class="nt">&gt;</span>
-              <span class="nt">&lt;property</span><span class="nt">&gt;</span>
-                <span class="nt">&lt;name</span><span class="nt">&gt;</span>Accept-Encoding<span class="nt">&lt;/name</span><span class="nt">&gt;</span>
-                <span class="nt">&lt;value</span><span class="nt">&gt;</span>*<span class="nt">&lt;/value</span><span class="nt">&gt;</span>
-              <span class="nt">&lt;/property</span><span class="nt">&gt;</span>
-            <span class="nt">&lt;/headers</span><span class="nt">&gt;</span>
-          <span class="nt">&lt;/put</span><span class="nt">&gt;</span>
-        <span class="nt">&lt;/httpConfiguration</span><span class="nt">&gt;</span>
-      <span class="nt">&lt;/configuration</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;/server</span><span class="nt">&gt;</span>
-    [...]
-  <span class="nt">&lt;/servers</span><span class="nt">&gt;</span>
-  [...]
-<span class="nt">&lt;/settings</span><span class="nt">&gt;</span>
-</code></pre></section><section><a id="Fine-Tuning_HttpClient_Parameters"></a>
-<h2>Fine-Tuning HttpClient Parameters</h2>
-<p>Going beyond the power of HTTP request parameters, HttpClient provides a host of other configuration options. In most cases, you won't need to customize these. But in case you do, Maven provides access to specify your own fine-grained configuration for HttpClient. Again, you can specify these parameter customizations per-method (HEAD, GET, or PUT), or for all methods of interacting with a given server. For a complete list of supported parameters, see the link[2] in Resources section below.</p><section><a id="Non-String_Parameter_Values"></a>
-<h3>Non-String Parameter Values</h3>
-<p>Many of the configuration parameters for HttpClient have simple string values; however, there are important exceptions to this. In some cases, you may need to specify boolean, integer, or long values. In others, you may even need to specify a collection of string values. You can specify these using a simple formatting syntax, as follows:</p>
-<ol style="list-style-type: decimal;">
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;configuration</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;initialBackoffSeconds</span><span class="nt">&gt;</span>10<span class="nt">&lt;/initialBackoffSeconds</span><span class="nt">&gt;</span>
+<span class="nt">&lt;/configuration</span><span class="nt">&gt;</span>
+</code></pre></section><section><a id="System_properties"></a>
+<h2>System properties</h2>
+<p>These are JVM-wide, not per-server. Several are read into <code>static final</code> fields when <code>AbstractHttpClientWagon</code> is first loaded, so they must be set before any transfer starts — on the command line, or in <code>MAVEN_OPTS</code>.</p><section><a id="Connection_pool"></a>
+<h3>Connection pool</h3>
+<div class="table-scroll" tabindex="0"><table class="bodyTable">
+<thead>
+<tr class="a">
+<th>Property</th>
+<th>Default</th>
+<th>Effect</th></tr></thead><tbody>
+<tr class="b">
+<td><code>maven.wagon.http.pool</code></td>
+<td><code>true</code></td>
+<td>enable the pooling connection manager; when <code>false</code>, total connections are capped at 1 and idle connections are closed on disconnect</td></tr>
+<tr class="a">
+<td><code>maven.wagon.httpconnectionManager.maxPerRoute</code></td>
+<td><code>20</code></td>
+<td>max connections per route</td></tr>
+<tr class="b">
+<td><code>maven.wagon.httpconnectionManager.maxTotal</code></td>
+<td><code>40</code></td>
+<td>max connections overall</td></tr>
+<tr class="a">
+<td><code>maven.wagon.httpconnectionManager.ttlSeconds</code></td>
+<td><code>300</code></td>
+<td>connection time-to-live; <code>-1</code> keeps connections indefinitely</td></tr></tbody>
+</table></div>
+</section><section><a id="Timeouts"></a>
+<h3>Timeouts</h3>
+<div class="table-scroll" tabindex="0"><table class="bodyTable">
+<thead>
+<tr class="a">
+<th>Property</th>
+<th>Default</th>
+<th>Effect</th></tr></thead><tbody>
+<tr class="b">
+<td><code>maven.wagon.rto</code></td>
+<td><code>1800000</code></td>
+<td>default read timeout in milliseconds</td></tr></tbody>
+</table></div>
+</section><section><a id="TLS"></a>
+<h3>TLS</h3>
+<div class="table-scroll" tabindex="0"><table class="bodyTable">
+<thead>
+<tr class="a">
+<th>Property</th>
+<th>Default</th>
+<th>Effect</th></tr></thead><tbody>
+<tr class="b">
+<td><code>maven.wagon.http.ssl.insecure</code></td>
+<td><code>false</code></td>
+<td>accept any certificate chain whose dates are valid</td></tr>
+<tr class="a">
+<td><code>maven.wagon.http.ssl.allowall</code></td>
+<td><code>false</code></td>
+<td>with <code>insecure</code>, skip hostname verification</td></tr>
+<tr class="b">
+<td><code>maven.wagon.http.ssl.ignore.validity.dates</code></td>
+<td><code>false</code></td>
+<td>with <code>insecure</code>, also ignore certificate dates</td></tr>
+<tr class="a">
+<td><code>https.protocols</code></td>
+<td>—</td>
+<td>comma-separated list of enabled TLS protocols</td></tr>
+<tr class="b">
+<td><code>https.cipherSuites</code></td>
+<td>—</td>
+<td>comma-separated list of enabled cipher suites</td></tr></tbody>
+</table></div>
 
-<li>
-<p><strong>booleans:</strong> <code>%b,&lt;value&gt;</code></p></li>
-<li>
-<p><strong>integer:</strong> <code>%i,&lt;value&gt;</code></p></li>
-<li>
-<p><strong>long:</strong> <code>%l,&lt;value&gt;</code> (yes, that's an ‘L’, not a ‘1’)</p></li>
-<li>
-<p><strong>double:</strong> <code>%d,&lt;value&gt;</code></p></li>
-<li>
-<p><strong>collection of strings:</strong> <code>%c,&lt;value1&gt;,&lt;value2&gt;,&lt;value3&gt;,...</code>, which could also be specified as:</p>
+<p>Without <code>maven.wagon.http.ssl.insecure</code>, the default JSSE socket factory is used with HttpClient's browser-compatible hostname verifier.</p></section><section><a id="Retries"></a>
+<h3>Retries</h3>
+<div class="table-scroll" tabindex="0"><table class="bodyTable">
+<thead>
+<tr class="a">
+<th>Property</th>
+<th>Default</th>
+<th>Effect</th></tr></thead><tbody>
+<tr class="b">
+<td><code>maven.wagon.http.retryHandler.class</code></td>
+<td><code>standard</code></td>
+<td><code>default</code>, <code>standard</code>, or a fully qualified <code>HttpRequestRetryHandler</code> with a no-arg constructor</td></tr>
+<tr class="a">
+<td><code>maven.wagon.http.retryHandler.requestSentEnabled</code></td>
+<td><code>false</code></td>
+<td>retry requests that were already sent (<code>default</code> and <code>standard</code> only)</td></tr>
+<tr class="b">
+<td><code>maven.wagon.http.retryHandler.count</code></td>
+<td><code>3</code></td>
+<td>retry count (<code>default</code> and <code>standard</code> only)</td></tr>
+<tr class="a">
+<td><code>maven.wagon.http.retryHandler.nonRetryableClasses</code></td>
+<td>—</td>
+<td>comma-separated exception class names to never retry (<code>default</code> only)</td></tr>
+<tr class="b">
+<td><code>maven.wagon.http.serviceUnavailableRetryStrategy.class</code></td>
+<td><code>none</code></td>
+<td><code>none</code>, <code>default</code>, <code>standard</code>, or a fully qualified <code>ServiceUnavailableRetryStrategy</code> with a no-arg constructor</td></tr>
+<tr class="a">
+<td><code>maven.wagon.http.serviceUnavailableRetryStrategy.retryInterval</code></td>
+<td><code>1000</code></td>
+<td>milliseconds between retries</td></tr>
+<tr class="b">
+<td><code>maven.wagon.http.serviceUnavailableRetryStrategy.maxRetries</code></td>
+<td><code>5</code></td>
+<td>maximum retries</td></tr></tbody>
+</table></div>
 
-<pre tabindex="0"><code class="nohighlight nocode">%c,
-&lt;value1&gt;,
-&lt;value2&gt;,
-&lt;value3&gt;,
-...
-</code></pre></li>
-</ol>
-<p>As you may have noticed, this syntax is similar to the format-and-data strategy used by functions like <code>sprintf()</code> in many languages. The syntax has been chosen with this similarity in mind, to make it a little more intuitive to use.</p><section><a id="Example.3A_Using_Preemptive_Authentication"></a>
-<h4>Example: Using Preemptive Authentication</h4>
-<p>Using the above syntax, you can configure preemptive authentication for PUT requests using the boolean HttpClient parameter <code>http.authentication.preemptive</code>, like this:</p>
+<p>A retry handler only reacts to failures while sending the request and reading the response head. It cannot recover a response body that fails part-way through.</p></section><section><a id="Backoff"></a>
+<h3>Backoff</h3>
+<div class="table-scroll" tabindex="0"><table class="bodyTable">
+<thead>
+<tr class="a">
+<th>Property</th>
+<th>Default</th>
+<th>Effect</th></tr></thead><tbody>
+<tr class="b">
+<td><code>maven.wagon.httpconnectionManager.backoffSeconds</code></td>
+<td><code>5</code></td>
+<td>initial wait after a <code>429</code></td></tr>
+<tr class="a">
+<td><code>maven.wagon.httpconnectionManager.maxBackoffSeconds</code></td>
+<td><code>180</code></td>
+<td>give up once the next wait would reach this</td></tr></tbody>
+</table></div>
+</section></section><section><a id="Worked_example"></a>
+<h2>Worked example</h2>
+<p>A server that needs preemptive Basic authentication, a custom user agent, no redirects, and a generous read timeout for uploads:</p>
 
-<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;settings</span><span class="nt">&gt;</span>
-  <span class="nt">&lt;servers</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;server</span><span class="nt">&gt;</span>
-      <span class="nt">&lt;id</span><span class="nt">&gt;</span>my-server<span class="nt">&lt;/id</span><span class="nt">&gt;</span>
-      <span class="nt">&lt;configuration</span><span class="nt">&gt;</span>
-        <span class="nt">&lt;httpConfiguration</span><span class="nt">&gt;</span>
-          <span class="nt">&lt;put</span><span class="nt">&gt;</span>
-            <span class="nt">&lt;params</span><span class="nt">&gt;</span>
-              <span class="nt">&lt;property</span><span class="nt">&gt;</span>
-                <span class="nt">&lt;name</span><span class="nt">&gt;</span>http.authentication.preemptive<span class="nt">&lt;/name</span><span class="nt">&gt;</span>
-                <span class="nt">&lt;value</span><span class="nt">&gt;</span>%b,true<span class="nt">&lt;/value</span><span class="nt">&gt;</span>
-              <span class="nt">&lt;/property</span><span class="nt">&gt;</span>
-            <span class="nt">&lt;/params</span><span class="nt">&gt;</span>
-          <span class="nt">&lt;/put</span><span class="nt">&gt;</span>
-        <span class="nt">&lt;/httpConfiguration</span><span class="nt">&gt;</span>
-      <span class="nt">&lt;/configuration</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;/server</span><span class="nt">&gt;</span>
-  <span class="nt">&lt;/servers</span><span class="nt">&gt;</span>
-<span class="nt">&lt;/settings</span><span class="nt">&gt;</span>
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;server</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;id</span><span class="nt">&gt;</span>internal-releases<span class="nt">&lt;/id</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;username</span><span class="nt">&gt;</span>deploy<span class="nt">&lt;/username</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;password</span><span class="nt">&gt;</span>secret<span class="nt">&lt;/password</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;configuration</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;httpConfiguration</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;all</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;usePreemptive</span><span class="nt">&gt;</span>true<span class="nt">&lt;/usePreemptive</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;connectionTimeout</span><span class="nt">&gt;</span>10000<span class="nt">&lt;/connectionTimeout</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;headers</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;User-Agent</span><span class="nt">&gt;</span>acme-build/2.1<span class="nt">&lt;/User-Agent</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;/headers</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;params</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;http.protocol.handle-redirects</span><span class="nt">&gt;</span>false<span class="nt">&lt;/http.protocol.handle-redirects</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;http.socket.timeout</span><span class="nt">&gt;</span>600000<span class="nt">&lt;/http.socket.timeout</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;/params</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;/all</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;/httpConfiguration</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;/configuration</span><span class="nt">&gt;</span>
+<span class="nt">&lt;/server</span><span class="nt">&gt;</span>
 </code></pre>
-<p>Another option is to make write it like this:</p>
-
-<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;settings</span><span class="nt">&gt;</span>
-  <span class="nt">&lt;servers</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;server</span><span class="nt">&gt;</span>
-      <span class="nt">&lt;id</span><span class="nt">&gt;</span>my-server<span class="nt">&lt;/id</span><span class="nt">&gt;</span>
-      <span class="nt">&lt;configuration</span><span class="nt">&gt;</span>
-        <span class="nt">&lt;httpConfiguration</span><span class="nt">&gt;</span>
-          <span class="nt">&lt;put</span><span class="nt">&gt;</span>
-            <span class="nt">&lt;usePreemptive</span><span class="nt">&gt;</span>true<span class="nt">&lt;/usePreemptive</span><span class="nt">&gt;</span>
-          <span class="nt">&lt;/put</span><span class="nt">&gt;</span>
-        <span class="nt">&lt;/httpConfiguration</span><span class="nt">&gt;</span>
-      <span class="nt">&lt;/configuration</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;/server</span><span class="nt">&gt;</span>
-  <span class="nt">&lt;/servers</span><span class="nt">&gt;</span>
-<span class="nt">&lt;/settings</span><span class="nt">&gt;</span>
-</code></pre></section></section><section><a id="Example.3A_Lifting_auth_scope_restriction_for_external_authentication_systems"></a>
-<h3>Example: Lifting auth scope restriction for external authentication systems</h3>
-<p>Maven Wagon by default limits supplied credentials to the host:port combination scope, ignoring any other target servers. When the target server delegates authentication to an external system, you need to deliberately lift that scope limitation. Configure your server element to pass authentication to all target servers which challenge the client. +—+ <em>settings</em> <em>servers</em> <em>server</em> <em>id_my-server</em>/id_ <em>configuration</em> <em>basicAuthScope</em> <em>host_ANY</em>/host_ <em>port_ANY</em>/port_ <em>!– or even 443 to force the use of TLS –</em> <em>/basicAuthScope</em> <em>httpConfiguration</em> <em>all</em> <em>params</em> <em>property</em> <em>name_http.protocol.cookie-policy</em>/name_ <em>value_standard</em>/value_ <em>/property</em> <em>/params</em> <em>/all</em> <em>/httpConfiguration</em> <em>/configuration</em> <em>/server</em> <em>/servers</em> <em>/settings</em> +—+</p></section><section><a id="Ignoring_Cookies"></a>
-<h3>Ignoring Cookies</h3>
-<p>Like the example above, telling the HttpClient to ignore cookies for all methods of request is a simple matter of configuring the <code>http.protocol.cookie-policy</code> parameter (it uses a regular string value, so no special syntax is required):</p>
-
-<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;settings</span><span class="nt">&gt;</span>
-  <span class="nt">&lt;servers</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;server</span><span class="nt">&gt;</span>
-      <span class="nt">&lt;id</span><span class="nt">&gt;</span>my-server<span class="nt">&lt;/id</span><span class="nt">&gt;</span>
-      <span class="nt">&lt;configuration</span><span class="nt">&gt;</span>
-        <span class="nt">&lt;httpConfiguration</span><span class="nt">&gt;</span>
-          <span class="nt">&lt;all</span><span class="nt">&gt;</span>
-            <span class="nt">&lt;params</span><span class="nt">&gt;</span>
-              <span class="nt">&lt;param</span><span class="nt">&gt;</span>
-                <span class="nt">&lt;name</span><span class="nt">&gt;</span>http.protocol.cookie-policy<span class="nt">&lt;/name</span><span class="nt">&gt;</span>
-                <span class="nt">&lt;value</span><span class="nt">&gt;</span>ignore<span class="nt">&lt;/value</span><span class="nt">&gt;</span>
-              <span class="nt">&lt;/param</span><span class="nt">&gt;</span>
-            <span class="nt">&lt;/params</span><span class="nt">&gt;</span>
-          <span class="nt">&lt;/all</span><span class="nt">&gt;</span>
-        <span class="nt">&lt;/httpConfiguration</span><span class="nt">&gt;</span>
-      <span class="nt">&lt;/configuration</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;/server</span><span class="nt">&gt;</span>
-  <span class="nt">&lt;/servers</span><span class="nt">&gt;</span>
-<span class="nt">&lt;/settings</span><span class="nt">&gt;</span>
-</code></pre>
-<p>The configuration above can be useful in cases where the repository is using cookies - like the session cookies that are often mistakenly turned on or left on in appservers - alongside HTTP redirection. In these cases, it becomes far more likely that the cookie issued by the appserver uses a <code>Path</code> that is inconsistent with the one used by the client to access the server. If you have this problem, and know that you don't need to use this session cookie, you can ignore cookies from this server with the above configuration.</p></section></section><section><a id="Support_for_General-Wagon_Configuration_Standards"></a>
-<h2>Support for General-Wagon Configuration Standards</h2>
-<p>It should be noted that configuration options previously available in the HttpClient-driven HTTP wagon are still supported in addition to this new, fine-grained approach. These include the configuration of HTTP headers and connection timeouts. Let's examine each of these briefly:</p><section><a id="HTTP_Headers"></a>
-<h3>HTTP Headers</h3>
-<p>In all HTTP Wagon implementations, you can add your own HTTP headers like this:</p>
-
-<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;settings</span><span class="nt">&gt;</span>
-  <span class="nt">&lt;servers</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;server</span><span class="nt">&gt;</span>
-      <span class="nt">&lt;id</span><span class="nt">&gt;</span>my-server<span class="nt">&lt;/id</span><span class="nt">&gt;</span>
-      <span class="nt">&lt;configuration</span><span class="nt">&gt;</span>
-        <span class="nt">&lt;httpHeaders</span><span class="nt">&gt;</span>
-          <span class="nt">&lt;property</span><span class="nt">&gt;</span>
-            <span class="nt">&lt;name</span><span class="nt">&gt;</span>Foo<span class="nt">&lt;/name</span><span class="nt">&gt;</span>
-            <span class="nt">&lt;value</span><span class="nt">&gt;</span>Bar<span class="nt">&lt;/value</span><span class="nt">&gt;</span>
-          <span class="nt">&lt;/property</span><span class="nt">&gt;</span>
-        <span class="nt">&lt;/httpHeaders</span><span class="nt">&gt;</span>
-      <span class="nt">&lt;/configuration</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;/server</span><span class="nt">&gt;</span>
-  <span class="nt">&lt;/servers</span><span class="nt">&gt;</span>
-<span class="nt">&lt;/settings</span><span class="nt">&gt;</span>
-</code></pre>
-<p>It's important to understand that the above approach doesn't allow you to turn off all of the default HTTP headers; nor does it allow you to specify headers on a per-method basis. However, this configuration remains available in both the lightweight and httpclient-based Wagon implementations.</p></section><section><a id="Connection_Timeouts"></a>
-<h3>Connection Timeouts</h3>
-<p>All wagon implementations that extend the <code>AbstractWagon</code> class, including those for SCP, HTTP, FTP, and more, allow the configuration of a connection timeout, to allow the user to tell Maven how long to wait before giving up on a connection that has not responded. This option is preserved in the HttpClient-based wagon, but this wagon also provides a fine-grained alternative configuration that can allow you to specify timeouts per-method for a given server. The old configuration option - which is still supported - looks like this:</p>
-
-<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;settings</span><span class="nt">&gt;</span>
-  <span class="nt">&lt;servers</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;server</span><span class="nt">&gt;</span>
-      <span class="nt">&lt;id</span><span class="nt">&gt;</span>my-server<span class="nt">&lt;/id</span><span class="nt">&gt;</span>
-      <span class="nt">&lt;configuration</span><span class="nt">&gt;</span>
-        <span class="nt">&lt;timeout</span><span class="nt">&gt;</span>6000<span class="nt">&lt;/timeout</span><span class="nt">&gt;</span> <span class="c">&lt;!-- milliseconds --&gt;</span>
-      <span class="nt">&lt;/configuration</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;/server</span><span class="nt">&gt;</span>
-  <span class="nt">&lt;/servers</span><span class="nt">&gt;</span>
-<span class="nt">&lt;/settings</span><span class="nt">&gt;</span>
-</code></pre>
-<p>…while the new configuration option looks more like this:</p>
-
-<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;settings</span><span class="nt">&gt;</span>
-  <span class="nt">&lt;servers</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;server</span><span class="nt">&gt;</span>
-      <span class="nt">&lt;id</span><span class="nt">&gt;</span>my-server<span class="nt">&lt;/id</span><span class="nt">&gt;</span>
-      <span class="nt">&lt;configuration</span><span class="nt">&gt;</span>
-        <span class="nt">&lt;httpConfiguration</span><span class="nt">&gt;</span>
-          <span class="nt">&lt;put</span><span class="nt">&gt;</span>
-            <span class="nt">&lt;connectionTimeout</span><span class="nt">&gt;</span>10000<span class="nt">&lt;/connectionTimeout</span><span class="nt">&gt;</span> <span class="c">&lt;!-- milliseconds --&gt;</span>
-          <span class="nt">&lt;/put</span><span class="nt">&gt;</span>
-        <span class="nt">&lt;/httpConfiguration</span><span class="nt">&gt;</span>
-      <span class="nt">&lt;/configuration</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;/server</span><span class="nt">&gt;</span>
-  <span class="nt">&lt;/servers</span><span class="nt">&gt;</span>
-<span class="nt">&lt;/settings</span><span class="nt">&gt;</span>
-</code></pre>
-<p>If all you need is a per-server timeout configuration, you still have the option to use the old <code>&lt;timeout&gt;</code> parameter. If you need to separate timeout preferences according to HTTP method, you can use one more like that specified directly above.</p></section><section><a id="Read_time_out"></a>
-<h3>Read time out</h3>
-<p>The default timeout is 30 minutes. If you want to change this value, you can add the following setup in your settings:</p>
-
-<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;settings</span><span class="nt">&gt;</span>
-  <span class="nt">&lt;servers</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;server</span><span class="nt">&gt;</span>
-      <span class="nt">&lt;id</span><span class="nt">&gt;</span>my-server<span class="nt">&lt;/id</span><span class="nt">&gt;</span>
-      <span class="nt">&lt;configuration</span><span class="nt">&gt;</span>
-        <span class="nt">&lt;httpConfiguration</span><span class="nt">&gt;</span>
-          <span class="nt">&lt;put</span><span class="nt">&gt;</span>
-            <span class="nt">&lt;readTimeout</span><span class="nt">&gt;</span>120000<span class="nt">&lt;/readTimeout</span><span class="nt">&gt;</span> <span class="c">&lt;!-- milliseconds --&gt;</span>
-          <span class="nt">&lt;/put</span><span class="nt">&gt;</span>
-        <span class="nt">&lt;/httpConfiguration</span><span class="nt">&gt;</span>
-      <span class="nt">&lt;/configuration</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;/server</span><span class="nt">&gt;</span>
-  <span class="nt">&lt;/servers</span><span class="nt">&gt;</span>
-<span class="nt">&lt;/settings</span><span class="nt">&gt;</span>
-</code></pre></section></section><section><a id="Resources"></a>
+<p>Everything is in <code>&lt;all&gt;</code> on purpose: adding a <code>&lt;get&gt;</code> or <code>&lt;put&gt;</code> block would drop <code>usePreemptive</code>. Where a per-method setting is unavoidable, use <code>params</code> — those do merge correctly.</p></section><section><a id="Resources"></a>
 <h2>Resources</h2>
 <ol style="list-style-type: decimal;">
 
 <li><a href="https://hc.apache.org/httpcomponents-client-4.5.x/" class="externalLink">HttpClient website</a></li>
 <li><a href="https://hc.apache.org/httpclient-3.x/preference-api.html" class="externalLink">HttpClient preference architecture and configuration guide</a></li>
 <li><a href="wagon-providers.html">Guide to Wagon Providers</a></li>
-<li><a href="../../wagon/wagon-providers/wagon-http/">Wagon Http</a></li>
+<li><a href="https://maven.apache.org/wagon/wagon-providers/wagon-http/" class="externalLink">Wagon HTTP provider</a></li>
 </ol></section></section>
       </div>
       <nav class="more" aria-labelledby="more-title">
@@ -416,6 +608,8 @@ problems with HTTP servers and proxies that do not support HTTP/1.1 protocol.
   <li><a href="../../docs/dependencies/resolver-transport.html">Resolver transport</a></li>
   <li><a href="../../docs/dependencies/wagon-http.html" aria-current="page">HTTP options of the Wagon transport</a></li>
   <li><a href="../../docs/dependencies/wagon-providers.html">Alternative Wagon providers</a></li>
+  <li><a href="../../docs/dependencies/deployment-transports.html">Deploy over HTTP, FTP and SSH</a></li>
+  <li><a href="../../docs/dependencies/resolution-misconceptions.html">Dependency resolution misconceptions</a></li>
   <li><a href="../../docs/dependencies/centralized-deployments.html">Large centralized deployments</a></li>
   <li><a href="../../docs/dependencies/naming-coordinates.html">Naming your coordinates</a></li>
 </ul>

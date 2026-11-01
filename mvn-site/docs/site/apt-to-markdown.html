@@ -1,0 +1,346 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Migrate from APT to Markdown – Apache Maven</title>
+  <link rel="stylesheet" href="../../css/maven.css">
+  <link rel="stylesheet" href="../../css/print.css" media="print">
+  <link rel="icon" href="../../images/favicon.ico">
+  <meta name="generator" content="Apache Maven Doxia Site Renderer 2.1.0">
+</head>
+<body class="page">
+  <a class="skip-link" href="#content">Skip to the text</a>
+  <header class="masthead">
+    <div class="masthead-inner">
+    <a class="brand" href="../../index.html" aria-label="Maven, home"><svg class="wordmark" viewBox="0 0 9375 2346" width="140" height="35" aria-hidden="true" focusable="false" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
+  <path d="M5126.58,975.196c46.271,-114.421 97.896,-228.613 153.292,-329.825c-82.692,-61.417 -162.092,-193.859 -194.717,-252.538c-11.716,13.313 -19.32,28.642 -22.771,41.113c-30.733,110.971 78.671,244.971 -9.45,196.012c-73.42,-40.796 -238.745,-130.137 -301.804,-41.341c70.625,90.75 255.35,319.062 375.45,386.579Z" style="fill:#dd552c;fill-rule:nonzero;"/>
+  <path d="M5279.88,645.371c53.679,-98.071 110.879,-183.963 170.188,-245.842c-0,0 -59.155,85.621 -143.642,256.779c51.167,14.092 196.892,43.009 399.871,-9.425c4.991,-36.887 -19.809,-77.458 -143.384,-91.041c-80.679,-8.859 96.834,-192.646 -31.762,-279.563c-4.15,-2.812 -8.234,-5.291 -12.229,-7.512c-4.313,-1.55 -8.867,-2.967 -13.725,-4.23c-150.188,-39.191 -171.009,215.476 -230.938,160.73c-96.85,-88.467 -157.979,-67.796 -189.096,-32.434c32.625,58.68 112.025,191.121 194.717,252.538Z" style="fill:#f79a23;fill-rule:nonzero;"/>
+  <path d="M5005.79,1304.85c33.904,-101.567 74.687,-215.675 120.796,-329.654c-120.101,-67.517 -304.825,-295.829 -375.45,-386.579c-12.609,17.741 -21.226,42.487 -24.096,76.325c-15.404,181.766 172.116,316.333 134.733,340.912c-49.45,32.521 -147.867,-78.108 -186.658,-7.817c56.225,72.225 170.746,202.73 330.675,306.813Z" style="fill:#d22128;fill-rule:nonzero;"/>
+  <path d="M5525.38,912.842c-94.946,-33.863 99.217,-124.684 162.267,-221.029c8.066,-12.317 16.404,-28.238 18.666,-44.93c-202.979,52.434 -348.704,23.517 -399.871,9.425c-43.737,88.621 -94.241,200.3 -146.916,334.95c54.858,23.459 278.85,110.105 595.233,110.554c53.192,-138.55 -139.271,-156.845 -229.379,-188.97Z" style="fill:#dd552c;fill-rule:nonzero;"/>
+  <path d="M5042.5,1323.13c55.792,17.388 240.654,69.321 436.983,61.505c26.375,-71.413 -72.233,-78.384 -80.266,-135.655c-6.217,-44.316 259.504,37.242 345,-123.904c4.325,-8.15 7.695,-15.837 10.55,-23.267c-316.384,-0.449 -540.375,-87.095 -595.234,-110.554c-38.491,98.4 -78.087,208.838 -117.033,331.875Z" style="fill:#d22128;fill-rule:nonzero;"/>
+  <path d="M5042.5,1323.13c-25.067,79.196 -49.8,163.8 -73.808,253.213c-8.517,31.704 -16.929,63.996 -25.229,96.996c186.341,61.512 357.933,0.141 363.75,-75.925c0.045,-0.6 -0.063,-1.05 -0.03,-1.63c4.434,-80.562 -116.316,-35.904 -113.458,-84.345c2.867,-48.792 210.813,-0.284 275.121,-104.896c4.933,-8.021 8.146,-15.142 10.637,-21.908c-196.329,7.816 -381.191,-44.117 -436.983,-61.505Z" style="fill:#7c297d;fill-rule:nonzero;"/>
+  <path d="M4675.12,998.038c-2.717,4.924 -5.167,10.616 -7.258,17.42c-36.113,117.371 219.25,275.042 184.508,309.413c-31.317,30.971 -72.133,-39.804 -122.463,-10.571c-5.512,3.213 -11.112,7.263 -16.858,13.158c-56.921,58.313 -0.892,226.305 160.6,315.98c-37.687,126.533 -75.204,267.904 -111.933,415.75c13.325,-4.667 29.271,-9.346 33.237,-21.913c5.959,-24.496 42.788,-173.558 102.584,-375.779c-0,-0 10.912,-41.421 30.891,-109.671c18.475,-63.108 44.725,-149.175 77.367,-246.975c-159.929,-104.083 -274.45,-234.588 -330.675,-306.813Z" style="fill:#7c297d;fill-rule:nonzero;"/>
+  <path id="path4328" d="M8792.46,721.342c1.684,1.346 2.525,4.208 2.525,8.587c0,4.375 -0.841,8.417 -2.525,12.121l-0.504,4.042c-1.35,3.029 -2.862,5.554 -4.546,7.575c-1.345,1.683 -3.537,3.029 -6.566,4.037c-3.029,0.675 -7.238,1.013 -12.625,1.013c-5.388,-0.338 -9.934,-0.505 -13.638,-0.505l-7.575,0c-1.683,0.671 -3.2,0.842 -4.546,0.505c-1.345,-0.338 -2.695,-0.171 -4.041,0.504c-3.704,1.346 -6.9,4.546 -9.596,9.596c-1.008,1.683 -1.683,3.704 -2.021,6.062c-0.333,2.354 -0.671,4.713 -1.008,7.071l-24.242,119.192c-0.337,1.683 -0.504,3.196 -0.504,4.546c-0,1.345 -0.338,2.691 -1.013,4.037l-1.008,4.042c-0.337,1.008 -0.675,2.02 -1.012,3.029c-0,1.012 -0.505,1.854 -1.513,2.525c-1.35,2.696 -3.537,4.546 -6.567,5.558c-1.683,0.671 -3.704,1.008 -6.062,1.008l-22.725,0c-5.725,0 -9.596,-1.345 -11.617,-4.041c-1.012,-2.021 -1.346,-4.375 -1.012,-7.071c0.675,-2.692 1.35,-5.721 2.021,-9.088l23.737,-119.195c0.338,-1.684 0.675,-3.367 1.013,-5.05c0.67,-1.684 0.841,-3.196 0.504,-4.546l1.008,-7.071c0.338,-5.383 -1.346,-8.754 -5.05,-10.1c-3.029,-1.683 -7.575,-2.354 -13.637,-2.021c-5.721,0.338 -10.771,0.508 -15.15,0.508c-1.684,0 -3.367,0.167 -5.05,0.505c-1.346,-0 -2.525,-0.171 -3.534,-0.505c-1.35,-0.675 -2.529,-0.841 -3.537,-0.508c-1.009,0 -2.021,-0.167 -3.029,-0.504c-3.367,-1.683 -4.884,-4.375 -4.546,-8.079c0.337,-3.704 1.008,-8.084 2.021,-13.134c0.337,-2.02 0.67,-3.87 1.008,-5.554c0.675,-1.683 1.517,-3.366 2.525,-5.05c1.012,-1.683 2.358,-2.862 4.042,-3.537c1.683,-1.009 3.366,-1.85 5.05,-2.525c1.008,-0.338 1.683,-0.338 2.02,-0c0.671,-0 1.513,-0.167 2.525,-0.504l134.85,-0c3.03,-0 5.892,0.166 8.584,0.504c2.696,-0 4.883,0.675 6.566,2.021Zm268.688,1.012c1.346,2.354 1.683,5.05 1.008,8.079c-0.337,3.029 -0.841,6.396 -1.512,10.1l-32.829,164.142c-0.675,3.704 -1.517,7.071 -2.525,10.1c-0.675,2.696 -1.855,5.05 -3.538,7.071c-2.354,2.696 -6.058,4.041 -11.108,4.041l-14.142,0c-2.021,0 -4.208,0.167 -6.567,0.505c-2.02,-0 -3.704,-0.338 -5.05,-1.009c-3.033,-1.012 -4.883,-2.525 -5.558,-4.546c-0.333,-2.02 -0.504,-4.545 -0.504,-7.575l1.517,-8.587c-0,-1.008 0.166,-2.188 0.504,-3.533c0.337,-1.684 0.675,-3.2 1.008,-4.546l13.133,-64.142c0.675,-4.042 1.346,-8.083 2.021,-12.121c1.009,-4.041 1.513,-7.746 1.513,-11.112c-0.334,-1.684 -0.504,-3.029 -0.504,-4.042c-0,-1.346 -0.505,-2.354 -1.513,-3.029c-0.337,-0.338 -0.842,-0.504 -1.517,-0.504c-1.008,0.671 -2.187,1.346 -3.537,2.021c-3.367,4.037 -6.396,8.583 -9.088,13.633c-2.695,5.054 -5.558,9.933 -8.587,14.65c-6.058,10.437 -11.954,21.042 -17.675,31.817c-5.725,10.437 -11.617,20.708 -17.679,30.808c-2.692,4.712 -5.554,10.1 -8.584,16.162c-3.033,5.721 -6.566,9.934 -10.608,12.625c-2.021,1.346 -4.375,2.188 -7.071,2.525l-16.162,0c-1.684,-0.675 -3.196,-1.179 -4.546,-1.516c-1.346,-0.671 -2.525,-1.513 -3.533,-2.525c-1.009,-1.009 -1.684,-2.354 -2.021,-4.038c-0.338,-1.683 -0.671,-3.366 -1.009,-5.05c-1.012,-3.033 -1.683,-6.062 -2.02,-9.091c-0.338,-3.367 -0.842,-6.734 -1.517,-10.105c-2.021,-9.762 -3.704,-19.695 -5.05,-29.795c-1.346,-10.438 -3.029,-20.538 -5.05,-30.305c-1.008,-5.725 -2.021,-11.445 -3.029,-17.17c-0.675,-5.725 -2.525,-10.605 -5.559,-14.646c-0.67,-0 -1.175,0.166 -1.512,0.504l-1.013,-0c-1.683,1.346 -2.862,2.862 -3.533,4.546c-1.012,1.683 -1.683,3.366 -2.021,5.05c0,1.346 -0.337,2.862 -1.008,4.546l-1.517,8.587c-0.675,1.346 -1.179,2.692 -1.516,4.038c-0.334,1.35 -0.505,2.525 -0.505,3.537l-12.12,58.583c-0.675,4.38 -1.684,9.767 -3.03,16.163c-1.012,6.062 -2.525,10.437 -4.545,13.133c-1.013,0.671 -2.021,1.513 -3.03,2.525c-0.675,0.671 -1.516,1.179 -2.529,1.513c-1.683,0.675 -3.7,1.179 -6.058,1.516l-20.204,0c-4.375,0 -7.742,-1.008 -10.1,-3.029c-1.684,-1.346 -2.525,-3.537 -2.525,-6.566c0.337,-3.03 0.841,-6.396 1.516,-10.1l33.334,-166.667c0.671,-3.033 1.346,-5.892 2.021,-8.588c1.008,-3.029 2.187,-5.387 3.533,-7.07c1.683,-2.355 4.379,-3.871 8.083,-4.546c1.009,-0.338 1.684,-0.338 2.017,-0c0.675,-0 1.517,-0.167 2.525,-0.504l43.942,-0c3.366,-0 5.891,0.841 7.575,2.525c2.695,2.02 4.208,5.22 4.545,9.595c0.675,4.38 1.517,8.417 2.525,12.121c1.684,9.429 3.367,19.025 5.05,28.788c1.684,9.429 3.367,19.025 5.05,28.787c1.35,5.054 2.359,10.271 3.034,15.659c1.008,5.387 2.016,10.604 3.029,15.658c0.671,2.017 1.179,4.208 1.512,6.562c0.675,2.021 2.021,3.367 4.042,4.042c1.683,0.675 3.2,0.338 4.546,-1.008c1.683,-1.35 2.862,-2.525 3.537,-3.538c3.367,-3.704 6.059,-7.575 8.08,-11.616c2.358,-4.375 4.712,-8.584 7.07,-12.625c7.071,-11.113 13.638,-22.392 19.696,-33.838c6.4,-11.787 13.134,-23.233 20.204,-34.346c2.692,-4.712 5.388,-9.596 8.08,-14.646c3.029,-5.387 7.07,-9.091 12.12,-11.112c2.359,-0.671 4.713,-1.008 7.071,-1.008l36.363,-0c2.021,-0.338 3.875,-0.338 5.558,-0l2.525,-0c1.346,0.675 2.692,1.179 4.038,1.516c1.687,0.338 2.695,1.009 3.033,2.021Z" style="fill-rule:nonzero;"/>
+  <path id="path1" d="M2866.07,2092.43c-150.088,-13.46 -253.806,-82.277 -287.76,-190.93c-30.902,-98.885 -17.816,-209.252 38.457,-324.325c32.852,-67.182 117.72,-150.531 186.529,-183.192c63.217,-30.007 148.971,-58.338 205.759,-67.977c59.39,-10.081 180.315,-26.556 233.658,-31.834c65.006,-6.432 196.693,-35.197 222.697,-48.644c65.175,-33.703 107.043,-114.49 91.442,-176.444c-10.744,-42.671 -24.985,-61.992 -61.436,-83.353c-26.917,-15.775 -41.492,-18.79 -104.363,-21.586c-81.589,-3.628 -134.097,5.105 -183.215,30.471c-45.565,23.532 -65.58,42.437 -102.915,97.208c-44.598,65.424 -52.14,67.683 -216.76,64.919c-117.137,-1.967 -128.696,-3.28 -137.754,-15.685c-15.065,-20.631 -12.118,-39.46 14.385,-91.891c71.44,-141.33 176.549,-226.291 347.578,-280.952c113.514,-36.279 187.988,-44.764 356.551,-40.621c117.057,2.877 158.635,6.568 204.42,18.146c147.905,37.402 237.485,118.035 252.283,227.086c7.77,57.256 -0.281,108.097 -79.93,504.633c-52.358,260.672 -75.176,389.871 -79.987,452.908c-3.703,48.509 -8.552,93.931 -10.776,100.938c-8.95,28.2 -36.919,33.521 -175.337,33.357c-146.719,-0.153 -152.134,-1.742 -171.749,-49.741c-16.018,-39.197 -29.597,-39.148 -110.793,0.409c-88.834,43.269 -179.961,67.993 -284.512,77.193c-44.116,3.883 -74.223,4.631 -83.377,4.631c-6.148,0 -30.488,-1.792 -63.095,-4.715l-0,-0.009Zm336.194,-237.704c88.4,-18.702 157.053,-64.357 204.685,-136.117c49.452,-74.503 88.258,-223.244 65.422,-250.76c-10.644,-12.826 -6.135,-13.173 -180.834,13.925c-174.259,27.029 -232.875,46.454 -288.841,95.718c-40.966,36.058 -56.872,63.208 -67.574,115.338c-10.403,50.67 -2.703,86.568 25.843,120.493c34.69,41.226 149.235,60.88 241.299,41.403Zm2994.3,233.426c-82.623,-17.451 -121.141,-29.631 -175.904,-55.623c-51.008,-24.209 -74.873,-40.975 -115.398,-81.071c-109.659,-108.498 -149.964,-234.684 -137.079,-429.165c6.777,-102.277 16.471,-147.046 53.191,-245.636c49.332,-132.45 99.583,-210.499 200.169,-310.901c117.667,-117.449 252.423,-194.316 398.217,-227.152c91.88,-20.693 240.52,-22.113 313.869,-2.999c101.302,26.396 201.55,85.476 252.41,148.753c14.621,18.191 30.255,36.974 34.741,41.739c4.487,4.768 11.977,20.463 16.646,34.884c4.67,14.421 15.546,40.344 24.172,57.606c20.098,40.223 38.228,146.034 38.154,222.681c-0.051,78.348 -11.604,176.833 -24.241,207.079c-19.658,47.046 -13.154,46.429 -474.735,45.041c-258.129,-0.777 -418.628,1.338 -430.015,5.668c-9.992,3.797 -26.321,15.701 -36.287,26.449c-15.36,16.566 -18.12,25.969 -18.12,61.741c-0,128.542 55.515,205.624 165.757,230.15c133.528,29.707 269.973,-8.456 377.217,-105.506c22.738,-20.577 49.746,-40.608 60.019,-44.514c10.273,-3.904 66.775,-7.101 125.561,-7.101c93.997,-0 108.825,1.574 122.984,13.037c14.854,12.028 15.467,15.151 7.917,40.35c-10.106,33.728 -113.754,164.482 -163.667,206.468c-100.865,84.845 -217.315,139.479 -344.842,161.786c-56.608,9.902 -234.03,13.989 -270.736,6.236Zm540.93,-836.072c16.271,-18.923 14.876,-30.52 10.797,-72.675c-11.637,-120.265 -93.477,-189.165 -225.087,-189.5c-122.497,-0.306 -228.179,55.459 -296.923,156.69c-23.051,33.944 -29.121,49.206 -29.384,73.884c-0.532,49.927 -2.734,49.551 277.529,47.496c0,0 199.143,0.871 242.987,-1.778c8.168,-0.493 20.081,-14.117 20.081,-14.117Zm-6401.11,805.714c-31.661,-12.757 -32.497,-27.151 -8.828,-151.967c40.584,-214.015 313.564,-1565.81 321.645,-1592.78c15.865,-52.952 5.386,-50.994 284.867,-53.225l249.693,-1.993l18.225,15.943c15.918,13.925 19.572,25.655 28.863,92.666c5.851,42.198 18.378,126.943 27.837,188.322c9.459,61.378 26.714,185.357 38.344,275.507c11.631,90.15 30.161,220.406 41.178,289.457c11.017,69.051 23.609,153.796 27.981,188.321c20.136,158.983 44.034,167.026 111.466,37.513c407.078,-781.853 547.301,-1044.2 569.053,-1064.65c0,0 13.13,-22.755 24.203,-22.755c44.663,-0 252.581,1.829 252.581,1.829c0,0 207.842,1.829 252.581,1.829c3.637,0 10.728,19.146 10.728,19.146c10.158,18.13 1.694,64.212 -159.503,868.371c-93.626,467.074 -174.334,859.539 -179.351,872.144c-14.861,37.34 -39.592,43.342 -178.587,43.342c-156.443,-0 -179.423,-6.395 -179.673,-49.999c-0.057,-10.237 36.154,-198.558 80.473,-418.492c44.319,-219.934 85.083,-427.019 90.586,-460.19c5.504,-33.171 14.707,-80.251 20.452,-104.623c12.611,-53.494 13.903,-121.692 2.44,-128.776c-16.699,-10.32 -63.084,63.749 -207.959,332.071c-67.174,124.414 -162.132,297.567 -198.903,362.693c-16.245,28.772 -49.308,89.976 -73.475,136.01c-44.807,85.351 -142.33,259.503 -162.885,290.874c-19.945,30.44 -42.051,35.835 -159.658,38.97c-160.163,4.267 -163.303,1.988 -182.606,-132.507c-5.666,-39.484 -16.546,-112.592 -24.177,-162.463c-7.631,-49.87 -21.795,-142.461 -31.475,-205.758c-9.68,-63.297 -31.833,-212.385 -49.228,-331.306c-34.102,-233.127 -46.052,-293.199 -61.373,-308.52c-8.461,-8.461 -11.299,-8.366 -20.341,0.674c-12.066,12.067 -32.127,69.87 -40.238,115.941c-30.626,173.965 -198.122,976.255 -206.478,989.007c-20.413,31.155 -47.66,36.43 -185.705,35.951c-70.133,-0.255 -134.372,-3.204 -142.753,-6.581l0,0.004Zm3996.39,-3.276c-13.609,-5.917 -23.706,-16.093 -25.681,-25.883c-9.369,-46.429 -20.397,-118.628 -46.143,-302.101c-15.611,-111.25 -34.401,-241.505 -41.755,-289.457c-7.354,-47.953 -18.224,-123.281 -24.156,-167.397c-5.932,-44.116 -16.86,-121.014 -24.286,-170.884c-21.042,-141.326 -35.441,-255.869 -35.348,-281.197c0.205,-56.069 21.808,-64.157 170.267,-63.756c120.917,0.307 166.904,5.974 183.455,22.526c11.54,11.539 13.095,22.522 43.679,308.477c29.083,271.915 54.086,475.932 59.379,484.495c2.458,3.976 12.201,7.233 21.649,7.233c12.742,-0 22.281,-8.045 36.932,-31.146l19.752,-31.146l22.131,34.155c12.173,18.785 43.645,54.072 69.939,78.416l47.806,44.261l-33.792,125.358c-18.585,68.947 -40.983,152.037 -49.772,184.644c-22.725,84.307 -21.269,83.751 -218.184,83.415c-115.599,-0.205 -158.978,-2.668 -175.872,-10.013Zm2873.61,3.184c-8.517,-3.429 -17.647,-14.846 -20.289,-25.374c-3.215,-12.812 25.928,-173.81 88.121,-486.799c118.691,-597.316 149.089,-739.014 163.139,-760.458c16.378,-24.996 35.27,-28.041 173.927,-28.041c143.7,-0 144.164,0.204 144.164,63.608c0,32.355 11.326,58.452 25.369,58.452c7.207,-0 33.353,-16.279 64.434,-40.114c47.566,-36.478 164.682,-91.074 220.578,-102.826c57.953,-12.185 216.555,-13.887 269.933,-2.898c56.747,11.683 133.62,52.235 166.368,87.763c15.797,17.136 38.653,52.123 50.793,77.747c22.005,46.448 22.072,46.937 22.072,161.674c0,107.728 -1.921,124.673 -30.009,265.045c-81.595,407.75 -135.246,668.355 -141.909,689.308c-14.188,44.62 -33.883,49.973 -183.992,50.002c-155.256,0.031 -163.718,-2.611 -163.718,-51.157c0,-16.207 28.144,-169.99 62.542,-341.74c87.476,-436.769 94.455,-489.786 73.68,-559.746c-12.519,-42.154 -50.694,-81.654 -93.506,-96.749c-96.417,-33.997 -245.583,7.567 -318.593,88.772c-67.235,74.781 -86.042,139.101 -185.035,632.827c-37.681,187.937 -59.325,281.05 -68.093,292.945c-7.069,9.59 -23.545,21.183 -36.612,25.762c-28.123,9.854 -259.78,11.487 -283.364,1.998l0,-0.001Z" style="fill-rule:nonzero;"/>
+</svg></a>
+    <nav class="tabs" aria-label="Sections">
+      <ul>
+        <li><a href="../../docs/index.html" aria-current="true">Docs</a></li>
+        <li><a href="../../download.html">Downloads</a></li>
+        <li><a href="../../news/index.html">News</a></li>
+        <li><a href="../../extend/index.html">Extend</a></li>
+        <li><a href="../../community/index.html">Community</a></li>
+      </ul>
+    </nav>
+    <form class="search" role="search" action="../../search.html" method="get" data-index="../../search.json" data-script="../../js/minisearch-7.2.0.js">
+      <label class="visually-hidden" for="q">Search the documentation</label>
+      <div class="search-field">
+        <svg class="search-icon" aria-hidden="true" viewBox="0 0 16 16" width="16" height="16"><circle cx="7" cy="7" r="5" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M11 11l3.5 3.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+        <input id="q" name="q" type="search" autocomplete="off" spellcheck="false" placeholder="Search the docs">
+      </div>
+    </form>
+    <a class="asf" href="https://www.apache.org/"><img class="asf-leaf" src="../../images/oakleaf.svg" width="14" height="22" alt=""><span>Apache</span></a>
+    </div>
+  </header>
+  <aside class="specimen" aria-label="About this site">
+    <p><strong>Specimen.</strong> A proposed redesign of maven.apache.org, built with <code>mvn site</code> and a skin of its own; not the official Apache Maven site. The official site is <a href="https://maven.apache.org/">maven.apache.org</a>. <a href="../../about-this-example.html">About this example</a></p>
+  </aside>
+  <div class="frame has-group">
+    <nav class="group-nav" aria-labelledby="group-nav-title">
+      <p class="up"><a href="../../docs/index.html"><svg aria-hidden="true" viewBox="0 0 16 16" width="14" height="14"><path d="M10 3.5L5.5 8l4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>All of Docs</a></p>
+      <p class="steps"><a class="step step--prev" href="../../docs/site/doxia-apt.html" rel="prev"><span class="step-dir">Previous</span> Doxia&apos;s APT enhancements</a><a class="step step--next" href="../../docs/site/fml.html" rel="next"><span class="step-dir">Next</span> FML format</a></p>
+      <h2 id="group-nav-title"><a href="../../docs/site/index.html">Project site</a></h2>
+      <ul class="page-list">
+  <li><a href="../../docs/site/create-a-site.html">Create a project site</a></li>
+  <li><a href="../../docs/site/multi-module-site.html">Build a multi-module site</a></li>
+  <li><a href="../../docs/site/markup-formats.html">Write pages in Markdown</a></li>
+  <li><a href="../../docs/site/markdown.html">Markdown format</a></li>
+  <li><a href="../../docs/site/apt.html">APT format</a></li>
+  <li><a href="../../docs/site/doxia-apt.html">Doxia&apos;s APT enhancements</a></li>
+  <li><a href="../../docs/site/apt-to-markdown.html" aria-current="page">Migrate from APT to Markdown</a></li>
+  <li><a href="../../docs/site/fml.html">FML format</a></li>
+  <li><a href="../../docs/site/xdoc.html">Xdoc format</a></li>
+  <li><a href="../../docs/site/snippet-macro.html">Snippet macro</a></li>
+  <li><a href="../../docs/site/macros.html">All Doxia macros</a></li>
+  <li><a href="../../docs/site/mermaid.html">Mermaid diagrams</a></li>
+  <li><a href="../../docs/site/skins.html">Choose a skin</a></li>
+</ul>
+    </nav>
+    <main id="content">
+      <p class="crumbs"><a href="../../docs/index.html">Docs</a> <span aria-hidden="true">›</span> <a href="../../docs/site/index.html">Project site</a></p>
+      <div class="prose">
+
+<section class="facts facts--inline" aria-label="About this page">
+  <dl>
+    <dt>Holds for</dt>
+    <dd><span class="unchecked">Not yet checked against Maven 3.9, 3.10 and 4.0</span></dd>
+    <dt>Source</dt>
+    <dd><a href="https://github.com/dashorst/maven-site/edit/doxia-demo/content/markdown/docs/site/apt-to-markdown.md">Edit this page</a></dd>
+    <dt>Wrong?</dt>
+    <dd><a href="https://github.com/apache/maven-site/issues/new?title=Page%3A+Migrate+from+APT+to+Markdown&amp;body=About+https%3A%2F%2Fmaven.apache.org%2Fdocs%2Fsite%2Fapt-to-markdown.html">Report a problem</a></dd>
+  </dl>
+</section>
+ <section><a id="Migrating_a_project.27s_site_from_APT_to_Markdown"></a>
+<h1>Migrating a project's site from APT to Markdown</h1>
+<p><code>doxia-converter</code> does most of the mechanical work of turning <code>src/site/apt</code> into <code>src/site/markdown</code>, but a handful of differences between the two formats are not mechanical and will silently damage a page if they go unnoticed. This page collects them, together with the procedure that catches them.</p>
+<p>Nothing here needs a POM change: <code>maven-site-plugin</code> already ships <code>doxia-module-markdown</code>.</p><section><a id="The_one_rule_that_matters"></a>
+<h2>The one rule that matters</h2>
+<p><strong>Build the site before the migration, build it again afterwards, and compare the generated HTML.</strong> Every problem described below was found that way and none of them is visible by reading the converted Markdown. A page that looks right can be missing a whole heading.</p></section><section><a id="Converting"></a>
+<h2>Converting</h2>
+
+<pre tabindex="0"><code class="nohighlight nocode">doxia-converter -in src/site/apt/index.apt.vm -from apt \
+                -out src/site/markdown -to markdown -outEncoding UTF-8
+</code></pre>
+<p>Here <code>doxia-converter</code> stands for the <a href="../../doxia/doxia-tools/doxia-converter/">Doxia Converter</a> command line tool, which you run as <code>java -jar doxia-converter-&lt;version&gt;-jar-with-dependencies.jar</code>; the jar for each release is <a href="https://repo.maven.apache.org/maven2/org/apache/maven/doxia/doxia-converter/" class="externalLink">on Maven Central</a>.</p>
+<p>The converter renames <code>x.apt</code> to <code>x.md</code> and <code>x.apt.vm</code> to <code>x.md.vm</code> by itself.</p>
+<p>Pass <code>-outEncoding UTF-8</code> explicitly. Without it the output follows the autodetected input encoding, and an ASCII source is detected as ISO-8859-1; an APT escaped space (<code>\</code>, which becomes U+00A0) is then written as a lone <code>0xa0</code> byte.</p>
+<p><strong>Keep the YAML front matter the converter writes.</strong> It carries the title, authors and date from the APT header, and the skin renders them into <code>&lt;title&gt;</code> and <code>&lt;meta&gt;</code>. Delete it and the parser falls back to the first heading for the title, so a page headed <em>Release Notes</em> under project <em>Modello</em> silently retitles itself <code>Modello &#x2013; Modello</code>. The front matter must be the <strong>first bytes of the file</strong> &#x2014; the parser only looks for it when the source starts with <code>---</code>, so the licence header goes below it. RAT accepts either order.</p></section><section><a id="Velocity_and_Markdown_disagree_about_.23"></a>
+<h2>Velocity and Markdown disagree about <code>#</code></h2>
+<p>A Markdown ATX heading below level one starts with <code>##</code>, which is also how a Velocity line comment starts. In a <code>*.md.vm</code> file Velocity removes the heading before Doxia ever sees the document: the line simply disappears from the rendered page, with no error and no warning. Level one is safe, because a single <code>#</code> followed by a space is literal to Velocity.</p>
+<p><strong>In a file that keeps its <code>.vm</code> suffix, never write an ATX heading below level one.</strong> This is the most damaging thing that can go wrong in the migration, and nothing anywhere reports it. It has been hit twice on different source formats: an APT conversion lost all four of its <code>&lt;h2&gt;</code> headings, and an xdoc conversion lost both of its own. In each case <code>mvn site</code> exited zero, the page rendered, every paragraph of prose was intact, and the <code>%{toc}</code> macro that listed those sections rendered as an empty list.</p>
+<p><strong>A green build is not evidence here, and neither is reading the converted Markdown</strong> &#x2014; the <code>##</code> looks correct in the source, because it <em>is</em> correct Markdown. Only a diff of the generated HTML shows the headings are gone. This one failure is the reason the before/after comparison at the top of this page is mandatory rather than advisable.</p>
+<p>There are three ways out, in order of preference.</p>
+<p><strong>Drop the <code>.vm</code>.</strong> Most <code>index.apt.vm</code> pages only use Velocity to interpolate <code>${project.name}</code> into the title. Spell the title out, name the file <code>index.md</code>, and the problem disappears along with the template.</p>
+<p><strong>Use a setext underline for level two.</strong> A title line followed by a line of <code>-</code> is a level two heading and starts with no <code>#</code> at all:</p>
+
+<pre tabindex="0"><code class="nohighlight nocode">Configuration
+-------------
+</code></pre>
+<p>The title line needs a <strong>blank line before it</strong>. Without one it is read as a lazy continuation of the preceding paragraph or list item and the heading is lost &#x2014; a different failure from the one being fixed, and just as quiet.</p>
+<p><strong>Shield deeper headings.</strong> There is no setext form below level two, so wrap the heading in Velocity's unparsed block:</p>
+
+<pre tabindex="0"><code class="nohighlight nocode">#[[### Advanced options]]#
+</code></pre>
+<p>Doxia 2.1.1 and later shield these automatically in the site renderer, but a page that must build with an older Doxia has to do it itself.</p></section><section><a id="References_the_source_meant_to_show.2C_not_resolve"></a>
+<h2>References the source meant to show, not resolve</h2>
+<p>APT writes <code>$\{project.version\}</code> when a page wants to display <code>${project.version}</code> rather than interpolate it. The parser unescapes that, so the converted <code>*.vm</code> holds a live reference and Velocity resolves it: a page documenting a default value ends up showing something like <code>[org.apache.maven.model.ReportPlugin@c754401]</code>.</p>
+<p>Write these as <code>${esc.d}{project.version}</code>. <code>${esc.d}</code> comes from Velocity's <code>EscapeTool</code>, which the site renderer always provides, and always yields a literal <code>$</code>.</p>
+<p>Do <strong>not</strong> use a backslash. <code>\${project.version}</code> only renders as <code>${project.version}</code> when <code>project.version</code> actually resolves in the document's Velocity context; when it does not, Velocity emits the backslash too and the page shows <code>\${project.version}</code>.</p>
+<p>The converter warns about every reference that was literal in the source and is live in the output, so watch its output rather than hunting for these by hand. Releases up to 1.3 do not emit these warnings yet; they and the directive warning further down are in the development version.</p>
+<p><strong>On a source that was already <code>*.apt.vm</code>, read those warnings with suspicion.</strong> The converter compares what the APT parser saw against what Velocity will see, and it cannot tell a reference the page wanted to <em>show</em> from one it wanted to <em>resolve</em> &#x2014; in a <code>.vm</code> source the latter was already live before the conversion and must stay live. Converting this project's own <code>usage.apt.vm</code> produces</p>
+
+<pre tabindex="0"><code class="nohighlight nocode">WARN &quot;${project.version}&quot; was written literally in the source but is a live Velocity
+     reference in &quot;usage.md.vm&quot;, so escape it there
+</code></pre>
+<p>for a reference that is deliberately live: it renders the current version into the sample command lines, it did so in the APT source too, and escaping it as the warning suggests would replace the version with the literal text <code>${project.version}</code> on the published page.</p>
+<p>The rule the warnings approximate has two halves, and a reference needs escaping only when <strong>both</strong> hold: the page means to <strong>display</strong> it, <em>and</em> the name actually <strong>resolves</strong> in that document's context.</p>
+<div class="table-scroll" tabindex="0"><table class="bodyTable">
+<thead>
+<tr class="a">
+<th></th>
+<th>resolves</th>
+<th>does not resolve</th></tr></thead><tbody>
+<tr class="b">
+<td><strong>page displays it</strong></td>
+<td>escape &#x2014; <code>${esc.d}{&#x2026;}</code></td>
+<td>already correct; escaping is harmless insurance</td></tr>
+<tr class="a">
+<td><strong>page resolves it</strong></td>
+<td>leave live</td>
+<td>broken either way; fix the reference</td></tr></tbody>
+</table></div>
+
+<p>Only the top-left cell is a bug, and it is the one that reads as fine in the source. A page documenting a default value with <code>${project.build.outputDirectory}</code> publishes an absolute path from whichever machine built the site; <code>${basedir}</code> or <code>${surefire.forkNumber}</code> in the same page resolve to nothing and pass through literally whatever you do. The APT source tells you which references were meant to be displayed: they are the ones written <code>$\{&#x2026;\}</code>.</p>
+<p>The same conversion warns</p>
+
+<pre tabindex="0"><code class="nohighlight nocode">WARN Velocity directive &quot;# java -jar target/doxia-converter-${project.version}-shaded.jar -h&quot;
+     was kept but the parser treated it as ordinary content, so check its placement
+</code></pre>
+<p>for a shell prompt inside a code block. A <code>#</code> followed by a space is literal to Velocity, so these are safe; the warning asks you to check, and the check is that the line is prose or a prompt rather than a directive.</p></section><section><a id="Do_not_tidy_away_a_code_block.27s_info_string"></a>
+<h2>Do not tidy away a code block's info string</h2>
+<p>Both source formats have two verbatim forms, one boxed and one not, and the converter already tells them apart. In APT, <code>+-----+</code> is boxed and a bare <code>-----</code> is not; in xdoc, <code>&lt;source&gt;</code> is boxed and <code>&lt;pre&gt;</code> is not. The boxed one gets an info string of <code>unknown</code>, the unboxed one gets a bare fence:</p>
+
+<pre tabindex="0"><code class="nohighlight nocode">```unknown
+String in = &quot;...&quot;;
+```
+</code></pre>
+<p>It reads like a placeholder, and deleting it is the obvious tidy-up. <strong>Do not.</strong> The Markdown parser treats <em>any non-empty</em> info string as the boxed flag, so removing it silently downgrades the block:</p>
+
+<pre tabindex="0"><code class="nohighlight nocode">with an info string:     &lt;pre&gt;&lt;code class=&quot;language-java&quot;&gt;
+with none:               &lt;pre&gt;&lt;code class=&quot;nohighlight nocode&quot;&gt;
+</code></pre>
+<p>Skins box and highlight a code block unless it is marked <code>nohighlight nocode</code>; Fluido 2, for example, adds <code>class=&quot;prettyprint linenums&quot;</code> to every other <code>&lt;pre&gt;</code>. The block still renders and the text is unchanged, so a body-only comparison passes and the build stays green &#x2014; only the box and the line numbers are gone.</p>
+<p>Replace <code>unknown</code> with the language the block actually is, rather than deleting it. That keeps the box and gets the syntax highlighting the placeholder never had:</p>
+
+<pre tabindex="0"><code class="nohighlight nocode">```java
+String in = &quot;...&quot;;
+```
+</code></pre>
+<p><strong>Substitute only where <code>unknown</code> already is.</strong> The same rule run backwards is the opposite error: adding a language to a fence the converter left bare <em>boxes a block the source deliberately left unboxed</em>. Console transcripts and log samples are usually the unboxed form, and they are exactly the blocks whose content most tempts you to write <code>```bash</code> or <code>```text</code>. If you are sweeping a tree with an editor macro, key it on the literal <code>unknown</code> and on nothing else.</p></section><section><a id="Raw_HTML_does_not_survive_the_way_it_looks_like_it_will"></a>
+<h2>Raw HTML does not survive the way it looks like it will</h2>
+<p>A Markdown page can contain raw HTML, and a converted page often does. It is not passed through untouched, and the rules below cost anchors and styling on green builds. All of it is invisible to a text comparison: an anchor contributes no visible text, and an <code>&lt;a&gt;</code> with no <code>href</code> is not a link.</p>
+<p><strong>Write the anchor with <code>id</code>, not <code>name</code> &#x2014; what <code>name</code> does depends on the Doxia version.</strong> <code>name</code> is obsolete in HTML5, and the Markdown module changed how it treats it:</p>
+<div class="table-scroll" tabindex="0"><table class="bodyTable">
+<thead>
+<tr class="a">
+<th>written in the page</th>
+<th>doxia-module-markdown 2.0.0</th>
+<th>2.1.0</th></tr></thead><tbody>
+<tr class="b">
+<td><code>&lt;a name=&quot;x&quot;&gt;&lt;/a&gt;</code></td>
+<td><em>deleted</em></td>
+<td><code>&lt;a id=&quot;x&quot;&gt;&lt;/a&gt;</code></td></tr>
+<tr class="a">
+<td><code>&lt;a id=&quot;x&quot;&gt;&lt;/a&gt;</code></td>
+<td><code>&lt;a id=&quot;x&quot;&gt;&lt;/a&gt;</code></td>
+<td><code>&lt;a id=&quot;x&quot;&gt;&lt;/a&gt;</code></td></tr>
+<tr class="b">
+<td><code>&lt;a name=&quot;x&quot; id=&quot;x&quot;&gt;&lt;/a&gt;</code></td>
+<td><code>&lt;a id=&quot;x&quot;&gt;&lt;/a&gt;</code></td>
+<td><code>&lt;a id=&quot;x&quot;&gt;&lt;/a&gt;</code></td></tr></tbody>
+</table></div>
+
+<p>On 2.0.0 the attribute is dropped, which leaves an element with no attributes and no content, and that is discarded &#x2014; the anchor is gone and every link to it is broken. On 2.1.0 the same source is rewritten to <code>id</code> and the anchor works. The version arrives with the site plugin: <code>maven-site-plugin</code> 3.21.0 brings 2.0.0, 3.22.0 brings 2.1.0. In the Maven repositories that means the parent &#x2014; <code>maven-plugins:48</code> resolves 3.21.0 and <code>49</code> resolves 3.22.0 &#x2014; so you can tell which side a project is on without building it.</p>
+<p>Placement makes no difference to this: it holds for an anchor on its own line, glued to a raw <code>&lt;/table&gt;</code> or <code>&lt;/pre&gt;</code>, or immediately after a fenced block. Nor is it about anchors as such &#x2014; on the older module <code>&lt;a id&gt;</code>, <code>&lt;div id&gt;</code> and <code>&lt;span id&gt;</code> all survive; it is specifically the <code>name</code> attribute that is dropped.</p>
+<p>Only <code>id</code> behaves the same on both, which is why it is the form to write. On an older toolchain that is not a matter of taste: the <code>name</code> anchors already in the page are not merely old-fashioned, they are gone from the rendered site, and every link into them is dead.</p>
+<p><strong>Never fold an anchor into a heading's text.</strong> An anchor that survives <em>inside</em> a heading suppresses the id Doxia would otherwise generate for that section, so you trade the section's own anchor for your hand-written one and every link to the generated id breaks.</p>
+<p>This is the one place where the version difference above is a trap rather than a curiosity. Fold <code>&lt;a name=&quot;x&quot;&gt;&lt;/a&gt;</code> into a heading and on 2.0.0 nothing appears to be wrong &#x2014; the anchor is deleted before it can do any harm, and the section keeps its generated id. Upgrade the site plugin to 3.22.0 and the anchor starts surviving, so <strong>the section silently loses its id on a build where nothing but the plugin version changed.</strong> A page converted today and checked today can break on somebody else's upgrade months later.</p>
+<p>Both attributes behave the same way once the anchor survives:</p>
+
+<pre tabindex="0"><code class="nohighlight nocode">&lt;a id=&quot;x&quot;&gt;&lt;/a&gt;Configuration      -&gt;  &lt;h2&gt;&lt;a id=&quot;x&quot;&gt;&lt;/a&gt;Configuration&lt;/h2&gt;
+-----------------------              (no &lt;a id=&quot;Configuration&quot;&gt;)
+
+&lt;a id=&quot;x&quot;&gt;&lt;/a&gt;                    -&gt;  &lt;p&gt;&lt;a id=&quot;x&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+                                      &lt;section&gt;&lt;a id=&quot;Configuration&quot;&gt;&lt;/a&gt;
+Configuration                         &lt;h2&gt;Configuration&lt;/h2&gt;
+-------------
+</code></pre>
+<p><strong>An anchor on its own line is safe.</strong> It costs an empty <code>&lt;p&gt;</code>, and the following heading keeps its generated id. That is the placement to use.</p>
+<p><strong>A closing fence may be followed only by whitespace.</strong> An anchor that an APT or xdoc source carried at the end of a verbatim block cannot stay there once the block is a fenced block. A fence with an anchor after it closes nothing, and the remainder of the document &#x2014; headings and all &#x2014; is swallowed into the code block:</p>
+
+<pre tabindex="0"><code class="nohighlight nocode">```
+some code
+```&lt;a id=&quot;x&quot;&gt;&lt;/a&gt;
+</code></pre>
+<p>That failure is at least loud in the rendered page, but the build still exits zero. Put the anchor on its own line after the fence and accept the empty paragraph; moving it above the fence would change where a deep link lands.</p>
+<p>This applies to <em>fenced</em> blocks only. A block that stays raw HTML &#x2014; <code>&lt;pre&gt;&lt;code&gt;&#x2026;&lt;/code&gt;&lt;/pre&gt;</code> &#x2014; is not a fence, and an anchor glued to its closing tag is fine; that is what converted xdoc pages normally carry, and it reproduces the anchor's original position exactly. Converting such a block to a fence is what takes the placement away, so keep the two decisions together.</p>
+<p><strong>Raw <code>&lt;pre&gt;</code> keeps exactly the markup you write.</strong> Doxia's own boxed block is <code>&lt;pre&gt;&lt;code&gt;</code>, and the skin styles it from that shape; a bare <code>&lt;pre&gt;</code> with no inner <code>&lt;code&gt;</code> in raw HTML stays unboxed and unstyled. If you are hand-writing a block to match what xdoc <code>&lt;source&gt;</code> produced, write the inner <code>&lt;code&gt;</code> yourself &#x2014; or better, use a fenced block with an info string and let the parser do it.</p>
+<p>There is no attribute syntax for heading ids. <code>## Heading {#custom}</code> is not recognised; the braces stay in the heading text and end up percent-encoded into the generated id.</p></section><section><a id="Things_Markdown_cannot_express"></a>
+<h2>Things Markdown cannot express</h2>
+<p>Some APT constructs have no Markdown equivalent. None of them is a converter defect, but each changes the rendered page, so decide deliberately:</p>
+<ul>
+
+<li><strong>Table captions.</strong> APT puts a caption line after a table and Doxia renders <code>&lt;caption&gt;</code>. Markdown has no caption syntax; the text becomes a paragraph after the table.</li>
+<li><strong>Intraword emphasis.</strong> The sink writes <code>_x_</code>, which CommonMark does not treat as emphasis when it follows a word character, so <code>Set&lt;i&gt;String&lt;/i&gt;</code> renders as literal <code>Set_String_</code>.</li>
+<li><strong>Typographic substitution.</strong> The Markdown module turns straight quotes into curly quotes and <code>...</code> into an ellipsis in prose. Code spans and code blocks are left alone.</li>
+</ul>
+<p>Tables lose three things, and none of them shows up in a text comparison &#x2014; the words are all still there, in the right order. Only the structural pass below sees these.</p>
+<ul>
+
+<li>
+<p><strong>A table with no header row.</strong> APT does not require one; Markdown does. The converter therefore writes an <em>empty</em> header row above the first row, and it renders as a blank band across the top of the table:</p>
+
+<pre tabindex="0"><code class="nohighlight nocode">|   |   |
+|:---:|:---:|
+|Name|Default|
+</code></pre>
+<p>Promoting the real first row to the header removes the blank band, at the cost of those cells becoming <code>&lt;th&gt;</code> rather than <code>&lt;td&gt;</code>. That is a content decision &#x2014; make it deliberately, and say so in the commit, because a reviewer reading the Markdown will not see what it fixed.</p></li>
+<li>
+<p><strong>Column alignment.</strong> The converter writes <code>|:---:|</code> faithfully, but the Markdown module emits no <code>text-align</code>, so a centred APT table renders left-aligned like any other.</p></li>
+<li>
+<p><strong>Grid borders.</strong> APT's <code>+</code> grid form renders <code>&lt;table class=&quot;bodyTable bodyTableBorder&quot;&gt;</code>. A Markdown table is always a plain <code>bodyTable</code>, so the borders go.</p></li>
+</ul>
+<p><strong>The escape hatch, if a table has to keep any of that: leave it as raw HTML.</strong> A <code>&lt;table&gt;</code> written out in the page passes through Doxia untouched &#x2014; <code>class</code>, inline <code>style</code> and all &#x2014; so <code>bodyTable bodyTableBorder</code> and per-cell alignment survive exactly as written, and no <code>&lt;thead&gt;</code> is inserted. It costs you a table that is no longer readable as Markdown, so it is worth it for a page whose table is the point, and not otherwise.</p></section><section><a id="Differences_that_are_improvements"></a>
+<h2>Differences that are improvements</h2>
+<p>Several APT constructs render incorrectly today and come out <em>better</em> after conversion. Do not &#x201c;fix&#x201d; these back:</p>
+<ul>
+
+<li><code>{{{#My Anchor}My Anchor}}</code> renders as <code>href=&quot;#My Anchor&quot;</code> pointing at <code>id=&quot;My_Anchor&quot;</code>, so the link never resolves. The converted Markdown links to <code>#My_Anchor</code>.</li>
+<li><code>&lt;&lt;&lt;${basedir}/src&gt;&gt;&gt;</code> renders as <code>$&lt;a id=&quot;basedir&quot;&gt;basedir&lt;/a&gt;/src</code> &#x2014; APT reads the braces as an anchor definition and invents an anchor.</li>
+<li><code>&lt;&lt;&lt;\&lt;overlay\&gt;&gt;&gt;&gt;</code> can end up with an anchor spliced into the middle of the code span.</li>
+</ul></section><section><a id="Checking_the_result"></a>
+<h2>Checking the result</h2>
+<p>Comparing raw HTML is too noisy to be useful: <code>&lt;b&gt;</code> becomes <code>&lt;strong&gt;</code>, <code>&lt;i&gt;</code> becomes <code>&lt;em&gt;</code>, attribute order changes, and <code>&lt;code&gt;</code> and <code>&lt;a&gt;</code> nest the other way round. Reduce each page to the parts that carry meaning &#x2014; its title, author and date metadata, its visible text and its link targets &#x2014; and compare that instead. A script that does so ships with the converter as <a href="https://github.com/apache/maven-doxia-converter/blob/master/tools/normalize-site-page.py" class="externalLink"><code>tools/normalize-site-page.py</code></a>:</p>
+
+<pre tabindex="0"><code class="nohighlight nocode">diff &lt;(normalize-site-page.py before/index.html) \
+     &lt;(normalize-site-page.py after/index.html)
+</code></pre>
+<p><strong>Compare the <code>&lt;head&gt;</code>, not just the body.</strong> An APT header carries the document's title, authors and date, and the skin turns them into <code>&lt;title&gt;</code> and <code>&lt;meta name=&quot;author&quot;&gt;</code> / <code>&lt;meta name=&quot;date&quot;&gt;</code>. A normaliser that reduces a page to its rendered body will pass a page that has lost all of it. This is the single easiest way to ship a migration that looks perfect and is not: the body matches on every page while the metadata quietly disappears.</p>
+<p>Two further mistakes produce a reassuring but meaningless result:</p>
+<ul>
+
+<li><strong>Check the exit status of <code>mvn site</code>.</strong> A failed build leaves the previous output in <code>target/site</code>, so a comparison against it reports no difference at all.</li>
+<li><strong>Derive the page list from the built site, not from an inventory of the APT files.</strong> Once the sources are converted that inventory is empty, and an empty list compares nothing.</li>
+</ul><section><a id="Know_what_this_comparison_cannot_see"></a>
+<h3>Know what this comparison cannot see</h3>
+<p><code>normalize-site-page.py</code> throws away every attribute except <code>href</code>, deliberately &#x2014; that is what makes it quiet enough to read. It catches a lost heading, lost or reordered text, a changed link target and lost metadata. It cannot see:</p>
+<ul>
+
+<li><strong>whether a code block is boxed.</strong> <code>&lt;pre &#x2026;&gt;</code> becomes <code>[PRE]</code>, so a <code>&lt;pre&gt;</code> the skin styled and a bare <code>&lt;pre&gt;</code> compare equal. This is the axis the info string sits on, and a tree-wide unboxing passes it silently on every page.</li>
+<li><strong>anchor ids.</strong> An <code>&lt;a&gt;</code> with no <code>href</code> is not a link and leaves no token, so a deleted <code>&lt;a name=&quot;&#x2026;&quot;&gt;</code> is invisible.</li>
+<li><strong>ordered against unordered lists.</strong> Every <code>&lt;li&gt;</code> becomes <code>[ITEM]</code> whatever encloses it.</li>
+</ul>
+<p>None of that is a defect in the script; a normaliser that kept attributes would drown you in noise. It means one pass is not enough. Add a second, structural pass over the same two directories &#x2014; the <em>sequence</em> of structural tags per page, and the set of anchor ids:</p>
+
+<pre tabindex="0"><code class="nohighlight nocode">tags() { sed -e 's/&gt;&lt;/&gt;\n&lt;/g' &quot;$1&quot; | grep -o '^&lt;\(pre\|h[1-6]\|table\|thead\|th\|ol\|ul\|dl\)[^&gt;]*&gt;'; }
+ids()  { grep -o 'id=&quot;[^&quot;]*&quot;' &quot;$1&quot; | sort -u; }
+
+diff &lt;(tags before/index.html) &lt;(tags after/index.html)
+diff &lt;(ids  before/index.html) &lt;(ids  after/index.html)
+</code></pre>
+<p>Keep the attributes in the tag pass &#x2014; the whole point is to catch a <code>&lt;pre&gt;</code> or <code>&lt;code&gt;</code> class appearing or disappearing. Expect a little noise from the skin and read past it; what you are looking for is a <code>&lt;pre&gt;</code> that lost its classes, a structural tag that vanished, or an id that is no longer there.</p></section></section><section><a id="What_not_to_convert"></a>
+<h2>What not to convert</h2>
+<ul>
+
+<li>Anything under <code>src/test</code> or <code>src/it</code>. Those APT files are fixtures for Doxia's own tests.</li>
+<li>Anything under <code>src/main/resources/archetype-resources</code>. That is template content generated into a user's new project, not the project's own documentation.</li>
+</ul></section></section>
+      </div>
+      <nav class="more" aria-labelledby="more-title">
+        <h2 id="more-title">More in <a href="../../docs/site/index.html">Project site</a></h2>
+        <ul class="more-list">
+  <li><a href="../../docs/site/create-a-site.html">Create a project site</a></li>
+  <li><a href="../../docs/site/multi-module-site.html">Build a multi-module site</a></li>
+  <li><a href="../../docs/site/markup-formats.html">Write pages in Markdown</a></li>
+  <li><a href="../../docs/site/markdown.html">Markdown format</a></li>
+  <li><a href="../../docs/site/apt.html">APT format</a></li>
+  <li><a href="../../docs/site/doxia-apt.html">Doxia&apos;s APT enhancements</a></li>
+  <li><a href="../../docs/site/apt-to-markdown.html" aria-current="page">Migrate from APT to Markdown</a></li>
+  <li><a href="../../docs/site/fml.html">FML format</a></li>
+  <li><a href="../../docs/site/xdoc.html">Xdoc format</a></li>
+  <li><a href="../../docs/site/snippet-macro.html">Snippet macro</a></li>
+  <li><a href="../../docs/site/macros.html">All Doxia macros</a></li>
+  <li><a href="../../docs/site/mermaid.html">Mermaid diagrams</a></li>
+  <li><a href="../../docs/site/skins.html">Choose a skin</a></li>
+</ul>
+        <p class="steps"><a class="step step--prev" href="../../docs/site/doxia-apt.html" rel="prev"><span class="step-dir">Previous</span> Doxia&apos;s APT enhancements</a><a class="step step--next" href="../../docs/site/fml.html" rel="next"><span class="step-dir">Next</span> FML format</a></p>
+      </nav>
+    </main>
+    <aside class="rail">
+
+<section class="facts" aria-label="About this page">
+  <dl>
+    <dt>Holds for</dt>
+    <dd><span class="unchecked">Not yet checked against Maven 3.9, 3.10 and 4.0</span></dd>
+    <dt>Source</dt>
+    <dd><a href="https://github.com/dashorst/maven-site/edit/doxia-demo/content/markdown/docs/site/apt-to-markdown.md">Edit this page</a></dd>
+    <dt>Wrong?</dt>
+    <dd><a href="https://github.com/apache/maven-site/issues/new?title=Page%3A+Migrate+from+APT+to+Markdown&amp;body=About+https%3A%2F%2Fmaven.apache.org%2Fdocs%2Fsite%2Fapt-to-markdown.html">Report a problem</a></dd>
+  </dl>
+</section>
+      <nav id="on-this-page" aria-label="On this page"></nav>
+    </aside>
+  </div>
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <nav aria-label="Apache Software Foundation">
+        <ul>
+          <li><a href="https://www.apache.org/">The Apache Software Foundation</a></li>
+          <li><a href="https://www.apache.org/licenses/">License</a></li>
+          <li><a href="https://www.apache.org/foundation/sponsorship.html">Sponsorship</a></li>
+          <li><a href="https://www.apache.org/foundation/thanks.html">Thanks</a></li>
+          <li><a href="https://www.apache.org/security/">Security</a></li>
+          <li><a href="https://privacy.apache.org/policies/privacy-policy-public.html">Privacy</a></li>
+          <li><a href="https://www.apache.org/events/current-event">Events</a></li>
+        </ul>
+      </nav>
+      <p>© 2002–2026 The Apache Software Foundation. Apache Maven, Maven, Apache, the Apache logo, and the Apache Maven project logo are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners.</p>
+      <p class="demo-note">A demonstration of a restructured maven.apache.org, built by maven-site-plugin from <a href="https://github.com/dashorst/maven-site/tree/doxia-demo">dashorst/maven-site</a>. Not the official Apache Maven site. <a href="../../about-this-example.html">About this example</a>.</p>
+    </div>
+  </footer>
+  <script src="../../js/page.js" defer></script>
+  <script src="../../js/search.js" defer></script>
+</body>
+</html>

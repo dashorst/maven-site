@@ -49,18 +49,21 @@
   <div class="frame has-group">
     <nav class="group-nav" aria-labelledby="group-nav-title">
       <p class="up"><a href="../../docs/index.html"><svg aria-hidden="true" viewBox="0 0 16 16" width="14" height="14"><path d="M10 3.5L5.5 8l4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" /></svg>All of Docs</a></p>
-      <p class="steps"><a class="step step--prev" href="../../docs/site/macros.html" rel="prev"><span class="step-dir">Previous</span> All Doxia macros</a></p>
+      <p class="steps"><a class="step step--prev" href="../../docs/site/mermaid.html" rel="prev"><span class="step-dir">Previous</span> Mermaid diagrams</a></p>
       <h2 id="group-nav-title"><a href="../../docs/site/index.html">Project site</a></h2>
       <ul class="page-list">
   <li><a href="../../docs/site/create-a-site.html">Create a project site</a></li>
+  <li><a href="../../docs/site/multi-module-site.html">Build a multi-module site</a></li>
   <li><a href="../../docs/site/markup-formats.html">Write pages in Markdown</a></li>
   <li><a href="../../docs/site/markdown.html">Markdown format</a></li>
   <li><a href="../../docs/site/apt.html">APT format</a></li>
   <li><a href="../../docs/site/doxia-apt.html">Doxia's APT enhancements</a></li>
+  <li><a href="../../docs/site/apt-to-markdown.html">Migrate from APT to Markdown</a></li>
   <li><a href="../../docs/site/fml.html">FML format</a></li>
   <li><a href="../../docs/site/xdoc.html">Xdoc format</a></li>
   <li><a href="../../docs/site/snippet-macro.html">Snippet macro</a></li>
   <li><a href="../../docs/site/macros.html">All Doxia macros</a></li>
+  <li><a href="../../docs/site/mermaid.html">Mermaid diagrams</a></li>
   <li><a href="../../docs/site/skins.html" aria-current="page">Choose a skin</a></li>
 </ul>
     </nav>
@@ -97,14 +100,14 @@
 <td>2.1.0</td>
 <td>[3.21.0,)</td>
 <td>Skin based on Bootstrap CSS.</td>
-<td><a href="http://gitbox.apache.org/repos/asf/maven-fluido-skin.git" class="externalLink">Git</a> / <a href="https://github.com/apache/maven-fluido-skin/" class="externalLink">GitHub</a></td>
+<td><a href="https://gitbox.apache.org/repos/asf/maven-fluido-skin.git" class="externalLink">Git</a> / <a href="https://github.com/apache/maven-fluido-skin/" class="externalLink">GitHub</a></td>
 <td><a href="https://github.com/apache/maven-fluido-skin/issues" class="externalLink">GitHub Issues</a></td></tr>
 <tr class="a">
 <td><a href="../../skins/maven-fluido-skin/"><code>Maven Fluido Skin</code></a></td>
 <td>1.12.0</td>
 <td>[3.10.0,3.20.0)</td>
 <td>Skin based on Bootstrap CSS.</td>
-<td><a href="http://gitbox.apache.org/repos/asf/maven-fluido-skin.git/" class="externalLink">Git</a> / <a href="https://github.com/apache/maven-fluido-skin/" class="externalLink">GitHub</a></td>
+<td><a href="https://gitbox.apache.org/repos/asf/maven-fluido-skin.git" class="externalLink">Git</a> / <a href="https://github.com/apache/maven-fluido-skin/" class="externalLink">GitHub</a></td>
 <td><a href="https://github.com/apache/maven-fluido-skin/issues" class="externalLink">GitHub Issues</a></td></tr></tbody>
 </table></div>
 <section><a id="Retired"></a>
@@ -184,23 +187,40 @@
   <span class="nt">&lt;/skin</span><span class="nt">&gt;</span>
   ...
 <span class="nt">&lt;/site</span><span class="nt">&gt;</span>
-</code></pre></section></section>
+</code></pre></section><section><a id="Creating_a_skin"></a>
+<h2>Creating a skin</h2>
+<p>If you want to tune the way your site looks, you can use a custom skin to provide your own CSS stylesheets. If that is still not enough, you can tweak the output templates that Maven uses to generate the site documentation.</p>
+<p>A skin contains the following elements:</p>
+<ul>
+
+<li>Resources to copy into each project (such as images used by the CSS)</li>
+<li>A couple of CSS files, containing the visual styling</li>
+<li>A Velocity template in <code>/META-INF/maven/site.vm</code> for an alternate HTML rendering of the site</li>
+<li>Since Maven Site Plugin 3.5, an optional <a href="../../doxia/doxia-sitetools/doxia-skin-model/index.html">skin descriptor</a> in <code>/META-INF/maven/skin.xml</code> containing metadata about the skin</li>
+</ul>
+<p>The <a href="../../archetypes/maven-archetype-site-skin/"><code>maven-archetype-site-skin</code> archetype</a> creates a complete new skin project, including its dedicated <code>/META-INF/maven/site.vm</code>.</p>
+<p>A skin is built like any other JAR, with a <code>packaging</code> of <code>jar</code>. No additional plugins are needed. Put resources in the normal <code>src/main/resources</code> directory. Once the JAR is built and deployed, projects can use it.</p>
+<p>To construct your own CSS, copy the file <a href="https://github.com/apache/maven-fluido-skin/tree/master/src/main/resources/css/maven-theme.css" class="externalLink"><code>maven-theme.css</code></a> from Maven Fluido Skin and modify it to suit your needs.</p>
+<p>The format of the Velocity template is out of scope for this page. For more information about how to write Velocity templates see the <a href="https://velocity.apache.org/engine/2.3/user-guide.html" class="externalLink">Velocity User Guide</a> and the <a href="https://velocity.apache.org/engine/2.3/vtl-reference.html" class="externalLink">Velocity Template Language Reference Guide</a>. Velocity 2.3 is used since Maven Site Plugin 4.0.0-M2; version 1.7 was used previously.</p></section></section>
       </div>
       <nav class="more" aria-labelledby="more-title">
         <h2 id="more-title">More in <a href="../../docs/site/index.html">Project site</a></h2>
         <ul class="more-list">
   <li><a href="../../docs/site/create-a-site.html">Create a project site</a></li>
+  <li><a href="../../docs/site/multi-module-site.html">Build a multi-module site</a></li>
   <li><a href="../../docs/site/markup-formats.html">Write pages in Markdown</a></li>
   <li><a href="../../docs/site/markdown.html">Markdown format</a></li>
   <li><a href="../../docs/site/apt.html">APT format</a></li>
   <li><a href="../../docs/site/doxia-apt.html">Doxia's APT enhancements</a></li>
+  <li><a href="../../docs/site/apt-to-markdown.html">Migrate from APT to Markdown</a></li>
   <li><a href="../../docs/site/fml.html">FML format</a></li>
   <li><a href="../../docs/site/xdoc.html">Xdoc format</a></li>
   <li><a href="../../docs/site/snippet-macro.html">Snippet macro</a></li>
   <li><a href="../../docs/site/macros.html">All Doxia macros</a></li>
+  <li><a href="../../docs/site/mermaid.html">Mermaid diagrams</a></li>
   <li><a href="../../docs/site/skins.html" aria-current="page">Choose a skin</a></li>
 </ul>
-        <p class="steps"><a class="step step--prev" href="../../docs/site/macros.html" rel="prev"><span class="step-dir">Previous</span> All Doxia macros</a></p>
+        <p class="steps"><a class="step step--prev" href="../../docs/site/mermaid.html" rel="prev"><span class="step-dir">Previous</span> Mermaid diagrams</a></p>
       </nav>
     </main>
     <aside class="rail">

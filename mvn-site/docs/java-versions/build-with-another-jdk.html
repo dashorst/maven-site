@@ -58,6 +58,8 @@
   <li><a href="../../docs/java-versions/toolchains.html">Toolchains explained</a></li>
   <li><a href="../../docs/java-versions/build-with-another-jdk.html" aria-current="page">Build with another JDK</a></li>
   <li><a href="../../docs/java-versions/compile-for-older-java.html">Compile for an older Java version</a></li>
+  <li><a href="../../docs/java-versions/java-target.html">Target a Java version</a></li>
+  <li><a href="../../docs/java-versions/multi-release-jars.html">Build multi-release JARs</a></li>
   <li><a href="../../docs/java-versions/toolchains-xml.html">toolchains.xml reference</a></li>
 </ul>
     </nav>
@@ -242,7 +244,37 @@ jdk [ version='25' ]
 </code></pre>
 <p>The <a href="../../plugins/maven-toolchains-plugin/toolchains/jdk-discovery.html">JDK discovery page of the plugin</a> lists the other requirements it accepts, such as a vendor or an environment variable, and how it orders JDKs that all match.</p></section><section><a id="Use_another_JDK_for_one_plugin"></a>
 <h2>Use another JDK for one plugin</h2>
-<p>To run only the tests on another JDK, give Surefire a requirement of its own with <code>jdkToolchain</code>. It is matched against <em>toolchains.xml</em> and overrides the JDK selected for the module. <a href="compile-for-older-java.html#Run_the_tests_on_the_older_Java">Compile for an older Java version</a> shows it for tests on Java 8.</p></section></section>
+<p>To run only the tests on another JDK, give Surefire a requirement of its own with <code>jdkToolchain</code>. It is matched against <em>toolchains.xml</em> and overrides the JDK selected for the module. <a href="compile-for-older-java.html#Run_the_tests_on_the_older_Java">Compile for an older Java version</a> shows it for tests on Java 8.</p></section><section><a id="Compile_with_a_specific_javac.2C_without_toolchains"></a>
+<h2>Compile with a specific javac, without toolchains</h2>
+<p>Toolchains are the preferable way to use a different JDK. Outside of a toolchain, the Compiler Plugin can still be pointed at a specific <code>javac</code>. This configuration is specific to that plugin and does not affect the others. Set <code>fork</code> to <code>true</code> and give the path of the compiler in <code>executable</code>:</p>
+
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;plugin</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;groupId</span><span class="nt">&gt;</span>org.apache.maven.plugins<span class="nt">&lt;/groupId</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;artifactId</span><span class="nt">&gt;</span>maven-compiler-plugin<span class="nt">&lt;/artifactId</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;version</span><span class="nt">&gt;</span>3.16.0<span class="nt">&lt;/version</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;configuration</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;fork</span><span class="nt">&gt;</span>true<span class="nt">&lt;/fork</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;executable</span><span class="nt">&gt;</span>${JAVA_17_HOME}/bin/javac<span class="nt">&lt;/executable</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;/configuration</span><span class="nt">&gt;</span>
+<span class="nt">&lt;/plugin</span><span class="nt">&gt;</span>
+</code></pre>
+<p>To keep the build portable, each developer defines the property in <a href="../../ref/current/maven-settings/settings.html"><code>settings.xml</code></a>, or sets an environment variable:</p>
+
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;settings</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;profiles</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;profile</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;id</span><span class="nt">&gt;</span>compiler<span class="nt">&lt;/id</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;properties</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;JAVA_17_HOME</span><span class="nt">&gt;</span>/path/to/jdk/17<span class="nt">&lt;/JAVA_17_HOME</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;/properties</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;/profile</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;/profiles</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;activeProfiles</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;activeProfile</span><span class="nt">&gt;</span>compiler<span class="nt">&lt;/activeProfile</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;/activeProfiles</span><span class="nt">&gt;</span>
+<span class="nt">&lt;/settings</span><span class="nt">&gt;</span>
+</code></pre>
+<p>To target an older Java version than the JDK that runs the compiler, see <a href="../../docs/java-versions/java-target.html">Targeting a Java Version</a>. If you build with a different JDK, you may also want to <a href="../../docs/recipes/manifests.html">customize the JAR manifest</a>.</p></section></section>
       </div>
       <nav class="more" aria-labelledby="more-title">
         <h2 id="more-title">More in <a href="../../docs/java-versions/index.html">Java versions and toolchains</a></h2>
@@ -250,6 +282,8 @@ jdk [ version='25' ]
   <li><a href="../../docs/java-versions/toolchains.html">Toolchains explained</a></li>
   <li><a href="../../docs/java-versions/build-with-another-jdk.html" aria-current="page">Build with another JDK</a></li>
   <li><a href="../../docs/java-versions/compile-for-older-java.html">Compile for an older Java version</a></li>
+  <li><a href="../../docs/java-versions/java-target.html">Target a Java version</a></li>
+  <li><a href="../../docs/java-versions/multi-release-jars.html">Build multi-release JARs</a></li>
   <li><a href="../../docs/java-versions/toolchains-xml.html">toolchains.xml reference</a></li>
 </ul>
         <p class="steps"><a class="step step--prev" href="../../docs/java-versions/toolchains.html" rel="prev"><span class="step-dir">Previous</span> Toolchains explained</a><a class="step step--next" href="../../docs/java-versions/compile-for-older-java.html" rel="next"><span class="step-dir">Next</span> Compile for an older Java version</a></p>

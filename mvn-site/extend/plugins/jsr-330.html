@@ -49,7 +49,7 @@
   <div class="frame has-group">
     <nav class="group-nav" aria-labelledby="group-nav-title">
       <p class="up"><a href="../../extend/index.html"><svg aria-hidden="true" viewBox="0 0 16 16" width="14" height="14"><path d="M10 3.5L5.5 8l4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" /></svg>All of Extend</a></p>
-      <p class="steps"><a class="step step--prev" href="../../extend/plugins/dependency-injection.html" rel="prev"><span class="step-dir">Previous</span> Dependency injection (Maven 4)</a><a class="step step--next" href="../../extend/plugins/null-annotations.html" rel="next"><span class="step-dir">Next</span> Null annotations</a></p>
+      <p class="steps"><a class="step step--prev" href="../../extend/plugins/dependency-injection.html" rel="prev"><span class="step-dir">Previous</span> Dependency injection (Maven 4)</a><a class="step step--next" href="../../extend/plugins/custom-toolchains.html" rel="next"><span class="step-dir">Next</span> Custom toolchains</a></p>
       <h2 id="group-nav-title"><a href="../../extend/plugins/index.html">Write a plugin or extension</a></h2>
       <ul class="page-list">
   <li><a href="../../extend/plugins/introduction.html">Introduction to plugin development</a></li>
@@ -62,6 +62,7 @@
   <li><a href="../../extend/plugins/logging.html">Logging in plugins</a></li>
   <li><a href="../../extend/plugins/dependency-injection.html">Dependency injection (Maven 4)</a></li>
   <li><a href="../../extend/plugins/jsr-330.html" aria-current="page">JSR-330</a></li>
+  <li><a href="../../extend/plugins/custom-toolchains.html">Custom toolchains</a></li>
   <li><a href="../../extend/plugins/null-annotations.html">Null annotations</a></li>
   <li><a href="../../extend/plugins/plexus-annotations.html">Upgrade from Plexus Javadoc tags</a></li>
   <li><a href="../../extend/plugins/lifecycle-extensions.html">Lifecycle extensions example</a></li>
@@ -105,7 +106,7 @@
 <p>If you take a look in that <code>META-INF/sisu/javax.inject.Named</code> file with the example from the next paragraph, you will see a list of full class names.</p>
 <p>Enumerating the implementations means that no classpath scanning is required in runtime to find them, which keeps Maven's startup time fast. Note that our container is configured by default to only use the index. While this keeps things fast, if you use JSR-330 components in dependencies that do not contain an index, those implementations will currently not be discovered. This is a compromise that is reasonable given Maven is a command-line tool where startup speed is important.</p></section></section><section><a id="How_to_use_JSR-330_in_plugins"></a>
 <h2>How to use JSR-330 in plugins</h2>
-<p>Let's take a look at an example plugin: If you want to look at this example project, you can find the code <a href="https://github.com/apache/maven-integration-testing/tree/master/core-it-suite/src/test/resources/mng-5382" class="externalLink">in Maven Core ITs</a>.</p>
+<p>Let's take a look at an example plugin: If you want to look at this example project, you can find the code <a href="https://github.com/apache/maven-integration-testing/tree/fdd9945/core-it-suite/src/test/resources/mng-5382" class="externalLink">in Maven Core ITs</a>.</p>
 <p>The POM is set up for JSR-300 as previously mentioned, with the <code>javax.inject</code> dependency and the <code>sisu-maven-plugin</code> configured to create the JSR-330 component index.</p>
 <p>In addition, we add classical Maven plugin dependencies <code>maven-plugin-api</code> and <code>maven-plugin-annotations</code> to extend the <code>AbstractMojo</code> and use the Java Plugin Tools Annotations with associated <code>maven-plugin-plugin</code> (see <a href="../../plugin-tools/">Maven Plugin Tools</a>).</p>
 
@@ -216,12 +217,12 @@
     <span class="nd">@Inject</span>
     <span class="k">public</span> Jsr330Mojo( Jsr330Component component )
     {
-        <span class="k">this</span>.component = component;    
+        <span class="k">this</span>.component = component;
     }
 
     <span class="k">public</span> <span class="k">void</span> execute()
         <span class="k">throws</span> MojoExecutionException
-    {    
+    {
         <span class="c1">//</span>
         <span class="c1">// Say hello to the world, my little constructor injected component!</span>
         <span class="c1">//</span>
@@ -245,6 +246,7 @@
   <li><a href="../../extend/plugins/logging.html">Logging in plugins</a></li>
   <li><a href="../../extend/plugins/dependency-injection.html">Dependency injection (Maven 4)</a></li>
   <li><a href="../../extend/plugins/jsr-330.html" aria-current="page">JSR-330</a></li>
+  <li><a href="../../extend/plugins/custom-toolchains.html">Custom toolchains</a></li>
   <li><a href="../../extend/plugins/null-annotations.html">Null annotations</a></li>
   <li><a href="../../extend/plugins/plexus-annotations.html">Upgrade from Plexus Javadoc tags</a></li>
   <li><a href="../../extend/plugins/lifecycle-extensions.html">Lifecycle extensions example</a></li>
@@ -252,7 +254,7 @@
   <li><a href="../../extend/plugins/localization.html">Plugin localization</a></li>
   <li><a href="../../extend/plugins/conventions.html">Maven conventions</a></li>
 </ul>
-        <p class="steps"><a class="step step--prev" href="../../extend/plugins/dependency-injection.html" rel="prev"><span class="step-dir">Previous</span> Dependency injection (Maven 4)</a><a class="step step--next" href="../../extend/plugins/null-annotations.html" rel="next"><span class="step-dir">Next</span> Null annotations</a></p>
+        <p class="steps"><a class="step step--prev" href="../../extend/plugins/dependency-injection.html" rel="prev"><span class="step-dir">Previous</span> Dependency injection (Maven 4)</a><a class="step step--next" href="../../extend/plugins/custom-toolchains.html" rel="next"><span class="step-dir">Next</span> Custom toolchains</a></p>
       </nav>
     </main>
     <aside class="rail">

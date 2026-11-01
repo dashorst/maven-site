@@ -98,7 +98,8 @@
 <li><a href="#What_is_a_Mojo.3F">What is a Mojo?</a></li>
 <li><a href="#How_to_find_dependencies_on_public_Maven_repositories.3F">How to find dependencies on public Maven repositories?</a></li>
 <li><a href="#Why_is_my_Javadoc_JAR_built_twice_during_release.3F">Why is my Javadoc JAR built twice during release?</a></li></ul>
-<section><a id="How_do_I_prevent_.E2.80.9C.5BWARNING.5D_Using_platform_encoding_.28Cp1252_actually.29_to_copy_filtered_resources.2C_i.e._build_is_platform_dependent.21.E2.80.9D"></a>
+
+<p><a id="encoding-warning"></a></p><section><a id="How_do_I_prevent_.E2.80.9C.5BWARNING.5D_Using_platform_encoding_.28Cp1252_actually.29_to_copy_filtered_resources.2C_i.e._build_is_platform_dependent.21.E2.80.9D"></a>
 <h2>How do I prevent “[WARNING] Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!”</h2>
 <p>This or a similar warning is emitted by a plugin that processes plain text files but has not been configured to use a specific file encoding. So eliminating the warning is simply a matter of finding out which plugin emits it and how to configure the file encoding for it.</p>
 <p>This is as easy as adding the following property to your POM (or one of its parent POMs):</p>

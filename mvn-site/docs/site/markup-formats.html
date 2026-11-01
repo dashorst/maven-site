@@ -49,18 +49,21 @@
   <div class="frame has-group">
     <nav class="group-nav" aria-labelledby="group-nav-title">
       <p class="up"><a href="../../docs/index.html"><svg aria-hidden="true" viewBox="0 0 16 16" width="14" height="14"><path d="M10 3.5L5.5 8l4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" /></svg>All of Docs</a></p>
-      <p class="steps"><a class="step step--prev" href="../../docs/site/create-a-site.html" rel="prev"><span class="step-dir">Previous</span> Create a project site</a><a class="step step--next" href="../../docs/site/markdown.html" rel="next"><span class="step-dir">Next</span> Markdown format</a></p>
+      <p class="steps"><a class="step step--prev" href="../../docs/site/multi-module-site.html" rel="prev"><span class="step-dir">Previous</span> Build a multi-module site</a><a class="step step--next" href="../../docs/site/markdown.html" rel="next"><span class="step-dir">Next</span> Markdown format</a></p>
       <h2 id="group-nav-title"><a href="../../docs/site/index.html">Project site</a></h2>
       <ul class="page-list">
   <li><a href="../../docs/site/create-a-site.html">Create a project site</a></li>
+  <li><a href="../../docs/site/multi-module-site.html">Build a multi-module site</a></li>
   <li><a href="../../docs/site/markup-formats.html" aria-current="page">Write pages in Markdown</a></li>
   <li><a href="../../docs/site/markdown.html">Markdown format</a></li>
   <li><a href="../../docs/site/apt.html">APT format</a></li>
   <li><a href="../../docs/site/doxia-apt.html">Doxia's APT enhancements</a></li>
+  <li><a href="../../docs/site/apt-to-markdown.html">Migrate from APT to Markdown</a></li>
   <li><a href="../../docs/site/fml.html">FML format</a></li>
   <li><a href="../../docs/site/xdoc.html">Xdoc format</a></li>
   <li><a href="../../docs/site/snippet-macro.html">Snippet macro</a></li>
   <li><a href="../../docs/site/macros.html">All Doxia macros</a></li>
+  <li><a href="../../docs/site/mermaid.html">Mermaid diagrams</a></li>
   <li><a href="../../docs/site/skins.html">Choose a skin</a></li>
 </ul>
     </nav>
@@ -166,17 +169,17 @@
 </table></div>
 
 <p>Note some modules are not included per default with the site plugin. Have a look at the available modules here: <a href="https://repo.maven.apache.org/maven2/org/apache/maven/doxia/" class="externalLink">https://repo.maven.apache.org/maven2/org/apache/maven/doxia/</a>.</p>
-<p>If you need to add module for the <code>maven-site-plugin</code> simply add it as a dependency of the plugin:</p>
+<p>If you need to add a module that is not bundled, for example AsciiDoc, add it as a dependency of the plugin:</p>
 
-<pre tabindex="0" class="highlight"><code class="language-unknown"><span class="nt">&lt;plugin</span><span class="nt">&gt;</span>
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;plugin</span><span class="nt">&gt;</span>
   <span class="nt">&lt;groupId</span><span class="nt">&gt;</span>org.apache.maven.plugins<span class="nt">&lt;/groupId</span><span class="nt">&gt;</span>
   <span class="nt">&lt;artifactId</span><span class="nt">&gt;</span>maven-site-plugin<span class="nt">&lt;/artifactId</span><span class="nt">&gt;</span>
   <span class="nt">&lt;version</span><span class="nt">&gt;</span>...<span class="nt">&lt;/version</span><span class="nt">&gt;</span>
   <span class="nt">&lt;dependencies</span><span class="nt">&gt;</span>
     <span class="nt">&lt;dependency</span><span class="nt">&gt;</span>
-      <span class="nt">&lt;groupId</span><span class="nt">&gt;</span>org.apache.maven.doxia<span class="nt">&lt;/groupId</span><span class="nt">&gt;</span>
-      <span class="nt">&lt;artifactId</span><span class="nt">&gt;</span>doxia-module-markdown<span class="nt">&lt;/artifactId</span><span class="nt">&gt;</span>
-      <span class="nt">&lt;version</span><span class="nt">&gt;</span>...<span class="nt">&lt;/version</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;groupId</span><span class="nt">&gt;</span>org.asciidoctor<span class="nt">&lt;/groupId</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;artifactId</span><span class="nt">&gt;</span>asciidoctor-parser-doxia-module<span class="nt">&lt;/artifactId</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;version</span><span class="nt">&gt;</span>3.2.0<span class="nt">&lt;/version</span><span class="nt">&gt;</span>
     <span class="nt">&lt;/dependency</span><span class="nt">&gt;</span>
   <span class="nt">&lt;/dependencies</span><span class="nt">&gt;</span>
 <span class="nt">&lt;/plugin</span><span class="nt">&gt;</span>
@@ -236,17 +239,20 @@
         <h2 id="more-title">More in <a href="../../docs/site/index.html">Project site</a></h2>
         <ul class="more-list">
   <li><a href="../../docs/site/create-a-site.html">Create a project site</a></li>
+  <li><a href="../../docs/site/multi-module-site.html">Build a multi-module site</a></li>
   <li><a href="../../docs/site/markup-formats.html" aria-current="page">Write pages in Markdown</a></li>
   <li><a href="../../docs/site/markdown.html">Markdown format</a></li>
   <li><a href="../../docs/site/apt.html">APT format</a></li>
   <li><a href="../../docs/site/doxia-apt.html">Doxia's APT enhancements</a></li>
+  <li><a href="../../docs/site/apt-to-markdown.html">Migrate from APT to Markdown</a></li>
   <li><a href="../../docs/site/fml.html">FML format</a></li>
   <li><a href="../../docs/site/xdoc.html">Xdoc format</a></li>
   <li><a href="../../docs/site/snippet-macro.html">Snippet macro</a></li>
   <li><a href="../../docs/site/macros.html">All Doxia macros</a></li>
+  <li><a href="../../docs/site/mermaid.html">Mermaid diagrams</a></li>
   <li><a href="../../docs/site/skins.html">Choose a skin</a></li>
 </ul>
-        <p class="steps"><a class="step step--prev" href="../../docs/site/create-a-site.html" rel="prev"><span class="step-dir">Previous</span> Create a project site</a><a class="step step--next" href="../../docs/site/markdown.html" rel="next"><span class="step-dir">Next</span> Markdown format</a></p>
+        <p class="steps"><a class="step step--prev" href="../../docs/site/multi-module-site.html" rel="prev"><span class="step-dir">Previous</span> Build a multi-module site</a><a class="step step--next" href="../../docs/site/markdown.html" rel="next"><span class="step-dir">Next</span> Markdown format</a></p>
       </nav>
     </main>
     <aside class="rail">

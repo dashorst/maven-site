@@ -131,20 +131,21 @@
 <section><a id="Required_Java_version"></a>
 <h2>Required Java version</h2>
 <p>Maven 4 requires Java 17. This allows Maven (and its maintainers) to make use of newer language features and improvements.</p>
-<p><strong>Important note</strong>: Java 17 is only needed to <strong>run Maven</strong>! You can still compile against older Java versions using the same <a href="../../plugins/maven-compiler-plugin/examples/set-compiler-release.html">compiler plugin configuration</a> as before. If you need to compile against or use another JDK, see the <a href="https://maven.apache.org/docs/java-versions/toolchains.html" class="externalLink">Guide to Using Toolchains</a> (or the article <a href="https://maarten.mulders.it/2021/03/introduction-to-maven-toolchains/" class="externalLink">Introduction to Maven Toolchains</a> by Maven maintainer Maarten Mulders).</p></section><section><a id="POM_Changes"></a>
+<p><strong>Important note</strong>: Java 17 is only needed to <strong>run Maven</strong>! You can still compile against older Java versions using the same <a href="../java-versions/java-target.html">compiler plugin configuration</a> as before. If you need to compile against or use another JDK, see the <a href="../java-versions/toolchains.html">Guide to Using Toolchains</a> (or the article <a href="https://maarten.mulders.it/2021/03/introduction-to-maven-toolchains/" class="externalLink">Introduction to Maven Toolchains</a> by Maven maintainer Maarten Mulders).</p></section><section><a id="POM_Changes"></a>
 <h2>POM Changes</h2><section><a id="Consumer_POM"></a>
 <h3>Consumer POM</h3>
-<p>Maven 4 can generate a stripped down consumer POM that removes build information not needed by consumers, and deploys this to the remote repository. It does not deploy the <code>pom.xml</code> used to build the project.</p>
-<p>The consumer POM is a <strong>flattened</strong> version of the build POM, meaning:</p>
+<p>Maven 4 generates a consumer POM that removes build information not needed by consumers (such as plugin configuration and properties), and deploys this to the remote repository instead of the full <code>pom.xml</code> used to build the project.</p>
+<p>By default, the consumer POM preserves all dependencies from the build POM, including <code>provided</code> scope dependencies. Only build-time-only elements are stripped.</p>
+<p>Enable flattening to produce a fully self-contained consumer POM. When flattening is enabled:</p>
 <ul>
 
-<li>It contains no parent POM references (all inherited elements are resolved and included directly)</li>
+<li>Parent POM references are resolved; all inherited elements are included directly</li>
 <li>BOM imports are flattened into the dependency list</li>
-<li>Only transitive dependencies are kept (compile and runtime scopes)</li>
+<li>Transitive dependencies are kept (<code>compile</code> and <code>runtime</code> scopes). Non-transitive scopes are stripped (<code>provided</code>, <code>test</code>, <code>system</code> scopes)</li>
 <li>Managed dependencies are kept only if they are actually used by the project</li>
 </ul>
-<p>This flattening ensures that consumers of your artifact have all the information they need without requiring access to parent POMs or understanding the internal structure of your multi-project build.</p>
-<p>The flatten feature is disabled by default to avoid unexpected behavior and better control of listing (transitive) dependencies in the consumer POM. To publish a flattened consumer POM instead of the full build POM, the user property <code>maven.consumer.pom.flatten</code> must be set to <code>true</code>. User properties can be controlled using <code>${session.rootDirectory}/.mvn/maven-user.properties</code> for a per-reactor configuration.</p></section><section><a id="Model_version_4.1.0"></a>
+<p>When flattening is enabled, the full build POM (with all dependency scopes) is still published alongside the consumer POM with a <code>build</code> classifier.</p>
+<p>The flatten feature is disabled by default to avoid unexpected behavior and better control of listing (transitive) dependencies in the consumer POM. To publish a flattened consumer POM, set the user property <code>maven.consumer.pom.flatten</code> to <code>true</code>. User properties can be controlled using <code>${session.rootDirectory}/.mvn/maven-user.properties</code> for a per-reactor configuration.</p></section><section><a id="Model_version_4.1.0"></a>
 <h3>Model version 4.1.0</h3>
 <p>Maven 4 updates the POM version to 4.1.0 which defines the namespace <code>http://maven.apache.org/POM/4.1.0</code>. Version 4.1.0 adds some new elements and attributes, while others are marked as deprecated. To not break the ecosystem, this version is only available for the build POM (stored in source control), while the consumer POM (available in remote repositories like Maven Central) will still use version 4.0.0. Maven generates the consumer POM during the build from the build POM.</p>
 <p><strong>Note</strong>: Maven 4 will continue to build your Maven 3's model version 4.0.0 project. There is no need to update your (build) POMs to 4.1.0 if you don't need to use the new features.</p></section><section><a id="Modules_are_now_subprojects"></a>
@@ -193,6 +194,7 @@
 
 <li>The column “consumer POM” does not apply to artifacts that are of type “pom”, because “pom”-artifacts are designed to contain build information, for example plugin configuration!</li>
 <li>Some of the build-related content which is (as of now) still available in the consumer POM might be available only in the build POM in the future.</li>
+<li>The “3rd party dependency information” row refers to the default (non-flattened) consumer POM, which preserves all dependency scopes. When flattening is enabled (<code>maven.consumer.pom.flatten=true</code>), only <code>compile</code> and <code>runtime</code> scope dependencies are included in the consumer POM.</li>
 </ul>
 <div class="table-scroll" tabindex="0"><table class="bodyTable">
 <thead>

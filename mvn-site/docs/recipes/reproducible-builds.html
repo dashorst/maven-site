@@ -53,6 +53,7 @@
       <h2 id="group-nav-title"><a href="../../docs/recipes/index.html">Build recipes</a></h2>
       <ul class="page-list">
   <li><a href="../../docs/recipes/generate-sources.html">Generate sources</a></li>
+  <li><a href="../../docs/recipes/filtering-resources.html">Filter resources</a></li>
   <li><a href="../../docs/recipes/archives.html">Configure archives</a></li>
   <li><a href="../../docs/recipes/manifests.html">Work with manifests</a></li>
   <li><a href="../../docs/recipes/assemblies.html">Create assemblies and fat JARs</a></li>
@@ -131,7 +132,98 @@
 <li>Use <a href="https://diffoscope.org/" class="externalLink">diffoscope</a> to find the unstable output between builds. The <code>artifact:buildinfo</code> goal proposes a command with path to files: just copy/paste to launch.</li>
 <li>Find the plugin that generated this output.</li>
 <li>Check if a reproducible version of the plugin is available. If not, please open an issue to help plugin maintainers improving Reproducible Builds support at every plugin level.</li>
-</ol></section><section><a id="More_Details"></a>
+</ol><section><a id="Reading_the_artifact.3Acompare_output"></a>
+<h3>Reading the artifact:compare output</h3>
+<p>If <code>artifact:compare</code> reports that the current build output is not the same as the reference, the log shows where to look. This example rebuilds Doxia 1.9.1 against the release published on Central:</p>
+
+<pre tabindex="0"><code class="nohighlight nocode">$ mvn -Papache-release clean verify -Dgpg.skip artifact:compare
+[INFO] Scanning for projects...
+...
+[INFO] --- maven-artifact-plugin:3.7.0:buildinfo (default-cli) @ doxia-module-markdown ---
+[INFO] Saved aggregate info on build to /tmp/doxia-1.9.1/doxia-modules/doxia-module-markdown/target/doxia-module-markdown-1.9.1.buildinfo
+[INFO] Checking against reference build from central...
+Downloading from central: https://repo.maven.apache.org/maven2/org/apache/maven/doxia/doxia-module-markdown/1.9.1/doxia-module-markdown-1.9.1.buildinfo
+[WARNING] Reference buildinfo file not found: it will be generated from downloaded reference artifacts
+[INFO] Reference build java.version: 1.8 (from MANIFEST.MF Build-Jdk-Spec)
+[INFO] Reference build java.version: 1.8 (from MANIFEST.MF Build-Jdk-Spec)
+[ERROR] Current build java.version: 1.7 (from MANIFEST.MF Build-Jdk-Spec)
+[INFO] Reference build os.name: Unix (from pom.properties newline)
+[INFO] Minimal buildinfo generated from downloaded artifacts: /tmp/doxia-1.9.1/target/reference/doxia-module-markdown-1.9.1.buildinfo
+[WARNING] size mismatch doxia-logging-api-1.9.1.jar: investigate with diffoscope target/reference/doxia-logging-api-1.9.1.jar doxia-logging-api/target/doxia-logging-api-1.9.1.jar
+...
+[WARNING] size mismatch doxia-module-markdown-1.9.1.jar: investigate with diffoscope target/reference/doxia-module-markdown-1.9.1.jar doxia-modules/doxia-module-markdown/target/doxia-module-markdown-1.9.1.jar
+[WARNING] Reproducible Build output summary: 39 files ok, 18 different
+[WARNING] see diff target/reference/doxia-module-markdown-1.9.1.buildinfo doxia-modules/doxia-module-markdown/target/doxia-module-markdown-1.9.1.buildinfo
+[WARNING] see also https://maven.apache.org/guides/mini/guide-reproducible-builds.html
+[INFO] Reproducible Build output comparison saved to /tmp/doxia-1.9.1/doxia-modules/doxia-module-markdown/target/doxia-module-markdown-1.9.1.buildcompare
+[INFO] Aggregate buildcompare copied to /tmp/doxia-1.9.1/target/doxia-1.9.1.buildcompare
+...
+</code></pre>
+<p>The log has several parts worth reading:</p>
+<ul>
+
+<li>
+<p>the summary: <code>[WARNING] Reproducible Build output summary: 39 files ok, 18 different</code></p></li>
+<li>
+<p>key information on reference build environment:<br>
+<code>[INFO] Reference build java.version: 1.8 (from MANIFEST.MF Build-Jdk-Spec)</code><br>
+<code>[INFO] Reference build os.name: Unix (from pom.properties newline)</code><br>
+which are the key requirements (JDK major version and Operating System) for the build environment to reproduce the reference build</p></li>
+<li>
+<p>eventual mismatch with current build environment:<br>
+<code>[ERROR] Current build java.version: 1.7 (from MANIFEST.MF Build-Jdk-Spec)</code></p></li>
+<li>
+<p>on each artifact different from reference, a command is provided to investigate differences using <a href="https://diffoscope.org/" class="externalLink">diffoscope tool</a>, a diff tool working inside archives (jar, zip, tar, …):<br>
+simply copy paste provided command like <code>diffoscope target/reference/doxia-logging-api-1.9.1.jar doxia-logging-api/target/doxia-logging-api-1.9.1.jar</code> and you'll see where differences are:</p>
+
+<pre tabindex="0" class="highlight"><code class="language-shell">$ diffoscope target/reference/doxia-logging-api-1.9.1.jar doxia-logging-api/target/doxia-logging-api-1.9.1.jar
+--- target/reference/doxia-logging-api-1.9.1.jar
++++ doxia-logging-api/target/doxia-logging-api-1.9.1.jar
+├── zipinfo /dev/stdin
+│ @@ -1,8 +1,8 @@
+│ -Zip file size: 11516 bytes, number of entries: 19
+│ +Zip file size: 11497 bytes, number of entries: 19
+│  -rw-r--r--  2.0 unx      337 b- defN 20-Feb-13 21:11 META-INF/MANIFEST.MF
+│  drwxr-xr-x  2.0 unx        0 b- stor 20-Feb-13 21:11 META-INF/
+│  drwxr-xr-x  2.0 unx        0 b- stor 20-Feb-13 21:11 org/
+│  drwxr-xr-x  2.0 unx        0 b- stor 20-Feb-13 21:11 org/apache/
+│  drwxr-xr-x  2.0 unx        0 b- stor 20-Feb-13 21:11 org/apache/maven/
+│  drwxr-xr-x  2.0 unx        0 b- stor 20-Feb-13 21:11 org/apache/maven/doxia/
+│  drwxr-xr-x  2.0 unx        0 b- stor 20-Feb-13 21:11 org/apache/maven/doxia/logging/
+│ @@ -11,11 +11,11 @@
+│  drwxr-xr-x  2.0 unx        0 b- stor 20-Feb-13 21:11 META-INF/maven/org.apache.maven.doxia/doxia-logging-api/
+│  -rw-r--r--  2.0 unx     1641 b- defN 20-Feb-13 21:11 META-INF/DEPENDENCIES
+│  -rw-r--r--  2.0 unx    11358 b- defN 20-Feb-13 21:11 META-INF/LICENSE
+│  -rw-r--r--  2.0 unx      177 b- defN 20-Feb-13 21:11 META-INF/NOTICE
+│  -rw-r--r--  2.0 unx      716 b- defN 20-Feb-13 21:11 org/apache/maven/doxia/logging/Log.class
+│  -rw-r--r--  2.0 unx      198 b- defN 20-Feb-13 21:11 org/apache/maven/doxia/logging/LogEnabled.class
+│  -rw-r--r--  2.0 unx     2840 b- defN 20-Feb-13 21:11 org/apache/maven/doxia/logging/PlexusLoggerWrapper.class
+│ --rw-r--r--  2.0 unx     4208 b- defN 20-Feb-13 21:11 org/apache/maven/doxia/logging/SystemStreamLog.class
+│ +-rw-r--r--  2.0 unx     4192 b- defN 20-Feb-13 21:11 org/apache/maven/doxia/logging/SystemStreamLog.class
+│  -rw-r--r--  2.0 unx     1539 b- defN 20-Feb-13 21:11 META-INF/maven/org.apache.maven.doxia/doxia-logging-api/pom.xml
+│  -rw-r--r--  2.0 unx       74 b- defN 20-Feb-13 21:11 META-INF/maven/org.apache.maven.doxia/doxia-logging-api/pom.properties
+│ -19 files, 23088 bytes uncompressed, 8842 bytes compressed:  61.7%
+│ +19 files, 23072 bytes uncompressed, 8823 bytes compressed:  61.8%
+├── META-INF/MANIFEST.MF
+│ @@ -1,10 +1,10 @@
+│  Manifest-Version: 1.0
+│ +Implementation-Vendor: The Apache Software Foundation
+│  Implementation-Title: Doxia :: Logging API
+│  Implementation-Version: 1.9.1
+│ +Build-Jdk-Spec: 1.7
+│  Specification-Vendor: The Apache Software Foundation
+│ -Specification-Title: Doxia :: Logging API
+│ -Build-Jdk-Spec: 1.8
+│  Created-By: Maven Jar Plugin 3.2.0
+│ +Specification-Title: Doxia :: Logging API
+│  Specification-Version: 1.9
+│ -Implementation-Vendor: The Apache Software Foundation
+├── org/apache/maven/doxia/logging/PlexusLoggerWrapper.class
+...
+</code></pre></li>
+</ul>
+<p>In this example, reference build was done with JDK 8 (see <code>│ -Build-Jdk-Spec: 1.8</code>), but the current build was done with JDK 7 (see <code>│ +Build-Jdk-Spec: 1.7</code>): this explains both difference in content of <code>META-INF/MANIFEST.MF</code> of every .jar file, but also of some bytecode in <code>.class</code> files.</p>
+<p>When general environment issues have been fixed, find for each remaining issue which Maven plugin generated the content, and check whether an update of that plugin generates reproducible output: the <a href="../../plugins/maven-artifact-plugin/plugin-issues.html">required upgrades list</a> is a starting point.</p></section></section><section><a id="More_Details"></a>
 <h2>More Details</h2>
 <p>Reproducible Builds for Maven:</p>
 <ul>
@@ -151,7 +243,7 @@
 <ul>
 
 <li>if you use <a href="../../plugins/maven-release-plugin/">maven-release-plugin</a>, you'll need <strong>version 3.0.0-M1 or later</strong>: it will automatically update the timestamp value in <code>pom.xml</code> during the release in the same commit that updates version,</li>
-<li>if you have a custom release process tooling, you'll need to add the feature to your release tooling. Notice that if you're using <code>versions-maven-plugin</code> in custom release scripts, starting with release 2.9.0, <a href="https://github.com/mojohaus/versions-maven-plugin/issues/453" class="externalLink"><code>versions:set</code> goal updates the property</a>.</li>
+<li>if you have a custom release process tooling, you'll need to add the feature to your release tooling. Notice that if you're using <code>versions-maven-plugin</code> in custom release scripts, starting with release 2.9.0, <a href="https://github.com/mojohaus/versions/issues/453" class="externalLink"><code>versions:set</code> goal updates the property</a>.</li>
 <li>instead of explicitly writing a timestamp in their <code>pom.xml</code>, some people tend to prefer using last Git commit timestamp, like <code>${git.commit.time}</code> from <a href="https://github.com/git-commit-id/git-commit-id-maven-plugin" class="externalLink">git-commit-id-maven-plugin</a> (with <code>&lt;dateFormatTimeZone&gt;UTC&lt;/dateFormatTimeZone&gt;</code> to be independent from user's timezone).</li>
 </ul></li>
 </ul>
@@ -170,6 +262,7 @@
         <h2 id="more-title">More in <a href="../../docs/recipes/index.html">Build recipes</a></h2>
         <ul class="more-list">
   <li><a href="../../docs/recipes/generate-sources.html">Generate sources</a></li>
+  <li><a href="../../docs/recipes/filtering-resources.html">Filter resources</a></li>
   <li><a href="../../docs/recipes/archives.html">Configure archives</a></li>
   <li><a href="../../docs/recipes/manifests.html">Work with manifests</a></li>
   <li><a href="../../docs/recipes/assemblies.html">Create assemblies and fat JARs</a></li>

@@ -95,7 +95,7 @@
 </ul>
 <p>If your plugin's artifactId fits this pattern, Maven will automatically map your plugin to the correct prefix in the metadata stored within your plugin's groupId path on the repository. However, if you want to customize the prefix used to reference your plugin, you can specify the prefix directly through a configuration parameter on the <code>maven-plugin-plugin</code> in your plugin's POM:</p>
 
-<pre tabindex="0" class="highlight"><code class="language-unknown"><span class="nt">&lt;project</span><span class="nt">&gt;</span>
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;project</span><span class="nt">&gt;</span>
   ...
   <span class="nt">&lt;build</span><span class="nt">&gt;</span>
     ...
@@ -130,7 +130,7 @@
 <p>By default, Maven will search the groupId <strong>org.apache.maven.plugins</strong> for prefix-to-artifactId mappings for the plugins it needs to perform a given build. However, as previously mentioned, the user may have a need for third-party plugins. Since the Maven project is assumed to have control over the default plugin groupId, this means configuring Maven to search other groupId locations for plugin-prefix mappings.</p>
 <p>As it turns out, this is simple. In the Maven settings file (per-user: <code>${user.home}/.m2/settings.xml</code>; global: <code>${maven.home}/conf/settings.xml</code>), you can provide a custom <strong>pluginGroups</strong> section, listing the plugin groupIds you want to search (each groupId goes in its own <strong>pluginGroup</strong> sub-element). For example, if my project uses a Modello model file, I might have the following in my settings:</p>
 
-<pre tabindex="0" class="highlight"><code class="language-unknown"><span class="nt">&lt;pluginGroups</span><span class="nt">&gt;</span>
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;pluginGroups</span><span class="nt">&gt;</span>
   <span class="nt">&lt;pluginGroup</span><span class="nt">&gt;</span>org.codehaus.modello<span class="nt">&lt;/pluginGroup</span><span class="nt">&gt;</span>
 <span class="nt">&lt;/pluginGroups</span><span class="nt">&gt;</span>
 </code></pre>

@@ -90,24 +90,24 @@
 <p>The <em>Sink</em> interface is a generic markup language interface. It contains several methods that encapsulate common text syntax. A start tag is denoted by <em>xxxx()</em> method and a end of tag by <em>xxxx_()</em> method.</p>
 <p>For instance, you could do things like:</p>
 
-<pre tabindex="0"><code class="language-unknown">sink.paragraph();
-sink.text( "my text" );
+<pre tabindex="0" class="highlight"><code class="language-java">sink.paragraph();
+sink.text( <span class="s">"my text"</span> );
 sink.paragraph_(); 
 </code></pre>
 <p>similar to this HTML markup:</p>
 
-<pre tabindex="0" class="highlight"><code class="language-unknown"><span class="nt">&lt;p</span><span class="nt">&gt;</span>my text<span class="nt">&lt;/p</span><span class="nt">&gt;</span>
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;p</span><span class="nt">&gt;</span>my text<span class="nt">&lt;/p</span><span class="nt">&gt;</span>
 </code></pre>
 <p>To find out more about the Sink API, you could read the Javadoc <a href="https://maven.apache.org/doxia/doxia/doxia-sink-api/apidocs/org/apache/maven/doxia/sink/Sink.html" class="externalLink">here</a>.</p></section><section><a id="Doxia_Core"></a>
 <h2>Doxia Core</h2>
-<p>The <em>Core</em> is the API to parse a source and populate it in a <em>Sink</em> object. The <em>Parser</em> interface contains only one method:</p>
+<p>The <em>Core</em> is the API to parse a source and populate it in a <em>Sink</em> object. The <em>Parser</em> interface's central method is:</p>
 
-<pre tabindex="0"><code class="language-unknown">void parse( Reader source, Sink sink )
-    throws ParseException; 
+<pre tabindex="0" class="highlight"><code class="language-java"><span class="k">void</span> parse( Reader source, Sink sink )
+    <span class="k">throws</span> ParseException; 
 </code></pre>
 <p>The <em>ParseException</em> class has the responsibility to catch all parsing exceptions. It provides an helper method, <em>getLineNumber()</em>, which helps to find where an error occurred.</p>
 <p>The <em>AbstractParser</em> class is an abstract implementation of the <em>Parser</em>. It provides a macro mechanism to give dynamic functionalities for the parsing. For more information on macros, read the <a href="../../docs/site/macros.html">Doxia Macro Guide</a>.</p>
-<p>Finally, the <em>SiteModule</em> interface is the last part of the puzzle. It provides main definitions of a given Doxia module and it is used by the <em>doxia-site-renderer</em> site tools.</p></section><section><a id="Doxia_Modules"></a>
+<p>Finally, the <em>ParserModule</em> interface is the last part of the puzzle. It provides main definitions of a given Doxia module and it is used by the <em>doxia-site-renderer</em> site tools.</p></section><section><a id="Doxia_Modules"></a>
 <h2>Doxia Modules</h2>
 <p>A Doxia module is an implementation of a given markup language like APT or Xdoc. Each module should implement these interfaces:</p>
 <ul>
@@ -115,13 +115,12 @@ sink.paragraph_();
 <li>
 <p><em>Parser</em> interface, more specifically the <em>AbstractParser</em> class</p></li>
 <li>
-<p><em>SiteModule</em> interface</p></li>
+<p><em>ParserModule</em> interface</p></li>
 </ul>
 <p>Several modules provide also a <em>Sink</em> implementation to handle a specific output markup language.</p>
 <p>For more information on modules, read the <a href="modules.html">Doxia Module Guide</a>.</p></section><section><a id="Doxia_Site_Tools"></a>
 <h2>Doxia Site Tools</h2>
-<p>The <em>Site Tools</em> are a collection of tools to renderer an output. The main tool used by Maven, specifically the <a href="../../plugins/maven-site-plugin/">Maven Site Plugin</a>, is the <em>doxia-site-renderer</em> which renders in HTML any documents written with supported markup syntax. It uses <a href="http://velocity.apache.org/" class="externalLink">Velocity templates</a> to customize the renderer and the <em>site-decoration-model</em> tool to decorate the renderer. This component describes the layout of the site defined in the <em>site.xml</em> file.</p>
-<p>The <em>doxia-doc-renderer</em> tool is used to renderer any document in another document.</p></section></section>
+<p>The <em>Site Tools</em> are a collection of tools to renderer an output. The main tool used by Maven, specifically the <a href="http://maven.apache.org/plugins/maven-site-plugin/" class="externalLink">Maven Site Plugin</a>, is the <em>doxia-site-renderer</em> which renders in HTML any documents written with supported markup syntax. It uses <a href="http://velocity.apache.org/" class="externalLink">Velocity templates</a> to customize the renderer and the <em>doxia-site-model</em> tool to decorate the renderer. This component describes the layout of the site defined in the <em>site.xml</em> file.</p></section></section>
       </div>
       <nav class="more" aria-labelledby="more-title">
         <h2 id="more-title">More in <a href="../../extend/doxia/index.html">Doxia and skins: site tooling</a></h2>
