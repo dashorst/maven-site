@@ -50,7 +50,7 @@ ${esc.h}${esc.h} Main Features
 - No need to have a corporate infrastructure (like wiki) to host your documentation
 - Extensible framework
 - [Site Tools extension](../../doxia/doxia-sitetools/) for site or document rendering
-- [Additional Tools](tools.html) like [Doxia Converter](../../doxia/doxia-tools/doxia-converter/index.html)
+- [Additional Tools](tools.html) like [Doxia Converter](../../doxia/doxia-tools/doxia-converter/index.html) (see also [Migrating APT to Markdown](../../docs/site/apt-to-markdown.html))
 
 ${esc.h}${esc.h} Doxia Reference Pages
 

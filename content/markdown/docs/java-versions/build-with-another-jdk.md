@@ -228,3 +228,40 @@ The [JDK discovery page of the plugin](../../plugins/maven-toolchains-plugin/too
 ## Use another JDK for one plugin
 
 To run only the tests on another JDK, give Surefire a requirement of its own with `jdkToolchain`. It is matched against *toolchains.xml* and overrides the JDK selected for the module. [Compile for an older Java version](compile-for-older-java.html#Run_the_tests_on_the_older_Java) shows it for tests on Java 8.
+
+## Compile with a specific javac, without toolchains
+
+Toolchains are the preferable way to use a different JDK. Outside of a toolchain, the Compiler Plugin can still be pointed at a specific `javac`. This configuration is specific to that plugin and does not affect the others. Set `fork` to `true` and give the path of the compiler in `executable`:
+
+```xml
+<plugin>
+  <groupId>org.apache.maven.plugins</groupId>
+  <artifactId>maven-compiler-plugin</artifactId>
+  <version>3.16.0</version>
+  <configuration>
+    <fork>true</fork>
+    <executable>${JAVA_17_HOME}/bin/javac</executable>
+  </configuration>
+</plugin>
+```
+
+To keep the build portable, each developer defines the property in [`settings.xml`](/ref/current/maven-settings/settings.html), or sets an environment variable:
+
+```xml
+<settings>
+  <profiles>
+    <profile>
+      <id>compiler</id>
+      <properties>
+        <JAVA_17_HOME>/path/to/jdk/17</JAVA_17_HOME>
+      </properties>
+    </profile>
+  </profiles>
+  <activeProfiles>
+    <activeProfile>compiler</activeProfile>
+  </activeProfiles>
+</settings>
+```
+
+To target an older Java version than the JDK that runs the compiler, see [Targeting a Java Version](/docs/java-versions/java-target.html). If you build with a different JDK, you may also want to [customize the JAR manifest](/docs/recipes/manifests.html).
+

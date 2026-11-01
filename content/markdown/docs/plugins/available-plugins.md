@@ -64,7 +64,7 @@ Plugins corresponding to default core phases (ie. clean, compile). They may have
 
   Deploy the built artifact to the remote repository.
 
-- **[`failsafe`](/surefire/maven-failsafe-plugin/)** build plugin · 3.6.0, 2026-08-31 [Source](https://github.com/apache/maven-surefire/) · [Issues](https://github.com/apache/maven-surefire/issues)
+- **[`failsafe`](/surefire/maven-failsafe-plugin/)** build plugin · 3.6.1, 2026-10-26 [Source](https://github.com/apache/maven-surefire/) · [Issues](https://github.com/apache/maven-surefire/issues)
 
   Run the JUnit integration tests in an isolated classloader.
 
@@ -88,7 +88,7 @@ Plugins corresponding to default core phases (ie. clean, compile). They may have
 
   Generate a site for the current project.
 
-- **[`surefire`](/surefire/maven-surefire-plugin/)** build plugin · 3.6.0, 2026-08-31 [Source](https://github.com/apache/maven-surefire/) · [Issues](https://github.com/apache/maven-surefire/issues)
+- **[`surefire`](/surefire/maven-surefire-plugin/)** build plugin · 3.6.1, 2026-10-26 [Source](https://github.com/apache/maven-surefire/) · [Issues](https://github.com/apache/maven-surefire/issues)
 
   Run the JUnit unit tests in an isolated classloader.
 
@@ -188,7 +188,7 @@ Plugins which generate reports, are configured as reports in the POM and run und
 
   Generate standard project reports.
 
-- **[`surefire-report`](/surefire/maven-surefire-report-plugin/)** reporting plugin · 3.6.0, 2026-08-31 [Source](https://github.com/apache/maven-surefire/) · [Issues](https://github.com/apache/maven-surefire/issues)
+- **[`surefire-report`](/surefire/maven-surefire-report-plugin/)** reporting plugin · 3.6.1, 2026-10-26 [Source](https://github.com/apache/maven-surefire/) · [Issues](https://github.com/apache/maven-surefire/issues)
 
   Generate a report based on the results of unit tests.
 
@@ -220,7 +220,7 @@ These are miscellaneous tools available through Maven by default.
 
   Dependency manipulation (copy, unpack) and analysis.
 
-- **[`enforcer`](/enforcer/maven-enforcer-plugin/)** build plugin · 3.6.3, 2026-05-15 [Source](https://github.com/apache/maven-enforcer/) · [Issues](https://github.com/apache/maven-enforcer/issues)
+- **[`enforcer`](/enforcer/maven-enforcer-plugin/)** build plugin · 3.7.0, 2026-10-26 [Source](https://github.com/apache/maven-enforcer/) · [Issues](https://github.com/apache/maven-enforcer/issues)
 
   Environmental constraint checking (Maven Version, JDK etc), User Custom Rule Execution.
 

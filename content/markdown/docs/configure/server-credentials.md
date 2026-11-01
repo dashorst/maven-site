@@ -104,6 +104,8 @@ Add a server for each id you deploy to:
 </servers>
 ```
 
+For repository URLs, extensions and settings of the HTTP, FTP and SSH transports, see [Deploying over HTTP, FTP and SSH](../dependencies/deployment-transports.html).
+
 ## When the repository answers 401
 
 A `401` means the repository did not accept the login, or Maven sent none:

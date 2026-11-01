@@ -11,14 +11,15 @@
   groups, and the pages of each group in reading order. The skin draws the tabs, the side
   panel, previous and next from it.
 -->
-<site xmlns="http://maven.apache.org/SITE/2.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-      xsi:schemaLocation="http://maven.apache.org/SITE/2.0.0 https://maven.apache.org/xsd/site-2.0.0.xsd"
+<site xmlns="http://maven.apache.org/SITE/2.1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://maven.apache.org/SITE/2.1.0 https://maven.apache.org/xsd/site-2.1.0.xsd"
       name="Apache Maven">
   <skin>
     <groupId>io.github.dashorst.maven-site</groupId>
     <artifactId>maven-example-skin</artifactId>
     <version>1.0-SNAPSHOT</version>
   </skin>
+  <mermaid/>
   <body>
     <menu name="Site">
       <item name="Docs" href="/docs/index.html">
@@ -61,6 +62,8 @@
           <item name="Resolver transport" href="/docs/dependencies/resolver-transport.html"/>
           <item name="HTTP options of the Wagon transport" href="/docs/dependencies/wagon-http.html"/>
           <item name="Alternative Wagon providers" href="/docs/dependencies/wagon-providers.html"/>
+          <item name="Deploy over HTTP, FTP and SSH" href="/docs/dependencies/deployment-transports.html"/>
+          <item name="Dependency resolution misconceptions" href="/docs/dependencies/resolution-misconceptions.html"/>
           <item name="Large centralized deployments" href="/docs/dependencies/centralized-deployments.html"/>
           <item name="Naming your coordinates" href="/docs/dependencies/naming-coordinates.html"/>
         </item>
@@ -79,6 +82,8 @@
           <item name="Toolchains explained" href="/docs/java-versions/toolchains.html"/>
           <item name="Build with another JDK" href="/docs/java-versions/build-with-another-jdk.html"/>
           <item name="Compile for an older Java version" href="/docs/java-versions/compile-for-older-java.html"/>
+          <item name="Target a Java version" href="/docs/java-versions/java-target.html"/>
+          <item name="Build multi-release JARs" href="/docs/java-versions/multi-release-jars.html"/>
           <item name="toolchains.xml reference" href="/docs/java-versions/toolchains-xml.html"/>
         </item>
         <item name="Plugins, extensions and tools" href="/docs/plugins/index.html">
@@ -98,6 +103,7 @@
         </item>
         <item name="Build recipes" href="/docs/recipes/index.html">
           <item name="Generate sources" href="/docs/recipes/generate-sources.html"/>
+          <item name="Filter resources" href="/docs/recipes/filtering-resources.html"/>
           <item name="Configure archives" href="/docs/recipes/archives.html"/>
           <item name="Work with manifests" href="/docs/recipes/manifests.html"/>
           <item name="Create assemblies and fat JARs" href="/docs/recipes/assemblies.html"/>
@@ -111,14 +117,17 @@
         </item>
         <item name="Project site" href="/docs/site/index.html">
           <item name="Create a project site" href="/docs/site/create-a-site.html"/>
+          <item name="Build a multi-module site" href="/docs/site/multi-module-site.html"/>
           <item name="Write pages in Markdown" href="/docs/site/markup-formats.html"/>
           <item name="Markdown format" href="/docs/site/markdown.html"/>
           <item name="APT format" href="/docs/site/apt.html"/>
           <item name="Doxia's APT enhancements" href="/docs/site/doxia-apt.html"/>
+          <item name="Migrate from APT to Markdown" href="/docs/site/apt-to-markdown.html"/>
           <item name="FML format" href="/docs/site/fml.html"/>
           <item name="Xdoc format" href="/docs/site/xdoc.html"/>
           <item name="Snippet macro" href="/docs/site/snippet-macro.html"/>
           <item name="All Doxia macros" href="/docs/site/macros.html"/>
+          <item name="Mermaid diagrams" href="/docs/site/mermaid.html"/>
           <item name="Choose a skin" href="/docs/site/skins.html"/>
         </item>
         <item name="Maven 4" href="/docs/maven-4/index.html">
@@ -128,6 +137,7 @@
         </item>
         <item name="Reference" href="/docs/reference/index.html">
           <item name="POM reference" href="/docs/reference/pom.html"/>
+          <item name="SCM URLs" href="/docs/reference/pom-scm-urls.html"/>
           <item name="Settings reference" href="/docs/reference/settings.html"/>
           <item name="Command line: running Maven" href="/docs/reference/command-line.html"/>
           <item name="Maven classloading" href="/docs/reference/classloading.html"/>
@@ -172,6 +182,7 @@
           <item name="Logging in plugins" href="/extend/plugins/logging.html"/>
           <item name="Dependency injection (Maven 4)" href="/extend/plugins/dependency-injection.html"/>
           <item name="JSR-330" href="/extend/plugins/jsr-330.html"/>
+          <item name="Custom toolchains" href="/extend/plugins/custom-toolchains.html"/>
           <item name="Null annotations" href="/extend/plugins/null-annotations.html"/>
           <item name="Upgrade from Plexus Javadoc tags" href="/extend/plugins/plexus-annotations.html"/>
           <item name="Lifecycle extensions example" href="/extend/plugins/lifecycle-extensions.html"/>
@@ -182,6 +193,7 @@
         <item name="Archetypes" href="/extend/archetypes/index.html">
           <item name="Introduction to archetypes" href="/extend/archetypes/introduction.html"/>
           <item name="Create an archetype" href="/extend/archetypes/create.html"/>
+          <item name="Test an archetype" href="/extend/archetypes/test.html"/>
         </item>
         <item name="Publish to Maven Central" href="/extend/central/index.html">
           <item name="Maven Central explained" href="/extend/central/maven-central.html"/>
@@ -281,6 +293,8 @@
           <item name="Archive: the Aether import plan" href="/community/project/aether.html"/>
           <item name="Archive: Maven 2" href="/community/project/maven-2.html"/>
           <item name="Archive: Maven 2.1 goals" href="/community/project/maven-2-1-goals.html"/>
+          <item name="Archive: Maven 2 offline mode" href="/community/project/maven-2-offline-mode.html"/>
+          <item name="Archive: Maven 2 plugin execution isolation" href="/community/project/maven-2-plugin-isolation.html"/>
         </item>
       </item>
     </menu>
