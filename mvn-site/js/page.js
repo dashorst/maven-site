@@ -126,7 +126,8 @@
     var toc = document.getElementById('on-this-page');
     var h2s = heads.filter(function (h) { return h.tagName === 'H2'; });
     var listed = h2s.length > 2 ? h2s : heads;
-    if (toc && listed.length > 1) {
+    // the build writes the list; this fills it on sites built without that step
+    if (toc && !toc.firstElementChild && listed.length > 1) {
         var html = '<h2>On this page</h2><ul>';
         listed.forEach(function (h) {
             var text = h.cloneNode(true);
