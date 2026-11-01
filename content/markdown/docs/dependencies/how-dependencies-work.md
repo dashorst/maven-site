@@ -41,6 +41,13 @@ The graph often contains one library in several versions, because two of your de
 - The version nearest to your project wins: the one with the fewest steps between your POM and the library. A version you declare yourself is always nearest.
 - When two versions are equally near, the one met first wins, following the order of the dependencies in the POMs.
 
+<figure class="diagram">
+<img src="../../images/docs/dependencies/nearest-wins.svg" width="720" height="340" alt="The project depends on httpclient and on httpclient5, which ask for commons-codec 1.11 and 1.15, both two steps from the project; Maven uses 1.11, which comes through the dependency declared first." />
+<figcaption>Two versions at the same depth: the dependency declared first decides.</figcaption>
+</figure>
+
+The verbose dependency tree shows the same:
+
 ```
 mvn dependency:tree -Dverbose -Dincludes=commons-codec:commons-codec
 ```

@@ -63,6 +63,22 @@ Every address the site has published keeps working, with every anchor on it; `mv
 
 A page that does two of these jobs is two pages. When a section starts explaining in the middle of a how-to guide, move it to an explanation page and link to it.
 
+## Diagrams
+
+Draw a diagram where the relation between parts is the point and prose has to walk through it one part at a time: which version wins in a dependency graph, which classpath a dependency is on. Explanation pages need them most; a reference page gets one where a table hides a structure; a how-to guide or tutorial shows the output the reader will see instead. A list or a table is not a diagram. Everything a diagram shows is also in the text, so that nothing depends on seeing it.
+
+- **Source.** One HTML file per diagram in `src/diagrams/<slug>.html`, with the SVG inline, drawn with the [diagram-design](https://github.com/cathrynlavery/diagram-design) skill and its rules: at most 9 nodes, the accent (Maven orange) on one or two elements, right-angled connectors. Each file carries the site's colours as classes, light and dark; copy them from an existing diagram.
+- **Published file.** Export the SVG into `content/resources/images/docs/<group>/<slug>.svg` with the skill's `scripts/export_svg.py <source> <target> --system-fonts`. The SVG switches to dark colours by itself, and uses the site's fonts, loading none.
+- **Size.** 720 wide, the width of the text column, so the labels keep their size; on a narrow screen the diagram scrolls sideways.
+- **In the page.** A figure with the image, its size, an alt text that says in one sentence what the diagram shows (the SVG's `<desc>`), and a caption with its point:
+
+```html
+<figure class="diagram">
+<img src="../../images/docs/dependencies/nearest-wins.svg" width="720" height="340" alt="The project depends on … Maven uses 1.11, which comes through the dependency declared first." />
+<figcaption>Two versions at the same depth: the dependency declared first decides.</figcaption>
+</figure>
+```
+
 ## Versions
 
 The guide describes the release lines Maven 3.9 and 3.10, and Maven 4.0 while it is a release candidate.

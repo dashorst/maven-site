@@ -230,6 +230,7 @@ under the License.
 ## with Tab (WCAG 2.1.1); js/page.js takes the ones that fit out of the tab order again.
 #set( $bodyContent = $bodyContent.replace( '<pre', '<pre tabindex="0"' ) )
 #set( $bodyContent = $bodyContent.replace( '<table', '<div class="table-scroll" tabindex="0"><table' ).replace( '</table>', '</table></div>' ) )
+#set( $bodyContent = $bodyContent.replace( '<figure class="diagram">', '<figure class="diagram" tabindex="0">' ) )
 ## A component's home page opens with how to use it: the plugin or dependency to add to a POM.
 #if( $isComponent && $alignedFileName == "index.html" )
 #**##if( $isPlugin )

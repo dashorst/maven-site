@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg viewBox="0 0 720 272" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="provided-scope-title provided-scope-desc" id="provided-scope-root">
+      <title id="provided-scope-title">Provided scope: the container supplies the API</title>
+      <desc id="provided-scope-desc">Your code compiles against the Servlet API with scope provided; mvn package builds app.war without it, and when the WAR runs, the servlet container supplies its own Servlet API.</desc>
+      <defs>
+      <style>#provided-scope-root { color-scheme: light dark; }
+      #provided-scope-root { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif; color: #1d2433; }
+      #provided-scope-root .diagram-container { width: 100%; overflow-x: auto; }
+      @media print {
+#provided-scope-root .diagram-container { overflow-x: visible; }
+}
+      #provided-scope-root .bg { fill: #ffffff; }
+      #provided-scope-root .mask { fill: #ffffff; }
+      #provided-scope-root .zone { fill: rgba(29,36,51,0.02); stroke: rgba(29,36,51,0.16); stroke-width: 0.8; }
+      #provided-scope-root .zone-label { fill: #5f6a7c; font-family: ui-monospace, "SF Mono", "Cascadia Mono", Menlo, Consolas, "Liberation Mono", monospace; font-size: 8px; letter-spacing: 0.14em; }
+      #provided-scope-root .node { fill: #ffffff; stroke: #1d2433; stroke-width: 1; }
+      #provided-scope-root .node-focal { fill: #fff3e3; stroke: #a65a00; stroke-width: 1.2; }
+      #provided-scope-root .node-omitted { fill: rgba(29,36,51,0.02); stroke: rgba(29,36,51,0.45); stroke-width: 1; stroke-dasharray: 4 3; }
+      #provided-scope-root .name { fill: #1d2433; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif; font-size: 12px; font-weight: 600; }
+      #provided-scope-root .name-omitted { fill: #555f70; }
+      #provided-scope-root .sub { fill: #555f70; font-family: ui-monospace, "SF Mono", "Cascadia Mono", Menlo, Consolas, "Liberation Mono", monospace; font-size: 9px; }
+      #provided-scope-root .sub-focal { fill: #a65a00; }
+      #provided-scope-root .edge { fill: none; stroke: #555f70; stroke-width: 1.2; }
+      #provided-scope-root .edge-omitted { fill: none; stroke: #555f70; stroke-width: 1; stroke-dasharray: 4 3; }
+      #provided-scope-root .edge-accent { fill: none; stroke: #a65a00; stroke-width: 1.2; }
+      #provided-scope-root .head { fill: #555f70; }
+      #provided-scope-root .head-accent { fill: #a65a00; }
+      #provided-scope-root .label { fill: #5f6a7c; font-family: ui-monospace, "SF Mono", "Cascadia Mono", Menlo, Consolas, "Liberation Mono", monospace; font-size: 8px; letter-spacing: 0.06em; }
+      #provided-scope-root .rank { fill: #5f6a7c; font-family: ui-monospace, "SF Mono", "Cascadia Mono", Menlo, Consolas, "Liberation Mono", monospace; font-size: 8px; letter-spacing: 0.14em; }
+      @media (prefers-color-scheme: dark) {
+#provided-scope-root { color: #d6dce6; }
+      #provided-scope-root .bg, #provided-scope-root .mask { fill: #0d1522; }
+      #provided-scope-root .zone { fill: rgba(214,220,230,0.03); stroke: rgba(214,220,230,0.18); }
+      #provided-scope-root .zone-label, #provided-scope-root .label, #provided-scope-root .rank { fill: #8e9aab; }
+      #provided-scope-root .node { fill: #131d2c; stroke: #d6dce6; }
+      #provided-scope-root .node-focal { fill: #2b2012; stroke: #f79a23; }
+      #provided-scope-root .node-omitted { fill: rgba(214,220,230,0.02); stroke: rgba(214,220,230,0.45); }
+      #provided-scope-root .name { fill: #d6dce6; }
+      #provided-scope-root .name-omitted, #provided-scope-root .sub { fill: #9aa5b5; }
+      #provided-scope-root .sub-focal { fill: #f79a23; }
+      #provided-scope-root .edge, #provided-scope-root .edge-omitted { stroke: #9aa5b5; }
+      #provided-scope-root .edge-accent { stroke: #f79a23; }
+      #provided-scope-root .head { fill: #9aa5b5; }
+      #provided-scope-root .head-accent { fill: #f79a23; }
+}</style>
+        <marker id="provided-scope-arrow" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" class="head"/></marker>
+        <marker id="provided-scope-arrow-accent" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" class="head-accent"/></marker>
+      </defs>
+      <rect width="100%" height="100%" class="bg"/>
+<rect x="40" y="40" width="260" height="192" rx="8" class="zone"/>
+<rect x="48" y="44" width="144" height="12" rx="2" class="mask"/>
+<text x="120" y="53" class="zone-label" text-anchor="middle">BUILD · MAIN CLASSPATH</text>
+<rect x="420" y="40" width="260" height="192" rx="8" class="zone"/>
+<rect x="428" y="44" width="148" height="12" rx="2" class="mask"/>
+<text x="502" y="53" class="zone-label" text-anchor="middle">RUN · SERVLET CONTAINER</text>
+<path d="M260,98 H458" class="edge" marker-end="url(#provided-scope-arrow)"/>
+<path d="M170,124 V162" class="edge" marker-end="url(#provided-scope-arrow)"/>
+<path d="M550,124 V162" class="edge-accent" marker-end="url(#provided-scope-arrow-accent)"/>
+<rect x="326" y="80" width="68" height="12" rx="2" class="mask"/>
+<text x="360" y="89" class="label" text-anchor="middle">MVN PACKAGE</text>
+<rect x="176" y="138" width="36" height="12" rx="2" class="mask"/>
+<text x="194" y="147" class="label" text-anchor="middle">CALLS</text>
+<rect x="556" y="138" width="36" height="12" rx="2" class="mask"/>
+<text x="574" y="147" class="label" text-anchor="middle">CALLS</text>
+<rect x="80" y="72" width="180" height="52" rx="6" class="mask"/>
+<rect x="80" y="72" width="180" height="52" rx="6" class="node"/>
+<text x="170" y="94" class="name" text-anchor="middle">Your code</text>
+<text x="170" y="110" class="sub" text-anchor="middle">src/main/java</text>
+<rect x="80" y="164" width="180" height="52" rx="6" class="mask"/>
+<rect x="80" y="164" width="180" height="52" rx="6" class="node"/>
+<text x="170" y="186" class="name" text-anchor="middle">Servlet API</text>
+<text x="170" y="202" class="sub" text-anchor="middle">scope: provided</text>
+<rect x="460" y="72" width="180" height="52" rx="6" class="mask"/>
+<rect x="460" y="72" width="180" height="52" rx="6" class="node"/>
+<text x="550" y="94" class="name" text-anchor="middle">app.war</text>
+<text x="550" y="110" class="sub" text-anchor="middle">without the Servlet API</text>
+<rect x="460" y="164" width="180" height="52" rx="6" class="mask"/>
+<rect x="460" y="164" width="180" height="52" rx="6" class="node-focal"/>
+<text x="550" y="186" class="name" text-anchor="middle">Servlet API</text>
+<text x="550" y="202" class="sub sub-focal" text-anchor="middle">the container's own</text>
+    </svg>

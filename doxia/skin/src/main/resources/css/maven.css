@@ -205,6 +205,10 @@ pre code { font-size: inherit; background: none; border: 0; padding: 0; }
 .prose p > em:only-child { color: var(--muted); font-size: .9rem; }
 
 .table-scroll { overflow-x: auto; border: 1px solid var(--line); border-radius: var(--radius); }
+/* a diagram keeps its drawn size, so its labels keep their size; a narrow screen scrolls it sideways */
+figure.diagram { overflow-x: auto; margin: 1.5rem 0; }
+figure.diagram img { display: block; width: 720px; max-width: none; height: auto; }
+figure.diagram figcaption { margin-top: .5rem; color: var(--muted); font-size: .875rem; }
 table { border-collapse: collapse; width: 100%; font-size: .925rem; line-height: 1.5; font-variant-numeric: tabular-nums; }
 th, td { text-align: left; vertical-align: top; padding: .5rem .75rem; border-bottom: 1px solid var(--line); }
 th { background: var(--paper-2); color: var(--ink-strong); font-weight: 600; }

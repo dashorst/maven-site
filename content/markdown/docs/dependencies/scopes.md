@@ -72,11 +72,47 @@ The default. For a library your main code uses: it is on every classpath and is 
 
 ## provided
 
-For a library your main code compiles against and the environment supplies at runtime, such as the Servlet API in a servlet container or an API a plugin host provides. Maven leaves it out of the runtime classpath, out of a WAR, and out of the projects that depend on yours.
+For a library your main code compiles against and the environment supplies when the code runs, such as the Servlet API in a servlet container or the API of a plugin host. Maven leaves it out of the runtime classpath, out of a WAR, and out of the projects that depend on yours.
+
+<figure class="diagram">
+<img src="../../images/docs/dependencies/provided-scope.svg" width="720" height="272" alt="Your code compiles against the Servlet API with scope provided; mvn package builds app.war without it, and when the WAR runs, the servlet container supplies its own Servlet API." />
+<figcaption>The WAR leaves the Servlet API out; the container supplies its own.</figcaption>
+</figure>
+
+A container ships the API in the version it implements, and the Servlet specification does not let a WAR override those classes: a copy in `WEB-INF/lib` is dead weight at best.
 
 ## runtime
 
-For a library your code does not reference in its source but needs to run, such as a JDBC driver or a logging backend loaded by name. Keeping it off the main classpath stops your code from coming to depend on it by accident.
+For an implementation of an API that your code uses. Your code is written against the API alone, and the implementation supplies the behaviour when the program runs: a logging backend behind SLF4J, or a JDBC driver behind `java.sql`. The API has scope `compile`, the implementation scope `runtime`:
+
+*pom.xml*
+
+```xml
+<dependency>
+  <groupId>org.slf4j</groupId>
+  <artifactId>slf4j-api</artifactId>
+  <version>2.0.17</version>
+</dependency>
+<dependency>
+  <groupId>ch.qos.logback</groupId>
+  <artifactId>logback-classic</artifactId>
+  <version>1.6.6</version>
+  <scope>runtime</scope>
+</dependency>
+```
+
+<figure class="diagram">
+<img src="../../images/docs/dependencies/runtime-scope.svg" width="720" height="224" alt="Your code calls slf4j-api, which has scope compile and is on the main classpath; logback-classic has scope runtime and is only on the runtime classpath, where slf4j-api finds it when the program runs." />
+<figcaption>Your code compiles against the API; the implementation joins it when the program runs.</figcaption>
+</figure>
+
+Because the implementation is not on the main classpath, your code cannot come to depend on it by accident. Code that imports a Logback class does not compile:
+
+```
+[ERROR] /home/me/app/src/main/java/com/example/App.java:[5,30] package ch.qos.logback.classic does not exist
+```
+
+That keeps the implementation replaceable: you switch to another logging backend or database driver by changing one dependency, without touching the code. A `runtime` dependency is passed on, so a project that depends on yours gets the implementation as well. A library should leave that choice to the application: give the implementation scope `test` in a library, if its tests need one at all.
 
 ## test
 

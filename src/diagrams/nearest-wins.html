@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<!--
+Licensed to the Apache Software Foundation (ASF) under one
+or more contributor license agreements.  See the NOTICE file
+distributed with this work for additional information
+regarding copyright ownership.  The ASF licenses this file
+to you under the Apache License, Version 2.0 (the
+"License"); you may not use this file except in compliance
+with the License.  You may obtain a copy of the License at
+
+  http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing,
+software distributed under the License is distributed on an
+"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+KIND, either express or implied.  See the License for the
+specific language governing permissions and limitations
+under the License.
+-->
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nearest wins: two versions of Commons Codec</title>
+  <style>
+    :root { color-scheme: light dark; }
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif; background: #ffffff; color: #1d2433; padding: 2rem; }
+    .diagram-container { width: 100%; overflow-x: auto; }
+    svg { width: 100%; min-width: 720px; max-width: 720px; display: block; }
+    @media print { .diagram-container { overflow-x: visible; } svg { min-width: 0; } }
+    .bg { fill: #ffffff; }
+    .mask { fill: #ffffff; }
+    .zone { fill: rgba(29,36,51,0.02); stroke: rgba(29,36,51,0.16); stroke-width: 0.8; }
+    .zone-label { fill: #5f6a7c; font-family: ui-monospace, "SF Mono", "Cascadia Mono", Menlo, Consolas, "Liberation Mono", monospace; font-size: 8px; letter-spacing: 0.14em; }
+    .node { fill: #ffffff; stroke: #1d2433; stroke-width: 1; }
+    .node-focal { fill: #fff3e3; stroke: #a65a00; stroke-width: 1.2; }
+    .node-omitted { fill: rgba(29,36,51,0.02); stroke: rgba(29,36,51,0.45); stroke-width: 1; stroke-dasharray: 4 3; }
+    .name { fill: #1d2433; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif; font-size: 12px; font-weight: 600; }
+    .name-omitted { fill: #555f70; }
+    .sub { fill: #555f70; font-family: ui-monospace, "SF Mono", "Cascadia Mono", Menlo, Consolas, "Liberation Mono", monospace; font-size: 9px; }
+    .sub-focal { fill: #a65a00; }
+    .edge { fill: none; stroke: #555f70; stroke-width: 1.2; }
+    .edge-omitted { fill: none; stroke: #555f70; stroke-width: 1; stroke-dasharray: 4 3; }
+    .edge-accent { fill: none; stroke: #a65a00; stroke-width: 1.2; }
+    .head { fill: #555f70; }
+    .head-accent { fill: #a65a00; }
+    .label { fill: #5f6a7c; font-family: ui-monospace, "SF Mono", "Cascadia Mono", Menlo, Consolas, "Liberation Mono", monospace; font-size: 8px; letter-spacing: 0.06em; }
+    .rank { fill: #5f6a7c; font-family: ui-monospace, "SF Mono", "Cascadia Mono", Menlo, Consolas, "Liberation Mono", monospace; font-size: 8px; letter-spacing: 0.14em; }
+    @media (prefers-color-scheme: dark) {
+      body { background: #0d1522; color: #d6dce6; }
+      .bg, .mask { fill: #0d1522; }
+      .zone { fill: rgba(214,220,230,0.03); stroke: rgba(214,220,230,0.18); }
+      .zone-label, .label, .rank { fill: #8e9aab; }
+      .node { fill: #131d2c; stroke: #d6dce6; }
+      .node-focal { fill: #2b2012; stroke: #f79a23; }
+      .node-omitted { fill: rgba(214,220,230,0.02); stroke: rgba(214,220,230,0.45); }
+      .name { fill: #d6dce6; }
+      .name-omitted, .sub { fill: #9aa5b5; }
+      .sub-focal { fill: #f79a23; }
+      .edge, .edge-omitted { stroke: #9aa5b5; }
+      .edge-accent { stroke: #f79a23; }
+      .head { fill: #9aa5b5; }
+      .head-accent { fill: #f79a23; }
+    }
+  </style>
+</head>
+<body>
+  <div class="diagram-container">
+    <svg viewBox="0 0 720 340" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="nearest-wins-title nearest-wins-desc">
+      <title id="nearest-wins-title">Nearest wins: two versions of Commons Codec</title>
+      <desc id="nearest-wins-desc">The project depends on httpclient and on httpclient5, which ask for commons-codec 1.11 and 1.15, both two steps from the project; Maven uses 1.11, which comes through the dependency declared first.</desc>
+      <defs>
+        <marker id="arrow" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" class="head"/></marker>
+        <marker id="arrow-accent" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" class="head-accent"/></marker>
+      </defs>
+      <rect width="100%" height="100%" class="bg"/>
+<text x="40" y="177" class="rank">DEPTH 1</text>
+<text x="40" y="285" class="rank">DEPTH 2</text>
+<path d="M360,92 V120" class="edge"/>
+<path d="M200,148 V128 Q200,120 208,120 H512 Q520,120 520,128 V148" class="edge"/>
+<path d="M200,200 V256" class="edge-accent"/>
+<path d="M520,200 V256" class="edge-omitted"/>
+<rect x="280" y="40" width="160" height="52" rx="6" class="mask"/>
+<rect x="280" y="40" width="160" height="52" rx="6" class="node"/>
+<text x="360" y="62" class="name" text-anchor="middle">app</text>
+<text x="360" y="78" class="sub" text-anchor="middle">your project</text>
+<rect x="120" y="148" width="160" height="52" rx="6" class="mask"/>
+<rect x="120" y="148" width="160" height="52" rx="6" class="node"/>
+<text x="200" y="170" class="name" text-anchor="middle">httpclient</text>
+<text x="200" y="186" class="sub" text-anchor="middle">4.5.14 · declared 1st</text>
+<rect x="440" y="148" width="160" height="52" rx="6" class="mask"/>
+<rect x="440" y="148" width="160" height="52" rx="6" class="node"/>
+<text x="520" y="170" class="name" text-anchor="middle">httpclient5</text>
+<text x="520" y="186" class="sub" text-anchor="middle">5.1.4 · declared 2nd</text>
+<rect x="120" y="256" width="160" height="52" rx="6" class="mask"/>
+<rect x="120" y="256" width="160" height="52" rx="6" class="node-focal"/>
+<text x="200" y="278" class="name" text-anchor="middle">commons-codec</text>
+<text x="200" y="294" class="sub sub-focal" text-anchor="middle">1.11 · used</text>
+<rect x="440" y="256" width="160" height="52" rx="6" class="mask"/>
+<rect x="440" y="256" width="160" height="52" rx="6" class="node-omitted"/>
+<text x="520" y="278" class="name name-omitted" text-anchor="middle">commons-codec</text>
+<text x="520" y="294" class="sub" text-anchor="middle">1.15 · omitted</text>
+    </svg>
+  </div>
+</body>
+</html>

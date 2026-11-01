@@ -91,6 +91,9 @@ Example checks build the projects shown on the pages against Maven Central: Apac
 | 30 | Model 4.1.0 adds `compile-only` (main compile path), `test-only` (test compile path), `test-runtime` (test runtime path). | 4.0 | S8 | API definitions; tested with `maven-compiler-plugin` 4.0.0-beta-5: `javac.args` and `javac-test.args` hold the expected JARs |
 | 31 | Plugins on the Maven 3 API put dependencies with the Maven 4 scopes on every classpath. | 4.0 | none | tested: `maven-compiler-plugin` 3.16.0, `maven-surefire-plugin` 3.6.1, `dependency:build-classpath` 3.11.0 |
 | 32 | `import` works only in `<dependencyManagement>` on a dependency of type `pom`. | 3.9, 3.10, 4.0 | S1 | documented |
+| 43 | Code that imports a class of a `runtime` dependency does not compile: `package … does not exist`. | 3.9, 3.10, 4.0 | none | tested: `slf4j-api` 2.0.17 `compile`, `logback-classic` 1.6.6 `runtime`, an import of `ch.qos.logback.classic.LoggerContext` |
+| 44 | `exec:java` runs the main code with the runtime classpath, so the `runtime` implementation is there. | exec 3.6.3 | none | tested: Logback prints the log line |
+| 45 | A WAR cannot override the Servlet API classes of its container. | Servlet specification | none | documented: the web application class loader rules of the Servlet specification |
 
 ## Exclusions and optional dependencies
 
