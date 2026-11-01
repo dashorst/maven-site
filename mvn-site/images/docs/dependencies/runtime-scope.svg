@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg viewBox="0 0 720 224" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="runtime-scope-title runtime-scope-desc" id="runtime-scope-root">
+      <title id="runtime-scope-title">Runtime scope: compile against the API, run with an implementation</title>
+      <desc id="runtime-scope-desc">Your code calls slf4j-api, which has scope compile and is on the main classpath; logback-classic has scope runtime and is only on the runtime classpath, where slf4j-api finds it when the program runs.</desc>
+      <defs>
+      <style>#runtime-scope-root { color-scheme: light dark; }
+      #runtime-scope-root { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif; color: #1d2433; }
+      #runtime-scope-root .diagram-container { width: 100%; overflow-x: auto; }
+      @media print {
+#runtime-scope-root .diagram-container { overflow-x: visible; }
+}
+      #runtime-scope-root .bg { fill: #ffffff; }
+      #runtime-scope-root .mask { fill: #ffffff; }
+      #runtime-scope-root .zone { fill: rgba(29,36,51,0.02); stroke: rgba(29,36,51,0.16); stroke-width: 0.8; }
+      #runtime-scope-root .zone-label { fill: #5f6a7c; font-family: ui-monospace, "SF Mono", "Cascadia Mono", Menlo, Consolas, "Liberation Mono", monospace; font-size: 8px; letter-spacing: 0.14em; }
+      #runtime-scope-root .node { fill: #ffffff; stroke: #1d2433; stroke-width: 1; }
+      #runtime-scope-root .node-focal { fill: #fff3e3; stroke: #a65a00; stroke-width: 1.2; }
+      #runtime-scope-root .node-omitted { fill: rgba(29,36,51,0.02); stroke: rgba(29,36,51,0.45); stroke-width: 1; stroke-dasharray: 4 3; }
+      #runtime-scope-root .name { fill: #1d2433; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif; font-size: 12px; font-weight: 600; }
+      #runtime-scope-root .name-omitted { fill: #555f70; }
+      #runtime-scope-root .sub { fill: #555f70; font-family: ui-monospace, "SF Mono", "Cascadia Mono", Menlo, Consolas, "Liberation Mono", monospace; font-size: 9px; }
+      #runtime-scope-root .sub-focal { fill: #a65a00; }
+      #runtime-scope-root .edge { fill: none; stroke: #555f70; stroke-width: 1.2; }
+      #runtime-scope-root .edge-omitted { fill: none; stroke: #555f70; stroke-width: 1; stroke-dasharray: 4 3; }
+      #runtime-scope-root .edge-accent { fill: none; stroke: #a65a00; stroke-width: 1.2; }
+      #runtime-scope-root .head { fill: #555f70; }
+      #runtime-scope-root .head-accent { fill: #a65a00; }
+      #runtime-scope-root .label { fill: #5f6a7c; font-family: ui-monospace, "SF Mono", "Cascadia Mono", Menlo, Consolas, "Liberation Mono", monospace; font-size: 8px; letter-spacing: 0.06em; }
+      #runtime-scope-root .rank { fill: #5f6a7c; font-family: ui-monospace, "SF Mono", "Cascadia Mono", Menlo, Consolas, "Liberation Mono", monospace; font-size: 8px; letter-spacing: 0.14em; }
+      @media (prefers-color-scheme: dark) {
+#runtime-scope-root { color: #d6dce6; }
+      #runtime-scope-root .bg, #runtime-scope-root .mask { fill: #0d1522; }
+      #runtime-scope-root .zone { fill: rgba(214,220,230,0.03); stroke: rgba(214,220,230,0.18); }
+      #runtime-scope-root .zone-label, #runtime-scope-root .label, #runtime-scope-root .rank { fill: #8e9aab; }
+      #runtime-scope-root .node { fill: #131d2c; stroke: #d6dce6; }
+      #runtime-scope-root .node-focal { fill: #2b2012; stroke: #f79a23; }
+      #runtime-scope-root .node-omitted { fill: rgba(214,220,230,0.02); stroke: rgba(214,220,230,0.45); }
+      #runtime-scope-root .name { fill: #d6dce6; }
+      #runtime-scope-root .name-omitted, #runtime-scope-root .sub { fill: #9aa5b5; }
+      #runtime-scope-root .sub-focal { fill: #f79a23; }
+      #runtime-scope-root .edge, #runtime-scope-root .edge-omitted { stroke: #9aa5b5; }
+      #runtime-scope-root .edge-accent { stroke: #f79a23; }
+      #runtime-scope-root .head { fill: #9aa5b5; }
+      #runtime-scope-root .head-accent { fill: #f79a23; }
+}</style>
+        <marker id="runtime-scope-arrow" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" class="head"/></marker>
+        <marker id="runtime-scope-arrow-accent" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" class="head-accent"/></marker>
+      </defs>
+      <rect width="100%" height="100%" class="bg"/>
+<rect x="40" y="40" width="640" height="144" rx="8" class="zone"/>
+<rect x="48" y="44" width="112" height="12" rx="2" class="mask"/>
+<text x="104" y="53" class="zone-label" text-anchor="middle">RUNTIME CLASSPATH</text>
+<rect x="52" y="68" width="384" height="104" rx="8" class="zone"/>
+<rect x="60" y="72" width="96" height="12" rx="2" class="mask"/>
+<text x="108" y="81" class="zone-label" text-anchor="middle">MAIN CLASSPATH</text>
+<path d="M220,126 H266" class="edge" marker-end="url(#runtime-scope-arrow)"/>
+<path d="M420,126 H506" class="edge-accent" marker-end="url(#runtime-scope-arrow-accent)"/>
+<rect x="226" y="108" width="36" height="12" rx="2" class="mask"/>
+<text x="244" y="117" class="label" text-anchor="middle">CALLS</text>
+<rect x="430" y="108" width="68" height="12" rx="2" class="mask"/>
+<text x="464" y="117" class="label" text-anchor="middle">AT RUN TIME</text>
+<rect x="68" y="100" width="152" height="52" rx="6" class="mask"/>
+<rect x="68" y="100" width="152" height="52" rx="6" class="node"/>
+<text x="144" y="122" class="name" text-anchor="middle">Your code</text>
+<text x="144" y="138" class="sub" text-anchor="middle">src/main/java</text>
+<rect x="268" y="100" width="152" height="52" rx="6" class="mask"/>
+<rect x="268" y="100" width="152" height="52" rx="6" class="node"/>
+<text x="344" y="122" class="name" text-anchor="middle">slf4j-api</text>
+<text x="344" y="138" class="sub" text-anchor="middle">scope: compile</text>
+<rect x="508" y="100" width="152" height="52" rx="6" class="mask"/>
+<rect x="508" y="100" width="152" height="52" rx="6" class="node-focal"/>
+<text x="584" y="122" class="name" text-anchor="middle">logback-classic</text>
+<text x="584" y="138" class="sub sub-focal" text-anchor="middle">scope: runtime</text>
+    </svg>
