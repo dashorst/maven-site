@@ -1,3 +1,9 @@
+---
+title: How Maven uses repositories
+summary: The local repository and remote repositories, mirrors of Maven Central, building offline, and an internal repository for your organisation.
+type: explanation
+---
+
 <!--
 Licensed to the Apache Software Foundation (ASF) under one
 or more contributor license agreements.  See the NOTICE file
@@ -17,7 +23,7 @@ specific language governing permissions and limitations
 under the License.
 -->
 
-# Introduction to Repositories
+<a id="Introduction_to_Repositories"></a>
 
 ## Artifact Repositories
 

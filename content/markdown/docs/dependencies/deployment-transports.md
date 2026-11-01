@@ -1,3 +1,9 @@
+---
+title: Deploy over HTTP, FTP and SSH
+summary: Point distributionManagement at a repository over HTTP, FTP or SSH, give Maven the credentials, and deploy over an unreliable network.
+type: howto
+---
+
 <!--
 Licensed to the Apache Software Foundation (ASF) under one
 or more contributor license agreements.  See the NOTICE file
@@ -17,7 +23,7 @@ specific language governing permissions and limitations
 under the License.
 -->
 
-# Deploying over HTTP, FTP and SSH
+<a id="Deploying_over_HTTP.2C_FTP_and_SSH"></a>
 
 This guide shows how to point a project's `distributionManagement` at a repository that uses a specific transport, and how to give Maven the credentials. For the settings that apply to every transport, see [Security and Deployment Settings](../configure/server-credentials.html). For the plugin that performs the upload, see the [Maven Deploy Plugin](/plugins/maven-deploy-plugin/).
 

@@ -1,4 +1,8 @@
-# Best Practice - Using a Repository Manager
+---
+title: Why use a repository manager
+summary: What a repository manager does for an organisation, and the open source and commercial products that serve Maven repositories.
+type: explanation
+---
 
 <!--
 Licensed to the Apache Software Foundation (ASF) under one
@@ -19,6 +23,8 @@ specific language governing permissions and limitations
 under the License.
 -->
 
+<a id="Best_Practice_-_Using_a_Repository_Manager"></a>
+
 A repository manager is a dedicated server application designed to manage
 repositories of binary components.
 
@@ -30,7 +36,7 @@ considered an essential best practice for any significant usage of Maven.
 A repository manager serves these essential purposes:
 
 * act as dedicated proxy server for public Maven repositories
-  (see [Maven Guide to Mirror Settings](mirror-settings.html))
+  (see [Use a repository manager as a mirror](mirror-settings.html))
 * provide repositories as a deployment destination for your Maven project
   outputs
 

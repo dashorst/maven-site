@@ -1,3 +1,9 @@
+---
+title: Install a third-party JAR locally
+summary: Put a JAR that is in no public repository into your local repository with install:install-file.
+type: howto
+---
+
 <!--
 Licensed to the Apache Software Foundation (ASF) under one
 or more contributor license agreements.  See the NOTICE file
@@ -17,7 +23,7 @@ specific language governing permissions and limitations
 under the License.
 -->
 
-# Guide to installing 3rd party JARs
+<a id="Guide_to_installing_3rd_party_JARs"></a>
 
 Occasionally, you will have 3rd party JARs that you need to put in your local repository for use in your builds, since they don't exist in any public repository like [Maven Central](https://search.maven.org). The JARs must be placed in the local repository in the correct place in order for it to be correctly picked up by Apache Maven.
 

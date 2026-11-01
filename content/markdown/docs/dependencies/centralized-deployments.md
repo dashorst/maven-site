@@ -1,3 +1,9 @@
+---
+title: Run one repository manager for hundreds of projects
+summary: Route the downloads and uploads of hundreds of projects through one repository manager, with settings.xml files that you manage centrally.
+type: howto
+---
+
 <!--
 Licensed to the Apache Software Foundation (ASF) under one
 or more contributor license agreements.  See the NOTICE file
@@ -17,7 +23,7 @@ specific language governing permissions and limitations
 under the License.
 -->
 
-# Guide to Large Scale Centralized Deployments
+<a id="Guide_to_Large_Scale_Centralized_Deployments"></a>
 
 This guide covers a simple optimized approach to using a [repository manager](repository-manager.html) in a large organization with hundreds/thousands of Maven projects.
 

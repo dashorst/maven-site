@@ -1,3 +1,10 @@
+---
+title: HTTP settings for the transport Maven used before 3.9
+summary: The options of the Wagon HTTP transport in httpConfiguration: headers, request parameters, timeouts, authentication and proxies.
+type: reference
+keywords: wagon, wagon-http, httpConfiguration, HTTP headers, preemptive authentication, connection timeout, proxy, backoff on 429
+---
+
 <!--
 Licensed to the Apache Software Foundation (ASF) under one
 or more contributor license agreements.  See the NOTICE file
@@ -17,15 +24,15 @@ specific language governing permissions and limitations
 under the License.
 -->
 
-# Advanced configuration to HttpClient HTTP Wagon
+<a id="Advanced_configuration_to_HttpClient_HTTP_Wagon"></a>
 
 <a id="Introduction"></a>
 
-**This page contains Wagon specific information, but the default transport in Maven 3.9.0+ is NOT Wagon anymore. Make sure to check the [Resolver Transport guide](resolver-transport.html) first, as things have changed.**
+**This page contains Wagon specific information, but the default transport in Maven 3.9.0+ is NOT Wagon anymore. Make sure to read [Choose how Maven connects to repositories](resolver-transport.html) first, as things have changed.**
 
 <!-- MACRO{toc} -->
 
-Maven bundles `wagon-http` for HTTP and HTTPS; see the [Guide to Wagon Providers](wagon-providers.html). With Maven 3.9.0 and later, Wagon is used when you select it with `-Dmaven.resolver.transport=wagon`. The native HTTP transport reads only the `<all>` block of `httpConfiguration` (`get`, `head` and `put` are ignored) and warns about the deprecation, so the per-method configuration below applies to Wagon only.
+Maven bundles `wagon-http` for HTTP and HTTPS; see [Which protocols Maven supports out of the box](wagon-providers.html). With Maven 3.9.0 and later, Wagon is used when you select it with `-Dmaven.resolver.transport=wagon`. The native HTTP transport reads only the `<all>` block of `httpConfiguration` (`get`, `head` and `put` are ignored) and warns about the deprecation, so the per-method configuration below applies to Wagon only.
 
 This page documents the `<configuration>` block that
 [wagon-http](https://maven.apache.org/wagon/wagon-providers/wagon-http/) reads — headers, request parameters,
@@ -538,5 +545,5 @@ merge correctly.
 
 1. [HttpClient website](https://hc.apache.org/httpcomponents-client-4.5.x/)
 2. [HttpClient preference architecture and configuration guide](https://hc.apache.org/httpclient-3.x/preference-api.html)
-3. [Guide to Wagon Providers](wagon-providers.html)
+3. [Which protocols Maven supports out of the box](wagon-providers.html)
 4. [Wagon HTTP provider](https://maven.apache.org/wagon/wagon-providers/wagon-http/)

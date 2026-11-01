@@ -60,7 +60,7 @@ via the Maven Repository, to ensure that it can easily fit alongside
 other projects and reduce the risk of conflicts and confusion.
 
 More information about conventions for Maven coordinates is available
-in the [Guide to Naming Conventions](../../docs/dependencies/naming-coordinates.html).
+in the [Naming conventions for groupId, artifactId and version](../../docs/dependencies/naming-coordinates.html).
 
 ## Directory Structure
 

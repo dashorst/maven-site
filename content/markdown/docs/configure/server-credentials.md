@@ -104,7 +104,7 @@ Add a server for each id you deploy to:
 </servers>
 ```
 
-For repository URLs, extensions and settings of the HTTP, FTP and SSH transports, see [Deploying over HTTP, FTP and SSH](../dependencies/deployment-transports.html).
+For repository URLs, extensions and settings of the HTTP, FTP and SSH transports, see [Deploy over HTTP, FTP and SSH](../dependencies/deployment-transports.html).
 
 ## When the repository answers 401
 

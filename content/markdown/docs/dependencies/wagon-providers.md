@@ -1,3 +1,10 @@
+---
+title: Which protocols Maven supports out of the box
+summary: Maven supports http, https and file without extensions; other protocols need a Wagon as a build extension, and choosing a Wagon provider per protocol no longer works.
+type: explanation
+keywords: wagon provider, wagon-ftp, wagon-ssh-external, wagon-file, maven.wagon.provider, wagonProvider
+---
+
 <!--
 Licensed to the Apache Software Foundation (ASF) under one
 or more contributor license agreements.  See the NOTICE file
@@ -17,7 +24,7 @@ specific language governing permissions and limitations
 under the License.
 -->
 
-# Guide to Selecting Alternative Wagon Providers
+<a id="Guide_to_Selecting_Alternative_Wagon_Providers"></a>
 
 <a id="Command-Line_Configuration"></a>
 <a id="settings.xml_Configuration"></a>
@@ -26,6 +33,6 @@ Maven 2.2.1 let you choose between several Wagon implementations for one protoco
 
 <a id="Available_Wagon_Providers"></a>
 
-Maven 3 and Maven 4 bundle two Wagons: `wagon-http`, based on Apache HttpClient, for `http` and `https`, and `wagon-file` for `file`. Since Maven 3.9.0, Maven by default uses the native transports of Maven Resolver for these protocols, and Wagon only for the protocols they don't cover or when you select it with `-Dmaven.resolver.transport=wagon`. For details, see the [Guide for Resolver Transport](resolver-transport.html).
+Maven 3 and Maven 4 bundle two Wagons: `wagon-http`, based on Apache HttpClient, for `http` and `https`, and `wagon-file` for `file`. Since Maven 3.9.0, Maven by default uses the native transports of Maven Resolver for these protocols, and Wagon only for the protocols they don't cover or when you select it with `-Dmaven.resolver.transport=wagon`. For details, see [Choose how Maven connects to repositories](resolver-transport.html).
 
-Wagons for other protocols, such as `wagon-ftp` or `wagon-ssh-external`, are added to the build as build extensions; see [Deploying over HTTP, FTP and SSH](deployment-transports.html). For the configuration that `wagon-http` reads, see [Advanced configuration to HttpClient HTTP Wagon](wagon-http.html).
+Wagons for other protocols, such as `wagon-ftp` or `wagon-ssh-external`, are added to the build as build extensions; see [Deploy over HTTP, FTP and SSH](deployment-transports.html). For the configuration that `wagon-http` reads, see [HTTP settings for the transport Maven used before 3.9](wagon-http.html).

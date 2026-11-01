@@ -1,4 +1,8 @@
-# Common Misconceptions About Dependency Resolution
+---
+title: Common misconceptions about dependency resolution
+summary: How Maven Resolver collects, transforms and resolves the dependency graph, and why the test graph is not a superset of the runtime graph.
+type: explanation
+---
 
 <!--
 Licensed to the Apache Software Foundation (ASF) under one
@@ -18,6 +22,8 @@ KIND, either express or implied.  See the License for the
 specific language governing permissions and limitations
 under the License.
 -->
+
+<a id="Common_Misconceptions_About_Dependency_Resolution"></a>
 
 Maven 2 plugins kept working with Maven 3, although [Maven Resolver](/resolver/) resolves dependencies differently from Maven 2: resolution is now much more precise, and some Maven 2 behaviors no longer exist. This page lists the most common misconceptions.
 

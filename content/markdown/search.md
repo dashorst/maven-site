@@ -56,25 +56,27 @@ Every page of the site, by section. Type in the search box to narrow the list.
 
 ### Dependencies and repositories
 
-- [How Maven resolves dependencies](docs/dependencies/how-dependencies-work.html)
-- [Dependency scopes](docs/dependencies/scopes.html)
 - [Find out where a dependency comes from](docs/dependencies/trace-a-dependency.html)
 - [Control the version of a transitive dependency](docs/dependencies/control-a-transitive-version.html)
 - [Exclude a transitive dependency](docs/dependencies/exclude-a-dependency.html)
 - [Use a BOM, and publish one](docs/dependencies/use-a-bom.html)
 - [Make a dependency optional](docs/dependencies/make-a-dependency-optional.html)
-- [Repositories explained](docs/dependencies/repositories.html)
-- [Use a mirror or repository manager (Nexus, Artifactory)](docs/dependencies/mirror-settings.html)
-- [Why use a repository manager](docs/dependencies/repository-manager.html)
+- [Dependency scopes](docs/dependencies/scopes.html)
+- [How Maven resolves dependencies](docs/dependencies/how-dependencies-work.html)
+- [Common misconceptions about dependency resolution](docs/dependencies/resolution-misconceptions.html)
+- [Use a repository manager as a mirror](docs/dependencies/mirror-settings.html)
 - [Use several repositories](docs/dependencies/several-repositories.html)
 - [Install a third-party JAR locally](docs/dependencies/third-party-jar-local.html)
 - [Deploy a third-party JAR to a remote repository](docs/dependencies/third-party-jar-remote.html)
-- [Authenticated HTTPS repositories](docs/dependencies/https-repositories.html)
-- [Resolver transport](docs/dependencies/resolver-transport.html)
-- [HTTP options of the Wagon transport](docs/dependencies/wagon-http.html)
-- [Alternative Wagon providers](docs/dependencies/wagon-providers.html)
-- [Large centralized deployments](docs/dependencies/centralized-deployments.html)
-- [Naming your coordinates](docs/dependencies/naming-coordinates.html)
+- [Use an HTTPS repository that asks for a client certificate](docs/dependencies/https-repositories.html)
+- [Run one repository manager for hundreds of projects](docs/dependencies/centralized-deployments.html)
+- [Naming conventions for groupId, artifactId and version](docs/dependencies/naming-coordinates.html)
+- [How Maven uses repositories](docs/dependencies/repositories.html)
+- [Why use a repository manager](docs/dependencies/repository-manager.html)
+- [Choose how Maven connects to repositories](docs/dependencies/resolver-transport.html)
+- [Deploy over HTTP, FTP and SSH](docs/dependencies/deployment-transports.html)
+- [HTTP settings for the transport Maven used before 3.9](docs/dependencies/wagon-http.html)
+- [Which protocols Maven supports out of the box](docs/dependencies/wagon-providers.html)
 
 ### Multi-module projects
 

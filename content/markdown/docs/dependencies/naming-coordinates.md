@@ -1,5 +1,7 @@
 ---
-title: Naming conventions of Maven coordinates (groupId, artifactId, and version)
+title: Naming conventions for groupId, artifactId and version
+summary: How to choose a groupId, an artifactId and a version, the longest version Maven accepts, and SNAPSHOT versions.
+type: reference
 ---
 
 <!--
@@ -21,7 +23,7 @@ specific language governing permissions and limitations
 under the License.
 -->
 
-# Naming convention of Maven coordinates
+<a id="Naming_convention_of_Maven_coordinates"></a>
 
 So that Maven can identify and utilise any artifact (e.g. a `.jar` file), every artifact must be identifiable through a
 unique combination of three identifiers.

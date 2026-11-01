@@ -1,3 +1,9 @@
+---
+title: Use an HTTPS repository that asks for a client certificate
+summary: Store the client certificate and the certificate of the server, and point Maven at both with javax.net.ssl system properties.
+type: howto
+---
+
 <!--
 Licensed to the Apache Software Foundation (ASF) under one
 or more contributor license agreements.  See the NOTICE file
@@ -17,7 +23,7 @@ specific language governing permissions and limitations
 under the License.
 -->
 
-# Guide to Remote repository access through authenticated HTTPS
+<a id="Guide_to_Remote_repository_access_through_authenticated_HTTPS"></a>
 
 This document describes how to configure Maven to access a remote repository that sits behind an HTTPS server which requires client authentication with certificates.
 

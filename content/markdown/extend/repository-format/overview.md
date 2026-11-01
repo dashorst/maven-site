@@ -39,7 +39,7 @@ were molded together and developed since the beginning of Maven project itself.
 
 </p>
 
-See also the [Introduction to Repositories](/docs/dependencies/repositories.html) and [Repository Layout](../central/layout.html).
+See also the [How Maven uses repositories](/docs/dependencies/repositories.html) and [Repository Layout](../central/layout.html).
 
 Maven addresses artifacts using artifact coordinates. The artifact coordinates uniquely
 identify an artifact, but do not say anything about its source or origin. This is where

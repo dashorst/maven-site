@@ -1,3 +1,9 @@
+---
+title: Deploy a third-party JAR to a remote repository
+summary: Deploy a JAR that is in no public repository to your organisation's repository with deploy:deploy-file, with a generic POM or your own.
+type: howto
+---
+
 <!--
 Licensed to the Apache Software Foundation (ASF) under one
 or more contributor license agreements.  See the NOTICE file
@@ -17,7 +23,7 @@ specific language governing permissions and limitations
 under the License.
 -->
 
-# Guide to deploying 3rd party JARs to remote repository
+<a id="Guide_to_deploying_3rd_party_JARs_to_remote_repository"></a>
 
 Same concept of the [install:install-file](third-party-jar-local.html) goal of the maven-install-plugin where the 3rd party JAR is installed in the local repository. But this time the JAR will be installed both in the local and remote repository.
 

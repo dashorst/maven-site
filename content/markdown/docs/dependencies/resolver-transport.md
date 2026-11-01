@@ -1,4 +1,9 @@
-# Guide for Resolver Transport
+---
+title: Choose how Maven connects to repositories
+summary: Switch between the native transport of Maven Resolver and Wagon with maven.resolver.transport, set HTTP headers and timeouts, and move from Wagon to the native transport.
+type: howto
+keywords: resolver transport, native transport, native HTTP, wagon, maven.resolver.transport, HTTP headers, timeouts, upgrade from wagon
+---
 
 <!--
 Licensed to the Apache Software Foundation (ASF) under one
@@ -18,6 +23,8 @@ KIND, either express or implied.  See the License for the
 specific language governing permissions and limitations
 under the License.
 -->
+
+<a id="Guide_for_Resolver_Transport"></a>
 
 Historically, since Maven 2.x, the only transport used by Maven was Maven Wagon. Since the introduction of the Resolver in
 Maven 3.x, it did "wrap" it in the `maven-resolver-transport-wagon` module, and continued to use it. Still, Wagon is

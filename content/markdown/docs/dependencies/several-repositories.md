@@ -1,3 +1,9 @@
+---
+title: Use several repositories
+summary: Declare extra repositories in a POM or in a settings.xml profile, and the order in which Maven asks them.
+type: howto
+---
+
 <!--
 Licensed to the Apache Software Foundation (ASF) under one
 or more contributor license agreements.  See the NOTICE file
@@ -17,7 +23,7 @@ specific language governing permissions and limitations
 under the License.
 -->
 
-# Setting up Multiple Repositories
+<a id="Setting_up_Multiple_Repositories"></a>
 
 There are two different ways that you can specify the use of multiple repositories. The first way is to specify in a POM which repositories you want to use. That is supported both inside and outside of build profiles:
 

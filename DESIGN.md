@@ -212,7 +212,7 @@ Maven's wordmark navy and feather orange on a cool white, with a ladder of blue-
 
 ## Layout
 
-A centred grid up to 84rem wide with a responsive gutter of clamp(1rem, 3vw, 2rem). An inner page has three columns: the side panel (15rem), the reading column (up to 46rem) and the rail (12 to 15rem), with 3rem between them. The side panel and the rail are sticky at 1rem from the top; the side panel scrolls on its own when the group is long. Pages without a group drop the side panel; pages without facts drop the rail, except a group landing with headings, whose rail holds only "On this page"; other landings and search widen the single column to 66rem.
+A centred grid up to 84rem wide with a responsive gutter of clamp(1rem, 3vw, 2rem). An inner page has three columns: the side panel (15rem), the reading column (up to 46rem) and the rail (12 to 15rem), with 3rem between them. The side panel and the rail are sticky at 1rem from the top; the side panel scrolls on its own when the group is long. Pages without a group drop the side panel; pages without facts drop the rail, except a group landing with headings, whose rail holds only "On this page"; a landing in groups, with group boxes at the top, other landings and search widen the single column to 66rem.
 
 Below 1180px the rail disappears: a copy of the page facts sits in the text after the title and lead, and "On this page" is hidden. Below 1000px the tabs move to a second row of the masthead and scroll sideways. Below 860px the side panel disappears; the "More in [group]" block at the end of the text, with previous/next, carries group navigation on its own. Below 560px the search field takes a full row of the masthead, the logo shrinks to 170px and previous/next stack.
 
@@ -253,6 +253,8 @@ Two buttons, only on the navy hero; inside the frame, actions are links.
 - **Notes:** Cool Paper fill, 6px radius, 0.75rem by 1rem, no border. Version-bound notes use Feather Cream.
 - **Start here:** a Navy Mist panel at the top of the Docs landing, pointing new users to the first guide.
 - **Doors:** no box at all: a 1.45rem heading link, a Slate summary, then a list of links between Hairline rules.
+- **Group boxes:** at the top of a landing in groups, one Navy Mist panel per group in a row, 6px radius, no border: the group name as a navy 1.2rem 600 title, its one-sentence definition in Ink, and the number of pages in Slate. Each is a link to its group, and they replace "On this page". The build writes them from the group headings.
+- **Page cards:** a page on a landing in groups: white with a 1px Firm Hairline border, 6px radius, in two columns; the page title in navy 1.08rem 600 is the link, the summary below it in Slate, code terms in inline code. Hover turns the border navy and underlines the title. A group starts with a Hairline rule, then its how-to guides under a "How-to guides" heading, then Reference and Explanation side by side in one column each. Titles follow the kind: a how-to starts with a verb, a reference page is a noun phrase, an explanation says what it explains; names of Maven components (Wagon, Resolver) and products stay out of titles.
 
 ### Inputs / Fields
 - **Search:** Cool Paper fill, 1px Hairline border, 6px radius, 0.9rem text, a 16px inline SVG magnifier in Slate, 15rem wide in the masthead. The search page has a large version at full width and 1.05rem.

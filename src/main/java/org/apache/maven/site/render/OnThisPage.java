@@ -38,6 +38,10 @@ import org.jsoup.nodes.Element;
  * gets no list. A rail left with nothing in it (a group landing without headings) is removed, and
  * the text takes its width.
  *
+ * <p>A landing in groups ({@code <section class="landing-groups">}) gets a box per group above the
+ * groups instead: the group's name, the definition from its {@code <p class="group-summary">},
+ * which moves into the box, and the number of pages. The rail then goes.
+ *
  * <p>The skin's js/page.js fills the list only when it is empty: on sites built without this step,
  * such as the plugin sites.
  */
@@ -62,6 +66,14 @@ public class OnThisPage {
             if (toc == null || prose == null || !toc.children().isEmpty()) {
                 continue;
             }
+            Element groups = prose.selectFirst(".landing-groups");
+            if (groups != null) {
+                groups.before(doors(doc, groups));
+                removeToc(toc);
+                Files.write(file, doc.outerHtml().getBytes(StandardCharsets.UTF_8));
+                lists++;
+                continue;
+            }
             List<Element> heads = prose.select("h2, h3").stream()
                     .filter(h -> h.closest("nav, aside, .facts") == null)
                     .collect(Collectors.toList());
@@ -80,19 +92,43 @@ public class OnThisPage {
                 }
                 lists++;
             } else {
-                Element rail = toc.parent();
-                toc.remove();
-                if (rail != null && rail.hasClass("rail") && rail.children().isEmpty()) {
-                    Element frame = rail.parent();
-                    rail.remove();
-                    if (frame != null) {
-                        frame.addClass("no-rail");
-                    }
-                }
+                removeToc(toc);
             }
             Files.write(file, doc.outerHtml().getBytes(StandardCharsets.UTF_8));
         }
-        System.out.println("On this page: " + lists + " lists written");
+        System.out.println("On this page: " + lists + " lists and group boxes written");
+    }
+
+    /** A box per group of a landing in groups, each a link to its group. */
+    static Element doors(Document doc, Element groups) {
+        Element nav = new Element("nav").addClass("group-doors").attr("aria-label", "Groups on this page");
+        Element ul = nav.appendElement("ul");
+        for (Element h : groups.select("h2")) {
+            Element summary = h.nextElementSibling();
+            int pages = h.parent().select("a.card").size();
+            Element a = ul.appendElement("li").appendElement("a").attr("href", "#" + idOf(doc, h));
+            a.appendElement("strong").text(h.text());
+            if (summary != null && summary.hasClass("group-summary")) {
+                a.appendElement("span").addClass("door-summary").text(summary.text());
+                summary.remove();
+            }
+            Element count = a.appendElement("span").addClass("door-count").text(pages + " pages ");
+            count.appendElement("span").attr("aria-hidden", "true").text("↓");
+        }
+        return nav;
+    }
+
+    /** Removes the empty "On this page", and the rail with it when nothing else is in it. */
+    static void removeToc(Element toc) {
+        Element rail = toc.parent();
+        toc.remove();
+        if (rail != null && rail.hasClass("rail") && rail.children().isEmpty()) {
+            Element frame = rail.parent();
+            rail.remove();
+            if (frame != null) {
+                frame.addClass("no-rail");
+            }
+        }
     }
 
     /**
