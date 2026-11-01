@@ -1,1 +1,0 @@
-packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"org.apache.maven.plugins.maven_rar_plugin"},{"l":"org.apache.maven.plugins.rar"},{"l":"org.apache.maven.plugins.rar.internal"}];updateSearchResults();

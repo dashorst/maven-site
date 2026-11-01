@@ -49,7 +49,7 @@
   <div class="frame has-group">
     <nav class="group-nav" aria-labelledby="group-nav-title">
       <p class="up"><a href="../../docs/index.html"><svg aria-hidden="true" viewBox="0 0 16 16" width="14" height="14"><path d="M10 3.5L5.5 8l4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" /></svg>All of Docs</a></p>
-      <p class="steps"><a class="step step--prev" href="../../docs/dependencies/wagon-providers.html" rel="prev"><span class="step-dir">Previous</span> Alternative Wagon providers</a><a class="step step--next" href="../../docs/dependencies/resolution-misconceptions.html" rel="next"><span class="step-dir">Next</span> Dependency resolution misconceptions</a></p>
+      <p class="steps"><a class="step step--prev" href="../../docs/dependencies/wagon-providers.html" rel="prev"><span class="step-dir">Previous</span> Alternative Wagon providers</a></p>
       <h2 id="group-nav-title"><a href="../../docs/dependencies/index.html">Dependencies and repositories</a></h2>
       <ul class="page-list">
   <li><a href="../../docs/dependencies/how-dependencies-work.html">How Maven resolves dependencies</a></li>
@@ -59,20 +59,20 @@
   <li><a href="../../docs/dependencies/exclude-a-dependency.html">Exclude a transitive dependency</a></li>
   <li><a href="../../docs/dependencies/use-a-bom.html">Use a BOM, and publish one</a></li>
   <li><a href="../../docs/dependencies/make-a-dependency-optional.html">Make a dependency optional</a></li>
+  <li><a href="../../docs/dependencies/resolution-misconceptions.html">Dependency resolution misconceptions</a></li>
   <li><a href="../../docs/dependencies/repositories.html">Repositories explained</a></li>
-  <li><a href="../../docs/dependencies/mirror-settings.html">Use a mirror or repository manager (Nexus, Artifactory)</a></li>
   <li><a href="../../docs/dependencies/repository-manager.html">Why use a repository manager</a></li>
+  <li><a href="../../docs/dependencies/mirror-settings.html">Use a mirror or repository manager (Nexus, Artifactory)</a></li>
   <li><a href="../../docs/dependencies/several-repositories.html">Use several repositories</a></li>
   <li><a href="../../docs/dependencies/third-party-jar-local.html">Install a third-party JAR locally</a></li>
   <li><a href="../../docs/dependencies/third-party-jar-remote.html">Deploy a third-party JAR to a remote repository</a></li>
   <li><a href="../../docs/dependencies/https-repositories.html">Authenticated HTTPS repositories</a></li>
+  <li><a href="../../docs/dependencies/centralized-deployments.html">Large centralized deployments</a></li>
+  <li><a href="../../docs/dependencies/naming-coordinates.html">Naming your coordinates</a></li>
   <li><a href="../../docs/dependencies/resolver-transport.html">Resolver transport</a></li>
   <li><a href="../../docs/dependencies/wagon-http.html">HTTP options of the Wagon transport</a></li>
   <li><a href="../../docs/dependencies/wagon-providers.html">Alternative Wagon providers</a></li>
   <li><a href="../../docs/dependencies/deployment-transports.html" aria-current="page">Deploy over HTTP, FTP and SSH</a></li>
-  <li><a href="../../docs/dependencies/resolution-misconceptions.html">Dependency resolution misconceptions</a></li>
-  <li><a href="../../docs/dependencies/centralized-deployments.html">Large centralized deployments</a></li>
-  <li><a href="../../docs/dependencies/naming-coordinates.html">Naming your coordinates</a></li>
 </ul>
     </nav>
     <main id="content">
@@ -91,7 +91,7 @@
 </section>
  <section><a id="Deploying_over_HTTP.2C_FTP_and_SSH"></a>
 <h1>Deploying over HTTP, FTP and SSH</h1>
-<p>This guide shows how to point a project's <code>distributionManagement</code> at a repository that uses a specific transport, and how to give Maven the credentials. For the settings that apply to every transport, see <a href="../configure/server-credentials.html">Security and Deployment Settings</a>. For the plugin that performs the upload, see the <a href="../../plugins/maven-deploy-plugin/">Maven Deploy Plugin</a>.</p>
+<p>This guide shows how to point a project's <code>distributionManagement</code> at a repository that uses a specific transport, and how to give Maven the credentials. For the settings that apply to every transport, see <a href="../configure/server-credentials.html">Security and Deployment Settings</a>. For the plugin that performs the upload, see the <a href="/plugins/maven-deploy-plugin/">Maven Deploy Plugin</a>.</p>
 <p>In all cases the <code>id</code> of the <code>distributionManagement</code> repository must match the <code>id</code> of a <code>server</code> element in <code>settings.xml</code>, which holds the credentials.</p>
 <ul>
 <li><a href="#Deploying_over_HTTP.2C_FTP_and_SSH">Deploying over HTTP, FTP and SSH</a>
@@ -132,9 +132,9 @@
   ...
 <span class="nt">&lt;/settings</span><span class="nt">&gt;</span>
 </code></pre>
-<p>Deployment sends one HTTP <code>PUT</code> request per artifact, checksum and metadata file, with no query parameters, optionally using HTTP Basic Authentication. Make sure your <a href="../../docs/dependencies/repository-manager.html">repository manager</a> supports this method of deployment, otherwise the Deploy Plugin cannot be used.</p>
-<p>The <a href="../../extend/central/upload.html">Sonatype Central Portal</a> supports this only through the legacy <a href="https://central.sonatype.org/publish/publish-portal-ossrh-staging-api/" class="externalLink">Portal OSSRH Staging API</a> for release versions. <a href="https://central.sonatype.org/publish/publish-portal-snapshots/" class="externalLink">SNAPSHOT deployments</a> to the Central Portal are still supported by the Deploy Plugin.</p>
-<p>The HTTP client depends on the Maven version, because deployment uses the <a href="resolver-transport.html">Maven Resolver Transport</a>. You can override the default with the user property <code>maven.resolver.transport</code>. Maven Resolver also evaluates its other configuration properties (<a href="../../resolver/configuration.html">Resolver 2.x</a> for Maven 3.10 and 4, <a href="../../resolver-archives/resolver-LATEST-1.x/configuration.html">Resolver 1.x</a> for Maven 3.9) when set as user properties; the defaults work in most cases. If you select the Wagon transport, see <a href="wagon-http.html">Advanced configuration to HttpClient HTTP Wagon</a>.</p></section><section><a id="FTP"></a>
+<p>Deployment sends one HTTP <code>PUT</code> request per artifact, checksum and metadata file, with no query parameters, optionally using HTTP Basic Authentication. Make sure your <a href="/docs/dependencies/repository-manager.html">repository manager</a> supports this method of deployment, otherwise the Deploy Plugin cannot be used.</p>
+<p>The <a href="/extend/central/upload.html">Sonatype Central Portal</a> supports this only through the legacy <a href="https://central.sonatype.org/publish/publish-portal-ossrh-staging-api/" class="externalLink">Portal OSSRH Staging API</a> for release versions. <a href="https://central.sonatype.org/publish/publish-portal-snapshots/" class="externalLink">SNAPSHOT deployments</a> to the Central Portal are still supported by the Deploy Plugin.</p>
+<p>The HTTP client depends on the Maven version, because deployment uses the <a href="resolver-transport.html">Maven Resolver Transport</a>. You can override the default with the user property <code>maven.resolver.transport</code>. Maven Resolver also evaluates its other configuration properties (<a href="/resolver/configuration.html">Resolver 2.x</a> for Maven 3.10 and 4, <a href="/resolver-archives/resolver-LATEST-1.x/configuration.html">Resolver 1.x</a> for Maven 3.9) when set as user properties; the defaults work in most cases. If you select the Wagon transport, see <a href="wagon-http.html">Advanced configuration to HttpClient HTTP Wagon</a>.</p></section><section><a id="FTP"></a>
 <h2>FTP</h2>
 <p>To deploy over FTP, specify the FTP server in <code>distributionManagement</code> and add the FTP wagon as a build <code>extension</code>:</p>
 
@@ -235,10 +235,10 @@
 <h2>Deploying over an unreliable network</h2>
 <p>When the connection between the build machine and the remote repository is poor, improving the network is the best fix, but not always possible. Two workarounds exist.</p><section><a id="Retrying"></a>
 <h3>Retrying</h3>
-<p>The Deploy Plugin can retry a failed deployment with the <a href="../../plugins/maven-deploy-plugin/deploy-mojo.html#retryFailedDeploymentCount"><code>retryFailedDeploymentCount</code></a> parameter before it reports a failure.</p></section><section><a id="Deploying_to_a_local_staging_directory"></a>
+<p>The Deploy Plugin can retry a failed deployment with the <a href="/plugins/maven-deploy-plugin/deploy-mojo.html#retryFailedDeploymentCount"><code>retryFailedDeploymentCount</code></a> parameter before it reports a failure.</p></section><section><a id="Deploying_to_a_local_staging_directory"></a>
 <h3>Deploying to a local staging directory</h3>
 <p>When the network is really inconsistent, deploy in two steps: first to a local directory during the build, then from that directory to the remote repository, retrying as often as needed.</p>
-<p>The first step needs no POM change when you use the <a href="../../plugins/maven-deploy-plugin/deploy-mojo.html#altDeploymentRepository"><code>altDeploymentRepository</code></a> parameter:</p>
+<p>The first step needs no POM change when you use the <a href="/plugins/maven-deploy-plugin/deploy-mojo.html#altDeploymentRepository"><code>altDeploymentRepository</code></a> parameter:</p>
 
 <pre tabindex="0"><code class="nohighlight nocode">mvn deploy -DaltDeploymentRepository=local::file:./target/staging-deploy
 </code></pre>
@@ -281,22 +281,22 @@
   <li><a href="../../docs/dependencies/exclude-a-dependency.html">Exclude a transitive dependency</a></li>
   <li><a href="../../docs/dependencies/use-a-bom.html">Use a BOM, and publish one</a></li>
   <li><a href="../../docs/dependencies/make-a-dependency-optional.html">Make a dependency optional</a></li>
+  <li><a href="../../docs/dependencies/resolution-misconceptions.html">Dependency resolution misconceptions</a></li>
   <li><a href="../../docs/dependencies/repositories.html">Repositories explained</a></li>
-  <li><a href="../../docs/dependencies/mirror-settings.html">Use a mirror or repository manager (Nexus, Artifactory)</a></li>
   <li><a href="../../docs/dependencies/repository-manager.html">Why use a repository manager</a></li>
+  <li><a href="../../docs/dependencies/mirror-settings.html">Use a mirror or repository manager (Nexus, Artifactory)</a></li>
   <li><a href="../../docs/dependencies/several-repositories.html">Use several repositories</a></li>
   <li><a href="../../docs/dependencies/third-party-jar-local.html">Install a third-party JAR locally</a></li>
   <li><a href="../../docs/dependencies/third-party-jar-remote.html">Deploy a third-party JAR to a remote repository</a></li>
   <li><a href="../../docs/dependencies/https-repositories.html">Authenticated HTTPS repositories</a></li>
+  <li><a href="../../docs/dependencies/centralized-deployments.html">Large centralized deployments</a></li>
+  <li><a href="../../docs/dependencies/naming-coordinates.html">Naming your coordinates</a></li>
   <li><a href="../../docs/dependencies/resolver-transport.html">Resolver transport</a></li>
   <li><a href="../../docs/dependencies/wagon-http.html">HTTP options of the Wagon transport</a></li>
   <li><a href="../../docs/dependencies/wagon-providers.html">Alternative Wagon providers</a></li>
   <li><a href="../../docs/dependencies/deployment-transports.html" aria-current="page">Deploy over HTTP, FTP and SSH</a></li>
-  <li><a href="../../docs/dependencies/resolution-misconceptions.html">Dependency resolution misconceptions</a></li>
-  <li><a href="../../docs/dependencies/centralized-deployments.html">Large centralized deployments</a></li>
-  <li><a href="../../docs/dependencies/naming-coordinates.html">Naming your coordinates</a></li>
 </ul>
-        <p class="steps"><a class="step step--prev" href="../../docs/dependencies/wagon-providers.html" rel="prev"><span class="step-dir">Previous</span> Alternative Wagon providers</a><a class="step step--next" href="../../docs/dependencies/resolution-misconceptions.html" rel="next"><span class="step-dir">Next</span> Dependency resolution misconceptions</a></p>
+        <p class="steps"><a class="step step--prev" href="../../docs/dependencies/wagon-providers.html" rel="prev"><span class="step-dir">Previous</span> Alternative Wagon providers</a></p>
       </nav>
     </main>
     <aside class="rail">

@@ -1,1 +1,0 @@
-packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"org.apache.maven.plugins.acr"},{"l":"org.apache.maven.plugins.maven_acr_plugin"}];updateSearchResults();

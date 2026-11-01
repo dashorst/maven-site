@@ -1,1 +1,0 @@
-packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"org.apache.maven.plugins.jdeps"},{"l":"org.apache.maven.plugins.jdeps.consumers"},{"l":"org.apache.maven.plugins.maven_jdeps_plugin"}];updateSearchResults();

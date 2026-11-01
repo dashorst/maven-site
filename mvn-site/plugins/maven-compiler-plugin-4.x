@@ -1,0 +1,1 @@
+../components/plugins/maven-compiler-plugin-4.x

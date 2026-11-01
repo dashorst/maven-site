@@ -1,1 +1,0 @@
-typeSearchIndex = [{"p":"org.apache.maven.plugins.acr","l":"AcrMojo"},{"l":"All Classes and Interfaces","u":"allclasses-index.html"},{"p":"org.apache.maven.plugins.maven_acr_plugin","l":"HelpMojo"}];updateSearchResults();

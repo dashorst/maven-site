@@ -82,7 +82,7 @@
 </section>
  <section><a id="Guide_to_Filtering_Resources"></a>
 <h1>Guide to Filtering Resources</h1>
-<p>Resource filtering replaces variables in your resource files with values known at build time, such as a project name or version. The replacement is done by <a href="../../shared/maven-filtering/">Maven Filtering</a>, which the <a href="../../plugins/maven-resources-plugin/">Maven Resources Plugin</a>, the Maven WAR Plugin and the Maven EAR Plugin share. The examples below use the resources plugin; the rules for variables, delimiters and escaping are the same wherever Maven Filtering does the work.</p><section><a id="Enabling_filtering"></a>
+<p>Resource filtering replaces variables in your resource files with values known at build time, such as a project name or version. The replacement is done by <a href="/shared/maven-filtering/">Maven Filtering</a>, which the <a href="/plugins/maven-resources-plugin/">Maven Resources Plugin</a>, the Maven WAR Plugin and the Maven EAR Plugin share. The examples below use the resources plugin; the rules for variables, delimiters and escaping are the same wherever Maven Filtering does the work.</p><section><a id="Enabling_filtering"></a>
 <h2>Enabling filtering</h2>
 <p>Variables in a resource are written with the <code>${...}</code> or <code>@...@</code> delimiters. They can come from the system properties, the project properties, filter files, and the command line.</p>
 <p>For example, take a resource <code>src/main/resources/hello.txt</code> that contains</p>
@@ -169,7 +169,7 @@
   ...
 <span class="nt">&lt;/project</span><span class="nt">&gt;</span>
 </code></pre>
-<p>The <code>filters</code> parameter of the <a href="../../plugins/maven-resources-plugin/resources-mojo.html#filters">resources:resources</a> goal adds filter files to a single execution, and <code>useBuildFilters</code> controls whether the files in <code>&lt;build&gt;&lt;filters&gt;</code> are used for that execution.</p></section></section><section><a id="Binary_files"></a>
+<p>The <code>filters</code> parameter of the <a href="/plugins/maven-resources-plugin/resources-mojo.html#filters">resources:resources</a> goal adds filter files to a single execution, and <code>useBuildFilters</code> controls whether the files in <code>&lt;build&gt;&lt;filters&gt;</code> are used for that execution.</p></section></section><section><a id="Binary_files"></a>
 <h2>Binary files</h2>
 <p>Do not filter files with binary content such as images, because that most likely corrupts them.</p>
 <p>If you have both text and binary resources, keep them in two directories: the default <code>src/main/resources</code> for the files that are not filtered, and for example <code>src/main/resources-filtered</code> for the files that are:</p>
@@ -190,9 +190,9 @@
   ...
 <span class="nt">&lt;/project</span><span class="nt">&gt;</span>
 </code></pre>
-<p>Alternatively, <a href="../../plugins/maven-resources-plugin/examples/binaries-filtering.html">configure the file extensions</a> that are not filtered. The <a href="../../plugins/maven-resources-plugin/resources-mojo.html#nonFilteredFileExtensions">nonFilteredFileExtensions</a> parameter adds to the built-in list.</p></section><section><a id="Escaping"></a>
+<p>Alternatively, <a href="/plugins/maven-resources-plugin/examples/binaries-filtering.html">configure the file extensions</a> that are not filtered. The <a href="/plugins/maven-resources-plugin/resources-mojo.html#nonFilteredFileExtensions">nonFilteredFileExtensions</a> parameter adds to the built-in list.</p></section><section><a id="Escaping"></a>
 <h2>Escaping</h2>
-<p>To keep an expression from being replaced, precede it with an escape string. Set the escape string with the <a href="../../plugins/maven-resources-plugin/resources-mojo.html#escapeString">escapeString</a> parameter:</p>
+<p>To keep an expression from being replaced, precede it with an escape string. Set the escape string with the <a href="/plugins/maven-resources-plugin/resources-mojo.html#escapeString">escapeString</a> parameter:</p>
 
 <pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;project</span><span class="nt">&gt;</span>
   ...
@@ -227,7 +227,7 @@
 
 <p>Anything else preceded by the escape string is passed through unchanged. The same applies to expressions delimited by <code>@</code>.</p></section><section><a id="Encoding"></a>
 <h2>Encoding</h2>
-<p>A character encoding such as <code>US-ASCII</code>, <code>UTF-8</code> or <code>UTF-16</code> is used to read and write filtered files. The best practice is to <a href="../../docs/help/faq.html#encoding-warning">define the encoding</a> through the <code>${project.build.sourceEncoding}</code> property, which the resources plugin uses by default for its <a href="../../plugins/maven-resources-plugin/resources-mojo.html#encoding">encoding</a> parameter:</p>
+<p>A character encoding such as <code>US-ASCII</code>, <code>UTF-8</code> or <code>UTF-16</code> is used to read and write filtered files. The best practice is to <a href="/docs/help/faq.html#encoding-warning">define the encoding</a> through the <code>${project.build.sourceEncoding}</code> property, which the resources plugin uses by default for its <a href="/plugins/maven-resources-plugin/resources-mojo.html#encoding">encoding</a> parameter:</p>
 
 <pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;project</span><span class="nt">&gt;</span>
   ...
@@ -260,13 +260,13 @@
   ...
 <span class="nt">&lt;/project</span><span class="nt">&gt;</span>
 </code></pre>
-<p>Filtered <code>.properties</code> files can use their own encoding through the <a href="../../plugins/maven-resources-plugin/resources-mojo.html#propertiesEncoding">propertiesEncoding</a> parameter (since 3.2.0); it defaults to <code>encoding</code>.</p></section><section><a id="See_also"></a>
+<p>Filtered <code>.properties</code> files can use their own encoding through the <a href="/plugins/maven-resources-plugin/resources-mojo.html#propertiesEncoding">propertiesEncoding</a> parameter (since 3.2.0); it defaults to <code>encoding</code>.</p></section><section><a id="See_also"></a>
 <h2>See also</h2>
 <ul>
 
-<li><a href="../../plugins/maven-resources-plugin/examples/filtering-properties-files.html">Filtering properties files</a></li>
-<li><a href="../../plugins/maven-resources-plugin/examples/custom-resource-filters.html">Custom resources filters</a></li>
-<li><a href="../../plugins/maven-resources-plugin/examples/resource-directory.html">Specifying resource directories</a></li>
+<li><a href="/plugins/maven-resources-plugin/examples/filtering-properties-files.html">Filtering properties files</a></li>
+<li><a href="/plugins/maven-resources-plugin/examples/custom-resource-filters.html">Custom resources filters</a></li>
+<li><a href="/plugins/maven-resources-plugin/examples/resource-directory.html">Specifying resource directories</a></li>
 </ul></section></section>
       </div>
       <nav class="more" aria-labelledby="more-title">

@@ -1,1 +1,0 @@
-packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"org.apache.maven.plugin.doap"},{"l":"org.apache.maven.plugin.doap.options"},{"l":"org.apache.maven.plugins.maven_doap_plugin"}];updateSearchResults();

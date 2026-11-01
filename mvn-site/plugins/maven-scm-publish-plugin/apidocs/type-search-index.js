@@ -1,1 +1,0 @@
-typeSearchIndex = [{"p":"org.apache.maven.plugins.scmpublish","l":"AbstractScmPublishMojo"},{"l":"All Classes and Interfaces","u":"allclasses-index.html"},{"p":"org.apache.maven.plugins.maven_scm_publish_plugin","l":"HelpMojo"},{"p":"org.apache.maven.plugins.scmpublish","l":"ScmPublishPublishScmMojo"}];updateSearchResults();

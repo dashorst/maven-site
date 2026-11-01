@@ -1,1 +1,0 @@
-packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"org.apache.maven.plugins.ejb"},{"l":"org.apache.maven.plugins.maven_ejb_plugin"}];updateSearchResults();

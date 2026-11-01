@@ -1,1 +1,0 @@
-typeSearchIndex = [{"l":"All Classes and Interfaces","u":"allclasses-index.html"},{"p":"org.apache.maven.plugins.clean","l":"CleanMojo"},{"p":"org.apache.maven.plugins.clean","l":"Fileset"},{"p":"org.apache.maven.plugins.maven_clean_plugin","l":"HelpMojo"}];updateSearchResults();

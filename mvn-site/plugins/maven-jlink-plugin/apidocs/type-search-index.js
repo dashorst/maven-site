@@ -1,1 +1,0 @@
-typeSearchIndex = [{"p":"org.apache.maven.plugins.jlink","l":"AbstractJLinkMojo"},{"l":"All Classes and Interfaces","u":"allclasses-index.html"},{"p":"org.apache.maven.plugins.maven_jlink_plugin","l":"HelpMojo"},{"p":"org.apache.maven.plugins.jlink","l":"JLinkMojo"}];updateSearchResults();

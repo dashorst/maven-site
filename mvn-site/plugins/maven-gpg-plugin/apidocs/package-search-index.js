@@ -1,1 +1,0 @@
-packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"org.apache.maven.plugins.gpg"},{"l":"org.apache.maven.plugins.maven_gpg_plugin"}];updateSearchResults();
