@@ -126,7 +126,7 @@ Modules then declare the artifacts of that library without a version:
 </dependency>
 ```
 
-A version you write in `<dependencyManagement>` yourself wins over the version from an imported BOM. A POM has only one parent, but it can import any number of BOMs. The [dependency mechanism](../dependencies/how-dependencies-work.html#Importing_Dependencies) describes the rules for imports in full.
+A version you write in `<dependencyManagement>` yourself wins over the version from an imported BOM. A POM has only one parent, but it can import any number of BOMs. [Use a BOM, and publish one](../dependencies/use-a-bom.html) shows how to override a version and what happens when two BOMs manage the same artifact.
 
 ## Lock plugin versions and configure plugins
 

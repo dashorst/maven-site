@@ -50,8 +50,13 @@
           <item name="Inject POM properties via settings.xml" href="/docs/configure/properties-from-settings.html"/>
         </item>
         <item name="Dependencies and repositories" href="/docs/dependencies/index.html">
-          <item name="How dependencies work" href="/docs/dependencies/how-dependencies-work.html"/>
-          <item name="Optional dependencies and exclusions" href="/docs/dependencies/optional-and-exclusions.html"/>
+          <item name="How Maven resolves dependencies" href="/docs/dependencies/how-dependencies-work.html"/>
+          <item name="Dependency scopes" href="/docs/dependencies/scopes.html"/>
+          <item name="Find out where a dependency comes from" href="/docs/dependencies/trace-a-dependency.html"/>
+          <item name="Control the version of a transitive dependency" href="/docs/dependencies/control-a-transitive-version.html"/>
+          <item name="Exclude a transitive dependency" href="/docs/dependencies/exclude-a-dependency.html"/>
+          <item name="Use a BOM, and publish one" href="/docs/dependencies/use-a-bom.html"/>
+          <item name="Make a dependency optional" href="/docs/dependencies/make-a-dependency-optional.html"/>
           <item name="Repositories explained" href="/docs/dependencies/repositories.html"/>
           <item name="Use a mirror or repository manager (Nexus, Artifactory)" href="/docs/dependencies/mirror-settings.html"/>
           <item name="Why use a repository manager" href="/docs/dependencies/repository-manager.html"/>

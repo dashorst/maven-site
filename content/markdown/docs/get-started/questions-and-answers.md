@@ -671,7 +671,7 @@ mvn process-resources "-Dcommand.line.prop=hello again"
 
 ## How do I use external dependencies?
 
-You've probably already noticed a `dependencies` element in the POM we've been using as an example. You have, in fact, been using an external dependency all this time, but here we'll talk about how this works in a bit more detail. For a more thorough introduction, please refer to our [Introduction to Dependency Mechanism](../dependencies/how-dependencies-work.html).
+You've probably already noticed a `dependencies` element in the POM we've been using as an example. You have, in fact, been using an external dependency all this time, but here we'll talk about how this works in a bit more detail. For a more thorough introduction, please refer to our [How Maven resolves dependencies](../dependencies/how-dependencies-work.html).
 
 The `dependencies` section of the `pom.xml` lists all of the external dependencies that our project needs in order to build (whether it needs that dependency at compile time, test time, run time, or whatever). Right now, our project is depending on JUnit only (I took out all of the resource filtering stuff for clarity):
 
@@ -703,7 +703,7 @@ For each external dependency, you'll need to define at least 4 things: groupId, 
 
 <!--DJ: Does this link work? I can't find the document.-->
 
-For more information about the dependency mechanism as a whole, see [Introduction to Dependency Mechanism](../dependencies/how-dependencies-work.html).
+For more information about the dependency mechanism as a whole, see [How Maven resolves dependencies](../dependencies/how-dependencies-work.html).
 
 With this information about a dependency, Maven will be able to reference the dependency when it builds the project. Where does Maven reference the dependency from? Maven looks in your local repository (`${user.home}/.m2/repository` is the default location) to find all dependencies. In a [previous section](#How_do_I_create_a_JAR_and_install_it_in_my_local_repository), we installed the artifact from our project (my-app-1.0-SNAPSHOT.jar) into the local repository. Once it's installed there, another project can reference that jar as a dependency simply by adding the dependency information to its `pom.xml`:
 

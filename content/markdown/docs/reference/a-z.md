@@ -22,7 +22,6 @@ specific language governing permissions and limitations
 under the License.
 -->
 
-
 ## A
 
 - `<aliases>`: [Store credentials for a repository](../configure/server-credentials.html) (how-to)
@@ -34,27 +33,37 @@ under the License.
 
 ## B
 
-- `BOM`: [Share dependency versions and plugin configuration](../multi-module/share-configuration.html) (how-to)
+- `bannedDependencies`: [Exclude a transitive dependency](../dependencies/exclude-a-dependency.html) (how-to)
+- `BOM`: [Share dependency versions and plugin configuration](../multi-module/share-configuration.html) (how-to), [Use a BOM, and publish one](../dependencies/use-a-bom.html) (how-to)
 - `<build>`: [Add and configure your first plugin](../get-started/first-plugin.html) (tutorial)
 
 ## C
 
+- `compile`: [Dependency scopes](../dependencies/scopes.html) (reference)
+- `compile-only`: [Dependency scopes](../dependencies/scopes.html) (reference)
 - `<configuration>`: [Add and configure your first plugin](../get-started/first-plugin.html) (tutorial), [toolchains.xml](../java-versions/toolchains-xml.html) (reference)
 
 ## D
 
-- `<dependencies>`: [Add your first dependency](../get-started/add-a-dependency.html) (tutorial)
+- `<dependencies>`: [Add your first dependency](../get-started/add-a-dependency.html) (tutorial), [How Maven resolves dependencies](../dependencies/how-dependencies-work.html) (explanation)
+- `dependency:analyze`: [Find out where a dependency comes from](../dependencies/trace-a-dependency.html) (how-to)
 - `dependency:copy-dependencies`: [Add your first dependency](../get-started/add-a-dependency.html) (tutorial)
+- `dependency:tree`: [Control the version of a transitive dependency](../dependencies/control-a-transitive-version.html) (how-to), [Find out where a dependency comes from](../dependencies/trace-a-dependency.html) (how-to), [How Maven resolves dependencies](../dependencies/how-dependencies-work.html) (explanation)
 - `<dependency>`: [Add your first dependency](../get-started/add-a-dependency.html) (tutorial)
-- `<dependencyManagement>`: [Share dependency versions and plugin configuration](../multi-module/share-configuration.html) (how-to)
+- `dependencyConvergence`: [Control the version of a transitive dependency](../dependencies/control-a-transitive-version.html) (how-to)
+- `<dependencyManagement>`: [Control the version of a transitive dependency](../dependencies/control-a-transitive-version.html) (how-to), [Share dependency versions and plugin configuration](../multi-module/share-configuration.html) (how-to), [Use a BOM, and publish one](../dependencies/use-a-bom.html) (how-to), [How Maven resolves dependencies](../dependencies/how-dependencies-work.html) (explanation)
+- `-Dincludes`: [Find out where a dependency comes from](../dependencies/trace-a-dependency.html) (how-to)
 - `display-discovered-jdk-toolchains`: [Build with a different JDK than Maven runs on](../java-versions/build-with-another-jdk.html) (how-to)
 - `<distributionManagement>`: [Store credentials for a repository](../configure/server-credentials.html) (how-to)
+- `-Dverbose`: [Find out where a dependency comes from](../dependencies/trace-a-dependency.html) (how-to)
 
 ## E
 
 - `effective POM`: [Aggregation and inheritance](../multi-module/aggregation-and-inheritance.html) (explanation)
 - `--encrypt-master-password`: [Encrypt passwords in settings.xml](../configure/encrypt-passwords.html) (how-to)
 - `--encrypt-password`: [Encrypt passwords in settings.xml](../configure/encrypt-passwords.html) (how-to)
+- `<exclusion>`: [Exclude a transitive dependency](../dependencies/exclude-a-dependency.html) (how-to)
+- `<exclusions>`: [Exclude a transitive dependency](../dependencies/exclude-a-dependency.html) (how-to), [How Maven resolves dependencies](../dependencies/how-dependencies-work.html) (explanation)
 - `<execution>`: [Add and configure your first plugin](../get-started/first-plugin.html) (tutorial)
 - `<executions>`: [Add and configure your first plugin](../get-started/first-plugin.html) (tutorial), [Phases, goals and plugins](../get-started/build-lifecycle.html) (explanation)
 - `external:*`: [Use a repository manager as a mirror](../dependencies/mirror-settings.html) (how-to), [Configuration files and variables](../configure/settings-files-reference.html) (reference)
@@ -85,6 +94,7 @@ under the License.
 
 ## I
 
+- `import`: [Dependency scopes](../dependencies/scopes.html) (reference)
 - `--install-toolchains`: [toolchains.xml](../java-versions/toolchains-xml.html) (reference)
 - `integration-test`: [Phases, goals and plugins](../get-started/build-lifecycle.html) (explanation)
 - `-is`: [Configuration files and variables](../configure/settings-files-reference.html) (reference)
@@ -107,6 +117,8 @@ under the License.
 - `Maven Central`: [Add your first dependency](../get-started/add-a-dependency.html) (tutorial)
 - `maven-archetype-quickstart`: [Create your first project](../get-started/first-project.html) (tutorial)
 - `maven-compiler-plugin`: [Compile for an older Java version](../java-versions/compile-for-older-java.html) (how-to)
+- `maven-dependency-plugin`: [Find out where a dependency comes from](../dependencies/trace-a-dependency.html) (how-to)
+- `maven-enforcer-plugin`: [Control the version of a transitive dependency](../dependencies/control-a-transitive-version.html) (how-to), [Exclude a transitive dependency](../dependencies/exclude-a-dependency.html) (how-to)
 - `maven-shade-plugin`: [Add and configure your first plugin](../get-started/first-plugin.html) (tutorial)
 - `maven-surefire-plugin`: [Test and build your project](../get-started/test-and-build.html) (tutorial), [Compile for an older Java version](../java-versions/compile-for-older-java.html) (how-to)
 - `maven-system.properties`: [Configuration files and variables](../configure/settings-files-reference.html) (reference), [Where Maven reads its configuration](../configure/configuration-files.html) (explanation)
@@ -147,9 +159,15 @@ under the License.
 - `--non-recursive`: [Reactor options](../multi-module/reactor-options.html) (reference)
 - `<nonProxyHosts>`: [Connect through an HTTP proxy](../configure/proxy-settings.html) (how-to)
 
+## O
+
+- `<optional>`: [Make a dependency optional](../dependencies/make-a-dependency-optional.html) (how-to), [How Maven resolves dependencies](../dependencies/how-dependencies-work.html) (explanation)
+- `<optional>true</optional>`: [Make a dependency optional](../dependencies/make-a-dependency-optional.html) (how-to)
+
 ## P
 
 - `<packaging>`: [Phases, goals and plugins](../get-started/build-lifecycle.html) (explanation)
+- `<packaging>bom</packaging>`: [Use a BOM, and publish one](../dependencies/use-a-bom.html) (how-to)
 - `<parent>`: [Split your application into modules](../get-started/first-modules.html) (tutorial), [Split a project into modules](../multi-module/split-into-modules.html) (how-to), [Aggregation and inheritance](../multi-module/aggregation-and-inheritance.html) (explanation)
 - `<phase>`: [Add and configure your first plugin](../get-started/first-plugin.html) (tutorial), [Phases, goals and plugins](../get-started/build-lifecycle.html) (explanation)
 - `-pl`: [Split your application into modules](../get-started/first-modules.html) (tutorial), [Build part of a multi-module project](../multi-module/build-part-of-a-project.html) (how-to), [Reactor options](../multi-module/reactor-options.html) (reference)
@@ -163,6 +181,7 @@ under the License.
 - `${project.version}`: [Split your application into modules](../get-started/first-modules.html) (tutorial), [Split a project into modules](../multi-module/split-into-modules.html) (how-to)
 - `--projects`: [Build part of a multi-module project](../multi-module/build-part-of-a-project.html) (how-to), [Reactor options](../multi-module/reactor-options.html) (reference)
 - `<properties>`: [Share dependency versions and plugin configuration](../multi-module/share-configuration.html) (how-to)
+- `provided`: [Dependency scopes](../dependencies/scopes.html) (reference)
 - `<provides>`: [toolchains.xml](../java-versions/toolchains-xml.html) (reference)
 - `<proxies>`: [Connect through an HTTP proxy](../configure/proxy-settings.html) (how-to)
 - `<proxy>`: [Connect through an HTTP proxy](../configure/proxy-settings.html) (how-to)
@@ -176,21 +195,23 @@ under the License.
 - `<release>`: [Compile for an older Java version](../java-versions/compile-for-older-java.html) (how-to)
 - `<relocation>`: [Encrypt passwords in settings.xml](../configure/encrypt-passwords.html) (how-to)
 - `<repositoryOrigins>`: [Store credentials for a repository](../configure/server-credentials.html) (how-to)
+- `requireUpperBoundDeps`: [Control the version of a transitive dependency](../dependencies/control-a-transitive-version.html) (how-to)
 - `--resume`: [Build part of a multi-module project](../multi-module/build-part-of-a-project.html) (how-to), [Reactor options](../multi-module/reactor-options.html) (reference)
 - `--resume-from`: [Build part of a multi-module project](../multi-module/build-part-of-a-project.html) (how-to), [Reactor options](../multi-module/reactor-options.html) (reference)
 - `-rf`: [Build part of a multi-module project](../multi-module/build-part-of-a-project.html) (how-to), [Reactor options](../multi-module/reactor-options.html) (reference)
+- `runtime`: [Dependency scopes](../dependencies/scopes.html) (reference)
 
 ## S
 
 - `-s`: [Configuration files and variables](../configure/settings-files-reference.html) (reference)
-- `<scope>`: [Add your first dependency](../get-started/add-a-dependency.html) (tutorial)
-- `<scope>import</scope>`: [Share dependency versions and plugin configuration](../multi-module/share-configuration.html) (how-to)
+- `<scope>`: [Add your first dependency](../get-started/add-a-dependency.html) (tutorial), [Dependency scopes](../dependencies/scopes.html) (reference), [How Maven resolves dependencies](../dependencies/how-dependencies-work.html) (explanation)
+- `<scope>import</scope>`: [Share dependency versions and plugin configuration](../multi-module/share-configuration.html) (how-to), [Use a BOM, and publish one](../dependencies/use-a-bom.html) (how-to)
 - `select-jdk-toolchain`: [Build with a different JDK than Maven runs on](../java-versions/build-with-another-jdk.html) (how-to), [toolchains.xml](../java-versions/toolchains-xml.html) (reference), [Toolchains and the JDK Maven runs on](../java-versions/toolchains.html) (explanation)
 - `<server>`: [Store credentials for a repository](../configure/server-credentials.html) (how-to)
 - `<servers>`: [Store credentials for a repository](../configure/server-credentials.html) (how-to)
 - `settings-security.xml`: [Encrypt passwords in settings.xml](../configure/encrypt-passwords.html) (how-to), [Configuration files and variables](../configure/settings-files-reference.html) (reference)
 - `settings-security4.xml`: [Encrypt passwords in settings.xml](../configure/encrypt-passwords.html) (how-to), [Configuration files and variables](../configure/settings-files-reference.html) (reference)
-- `settings.xml`: [Use a repository manager as a mirror](../dependencies/mirror-settings.html) (how-to), [Connect through an HTTP proxy](../configure/proxy-settings.html) (how-to), [Store credentials for a repository](../configure/server-credentials.html) (how-to), [Configuration files and variables](../configure/settings-files-reference.html) (reference), [Where Maven reads its configuration](../configure/configuration-files.html) (explanation)
+- `settings.xml`: [Connect through an HTTP proxy](../configure/proxy-settings.html) (how-to), [Store credentials for a repository](../configure/server-credentials.html) (how-to), [Use a repository manager as a mirror](../dependencies/mirror-settings.html) (how-to), [Configuration files and variables](../configure/settings-files-reference.html) (reference), [Where Maven reads its configuration](../configure/configuration-files.html) (explanation)
 - `<sourceDirectory>`: [Standard directory layout](../get-started/standard-directory-layout.html) (reference)
 - `src/it`: [Standard directory layout](../get-started/standard-directory-layout.html) (reference)
 - `src/main/java`: [Standard directory layout](../get-started/standard-directory-layout.html) (reference)
@@ -200,6 +221,8 @@ under the License.
 - `src/test/java`: [Test and build your project](../get-started/test-and-build.html) (tutorial), [Standard directory layout](../get-started/standard-directory-layout.html) (reference)
 - `src/test/resources`: [Standard directory layout](../get-started/standard-directory-layout.html) (reference)
 - `<subprojects>`: [Split your application into modules](../get-started/first-modules.html) (tutorial), [Split a project into modules](../multi-module/split-into-modules.html) (how-to), [Aggregation and inheritance](../multi-module/aggregation-and-inheritance.html) (explanation)
+- `system`: [Dependency scopes](../dependencies/scopes.html) (reference)
+- `<systemPath>`: [Dependency scopes](../dependencies/scopes.html) (reference)
 
 ## T
 
@@ -207,6 +230,9 @@ under the License.
 - `-t`: [toolchains.xml](../java-versions/toolchains-xml.html) (reference)
 - `target`: [Create your first project](../get-started/first-project.html) (tutorial), [Standard directory layout](../get-started/standard-directory-layout.html) (reference)
 - `target/surefire-reports`: [Test and build your project](../get-started/test-and-build.html) (tutorial)
+- `test`: [Dependency scopes](../dependencies/scopes.html) (reference)
+- `test-only`: [Dependency scopes](../dependencies/scopes.html) (reference)
+- `test-runtime`: [Dependency scopes](../dependencies/scopes.html) (reference)
 - `--threads`: [Reactor options](../multi-module/reactor-options.html) (reference)
 - `toolchain.jdk.version`: [Build with a different JDK than Maven runs on](../java-versions/build-with-another-jdk.html) (how-to), [toolchains.xml](../java-versions/toolchains-xml.html) (reference)
 - `<toolchain>`: [toolchains.xml](../java-versions/toolchains-xml.html) (reference)
@@ -215,3 +241,4 @@ under the License.
 - `toolchains:toolchain`: [Build with a different JDK than Maven runs on](../java-versions/build-with-another-jdk.html) (how-to)
 - `<toolchains>`: [toolchains.xml](../java-versions/toolchains-xml.html) (reference)
 - `<type>`: [toolchains.xml](../java-versions/toolchains-xml.html) (reference)
+- `<type>pom</type>`: [Use a BOM, and publish one](../dependencies/use-a-bom.html) (how-to)

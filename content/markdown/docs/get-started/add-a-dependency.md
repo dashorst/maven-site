@@ -117,7 +117,7 @@ Maven downloads `commons-lang3-3.21.0.jar` from Maven Central into your local re
 
 If the compiler reports `package org.apache.commons.lang3 does not exist`, the dependency is in the wrong `<dependencies>` element: move it out of `<dependencyManagement>`.
 
-Commons Lang needs no other libraries. When a library does, its own POM says so, and Maven downloads those libraries as well; [How dependencies work](../dependencies/how-dependencies-work.html) explains these transitive dependencies.
+Commons Lang needs no other libraries. When a library does, its own POM says so, and Maven downloads those libraries as well; [How Maven resolves dependencies](../dependencies/how-dependencies-work.html) explains these transitive dependencies.
 
 ## 5. Run the program with its dependency
 

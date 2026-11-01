@@ -659,7 +659,7 @@ The Maven issue tracker provides a [full list of all resolved issues of Maven 4.
 [1]: https://www.javaadvent.com/2021/12/from-maven-3-to-maven-5.html
 [2]: https://maven.apache.org/docs/reference/pom.html
 [3]: https://en.wikipedia.org/wiki/Java_Platform_Module_System
-[4]: https://maven.apache.org/docs/dependencies/how-dependencies-work.html#bill-of-materials-bom-poms
+[4]: ../dependencies/use-a-bom.html#Publish_a_BOM_for_your_library
 [5]: https://www.youtube.com/watch?v=ZD_YxTmQ16Q&t=16710s
 [6]: ../java-versions/java-target.html
 [7]: ../java-versions/toolchains.html

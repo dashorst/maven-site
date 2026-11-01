@@ -56,8 +56,13 @@ Every page of the site, by section. Type in the search box to narrow the list.
 
 ### Dependencies and repositories
 
-- [How dependencies work](docs/dependencies/how-dependencies-work.html)
-- [Optional dependencies and exclusions](docs/dependencies/optional-and-exclusions.html)
+- [How Maven resolves dependencies](docs/dependencies/how-dependencies-work.html)
+- [Dependency scopes](docs/dependencies/scopes.html)
+- [Find out where a dependency comes from](docs/dependencies/trace-a-dependency.html)
+- [Control the version of a transitive dependency](docs/dependencies/control-a-transitive-version.html)
+- [Exclude a transitive dependency](docs/dependencies/exclude-a-dependency.html)
+- [Use a BOM, and publish one](docs/dependencies/use-a-bom.html)
+- [Make a dependency optional](docs/dependencies/make-a-dependency-optional.html)
 - [Repositories explained](docs/dependencies/repositories.html)
 - [Use a mirror or repository manager (Nexus, Artifactory)](docs/dependencies/mirror-settings.html)
 - [Why use a repository manager](docs/dependencies/repository-manager.html)

@@ -25,8 +25,13 @@ under the License.
 <body>
 <section class="landing">
 <ul class="page-list page-list--full">
-<li><a href="how-dependencies-work.html">How dependencies work</a></li>
-<li><a href="optional-and-exclusions.html">Optional dependencies and exclusions</a></li>
+<li><a href="how-dependencies-work.html">How Maven resolves dependencies</a><span class="page-summary">Why your project gets the libraries and versions it gets: transitive dependencies, which version wins, managed versions, scopes and ranges.</span></li>
+<li><a href="scopes.html">Dependency scopes</a><span class="page-summary">Which classpaths each scope puts a dependency on, which scopes reach the projects that depend on yours, and the scopes Maven 4 adds.</span></li>
+<li><a href="trace-a-dependency.html">Find out where a dependency comes from</a><span class="page-summary">See which of your dependencies brings in a library, which version won and why, and which libraries you use without declaring them.</span></li>
+<li><a href="control-a-transitive-version.html">Control the version of a transitive dependency</a><span class="page-summary">Choose the version of a library that your dependencies bring in, and make the build fail when a dependency needs a newer version than it gets.</span></li>
+<li><a href="exclude-a-dependency.html">Exclude a transitive dependency</a><span class="page-summary">Keep a library that one of your dependencies brings in off your classpath, and make sure it does not come back through another path.</span></li>
+<li><a href="use-a-bom.html">Use a BOM, and publish one</a><span class="page-summary">Import a bill of materials to get matching versions of a library family, override one of its versions, and publish a BOM for your own library.</span></li>
+<li><a href="make-a-dependency-optional.html">Make a dependency optional</a><span class="page-summary">Let your library use a dependency for one feature without passing it on to every project that uses the library.</span></li>
 <li><a href="repositories.html">Repositories explained</a></li>
 <li><a href="mirror-settings.html">Use a mirror or repository manager (Nexus, Artifactory)</a><span class="page-summary">Send every download through your organisation's repository manager instead of Maven Central and the repositories projects declare.</span></li>
 <li><a href="repository-manager.html">Why use a repository manager</a></li>

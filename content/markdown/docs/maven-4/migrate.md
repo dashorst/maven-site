@@ -383,5 +383,5 @@ When migrate to Maven 4, you should use the new element.
 [modelbuilderinterpolation]: https://maven.apache.org/ref/4-LATEST/maven-compat-modules/maven-model-builder/#model-interpolation
 [cifriendlyguide]: https://maven.apache.org/docs/multi-module/ci-friendly-versions.html
 [flattenmavenplugin]: https://www.mojohaus.org/flatten-maven-plugin/
-[bompomguide]: https://maven.apache.org/docs/dependencies/how-dependencies-work.html#bill-of-materials-bom-poms
+[bompomguide]: ../dependencies/use-a-bom.html#Publish_a_BOM_for_your_library
 

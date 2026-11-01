@@ -44,7 +44,7 @@ To override this, you need to specify a `mirror` as shown in [Using Mirrors for 
 
 You can set this in your `settings.xml` file to globally use a certain mirror. However, it is common for a project to [customise the repository in its `pom.xml`](several-repositories.html) and that your setting will take precedence. If dependencies are not being found, check that you have not overridden the remote repository.
 
-For more information on dependencies, see [Dependency Mechanism](how-dependencies-work.html).
+For more information on dependencies, see [How Maven resolves dependencies](how-dependencies-work.html).
 
 ### Using Mirrors for the Central Repository
 

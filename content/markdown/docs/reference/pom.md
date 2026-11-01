@@ -254,7 +254,7 @@ There are three methods for dealing with this scenario.
 
 * `<scope>`:
   This element refers to the classpath of the task at hand (compiling and runtime, testing, etc.) as well as how to limit the transitivity of a dependency.
-  There are five scopes available:
+  [Dependency scopes](../dependencies/scopes.html) lists on which classpaths each scope puts a dependency, which scopes are passed on, and the scopes Maven 4 adds. The scopes of model version 4.0.0 are:
 
 * `<compile>` - this is the default scope, used if none is specified. Compile dependencies are available in all
   classpaths. Furthermore, those dependencies are propagated to dependent projects.
@@ -290,7 +290,7 @@ There are three methods for dealing with this scenario.
 
 Dependencies can be managed in the `dependencyManagement` section to affect the resolution of dependencies
 which are not fully qualified or to enforce the usage of a specific transitive dependency version. Further information
-in [Introduction to the Dependency Mechanism](../dependencies/how-dependencies-work.html).
+in [How Maven resolves dependencies](../dependencies/how-dependencies-work.html#Managed_versions_come_first).
 
 ##### Dependency Version Requirement Specification
 
