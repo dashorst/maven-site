@@ -49,7 +49,10 @@ import org.jsoup.nodes.Element;
  * <ul>
  * <li>{@code check <site> <list>} follows every listed address through the {@code .htaccess} files
  *     of the rendered site, as Apache httpd would, and fails when one leads nowhere, or to a page
- *     without the anchor. Runs after {@code site:site}; see the pom.</li>
+ *     without the anchor, and says how to fix it: for a page that moved as a whole, which it
+ *     recognises by the anchors it took along, it writes the {@code Redirect} line. It also reports
+ *     the pages and anchors of the build that are not on the list yet. Runs after
+ *     {@code site:site}; see the pom.</li>
  * <li>{@code record <site> <list>} adds the files and anchors of the rendered site to the list.</li>
  * <li>{@code pages <site> <list>} writes a page that forwards to the new address at every listed
  *     address that a redirect leads away from, for a server that ignores {@code .htaccess}, such as
@@ -64,6 +67,8 @@ import org.jsoup.nodes.Element;
  */
 public class Addresses {
     private static final String HOST = "maven.apache.org";
+    private static final String HTACCESS = "content/filtered-resources/.htaccess";
+    private static final String LIST = "src/published-addresses.txt";
     private static final Pattern ABSOLUTE = Pattern.compile("^https?://([^/]+)(/.*)?$");
     private static final Pattern GROUP = Pattern.compile("\\$(\\d)");
 
@@ -225,7 +230,9 @@ public class Addresses {
             if (!o.hops.isEmpty() && isOutside(path)) {
                 o.outside = true;
             } else {
-                o.problem = "leads to " + path + ", which does not exist";
+                o.problem = o.hops.isEmpty()
+                        ? "does not exist, and no redirect leads away from it"
+                        : "leads to " + path + ", which does not exist";
             }
         }
         return o;
@@ -311,16 +318,58 @@ public class Addresses {
         return addresses;
     }
 
+    /**
+     * The page of this build that a missing page most likely moved to: the one that has the most of
+     * its anchors, at least half of them. A page that moves keeps the ids of its headings. Null when
+     * no page qualifies, or two qualify equally.
+     */
+    static String movedTo(Set<String> ids, Map<String, Set<String>> published) {
+        String best = null;
+        int most = 0;
+        boolean tie = false;
+        for (Map.Entry<String, Set<String>> p : published.entrySet()) {
+            int shared = 0;
+            for (String id : ids) {
+                if (p.getValue().contains(id)) {
+                    shared++;
+                }
+            }
+            if (shared > most) {
+                best = p.getKey();
+                most = shared;
+                tie = false;
+            } else if (shared == most && shared > 0) {
+                tie = true;
+            }
+        }
+        return best != null && !tie && most * 2 >= ids.size() ? best : null;
+    }
+
+    private static String count(int n, String one, String more) {
+        return n + " " + (n == 1 ? one : more);
+    }
+
     int check(Map<String, Set<String>> addresses) throws IOException {
+        Map<String, Set<String>> published = published();
         List<String> problems = new ArrayList<>();
         int redirected = 0;
         int outside = 0;
         List<String> retired = new ArrayList<>();
+        String firstAnchor = null;
         for (Map.Entry<String, Set<String>> a : addresses.entrySet()) {
             Outcome o = follow(a.getKey());
             if (o.problem != null) {
-                problems.add(a.getKey() + " " + o.problem
-                        + (o.hops.isEmpty() ? "" : " (" + String.join(" > ", o.hops) + ")"));
+                String problem = a.getKey() + " " + o.problem
+                        + (o.hops.isEmpty() ? "" : " (" + String.join(" > ", o.hops) + ")");
+                String to = a.getValue().isEmpty() ? null : movedTo(a.getValue(), published);
+                if (to != null) {
+                    Set<String> there = new TreeSet<>(a.getValue());
+                    there.retainAll(published.get(to));
+                    problem += String.format(
+                            "%n      it moved to %s, which has %d of its %d anchors:%n      Redirect Permanent %s %s",
+                            to, there.size(), a.getValue().size(), a.getKey(), to);
+                }
+                problems.add(problem);
                 continue;
             }
             if (o.gone) {
@@ -343,6 +392,9 @@ public class Addresses {
                     missing.removeIf(id -> html.contains("id=\"" + id + "\"") || html.contains("name=\"" + id + "\""));
                 }
                 if (!missing.isEmpty()) {
+                    if (firstAnchor == null) {
+                        firstAnchor = missing.iterator().next();
+                    }
                     problems.add(a.getKey() + (o.path.equals(a.getKey()) ? "" : " > " + o.path) + " lacks #"
                             + String.join(" #", missing));
                 }
@@ -355,6 +407,29 @@ public class Addresses {
             System.out.println("Retired on purpose, with Redirect gone: " + String.join(" ", retired));
         }
         problems.forEach(p -> System.out.println("  " + p));
+        if (!problems.isEmpty()) {
+            System.out.println("To fix a broken address, do one of these:");
+            System.out.println("  - redirect it to its new place: Redirect Permanent <old> <new> in " + HTACCESS);
+            System.out.println("  - put a dropped anchor back above the section that holds its content: <a id=\""
+                    + (firstAnchor != null ? firstAnchor : "...") + "\"></a>");
+            System.out.println("  - retire it on purpose: Redirect gone <old>, or delete the anchor from " + LIST);
+        }
+        int newAddresses = 0;
+        int newAnchors = 0;
+        for (Map.Entry<String, Set<String>> p : published.entrySet()) {
+            Set<String> known = addresses.get(p.getKey());
+            if (known == null) {
+                newAddresses++;
+            } else {
+                newAnchors += (int)
+                        p.getValue().stream().filter(id -> !known.contains(id)).count();
+            }
+        }
+        if (newAddresses + newAnchors > 0) {
+            System.out.printf(
+                    "Not on the list yet: %s and %s; add them with: mvn site -Daddresses=record%n",
+                    count(newAddresses, "address", "addresses"), count(newAnchors, "anchor", "anchors"));
+        }
         return problems.size();
     }
 
