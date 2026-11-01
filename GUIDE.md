@@ -19,35 +19,37 @@ under the License.
 
 # Writing the Maven guides
 
-The guides live in `jekyll/_guide/`, one Markdown file per page. Every page has one job, one of the four kinds below. A page gets its place in the site from `jekyll/_data/site_map.yml`: the group it is listed in, and its URL, `/docs/<group>/<name>.html`. A page that is in no group is reported by the build. Readers find pages through the group lists, through search and through the A–Z index; search and the index are built from the front matter, so the front matter is part of the content.
+The guides live in `content/markdown/docs/<group>/`, one Markdown file per page, and are published at `/docs/<group>/<name>.html`. Every page has one job, one of the four kinds below. A page gets its place in the navigation from `content/site.xml`, under the group's item, and is listed on the group's landing page, `content/xhtml/docs/<group>/index.xhtml`. Readers find pages through those lists, through search and through the A–Z index; search and the index are built from the front matter, so the front matter is part of the content.
 
-The pages are plain Markdown with YAML front matter and relative links. Jekyll builds them here, but nothing in them depends on Jekyll; the Doxia Markdown module reads the same files.
+The pages are Markdown with front matter, read by the Doxia Markdown module. The license header comes after the front matter.
 
 ## Front matter
 
 ```yaml
 ---
 title: Use a repository manager as a mirror
-type: howto
-topic: configure
 summary: Send every download through your organisation's repository manager instead of Maven Central.
-since: "3.9"
-terms: [settings.xml, <mirrors>, <mirror>, <mirrorOf>]
-keywords: [nexus, artifactory, reposilite, proxy repository, corporate repository, offline]
-order: 20
-source: [guides/mini/guide-mirror-settings.md, guides/mini/guide-configuring-maven.md]
+type: howto
+since: 3.9
+keywords: nexus, artifactory, reposilite, proxy repository, corporate repository, offline
+terms: settings.xml | <mirrors> | <mirror> | <mirrorOf>
 ---
 ```
 
 - **title**: what the page is about, in the reader's words. How-to guides start with a verb ("Encrypt server passwords", "Build part of a multi-module project"); reference pages name the thing described ("settings.xml elements", "Reactor options"); explanation pages name the subject ("Where Maven reads its configuration"); tutorials name what the reader builds ("Create your first project").
+- **summary**: one sentence, at most about 25 words, saying what the reader gets from the page. It is shown under the title, in listings and in search results.
 - **type**: `tutorial`, `howto`, `reference` or `explanation`.
-- **topic**: the subject the page belongs to, as an id: `start`, `configure`, `multi-module`, `jdk`. Where the page appears is set in `site_map.yml`, not here.
-- **summary**: one sentence, at most about 25 words, saying what the reader gets from the page. It is shown in listings and search results.
-- **since**: the oldest release line the page is correct for, as a quoted string: `"3.9"`, `"3.10"` or `"4.0"`. See [Versions](#versions).
-- **terms**: the files, POM and settings elements, command-line options, properties and plugins the page explains, written as the reader types them: `settings.xml`, `<mirrorOf>`, `-pl`, `maven.compiler.release`, `maven-toolchains-plugin`. They feed the A–Z index and rank highest in search after the title, so list the ones a reader would look up, not every element that appears in passing.
-- **keywords**: words a reader may search for that are not in the title or summary: synonyms, product names, terms from Gradle or other tools, the error message they are seeing.
-- **order**: position among pages on the same subject, lowest first. Tutorials are read in this order. The order in the navigation is the order in `site_map.yml`.
-- **source**: what the page was written from. A path under `content/markdown/` for a page of this site (`guides/mini/guide-using-toolchains.md`), or `apache/<repository>:<path>` for documentation in another repository (`apache/maven:impl/maven-core/src/site/markdown/inheritance.md`). When a guide page takes the place of a Maven page, list that page under `replaces` in `site_map.yml`; its URL then redirects to the guide page.
+- **since**: the oldest release line the page is correct for: `3.9`, `3.10` or `4.0`. See [Versions](#versions).
+- **keywords**: words a reader may search for that are not in the title or summary, separated by commas: synonyms, product names, terms from Gradle or other tools, the error message they are seeing.
+- **terms**: the files, POM and settings elements, command-line options, properties and plugins the page explains, separated by `|`, written as the reader types them: `settings.xml`, `<mirrorOf>`, `-pl`, `maven.compiler.release`, `maven-toolchains-plugin`. They feed the A–Z index and rank highest in search after the title, so list the ones a reader would look up, not every element that appears in passing.
+
+## Replacing a page
+
+Every address the site has published keeps working, with every anchor on it; `mvn site` checks this against `src/published-addresses.txt` (see `src/main/java/org/apache/maven/site/check/`). When a new page takes over the content of an old one:
+
+- If the old page moved to the new structure and the new page keeps its address, keep the headings that links point at, or add an `<a id="Old_heading"></a>` before the section that took its place.
+- If the old content is split over several pages, turn the old address into a page that forwards: an XHTML file at the old path under `content/xhtml/` with a `<section class="moved">`, one list item per old anchor pointing at its new place, as in `content/xhtml/configure.xhtml`. Remove the `Redirect` for that address from `content/filtered-resources/.htaccess`.
+- Run `mvn site`; the address check names every address or anchor that no longer leads anywhere.
 
 ## The four kinds
 
@@ -63,9 +65,9 @@ A page that does two of these jobs is two pages. When a section starts explainin
 
 ## Versions
 
-The guide describes the release lines in `jekyll/_data/releases.yml`: Maven 3.9 and 3.10, and Maven 4.0 while it is a release candidate.
+The guide describes the release lines Maven 3.9 and 3.10, and Maven 4.0 while it is a release candidate.
 
-`since` holds the oldest line for which the page is correct. A page that holds on 3.9, 3.10 and 4.0 has `since: "3.9"`. A page about something only Maven 4 has, such as mixins or the `<subprojects>` element, has `since: "4.0"` and is marked as not yet released. Do not keep a second copy of a page for another line.
+`since` holds the oldest line for which the page is correct. A page that holds on 3.9, 3.10 and 4.0 has `since: 3.9`. A page about something only Maven 4 has, such as mixins or the `<subprojects>` element, has `since: 4.0` and is marked as not yet released. Do not keep a second copy of a page for another line.
 
 When a single paragraph differs between the lines, keep one page and mark the paragraph with a quote that starts with the line:
 
@@ -83,4 +85,4 @@ When a single paragraph differs between the lines, keep one page and mark the pa
 - Every command and configuration on a page is run on the lines in its `since` before the page is published: Maven 3.9.16 and 3.10.0, and 4.0.0-rc-7 for pages and notes about Maven 4.
 - Headings in the page are `##` and `###`; the page title is the only `#` and comes from the front matter. Sections at `##` level appear in "On this page" and as search results of their own, so give them headings a reader would search for.
 - The layout lists the other pages of the group beside and under every page, with the previous and next page, so do not end a page with a list of related pages; link in the text where a link helps.
-- Link to other guide pages relatively, as if the guide were published under `/guides/`: `mirror-settings.html`, to a section with `#Heading_text` in the form Doxia gives headings (spaces become `_`, other characters `.XX`). Link to the rest of the site with the URLs it has on maven.apache.org, relatively as well, `../settings.html#Mirrors`. The build points every link at the page's new place.
+- Link relatively to the page's new place: `mirror-settings.html`, `../reference/pom.html`, and to a section with `#Heading_text` in the form Doxia gives headings (spaces become `_`, other characters `.XX`). Link to a plugin or component site with its path on maven.apache.org, `../../plugins/maven-dependency-plugin/`.
