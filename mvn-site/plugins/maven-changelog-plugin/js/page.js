@@ -25,7 +25,7 @@
 //  - code blocks and tables that fit their width leave the tab order; the skin puts every one in it,
 //    so a keyboard can scroll the ones that do not fit.
 (function () {
-    document.querySelectorAll('pre[tabindex="0"], .table-scroll[tabindex="0"]').forEach(function (block) {
+    document.querySelectorAll('pre[tabindex="0"], .table-scroll[tabindex="0"], figure.diagram[tabindex="0"]').forEach(function (block) {
         if (block.scrollWidth <= block.clientWidth) block.removeAttribute('tabindex');
     });
 
