@@ -71,6 +71,8 @@ Redirect Permanent /shared/maven-archiver/examples/manifestFile.html /docs/recip
 Redirect Permanent /shared/maven-archiver/examples/manifestSections.html /docs/recipes/manifests.html#Manifest_Sections
 
 RedirectMatch ^/maven2/(.*)$ /$1
+# before the rule for /reference/, which would match first
+Redirect Permanent /reference/maven-classloading.html /docs/reference/classloading-core.html
 RedirectMatch ^/reference/(.*)$ /archives/maven-1.x/reference/$1
 RedirectMatch ^/maven-1.x/reference/plugins/(.*)$ /archives/maven-1.x/plugins/$1
 RedirectMatch ^/maven-aether-provider/(.*)$ /ref/3.10.0/maven-aether-provider/$1
@@ -302,7 +304,6 @@ Redirect Permanent /pom.html /docs/reference/pom.html
 Redirect Permanent /pom/index.html /extend/building-blocks/parent-poms.html
 Redirect Permanent /project-faq.html /extend/central/metadata-faq.html
 Redirect Permanent /project-roles.html /community/project/roles.html
-Redirect Permanent /reference/maven-classloading.html /docs/reference/classloading-core.html
 Redirect Permanent /release-notes-all.html /downloads/releases/release-notes.html
 Redirect Permanent /repositories/artifacts.html /extend/repository-format/artifacts.html
 Redirect Permanent /repositories/dependencies.html /extend/repository-format/dependencies.html
