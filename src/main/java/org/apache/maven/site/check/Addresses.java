@@ -547,7 +547,7 @@ public class Addresses {
         }
         if (newAddresses + newAnchors > 0) {
             System.out.printf(
-                    "Not on the list yet: %s and %s; add them with: mvn site -Daddresses=record%n",
+                    "Not on the list yet: %s and %s; add them with: mvn clean site -Daddresses=record%n",
                     count(newAddresses, "address", "addresses"), count(newAnchors, "anchor", "anchors"));
         }
         return problems.size();
