@@ -252,6 +252,23 @@
               </arguments>
             </configuration>
           </execution>
+          <!-- "On this page" in the HTML, so that it needs no JavaScript -->
+          <execution>
+            <id>on-this-page</id>
+            <goals>
+              <goal>exec</goal>
+            </goals>
+            <phase>site</phase>
+            <configuration>
+              <executable>${java.home}/bin/java</executable>
+              <arguments>
+                <argument>-classpath</argument>
+                <classpath />
+                <argument>${project.basedir}/src/main/java/org/apache/maven/site/render/OnThisPage.java</argument>
+                <argument>${project.reporting.outputDirectory}</argument>
+              </arguments>
+            </configuration>
+          </execution>
           <execution>
             <id>search-index</id>
             <goals>

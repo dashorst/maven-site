@@ -212,7 +212,7 @@ Maven's wordmark navy and feather orange on a cool white, with a ladder of blue-
 
 ## Layout
 
-A centred grid up to 84rem wide with a responsive gutter of clamp(1rem, 3vw, 2rem). An inner page has three columns: the side panel (15rem), the reading column (up to 46rem) and the rail (12 to 15rem), with 3rem between them. The side panel and the rail are sticky at 1rem from the top; the side panel scrolls on its own when the group is long. Pages without a group drop the side panel; pages without facts drop the rail; section landings and search widen the single column to 66rem.
+A centred grid up to 84rem wide with a responsive gutter of clamp(1rem, 3vw, 2rem). An inner page has three columns: the side panel (15rem), the reading column (up to 46rem) and the rail (12 to 15rem), with 3rem between them. The side panel and the rail are sticky at 1rem from the top; the side panel scrolls on its own when the group is long. Pages without a group drop the side panel; pages without facts drop the rail, except a group landing with headings, whose rail holds only "On this page"; other landings and search widen the single column to 66rem.
 
 Below 1180px the rail disappears: a copy of the page facts sits in the text after the title and lead, and "On this page" is hidden. Below 1000px the tabs move to a second row of the masthead and scroll sideways. Below 860px the side panel disappears; the "More in [group]" block at the end of the text, with previous/next, carries group navigation on its own. Below 560px the search field takes a full row of the masthead, the logo shrinks to 170px and previous/next stack.
 

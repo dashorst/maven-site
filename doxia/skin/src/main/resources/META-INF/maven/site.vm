@@ -24,8 +24,9 @@ under the License.
 ## library) has no such menu: it gets the sections of the main site as tabs, and its own menus in
 ## the side panel; see "A component site" below. A page's facts come from its front matter,
 ## which Doxia's Markdown parser turns into <meta> elements in $headContent.
-## Everything works without JavaScript; js/page.js only adds "On this page", heading anchors and
-## narrows the search page's list, js/search.js answers from search.json (written after site:site
+## Everything works without JavaScript: "On this page" is written into the rail after site:site
+## by OnThisPage (see the pom). js/page.js only adds heading anchors, fills "On this page" on sites
+## built without that step, narrows the search page's list, js/search.js answers from search.json (written after site:site
 ## by SearchIndex, see the pom) while you type.
 ##
 #macro( href $item )#if( $site.isLink( $item.href ) )$item.href#else$PathTool.calculateLink( $item.href, $relativePath ).replaceAll( '\\', '/' )#end#end
@@ -200,6 +201,8 @@ under the License.
 #readMeta( "terms" )#set( $terms = $metaValue )
 #readMeta( "facts" )#set( $noFacts = $metaValue == "none" )
 #set( $showFacts = $isComponent || !$isHome && !$isLanding && !$noFacts && $docRenderingContext.isDoxiaSource() )
+## A group landing gets a rail with only "On this page"; OnThisPage removes it when the page has no headings.
+#set( $showRail = $showFacts || ( $group && $isLanding ) )
 #set( $series = [] )
 #if( $kind )
 #**##foreach( $line in ["3.9", "3.10", "4.0"] )
@@ -344,7 +347,7 @@ under the License.
 $bodyContent
   </main>
 #else
-  <div class="frame#if( $showGroup ) has-group#end#if( !$showFacts ) no-rail#end">
+  <div class="frame#if( $showGroup ) has-group#end#if( !$showRail ) no-rail#end">
 #**##if( $isComponent && $showGroup )
     <nav class="group-nav" aria-labelledby="group-nav-title">
       <h2 id="group-nav-title"><a href="$part.href">$esc.xml( $part.name )</a></h2>
@@ -397,10 +400,12 @@ $bodyContent
       </nav>
 #**##end
     </main>
-#**##if( $showFacts )
+#**##if( $showRail )
     <aside class="rail">
-#*  *##set( $factsClass = "facts" )
-#*  *##if( $isComponent )#parse( "component-facts.vm" )#else#parse( "facts.vm" )#end
+#*  *##if( $showFacts )
+#*    *##set( $factsClass = "facts" )
+#*    *##if( $isComponent )#parse( "component-facts.vm" )#else#parse( "facts.vm" )#end
+#*  *##end
       <nav id="on-this-page" aria-label="On this page"></nav>
     </aside>
 #**##end
