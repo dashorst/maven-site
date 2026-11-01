@@ -62,20 +62,20 @@
   <li><a href="../../docs/dependencies/exclude-a-dependency.html">Exclude a transitive dependency</a></li>
   <li><a href="../../docs/dependencies/use-a-bom.html">Use a BOM, and publish one</a></li>
   <li><a href="../../docs/dependencies/make-a-dependency-optional.html">Make a dependency optional</a></li>
-  <li><a href="../../docs/dependencies/resolution-misconceptions.html">Dependency resolution misconceptions</a></li>
   <li><a href="../../docs/dependencies/repositories.html">Repositories explained</a></li>
-  <li><a href="../../docs/dependencies/repository-manager.html">Why use a repository manager</a></li>
   <li><a href="../../docs/dependencies/mirror-settings.html">Use a mirror or repository manager (Nexus, Artifactory)</a></li>
+  <li><a href="../../docs/dependencies/repository-manager.html">Why use a repository manager</a></li>
   <li><a href="../../docs/dependencies/several-repositories.html">Use several repositories</a></li>
   <li><a href="../../docs/dependencies/third-party-jar-local.html">Install a third-party JAR locally</a></li>
   <li><a href="../../docs/dependencies/third-party-jar-remote.html">Deploy a third-party JAR to a remote repository</a></li>
   <li><a href="../../docs/dependencies/https-repositories.html">Authenticated HTTPS repositories</a></li>
-  <li><a href="../../docs/dependencies/centralized-deployments.html">Large centralized deployments</a></li>
-  <li><a href="../../docs/dependencies/naming-coordinates.html">Naming your coordinates</a></li>
   <li><a href="../../docs/dependencies/resolver-transport.html">Resolver transport</a></li>
   <li><a href="../../docs/dependencies/wagon-http.html">HTTP options of the Wagon transport</a></li>
   <li><a href="../../docs/dependencies/wagon-providers.html">Alternative Wagon providers</a></li>
   <li><a href="../../docs/dependencies/deployment-transports.html">Deploy over HTTP, FTP and SSH</a></li>
+  <li><a href="../../docs/dependencies/resolution-misconceptions.html">Dependency resolution misconceptions</a></li>
+  <li><a href="../../docs/dependencies/centralized-deployments.html">Large centralized deployments</a></li>
+  <li><a href="../../docs/dependencies/naming-coordinates.html">Naming your coordinates</a></li>
 </ul>
     </nav>
     <main id="content" data-kind="explanation" data-since="3.9">
@@ -124,8 +124,7 @@
 [INFO]    \- (commons-codec:commons-codec:jar:1.15:compile - omitted for conflict with 1.11)
 </code></pre>
 <p>Both versions of Commons Codec are two steps away, and <code>httpclient</code> comes first, so the project gets 1.11, although <code>httpclient5</code> was built against 1.15. Change the order of the two dependencies and it gets 1.15.</p>
-<p>Maven does not pick the newest version. The rule gives a predictable result that you control from your own POM: whatever a dependency asks for, you overrule it by declaring or managing the library yourself. The price is that a dependency can get an older version than it was built for, and fail at runtime with a <code>NoSuchMethodError</code>.</p>
-<p>Two tools keep diverging versions in check. To choose the version yourself, <a href="control-a-transitive-version.html#Set_the_version_in_dependencyManagement">manage it</a> in <code>&lt;dependencyManagement&gt;</code>. To make the build fail when versions diverge, add a rule of the Enforcer plugin: <a href="control-a-transitive-version.html#Fail_the_build_when_a_dependency_gets_an_older_version"><code>requireUpperBoundDeps</code></a> fails when a dependency gets an older version than it asks for, and <code>dependencyConvergence</code> fails on any difference.</p></section><section><a id="Managed_versions_come_first"></a>
+<p>Maven does not pick the newest version. The rule gives a predictable result that you control from your own POM: whatever a dependency asks for, you overrule it by declaring or managing the library yourself. The price is that a dependency can get an older version than it was built for, and fail at runtime with a <code>NoSuchMethodError</code>. <a href="control-a-transitive-version.html">Control the version of a transitive dependency</a> shows how to choose the version and how to make the build fail on such a downgrade.</p></section><section><a id="Managed_versions_come_first"></a>
 <h2>Managed versions come first</h2>
 <p><code>&lt;dependencyManagement&gt;</code> sets versions without adding dependencies. A managed version is not a candidate in the contest above: it replaces the version wherever the library appears in the graph, at any depth, and whatever the dependency's POM asks for. That makes it the tool for transitive dependencies: you choose the version of a library you do not declare.</p>
 <p>Managed versions come from your own POM, from its parents, and from BOMs imported with scope <code>import</code>. Your own POM wins over its parent, and a version written in <code>&lt;dependencyManagement&gt;</code> wins over one from an imported BOM. Of two imported BOMs, the first one wins.</p>
@@ -208,20 +207,20 @@
   <li><a href="../../docs/dependencies/exclude-a-dependency.html">Exclude a transitive dependency</a></li>
   <li><a href="../../docs/dependencies/use-a-bom.html">Use a BOM, and publish one</a></li>
   <li><a href="../../docs/dependencies/make-a-dependency-optional.html">Make a dependency optional</a></li>
-  <li><a href="../../docs/dependencies/resolution-misconceptions.html">Dependency resolution misconceptions</a></li>
   <li><a href="../../docs/dependencies/repositories.html">Repositories explained</a></li>
-  <li><a href="../../docs/dependencies/repository-manager.html">Why use a repository manager</a></li>
   <li><a href="../../docs/dependencies/mirror-settings.html">Use a mirror or repository manager (Nexus, Artifactory)</a></li>
+  <li><a href="../../docs/dependencies/repository-manager.html">Why use a repository manager</a></li>
   <li><a href="../../docs/dependencies/several-repositories.html">Use several repositories</a></li>
   <li><a href="../../docs/dependencies/third-party-jar-local.html">Install a third-party JAR locally</a></li>
   <li><a href="../../docs/dependencies/third-party-jar-remote.html">Deploy a third-party JAR to a remote repository</a></li>
   <li><a href="../../docs/dependencies/https-repositories.html">Authenticated HTTPS repositories</a></li>
-  <li><a href="../../docs/dependencies/centralized-deployments.html">Large centralized deployments</a></li>
-  <li><a href="../../docs/dependencies/naming-coordinates.html">Naming your coordinates</a></li>
   <li><a href="../../docs/dependencies/resolver-transport.html">Resolver transport</a></li>
   <li><a href="../../docs/dependencies/wagon-http.html">HTTP options of the Wagon transport</a></li>
   <li><a href="../../docs/dependencies/wagon-providers.html">Alternative Wagon providers</a></li>
   <li><a href="../../docs/dependencies/deployment-transports.html">Deploy over HTTP, FTP and SSH</a></li>
+  <li><a href="../../docs/dependencies/resolution-misconceptions.html">Dependency resolution misconceptions</a></li>
+  <li><a href="../../docs/dependencies/centralized-deployments.html">Large centralized deployments</a></li>
+  <li><a href="../../docs/dependencies/naming-coordinates.html">Naming your coordinates</a></li>
 </ul>
         <p class="steps"><a class="step step--next" href="../../docs/dependencies/scopes.html" rel="next"><span class="step-dir">Next</span> Dependency scopes</a></p>
       </nav>

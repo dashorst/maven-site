@@ -1,0 +1,3 @@
+org.apache.maven.plugins.maven_scripting_plugin
+org.apache.maven.plugins.scripting
+org.apache.maven.plugins.scripting.engine

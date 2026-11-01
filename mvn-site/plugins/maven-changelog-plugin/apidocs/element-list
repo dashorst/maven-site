@@ -1,0 +1,3 @@
+org.apache.maven.plugins.changelog
+org.apache.maven.plugins.changelog.scm.provider.svn.svnexe.command.info
+org.apache.maven.plugins.maven_changelog_plugin

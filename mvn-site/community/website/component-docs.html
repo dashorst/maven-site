@@ -76,7 +76,7 @@
 </section>
  <section><a id="Introduction"></a>
 <h1>Introduction</h1>
-<p>This document gives step-by-step instructions for deploying Maven components reference documentation inside the Maven <a href="/">https://maven.apache.org/</a> website.</p>
+<p>This document gives step-by-step instructions for deploying Maven components reference documentation inside the Maven <a href="../../">https://maven.apache.org/</a> website.</p>
 <p>See <a href="overview.html">Maven website introduction</a> for instructions on the whole website publication (main site content + components).</p></section><section><a id="Overview"></a>
 <h1>Overview</h1>
 <p>Since December 2012, the overall website uses svnpubsub mechanism:</p>
@@ -87,8 +87,8 @@
 <p>Reference documentation of a component is staged in <code>https://maven.apache.org/xxx-archives/yyy-LATEST/</code>, where <code>yyy</code> is the component name and <code>xxx</code> can be:</p>
 <ul>
 
-<li>the component type, like <code>shared</code>, <code>plugins</code>, <code>skins</code>, &#x2026; (see <a href="/shared-archives/">/shared-archives/</a>, <a href="/plugins-archives/">/plugins-archives/</a>, <a href="/pom-archives/">/pom-archives/</a>, <a href="/skins-archives/">/skins-archives/</a>)</li>
-<li>the component name for standalone components, like <code>archetype</code>, <code>plugin-tools</code>, <code>surefire</code>, <code>wagon</code>, &#x2026; (see <a href="/archetype-archives/">/archetype-archives/</a>, <a href="/archetypes-archives/">/archetypes-archives/</a>, <a href="/plugin-tools-archives/">/plugin-tools-archives/</a>, <a href="/scm-archives/">/scm-archives/</a>, <a href="/surefire-archives/">/surefire-archives/</a>, <a href="/wagon-archives/">/wagon-archives/</a>)</li>
+<li>the component type, like <code>shared</code>, <code>plugins</code>, <code>skins</code>, &#x2026; (see <a href="../../shared-archives/">/shared-archives/</a>, <a href="../../plugins-archives/">/plugins-archives/</a>, <a href="../../pom-archives/">/pom-archives/</a>, <a href="../../skins-archives/">/skins-archives/</a>)</li>
+<li>the component name for standalone components, like <code>archetype</code>, <code>plugin-tools</code>, <code>surefire</code>, <code>wagon</code>, &#x2026; (see <a href="../../archetype-archives/">/archetype-archives/</a>, <a href="../../archetypes-archives/">/archetypes-archives/</a>, <a href="../../plugin-tools-archives/">/plugin-tools-archives/</a>, <a href="../../scm-archives/">/scm-archives/</a>, <a href="../../surefire-archives/">/surefire-archives/</a>, <a href="../../wagon-archives/">/wagon-archives/</a>)</li>
 </ul>
 <p>To publish component reference documentation:</p>
 <ol style="list-style-type: decimal;">
@@ -106,13 +106,13 @@
 </code></pre>
 <p>Notice: <code>site:stage</code> is really necessary only for multi-modules components, but added unconditionally in these instructions to keep them as straightforward as possible.</p></li>
 <li>
-<p>stage the reference documentation to website production svn area, using <a href="/plugins/maven-scm-publish-plugin">maven-scm-publish-plugin</a>: (TODO: explanations on configuration in pom to yyy-LATEST)</p>
+<p>stage the reference documentation to website production svn area, using <a href="../../plugins/maven-scm-publish-plugin">maven-scm-publish-plugin</a>: (TODO: explanations on configuration in pom to yyy-LATEST)</p>
 
 <pre tabindex="0"><code class="nohighlight nocode">mvn scm-publish:publish-scm
 </code></pre>
 <p>svnpubsub mechanism transfers svn production content to live production site</p></li>
 </ol>
-<p><strong>Notice</strong>: content is in fact published to <a href="/components/">/components/</a> directory, and symbolic links declared in <code>resources/**/components.links</code> in main site source are used by Ant to create a reference from <code>/xxx</code> (= what we want to be user-visible) to <code>/components/xxx</code> (what is checked out).</p></section><section><a id="Publishing_versioned_component_reference_documentation"></a>
+<p><strong>Notice</strong>: content is in fact published to <a href="../../components/">/components/</a> directory, and symbolic links declared in <code>resources/**/components.links</code> in main site source are used by Ant to create a reference from <code>/xxx</code> (= what we want to be user-visible) to <code>/components/xxx</code> (what is checked out).</p></section><section><a id="Publishing_versioned_component_reference_documentation"></a>
 <h2>Publishing versioned component reference documentation</h2>
 <p>When doing a release, <code>yyy-LATEST</code> content staged in previous section needs:</p>
 <ol style="list-style-type: decimal;">
@@ -155,7 +155,7 @@ svn cp %SVNPUBSUB%/xxx-archives/yyy-$version %SVNPUBSUB%/xxx/yyy -m &quot;Publis
 </code></pre>
 <p>When using Windows, replace the <code>\</code> with <code>^</code> to ensure correct multiline command execution.</p></section><section><a id="Updating_index_page_in_the_Maven_site"></a>
 <h2>Updating index page in the Maven site</h2>
-<p>Some component types have an index page refering to each component of the same type. This is the case for plugins (see <a href="/docs/plugins/available-plugins.html">index</a>), shared (see <a href="/extend/building-blocks/shared-components.html">index</a>), poms (see <a href="/extend/building-blocks/parent-poms.html">index</a>) and skins (see <a href="/docs/site/skins.html">index</a>).</p>
+<p>Some component types have an index page refering to each component of the same type. This is the case for plugins (see <a href="../../docs/plugins/available-plugins.html">index</a>), shared (see <a href="../../extend/building-blocks/shared-components.html">index</a>), poms (see <a href="../../extend/building-blocks/parent-poms.html">index</a>) and skins (see <a href="../../docs/site/skins.html">index</a>).</p>
 <p>Update the version number and release date for the component in the <code>content/apt/xxx/index.apt</code> page.</p>
 <p>See <a href="deploy.html">Deploy Maven website</a> for more in-depth instructions on main site content editing.</p>
 <p><strong>Notice</strong>: if you forget about updating the index page, dist-tool has a <a href="https://ci-maven.apache.org/job/Maven/job/maven-box/job/maven-dist-tool/job/master/site/" class="externalLink">report run daily</a> that will gently send a failure notification on <a href="mailto:notifications@maven.a.o" class="externalLink">notifications@maven.a.o</a> when &#x201c;Check Errors&#x201d; report is not empty.</p></section></section>

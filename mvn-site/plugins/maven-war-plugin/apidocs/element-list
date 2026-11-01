@@ -1,0 +1,5 @@
+org.apache.maven.plugins.maven_war_plugin
+org.apache.maven.plugins.war
+org.apache.maven.plugins.war.overlay
+org.apache.maven.plugins.war.packaging
+org.apache.maven.plugins.war.util

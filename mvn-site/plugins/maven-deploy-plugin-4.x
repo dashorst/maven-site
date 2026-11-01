@@ -1,1 +1,0 @@
-../components/plugins/maven-deploy-plugin-4.x

@@ -82,7 +82,7 @@
 <ul>
 
 <li>you have a recent Git client installed and on your shell's path.</li>
-<li>you have JDK installed and on your shell's path to build Maven 3.9.0+. Details about minimum JDK version to build can be found here: <a href="/downloads/releases/history.html">https://maven.apache.org/docs/history.html</a></li>
+<li>you have JDK installed and on your shell's path to build Maven 3.9.0+. Details about minimum JDK version to build can be found here: <a href="../../downloads/releases/history.html">https://maven.apache.org/docs/history.html</a></li>
 <li>if you receive an OutOfMemoryError during the build, make sure to have set the environment variable <code>MAVEN_OPTS=-Xmx512m</code></li>
 <li>follow Apache environment configuration steps outlined at: <a href="https://www.apache.org/dev/publishing-maven-artifacts.html#dev-env" class="externalLink">Publishing Maven Artifacts</a>.</li>
 <li>check <a href="gpg-keys.html">your Public GPG key</a> which will be used for release.</li>
@@ -141,7 +141,7 @@
 
 <li>Look for candidate project at <a href="https://releases.apache.org/committees/maven" class="externalLink">ATR</a></li>
 <li>Start a new release by providing the version</li>
-<li>Upload the &#x2018;source-release&#x2019; with <code>mvn release:perform -Ppush-to-atr</code> (<a href="/pom/asf/#the-push-to-atr-profile"><code>push-to-atr</code> profile</a>)</li>
+<li>Upload the &#x2018;source-release&#x2019; with <code>mvn release:perform -Ppush-to-atr</code> (<a href="../../pom/asf/#the-push-to-atr-profile"><code>push-to-atr</code> profile</a>)</li>
 <li>Start the vote and wait for the result</li>
 <li>After the vote is successful, <code>ATR</code> will promote the &#x2018;source-release&#x2019; to the Apache distribution area, <strong>NOTE</strong> old releases are not removed yet</li>
 <li>Finish the release by sending the announcement in <code>ATR</code></li>
@@ -183,7 +183,7 @@ Vote open for at least 72 hours.
 </code></pre></section><section><a id="Check_the_vote_results"></a>
 <h2>Check the vote results</h2>
 <p>If using ATR, vote result can be automated. If still doing manual vote, you can follow classical manual instructions:</p>
-<p>The &#x201c;vote is open for at least 72 hours&#x201d; means that you need to wait <em>at least</em> 72 hours before proceeding. This gives others time to test your staged release and check that everything is good, with the help of our <a href="/community/contribute/test-staged-releases.html">Guide to testing staged releases</a>.</p>
+<p>The &#x201c;vote is open for at least 72 hours&#x201d; means that you need to wait <em>at least</em> 72 hours before proceeding. This gives others time to test your staged release and check that everything is good, with the help of our <a href="../../community/contribute/test-staged-releases.html">Guide to testing staged releases</a>.</p>
 <p>If after that period you have not received enough +1 votes to reach the quorum, this doesn't mean the vote failed: it just takes a bit longer.</p>
 <p>Copied from <a href="https://www.apache.org/foundation/voting.html#ReleaseVotes" class="externalLink">Votes on Package Releases</a>.</p>
 <blockquote>
@@ -258,7 +258,7 @@ wagon/wagon-2.2-source-release.zip.sha512
 <li>
 <p>Deploy the current website</p>
 <p>As above, deploy the website if appropriate and update the project site for the new release: use <a href="../website/component-docs-helper.html">Component Reference Documentation Helper</a> to generate commands or see <a href="../website/component-docs.html#Publishing_versioned_component_reference_documentation">Publishing versioned component reference documentation</a> for explanations. Note that not all projects follow these conventions exactly.</p>
-<p>In case there's an overview table with version (e.g. <a href="/docs/plugins/available-plugins.html">plugins</a>, <a href="/extend/building-blocks/shared-components.html">shared</a>, <a href="/docs/site/skins.html">skins</a>), update the table: you can directly edit it on the GitHub page. You can run <a href="https://github.com/apache/maven-site/actions/workflows/update-releases.yml" class="externalLink">Update Maven Release Metadata</a> workflow to prepare PR with updates automatically.</p>
+<p>In case there's an overview table with version (e.g. <a href="../../docs/plugins/available-plugins.html">plugins</a>, <a href="../../extend/building-blocks/shared-components.html">shared</a>, <a href="../../docs/site/skins.html">skins</a>), update the table: you can directly edit it on the GitHub page. You can run <a href="https://github.com/apache/maven-site/actions/workflows/update-releases.yml" class="externalLink">Update Maven Release Metadata</a> workflow to prepare PR with updates automatically.</p>
 <p>For plugins and shared, you can also run <code>mvn -Pupdate package</code> of the site, then review and commit proposed <code>index.apt</code> updates.</p></li>
 <li>
 <p>Publish release notes draft in GitHub</p>

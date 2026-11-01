@@ -1,0 +1,9 @@
+org.apache.maven.plugins.maven_shade_plugin
+org.apache.maven.plugins.shade
+org.apache.maven.plugins.shade.filter
+org.apache.maven.plugins.shade.mojo
+org.apache.maven.plugins.shade.pom
+org.apache.maven.plugins.shade.relocation
+org.apache.maven.plugins.shade.resource
+org.apache.maven.plugins.shade.resource.properties
+org.apache.maven.plugins.shade.resource.properties.io

@@ -109,7 +109,7 @@
 <p><a href="the-pom.html">top</a></p></section><section><a id="Super_POM"></a>
 <h2>Super POM</h2>
 <p>The Super POM is Maven's default POM. All POMs extend the Super POM unless explicitly set, meaning the configuration specified in the Super POM is inherited by the POMs you created for your projects.</p>
-<p>You can see the <a href="/maven-model-builder/super-pom.html">Super POM for the latest Maven 3 release</a> in Maven Core reference documentation.</p>
+<p>You can see the <a href="../../maven-model-builder/super-pom.html">Super POM for the latest Maven 3 release</a> in Maven Core reference documentation.</p>
 <p><a href="the-pom.html">top</a></p></section><section><a id="Minimal_POM"></a>
 <h2>Minimal POM</h2>
 <p>The minimum requirement for a POM are the following:</p>
@@ -399,7 +399,7 @@
 <p>One factor to note is that these variables are processed <em>after</em> inheritance as outlined above. This means that if a parent project uses a variable, then its definition in the child, not the parent, will be the one eventually used.</p><section><a id="Available_Variables"></a>
 <h3>Available Variables</h3><section><a id="Project_Model_Variables"></a>
 <h4>Project Model Variables</h4>
-<p>Any field of the model that is a single value element can be referenced as a variable. For example, <code>${project.groupId}</code>, <code>${project.version}</code>, <code>${project.build.sourceDirectory}</code> and so on. Refer to the <a href="/docs/reference/pom.html">POM reference</a> to see a full list of properties.</p>
+<p>Any field of the model that is a single value element can be referenced as a variable. For example, <code>${project.groupId}</code>, <code>${project.version}</code>, <code>${project.build.sourceDirectory}</code> and so on. Refer to the <a href="../../docs/reference/pom.html">POM reference</a> to see a full list of properties.</p>
 <p>These variables are all referenced by the prefix “<code>project.</code>”. You may also see references with <code>pom.</code> as the prefix, or the prefix omitted entirely - these forms are now deprecated and should not be used.</p></section><section><a id="Special_Variables"></a>
 <h4>Special Variables</h4>
 <div class="table-scroll" tabindex="0"><table class="bodyTable">

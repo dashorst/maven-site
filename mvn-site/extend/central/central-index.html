@@ -84,15 +84,15 @@
 <li>full index (<code>nexus-maven-repository-index.gz</code>) is updated weekly,</li>
 <li>incremental index (<code>nexus-maven-repository-index.&lt;n&gt;.gz</code> + <code>nexus-maven-repository-index.properties</code>).</li>
 </ul>
-<p>This index is built using <a href="/maven-indexer/">Maven Indexer</a>: see <a href="/maven-indexer/indexer-core/">indexer-core documentation</a> for more details on the available fields.</p>
-<p>You can use <a href="/maven-indexer/indexer-core/apidocs/">Maven Indexer API</a> (see <a href="/maven-indexer/indexer-examples/">examples</a>) to use this index with a dedicated API, or use <a href="https://lucene.apache.org/" class="externalLink">Apache Lucene</a> indexes browsers like <a href="https://github.com/DmitryKey/luke" class="externalLink">Luke</a> or <a href="https://github.com/flaxsearch/marple" class="externalLink">Marple</a> after unpacking the index (see <a href="/maven-indexer/indexer-cli/"><code>-u</code> CLI option</a>).</p><section><a id="Digging_Into_Central_Index_with_Luke"></a>
+<p>This index is built using <a href="../../maven-indexer/">Maven Indexer</a>: see <a href="../../maven-indexer/indexer-core/">indexer-core documentation</a> for more details on the available fields.</p>
+<p>You can use <a href="../../maven-indexer/indexer-core/apidocs/">Maven Indexer API</a> (see <a href="../../maven-indexer/indexer-examples/">examples</a>) to use this index with a dedicated API, or use <a href="https://lucene.apache.org/" class="externalLink">Apache Lucene</a> indexes browsers like <a href="https://github.com/DmitryKey/luke" class="externalLink">Luke</a> or <a href="https://github.com/flaxsearch/marple" class="externalLink">Marple</a> after unpacking the index (see <a href="../../maven-indexer/indexer-cli/"><code>-u</code> CLI option</a>).</p><section><a id="Digging_Into_Central_Index_with_Luke"></a>
 <h2>Digging Into Central Index with Luke</h2>
 <ul>
 
 <li>
 <p>download <a href="https://repo.maven.apache.org/maven2/.index/" class="externalLink">the Central index: <code>nexus-maven-repository-index.gz</code></a></p></li>
 <li>
-<p>download <a href="https://repo.maven.apache.org/maven2/org/apache/maven/indexer/indexer-cli/5.1.1/indexer-cli-5.1.1.jar" class="externalLink">Maven Indexer CLI</a> and <a href="/maven-indexer-archives/maven-indexer-LATEST/indexer-cli/">unpack</a> the index to raw Lucene index directory:</p>
+<p>download <a href="https://repo.maven.apache.org/maven2/org/apache/maven/indexer/indexer-cli/5.1.1/indexer-cli-5.1.1.jar" class="externalLink">Maven Indexer CLI</a> and <a href="../../maven-indexer-archives/maven-indexer-LATEST/indexer-cli/">unpack</a> the index to raw Lucene index directory:</p>
 
 <pre tabindex="0"><code class="nohighlight nocode">java -jar indexer-cli-5.1.1.jar --unpack nexus-maven-repository-index.gz --destination central-lucene-index --type full
 
@@ -104,7 +104,7 @@
 
 </code></pre>
 <p>You need an old Luke version using an old Lucene version, since Maven Indexer 5.5.1 uses Lucene 3.6.2: for this tutorial, we chose Luke version 4.10.4, but you may choose another version.</p>
-<p>But with more recent Maven Indexer releases, more recent Lucene version have been used: see <a href="/maven-indexer/indexer-core/dependencies.html">Maven Indexer dependencies</a>.</p></li>
+<p>But with more recent Maven Indexer releases, more recent Lucene version have been used: see <a href="../../maven-indexer/indexer-core/dependencies.html">Maven Indexer dependencies</a>.</p></li>
 </ul></section></section>
       </div>
       <nav class="more" aria-labelledby="more-title">

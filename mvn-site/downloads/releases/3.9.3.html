@@ -71,8 +71,8 @@
 <ul>
 
 <li>the website: <a href="https://maven.apache.org/" class="externalLink">https://maven.apache.org/</a></li>
-<li>the maven-user mailing list: <a href="/mailing-lists.html">https://maven.apache.org/mailing-lists.html</a></li>
-<li>the reference documentation: <a href="/ref/3.9.3/">https://maven.apache.org/ref/3.9.3/</a></li>
+<li>the maven-user mailing list: <a href="../../mailing-lists.html">https://maven.apache.org/mailing-lists.html</a></li>
+<li>the reference documentation: <a href="../../ref/3.9.3/">https://maven.apache.org/ref/3.9.3/</a></li>
 </ul><section><a id="Overview_About_the_Changes"></a>
 <h2>Overview About the Changes</h2>
 <ul>
@@ -91,7 +91,7 @@
 <h3>Potentially Breaking Core Changes (if migrating from 3.8.x)</h3>
 <ul>
 
-<li>The Maven Resolver transport has changed from Wagon to &#x201c;native HTTP&#x201d;, see <a href="/docs/dependencies/resolver-transport.html">Resolver Transport guide</a>.</li>
+<li>The Maven Resolver transport has changed from Wagon to &#x201c;native HTTP&#x201d;, see <a href="../../docs/dependencies/resolver-transport.html">Resolver Transport guide</a>.</li>
 <li>Maven 2.x was auto-injecting an ancient version of <code>plexus-utils</code> dependency into the plugin classpath, and Maven 3.x continued doing this to preserve backward compatibility. Starting with Maven 3.9, it does not happen anymore. This change may lead to plugin breakage. The fix for affected plugin maintainers is to explicitly declare a dependency on <code>plexus-utils</code>. The workaround for affected plugin users is to add this dependency to plugin dependencies until issue is fixed by the affected plugin maintainer. See <a href="https://issues.apache.org/jira/browse/MNG-6965" class="externalLink">MNG-6965</a>.</li>
 <li>Mojos are prevented to bootstrap new instance of <code>RepositorySystem</code> (for example by using deprecated <code>ServiceLocator</code>), they should reuse <code>RepositorySystem</code> instance provided by Maven instead. See <a href="https://issues.apache.org/jira/browse/MNG-7471" class="externalLink">MNG-7471</a>.</li>
 <li>Each line in <code>.mvn/maven.config</code> is now interpreted as a single argument. That is, if the file contains multiple arguments, these must now be placed on separate lines, see <a href="https://issues.apache.org/jira/browse/MNG-7684" class="externalLink">MNG-7684</a>.</li>

@@ -1,1 +1,0 @@
-../components/plugins/maven-install-plugin-4.x

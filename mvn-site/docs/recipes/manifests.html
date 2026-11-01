@@ -82,7 +82,7 @@
 </section>
  <section><a id="Guide_to_Working_with_Manifests"></a>
 <h1>Guide to Working with Manifests</h1>
-<p>The archive-producing plugins (<code>jar</code>, <code>war</code>, <code>ejb</code>, <code>ear</code> and others) build the manifest of their archive with <a href="/shared/maven-archiver/index.html">Maven Archiver</a>. You adjust it in the <code>archive</code> element of the plugin configuration, see <a href="archives.html">Guide to Configuring Archive Plugins</a>. The examples below use <code>maven-jar-plugin</code>, but they work in every plugin that uses Maven Archiver. The <a href="/shared/maven-archiver/index.html">Maven Archiver reference</a> lists every <code>archive</code> and <code>manifest</code> parameter.</p><section><a id="Default_Manifest"></a>
+<p>The archive-producing plugins (<code>jar</code>, <code>war</code>, <code>ejb</code>, <code>ear</code> and others) build the manifest of their archive with <a href="../../shared/maven-archiver/index.html">Maven Archiver</a>. You adjust it in the <code>archive</code> element of the plugin configuration, see <a href="archives.html">Guide to Configuring Archive Plugins</a>. The examples below use <code>maven-jar-plugin</code>, but they work in every plugin that uses Maven Archiver. The <a href="../../shared/maven-archiver/index.html">Maven Archiver reference</a> lists every <code>archive</code> and <code>manifest</code> parameter.</p><section><a id="Default_Manifest"></a>
 <h2>Default Manifest</h2>
 <p>Without any configuration the manifest contains these entries:</p>
 
@@ -237,7 +237,7 @@ id: nice bar
 Main-Class: fully.qualified.MainClass
 </code></pre></section><section><a id="Defining_a_Classpath_Directory_Prefix"></a>
 <h3>Defining a Classpath Directory Prefix</h3>
-<p>When the dependencies live in a directory next to the archive, for example in a <a href="/plugins/maven-ear-plugin/examples/skinny-wars.html">skinny war</a>, add a <code>&lt;classpathPrefix&gt;</code>:</p>
+<p>When the dependencies live in a directory next to the archive, for example in a <a href="../../plugins/maven-ear-plugin/examples/skinny-wars.html">skinny war</a>, add a <code>&lt;classpathPrefix&gt;</code>:</p>
 
 <pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;archive</span><span class="nt">&gt;</span>
   <span class="nt">&lt;manifest</span><span class="nt">&gt;</span>
@@ -292,7 +292,7 @@ Main-Class: fully.qualified.MainClass
 </ul></li>
 </ol></section><section><a id="Handling_Snapshot_Versions"></a>
 <h3>Handling Snapshot Versions</h3>
-<p>By default, a snapshot dependency appears in the <code>Class-Path</code> with its timestamped version, such as <code>foo-1.0-20260101.120000-1.jar</code>. Which name your archive actually contains depends on how you assemble it. For example, the <a href="/plugins/maven-assembly-plugin/">Assembly Plugin</a> decides this in the <code>&lt;outputFileNameMapping&gt;</code> of a <code>&lt;dependencySet&gt;</code>.</p>
+<p>By default, a snapshot dependency appears in the <code>Class-Path</code> with its timestamped version, such as <code>foo-1.0-20260101.120000-1.jar</code>. Which name your archive actually contains depends on how you assemble it. For example, the <a href="../../plugins/maven-assembly-plugin/">Assembly Plugin</a> decides this in the <code>&lt;outputFileNameMapping&gt;</code> of a <code>&lt;dependencySet&gt;</code>.</p>
 <p>To use the <code>-SNAPSHOT</code> name with the simple or repository layout, disable <code>&lt;useUniqueVersions&gt;</code>:</p>
 
 <pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;archive</span><span class="nt">&gt;</span>

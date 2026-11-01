@@ -56,11 +56,7 @@
         <p class="lead">How Maven finds the libraries you use, and how to point it at your own repositories.</p>
  
 
-<section class="landing">
-<section><a id="Dependencies"></a>
-<h2>Dependencies</h2>
-
-<p class="group-summary">Which libraries and versions your project gets, and how to change that.</p>
+<section class="landing"><a id="How_Maven_resolves_dependenciesWhy_your_project_gets_the_libraries_and_versions_it_gets.3A_transitive_dependencies.2C_which_version_wins.2C_managed_versions.2C_scopes_and_ranges.Dependency_scopesWhich_classpaths_each_scope_puts_a_dependency_on.2C_which_scopes_reach_the_projects_that_depend_on_yours.2C_and_the_scopes_Maven_4_adds.Find_out_where_a_dependency_comes_fromSee_which_of_your_dependencies_brings_in_a_library.2C_which_version_won_and_why.2C_and_which_libraries_you_use_without_declaring_them.Control_the_version_of_a_transitive_dependencyChoose_the_version_of_a_library_that_your_dependencies_bring_in.2C_and_make_the_build_fail_when_a_dependency_needs_a_newer_version_than_it_gets.Exclude_a_transitive_dependencyKeep_a_library_that_one_of_your_dependencies_brings_in_off_your_classpath.2C_and_make_sure_it_does_not_come_back_through_another_path.Use_a_BOM.2C_and_publish_oneImport_a_bill_of_materials_to_get_matching_versions_of_a_library_family.2C_override_one_of_its_versions.2C_and_publish_a_BOM_for_your_own_library.Make_a_dependency_optionalLet_your_library_use_a_dependency_for_one_feature_without_passing_it_on_to_every_project_that_uses_the_library.Repositories_explainedUse_a_mirror_or_repository_manager_.28Nexus.2C_Artifactory.29Send_every_download_through_your_organisation.27s_repository_manager_instead_of_Maven_Central_and_the_repositories_projects_declare.Why_use_a_repository_managerUse_several_repositoriesInstall_a_third-party_JAR_locallyDeploy_a_third-party_JAR_to_a_remote_repositoryAuthenticated_HTTPS_repositoriesResolver_transportHTTP_options_of_the_Wagon_transportAlternative_Wagon_providersDeploy_over_HTTP.2C_FTP_and_SSHDependency_resolution_misconceptionsLarge_centralized_deploymentsNaming_your_coordinates"></a>
 
 <ul class="page-list page-list--full">
 
@@ -78,20 +74,11 @@
 
 <li><a href="make-a-dependency-optional.html">Make a dependency optional</a><span class="page-summary">Let your library use a dependency for one feature without passing it on to every project that uses the library.</span></li>
 
-<li><a href="resolution-misconceptions.html">Dependency resolution misconceptions</a></li>
-</ul>
-</section><section><a id="Repositories"></a>
-<h2>Repositories</h2>
-
-<p class="group-summary">Where Maven downloads libraries from and deploys them to: Maven Central, your own repository manager, and JARs that are in no repository.</p>
-
-<ul class="page-list page-list--full">
-
 <li><a href="repositories.html">Repositories explained</a></li>
 
-<li><a href="repository-manager.html">Why use a repository manager</a></li>
-
 <li><a href="mirror-settings.html">Use a mirror or repository manager (Nexus, Artifactory)</a><span class="page-summary">Send every download through your organisation's repository manager instead of Maven Central and the repositories projects declare.</span></li>
+
+<li><a href="repository-manager.html">Why use a repository manager</a></li>
 
 <li><a href="several-repositories.html">Use several repositories</a></li>
 
@@ -101,17 +88,6 @@
 
 <li><a href="https-repositories.html">Authenticated HTTPS repositories</a></li>
 
-<li><a href="centralized-deployments.html">Large centralized deployments</a></li>
-
-<li><a href="naming-coordinates.html">Naming your coordinates</a></li>
-</ul>
-</section><section><a id="Transports"></a>
-<h2>Transports</h2>
-
-<p class="group-summary">How Maven connects to a repository to download and deploy, over HTTP and other protocols.</p>
-
-<ul class="page-list page-list--full">
-
 <li><a href="resolver-transport.html">Resolver transport</a></li>
 
 <li><a href="wagon-http.html">HTTP options of the Wagon transport</a></li>
@@ -119,8 +95,14 @@
 <li><a href="wagon-providers.html">Alternative Wagon providers</a></li>
 
 <li><a href="deployment-transports.html">Deploy over HTTP, FTP and SSH</a></li>
+
+<li><a href="resolution-misconceptions.html">Dependency resolution misconceptions</a></li>
+
+<li><a href="centralized-deployments.html">Large centralized deployments</a></li>
+
+<li><a href="naming-coordinates.html">Naming your coordinates</a></li>
 </ul>
-</section></section>
+</section>
 
 
       </div>

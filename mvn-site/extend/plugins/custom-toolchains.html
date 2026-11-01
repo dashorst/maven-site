@@ -88,7 +88,7 @@
 <section><a id="Custom_Toolchains"></a>
 <h1>Custom Toolchains</h1> 
 <p>You can create custom toolchains to use with standard plugins (such as the <code>maven-compiler-plugin</code>) or with custom plugins.</p>
-<p>A full working sample is included in the <code>maven-toolchains-plugin</code> integration tests, which are part of <a href="/plugins/maven-toolchains-plugin/scm.html">the plugin source tree</a>:</p>
+<p>A full working sample is included in the <code>maven-toolchains-plugin</code> integration tests, which are part of <a href="../../plugins/maven-toolchains-plugin/scm.html">the plugin source tree</a>:</p>
 <ul>
 
 <li><code>src/it/setup-custom-toolchain</code> holds the custom toolchain and plugin,</li>
@@ -98,12 +98,12 @@
 <p>A toolchain consists of:</p>
 <ul>
 
-<li>an interface extending <a href="/ref/current/maven-core/apidocs/org/apache/maven/toolchain/Toolchain.html"><code>org.apache.maven.toolchain.Toolchain</code></a>,</li>
-<li>an implementation of this interface. Extending <a href="/ref/current/maven-core/apidocs/org/apache/maven/toolchain/DefaultToolchain.html"><code>org.apache.maven.toolchain.DefaultToolchain</code></a> is strongly encouraged, since it provides <a href="/ref/current/maven-core/apidocs/org/apache/maven/toolchain/ToolchainPrivate.html"><code>org.apache.maven.toolchain.ToolchainPrivate</code></a>, which is an internal requirement,</li>
-<li>a <a href="/ref/current/maven-core/apidocs/org/apache/maven/toolchain/ToolchainFactory.html"><code>org.apache.maven.toolchain.ToolchainFactory</code></a>, provided as <a href="/extend/plugins/jsr-330.html">JSR-330 component</a> annotated with <code>@Named("&lt;toolchainType&gt;")</code> (for example <code>@Named("custom")</code>) and <code>@Singleton</code>.</li>
+<li>an interface extending <a href="../../ref/current/maven-core/apidocs/org/apache/maven/toolchain/Toolchain.html"><code>org.apache.maven.toolchain.Toolchain</code></a>,</li>
+<li>an implementation of this interface. Extending <a href="../../ref/current/maven-core/apidocs/org/apache/maven/toolchain/DefaultToolchain.html"><code>org.apache.maven.toolchain.DefaultToolchain</code></a> is strongly encouraged, since it provides <a href="../../ref/current/maven-core/apidocs/org/apache/maven/toolchain/ToolchainPrivate.html"><code>org.apache.maven.toolchain.ToolchainPrivate</code></a>, which is an internal requirement,</li>
+<li>a <a href="../../ref/current/maven-core/apidocs/org/apache/maven/toolchain/ToolchainFactory.html"><code>org.apache.maven.toolchain.ToolchainFactory</code></a>, provided as <a href="../../extend/plugins/jsr-330.html">JSR-330 component</a> annotated with <code>@Named("&lt;toolchainType&gt;")</code> (for example <code>@Named("custom")</code>) and <code>@Singleton</code>.</li>
 </ul></section><section><a id="Creating_a_Plugin_Using_a_Toolchain"></a>
 <h2>Creating a Plugin Using a Toolchain</h2>
-<p>To find a tool, a plugin uses the <a href="/ref/current/maven-core/apidocs/org/apache/maven/toolchain/ToolchainManager.html"><code>ToolchainManager</code></a> API to load the toolchain, then uses that toolchain object to find the tool's path:</p>
+<p>To find a tool, a plugin uses the <a href="../../ref/current/maven-core/apidocs/org/apache/maven/toolchain/ToolchainManager.html"><code>ToolchainManager</code></a> API to load the toolchain, then uses that toolchain object to find the tool's path:</p>
 
 <pre tabindex="0" class="highlight"><code class="language-java"><span class="nd">@Parameter</span>(defaultValue = <span class="s">"${session}"</span>, readonly = <span class="kc">true</span>, required = <span class="kc">true</span>)
 <span class="k">private</span> MavenSession session;
@@ -132,7 +132,7 @@
     getLog().info(<span class="s">"Found expected tool named 'tool' at following location: "</span> + path);
 }
 </code></pre>
-<p>This code uses <a href="/plugin-tools/maven-plugin-plugin/examples/using-annotations.html">Maven Plugin Tool Annotations</a>.</p></section><section><a id="Using_the_Custom_Toolchain_and_its_Plugin"></a>
+<p>This code uses <a href="../../plugin-tools/maven-plugin-plugin/examples/using-annotations.html">Maven Plugin Tool Annotations</a>.</p></section><section><a id="Using_the_Custom_Toolchain_and_its_Plugin"></a>
 <h2>Using the Custom Toolchain and its Plugin</h2>
 <p>The custom toolchain implementation needs to be shared between the toolchain-aware plugin and <code>maven-toolchains-plugin</code>. This is done using a Maven extension:</p>
 <ul>

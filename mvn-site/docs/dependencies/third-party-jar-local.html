@@ -60,20 +60,20 @@
   <li><a href="../../docs/dependencies/exclude-a-dependency.html">Exclude a transitive dependency</a></li>
   <li><a href="../../docs/dependencies/use-a-bom.html">Use a BOM, and publish one</a></li>
   <li><a href="../../docs/dependencies/make-a-dependency-optional.html">Make a dependency optional</a></li>
-  <li><a href="../../docs/dependencies/resolution-misconceptions.html">Dependency resolution misconceptions</a></li>
   <li><a href="../../docs/dependencies/repositories.html">Repositories explained</a></li>
-  <li><a href="../../docs/dependencies/repository-manager.html">Why use a repository manager</a></li>
   <li><a href="../../docs/dependencies/mirror-settings.html">Use a mirror or repository manager (Nexus, Artifactory)</a></li>
+  <li><a href="../../docs/dependencies/repository-manager.html">Why use a repository manager</a></li>
   <li><a href="../../docs/dependencies/several-repositories.html">Use several repositories</a></li>
   <li><a href="../../docs/dependencies/third-party-jar-local.html" aria-current="page">Install a third-party JAR locally</a></li>
   <li><a href="../../docs/dependencies/third-party-jar-remote.html">Deploy a third-party JAR to a remote repository</a></li>
   <li><a href="../../docs/dependencies/https-repositories.html">Authenticated HTTPS repositories</a></li>
-  <li><a href="../../docs/dependencies/centralized-deployments.html">Large centralized deployments</a></li>
-  <li><a href="../../docs/dependencies/naming-coordinates.html">Naming your coordinates</a></li>
   <li><a href="../../docs/dependencies/resolver-transport.html">Resolver transport</a></li>
   <li><a href="../../docs/dependencies/wagon-http.html">HTTP options of the Wagon transport</a></li>
   <li><a href="../../docs/dependencies/wagon-providers.html">Alternative Wagon providers</a></li>
   <li><a href="../../docs/dependencies/deployment-transports.html">Deploy over HTTP, FTP and SSH</a></li>
+  <li><a href="../../docs/dependencies/resolution-misconceptions.html">Dependency resolution misconceptions</a></li>
+  <li><a href="../../docs/dependencies/centralized-deployments.html">Large centralized deployments</a></li>
+  <li><a href="../../docs/dependencies/naming-coordinates.html">Naming your coordinates</a></li>
 </ul>
     </nav>
     <main id="content">
@@ -93,7 +93,7 @@
  <section><a id="Guide_to_installing_3rd_party_JARs"></a>
 <h1>Guide to installing 3rd party JARs</h1>
 <p>Occasionally, you will have 3rd party JARs that you need to put in your local repository for use in your builds, since they don't exist in any public repository like <a href="https://search.maven.org" class="externalLink">Maven Central</a>. The JARs must be placed in the local repository in the correct place in order for it to be correctly picked up by Apache Maven.</p>
-<p>To make this easier, and less error prone, we have provided an <code>install-file</code> goal in the <a href="/plugins/maven-install-plugin/">maven-install-plugin</a> which should make this relatively painless.</p>
+<p>To make this easier, and less error prone, we have provided an <code>install-file</code> goal in the <a href="../../plugins/maven-install-plugin/">maven-install-plugin</a> which should make this relatively painless.</p>
 <p>To install a JAR in the local repository use the following command:</p>
 
 <pre tabindex="0"><code class="nohighlight nocode">mvn install:install-file -Dfile=&lt;path-to-file&gt; -DgroupId=&lt;group-id&gt; -DartifactId=&lt;artifact-id&gt; -Dversion=&lt;version&gt; -Dpackaging=&lt;packaging&gt;
@@ -117,20 +117,20 @@
   <li><a href="../../docs/dependencies/exclude-a-dependency.html">Exclude a transitive dependency</a></li>
   <li><a href="../../docs/dependencies/use-a-bom.html">Use a BOM, and publish one</a></li>
   <li><a href="../../docs/dependencies/make-a-dependency-optional.html">Make a dependency optional</a></li>
-  <li><a href="../../docs/dependencies/resolution-misconceptions.html">Dependency resolution misconceptions</a></li>
   <li><a href="../../docs/dependencies/repositories.html">Repositories explained</a></li>
-  <li><a href="../../docs/dependencies/repository-manager.html">Why use a repository manager</a></li>
   <li><a href="../../docs/dependencies/mirror-settings.html">Use a mirror or repository manager (Nexus, Artifactory)</a></li>
+  <li><a href="../../docs/dependencies/repository-manager.html">Why use a repository manager</a></li>
   <li><a href="../../docs/dependencies/several-repositories.html">Use several repositories</a></li>
   <li><a href="../../docs/dependencies/third-party-jar-local.html" aria-current="page">Install a third-party JAR locally</a></li>
   <li><a href="../../docs/dependencies/third-party-jar-remote.html">Deploy a third-party JAR to a remote repository</a></li>
   <li><a href="../../docs/dependencies/https-repositories.html">Authenticated HTTPS repositories</a></li>
-  <li><a href="../../docs/dependencies/centralized-deployments.html">Large centralized deployments</a></li>
-  <li><a href="../../docs/dependencies/naming-coordinates.html">Naming your coordinates</a></li>
   <li><a href="../../docs/dependencies/resolver-transport.html">Resolver transport</a></li>
   <li><a href="../../docs/dependencies/wagon-http.html">HTTP options of the Wagon transport</a></li>
   <li><a href="../../docs/dependencies/wagon-providers.html">Alternative Wagon providers</a></li>
   <li><a href="../../docs/dependencies/deployment-transports.html">Deploy over HTTP, FTP and SSH</a></li>
+  <li><a href="../../docs/dependencies/resolution-misconceptions.html">Dependency resolution misconceptions</a></li>
+  <li><a href="../../docs/dependencies/centralized-deployments.html">Large centralized deployments</a></li>
+  <li><a href="../../docs/dependencies/naming-coordinates.html">Naming your coordinates</a></li>
 </ul>
         <p class="steps"><a class="step step--prev" href="../../docs/dependencies/several-repositories.html" rel="prev"><span class="step-dir">Previous</span> Use several repositories</a><a class="step step--next" href="../../docs/dependencies/third-party-jar-remote.html" rel="next"><span class="step-dir">Next</span> Deploy a third-party JAR to a remote repository</a></p>
       </nav>

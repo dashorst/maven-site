@@ -110,7 +110,7 @@
 <li><code>${classifier}</code> is the artifact classifier (when available),</li>
 <li><code>${checksums}</code> is a list of checksums algorithms, <code>md5</code> and <code>sha1</code> by default.</li>
 </ul>
-<p><code>maven-metadata.xml</code> file format is defined in <a href="/ref/current/maven-repository-metadata/">Maven Repository Metadata Model</a>.</p>
+<p><code>maven-metadata.xml</code> file format is defined in <a href="../../ref/current/maven-repository-metadata/">Maven Repository Metadata Model</a>.</p>
 <p><code>.asc</code> file is optional (may be required in some repositories, like Central Repository) and is a PGP detached signature file.</p>
 <p>Obviously, <code>${groupId}</code>, <code>${artifactId}</code> and <code>${version}</code> are defined in <code>pom.xml</code>. But what about <code>${classifier}</code> and <code>${extension}</code>, how are they defined?</p>
 <p>Classifier and extension definition is completely different at artifact <em>publication</em> and <em>usage</em> times:</p>
@@ -118,13 +118,13 @@
 
 <li>
 <p><strong>At artifact publication time</strong>: Extension and classifier are defined by plugins that create the artifacts and attach them for publication.<br />
-Some plugins provide configuration parameters to be able to override default values. For example, <a href="/plugins/maven-jar-plugin/jar-mojo.html">Maven JAR Plugin's <code>jar:jar</code> goal</a> produces by default an artifact with <code>jar</code> extension and empty classifier. The <code>classifier</code> goal parameter can be used to define a classifier (there is no parameter to override extension).</p></li>
+Some plugins provide configuration parameters to be able to override default values. For example, <a href="../../plugins/maven-jar-plugin/jar-mojo.html">Maven JAR Plugin's <code>jar:jar</code> goal</a> produces by default an artifact with <code>jar</code> extension and empty classifier. The <code>classifier</code> goal parameter can be used to define a classifier (there is no parameter to override extension).</p></li>
 <li>
-<p><strong>At artifact usage time</strong>: Extension and classifier are defined by <a href="/ref/current/maven-model/maven.html#class_dependency"><code>&lt;dependency&gt;</code>'s <code>&lt;type&gt;</code> and <code>&lt;classifier&gt;</code></a> definition in <code>pom.xml</code>:</p>
+<p><strong>At artifact usage time</strong>: Extension and classifier are defined by <a href="../../ref/current/maven-model/maven.html#class_dependency"><code>&lt;dependency&gt;</code>'s <code>&lt;type&gt;</code> and <code>&lt;classifier&gt;</code></a> definition in <code>pom.xml</code>:</p>
 <ul>
 
 <li><code>&lt;type&gt;</code> (<code>jar</code> by default) defines the extension and default classifier: <br />
-see <a href="/ref/current/maven-core/artifact-handlers.html">default artifact handlers</a> to see default types and corresponding extension and default classifier. <br /></li>
+see <a href="../../ref/current/maven-core/artifact-handlers.html">default artifact handlers</a> to see default types and corresponding extension and default classifier. <br /></li>
 <li><code>&lt;classifier&gt;</code> is optional, to override default classifier defined by the dependency type.</li>
 </ul></li>
 </ul><section><a id="SNAPSHOT"></a>
@@ -147,10 +147,10 @@ see <a href="/ref/current/maven-core/artifact-handlers.html">default artifact ha
 <p><a href="https://www.w3.org/Protocols/rfc2616/rfc2616-sec6.html" class="externalLink">HTTP/1.1 Reason-Phrase</a> is used to provide extended message when artifact access is rejected by remote repository. This usage of Reason-Phrase is nowadays legacy and is removed in HTTP/2, <a href="https://issues.apache.org/jira/browse/MNG-6795" class="externalLink">MNG-6795</a> is open to create a replacement.</p></li>
 </ol></section><section><a id="Archetype_Catalog"></a>
 <h2>Archetype Catalog</h2>
-<p><code>archetype-catalog.xml</code> file at root directory is a <a href="/archetype/archetype-models/archetype-catalog/archetype-catalog.html">catalog of all Maven Archetypes</a> proposed in the repository.</p></section><section><a id="Additional_Content"></a>
+<p><code>archetype-catalog.xml</code> file at root directory is a <a href="../../archetype/archetype-models/archetype-catalog/archetype-catalog.html">catalog of all Maven Archetypes</a> proposed in the repository.</p></section><section><a id="Additional_Content"></a>
 <h2>Additional Content</h2><section><a id="Index"></a>
 <h3>Index</h3>
-<p><a href="https://repo.maven.apache.org/maven2/.index/" class="externalLink"><code>.index</code></a> directory at root directory is an <a href="/maven-indexer/indexer-core/">index</a> of the content, done by <a href="/maven-indexer/">Maven Indexer</a>.</p>
+<p><a href="https://repo.maven.apache.org/maven2/.index/" class="externalLink"><code>.index</code></a> directory at root directory is an <a href="../../maven-indexer/indexer-core/">index</a> of the content, done by <a href="../../maven-indexer/">Maven Indexer</a>.</p>
 <p>If contains index files in 2 flavours:</p>
 <ul>
 

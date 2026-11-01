@@ -1,0 +1,11 @@
+org.apache.maven.plugins.changes
+org.apache.maven.plugins.changes.announcement
+org.apache.maven.plugins.changes.announcement.mailsender
+org.apache.maven.plugins.changes.github
+org.apache.maven.plugins.changes.issues
+org.apache.maven.plugins.changes.jira
+org.apache.maven.plugins.changes.model
+org.apache.maven.plugins.changes.model.io.xpp3
+org.apache.maven.plugins.changes.schema
+org.apache.maven.plugins.changes.trac
+org.apache.maven.plugins.maven_changes_plugin

@@ -1,0 +1,4 @@
+org.apache.maven.plugins.invoker
+org.apache.maven.plugins.invoker.model
+org.apache.maven.plugins.invoker.model.io.xpp3
+org.apache.maven.plugins.maven_invoker_plugin

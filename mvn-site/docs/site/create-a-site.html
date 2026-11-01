@@ -111,12 +111,12 @@
 <ul>
 
 <li><code>markdown</code>: the well known <a href="https://en.wikipedia.org/wiki/Markdown" class="externalLink">Markdown</a> format (supported since Maven Site Plugin 3.3), and the one this page is written in. It is what new documentation should use,</li>
-<li><code>apt</code>: the APT format, “Almost Plain Text”, a wiki-like format that predates Maven's support for Markdown. It is still supported, but the Maven project itself has moved its own documentation off it; see the <a href="/docs/site/apt.html">APT Format</a> reference if you are maintaining an existing page, and <a href="/docs/site/apt-to-markdown.html">Migrating APT to Markdown</a> if you would like to convert one,</li>
-<li><code>fml</code>: the FML format is the <a href="/docs/site/fml.html">FAQ format</a>,</li>
-<li><code>xdoc</code>: an XML document conforming to a small and simple set of tags, see the <a href="/docs/site/xdoc.html">full reference</a>,</li>
+<li><code>apt</code>: the APT format, “Almost Plain Text”, a wiki-like format that predates Maven's support for Markdown. It is still supported, but the Maven project itself has moved its own documentation off it; see the <a href="../../docs/site/apt.html">APT Format</a> reference if you are maintaining an existing page, and <a href="../../docs/site/apt-to-markdown.html">Migrating APT to Markdown</a> if you would like to convert one,</li>
+<li><code>fml</code>: the FML format is the <a href="../../docs/site/fml.html">FAQ format</a>,</li>
+<li><code>xdoc</code>: an XML document conforming to a small and simple set of tags, see the <a href="../../docs/site/xdoc.html">full reference</a>,</li>
 <li><code>xhtml</code>: plain XHTML documents.</li>
 </ul>
-<p>Other formats are available, but at this point the first 4 are the best tested. Any other format for which a Doxia parser exists (see the list of <a href="/docs/site/markup-formats.html">Doxia Markup Languages</a>) can be used as well, but you need to add the corresponding Doxia module to the dependencies of the Maven Site Plugin.</p>
+<p>Other formats are available, but at this point the first 4 are the best tested. Any other format for which a Doxia parser exists (see the list of <a href="../../docs/site/markup-formats.html">Doxia Markup Languages</a>) can be used as well, but you need to add the corresponding Doxia module to the dependencies of the Maven Site Plugin.</p>
 <p>There are also several possible output formats, but as of Maven Site Plugin, only XHTML5 is available.</p>
 <p>Note that all of the above is optional - just one index file is required in one of the input trees. Each of the paths will be merged together to form the root directory of the site. After running <code>mvn site</code> on the example above you will end up with this in your <code>target</code> directory:</p>
 
@@ -133,12 +133,12 @@
       +- other.html
       +- xhtml-content.html
 </code></pre>
-<p>This means that <code>src/site/apt/content.apt</code> is available in the site as <code>/content.html</code>, whichever directory it comes from. So, in your <a href="/plugins/maven-site-plugin/examples/sitedescriptor.html">site descriptor</a> you link to <code>index.html</code> and <code>other.html</code>, where the sources of these two files are <code>src/site/markdown/index.md</code> and <code>src/site/xdoc/other.xml</code>.</p>
+<p>This means that <code>src/site/apt/content.apt</code> is available in the site as <code>/content.html</code>, whichever directory it comes from. So, in your <a href="../../plugins/maven-site-plugin/examples/sitedescriptor.html">site descriptor</a> you link to <code>index.html</code> and <code>other.html</code>, where the sources of these two files are <code>src/site/markdown/index.md</code> and <code>src/site/xdoc/other.xml</code>.</p>
 <p>The <code>css</code> and <code>images</code> directories contain the stylesheets and images of the skin being used.</p></section><section><a id="Customizing_the_Look_.26_Feel"></a>
 <h2>Customizing the Look &amp; Feel</h2>
 <p>If you want to tune the way your site looks, you can use a custom <strong>skin</strong> to provide your own CSS styles. If that is still not enough, you can even tweak the output templates that Maven uses to generate the site documentation.</p>
-<p>You can visit the <a href="/docs/site/skins.html">Skins index</a> to have a look at some of the skins that you can use to change the look of your site.</p>
-<p>To build a skin of your own, see <a href="/docs/site/skins.html#Creating_a_skin">Creating a skin</a>.</p></section><section><a id="Generating_the_Site"></a>
+<p>You can visit the <a href="../../docs/site/skins.html">Skins index</a> to have a look at some of the skins that you can use to change the look of your site.</p>
+<p>To build a skin of your own, see <a href="../../docs/site/skins.html#Creating_a_skin">Creating a skin</a>.</p></section><section><a id="Generating_the_Site"></a>
 <h2>Generating the Site</h2>
 <p>Generating the site is very simple, and fast!</p>
 
@@ -164,14 +164,14 @@
 <ul>
 
 <li>the <code>&lt;id&gt;</code> element identifies the repository, so that you can attach credentials to it in your <code>settings.xml</code> file using the <a href="../reference/settings.html#Servers"><code>&lt;servers&gt;</code> element</a> as you would for any other repository,</li>
-<li>the <code>&lt;url&gt;</code> gives the location to deploy to. Currently, only SSH is supported by default, as above which copies to the host <code>www.mycompany.com</code> in the path <code>/www/docs/project/</code>, but you can <a href="/plugins/maven-site-plugin/examples/adding-deploy-protocol.html">add more protocols as required</a>. If subprojects inherit the site URL from a parent POM, they will automatically get their <code>&lt;artifactId&gt;</code> appended to form their effective deployment location.</li>
+<li>the <code>&lt;url&gt;</code> gives the location to deploy to. Currently, only SSH is supported by default, as above which copies to the host <code>www.mycompany.com</code> in the path <code>/www/docs/project/</code>, but you can <a href="../../plugins/maven-site-plugin/examples/adding-deploy-protocol.html">add more protocols as required</a>. If subprojects inherit the site URL from a parent POM, they will automatically get their <code>&lt;artifactId&gt;</code> appended to form their effective deployment location.</li>
 </ul>
 <p>Once distribution location is configured, deploying the site is done by using the <code>site-deploy</code> phase of the site lifecycle.</p>
 
 <pre tabindex="0"><code class="nohighlight nocode">mvn site-deploy
 </code></pre></section><section><a id="GitHub_Pages.2C_Apache_svnpubsub.2Fgitpubsub_Deployment"></a>
 <h3>GitHub Pages, Apache svnpubsub/gitpubsub Deployment</h3>
-<p>When site publication is done with a SCM commit, like with <a href="https://pages.github.com/" class="externalLink">GitHub Pages</a> or <a href="https://infra.apache.org/project-site.html#tools" class="externalLink">Apache svnpubsub/gitpubsub</a>, deploying the site will be done with <a href="/plugins/maven-scm-publish-plugin/">Maven SCM Publish Plugin</a>.</p>
+<p>When site publication is done with a SCM commit, like with <a href="https://pages.github.com/" class="externalLink">GitHub Pages</a> or <a href="https://infra.apache.org/project-site.html#tools" class="externalLink">Apache svnpubsub/gitpubsub</a>, deploying the site will be done with <a href="../../plugins/maven-scm-publish-plugin/">Maven SCM Publish Plugin</a>.</p>
 <p>For example with a project hosted on GitHub and using GitHub Pages for its site publication:</p>
 
 <pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;plugin</span><span class="nt">&gt;</span>
@@ -224,9 +224,9 @@
   <span class="nt">&lt;/body</span><span class="nt">&gt;</span>
 <span class="nt">&lt;/site</span><span class="nt">&gt;</span>
 </code></pre> 
-<p><strong>Note:</strong> A skin is mandatory. Projects inheriting from the <a href="/pom/asf/">Apache Parent POM</a> or from another parent that declares one inherit it and need no <code>&lt;skin&gt;</code> element of their own.</p>
+<p><strong>Note:</strong> A skin is mandatory. Projects inheriting from the <a href="../../pom/asf/">Apache Parent POM</a> or from another parent that declares one inherit it and need no <code>&lt;skin&gt;</code> element of their own.</p>
 <p><strong>Note:</strong> The <code>&lt;menu ref="reports"/&gt;</code> element above. When building the site, this is replaced by a menu with links to all the reports that you have configured.</p>
-<p>More information about the site descriptor is available at the <a href="/plugins/maven-site-plugin/examples/sitedescriptor.html">dedicated page of Maven Site Plugin</a>.</p></section><section><a id="Adding_Extra_Resources"></a>
+<p>More information about the site descriptor is available at the <a href="../../plugins/maven-site-plugin/examples/sitedescriptor.html">dedicated page of Maven Site Plugin</a>.</p></section><section><a id="Adding_Extra_Resources"></a>
 <h2>Adding Extra Resources</h2>
 <p>You can add any arbitrary resource to your site by including them in a <code>resources</code> directory as shown below. Additional CSS files will be picked up when they are placed in the <code>css</code> directory within the <code>resources</code> directory.</p>
 
@@ -244,8 +244,8 @@
 <h2>Using Properties in Content</h2>
 <p>To add simple logic to your content, for example to filter properties, add a <code>.vm</code> extension to the file name (this is valid for all supported formats). <a href="https://velocity.apache.org/" class="externalLink">Apache Velocity</a> is the templating engine.</p>
 <p>For example, the Maven website itself has a <a href="https://github.com/apache/maven-site/blob/master/content/xdoc/download.xml.vm" class="externalLink"><code>content/xdoc/download.xml.vm</code></a> file, which uses the expression <code>${currentStableVersion}</code> to filter in a property set in the <a href="https://github.com/apache/maven-site/blob/master/pom.xml" class="externalLink">POM</a>.</p>
-<p>Some properties are defined by default: see <a href="/doxia/doxia-sitetools/doxia-site-renderer/#Velocity_processing">Doxia Site Renderer's Velocity processing reference</a> for more information. For a complete usage overview, see Velocity's <a href="https://velocity.apache.org/engine/2.3/user-guide.html" class="externalLink">user guide</a>.</p>
-<p>Since version 3.5 of the Maven Site Plugin, you can save the processed markup by setting <a href="/plugins/maven-site-plugin/site-mojo.html#saveProcessedContent"><code>saveProcessedContent</code></a> to <code>true</code>.</p><section><a id="Common_Issues_and_Workarounds"></a>
+<p>Some properties are defined by default: see <a href="../../doxia/doxia-sitetools/doxia-site-renderer/#Velocity_processing">Doxia Site Renderer's Velocity processing reference</a> for more information. For a complete usage overview, see Velocity's <a href="https://velocity.apache.org/engine/2.3/user-guide.html" class="externalLink">user guide</a>.</p>
+<p>Since version 3.5 of the Maven Site Plugin, you can save the processed markup by setting <a href="../../plugins/maven-site-plugin/site-mojo.html#saveProcessedContent"><code>saveProcessedContent</code></a> to <code>true</code>.</p><section><a id="Common_Issues_and_Workarounds"></a>
 <h3>Common Issues and Workarounds</h3>
 <ul>
 
@@ -261,7 +261,7 @@
 <li>Velocity and Markdown both use <code>##</code>, for different purposes, and</li>
 <li>the overhead is large for simple replacements.</li>
 </ul>
-<p>For simple property interpolation, regular <a href="../recipes/filtering-resources.html">Maven filtering</a> is often more suitable. Create a dedicated source directory that <a href="/plugins/maven-resources-plugin/copy-resources-mojo.html"><code>maven-resources-plugin:copy-resources</code></a> processes before the site is created. In the following example, the directory <code>src/site</code> is copied with filtering to <code>target/site-src</code>:</p>
+<p>For simple property interpolation, regular <a href="../recipes/filtering-resources.html">Maven filtering</a> is often more suitable. Create a dedicated source directory that <a href="../../plugins/maven-resources-plugin/copy-resources-mojo.html"><code>maven-resources-plugin:copy-resources</code></a> processes before the site is created. In the following example, the directory <code>src/site</code> is copied with filtering to <code>target/site-src</code>:</p>
 
 <pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;project</span><span class="nt">&gt;</span>
   ...
@@ -295,7 +295,7 @@
   <span class="nt">&lt;/build</span><span class="nt">&gt;</span>
 <span class="nt">&lt;/project</span><span class="nt">&gt;</span>
 </code></pre>
-<p>Then generate the site from the filtered sources by adjusting the <a href="/plugins/maven-site-plugin/site-mojo.html#siteDirectory"><code>siteDirectory</code></a> of the Maven Site Plugin. Also adjust the <a href="/plugins/maven-site-plugin/site-mojo.html#alternativeSiteSourceDirectories"><code>alternativeSiteSourceDirectories</code></a>, which the edit buttons use:</p>
+<p>Then generate the site from the filtered sources by adjusting the <a href="../../plugins/maven-site-plugin/site-mojo.html#siteDirectory"><code>siteDirectory</code></a> of the Maven Site Plugin. Also adjust the <a href="../../plugins/maven-site-plugin/site-mojo.html#alternativeSiteSourceDirectories"><code>alternativeSiteSourceDirectories</code></a>, which the edit buttons use:</p>
 
 <pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;project</span><span class="nt">&gt;</span>
   ...
@@ -348,10 +348,10 @@
 <span class="nt">&lt;/project</span><span class="nt">&gt;</span>
 </code></pre>
 <p>If you have included the appropriate <code>&lt;menu ref="reports"/&gt;</code> tag in your <code>site.xml</code> descriptor, then when you regenerate the site those items will appear in the menu.</p>
-<p>Many other plugins provide reporting goals: look for “R” (Reporting) value in the “Type” column of the <a href="/docs/plugins/available-plugins.html">list of plugins</a>. When plugins are both Build and Reporting plugins, defining explicitly the version in the reporting section is usually not necessary since reporting will use the version from <code>build/plugins</code> or <code>build/pluginManagement</code>. Since Maven Site Plugin 3.4, reporting plugin also get configuration from <code>build/pluginManagement</code>.</p>
+<p>Many other plugins provide reporting goals: look for “R” (Reporting) value in the “Type” column of the <a href="../../docs/plugins/available-plugins.html">list of plugins</a>. When plugins are both Build and Reporting plugins, defining explicitly the version in the reporting section is usually not necessary since reporting will use the version from <code>build/plugins</code> or <code>build/pluginManagement</code>. Since Maven Site Plugin 3.4, reporting plugin also get configuration from <code>build/pluginManagement</code>.</p>
 <p><strong>Note:</strong> Many report plugins provide a parameter called <code>outputDirectory</code> or similar to specify the destination for their report outputs. This parameter is only relevant if the report plugin is run standalone, i.e. by invocation directly from the command line. In contrast, when reports are generated as part of the site, the configuration of the Maven Site Plugin will determine the effective output directory to ensure that all reports end up in a central location.</p> </section><section><a id="Internationalization"></a>
 <h2>Internationalization</h2>
-<p>Internationalization in Maven is very simple, as long as the reports you are using have that particular locale defined. For an overview of supported languages and instructions on how to add further languages, see <a href="/extend/plugins/localization.html">Internationalization</a>.</p>
+<p>Internationalization in Maven is very simple, as long as the reports you are using have that particular locale defined. For an overview of supported languages and instructions on how to add further languages, see <a href="../../extend/plugins/localization.html">Internationalization</a>.</p>
 <p>To enable multiple locales, add a configuration similar to the following to your POM:</p>
 
 <pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span><span class="nt">&gt;</span>

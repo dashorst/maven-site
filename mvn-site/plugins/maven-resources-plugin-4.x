@@ -1,1 +1,0 @@
-../components/plugins/maven-resources-plugin-4.x

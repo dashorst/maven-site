@@ -76,7 +76,7 @@
 </section>
  <section><a id="Guide_to_Multi-Release_JARs"></a>
 <h1>Guide to Multi-Release JARs</h1>
-<p><a href="https://openjdk.org/jeps/238" class="externalLink">JEP 238</a> introduced multi-release JARs: one JAR that holds Java-version-dependent classes, where the runtime picks the best matching version of each class. Building one spans two plugins. The <a href="/plugins/maven-compiler-plugin/">Compiler Plugin</a> compiles the sources once per Java version, and the <a href="/plugins/maven-jar-plugin/">JAR Plugin</a> packages the result.</p><section><a id="The_Problem"></a>
+<p><a href="https://openjdk.org/jeps/238" class="externalLink">JEP 238</a> introduced multi-release JARs: one JAR that holds Java-version-dependent classes, where the runtime picks the best matching version of each class. Building one spans two plugins. The <a href="../../plugins/maven-compiler-plugin/">Compiler Plugin</a> compiles the sources once per Java version, and the <a href="../../plugins/maven-jar-plugin/">JAR Plugin</a> packages the result.</p><section><a id="The_Problem"></a>
 <h2>The Problem</h2>
 <p>A library must stay compatible with earlier Java versions but would like to use new JDK features when it runs on a newer one. For example, <code>java.nio.file</code> was added in Java 7 and handles files much better, while Maven itself still required Java 6 at the time.</p>
 <p>Without multi-release JARs there are two solutions:</p>
@@ -119,7 +119,7 @@ META-INF/MANIFEST.MF { Multi-Release: true }
                   10/A.class
                      C.class
 </code></pre>
-<p>With the <code>Multi-Release: true</code> attribute in the manifest, the Java runtime also looks inside <code>META-INF/versions</code> for version-specific classes. Without it, only the base classes are used. The <a href="/plugins/maven-jar-plugin/jar-mojo.html#detectMultiReleaseJar"><code>maven-jar-plugin</code></a> adds the attribute by itself when the JAR contains a <code>META-INF/versions</code> directory (<code>detectMultiReleaseJar</code>, enabled by default). To set it explicitly, add it with the archive configuration, see <a href="/docs/recipes/manifests.html">Working with Manifests</a>:</p>
+<p>With the <code>Multi-Release: true</code> attribute in the manifest, the Java runtime also looks inside <code>META-INF/versions</code> for version-specific classes. Without it, only the base classes are used. The <a href="../../plugins/maven-jar-plugin/jar-mojo.html#detectMultiReleaseJar"><code>maven-jar-plugin</code></a> adds the attribute by itself when the JAR contains a <code>META-INF/versions</code> directory (<code>detectMultiReleaseJar</code>, enabled by default). To set it explicitly, add it with the archive configuration, see <a href="../../docs/recipes/manifests.html">Working with Manifests</a>:</p>
 
 <pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;plugin</span><span class="nt">&gt;</span>
   <span class="nt">&lt;groupId</span><span class="nt">&gt;</span>org.apache.maven.plugins<span class="nt">&lt;/groupId</span><span class="nt">&gt;</span>
@@ -134,14 +134,14 @@ META-INF/MANIFEST.MF { Multi-Release: true }
   <span class="nt">&lt;/configuration</span><span class="nt">&gt;</span>
 <span class="nt">&lt;/plugin</span><span class="nt">&gt;</span>
 </code></pre>
-<p>The Compiler Plugin can place the output of an execution in <code>META-INF/versions/${release}</code> for you: set <a href="/plugins/maven-compiler-plugin/compile-mojo.html#release"><code>release</code></a> together with <a href="/plugins/maven-compiler-plugin/compile-mojo.html#multiReleaseOutput"><code>multiReleaseOutput</code></a> to <code>true</code> in an additional execution.</p></section><section><a id="Challenges"></a>
+<p>The Compiler Plugin can place the output of an execution in <code>META-INF/versions/${release}</code> for you: set <a href="../../plugins/maven-compiler-plugin/compile-mojo.html#release"><code>release</code></a> together with <a href="../../plugins/maven-compiler-plugin/compile-mojo.html#multiReleaseOutput"><code>multiReleaseOutput</code></a> to <code>true</code> in an additional execution.</p></section><section><a id="Challenges"></a>
 <h2>Challenges</h2>
 <p>The theory is simple, but in practice multi-release JARs get complex. Think twice before turning a JAR into one, because such JARs are hard to read, maintain and test. Applications rarely need this, unless the application is widely distributed and you do not control the targeted Java runtime. Libraries should ask: do I need this new Java feature? Can I make this Java version the new requirement? Would an <code>if</code>/<code>else</code> as in the first solution above be acceptable?</p>
 <p>Keep these facts in mind:</p>
 <ul>
 
 <li>All classes must stay in sync. If you add a method to one class, add it to the other versions as well. Letting all multi-release classes implement an interface, and only calling the interface methods from the base code, reduces the risk. The best protection is to test the JAR with all targeted Java versions.</li>
-<li>The Java compiler must be called once per Java version, either with multiple Maven projects or modules, or with extra compiler executions in the POM (as older projects with a <code>module-info</code> do, see the <a href="/plugins/maven-compiler-plugin/examples/module-info.html">Compiler Plugin's <code>module-info</code> example</a>).</li>
+<li>The Java compiler must be called once per Java version, either with multiple Maven projects or modules, or with extra compiler executions in the POM (as older projects with a <code>module-info</code> do, see the <a href="../../plugins/maven-compiler-plugin/examples/module-info.html">Compiler Plugin's <code>module-info</code> example</a>).</li>
 <li>The <code>Multi-Release: true</code> attribute is only recognized when the classes are in a JAR, so you cannot test the classes in <code>target/classes/META-INF/versions/${release}/</code>.</li>
 <li>IDEs support one JDK per Maven project, whereas with multi-release JARs you want to choose it per source folder.</li>
 </ul></section><section><a id="Patterns"></a>
@@ -159,7 +159,7 @@ META-INF/MANIFEST.MF { Multi-Release: true }
 <ul>
 
 <li>Build with the highest required JDK and use <code>release</code> to make sure each module only uses matching APIs and syntax. As the version-specific code is isolated, the tests can run with a higher Java runtime.</li>
-<li>Use <a href="/docs/java-versions/toolchains.html">toolchains</a> if you really want to compile and test with the matching Java version.</li>
+<li>Use <a href="../../docs/java-versions/toolchains.html">toolchains</a> if you really want to compile and test with the matching Java version.</li>
 </ul>
 <p>The downside is that a hierarchical structure is required although the result is a single artifact.</p></section><section><a id="Pattern_2.3A_Multi_Project"></a>
 <h3>Pattern 2: Multi Project</h3>

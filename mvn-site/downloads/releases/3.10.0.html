@@ -70,8 +70,8 @@
 <ul>
 
 <li>the website: <a href="https://maven.apache.org/" class="externalLink">https://maven.apache.org/</a></li>
-<li>the maven-user mailing list: <a href="/mailing-lists.html">https://maven.apache.org/mailing-lists.html</a></li>
-<li>the reference documentation: <a href="/ref/3.10.0/">https://maven.apache.org/ref/3.10.0/</a></li>
+<li>the maven-user mailing list: <a href="../../mailing-lists.html">https://maven.apache.org/mailing-lists.html</a></li>
+<li>the reference documentation: <a href="../../ref/3.10.0/">https://maven.apache.org/ref/3.10.0/</a></li>
 </ul><section><a id="Overview_About_the_Changes"></a>
 <h2>Overview About the Changes</h2>
 <p>The main driver for new generation was to align Maven 3 and 4 majors versions on same Resolver version. Hence, Maven 3.10 is now using Resolver 2.0 lineage, same one that is used by Maven 4+. On the other hand, at &#x201c;Maven level&#x201d;, changes are kept minimal, and upgrading should be pretty straightforward. Also, 3.10 received many security and other enhancements as well. Still, most of the changes happened &#x201c;under the surface&#x201d;, end users might even be unaware of them. The key changes are listed below.</p>
@@ -80,14 +80,14 @@
 <h3>New Features and Improvements</h3>
 <ul>
 
-<li><a href="/resolver/">Maven Resolver</a> 2.x (2.0.24) is used, the same lineage as in Maven 4+, which brings version range filtering, improved remote repository filtering, a transitive dependency manager and user-defined relocations</li>
+<li><a href="../../resolver/">Maven Resolver</a> 2.x (2.0.24) is used, the same lineage as in Maven 4+, which brings version range filtering, improved remote repository filtering, a transitive dependency manager and user-defined relocations</li>
 <li>support for user-wide extensions (in <code>~/.m2/extensions.xml</code>) and installation-wide extensions (in <code>$MAVEN_HOME/conf/extensions.xml</code>) extensions, in addition to the usual project-specific <code>.mvn/extensions.xml</code></li>
 <li>full <code>settings.xml</code> interpolation, including non-string values such as ports</li>
 <li><code>session.topDirectory</code>, <code>session.rootDirectory</code> and <code>project.rootDirectory</code> are promoted to regular Maven properties, usable in interpolation and in profile activation</li>
-<li><a href="/docs/recipes/reproducible-builds.html">Reproducible Builds</a> are active by default: the Super POM now provides a default value for <code>project.build.outputTimestamp</code></li>
+<li><a href="../../docs/recipes/reproducible-builds.html">Reproducible Builds</a> are active by default: the Super POM now provides a default value for <code>project.build.outputTimestamp</code></li>
 <li>new CLI options for fine-grained update policy control: <code>-UA</code> (force artifact updates only), <code>-UM</code> (force metadata updates only), <code>--artifacts-update-policy=&lt;policy&gt;</code>, <code>--metadata-update-policy=&lt;policy&gt;</code></li>
-<li>a <code>&lt;server&gt;</code> in <code>settings.xml</code> can declare <code>&lt;aliases&gt;</code>, so that one set of credentials serves several server ids (see <a href="/docs/reference/settings.html">Introduction to Settings</a>)</li>
-<li>a <code>&lt;server&gt;</code> in <code>settings.xml</code> can declare <code>&lt;repositoryOrigins&gt;</code>, to state explicitly which repository origins its credentials may be used with (see <a href="/docs/reference/settings.html#Server_Repository_Origins">Server Repository Origins</a>)</li>
+<li>a <code>&lt;server&gt;</code> in <code>settings.xml</code> can declare <code>&lt;aliases&gt;</code>, so that one set of credentials serves several server ids (see <a href="../../docs/reference/settings.html">Introduction to Settings</a>)</li>
+<li>a <code>&lt;server&gt;</code> in <code>settings.xml</code> can declare <code>&lt;repositoryOrigins&gt;</code>, to state explicitly which repository origins its credentials may be used with (see <a href="../../docs/reference/settings.html#Server_Repository_Origins">Server Repository Origins</a>)</li>
 <li>the reactor summary is complete again: every module is listed, including the skipped ones, and failures are reported last at error level, so they are easier to spot</li>
 <li>a toolchain requested by a plugin, but misconfigured, now fails the build instead of silently falling back to the JDK running Maven</li>
 <li><code>MAVEN_PROJECTBASEDIR</code> can be used in <code>.mvn/jvm.config</code> (<a href="https://github.com/apache/maven/pull/13115" class="externalLink">#13115</a>)</li>
@@ -108,8 +108,8 @@
 <ul>
 
 <li>upgrade <code>SLF4J</code> to 2.x</li>
-<li>migration from JAnsi to JLine, with the <code>MessageBuilderFactory</code> service promoted for colored message support (as a <a href="/shared/maven-shared-utils/"><code>maven-shared-utils</code> styled message API</a> replacement)</li>
-<li>promote java version in <a href="/ref/current/maven-core/apidocs/org/apache/maven/toolchain/java/JavaToolchain.html"><code>JavaToolchain</code></a></li>
+<li>migration from JAnsi to JLine, with the <code>MessageBuilderFactory</code> service promoted for colored message support (as a <a href="../../shared/maven-shared-utils/"><code>maven-shared-utils</code> styled message API</a> replacement)</li>
+<li>promote java version in <a href="../../ref/current/maven-core/apidocs/org/apache/maven/toolchain/java/JavaToolchain.html"><code>JavaToolchain</code></a></li>
 <li>model problems collected during project building are retained in <code>MavenSession.getModelProblems()</code>, so that plugins can inspect them and reject a build with model warnings (<a href="https://github.com/apache/maven/issues/8485" class="externalLink">#8485</a>)</li>
 <li>Maven JARs carry an <code>Automatic-Module-Name</code> manifest entry</li>
 <li>the core is wired with JSR-330 annotations</li>
@@ -135,11 +135,11 @@
 <h3>Artifact and metadata validation in Resolver</h3>
 <p>Resolver 2.x validates artifact and metadata coordinates, and rejects values that cannot be safely mapped to a repository layout. A build relying on non-conformant coordinates can be unblocked with <code>maven.resolver.validation</code> set to <code>mild</code> or <code>off</code>, but the coordinates should be fixed instead.</p></section><section><a id="Repository_credentials_are_scoped"></a>
 <h3>Repository credentials are scoped</h3>
-<p>Credentials of a <code>settings.xml</code> server are only offered to repositories and mirrors whose origin Maven could associate with that server id. Origins Maven cannot securely associate via id can be declared with <code>&lt;repositoryOrigins&gt;</code>, see <a href="/docs/reference/settings.html#Server_Repository_Origins">Server Repository Origins</a>.</p></section><section><a id="Plugin_validation"></a>
+<p>Credentials of a <code>settings.xml</code> server are only offered to repositories and mirrors whose origin Maven could associate with that server id. Origins Maven cannot securely associate via id can be declared with <code>&lt;repositoryOrigins&gt;</code>, see <a href="../../docs/reference/settings.html#Server_Repository_Origins">Server Repository Origins</a>.</p></section><section><a id="Plugin_validation"></a>
 <h3>Plugin validation</h3>
 <p>Plugins and extensions used by your build are checked against Maven supported APIs and conventions: this &#x201c;plugin validation&#x201d; may report WARNINGs at the end of your build. See <a href="../../docs/plugins/plugin-validation.html">plugin validation documentation</a> to better understand what to do when your build suffers from such warnings.</p></section><section><a id="Reproducible_Builds"></a>
 <h3>Reproducible Builds</h3>
-<p>Reproducible Builds is active by default, and with a fixed timestamp value for archive entries: if you rely on timestamp value for your consumption, updating timestamp value during release or even disabling Reproducible Builds may be a choice: see <a href="/docs/recipes/reproducible-builds.html">FAQ</a>.</p></section></section><section><a id="Complete_Release_Notes"></a>
+<p>Reproducible Builds is active by default, and with a fixed timestamp value for archive entries: if you rely on timestamp value for your consumption, updating timestamp value during release or even disabling Reproducible Builds may be a choice: see <a href="../../docs/recipes/reproducible-builds.html">FAQ</a>.</p></section></section><section><a id="Complete_Release_Notes"></a>
 <h2>Complete Release Notes</h2>
 <p>See <a href="history.html">complete release notes for all versions</a></p></section></section>
       </div>

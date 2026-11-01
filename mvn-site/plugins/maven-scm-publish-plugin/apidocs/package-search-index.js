@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"org.apache.maven.plugins.maven_scm_publish_plugin"},{"l":"org.apache.maven.plugins.scmpublish"}];updateSearchResults();

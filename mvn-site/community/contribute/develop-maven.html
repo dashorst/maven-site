@@ -97,11 +97,11 @@
 <p>First of all you need something to work on. Issues can be found on each GitHub repo issues.</p>
 <p>When you find an issue you would like to work on, add a comment in the issue log so the core developers and other people looking for work know that someone is already working on it.</p></section><section><a id="Where.27s_the_source.3F"></a>
 <h2>Where's the source?</h2>
-<p>See <a href="/community/contribute/sources.html">https://maven.apache.org/scm.html</a> for information. The Maven project uses the Apache GitBox Repositories, and all of them are dual-mirrored to <a href="https://github.com/apache/" class="externalLink">GitHub</a>.</p></section><section><a id="Don.27t_forget_tests.21"></a>
+<p>See <a href="../../community/contribute/sources.html">https://maven.apache.org/scm.html</a> for information. The Maven project uses the Apache GitBox Repositories, and all of them are dual-mirrored to <a href="https://github.com/apache/" class="externalLink">GitHub</a>.</p></section><section><a id="Don.27t_forget_tests.21"></a>
 <h2>Don't forget tests!</h2> 
 <p>You will find many unit tests. If at all possible, create or modify a unit test to demonstrate the problem, and then validate your fix.</p>
 <p>If you need to mock a class to write a test, use the Mockito framework. Parts of the Maven codebase predate Mockito so you will encounter existing tests that use EasyMock, PowerMock, and JMock. However, all newly written mocks should use Mockito, even if this means a module or a single class uses multiple mocking frameworks. If an existing test class has complicated legacy mock setup, you can add new Mockito based tests in a new test class. There is no requirement that all tests for a single model class must be in the same test class. It is OK to have multiple test classes per model class.</p>
-<p>If the problem case can't be set up in the unit tests, add an integration test. Before submitting a patch, in any case, you should run all integration tests. The tests require an empty local repository. See <a href="/core-its/core-it-suite/">Core IT Suite documentation</a> for more details.</p></section><section><a id="Creating_and_submitting_a_patch"></a>
+<p>If the problem case can't be set up in the unit tests, add an integration test. Before submitting a patch, in any case, you should run all integration tests. The tests require an empty local repository. See <a href="../../core-its/core-it-suite/">Core IT Suite documentation</a> for more details.</p></section><section><a id="Creating_and_submitting_a_patch"></a>
 <h2>Creating and submitting a patch</h2>
 <p>The most convenient way is to create a GitHub fork from the Git repository you are working with. When you have either completed an issue or just want some feedback on the work you have done, create a pull request. We have a couple of guidelines when submitting contributions:</p>
 <ul>
@@ -140,7 +140,7 @@
 <p>You can <a href="https://codehaus-plexus.github.io/modello/" class="externalLink">read more about Modello</a>.</p></li>
 <li>
 <p><strong>Mojo</strong></p>
-<p>&#x201c;Mojo&#x201d; is really two things when it comes to Maven: it is both <a href="/ref/current/maven-plugin-api/">Maven's plug-in API</a> and also <a href="http://www.mojohaus.org" class="externalLink">a separate Mojohaus project</a> hosting a lot of plugins.</p>
+<p>&#x201c;Mojo&#x201d; is really two things when it comes to Maven: it is both <a href="../../ref/current/maven-plugin-api/">Maven's plug-in API</a> and also <a href="http://www.mojohaus.org" class="externalLink">a separate Mojohaus project</a> hosting a lot of plugins.</p>
 <p><a href="http://www.mojohaus.org" class="externalLink">The MojoHaus Project</a> is a plugin forge for non-core Maven plugins. There is also a lower bar for becoming a part of the project.</p></li>
 </ul></section><section><a id="Sub_Projects"></a>
 <h2>Sub Projects</h2>
@@ -149,19 +149,19 @@
 <li>
 <p><strong>Maven Surefire</strong></p>
 <p>Surefire is a testing framework. It can run regular JUnit tests so you won't have to change anything in your code to use it. It supports scripting tests in BeanShell and Jython and has special &#x201c;batteries&#x201d; for writing acceptance and functional tests for the web and for testing XML-RPC code.</p>
-<p>You can <a href="/surefire/">read more about Surefire</a>.</p></li>
+<p>You can <a href="../../surefire/">read more about Surefire</a>.</p></li>
 <li>
 <p><strong>Maven Doxia</strong></p>
 <p>Doxia is Maven's documentation engine. It has a sink and parser API that can be used to plug in support for input and output documents.</p>
-<p>You can read more about <a href="/extend/doxia/doxia.html">Doxia</a> and the currently supported <a href="/docs/site/markup-formats.html">document formats</a>.</p></li>
+<p>You can read more about <a href="../../extend/doxia/doxia.html">Doxia</a> and the currently supported <a href="../../docs/site/markup-formats.html">document formats</a>.</p></li>
 <li>
 <p><strong>Maven SCM</strong></p>
 <p>Maven SCM (Source Control Management) is a reusable API which is independent of Maven itself. It is used by the SCM related Maven Plugins. The core part of Maven doesn't depend on Maven SCM.</p>
-<p>You can <a href="/scm/">read more about Scm</a>.</p></li>
+<p>You can <a href="../../scm/">read more about Scm</a>.</p></li>
 <li>
 <p><strong>Maven Wagon</strong></p>
 <p>Maven Wagon is a standalone API that dealt with transporting files and directories in Maven 2.x. Maven Core today uses the Resolver Transport API, that among other implementations, contains a wrapper for Wagon as well. Also, the site plugin uses it to publish the site.</p>
-<p>You can <a href="/wagon/">read more about Wagon</a>.</p></li>
+<p>You can <a href="../../wagon/">read more about Wagon</a>.</p></li>
 </ul></section></section>
       </div>
       <nav class="more" aria-labelledby="more-title">

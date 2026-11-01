@@ -79,7 +79,7 @@
 </section>
  <section><a id="SCM_URLs"></a>
 <h1>SCM URLs</h1>
-<p>The <code>&lt;connection&gt;</code>, <code>&lt;developerConnection&gt;</code> and <code>&lt;url&gt;</code> elements of the <a href="./pom.html#SCM"><code>&lt;scm&gt;</code> section of the POM</a> tell Maven and its plugins where a project's sources live. The connection elements hold an SCM URL, which <a href="/scm/">Maven SCM</a> parses to find the provider that talks to the version control system. This page describes the URL syntax and the SCM URL each of the standard providers expects. The provider's own configuration is described on the <a href="/scm/">Maven SCM site</a>.</p>
+<p>The <code>&lt;connection&gt;</code>, <code>&lt;developerConnection&gt;</code> and <code>&lt;url&gt;</code> elements of the <a href="./pom.html#SCM"><code>&lt;scm&gt;</code> section of the POM</a> tell Maven and its plugins where a project's sources live. The connection elements hold an SCM URL, which <a href="../../scm/">Maven SCM</a> parses to find the provider that talks to the version control system. This page describes the URL syntax and the SCM URL each of the standard providers expects. The provider's own configuration is described on the <a href="../../scm/">Maven SCM site</a>.</p>
 <ul>
 <li><a href="#SCM_URL_format">SCM URL format</a></li>
 <li><a href="#Supported_SCMs">Supported SCMs</a></li>
@@ -96,7 +96,7 @@
 <pre tabindex="0"><code class="nohighlight nocode">scm:&lt;provider id&gt;&lt;delimiter&gt;&lt;provider-specific part&gt;
 </code></pre>
 <p>The delimiter is either a colon (<code>:</code>) or a pipe (<code>|</code>). Use the pipe if one of the variables contains a colon, for example a Windows path.</p>
-<p>Provider IDs may be remapped with the plugin parameter <code>providerImplementations</code>, supported by both <a href="/maven-release/maven-release-plugin/prepare-mojo.html#providerImplementations">maven-release-plugin</a> and <a href="/scm/maven-scm-plugin/checkout-mojo.html#providerImplementations">maven-scm-plugin</a>.</p></section><section><a id="Supported_SCMs"></a>
+<p>Provider IDs may be remapped with the plugin parameter <code>providerImplementations</code>, supported by both <a href="../../maven-release/maven-release-plugin/prepare-mojo.html#providerImplementations">maven-release-plugin</a> and <a href="../../scm/maven-scm-plugin/checkout-mojo.html#providerImplementations">maven-scm-plugin</a>.</p></section><section><a id="Supported_SCMs"></a>
 <h2>Supported SCMs</h2>
 <p>The following providers ship with Maven SCM.</p>
 <div class="table-scroll" tabindex="0"><table class="bodyTable">
@@ -109,27 +109,27 @@
 <tr class="b">
 <td><a href="#Git">Git</a></td>
 <td><code>git</code></td>
-<td><a href="/scm/maven-scm-providers/maven-scm-providers-git/maven-scm-provider-gitexe/index.html">Git Executable Provider</a></td>
+<td><a href="../../scm/maven-scm-providers/maven-scm-providers-git/maven-scm-provider-gitexe/index.html">Git Executable Provider</a></td>
 <td>no</td></tr>
 <tr class="a">
 <td><a href="#Git">Git</a></td>
 <td><code>jgit</code></td>
-<td><a href="/scm/maven-scm-providers/maven-scm-providers-git/maven-scm-provider-jgit/index.html">JGit Provider</a></td>
+<td><a href="../../scm/maven-scm-providers/maven-scm-providers-git/maven-scm-provider-jgit/index.html">JGit Provider</a></td>
 <td>yes</td></tr>
 <tr class="b">
 <td><a href="#Subversion">Subversion</a></td>
 <td><code>svn</code></td>
-<td><a href="/scm/maven-scm-providers/maven-scm-providers-svn/maven-scm-provider-svnexe/index.html">SVN Executable Provider</a></td>
+<td><a href="../../scm/maven-scm-providers/maven-scm-providers-svn/maven-scm-provider-svnexe/index.html">SVN Executable Provider</a></td>
 <td>no</td></tr>
 <tr class="a">
 <td><a href="#Mercurial">Mercurial</a></td>
 <td><code>hg</code></td>
-<td><a href="/scm/maven-scm-providers/maven-scm-provider-hg/index.html">Mercurial (Hg) Provider</a></td>
+<td><a href="../../scm/maven-scm-providers/maven-scm-provider-hg/index.html">Mercurial (Hg) Provider</a></td>
 <td>no</td></tr>
 <tr class="b">
 <td><a href="#Local_file_system">Local</a></td>
 <td><code>local</code></td>
-<td><a href="/scm/maven-scm-providers/maven-scm-provider-local/index.html">Local Provider</a></td>
+<td><a href="../../scm/maven-scm-providers/maven-scm-provider-local/index.html">Local Provider</a></td>
 <td>yes</td></tr></tbody>
 </table></div>
 
@@ -167,7 +167,7 @@ scm:git:file://localhost/path_to_repository
 
 <pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;developerConnection</span><span class="nt">&gt;</span>scm:git:[fetch=]http://mywebserver.org/path_to_repository[push=]ssh://username@otherserver:8898/~/repopath.git<span class="nt">&lt;/developerConnection</span><span class="nt">&gt;</span>
 </code></pre>
-<p>Further Git provider behavior and its configuration are described on the <a href="/scm/git.html">Maven SCM Git page</a>.</p></section></section><section><a id="Subversion"></a>
+<p>Further Git provider behavior and its configuration are described on the <a href="../../scm/git.html">Maven SCM Git page</a>.</p></section></section><section><a id="Subversion"></a>
 <h2>Subversion</h2>
 <p>The <code>svn</code> provider accepts the following URLs:</p>
 
@@ -186,7 +186,7 @@ scm:svn:http://svn.apache.org/svn/root/module
 scm:svn:https://username@svn.apache.org/svn/root/module
 scm:svn:https://username:password@svn.apache.org/svn/root/module
 </code></pre>
-<p>The provider configuration is described on the <a href="/scm/subversion.html">Maven SCM Subversion page</a>.</p></section><section><a id="Mercurial"></a>
+<p>The provider configuration is described on the <a href="../../scm/subversion.html">Maven SCM Subversion page</a>.</p></section><section><a id="Mercurial"></a>
 <h2>Mercurial</h2>
 <p>The <code>hg</code> provider takes the path or URL of the branch location. The supported protocols are HTTP, HTTPS and FILE, as well as a local path.</p>
 
