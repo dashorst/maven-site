@@ -53,24 +53,35 @@ import org.jsoup.nodes.Element;
  *     recognises by the anchors it took along, it writes the {@code Redirect} line. It also reports
  *     the pages and anchors of the build that are not on the list yet. Runs after
  *     {@code site:site}; see the pom.</li>
- * <li>{@code record <site> <list>} adds the files and anchors of the rendered site to the list.</li>
+ * <li>{@code record <site> <list>} adds the files and anchors of the rendered site to the list, except
+ *     a file that a redirect hides and sends nowhere, then checks like {@code check}.</li>
  * <li>{@code pages <site> <list>} writes a page that forwards to the new address at every listed
  *     address that a redirect leads away from, for a server that ignores {@code .htaccess}, such as
  *     GitHub Pages.</li>
  * </ul>
  *
- * <p>Of {@code .htaccess} it reads {@code Redirect} and {@code RedirectMatch}. Like mod_alias, the
- * rules of a directory come before those of its parents, and the first rule that matches wins,
- * also over a file that exists. A redirect to a part of maven.apache.org that this build does not
- * write (a plugin site, {@code /ref/}, {@code download.cgi}) is not followed further. An address that a
- * {@code Redirect gone} rule matches was retired on purpose: it is listed, not counted as broken.
+ * <p>Of {@code .htaccess} it reads {@code Redirect}, {@code RedirectMatch}, {@code RedirectPermanent}
+ * and {@code RedirectTemp}. Like mod_alias, the rules of a directory come before those of its
+ * parents, and the first rule that matches wins, also over a file that exists. A redirect to a part
+ * of maven.apache.org that other builds write is not followed further: the component sites that
+ * the {@code components.links} files link in (the plugins, {@code /ref/} and the others), and
+ * {@code download.cgi}. An address that a {@code Redirect gone} rule matches was retired on purpose:
+ * it is listed, not counted as broken.
  */
 public class Addresses {
     private static final String HOST = "maven.apache.org";
     private static final String HTACCESS = "content/filtered-resources/.htaccess";
     private static final String LIST = "src/published-addresses.txt";
+    private static final String HOWTO = "https://maven.apache.org/developers/website/move-a-page.html";
     private static final Pattern ABSOLUTE = Pattern.compile("^https?://([^/]+)(/.*)?$");
     private static final Pattern GROUP = Pattern.compile("\\$(\\d)");
+    private static final int MAX_HOPS = 10;
+    private static final List<String> HEADER = List.of(
+            "# Every address maven.apache.org has published from this repository: a file, and the ids on",
+            "# that page a link could point at. The list only grows. `mvn site` checks that each address",
+            "# still leads to a page with the id, through the redirects in the .htaccess files.",
+            "# Add the addresses of new pages with -Daddresses=record, which keeps these comment lines and",
+            "# sorts the rest; see " + HOWTO);
 
     /** A Redirect or RedirectMatch line. */
     private static final class Rule {
@@ -112,6 +123,9 @@ public class Addresses {
     /** Where an address ends up. */
     private static final class Outcome {
         String path;
+        /** The anchor a redirect sends to; a browser uses it instead of the anchor of the link. */
+        String anchor;
+
         boolean outside;
         boolean gone;
         String problem;
@@ -120,44 +134,74 @@ public class Addresses {
 
     private final Path site;
     private final Map<String, List<Rule>> rules = new TreeMap<>();
+    /** The parts of the server that other builds write: /plugins/maven-jar-plugin, /ref, ... */
     private final Set<String> outsideRoots = new TreeSet<>();
-    private final Set<String> ownDirectories = new TreeSet<>();
+    /** Every file of the build, with the ids of the content of its page. */
+    private final Map<String, Set<String>> published = new TreeMap<>();
+    /** The ids of each page of the build, of its frame too, that a link could point at. */
+    private final Map<String, Set<String>> allIds = new TreeMap<>();
 
     Addresses(Path site) throws IOException {
         this.site = site;
-        try (Stream<Path> files = Files.walk(site)) {
-            for (Path file : files.filter(p -> p.getFileName().toString().equals(".htaccess"))
-                    .collect(Collectors.toList())) {
-                String dir = "/" + site.relativize(file.getParent()).toString().replace('\\', '/');
-                rules.put(dir.endsWith("/") ? dir : dir + "/", parse(file));
+        List<Path> files;
+        try (Stream<Path> walk = Files.walk(site)) {
+            files = walk.filter(Files::isRegularFile).sorted().collect(Collectors.toList());
+        }
+        for (Path f : files) {
+            String name = f.getFileName().toString();
+            String dir = "/" + site.relativize(f.getParent()).toString().replace('\\', '/');
+            dir = dir.endsWith("/") ? dir : dir + "/";
+            if (name.equals(".htaccess")) {
+                // the source of the file, for the editor: the root one is filtered, the others are not
+                rules.put(dir, parse(f, dir.equals("/") ? HTACCESS : "content/resources" + dir + name));
+                continue;
             }
+            if (name.equals("components.links")) {
+                // properties for the symlinks that the server has in place of these paths
+                for (String line : Files.readAllLines(f, StandardCharsets.UTF_8)) {
+                    int eq = line.indexOf('=');
+                    if (!line.startsWith("#") && eq > 0) {
+                        outsideRoots.add(dir + line.substring(0, eq).trim());
+                    }
+                }
+            }
+            String path = dir + name;
+            Set<String> ids = new TreeSet<>();
+            if (name.endsWith(".html")) {
+                Document doc = Jsoup.parse(f.toFile(), "UTF-8");
+                Element content = doc.selectFirst("main#bodyColumn, main#content, main");
+                ids = ids(content != null ? content : doc.body());
+                allIds.put(path, ids(doc));
+            }
+            published.put(path, ids);
         }
-        // the component sites are links to directories this build does not write, as on the server
-        try (Stream<Path> top = Files.list(site)) {
-            top.filter(Files::isSymbolicLink)
-                    .forEach(p -> outsideRoots.add(p.getFileName().toString()));
-        }
+        outsideRoots.add("/components");
     }
 
-    private static List<Rule> parse(Path file) throws IOException {
+    private static List<Rule> parse(Path file, String label) throws IOException {
         List<Rule> list = new ArrayList<>();
         for (String line : Files.readAllLines(file, StandardCharsets.UTF_8)) {
             String[] w = line.trim().split("\\s+");
+            String directive = w[0].toLowerCase();
             if (w.length < 2
-                    || !(w[0].equalsIgnoreCase("Redirect")
-                            || w[0].equalsIgnoreCase("RedirectMatch")
-                            || w[0].equalsIgnoreCase("RedirectPermanent"))) {
+                    || !(directive.equals("redirect")
+                            || directive.equals("redirectmatch")
+                            || directive.equals("redirectpermanent")
+                            || directive.equals("redirecttemp"))) {
                 continue;
             }
             int i = 1;
             Rule r = new Rule();
-            r.source = file.getFileName() + ": " + line.trim();
-            if (!w[0].equalsIgnoreCase("RedirectPermanent")
+            r.source = label + ": " + line.trim();
+            if ((directive.equals("redirect") || directive.equals("redirectmatch"))
                     && w[i].matches("(?i)permanent|temp|seeother|gone|\\d{3}")) {
                 r.gone = w[i].equalsIgnoreCase("gone") || w[i].equals("410");
                 i++;
             }
-            if (w[0].equalsIgnoreCase("RedirectMatch")) {
+            if (i >= w.length) {
+                continue;
+            }
+            if (directive.equals("redirectmatch")) {
                 r.regex = Pattern.compile(w[i]);
             } else {
                 r.prefix = w[i];
@@ -189,7 +233,7 @@ public class Addresses {
 
     Outcome follow(String path) {
         Outcome o = new Outcome();
-        for (int hop = 0; hop < 10; hop++) {
+        while (true) {
             String next = null;
             for (Rule r : rulesFor(path)) {
                 next = r.apply(path);
@@ -201,9 +245,23 @@ public class Addresses {
             if (next == null) {
                 break;
             }
+            if (o.hops.size() > MAX_HOPS) {
+                o.problem = "redirects in a loop";
+                return o;
+            }
             if (next.isEmpty()) {
                 o.gone = true;
                 return o;
+            }
+            // the browser keeps the anchor of the link, unless the redirect gives one of its own
+            int hash = next.indexOf('#');
+            if (hash >= 0) {
+                o.anchor = next.substring(hash + 1);
+                next = next.substring(0, hash);
+            }
+            int query = next.indexOf('?');
+            if (query >= 0) {
+                next = next.substring(0, query);
             }
             Matcher m = ABSOLUTE.matcher(next);
             if (m.matches()) {
@@ -215,10 +273,6 @@ public class Addresses {
                 next = m.group(2) == null ? "/" : m.group(2);
             }
             path = next;
-        }
-        if (o.hops.size() >= 10) {
-            o.problem = "redirects in a loop";
-            return o;
         }
         if (path.endsWith("/")) {
             path += "index.html";
@@ -234,31 +288,36 @@ public class Addresses {
                         ? "does not exist, and no redirect leads away from it"
                         : "leads to " + path + ", which does not exist";
             }
+        } else if (o.anchor != null && path.endsWith(".html") && !idsOf(path).contains(o.anchor)) {
+            o.problem = "leads to " + path + "#" + o.anchor + ", which lacks that anchor";
         }
         return o;
     }
 
-    /** True when path is in a part of the server that this build does not write. */
+    /** True when path is in a part of the server that another build writes, or the download script. */
     private boolean isOutside(String path) {
-        String[] segments = path.substring(1).split("/");
-        // download.cgi, the server's script that picks a mirror
-        if (outsideRoots.contains(segments[0]) || path.endsWith(".cgi")) {
+        if (path.endsWith(".cgi")) {
             return true;
         }
-        // a plugin or component site next to this build's own pages: /plugins/maven-jar-plugin/
-        String dir = path.substring(0, path.lastIndexOf('/') + 1);
-        return !ownDirectories.contains(dir) && !Files.isDirectory(file(dir));
+        for (String root : outsideRoots) {
+            if (path.equals(root) || path.startsWith(root + "/")) {
+                return true;
+            }
+        }
+        return false;
     }
 
     private Path file(String path) {
         return site.resolve(path.substring(1));
     }
 
-    /** The ids on a page a link could point at: those of the content, not of the frame. */
-    static Set<String> anchors(Path page) throws IOException {
-        Document doc = Jsoup.parse(page.toFile(), "UTF-8");
-        Element content = doc.selectFirst("main#bodyColumn, main#content, main");
-        Element root = content != null ? content : doc.body();
+    /** The ids of a page of the build that a link could point at, of its frame too. */
+    private Set<String> idsOf(String path) {
+        return allIds.getOrDefault(path, Set.of());
+    }
+
+    /** The ids under root that a link could point at: an id, or the name of an a element. */
+    static Set<String> ids(Element root) {
         Set<String> ids = new TreeSet<>();
         if (root == null) {
             return ids;
@@ -267,7 +326,10 @@ public class Addresses {
             if (e == root) {
                 continue;
             }
-            ids.add(e.hasAttr("id") ? e.id() : e.attr("name"));
+            ids.add(e.id());
+            if (e.tagName().equals("a")) {
+                ids.add(e.attr("name"));
+            }
         }
         ids.removeIf(id -> id.isEmpty() || id.contains(" "));
         return ids;
@@ -291,43 +353,59 @@ public class Addresses {
         return addresses;
     }
 
+    /** Writes the list, sorted, after the comment lines at the top of the file as it was. */
     static void write(Path list, Map<String, Set<String>> addresses) throws IOException {
         List<String> lines = new ArrayList<>();
-        lines.add("# Every address maven.apache.org has published from this repository: a file, and the ids on");
-        lines.add("# that page a link could point at. The list only grows. `mvn site` checks that each address");
-        lines.add("# still leads to a page with the id, through the redirects in the .htaccess files.");
-        lines.add("# Add the addresses of new pages with -Daddresses=record; see src/main/java/org/apache/maven/");
-        lines.add("# site/check/Addresses.java.");
+        if (Files.exists(list)) {
+            for (String line : Files.readAllLines(list, StandardCharsets.UTF_8)) {
+                if (!line.startsWith("#")) {
+                    break;
+                }
+                lines.add(line);
+            }
+        }
+        if (lines.isEmpty()) {
+            lines.addAll(HEADER);
+        }
         addresses.forEach((path, ids) -> lines.add(ids.isEmpty() ? path : path + " " + String.join(" ", ids)));
         Files.write(list, lines, StandardCharsets.UTF_8);
     }
 
-    /** Every file of the rendered site, with the anchors of its pages. */
-    Map<String, Set<String>> published() throws IOException {
-        Map<String, Set<String>> addresses = new TreeMap<>();
-        List<Path> files;
-        try (Stream<Path> walk = Files.walk(site)) {
-            files = walk.filter(Files::isRegularFile)
-                    .filter(p -> !p.getFileName().toString().equals(".htaccess"))
-                    .collect(Collectors.toList());
+    /**
+     * Adds the files and anchors of the build to the list. A file that a redirect hides and sends
+     * nowhere was never reachable at its address, and is left out.
+     */
+    int record(Map<String, Set<String>> known, Path list) throws IOException {
+        int before = known.size();
+        List<String> unreachable = new ArrayList<>();
+        for (Map.Entry<String, Set<String>> p : published.entrySet()) {
+            if (!known.containsKey(p.getKey()) && follow(p.getKey()).problem != null) {
+                unreachable.add(p.getKey());
+                continue;
+            }
+            known.computeIfAbsent(p.getKey(), k -> new TreeSet<>()).addAll(p.getValue());
         }
-        for (Path f : files) {
-            String path = "/" + site.relativize(f).toString().replace('\\', '/');
-            addresses.put(path, path.endsWith(".html") ? anchors(f) : new TreeSet<>());
+        write(list, known);
+        System.out.printf("Addresses: %d new, %d listed%n", known.size() - before, known.size());
+        if (!unreachable.isEmpty()) {
+            System.out.println("Not listed, because a redirect sends them nowhere: " + String.join(" ", unreachable));
         }
-        return addresses;
+        return known.size() - before;
     }
 
     /**
      * The page of this build that a missing page most likely moved to: the one that has the most of
-     * its anchors, at least half of them. A page that moves keeps the ids of its headings. Null when
-     * no page qualifies, or two qualify equally.
+     * its anchors, at least half of them, and is served at its own address. A page that moves keeps
+     * the ids of its headings. Null when no page qualifies, or two qualify equally.
      */
-    static String movedTo(Set<String> ids, Map<String, Set<String>> published) {
+    String movedTo(String from, Set<String> ids) {
         String best = null;
         int most = 0;
         boolean tie = false;
         for (Map.Entry<String, Set<String>> p : published.entrySet()) {
+            if (p.getKey().equals(from) || !follow(p.getKey()).hops.isEmpty()) {
+                continue;
+            }
             int shared = 0;
             for (String id : ids) {
                 if (p.getValue().contains(id)) {
@@ -349,8 +427,7 @@ public class Addresses {
         return n + " " + (n == 1 ? one : more);
     }
 
-    int check(Map<String, Set<String>> addresses) throws IOException {
-        Map<String, Set<String>> published = published();
+    int check(Map<String, Set<String>> addresses) {
         List<String> problems = new ArrayList<>();
         int redirected = 0;
         int outside = 0;
@@ -360,14 +437,24 @@ public class Addresses {
             Outcome o = follow(a.getKey());
             if (o.problem != null) {
                 String problem = a.getKey() + " " + o.problem
-                        + (o.hops.isEmpty() ? "" : " (" + String.join(" > ", o.hops) + ")");
-                String to = a.getValue().isEmpty() ? null : movedTo(a.getValue(), published);
+                        + (o.hops.isEmpty() ? "" : " (" + String.join(" > ", new LinkedHashSet<>(o.hops)) + ")");
+                boolean missingPage = o.path != null && !Files.exists(file(o.path));
+                String to = a.getValue().isEmpty() || !missingPage ? null : movedTo(a.getKey(), a.getValue());
                 if (to != null) {
                     Set<String> there = new TreeSet<>(a.getValue());
                     there.retainAll(published.get(to));
                     problem += String.format(
-                            "%n      it moved to %s, which has %d of its %d anchors:%n      Redirect Permanent %s %s",
-                            to, there.size(), a.getValue().size(), a.getKey(), to);
+                            "%n      it moved to %s, which has %d of its %d anchors",
+                            to, there.size(), a.getValue().size());
+                    String line = "Redirect Permanent " + a.getKey() + " " + to;
+                    if (o.hops.isEmpty()) {
+                        problem += String.format(":%n      %s", line);
+                    } else {
+                        // the first rule that matches wins: a new line after it would never apply
+                        problem += String.format(
+                                "; put this line before the rule that catches it now, %s:%n      %s",
+                                o.hops.get(0), line);
+                    }
                 }
                 problems.add(problem);
                 continue;
@@ -383,14 +470,10 @@ public class Addresses {
                 outside++;
                 continue;
             }
-            if (!a.getValue().isEmpty() && o.path.endsWith(".html")) {
+            // a redirect with an anchor of its own sends every link to that anchor; follow() checked it
+            if (!a.getValue().isEmpty() && o.anchor == null && o.path.endsWith(".html")) {
                 Set<String> missing = new LinkedHashSet<>(a.getValue());
-                missing.removeAll(anchors(file(o.path)));
-                // an id the page still has outside its content, in a frame of its own
-                if (!missing.isEmpty()) {
-                    String html = new String(Files.readAllBytes(file(o.path)), StandardCharsets.UTF_8);
-                    missing.removeIf(id -> html.contains("id=\"" + id + "\"") || html.contains("name=\"" + id + "\""));
-                }
+                missing.removeAll(idsOf(o.path));
                 if (!missing.isEmpty()) {
                     if (firstAnchor == null) {
                         firstAnchor = missing.iterator().next();
@@ -413,13 +496,17 @@ public class Addresses {
             System.out.println("  - put a dropped anchor back above the section that holds its content: <a id=\""
                     + (firstAnchor != null ? firstAnchor : "...") + "\"></a>");
             System.out.println("  - retire it on purpose: Redirect gone <old>, or delete the anchor from " + LIST);
+            System.out.println("See " + HOWTO);
         }
         int newAddresses = 0;
         int newAnchors = 0;
         for (Map.Entry<String, Set<String>> p : published.entrySet()) {
             Set<String> known = addresses.get(p.getKey());
             if (known == null) {
-                newAddresses++;
+                // as record does, leave out a file that a redirect hides and sends nowhere
+                if (follow(p.getKey()).problem == null) {
+                    newAddresses++;
+                }
             } else {
                 newAnchors += (int)
                         p.getValue().stream().filter(id -> !known.contains(id)).count();
@@ -472,15 +559,12 @@ public class Addresses {
         Addresses addresses = new Addresses(Paths.get(args[1]));
         Path list = Paths.get(args[2]);
         Map<String, Set<String>> known = read(list);
-        known.keySet().forEach(path -> addresses.ownDirectories.add(path.substring(0, path.lastIndexOf('/') + 1)));
         switch (args[0]) {
             case "record":
-                Map<String, Set<String>> published = addresses.published();
-                int before = known.size();
-                published.forEach((path, ids) ->
-                        known.computeIfAbsent(path, k -> new TreeSet<>()).addAll(ids));
-                write(list, known);
-                System.out.printf("Addresses: %d new, %d listed%n", known.size() - before, known.size());
+                addresses.record(known, list);
+                if (addresses.check(known) > 0) {
+                    System.exit(1);
+                }
                 break;
             case "check":
                 if (addresses.check(known) > 0) {
