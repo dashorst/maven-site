@@ -94,21 +94,29 @@
 <h2><a id="Transforming_documents"></a>Transforming documents</h2>
 <p>Doxia can be used to transform an arbitrary input document to any supported output format. The following snippet shows how to use a Doxia <em>Parser</em> to transform an apt file to html:</p>
 
-<pre tabindex="0" class="highlight"><code class="language-java">  File userDir = <span class="k">new</span> File( System.getProperty ( <span class="s">"user.dir"</span> ) );
-  File inputFile = <span class="k">new</span> File( userDir, <span class="s">"test.apt"</span> );
-  File outputFile = <span class="k">new</span> File( userDir, <span class="s">"test.html"</span> );
+<pre tabindex="0" class="highlight"><code class="language-java">  <span class="nd">@Inject</span>
+  <span class="k">public</span> MyConverter( <span class="nd">@Named</span>( <span class="s">"xhtml"</span> ) SinkFactory sinkFactory, <span class="nd">@Named</span>( <span class="s">"apt"</span> ) Parser parser )
+  {
+      <span class="k">this</span>.sinkFactory = sinkFactory;
+      <span class="k">this</span>.parser = parser;
+  }
 
-  SinkFactory sinkFactory = (SinkFactory) lookup( SinkFactory.ROLE, <span class="s">"html"</span> ); <span class="c1">// Plexus lookup</span>
+  <span class="k">public</span> <span class="k">void</span> convert()
+      <span class="k">throws</span> IOException, ParseException
+  {
+      File userDir = <span class="k">new</span> File( System.getProperty( <span class="s">"user.dir"</span> ) );
+      File inputFile = <span class="k">new</span> File( userDir, <span class="s">"test.apt"</span> );
+      File outputFile = <span class="k">new</span> File( userDir, <span class="s">"test.html"</span> );
 
-  Sink sink = sinkFactory.createSink( outputFile.getParentFile(), outputFile.getName() ) );
+      Sink sink = sinkFactory.createSink( outputFile.getParentFile(), outputFile.getName() );
 
-  Parser parser = (AptParser) lookup( Parser.ROLE, <span class="s">"apt"</span> ); <span class="c1">// Plexus lookup</span>
-
-  Reader reader = ReaderFactory.newReader( inputFile, <span class="s">"UTF-8"</span> );
-
-  parser.parse( reader, sink );
+      <span class="k">try</span> ( Reader reader = Files.newBufferedReader( inputFile.toPath(), StandardCharsets.UTF_8 ) )
+      {
+          parser.parse( reader, sink );
+      }
+  }
 </code></pre>
-<p>It is recommended that you use <a href="https://codehaus-plexus.github.io/" class="externalLink">Plexus</a> to look up the parser. In principle you could instantiate the parser directly ( <code>Parser parser = new AptParser();</code> ) but then some special features like macros will not be available.</p>
+<p>It is recommended that you inject the parser and the sink factory by name, as described in <a href="../../extend/plugins/jsr-330.html#How_to_name_components">How to name components</a>. In principle you could instantiate the parser directly ( <code>Parser parser = new AptParser();</code> ) but then some special features like macros will not be available.</p>
 <p>You could also use the <a href="../../doxia/doxia-tools/doxia-converter/index.html">Doxia Converter Tool</a> to parse a given file/dir to another file/dir. To move a site from APT to Markdown, see <a href="../../docs/site/apt-to-markdown.html">Migrating APT to Markdown</a>.</p></section><section>
 <h2><a id="Generating_documents"></a>Generating documents</h2>
 <p>The snippet below gives a simple example of how to generate a document using the Doxia Sink API.</p>

@@ -98,18 +98,20 @@
   ...
 <span class="nt">&lt;/project</span><span class="nt">&gt;</span>
 </code></pre>
-<p>Secondly, you should implement some Doxia classes, depending on what features you want: parsing or generating markup.</p><section><a id="Parsing"></a>
+<p>Secondly, you should implement some Doxia classes, depending on what features you want: parsing or generating markup. Parsers, parser modules and sink factories are JSR-330 components, named by <code>@Named</code>; the <em>doxia-modules</em> parent already writes the component index. For details, see <a href="../../extend/plugins/jsr-330.html#How_to_name_components">Maven &amp; JSR-330</a>.</p><section><a id="Parsing"></a>
 <h2>Parsing</h2>
 <ul>
 
 <li>
 <p><em>MyParser</em> class</p>
 
-<pre tabindex="0" class="highlight"><code class="language-java"><span class="k">import</span> org.apache.maven.doxia.parser.AbstractParser;
-<span class="k">import</span> org.apache.maven.doxia.parser.Parser;
-<span class="k">import</span> org.codehaus.plexus.component.annotations.Component;
+<pre tabindex="0" class="highlight"><code class="language-java"><span class="k">import</span> javax.inject.Named;
+<span class="k">import</span> javax.inject.Singleton;
 
-<span class="nd">@Component</span>( role = Parser.<span class="k">class</span>, hint = <span class="s">"my"</span> )
+<span class="k">import</span> org.apache.maven.doxia.parser.AbstractParser;
+
+<span class="nd">@Singleton</span>
+<span class="nd">@Named</span>(<span class="s">"my"</span>)
 <span class="k">public</span> <span class="k">class</span> MyParser
     <span class="k">extends</span> AbstractParser
 {
@@ -131,10 +133,13 @@
 <li>
 <p><em>MyParserModule</em> class</p>
 
-<pre tabindex="0" class="highlight"><code class="language-java"><span class="k">import</span> org.apache.maven.doxia.parser.module.AbstractParserModule;
-<span class="k">import</span> org.codehaus.plexus.component.annotations.Component;
+<pre tabindex="0" class="highlight"><code class="language-java"><span class="k">import</span> javax.inject.Named;
+<span class="k">import</span> javax.inject.Singleton;
 
-<span class="nd">@Component</span>( role = ParserModule.<span class="k">class</span>, hint = <span class="s">"my"</span> )
+<span class="k">import</span> org.apache.maven.doxia.parser.module.AbstractParserModule;
+
+<span class="nd">@Singleton</span>
+<span class="nd">@Named</span>(<span class="s">"my"</span>)
 <span class="k">public</span> <span class="k">class</span> MyParserModule
     <span class="k">extends</span> AbstractParserModule
 {
@@ -160,10 +165,13 @@
 <li>
 <p><em>MySinkFactory</em> class</p>
 
-<pre tabindex="0" class="highlight"><code class="language-java"><span class="k">import</span> org.apache.maven.doxia.sink.SinkFactory;
-<span class="k">import</span> org.codehaus.plexus.component.annotations.Component;
+<pre tabindex="0" class="highlight"><code class="language-java"><span class="k">import</span> javax.inject.Named;
+<span class="k">import</span> javax.inject.Singleton;
 
-<span class="nd">@Component</span>( role = SinkFactory.<span class="k">class</span>, hint = <span class="s">"my"</span> )
+<span class="k">import</span> org.apache.maven.doxia.sink.SinkFactory;
+
+<span class="nd">@Singleton</span>
+<span class="nd">@Named</span>(<span class="s">"my"</span>)
 <span class="k">public</span> <span class="k">class</span> MySinkFactory
     <span class="k">implements</span> SinkFactory
 {

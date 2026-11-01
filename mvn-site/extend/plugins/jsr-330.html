@@ -229,7 +229,29 @@
         component.hello();
     }
 }
-</code></pre></section><section><a id="Lifecycle_annotations_.28JSR-250.29"></a>
+</code></pre></section><section><a id="How_to_name_components"></a>
+<h2>How to name components</h2>
+<p>Where a library offers several implementations of one interface, <code>@Named</code> gives each implementation the name that callers select it by. Plexus called this name the role hint. Doxia parsers, sink factories and macros work this way:</p>
+
+<pre tabindex="0" class="highlight"><code class="language-java"><span class="k">import</span> javax.inject.Named;
+<span class="k">import</span> javax.inject.Singleton;
+
+<span class="k">import</span> org.apache.maven.doxia.parser.AbstractTextParser;
+
+<span class="nd">@Singleton</span>
+<span class="nd">@Named</span>(<span class="s">"my"</span>)
+<span class="k">public</span> <span class="k">class</span> MyParser <span class="k">extends</span> AbstractTextParser {
+    ...
+}
+</code></pre>
+<p>A component that needs one implementation injects it by interface and name, which replaces the Plexus <code>lookup(Parser.ROLE, "my")</code> call:</p>
+
+<pre tabindex="0" class="highlight"><code class="language-java"><span class="nd">@Inject</span>
+<span class="k">public</span> MyComponent(<span class="nd">@Named</span>(<span class="s">"my"</span>) Parser parser) {
+    <span class="k">this</span>.parser = parser;
+}
+</code></pre>
+<p>The implementation is found only if its JAR contains the index that the <code>sisu-maven-plugin</code> writes, as described in <a href="#How_to_use_JSR-330">How to use JSR-330</a>.</p></section><section><a id="Lifecycle_annotations_.28JSR-250.29"></a>
 <h2>Lifecycle annotations (JSR-250)</h2>
 <p>Sisu managed beans also support lifecycle annotations defined by <a href="https://jcp.org/en/jsr/detail?id=250" class="externalLink">JSR-250</a> (for example <code>@PostConstruct</code>). See <a href="https://eclipse.dev/sisu/org.eclipse.sisu.inject/lifecycle.html" class="externalLink">Sisu's lifecycle support documentation</a> for more information.</p></section></section>
       </div>

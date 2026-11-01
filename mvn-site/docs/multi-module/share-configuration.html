@@ -162,7 +162,7 @@
   <span class="nt">&lt;scope</span><span class="nt">&gt;</span>test<span class="nt">&lt;/scope</span><span class="nt">&gt;</span>
 <span class="nt">&lt;/dependency</span><span class="nt">&gt;</span>
 </code></pre>
-<p>A version you write in <code>&lt;dependencyManagement&gt;</code> yourself wins over the version from an imported BOM. A POM has only one parent, but it can import any number of BOMs. The <a href="../dependencies/how-dependencies-work.html#Importing_Dependencies">dependency mechanism</a> describes the rules for imports in full.</p></section><section><a id="Lock_plugin_versions_and_configure_plugins"></a>
+<p>A version you write in <code>&lt;dependencyManagement&gt;</code> yourself wins over the version from an imported BOM. A POM has only one parent, but it can import any number of BOMs. <a href="../dependencies/use-a-bom.html">Use a BOM, and publish one</a> shows how to override a version and what happens when two BOMs manage the same artifact.</p></section><section><a id="Lock_plugin_versions_and_configure_plugins"></a>
 <h2>Lock plugin versions and configure plugins</h2>
 <p><code>&lt;pluginManagement&gt;</code> does for plugins what <code>&lt;dependencyManagement&gt;</code> does for dependencies: it sets the version and configuration of a plugin without running it. The compiler, Surefire and the other plugins of the <a href="../get-started/build-lifecycle.html">build lifecycle</a> run in every <code>jar</code> module anyway, so for them the managed version and configuration take effect in every module.</p>
 <p><em>pom.xml</em></p>

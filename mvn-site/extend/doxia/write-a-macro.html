@@ -83,38 +83,19 @@
 </section>
  <section><a id="Create_a_New_Doxia_Macro"></a>
 <h1>Create a New Doxia Macro</h1>
-<p>You need to add the following <a href="https://codehaus-plexus.github.io/plexus-containers/plexus-component-metadata/" class="externalLink">plexus-component-metadata plugin</a> configuration to generate the correct Plexus <em>component.xml</em> file from annotations for the project containing your macro:</p>
-
-<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;project</span><span class="nt">&gt;</span>
-  ...
-  <span class="nt">&lt;build</span><span class="nt">&gt;</span>
-    ...
-    <span class="nt">&lt;plugins</span><span class="nt">&gt;</span>
-      <span class="nt">&lt;plugin</span><span class="nt">&gt;</span>
-        <span class="nt">&lt;groupId</span><span class="nt">&gt;</span>org.codehaus.plexus<span class="nt">&lt;/groupId</span><span class="nt">&gt;</span>
-        <span class="nt">&lt;artifactId</span><span class="nt">&gt;</span>plexus-component-metadata<span class="nt">&lt;/artifactId</span><span class="nt">&gt;</span>
-        <span class="nt">&lt;executions</span><span class="nt">&gt;</span>
-          <span class="nt">&lt;execution</span><span class="nt">&gt;</span>
-            <span class="nt">&lt;goals</span><span class="nt">&gt;</span>
-              <span class="nt">&lt;goal</span><span class="nt">&gt;</span>generate-metadata<span class="nt">&lt;/goal</span><span class="nt">&gt;</span>
-            <span class="nt">&lt;/goals</span><span class="nt">&gt;</span>
-          <span class="nt">&lt;/execution</span><span class="nt">&gt;</span>
-        <span class="nt">&lt;/executions</span><span class="nt">&gt;</span>
-      <span class="nt">&lt;/plugin</span><span class="nt">&gt;</span>
-      ...
-    <span class="nt">&lt;/plugins</span><span class="nt">&gt;</span>
-  ...
-  <span class="nt">&lt;/build</span><span class="nt">&gt;</span>
-  ...
-<span class="nt">&lt;/project</span><span class="nt">&gt;</span>
-</code></pre>
+<p>A macro is a JSR-330 component named after the macro. Set up the project that contains it as described in <a href="../../extend/plugins/jsr-330.html#How_to_use_JSR-330">How to use JSR-330</a>: a <code>javax.inject</code> dependency and the <code>sisu-maven-plugin</code> index.</p>
 <p>You should implement the <em>AbstractMacro</em> class:</p>
 
-<pre tabindex="0" class="highlight"><code class="language-java"><span class="k">import</span> org.apache.maven.doxia.macro.AbstractMacro;
+<pre tabindex="0" class="highlight"><code class="language-java"><span class="k">import</span> javax.inject.Named;
+<span class="k">import</span> javax.inject.Singleton;
 
-<span class="cm">/**
- * @plexus.component role="org.apache.maven.doxia.macro.Macro" role-hint="my"
- */</span>
+<span class="k">import</span> org.apache.maven.doxia.macro.AbstractMacro;
+<span class="k">import</span> org.apache.maven.doxia.macro.MacroExecutionException;
+<span class="k">import</span> org.apache.maven.doxia.macro.MacroRequest;
+<span class="k">import</span> org.apache.maven.doxia.sink.Sink;
+
+<span class="nd">@Singleton</span>
+<span class="nd">@Named</span>(<span class="s">"my"</span>)
 <span class="k">public</span> <span class="k">class</span> MyMacro
     <span class="k">extends</span> AbstractMacro
 {
@@ -134,12 +115,12 @@
 <li>
 <p>APT</p>
 
-<pre tabindex="0"><code class="language-text">%{my|myParam=myValue} &lt;!-- my is the macro name defined by role-hint --&gt;
+<pre tabindex="0"><code class="language-text">%{my|myParam=myValue} &lt;!-- my is the macro name set by @Named --&gt;
 </code></pre></li>
 <li>
 <p>XDoc</p>
 
-<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;macro</span> <span class="na">name</span>=<span class="s">"my"</span><span class="nt">&gt;</span> <span class="c">&lt;!-- my is the required macro name defined by role-hint --&gt;</span>
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;macro</span> <span class="na">name</span>=<span class="s">"my"</span><span class="nt">&gt;</span> <span class="c">&lt;!-- my is the required macro name set by @Named --&gt;</span>
   <span class="nt">&lt;param</span> <span class="na">name</span>=<span class="s">"myParam"</span> <span class="na">value</span>=<span class="s">"myValue"</span><span class="nt">/&gt;</span>
 <span class="nt">&lt;/macro</span><span class="nt">&gt;</span>
 </code></pre></li>
@@ -151,7 +132,7 @@
 <li><a href="../../docs/site/macros.html">Doxia Macros Guide</a></li>
 <li><a href="../../doxia/doxia/apidocs/index.html">Doxia API Reference</a></li>
 <li><a href="../../doxia/doxia-sitetools/apidocs/index.html">Doxia Sitetools API Reference</a></li>
-<li><a href="../../extend/plugins/plexus-annotations.html">Upgrading from Plexus Javadoc Tags to Plexus Java Annotations</a></li>
+<li><a href="../../extend/plugins/jsr-330.html">Maven &amp; JSR-330</a></li>
 </ul></section></section>
       </div>
       <nav class="more" aria-labelledby="more-title">

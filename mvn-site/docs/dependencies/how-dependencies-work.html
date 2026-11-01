@@ -3,7 +3,10 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>How dependencies work – Apache Maven</title>
+  <title>How Maven resolves dependencies – Apache Maven</title>
+  <meta name="description" content="Why your project gets the libraries and versions it gets: transitive dependencies, which version wins, managed versions, scopes and ranges.">
+  <meta name="keywords" content="dependency mechanism, transitive dependencies, dependency mediation, nearest wins, nearest definition, first declaration wins, version conflict, conflict resolution, dependency graph, Maven Resolver, version ranges, why this version">
+  <meta name="terms" content="&lt;dependencies&gt; | &lt;dependencyManagement&gt; | &lt;exclusions&gt; | &lt;optional&gt; | &lt;scope&gt; | dependency:tree">
   <link rel="stylesheet" href="../../css/maven.css">
   <link rel="stylesheet" href="../../css/print.css" media="print">
   <link rel="icon" href="../../images/favicon.ico">
@@ -49,11 +52,16 @@
   <div class="frame has-group">
     <nav class="group-nav" aria-labelledby="group-nav-title">
       <p class="up"><a href="../../docs/index.html"><svg aria-hidden="true" viewBox="0 0 16 16" width="14" height="14"><path d="M10 3.5L5.5 8l4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" /></svg>All of Docs</a></p>
-      <p class="steps"><a class="step step--next" href="../../docs/dependencies/optional-and-exclusions.html" rel="next"><span class="step-dir">Next</span> Optional dependencies and exclusions</a></p>
+      <p class="steps"><a class="step step--next" href="../../docs/dependencies/scopes.html" rel="next"><span class="step-dir">Next</span> Dependency scopes</a></p>
       <h2 id="group-nav-title"><a href="../../docs/dependencies/index.html">Dependencies and repositories</a></h2>
       <ul class="page-list">
-  <li><a href="../../docs/dependencies/how-dependencies-work.html" aria-current="page">How dependencies work</a></li>
-  <li><a href="../../docs/dependencies/optional-and-exclusions.html">Optional dependencies and exclusions</a></li>
+  <li><a href="../../docs/dependencies/how-dependencies-work.html" aria-current="page">How Maven resolves dependencies</a></li>
+  <li><a href="../../docs/dependencies/scopes.html">Dependency scopes</a></li>
+  <li><a href="../../docs/dependencies/trace-a-dependency.html">Find out where a dependency comes from</a></li>
+  <li><a href="../../docs/dependencies/control-a-transitive-version.html">Control the version of a transitive dependency</a></li>
+  <li><a href="../../docs/dependencies/exclude-a-dependency.html">Exclude a transitive dependency</a></li>
+  <li><a href="../../docs/dependencies/use-a-bom.html">Use a BOM, and publish one</a></li>
+  <li><a href="../../docs/dependencies/make-a-dependency-optional.html">Make a dependency optional</a></li>
   <li><a href="../../docs/dependencies/repositories.html">Repositories explained</a></li>
   <li><a href="../../docs/dependencies/mirror-settings.html">Use a mirror or repository manager (Nexus, Artifactory)</a></li>
   <li><a href="../../docs/dependencies/repository-manager.html">Why use a repository manager</a></li>
@@ -70,795 +78,130 @@
   <li><a href="../../docs/dependencies/naming-coordinates.html">Naming your coordinates</a></li>
 </ul>
     </nav>
-    <main id="content">
+    <main id="content" data-kind="explanation" data-since="3.9">
       <p class="crumbs"><a href="../../docs/index.html">Docs</a> <span aria-hidden="true">›</span> <a href="../../docs/dependencies/index.html">Dependencies and repositories</a></p>
       <div class="prose">
+        <h1>How Maven resolves dependencies</h1>
+        <p class="lead">Why your project gets the libraries and versions it gets: transitive dependencies, which version wins, managed versions, scopes and ranges.</p>
 
 <section class="facts facts--inline" aria-label="About this page">
   <dl>
     <dt>Holds for</dt>
-    <dd><span class="unchecked">Not yet checked against Maven 3.9, 3.10 and 4.0</span></dd>
+    <dd><span class="versions"><span class="version">3.9</span><span class="version">3.10</span><span class="version version--upcoming" title="Maven 4.0 is not released yet">4.0</span></span></dd>
+    <dt>Kind</dt>
+    <dd>Explanation</dd>
     <dt>Source</dt>
     <dd><a href="https://github.com/dashorst/maven-site/edit/doxia-demo/content/markdown/docs/dependencies/how-dependencies-work.md">Edit this page</a></dd>
     <dt>Wrong?</dt>
-    <dd><a href="https://github.com/apache/maven-site/issues/new?title=Page%3A+How+dependencies+work&amp;body=About+https%3A%2F%2Fmaven.apache.org%2Fdocs%2Fdependencies%2Fhow-dependencies-work.html">Report a problem</a></dd>
+    <dd><a href="https://github.com/apache/maven-site/issues/new?title=Page%3A+How+Maven+resolves+dependencies&amp;body=About+https%3A%2F%2Fmaven.apache.org%2Fdocs%2Fdependencies%2Fhow-dependencies-work.html">Report a problem</a></dd>
   </dl>
 </section>
- <section><a id="Introduction_to_the_Dependency_Mechanism"></a>
-<h1>Introduction to the Dependency Mechanism</h1>
-<p>Dependency management is a core feature of Maven. Managing dependencies for a single project is easy. Managing dependencies for multi-module projects and applications that consist of hundreds of modules is possible. Maven helps a great deal in defining, creating, and maintaining reproducible builds with well-defined classpaths and library versions.</p>
-<p>Learn more about:</p>
-<ul>
-<li><a href="#Transitive_Dependencies">Transitive Dependencies</a></li>
-<li><a href="#Dependency_Scope">Dependency Scope</a></li>
-<li><a href="#Dependency_Management">Dependency Management</a>
-<ul>
-<li><a href="#Importing_Dependencies">Importing Dependencies</a></li>
-<li><a href="#Bill_of_Materials_.28BOM.29_POMs">Bill of Materials (BOM) POMs</a></li></ul></li>
-<li><a href="#System_Dependencies">System Dependencies</a>
-<ul>
-<li><a href="#Historical_usage.3A_Java_EE_.28javax.29_libraries_of_the_JDK">Historical usage: Java EE (javax) libraries of the JDK</a></li></ul></li></ul>
-<section><a id="Transitive_Dependencies"></a>
-<h2>Transitive Dependencies</h2>
-<p>Maven avoids the need to discover and specify the libraries that your own dependencies require by including transitive dependencies automatically.</p>
-<p>This feature is facilitated by reading the project files of your dependencies from the remote repositories specified. In general, all dependencies of those projects are used in your project, as are any that the project inherits from its parents, or from its dependencies, and so on.</p>
-<p>There is no limit to the number of levels that dependencies can be gathered from. A problem arises only if a cyclic dependency is discovered.</p>
-<p>With transitive dependencies, the graph of included libraries can quickly grow quite large. For this reason, there are additional features that limit which dependencies are included:</p>
-<ul>
-
-<li><em>Dependency mediation</em> - this determines what version of an artifact will be chosen when multiple versions are encountered as dependencies. Maven picks the “nearest definition”. That is, it uses the version of the closest dependency to your project in the tree of dependencies. You can always guarantee a version by declaring it explicitly in your project's POM. Note that if two dependency versions are at the same depth in the dependency tree, the first declaration wins.
-<ul>
-
-<li>
-<p>“nearest definition” means that the version used will be the closest one to your project in the tree of dependencies. Consider this tree of dependencies:</p>
-
-<pre tabindex="0"><code class="nohighlight nocode">  A
-  ├── B
-  │   └── C
-  │       └── D 2.0
-  └── E
-      └── D 1.0
-
-</code></pre>
-<p>In text, dependencies for A, B, and C are defined as A -&gt; B -&gt; C -&gt; D 2.0 and A -&gt; E -&gt; D 1.0, then D 1.0 will be used when building A because the path from A to D through E is shorter. You could explicitly add a dependency to D 2.0 in A to force the use of D 2.0, as shown here:</p>
-
-<pre tabindex="0"><code class="nohighlight nocode">  A
-  ├── B
-  │   └── C
-  │       └── D 2.0
-  ├── E
-  │   └── D 1.0
-  │
-  └── D 2.0      
-
-</code></pre></li>
-</ul></li>
-<li><em>Dependency management</em> - this allows project authors to directly specify the versions of artifacts to be used when they are encountered in transitive dependencies or in dependencies where no version has been specified. In the example in the preceding section a dependency was directly added to A even though it is not directly used by A. Instead, A can include D as a dependency in its dependencyManagement section and directly control which version of D is used when, or if, it is ever referenced.</li>
-<li><em>Dependency scope</em> - this allows you to only include dependencies appropriate for the current stage of the build. This is described in more detail below.</li>
-<li><em>Excluded dependencies</em> - If project X depends on project Y, and project Y depends on project Z, the owner of project X can explicitly exclude project Z as a dependency, using the “exclusion” element.</li>
-<li><em>Optional dependencies</em> - If project Y depends on project Z, the owner of project Y can mark project Z as an optional dependency, using the “optional” element. When project X depends on project Y, X will depend only on Y and not on Y's optional dependency Z. The owner of project X may then explicitly add a dependency on Z, at her option. (It may be helpful to think of optional dependencies as “excluded by default.”)</li>
-</ul>
-<p>Although transitive dependencies can implicitly include desired dependencies, it is a good practice to explicitly specify the dependencies your source code uses directly. This best practice proves its value especially when the dependencies of your project change their dependencies.</p>
-<p>For example, assume that your project A specifies a dependency on another project B, and project B specifies a dependency on project C. If you are directly using components in project C, and you don't specify project C in your project A, it may cause build failure when project B suddenly updates/removes its dependency on project C.</p>
-<p>Another reason to directly specify dependencies is that it provides better documentation for your project: one can learn more information by just reading the POM file in your project, or by executing <strong>mvn dependency:tree</strong>.</p>
-<p>Maven also provides <a href="../../plugins/maven-dependency-plugin/analyze-mojo.html">dependency:analyze</a> plugin goal for analyzing the dependencies: it helps making this best practice more achievable.</p></section><section><a id="Dependency_Scope"></a>
-<h2>Dependency Scope</h2>
-<p>Dependency scope is used to limit the transitivity of a dependency and to determine when a dependency is included in a classpath.</p>
-<p>There are 6 scopes:</p>
-<ul>
-
-<li><strong>compile</strong><br>
-This is the default scope, used if none is specified. Compile dependencies are available in all classpaths of a project. Furthermore, those dependencies are propagated to dependent projects.</li>
-<li><strong>provided</strong><br>
-This is much like <code>compile</code>, but indicates you expect the JDK or a container to provide the dependency at runtime. For example, when building a web application for the Java Enterprise Edition, you would set the dependency on the Servlet API and related Java EE APIs to scope <code>provided</code> because the web container provides those classes. A dependency with this scope is added to the classpath used for compilation and test, but not the runtime classpath. It is not transitive.</li>
-<li><strong>runtime</strong><br>
-This scope indicates that the dependency is not required for compilation, but is for execution. Maven includes a dependency with this scope in the runtime and test classpaths, but not the compile classpath.</li>
-<li><strong>test</strong><br>
-This scope indicates that the dependency is not required for normal use of the application, and is only available for the test compilation and execution phases. This scope is not transitive. Typically, this scope is used for test libraries such as JUnit and Mockito. It is also used for non-test libraries such as Apache Commons IO if those libraries are used in unit tests (src/test/java) but not in the model code (src/main/java).</li>
-<li><strong>system</strong><br>
-This scope indicates that the dependency is required for compilation and execution. However, Maven will not download the dependency from the repository system. Instead, it looks for a jar in the local file system at a specified path.</li>
-<li><strong>import</strong><br>
-This scope is only supported on a dependency of type <code>pom</code> in the <code>&lt;dependencyManagement&gt;</code> section. It indicates the dependency is to be replaced with the effective list of dependencies in the specified POM's <code>&lt;dependencyManagement&gt;</code> section. Since they are replaced, dependencies with a scope of <code>import</code> do not actually participate in limiting the transitivity of a dependency.</li>
-</ul>
-<p>Each of the scopes (except for <code>import</code>) affects transitive dependencies in a different way. For a dependency A, declared in the project (left column), and its transitive dependency B (top row), the table below shows the resulting scope of B based on both initial scope declarations. If the cell is empty, it means the dependency is omitted during the build of the project.</p>
-<p>Examples:</p>
-<ul>
-
-<li>If dependency A is declared as “compile” and its transitive dependency B is declared as “runtime”, then the resulting scope of B will be “runtime”.</li>
-<li>If dependency A is declared as “compile” and its transitive dependency B is declared as “provided”, then B will be omitted.</li>
-</ul>
-
-<div style="width: 90%; text-align: center; vertical-align: center; margin: 20px;">
-
-<div class="table-scroll" tabindex="0"><table class="bordered" style="table-layout: fixed; width: 100%;">
-<thead>
-
-<tr class="a">
-
-<th rowspan="2" colspan="2" class="bordered grey" style="width: 30%">&nbsp;</th>
-
-<th colspan="4" class="bordered grey" style="width: 70%">Scope of B (transitive dependency of A)</th>
-</tr>
-
-<tr class="b">
-
-<th class="bordered grey">compile</th>
-
-<th class="bordered grey">provided</th>
-
-<th class="bordered grey">runtime</th>
-
-<th class="bordered grey">test</th>
-</tr>
-</thead>
-<tbody>
-
-<tr class="a">
-
-<th rowspan="4" class="bordered grey">Scope of A (Project dependency)</th>
-
-<th class="bordered grey">compile</th>
-
-<td class="bordered">compile</td>
-
-<td class="bordered">-</td>
-
-<td class="bordered">runtime</td>
-
-<td class="bordered">-</td>
-</tr>
-
-<tr class="b">
-
-<th class="bordered grey">provided</th>
-
-<td class="bordered">provided</td>
-
-<td class="bordered">-</td>
-
-<td class="bordered">provided</td>
-
-<td class="bordered">-</td>
-</tr>
-
-<tr class="a">
-
-<th class="bordered grey">runtime</th>
-
-<td class="bordered">runtime</td>
-
-<td class="bordered">-</td>
-
-<td class="bordered">runtime</td>
-
-<td class="bordered">-</td>
-</tr>
-
-<tr class="b">
-
-<th class="bordered grey">test</th>
-
-<td class="bordered">test</td>
-
-<td class="bordered">-</td>
-
-<td class="bordered">test</td>
-
-<td class="bordered">-</td>
-</tr>
-</tbody>
-</table></div>
-</div>
-</section><section><a id="Dependency_Management"></a>
-<h2>Dependency Management</h2>
-<p>The dependency management section is a mechanism for centralizing dependency information. When you have a set of projects that inherit from a common parent, it's possible to put all information about the dependency in the common POM and have simpler references to the artifacts in the child POMs. The mechanism is best illustrated through some examples. Given these two POMs which extend the same parent:</p>
-<p>Project A:</p>
-
-<pre tabindex="0" class="highlight"><code class="language-xml">
-<span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span><span class="nt">&gt;</span>
-  ...
-  <span class="nt">&lt;dependencies</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;dependency</span><span class="nt">&gt;</span>
-      <span class="nt">&lt;groupId</span><span class="nt">&gt;</span>group-a<span class="nt">&lt;/groupId</span><span class="nt">&gt;</span>
-      <span class="nt">&lt;artifactId</span><span class="nt">&gt;</span>artifact-a<span class="nt">&lt;/artifactId</span><span class="nt">&gt;</span>
-      <span class="nt">&lt;version</span><span class="nt">&gt;</span>1.0<span class="nt">&lt;/version</span><span class="nt">&gt;</span>
-      <span class="nt">&lt;exclusions</span><span class="nt">&gt;</span>
-        <span class="nt">&lt;exclusion</span><span class="nt">&gt;</span>
-          <span class="nt">&lt;groupId</span><span class="nt">&gt;</span>group-c<span class="nt">&lt;/groupId</span><span class="nt">&gt;</span>
-          <span class="nt">&lt;artifactId</span><span class="nt">&gt;</span>excluded-artifact<span class="nt">&lt;/artifactId</span><span class="nt">&gt;</span>
-        <span class="nt">&lt;/exclusion</span><span class="nt">&gt;</span>
-      <span class="nt">&lt;/exclusions</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;/dependency</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;dependency</span><span class="nt">&gt;</span>
-      <span class="nt">&lt;groupId</span><span class="nt">&gt;</span>group-a<span class="nt">&lt;/groupId</span><span class="nt">&gt;</span>
-      <span class="nt">&lt;artifactId</span><span class="nt">&gt;</span>artifact-b<span class="nt">&lt;/artifactId</span><span class="nt">&gt;</span>
-      <span class="nt">&lt;version</span><span class="nt">&gt;</span>1.0<span class="nt">&lt;/version</span><span class="nt">&gt;</span>
-      <span class="nt">&lt;type</span><span class="nt">&gt;</span>bar<span class="nt">&lt;/type</span><span class="nt">&gt;</span>
-      <span class="nt">&lt;scope</span><span class="nt">&gt;</span>runtime<span class="nt">&lt;/scope</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;/dependency</span><span class="nt">&gt;</span>
-  <span class="nt">&lt;/dependencies</span><span class="nt">&gt;</span>
-<span class="nt">&lt;/project</span><span class="nt">&gt;</span>
-
-</code></pre>
-<p>Project B:</p>
-
-<pre tabindex="0" class="highlight"><code class="language-xml">
-<span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span><span class="nt">&gt;</span>
-  ...
-  <span class="nt">&lt;dependencies</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;dependency</span><span class="nt">&gt;</span>
-      <span class="nt">&lt;groupId</span><span class="nt">&gt;</span>group-c<span class="nt">&lt;/groupId</span><span class="nt">&gt;</span>
-      <span class="nt">&lt;artifactId</span><span class="nt">&gt;</span>artifact-b<span class="nt">&lt;/artifactId</span><span class="nt">&gt;</span>
-      <span class="nt">&lt;version</span><span class="nt">&gt;</span>1.0<span class="nt">&lt;/version</span><span class="nt">&gt;</span>
-      <span class="nt">&lt;type</span><span class="nt">&gt;</span>war<span class="nt">&lt;/type</span><span class="nt">&gt;</span>
-      <span class="nt">&lt;scope</span><span class="nt">&gt;</span>runtime<span class="nt">&lt;/scope</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;/dependency</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;dependency</span><span class="nt">&gt;</span>
-      <span class="nt">&lt;groupId</span><span class="nt">&gt;</span>group-a<span class="nt">&lt;/groupId</span><span class="nt">&gt;</span>
-      <span class="nt">&lt;artifactId</span><span class="nt">&gt;</span>artifact-b<span class="nt">&lt;/artifactId</span><span class="nt">&gt;</span>
-      <span class="nt">&lt;version</span><span class="nt">&gt;</span>1.0<span class="nt">&lt;/version</span><span class="nt">&gt;</span>
-      <span class="nt">&lt;type</span><span class="nt">&gt;</span>bar<span class="nt">&lt;/type</span><span class="nt">&gt;</span>
-      <span class="nt">&lt;scope</span><span class="nt">&gt;</span>runtime<span class="nt">&lt;/scope</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;/dependency</span><span class="nt">&gt;</span>
-  <span class="nt">&lt;/dependencies</span><span class="nt">&gt;</span>
-<span class="nt">&lt;/project</span><span class="nt">&gt;</span>
-
-</code></pre>
-<p>These two example POMs share a common dependency and each has one non-trivial dependency. This information can be put in the parent POM like this:</p>
-
-<pre tabindex="0" class="highlight"><code class="language-xml">
-<span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span><span class="nt">&gt;</span>
-  ...
-  <span class="nt">&lt;dependencyManagement</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;dependencies</span><span class="nt">&gt;</span>
-      <span class="nt">&lt;dependency</span><span class="nt">&gt;</span>
-        <span class="nt">&lt;groupId</span><span class="nt">&gt;</span>group-a<span class="nt">&lt;/groupId</span><span class="nt">&gt;</span>
-        <span class="nt">&lt;artifactId</span><span class="nt">&gt;</span>artifact-a<span class="nt">&lt;/artifactId</span><span class="nt">&gt;</span>
-        <span class="nt">&lt;version</span><span class="nt">&gt;</span>1.0<span class="nt">&lt;/version</span><span class="nt">&gt;</span>
-
-        <span class="nt">&lt;exclusions</span><span class="nt">&gt;</span>
-          <span class="nt">&lt;exclusion</span><span class="nt">&gt;</span>
-            <span class="nt">&lt;groupId</span><span class="nt">&gt;</span>group-c<span class="nt">&lt;/groupId</span><span class="nt">&gt;</span>
-            <span class="nt">&lt;artifactId</span><span class="nt">&gt;</span>excluded-artifact<span class="nt">&lt;/artifactId</span><span class="nt">&gt;</span>
-          <span class="nt">&lt;/exclusion</span><span class="nt">&gt;</span>
-        <span class="nt">&lt;/exclusions</span><span class="nt">&gt;</span>
-
-      <span class="nt">&lt;/dependency</span><span class="nt">&gt;</span>
-
-      <span class="nt">&lt;dependency</span><span class="nt">&gt;</span>
-        <span class="nt">&lt;groupId</span><span class="nt">&gt;</span>group-c<span class="nt">&lt;/groupId</span><span class="nt">&gt;</span>
-        <span class="nt">&lt;artifactId</span><span class="nt">&gt;</span>artifact-b<span class="nt">&lt;/artifactId</span><span class="nt">&gt;</span>
-        <span class="nt">&lt;version</span><span class="nt">&gt;</span>1.0<span class="nt">&lt;/version</span><span class="nt">&gt;</span>
-        <span class="nt">&lt;type</span><span class="nt">&gt;</span>war<span class="nt">&lt;/type</span><span class="nt">&gt;</span>
-        <span class="nt">&lt;scope</span><span class="nt">&gt;</span>runtime<span class="nt">&lt;/scope</span><span class="nt">&gt;</span>
-      <span class="nt">&lt;/dependency</span><span class="nt">&gt;</span>
-
-      <span class="nt">&lt;dependency</span><span class="nt">&gt;</span>
-        <span class="nt">&lt;groupId</span><span class="nt">&gt;</span>group-a<span class="nt">&lt;/groupId</span><span class="nt">&gt;</span>
-        <span class="nt">&lt;artifactId</span><span class="nt">&gt;</span>artifact-b<span class="nt">&lt;/artifactId</span><span class="nt">&gt;</span>
-        <span class="nt">&lt;version</span><span class="nt">&gt;</span>1.0<span class="nt">&lt;/version</span><span class="nt">&gt;</span>
-        <span class="nt">&lt;type</span><span class="nt">&gt;</span>bar<span class="nt">&lt;/type</span><span class="nt">&gt;</span>
-        <span class="nt">&lt;scope</span><span class="nt">&gt;</span>runtime<span class="nt">&lt;/scope</span><span class="nt">&gt;</span>
-      <span class="nt">&lt;/dependency</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;/dependencies</span><span class="nt">&gt;</span>
-  <span class="nt">&lt;/dependencyManagement</span><span class="nt">&gt;</span>
-<span class="nt">&lt;/project</span><span class="nt">&gt;</span>
-
-</code></pre>
-<p>Then the two child POMs become much simpler:</p>
-
-<pre tabindex="0" class="highlight"><code class="language-xml">
-<span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span><span class="nt">&gt;</span>
-  ...
-  <span class="nt">&lt;dependencies</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;dependency</span><span class="nt">&gt;</span>
-      <span class="nt">&lt;groupId</span><span class="nt">&gt;</span>group-a<span class="nt">&lt;/groupId</span><span class="nt">&gt;</span>
-      <span class="nt">&lt;artifactId</span><span class="nt">&gt;</span>artifact-a<span class="nt">&lt;/artifactId</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;/dependency</span><span class="nt">&gt;</span>
-
-    <span class="nt">&lt;dependency</span><span class="nt">&gt;</span>
-      <span class="nt">&lt;groupId</span><span class="nt">&gt;</span>group-a<span class="nt">&lt;/groupId</span><span class="nt">&gt;</span>
-      <span class="nt">&lt;artifactId</span><span class="nt">&gt;</span>artifact-b<span class="nt">&lt;/artifactId</span><span class="nt">&gt;</span>
-      <span class="c">&lt;!-- This is not a jar dependency, so we must specify type. --&gt;</span>
-      <span class="nt">&lt;type</span><span class="nt">&gt;</span>bar<span class="nt">&lt;/type</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;/dependency</span><span class="nt">&gt;</span>
-  <span class="nt">&lt;/dependencies</span><span class="nt">&gt;</span>
-<span class="nt">&lt;/project</span><span class="nt">&gt;</span>
-
-</code></pre>
-
-<pre tabindex="0" class="highlight"><code class="language-xml">
-<span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span><span class="nt">&gt;</span>
-  ...
-  <span class="nt">&lt;dependencies</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;dependency</span><span class="nt">&gt;</span>
-      <span class="nt">&lt;groupId</span><span class="nt">&gt;</span>group-c<span class="nt">&lt;/groupId</span><span class="nt">&gt;</span>
-      <span class="nt">&lt;artifactId</span><span class="nt">&gt;</span>artifact-b<span class="nt">&lt;/artifactId</span><span class="nt">&gt;</span>
-      <span class="c">&lt;!-- This is not a jar dependency, so we must specify type. --&gt;</span>
-      <span class="nt">&lt;type</span><span class="nt">&gt;</span>war<span class="nt">&lt;/type</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;/dependency</span><span class="nt">&gt;</span>
-
-    <span class="nt">&lt;dependency</span><span class="nt">&gt;</span>
-      <span class="nt">&lt;groupId</span><span class="nt">&gt;</span>group-a<span class="nt">&lt;/groupId</span><span class="nt">&gt;</span>
-      <span class="nt">&lt;artifactId</span><span class="nt">&gt;</span>artifact-b<span class="nt">&lt;/artifactId</span><span class="nt">&gt;</span>
-      <span class="c">&lt;!-- This is not a jar dependency, so we must specify type. --&gt;</span>
-      <span class="nt">&lt;type</span><span class="nt">&gt;</span>bar<span class="nt">&lt;/type</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;/dependency</span><span class="nt">&gt;</span>
-  <span class="nt">&lt;/dependencies</span><span class="nt">&gt;</span>
-<span class="nt">&lt;/project</span><span class="nt">&gt;</span>
-
-</code></pre>
-<p><strong>NOTE:</strong> In two of these dependency references, we had to specify the &lt;type/&gt; element. This is because the minimal set of information for matching a dependency reference against a dependencyManagement section is actually <strong>{groupId, artifactId, type, classifier}</strong>. In many cases, these dependencies will refer to jar artifacts with no classifier. This allows us to shorthand the identity set to <strong>{groupId, artifactId}</strong>, since the default for the type field is <code>jar</code>, and the default classifier is null.</p>
-<p>A second, and very important use of the dependency management section is to control the versions of artifacts used in transitive dependencies. As an example consider these projects:</p>
-<p>Project A:</p>
-
-<pre tabindex="0" class="highlight"><code class="language-xml">
-<span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span><span class="nt">&gt;</span>
- <span class="nt">&lt;modelVersion</span><span class="nt">&gt;</span>4.0.0<span class="nt">&lt;/modelVersion</span><span class="nt">&gt;</span>
- <span class="nt">&lt;groupId</span><span class="nt">&gt;</span>maven<span class="nt">&lt;/groupId</span><span class="nt">&gt;</span>
- <span class="nt">&lt;artifactId</span><span class="nt">&gt;</span>A<span class="nt">&lt;/artifactId</span><span class="nt">&gt;</span>
- <span class="nt">&lt;packaging</span><span class="nt">&gt;</span>pom<span class="nt">&lt;/packaging</span><span class="nt">&gt;</span>
- <span class="nt">&lt;name</span><span class="nt">&gt;</span>A<span class="nt">&lt;/name</span><span class="nt">&gt;</span>
- <span class="nt">&lt;version</span><span class="nt">&gt;</span>1.0<span class="nt">&lt;/version</span><span class="nt">&gt;</span>
- <span class="nt">&lt;dependencyManagement</span><span class="nt">&gt;</span>
-   <span class="nt">&lt;dependencies</span><span class="nt">&gt;</span>
-     <span class="nt">&lt;dependency</span><span class="nt">&gt;</span>
-       <span class="nt">&lt;groupId</span><span class="nt">&gt;</span>test<span class="nt">&lt;/groupId</span><span class="nt">&gt;</span>
-       <span class="nt">&lt;artifactId</span><span class="nt">&gt;</span>a<span class="nt">&lt;/artifactId</span><span class="nt">&gt;</span>
-       <span class="nt">&lt;version</span><span class="nt">&gt;</span>1.2<span class="nt">&lt;/version</span><span class="nt">&gt;</span>
-     <span class="nt">&lt;/dependency</span><span class="nt">&gt;</span>
-     <span class="nt">&lt;dependency</span><span class="nt">&gt;</span>
-       <span class="nt">&lt;groupId</span><span class="nt">&gt;</span>test<span class="nt">&lt;/groupId</span><span class="nt">&gt;</span>
-       <span class="nt">&lt;artifactId</span><span class="nt">&gt;</span>b<span class="nt">&lt;/artifactId</span><span class="nt">&gt;</span>
-       <span class="nt">&lt;version</span><span class="nt">&gt;</span>1.0<span class="nt">&lt;/version</span><span class="nt">&gt;</span>
-       <span class="nt">&lt;scope</span><span class="nt">&gt;</span>compile<span class="nt">&lt;/scope</span><span class="nt">&gt;</span>
-     <span class="nt">&lt;/dependency</span><span class="nt">&gt;</span>
-     <span class="nt">&lt;dependency</span><span class="nt">&gt;</span>
-       <span class="nt">&lt;groupId</span><span class="nt">&gt;</span>test<span class="nt">&lt;/groupId</span><span class="nt">&gt;</span>
-       <span class="nt">&lt;artifactId</span><span class="nt">&gt;</span>c<span class="nt">&lt;/artifactId</span><span class="nt">&gt;</span>
-       <span class="nt">&lt;version</span><span class="nt">&gt;</span>1.0<span class="nt">&lt;/version</span><span class="nt">&gt;</span>
-       <span class="nt">&lt;scope</span><span class="nt">&gt;</span>compile<span class="nt">&lt;/scope</span><span class="nt">&gt;</span>
-     <span class="nt">&lt;/dependency</span><span class="nt">&gt;</span>
-     <span class="nt">&lt;dependency</span><span class="nt">&gt;</span>
-       <span class="nt">&lt;groupId</span><span class="nt">&gt;</span>test<span class="nt">&lt;/groupId</span><span class="nt">&gt;</span>
-       <span class="nt">&lt;artifactId</span><span class="nt">&gt;</span>d<span class="nt">&lt;/artifactId</span><span class="nt">&gt;</span>
-       <span class="nt">&lt;version</span><span class="nt">&gt;</span>1.2<span class="nt">&lt;/version</span><span class="nt">&gt;</span>
-     <span class="nt">&lt;/dependency</span><span class="nt">&gt;</span>
-   <span class="nt">&lt;/dependencies</span><span class="nt">&gt;</span>
- <span class="nt">&lt;/dependencyManagement</span><span class="nt">&gt;</span>
-<span class="nt">&lt;/project</span><span class="nt">&gt;</span>
-
-</code></pre>
-<p>Project B:</p>
-
-<pre tabindex="0" class="highlight"><code class="language-xml">
-<span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span><span class="nt">&gt;</span>
-  <span class="nt">&lt;parent</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;artifactId</span><span class="nt">&gt;</span>A<span class="nt">&lt;/artifactId</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;groupId</span><span class="nt">&gt;</span>maven<span class="nt">&lt;/groupId</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;version</span><span class="nt">&gt;</span>1.0<span class="nt">&lt;/version</span><span class="nt">&gt;</span>
-  <span class="nt">&lt;/parent</span><span class="nt">&gt;</span>
-  <span class="nt">&lt;modelVersion</span><span class="nt">&gt;</span>4.0.0<span class="nt">&lt;/modelVersion</span><span class="nt">&gt;</span>
-  <span class="nt">&lt;groupId</span><span class="nt">&gt;</span>maven<span class="nt">&lt;/groupId</span><span class="nt">&gt;</span>
-  <span class="nt">&lt;artifactId</span><span class="nt">&gt;</span>B<span class="nt">&lt;/artifactId</span><span class="nt">&gt;</span>
-  <span class="nt">&lt;packaging</span><span class="nt">&gt;</span>pom<span class="nt">&lt;/packaging</span><span class="nt">&gt;</span>
-  <span class="nt">&lt;name</span><span class="nt">&gt;</span>B<span class="nt">&lt;/name</span><span class="nt">&gt;</span>
-  <span class="nt">&lt;version</span><span class="nt">&gt;</span>1.0<span class="nt">&lt;/version</span><span class="nt">&gt;</span>
-
-  <span class="nt">&lt;dependencyManagement</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;dependencies</span><span class="nt">&gt;</span>
-      <span class="nt">&lt;dependency</span><span class="nt">&gt;</span>
-        <span class="nt">&lt;groupId</span><span class="nt">&gt;</span>test<span class="nt">&lt;/groupId</span><span class="nt">&gt;</span>
-        <span class="nt">&lt;artifactId</span><span class="nt">&gt;</span>d<span class="nt">&lt;/artifactId</span><span class="nt">&gt;</span>
-        <span class="nt">&lt;version</span><span class="nt">&gt;</span>1.0<span class="nt">&lt;/version</span><span class="nt">&gt;</span>
-      <span class="nt">&lt;/dependency</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;/dependencies</span><span class="nt">&gt;</span>
-  <span class="nt">&lt;/dependencyManagement</span><span class="nt">&gt;</span>
-
-  <span class="nt">&lt;dependencies</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;dependency</span><span class="nt">&gt;</span>
-      <span class="nt">&lt;groupId</span><span class="nt">&gt;</span>test<span class="nt">&lt;/groupId</span><span class="nt">&gt;</span>
-      <span class="nt">&lt;artifactId</span><span class="nt">&gt;</span>a<span class="nt">&lt;/artifactId</span><span class="nt">&gt;</span>
-      <span class="nt">&lt;version</span><span class="nt">&gt;</span>1.0<span class="nt">&lt;/version</span><span class="nt">&gt;</span>
-      <span class="nt">&lt;scope</span><span class="nt">&gt;</span>runtime<span class="nt">&lt;/scope</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;/dependency</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;dependency</span><span class="nt">&gt;</span>
-      <span class="nt">&lt;groupId</span><span class="nt">&gt;</span>test<span class="nt">&lt;/groupId</span><span class="nt">&gt;</span>
-      <span class="nt">&lt;artifactId</span><span class="nt">&gt;</span>c<span class="nt">&lt;/artifactId</span><span class="nt">&gt;</span>
-      <span class="nt">&lt;scope</span><span class="nt">&gt;</span>runtime<span class="nt">&lt;/scope</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;/dependency</span><span class="nt">&gt;</span>
-  <span class="nt">&lt;/dependencies</span><span class="nt">&gt;</span>
-<span class="nt">&lt;/project</span><span class="nt">&gt;</span>
-
-</code></pre>
-<p>When maven is run on project B, version 1.0 of artifacts a, b, c, and d will be used regardless of the version specified in their POM.</p>
-<ul>
-
-<li>a and c both are declared as dependencies of the project so version 1.0 is used due to dependency mediation. Both also have runtime scope since it is directly specified.</li>
-<li>b is defined in B's parent's dependency management section and since dependency management takes precedence over dependency mediation for transitive dependencies, version 1.0 will be selected should it be referenced in a or c's POM. b will also have compile scope.</li>
-<li>Finally, since d is specified in B's dependency management section, should d be a dependency (or transitive dependency) of a or c, version 1.0 will be chosen - again because dependency management takes precedence over dependency mediation and also because the current POM's declaration takes precedence over its parent's declaration.</li>
-</ul>
-<p><strong>NOTE:</strong> The dependency management won't affect the (transitive) dependencies of any <em>plugins</em> used in the same effective POM but only the (transitive) project dependencies.</p>
-<p>The reference information about the dependency management tags is available from the <a href="../../ref/current/maven-model/maven.html#class_DependencyManagement">project descriptor reference</a>.</p><section><a id="Importing_Dependencies"></a>
-<h3>Importing Dependencies</h3>
-<p>The examples in the previous section describe how to specify managed dependencies through inheritance. However, in larger projects it may be impossible to accomplish this since a project can only inherit from a single parent. To accommodate this, projects can import managed dependencies from other projects. This is accomplished by declaring a POM artifact as a dependency with a scope of “import”.</p>
-<p>Project B:</p>
-
-<pre tabindex="0" class="highlight"><code class="language-xml">
-<span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span><span class="nt">&gt;</span>
-  <span class="nt">&lt;modelVersion</span><span class="nt">&gt;</span>4.0.0<span class="nt">&lt;/modelVersion</span><span class="nt">&gt;</span>
-  <span class="nt">&lt;groupId</span><span class="nt">&gt;</span>maven<span class="nt">&lt;/groupId</span><span class="nt">&gt;</span>
-  <span class="nt">&lt;artifactId</span><span class="nt">&gt;</span>B<span class="nt">&lt;/artifactId</span><span class="nt">&gt;</span>
-  <span class="nt">&lt;packaging</span><span class="nt">&gt;</span>pom<span class="nt">&lt;/packaging</span><span class="nt">&gt;</span>
-  <span class="nt">&lt;name</span><span class="nt">&gt;</span>B<span class="nt">&lt;/name</span><span class="nt">&gt;</span>
-  <span class="nt">&lt;version</span><span class="nt">&gt;</span>1.0<span class="nt">&lt;/version</span><span class="nt">&gt;</span>
-
-  <span class="nt">&lt;dependencyManagement</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;dependencies</span><span class="nt">&gt;</span>
-      <span class="nt">&lt;dependency</span><span class="nt">&gt;</span>
-        <span class="nt">&lt;groupId</span><span class="nt">&gt;</span>maven<span class="nt">&lt;/groupId</span><span class="nt">&gt;</span>
-        <span class="nt">&lt;artifactId</span><span class="nt">&gt;</span>A<span class="nt">&lt;/artifactId</span><span class="nt">&gt;</span>
-        <span class="nt">&lt;version</span><span class="nt">&gt;</span>1.0<span class="nt">&lt;/version</span><span class="nt">&gt;</span>
-        <span class="nt">&lt;type</span><span class="nt">&gt;</span>pom<span class="nt">&lt;/type</span><span class="nt">&gt;</span>
-        <span class="nt">&lt;scope</span><span class="nt">&gt;</span>import<span class="nt">&lt;/scope</span><span class="nt">&gt;</span>
-      <span class="nt">&lt;/dependency</span><span class="nt">&gt;</span>
-      <span class="nt">&lt;dependency</span><span class="nt">&gt;</span>
-        <span class="nt">&lt;groupId</span><span class="nt">&gt;</span>test<span class="nt">&lt;/groupId</span><span class="nt">&gt;</span>
-        <span class="nt">&lt;artifactId</span><span class="nt">&gt;</span>d<span class="nt">&lt;/artifactId</span><span class="nt">&gt;</span>
-        <span class="nt">&lt;version</span><span class="nt">&gt;</span>1.0<span class="nt">&lt;/version</span><span class="nt">&gt;</span>
-      <span class="nt">&lt;/dependency</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;/dependencies</span><span class="nt">&gt;</span>
-  <span class="nt">&lt;/dependencyManagement</span><span class="nt">&gt;</span>
-
-  <span class="nt">&lt;dependencies</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;dependency</span><span class="nt">&gt;</span>
-      <span class="nt">&lt;groupId</span><span class="nt">&gt;</span>test<span class="nt">&lt;/groupId</span><span class="nt">&gt;</span>
-      <span class="nt">&lt;artifactId</span><span class="nt">&gt;</span>a<span class="nt">&lt;/artifactId</span><span class="nt">&gt;</span>
-      <span class="nt">&lt;version</span><span class="nt">&gt;</span>1.0<span class="nt">&lt;/version</span><span class="nt">&gt;</span>
-      <span class="nt">&lt;scope</span><span class="nt">&gt;</span>runtime<span class="nt">&lt;/scope</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;/dependency</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;dependency</span><span class="nt">&gt;</span>
-      <span class="nt">&lt;groupId</span><span class="nt">&gt;</span>test<span class="nt">&lt;/groupId</span><span class="nt">&gt;</span>
-      <span class="nt">&lt;artifactId</span><span class="nt">&gt;</span>c<span class="nt">&lt;/artifactId</span><span class="nt">&gt;</span>
-      <span class="nt">&lt;scope</span><span class="nt">&gt;</span>runtime<span class="nt">&lt;/scope</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;/dependency</span><span class="nt">&gt;</span>
-  <span class="nt">&lt;/dependencies</span><span class="nt">&gt;</span>
-<span class="nt">&lt;/project</span><span class="nt">&gt;</span>
-
-</code></pre>
-<p>Assuming A is the POM defined in the preceding example, the end result would be the same. All of A's managed dependencies would be incorporated into B except for d since it is defined in this POM.</p>
-<p>Project X:</p>
-
-<pre tabindex="0" class="highlight"><code class="language-xml">
-<span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span><span class="nt">&gt;</span>
- <span class="nt">&lt;modelVersion</span><span class="nt">&gt;</span>4.0.0<span class="nt">&lt;/modelVersion</span><span class="nt">&gt;</span>
- <span class="nt">&lt;groupId</span><span class="nt">&gt;</span>maven<span class="nt">&lt;/groupId</span><span class="nt">&gt;</span>
- <span class="nt">&lt;artifactId</span><span class="nt">&gt;</span>X<span class="nt">&lt;/artifactId</span><span class="nt">&gt;</span>
- <span class="nt">&lt;packaging</span><span class="nt">&gt;</span>pom<span class="nt">&lt;/packaging</span><span class="nt">&gt;</span>
- <span class="nt">&lt;name</span><span class="nt">&gt;</span>X<span class="nt">&lt;/name</span><span class="nt">&gt;</span>
- <span class="nt">&lt;version</span><span class="nt">&gt;</span>1.0<span class="nt">&lt;/version</span><span class="nt">&gt;</span>
-
- <span class="nt">&lt;dependencyManagement</span><span class="nt">&gt;</span>
-   <span class="nt">&lt;dependencies</span><span class="nt">&gt;</span>
-     <span class="nt">&lt;dependency</span><span class="nt">&gt;</span>
-       <span class="nt">&lt;groupId</span><span class="nt">&gt;</span>test<span class="nt">&lt;/groupId</span><span class="nt">&gt;</span>
-       <span class="nt">&lt;artifactId</span><span class="nt">&gt;</span>a<span class="nt">&lt;/artifactId</span><span class="nt">&gt;</span>
-       <span class="nt">&lt;version</span><span class="nt">&gt;</span>1.1<span class="nt">&lt;/version</span><span class="nt">&gt;</span>
-     <span class="nt">&lt;/dependency</span><span class="nt">&gt;</span>
-     <span class="nt">&lt;dependency</span><span class="nt">&gt;</span>
-       <span class="nt">&lt;groupId</span><span class="nt">&gt;</span>test<span class="nt">&lt;/groupId</span><span class="nt">&gt;</span>
-       <span class="nt">&lt;artifactId</span><span class="nt">&gt;</span>b<span class="nt">&lt;/artifactId</span><span class="nt">&gt;</span>
-       <span class="nt">&lt;version</span><span class="nt">&gt;</span>1.0<span class="nt">&lt;/version</span><span class="nt">&gt;</span>
-       <span class="nt">&lt;scope</span><span class="nt">&gt;</span>compile<span class="nt">&lt;/scope</span><span class="nt">&gt;</span>
-     <span class="nt">&lt;/dependency</span><span class="nt">&gt;</span>
-   <span class="nt">&lt;/dependencies</span><span class="nt">&gt;</span>
- <span class="nt">&lt;/dependencyManagement</span><span class="nt">&gt;</span>
-<span class="nt">&lt;/project</span><span class="nt">&gt;</span>
-
-</code></pre>
-<p>Project Y:</p>
-
-<pre tabindex="0" class="highlight"><code class="language-xml">
-<span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span><span class="nt">&gt;</span>
- <span class="nt">&lt;modelVersion</span><span class="nt">&gt;</span>4.0.0<span class="nt">&lt;/modelVersion</span><span class="nt">&gt;</span>
- <span class="nt">&lt;groupId</span><span class="nt">&gt;</span>maven<span class="nt">&lt;/groupId</span><span class="nt">&gt;</span>
- <span class="nt">&lt;artifactId</span><span class="nt">&gt;</span>Y<span class="nt">&lt;/artifactId</span><span class="nt">&gt;</span>
- <span class="nt">&lt;packaging</span><span class="nt">&gt;</span>pom<span class="nt">&lt;/packaging</span><span class="nt">&gt;</span>
- <span class="nt">&lt;name</span><span class="nt">&gt;</span>Y<span class="nt">&lt;/name</span><span class="nt">&gt;</span>
- <span class="nt">&lt;version</span><span class="nt">&gt;</span>1.0<span class="nt">&lt;/version</span><span class="nt">&gt;</span>
-
- <span class="nt">&lt;dependencyManagement</span><span class="nt">&gt;</span>
-   <span class="nt">&lt;dependencies</span><span class="nt">&gt;</span>
-     <span class="nt">&lt;dependency</span><span class="nt">&gt;</span>
-       <span class="nt">&lt;groupId</span><span class="nt">&gt;</span>test<span class="nt">&lt;/groupId</span><span class="nt">&gt;</span>
-       <span class="nt">&lt;artifactId</span><span class="nt">&gt;</span>a<span class="nt">&lt;/artifactId</span><span class="nt">&gt;</span>
-       <span class="nt">&lt;version</span><span class="nt">&gt;</span>1.2<span class="nt">&lt;/version</span><span class="nt">&gt;</span>
-     <span class="nt">&lt;/dependency</span><span class="nt">&gt;</span>
-     <span class="nt">&lt;dependency</span><span class="nt">&gt;</span>
-       <span class="nt">&lt;groupId</span><span class="nt">&gt;</span>test<span class="nt">&lt;/groupId</span><span class="nt">&gt;</span>
-       <span class="nt">&lt;artifactId</span><span class="nt">&gt;</span>c<span class="nt">&lt;/artifactId</span><span class="nt">&gt;</span>
-       <span class="nt">&lt;version</span><span class="nt">&gt;</span>1.0<span class="nt">&lt;/version</span><span class="nt">&gt;</span>
-       <span class="nt">&lt;scope</span><span class="nt">&gt;</span>compile<span class="nt">&lt;/scope</span><span class="nt">&gt;</span>
-     <span class="nt">&lt;/dependency</span><span class="nt">&gt;</span>
-   <span class="nt">&lt;/dependencies</span><span class="nt">&gt;</span>
- <span class="nt">&lt;/dependencyManagement</span><span class="nt">&gt;</span>
-<span class="nt">&lt;/project</span><span class="nt">&gt;</span>
-
-</code></pre>
-<p>Project Z:</p>
-
-<pre tabindex="0" class="highlight"><code class="language-xml">
-<span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span><span class="nt">&gt;</span>
-  <span class="nt">&lt;modelVersion</span><span class="nt">&gt;</span>4.0.0<span class="nt">&lt;/modelVersion</span><span class="nt">&gt;</span>
-  <span class="nt">&lt;groupId</span><span class="nt">&gt;</span>maven<span class="nt">&lt;/groupId</span><span class="nt">&gt;</span>
-  <span class="nt">&lt;artifactId</span><span class="nt">&gt;</span>Z<span class="nt">&lt;/artifactId</span><span class="nt">&gt;</span>
-  <span class="nt">&lt;packaging</span><span class="nt">&gt;</span>pom<span class="nt">&lt;/packaging</span><span class="nt">&gt;</span>
-  <span class="nt">&lt;name</span><span class="nt">&gt;</span>Z<span class="nt">&lt;/name</span><span class="nt">&gt;</span>
-  <span class="nt">&lt;version</span><span class="nt">&gt;</span>1.0<span class="nt">&lt;/version</span><span class="nt">&gt;</span>
  
-  <span class="nt">&lt;dependencyManagement</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;dependencies</span><span class="nt">&gt;</span>
-      <span class="nt">&lt;dependency</span><span class="nt">&gt;</span>
-        <span class="nt">&lt;groupId</span><span class="nt">&gt;</span>maven<span class="nt">&lt;/groupId</span><span class="nt">&gt;</span>
-        <span class="nt">&lt;artifactId</span><span class="nt">&gt;</span>X<span class="nt">&lt;/artifactId</span><span class="nt">&gt;</span>
-        <span class="nt">&lt;version</span><span class="nt">&gt;</span>1.0<span class="nt">&lt;/version</span><span class="nt">&gt;</span>
-        <span class="nt">&lt;type</span><span class="nt">&gt;</span>pom<span class="nt">&lt;/type</span><span class="nt">&gt;</span>
-        <span class="nt">&lt;scope</span><span class="nt">&gt;</span>import<span class="nt">&lt;/scope</span><span class="nt">&gt;</span>
-      <span class="nt">&lt;/dependency</span><span class="nt">&gt;</span>
-      <span class="nt">&lt;dependency</span><span class="nt">&gt;</span>
-        <span class="nt">&lt;groupId</span><span class="nt">&gt;</span>maven<span class="nt">&lt;/groupId</span><span class="nt">&gt;</span>
-        <span class="nt">&lt;artifactId</span><span class="nt">&gt;</span>Y<span class="nt">&lt;/artifactId</span><span class="nt">&gt;</span>
-        <span class="nt">&lt;version</span><span class="nt">&gt;</span>1.0<span class="nt">&lt;/version</span><span class="nt">&gt;</span>
-        <span class="nt">&lt;type</span><span class="nt">&gt;</span>pom<span class="nt">&lt;/type</span><span class="nt">&gt;</span>
-        <span class="nt">&lt;scope</span><span class="nt">&gt;</span>import<span class="nt">&lt;/scope</span><span class="nt">&gt;</span>
-      <span class="nt">&lt;/dependency</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;/dependencies</span><span class="nt">&gt;</span>
-  <span class="nt">&lt;/dependencyManagement</span><span class="nt">&gt;</span>
-<span class="nt">&lt;/project</span><span class="nt">&gt;</span>
-
-</code></pre>
-<p>In the example above Z imports the managed dependencies from both X and Y. However, both X and Y contain dependency a. Here, version 1.1 of a would be used since X is declared first and a is not declared in Z's dependencyManagement.</p>
-<p>This process is recursive. For example, if X imports another POM, Q, when Z is processed it will simply appear that all of Q's managed dependencies are defined in X.</p></section><section><a id="Bill_of_Materials_.28BOM.29_POMs"></a>
-<h3>Bill of Materials (BOM) POMs</h3>
-<p>Imports are most effective when used for defining a “library” of related artifacts that are generally part of a multiproject build. It is fairly common for one project to use one or more artifacts from these libraries. However, it has sometimes been difficult to keep the versions in the project using the artifacts in synch with the versions distributed in the library. The pattern below illustrates how a “bill of materials” (BOM) can be created for use by other projects.</p>
-<p>The root of the project is the BOM POM. It defines the versions of all the artifacts that will be created in the library. Other projects that wish to use the library should import this POM into the dependencyManagement section of their POM.</p>
-
-<pre tabindex="0" class="highlight"><code class="language-xml">
-<span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span> <span class="na">xmlns:xsi</span>=<span class="s">"http://www.w3.org/2001/XMLSchema-instance"</span>
-    <span class="na">xsi:schemaLocation</span>=<span class="s">"http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"</span><span class="nt">&gt;</span>
-  <span class="nt">&lt;modelVersion</span><span class="nt">&gt;</span>4.0.0<span class="nt">&lt;/modelVersion</span><span class="nt">&gt;</span>
-  <span class="nt">&lt;groupId</span><span class="nt">&gt;</span>com.test<span class="nt">&lt;/groupId</span><span class="nt">&gt;</span>
-  <span class="nt">&lt;artifactId</span><span class="nt">&gt;</span>bom<span class="nt">&lt;/artifactId</span><span class="nt">&gt;</span>
-  <span class="nt">&lt;version</span><span class="nt">&gt;</span>1.0.0<span class="nt">&lt;/version</span><span class="nt">&gt;</span>
-  <span class="nt">&lt;packaging</span><span class="nt">&gt;</span>pom<span class="nt">&lt;/packaging</span><span class="nt">&gt;</span>
-  <span class="nt">&lt;properties</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;project1Version</span><span class="nt">&gt;</span>1.0.0<span class="nt">&lt;/project1Version</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;project2Version</span><span class="nt">&gt;</span>1.0.0<span class="nt">&lt;/project2Version</span><span class="nt">&gt;</span>
-  <span class="nt">&lt;/properties</span><span class="nt">&gt;</span>
- 
-  <span class="nt">&lt;dependencyManagement</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;dependencies</span><span class="nt">&gt;</span>
-      <span class="nt">&lt;dependency</span><span class="nt">&gt;</span>
-        <span class="nt">&lt;groupId</span><span class="nt">&gt;</span>com.test<span class="nt">&lt;/groupId</span><span class="nt">&gt;</span>
-        <span class="nt">&lt;artifactId</span><span class="nt">&gt;</span>project1<span class="nt">&lt;/artifactId</span><span class="nt">&gt;</span>
-        <span class="nt">&lt;version</span><span class="nt">&gt;</span>${project1Version}<span class="nt">&lt;/version</span><span class="nt">&gt;</span>
-      <span class="nt">&lt;/dependency</span><span class="nt">&gt;</span>
-      <span class="nt">&lt;dependency</span><span class="nt">&gt;</span>
-        <span class="nt">&lt;groupId</span><span class="nt">&gt;</span>com.test<span class="nt">&lt;/groupId</span><span class="nt">&gt;</span>
-        <span class="nt">&lt;artifactId</span><span class="nt">&gt;</span>project2<span class="nt">&lt;/artifactId</span><span class="nt">&gt;</span>
-        <span class="nt">&lt;version</span><span class="nt">&gt;</span>${project2Version}<span class="nt">&lt;/version</span><span class="nt">&gt;</span>
-      <span class="nt">&lt;/dependency</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;/dependencies</span><span class="nt">&gt;</span>
-  <span class="nt">&lt;/dependencyManagement</span><span class="nt">&gt;</span>
- 
-  <span class="nt">&lt;modules</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;module</span><span class="nt">&gt;</span>parent<span class="nt">&lt;/module</span><span class="nt">&gt;</span>
-  <span class="nt">&lt;/modules</span><span class="nt">&gt;</span>
-<span class="nt">&lt;/project</span><span class="nt">&gt;</span>
-
-</code></pre>
-<p>The parent subproject has the BOM POM as its parent. It is a normal multiproject pom.</p>
-
-<pre tabindex="0" class="highlight"><code class="language-xml">
-<span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span> <span class="na">xmlns:xsi</span>=<span class="s">"http://www.w3.org/2001/XMLSchema-instance"</span>
-     <span class="na">xsi:schemaLocation</span>=<span class="s">"http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"</span><span class="nt">&gt;</span>
-  <span class="nt">&lt;modelVersion</span><span class="nt">&gt;</span>4.0.0<span class="nt">&lt;/modelVersion</span><span class="nt">&gt;</span>
-  <span class="nt">&lt;parent</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;groupId</span><span class="nt">&gt;</span>com.test<span class="nt">&lt;/groupId</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;version</span><span class="nt">&gt;</span>1.0.0<span class="nt">&lt;/version</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;artifactId</span><span class="nt">&gt;</span>bom<span class="nt">&lt;/artifactId</span><span class="nt">&gt;</span>
-  <span class="nt">&lt;/parent</span><span class="nt">&gt;</span>
-
-  <span class="nt">&lt;groupId</span><span class="nt">&gt;</span>com.test<span class="nt">&lt;/groupId</span><span class="nt">&gt;</span>
-  <span class="nt">&lt;artifactId</span><span class="nt">&gt;</span>parent<span class="nt">&lt;/artifactId</span><span class="nt">&gt;</span>
-  <span class="nt">&lt;version</span><span class="nt">&gt;</span>1.0.0<span class="nt">&lt;/version</span><span class="nt">&gt;</span>
-  <span class="nt">&lt;packaging</span><span class="nt">&gt;</span>pom<span class="nt">&lt;/packaging</span><span class="nt">&gt;</span>
-
-  <span class="nt">&lt;dependencyManagement</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;dependencies</span><span class="nt">&gt;</span>
-      <span class="nt">&lt;dependency</span><span class="nt">&gt;</span>
-        <span class="nt">&lt;groupId</span><span class="nt">&gt;</span>log4j<span class="nt">&lt;/groupId</span><span class="nt">&gt;</span>
-        <span class="nt">&lt;artifactId</span><span class="nt">&gt;</span>log4j<span class="nt">&lt;/artifactId</span><span class="nt">&gt;</span>
-        <span class="nt">&lt;version</span><span class="nt">&gt;</span>1.2.12<span class="nt">&lt;/version</span><span class="nt">&gt;</span>
-      <span class="nt">&lt;/dependency</span><span class="nt">&gt;</span>
-      <span class="nt">&lt;dependency</span><span class="nt">&gt;</span>
-        <span class="nt">&lt;groupId</span><span class="nt">&gt;</span>commons-logging<span class="nt">&lt;/groupId</span><span class="nt">&gt;</span>
-        <span class="nt">&lt;artifactId</span><span class="nt">&gt;</span>commons-logging<span class="nt">&lt;/artifactId</span><span class="nt">&gt;</span>
-        <span class="nt">&lt;version</span><span class="nt">&gt;</span>1.1.1<span class="nt">&lt;/version</span><span class="nt">&gt;</span>
-      <span class="nt">&lt;/dependency</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;/dependencies</span><span class="nt">&gt;</span>
-  <span class="nt">&lt;/dependencyManagement</span><span class="nt">&gt;</span>
-  <span class="nt">&lt;modules</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;module</span><span class="nt">&gt;</span>project1<span class="nt">&lt;/module</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;module</span><span class="nt">&gt;</span>project2<span class="nt">&lt;/module</span><span class="nt">&gt;</span>
-  <span class="nt">&lt;/modules</span><span class="nt">&gt;</span>
-<span class="nt">&lt;/project</span><span class="nt">&gt;</span>
-
-</code></pre>
-<p>Next are the actual project POMs.</p>
-
-<pre tabindex="0" class="highlight"><code class="language-xml">
-<span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span> <span class="na">xmlns:xsi</span>=<span class="s">"http://www.w3.org/2001/XMLSchema-instance"</span>
-     <span class="na">xsi:schemaLocation</span>=<span class="s">"http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"</span><span class="nt">&gt;</span>
-  <span class="nt">&lt;modelVersion</span><span class="nt">&gt;</span>4.0.0<span class="nt">&lt;/modelVersion</span><span class="nt">&gt;</span>
-  <span class="nt">&lt;parent</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;groupId</span><span class="nt">&gt;</span>com.test<span class="nt">&lt;/groupId</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;version</span><span class="nt">&gt;</span>1.0.0<span class="nt">&lt;/version</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;artifactId</span><span class="nt">&gt;</span>parent<span class="nt">&lt;/artifactId</span><span class="nt">&gt;</span>
-  <span class="nt">&lt;/parent</span><span class="nt">&gt;</span>
-  <span class="nt">&lt;groupId</span><span class="nt">&gt;</span>com.test<span class="nt">&lt;/groupId</span><span class="nt">&gt;</span>
-  <span class="nt">&lt;artifactId</span><span class="nt">&gt;</span>project1<span class="nt">&lt;/artifactId</span><span class="nt">&gt;</span>
-  <span class="nt">&lt;version</span><span class="nt">&gt;</span>${project1Version}<span class="nt">&lt;/version</span><span class="nt">&gt;</span>
-  <span class="nt">&lt;packaging</span><span class="nt">&gt;</span>jar<span class="nt">&lt;/packaging</span><span class="nt">&gt;</span>
-
-  <span class="nt">&lt;dependencies</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;dependency</span><span class="nt">&gt;</span>
-      <span class="nt">&lt;groupId</span><span class="nt">&gt;</span>log4j<span class="nt">&lt;/groupId</span><span class="nt">&gt;</span>
-      <span class="nt">&lt;artifactId</span><span class="nt">&gt;</span>log4j<span class="nt">&lt;/artifactId</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;/dependency</span><span class="nt">&gt;</span>
-  <span class="nt">&lt;/dependencies</span><span class="nt">&gt;</span>
-<span class="nt">&lt;/project</span><span class="nt">&gt;</span>
-
-<span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span> <span class="na">xmlns:xsi</span>=<span class="s">"http://www.w3.org/2001/XMLSchema-instance"</span>
-     <span class="na">xsi:schemaLocation</span>=<span class="s">"http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"</span><span class="nt">&gt;</span>
-  <span class="nt">&lt;modelVersion</span><span class="nt">&gt;</span>4.0.0<span class="nt">&lt;/modelVersion</span><span class="nt">&gt;</span>
-  <span class="nt">&lt;parent</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;groupId</span><span class="nt">&gt;</span>com.test<span class="nt">&lt;/groupId</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;version</span><span class="nt">&gt;</span>1.0.0<span class="nt">&lt;/version</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;artifactId</span><span class="nt">&gt;</span>parent<span class="nt">&lt;/artifactId</span><span class="nt">&gt;</span>
-  <span class="nt">&lt;/parent</span><span class="nt">&gt;</span>
-  <span class="nt">&lt;groupId</span><span class="nt">&gt;</span>com.test<span class="nt">&lt;/groupId</span><span class="nt">&gt;</span>
-  <span class="nt">&lt;artifactId</span><span class="nt">&gt;</span>project2<span class="nt">&lt;/artifactId</span><span class="nt">&gt;</span>
-  <span class="nt">&lt;version</span><span class="nt">&gt;</span>${project2Version}<span class="nt">&lt;/version</span><span class="nt">&gt;</span>
-  <span class="nt">&lt;packaging</span><span class="nt">&gt;</span>jar<span class="nt">&lt;/packaging</span><span class="nt">&gt;</span>
-
-  <span class="nt">&lt;dependencies</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;dependency</span><span class="nt">&gt;</span>
-      <span class="nt">&lt;groupId</span><span class="nt">&gt;</span>commons-logging<span class="nt">&lt;/groupId</span><span class="nt">&gt;</span>
-      <span class="nt">&lt;artifactId</span><span class="nt">&gt;</span>commons-logging<span class="nt">&lt;/artifactId</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;/dependency</span><span class="nt">&gt;</span>
-  <span class="nt">&lt;/dependencies</span><span class="nt">&gt;</span>
-<span class="nt">&lt;/project</span><span class="nt">&gt;</span>
-
-</code></pre>
-<p>The project that follows shows how the library can now be used in another project without having to specify the dependent project's versions.</p>
-
-<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span> <span class="na">xmlns:xsi</span>=<span class="s">"http://www.w3.org/2001/XMLSchema-instance"</span>
-     <span class="na">xsi:schemaLocation</span>=<span class="s">"http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"</span><span class="nt">&gt;</span>
-  <span class="nt">&lt;modelVersion</span><span class="nt">&gt;</span>4.0.0<span class="nt">&lt;/modelVersion</span><span class="nt">&gt;</span>
-  <span class="nt">&lt;groupId</span><span class="nt">&gt;</span>com.test<span class="nt">&lt;/groupId</span><span class="nt">&gt;</span>
-  <span class="nt">&lt;artifactId</span><span class="nt">&gt;</span>use<span class="nt">&lt;/artifactId</span><span class="nt">&gt;</span>
-  <span class="nt">&lt;version</span><span class="nt">&gt;</span>1.0.0<span class="nt">&lt;/version</span><span class="nt">&gt;</span>
-  <span class="nt">&lt;packaging</span><span class="nt">&gt;</span>jar<span class="nt">&lt;/packaging</span><span class="nt">&gt;</span>
-
-  <span class="nt">&lt;dependencyManagement</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;dependencies</span><span class="nt">&gt;</span>
-      <span class="nt">&lt;dependency</span><span class="nt">&gt;</span>
-        <span class="nt">&lt;groupId</span><span class="nt">&gt;</span>com.test<span class="nt">&lt;/groupId</span><span class="nt">&gt;</span>
-        <span class="nt">&lt;artifactId</span><span class="nt">&gt;</span>bom<span class="nt">&lt;/artifactId</span><span class="nt">&gt;</span>
-        <span class="nt">&lt;version</span><span class="nt">&gt;</span>1.0.0<span class="nt">&lt;/version</span><span class="nt">&gt;</span>
-        <span class="nt">&lt;type</span><span class="nt">&gt;</span>pom<span class="nt">&lt;/type</span><span class="nt">&gt;</span>
-        <span class="nt">&lt;scope</span><span class="nt">&gt;</span>import<span class="nt">&lt;/scope</span><span class="nt">&gt;</span>
-      <span class="nt">&lt;/dependency</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;/dependencies</span><span class="nt">&gt;</span>
-  <span class="nt">&lt;/dependencyManagement</span><span class="nt">&gt;</span>
-  <span class="nt">&lt;dependencies</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;dependency</span><span class="nt">&gt;</span>
-      <span class="nt">&lt;groupId</span><span class="nt">&gt;</span>com.test<span class="nt">&lt;/groupId</span><span class="nt">&gt;</span>
-      <span class="nt">&lt;artifactId</span><span class="nt">&gt;</span>project1<span class="nt">&lt;/artifactId</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;/dependency</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;dependency</span><span class="nt">&gt;</span>
-      <span class="nt">&lt;groupId</span><span class="nt">&gt;</span>com.test<span class="nt">&lt;/groupId</span><span class="nt">&gt;</span>
-      <span class="nt">&lt;artifactId</span><span class="nt">&gt;</span>project2<span class="nt">&lt;/artifactId</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;/dependency</span><span class="nt">&gt;</span>
-  <span class="nt">&lt;/dependencies</span><span class="nt">&gt;</span>
-<span class="nt">&lt;/project</span><span class="nt">&gt;</span>
-
-</code></pre>
-<p>Finally, when creating projects that import dependencies, beware of the following:</p>
+<p>You list the libraries your code uses in the POM. Maven works out the rest: the libraries those libraries need, one version of each, and which of them go on which classpath. This page explains how it decides, so that you can predict the outcome and recognise it in <code>mvn dependency:tree</code>.</p><section><section><a id="Direct_and_transitive_dependencies"></a>
+<h2>Direct and transitive dependencies</h2>
+<p>The dependencies in your POM are direct dependencies. Each of them is published with a POM of its own, which lists the dependencies it needs; those are transitive dependencies of your project, and so are theirs, to any depth. To build the graph, Maven downloads only the POMs. The JARs come afterwards, and only for the libraries that end up in the result.</p>
+<p>Because a library describes its own needs, you do not have to know them. A library can also change them in a new release: a transitive dependency your code happens to use can disappear when you upgrade the library that brought it in. That is why you declare what your own code uses, even when it already arrives transitively; <a href="trace-a-dependency.html#Find_libraries_you_use_but_did_not_declare"><code>dependency:analyze</code></a> lists what you missed.</p></section><section><a id="Nearest_wins"></a>
+<h2>Nearest wins</h2>
+<p>The graph often contains one library in several versions, because two of your dependencies were built against different releases of it. A classpath can use only one version of a class, so Maven keeps one version of each library, chosen by its place in the graph:</p>
 <ul>
 
-<li>Do not attempt to import a POM that is defined in a submodule of the current POM. Attempting to do that will result in the build failing since it won't be able to locate the POM.</li>
-<li>Never declare the POM importing a POM as the parent (or grandparent, etc) of the target POM. There is no way to resolve the circularity and an exception will be thrown.</li>
-<li>When referring to artifacts whose POMs have transitive dependencies, the project needs to specify versions of those artifacts as managed dependencies. Not doing so results in a build failure since the artifact may not have a version specified. (This should be considered a best practice in any case as it keeps the versions of artifacts from changing from one build to the next).</li>
+<li>The version nearest to your project wins: the one with the fewest steps between your POM and the library. A version you declare yourself is always nearest.</li>
+<li>When two versions are equally near, the one met first wins, following the order of the dependencies in the POMs.</li>
 </ul>
-<p>Starting from Maven 4.0, a new specific BOM packaging has been introduced. It allows defining a BOM which is not used as a parent in a project leveraging the newer 4.1.0 model, while still providing full compatibility with Maven 3.X clients and projects. This BOM packaging is translated into a more usual POM packaging at installation / deployment time, leveraging the build/consumer POM feature from Maven 4. This thus provides full compatibility with Maven 3.x.</p>
 
-<pre tabindex="0" class="highlight"><code class="language-xml">
-<span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.1.0"</span> <span class="na">xmlns:xsi</span>=<span class="s">"http://www.w3.org/2001/XMLSchema-instance"</span>
-    <span class="na">xsi:schemaLocation</span>=<span class="s">"http://maven.apache.org/POM/4.1.0 https://maven.apache.org/xsd/maven-4.1.0.xsd"</span><span class="nt">&gt;</span>
-  <span class="nt">&lt;parent</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;groupId</span><span class="nt">&gt;</span>com.test<span class="nt">&lt;/groupId</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;version</span><span class="nt">&gt;</span>1.0.0<span class="nt">&lt;/version</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;artifactId</span><span class="nt">&gt;</span>parent<span class="nt">&lt;/artifactId</span><span class="nt">&gt;</span>
-  <span class="nt">&lt;/parent</span><span class="nt">&gt;</span>
-  <span class="nt">&lt;groupId</span><span class="nt">&gt;</span>com.test<span class="nt">&lt;/groupId</span><span class="nt">&gt;</span>
-  <span class="nt">&lt;artifactId</span><span class="nt">&gt;</span>bom<span class="nt">&lt;/artifactId</span><span class="nt">&gt;</span>
-  <span class="nt">&lt;version</span><span class="nt">&gt;</span>1.0.0<span class="nt">&lt;/version</span><span class="nt">&gt;</span>
-  <span class="nt">&lt;packaging</span><span class="nt">&gt;</span>bom<span class="nt">&lt;/packaging</span><span class="nt">&gt;</span>
-  <span class="nt">&lt;properties</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;project1Version</span><span class="nt">&gt;</span>1.0.0<span class="nt">&lt;/project1Version</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;project2Version</span><span class="nt">&gt;</span>1.0.0<span class="nt">&lt;/project2Version</span><span class="nt">&gt;</span>
-  <span class="nt">&lt;/properties</span><span class="nt">&gt;</span>
-  <span class="nt">&lt;dependencyManagement</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;dependencies</span><span class="nt">&gt;</span>
-      <span class="nt">&lt;dependency</span><span class="nt">&gt;</span>
-        <span class="nt">&lt;groupId</span><span class="nt">&gt;</span>com.test<span class="nt">&lt;/groupId</span><span class="nt">&gt;</span>
-        <span class="nt">&lt;artifactId</span><span class="nt">&gt;</span>project1<span class="nt">&lt;/artifactId</span><span class="nt">&gt;</span>
-        <span class="nt">&lt;version</span><span class="nt">&gt;</span>${project1Version}<span class="nt">&lt;/version</span><span class="nt">&gt;</span>
-      <span class="nt">&lt;/dependency</span><span class="nt">&gt;</span>
-      <span class="nt">&lt;dependency</span><span class="nt">&gt;</span>
-        <span class="nt">&lt;groupId</span><span class="nt">&gt;</span>com.test<span class="nt">&lt;/groupId</span><span class="nt">&gt;</span>
-        <span class="nt">&lt;artifactId</span><span class="nt">&gt;</span>project2<span class="nt">&lt;/artifactId</span><span class="nt">&gt;</span>
-        <span class="nt">&lt;version</span><span class="nt">&gt;</span>${project2Version}<span class="nt">&lt;/version</span><span class="nt">&gt;</span>
-      <span class="nt">&lt;/dependency</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;/dependencies</span><span class="nt">&gt;</span>
-  <span class="nt">&lt;/dependencyManagement</span><span class="nt">&gt;</span>
- <span class="nt">&lt;/project</span><span class="nt">&gt;</span>
-
-</code></pre></section></section><section><a id="System_Dependencies"></a>
-<h2>System Dependencies</h2>
-<p>In rare occurrences it's necessary to use a dependency which is not available in any repository, but only on local machine; For example, a jar of some commercial application. To include such a dependency in the build, the <em>system</em> scope can be used. Dependencies with the scope <em>system</em> are not looked up in the Maven repository system. Instead, the <code>dependency</code> element contains a <code>systemPath</code> pointing to a jar on the local file system.</p>
-
-<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span><span class="nt">&gt;</span>
-  ...
-  <span class="nt">&lt;dependencies</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;dependency</span><span class="nt">&gt;</span>
-      <span class="nt">&lt;groupId</span><span class="nt">&gt;</span>some.company<span class="nt">&lt;/groupId</span><span class="nt">&gt;</span>
-      <span class="nt">&lt;artifactId</span><span class="nt">&gt;</span>the-artifact<span class="nt">&lt;/artifactId</span><span class="nt">&gt;</span>
-      <span class="nt">&lt;version</span><span class="nt">&gt;</span>1.0.0<span class="nt">&lt;/version</span><span class="nt">&gt;</span>
-      <span class="nt">&lt;scope</span><span class="nt">&gt;</span>system<span class="nt">&lt;/scope</span><span class="nt">&gt;</span>
-      <span class="nt">&lt;systemPath</span><span class="nt">&gt;</span>path/to/lib/the.jar<span class="nt">&lt;/systemPath</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;/dependency</span><span class="nt">&gt;</span>
-  <span class="nt">&lt;/dependencies</span><span class="nt">&gt;</span>
-  ...
-<span class="nt">&lt;/project</span><span class="nt">&gt;</span>
+<pre tabindex="0"><code class="nohighlight nocode">mvn dependency:tree -Dverbose -Dincludes=commons-codec:commons-codec
 </code></pre>
-<p>While the <em>system</em> scope is supported, its usage is <strong>not recommended</strong>! The dependency is only looked up on this specific file path, which binds the build to individual machines. The recommended approach is to upload the dependency to a <a href="../../docs/dependencies/repository-manager.html">private hosted repository</a> accessible within the organization. This also allows differentiation between dependencies needed for compile/execution and those only needed for testing, by using <em>compile</em> or <em>test</em> scope.</p><section><a id="Historical_usage.3A_Java_EE_.28javax.29_libraries_of_the_JDK"></a>
-<h3>Historical usage: Java EE (<code>javax</code>) libraries of the JDK</h3>
-<p>In the past, the system scope was commonly used to tell Maven about Java EE (<code>javax</code> package) dependencies provided by the JDK that were available as separate downloads earlier. A typical examples is the Java Authentication and Authorization Service (JAAS):</p>
 
-<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span><span class="nt">&gt;</span>
-  ...
-  <span class="nt">&lt;dependencies</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;dependency</span><span class="nt">&gt;</span>
-      <span class="nt">&lt;groupId</span><span class="nt">&gt;</span>javax.security<span class="nt">&lt;/groupId</span><span class="nt">&gt;</span>
-      <span class="nt">&lt;artifactId</span><span class="nt">&gt;</span>jaas<span class="nt">&lt;/artifactId</span><span class="nt">&gt;</span>
-      <span class="nt">&lt;version</span><span class="nt">&gt;</span>1.0.01<span class="nt">&lt;/version</span><span class="nt">&gt;</span>
-      <span class="nt">&lt;scope</span><span class="nt">&gt;</span>system<span class="nt">&lt;/scope</span><span class="nt">&gt;</span>
-      <span class="nt">&lt;systemPath</span><span class="nt">&gt;</span>${java.home}/lib/rt.jar<span class="nt">&lt;/systemPath</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;/dependency</span><span class="nt">&gt;</span>
-  <span class="nt">&lt;/dependencies</span><span class="nt">&gt;</span>
-  ...
-<span class="nt">&lt;/project</span><span class="nt">&gt;</span>
+<pre tabindex="0"><code class="nohighlight nocode">[INFO] com.example:app:jar:1.0-SNAPSHOT
+[INFO] +- org.apache.httpcomponents:httpclient:jar:4.5.14:compile
+[INFO] |  \- commons-codec:commons-codec:jar:1.11:compile
+[INFO] \- org.apache.httpcomponents.client5:httpclient5:jar:5.1.4:compile
+[INFO]    \- (commons-codec:commons-codec:jar:1.15:compile - omitted for conflict with 1.11)
 </code></pre>
-<p>Most of those dependencies are available on Maven central nowadays. In general, you should never add any explicit dependencies for classes which are part of the JDK.</p></section></section></section>
+<p>Both versions of Commons Codec are two steps away, and <code>httpclient</code> comes first, so the project gets 1.11, although <code>httpclient5</code> was built against 1.15. Change the order of the two dependencies and it gets 1.15.</p>
+<p>Maven does not pick the newest version. The rule gives a predictable result that you control from your own POM: whatever a dependency asks for, you overrule it by declaring or managing the library yourself. The price is that a dependency can get an older version than it was built for, and fail at runtime with a <code>NoSuchMethodError</code>. <a href="control-a-transitive-version.html">Control the version of a transitive dependency</a> shows how to choose the version and how to make the build fail on such a downgrade.</p></section><section><a id="Managed_versions_come_first"></a>
+<h2>Managed versions come first</h2>
+<p><code>&lt;dependencyManagement&gt;</code> sets versions without adding dependencies. A managed version is not a candidate in the contest above: it replaces the version wherever the library appears in the graph, at any depth, and whatever the dependency's POM asks for. That makes it the tool for transitive dependencies: you choose the version of a library you do not declare.</p>
+<p>Managed versions come from your own POM, from its parents, and from BOMs imported with scope <code>import</code>. Your own POM wins over its parent, and a version written in <code>&lt;dependencyManagement&gt;</code> wins over one from an imported BOM. Of two imported BOMs, the first one wins.</p>
+<p>Only your project's management counts. The <code>&lt;dependencyManagement&gt;</code> sections in the POMs of your dependencies do not affect your build.</p>
+<blockquote>
+
+<p><strong>Maven 4:</strong> Maven 4 also applies the <code>&lt;dependencyManagement&gt;</code> of a dependency's POM to what that dependency brings in. A library that manages the version of one of its own transitive dependencies gets that version in your project too; with Maven 3 it does not. Your own management still wins.</p>
+</blockquote>
+<p>A managed <code>&lt;scope&gt;</code> and managed <code>&lt;exclusions&gt;</code> apply to the transitive library as well. That is useful for exclusions, and rarely what you want for a scope: a managed <code>provided</code> takes a library off the runtime classpath even where a dependency needs it.</p></section><section><a id="Version_ranges"></a>
+<h2>Version ranges</h2>
+<p>A version can also be a range, such as <code>[2.0,3.0]</code>. A plain version, such as <code>1.0</code>, is a preference: the rules above may replace it with another. A range is a requirement: Maven accepts only versions inside it, and of those takes the highest that the repositories have. A range anywhere in the graph overrules a plain version, also a nearer one, also one you declare yourself. With <code>1.0</code> in your POM and a dependency that asks for <code>[2.0,3.0]</code>, you get 3.0.</p>
+<p>When two ranges have no version in common, the build stops:</p>
+
+<pre tabindex="0"><code class="nohighlight nocode">[ERROR] Failed to execute goal on project app: Could not collect dependencies for project com.example:app:jar:1.0
+[ERROR] Unsolvable hard constraint combination; Could not resolve version conflict among [com.example:lib:jar:[1.0,2.0), com.example:other:jar:1.0 -&gt; com.example:lib:jar:[2.0,3.0]]
+</code></pre>
+<p>A range makes the result depend on what the repository holds on the day of the build: a new release inside the range changes your build without a change to your POM. The <a href="../reference/pom.html#Dependency_Version_Requirement_Specification">POM reference</a> describes the syntax of ranges and the order of versions.</p></section><section><a id="Scopes_decide_classpaths_and_transitivity"></a>
+<h2>Scopes decide classpaths and transitivity</h2>
+<p>The scope of a dependency decides on which classpaths it is, and whether it is passed on. A dependency's own <code>test</code> and <code>provided</code> dependencies never reach your project: they were for building that dependency, not for using it. A <code>runtime</code> dependency of a <code>compile</code> dependency arrives with scope <code>runtime</code>. <a href="scopes.html">Dependency scopes</a> has the full tables.</p>
+<p>When a library arrives through several paths with different scopes, it gets the widest of them. If you declare the library yourself, your declaration decides, and that can surprise you.</p></section><section><a id="Declaring_a_library_yourself_fixes_its_scope"></a>
+<h2>Declaring a library yourself fixes its scope</h2>
+<p>Suppose your code uses Guice, and Guice needs Guava. Your tests use Guava directly, so you add it with scope <code>test</code>:</p>
+<p><em>pom.xml</em></p>
+
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;dependency</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;groupId</span><span class="nt">&gt;</span>com.google.inject<span class="nt">&lt;/groupId</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;artifactId</span><span class="nt">&gt;</span>guice<span class="nt">&lt;/artifactId</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;version</span><span class="nt">&gt;</span>7.0.0<span class="nt">&lt;/version</span><span class="nt">&gt;</span>
+<span class="nt">&lt;/dependency</span><span class="nt">&gt;</span>
+<span class="nt">&lt;dependency</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;groupId</span><span class="nt">&gt;</span>com.google.guava<span class="nt">&lt;/groupId</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;artifactId</span><span class="nt">&gt;</span>guava<span class="nt">&lt;/artifactId</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;version</span><span class="nt">&gt;</span>33.5.0-jre<span class="nt">&lt;/version</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;scope</span><span class="nt">&gt;</span>test<span class="nt">&lt;/scope</span><span class="nt">&gt;</span>
+<span class="nt">&lt;/dependency</span><span class="nt">&gt;</span>
+</code></pre>
+<p>Guava is now nearest as a direct dependency, and your declaration decides its scope: <code>test</code>. It drops off the main and runtime classpaths of your project, although Guice needs it at runtime. The verbose tree shows it:</p>
+
+<pre tabindex="0"><code class="nohighlight nocode">mvn dependency:tree -Dverbose
+</code></pre>
+
+<pre tabindex="0"><code class="nohighlight nocode">[INFO] com.example:app:jar:1.0-SNAPSHOT
+[INFO] +- com.google.inject:guice:jar:7.0.0:compile
+[INFO] |  +- jakarta.inject:jakarta.inject-api:jar:2.0.1:compile
+[INFO] |  +- aopalliance:aopalliance:jar:1.0:compile
+[INFO] |  \- (com.google.guava:guava:jar:31.0.1-jre:compile - omitted for conflict with 33.5.0-jre)
+[INFO] \- com.google.guava:guava:jar:33.5.0-jre:test (scope not updated to compile)
+[INFO]    +- com.google.guava:failureaccess:jar:1.0.3:test
+[INFO]    ...
+</code></pre>
+<p>The tests pass, because the test classpath has Guava. What fails is anything that runs the main code with the runtime classpath: a WAR built from the project, or <code>exec:java</code>. A project that depends on yours does get Guava, because your test dependencies are not part of what it sees, and it receives Guava from Guice with scope <code>compile</code>.</p>
+<p>Declare a library that your main code needs at runtime with scope <code>compile</code> or <code>runtime</code>, even if only your tests use it directly.</p></section><section><a id="Optional_dependencies_and_exclusions"></a>
+<h2>Optional dependencies and exclusions</h2>
+<p>Two elements remove parts of the graph:</p>
+<ul>
+
+<li><code>&lt;optional&gt;true&lt;/optional&gt;</code> on a dependency in a library's POM keeps that dependency from the projects that use the library. The library's author decides; see <a href="make-a-dependency-optional.html">Make a dependency optional</a>.</li>
+<li><code>&lt;exclusions&gt;</code> on a dependency in your POM removes a library from everything below that dependency, in every version. You decide, for your project and for the projects that depend on it; see <a href="exclude-a-dependency.html">Exclude a transitive dependency</a>.</li>
+</ul>
+<p>Both act on one path through the graph. A library that is excluded on one path can still arrive through another.</p></section><section><a id="Maven_4"></a>
+<h2>Maven 4</h2>
+<p>Maven 4 resolves dependencies by the rules on this page, with three differences:</p>
+<ul>
+
+<li>It applies the <code>&lt;dependencyManagement&gt;</code> of a dependency's POM to what that dependency brings in, as described under <a href="#Managed_versions_come_first">Managed versions come first</a>.</li>
+<li>With model version 4.1.0, a POM can use the scopes <code>compile-only</code>, <code>test-only</code> and <code>test-runtime</code>; see <a href="scopes.html#Maven_4_scopes">Dependency scopes</a>.</li>
+<li>A project can publish a BOM with packaging <code>bom</code>; see <a href="use-a-bom.html#Publish_a_BOM_for_your_library">Use a BOM, and publish one</a>.</li>
+</ul>
+<p>Maven 4 also publishes a consumer POM instead of the POM you build with. It keeps your dependencies, so projects that depend on yours resolve them as before; <a href="../maven-4/whats-new.html">What's new in Maven 4</a> describes what it leaves out.</p></section><section><a id="Inside_the_resolver"></a>
+<h2>Inside the resolver</h2>
+<p>Maven builds the graph in three steps, carried out by <a href="../../resolver/">Maven Resolver</a>: it collects the graph from the POMs, transforms it by resolving the conflicts described on this page, and resolves the files of the nodes that remain. <a href="resolution-misconceptions.html">Dependency resolution misconceptions</a> describes these steps for plugin developers who request dependency graphs themselves.</p></section></section>
       </div>
       <nav class="more" aria-labelledby="more-title">
         <h2 id="more-title">More in <a href="../../docs/dependencies/index.html">Dependencies and repositories</a></h2>
         <ul class="more-list">
-  <li><a href="../../docs/dependencies/how-dependencies-work.html" aria-current="page">How dependencies work</a></li>
-  <li><a href="../../docs/dependencies/optional-and-exclusions.html">Optional dependencies and exclusions</a></li>
+  <li><a href="../../docs/dependencies/how-dependencies-work.html" aria-current="page">How Maven resolves dependencies</a></li>
+  <li><a href="../../docs/dependencies/scopes.html">Dependency scopes</a></li>
+  <li><a href="../../docs/dependencies/trace-a-dependency.html">Find out where a dependency comes from</a></li>
+  <li><a href="../../docs/dependencies/control-a-transitive-version.html">Control the version of a transitive dependency</a></li>
+  <li><a href="../../docs/dependencies/exclude-a-dependency.html">Exclude a transitive dependency</a></li>
+  <li><a href="../../docs/dependencies/use-a-bom.html">Use a BOM, and publish one</a></li>
+  <li><a href="../../docs/dependencies/make-a-dependency-optional.html">Make a dependency optional</a></li>
   <li><a href="../../docs/dependencies/repositories.html">Repositories explained</a></li>
   <li><a href="../../docs/dependencies/mirror-settings.html">Use a mirror or repository manager (Nexus, Artifactory)</a></li>
   <li><a href="../../docs/dependencies/repository-manager.html">Why use a repository manager</a></li>
@@ -874,7 +217,7 @@ This scope is only supported on a dependency of type <code>pom</code> in the <co
   <li><a href="../../docs/dependencies/centralized-deployments.html">Large centralized deployments</a></li>
   <li><a href="../../docs/dependencies/naming-coordinates.html">Naming your coordinates</a></li>
 </ul>
-        <p class="steps"><a class="step step--next" href="../../docs/dependencies/optional-and-exclusions.html" rel="next"><span class="step-dir">Next</span> Optional dependencies and exclusions</a></p>
+        <p class="steps"><a class="step step--next" href="../../docs/dependencies/scopes.html" rel="next"><span class="step-dir">Next</span> Dependency scopes</a></p>
       </nav>
     </main>
     <aside class="rail">
@@ -882,11 +225,13 @@ This scope is only supported on a dependency of type <code>pom</code> in the <co
 <section class="facts" aria-label="About this page">
   <dl>
     <dt>Holds for</dt>
-    <dd><span class="unchecked">Not yet checked against Maven 3.9, 3.10 and 4.0</span></dd>
+    <dd><span class="versions"><span class="version">3.9</span><span class="version">3.10</span><span class="version version--upcoming" title="Maven 4.0 is not released yet">4.0</span></span></dd>
+    <dt>Kind</dt>
+    <dd>Explanation</dd>
     <dt>Source</dt>
     <dd><a href="https://github.com/dashorst/maven-site/edit/doxia-demo/content/markdown/docs/dependencies/how-dependencies-work.md">Edit this page</a></dd>
     <dt>Wrong?</dt>
-    <dd><a href="https://github.com/apache/maven-site/issues/new?title=Page%3A+How+dependencies+work&amp;body=About+https%3A%2F%2Fmaven.apache.org%2Fdocs%2Fdependencies%2Fhow-dependencies-work.html">Report a problem</a></dd>
+    <dd><a href="https://github.com/apache/maven-site/issues/new?title=Page%3A+How+Maven+resolves+dependencies&amp;body=About+https%3A%2F%2Fmaven.apache.org%2Fdocs%2Fdependencies%2Fhow-dependencies-work.html">Report a problem</a></dd>
   </dl>
 </section>
       <nav id="on-this-page" aria-label="On this page"></nav>

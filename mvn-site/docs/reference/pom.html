@@ -283,7 +283,7 @@
 <li>
 <p><code>&lt;type&gt;</code>: Corresponds to the chosen dependency type. This defaults to <code>jar</code>. While it usually represents the extension on the filename of the dependency, that is not always the case: a type can be mapped to a different extension and a classifier. The type often corresponds to the packaging used, though this is also not always the case. Some examples are <code>jar</code>, <code>ejb-client</code> and <code>test-jar</code>: see <a href="../../ref/current/maven-core/artifact-handlers.html">default artifact handlers</a> for a list. New types can be defined by plugins that set <code>extensions</code> to true, so this is not a complete list.</p></li>
 <li>
-<p><code>&lt;scope&gt;</code>: This element refers to the classpath of the task at hand (compiling and runtime, testing, etc.) as well as how to limit the transitivity of a dependency. There are five scopes available:</p></li>
+<p><code>&lt;scope&gt;</code>: This element refers to the classpath of the task at hand (compiling and runtime, testing, etc.) as well as how to limit the transitivity of a dependency. <a href="../dependencies/scopes.html">Dependency scopes</a> lists on which classpaths each scope puts a dependency, which scopes are passed on, and the scopes Maven 4 adds. The scopes of model version 4.0.0 are:</p></li>
 <li>
 <p><code>&lt;compile&gt;</code> - this is the default scope, used if none is specified. Compile dependencies are available in all classpaths. Furthermore, those dependencies are propagated to dependent projects.</p></li>
 <li>
@@ -301,7 +301,7 @@
 <p>In the shortest terms, <code>optional</code> lets other projects know that, when you use this project, you do not require this dependency in order to work correctly.</p></li>
 </ul><section><a id="Dependency_Management"></a>
 <h5>Dependency Management</h5>
-<p>Dependencies can be managed in the <code>dependencyManagement</code> section to affect the resolution of dependencies which are not fully qualified or to enforce the usage of a specific transitive dependency version. Further information in <a href="../dependencies/how-dependencies-work.html">Introduction to the Dependency Mechanism</a>.</p></section><section><a id="Dependency_Version_Requirement_Specification"></a>
+<p>Dependencies can be managed in the <code>dependencyManagement</code> section to affect the resolution of dependencies which are not fully qualified or to enforce the usage of a specific transitive dependency version. Further information in <a href="../dependencies/how-dependencies-work.html#Managed_versions_come_first">How Maven resolves dependencies</a>.</p></section><section><a id="Dependency_Version_Requirement_Specification"></a>
 <h5>Dependency Version Requirement Specification</h5>
 <p>Dependencies' <code>version</code> elements define version requirements, which are used to compute dependency versions. Soft requirements can be replaced by different versions of the same artifact found elsewhere in the dependency graph. Hard requirements mandate a particular version or versions and override soft requirements. If there are no versions of a dependency that satisfy all the hard requirements for that artifact, the build fails.</p>
 <p>Version requirements have the following syntax:</p>

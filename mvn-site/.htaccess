@@ -231,8 +231,6 @@ Redirect Permanent /guides/development/guide-testing-releases.html /community/co
 Redirect Permanent /guides/getting-started/index.html /docs/get-started/questions-and-answers.html
 Redirect Permanent /guides/getting-started/windows-prerequisites.html /docs/get-started/windows.html
 Redirect Permanent /guides/introduction/introduction-to-archetypes.html /extend/archetypes/introduction.html
-Redirect Permanent /guides/introduction/introduction-to-dependency-mechanism.html /docs/dependencies/how-dependencies-work.html
-Redirect Permanent /guides/introduction/introduction-to-optional-and-excludes-dependencies.html /docs/dependencies/optional-and-exclusions.html
 Redirect Permanent /guides/introduction/introduction-to-plugin-prefix-mapping.html /docs/plugins/plugin-prefixes.html
 Redirect Permanent /guides/introduction/introduction-to-plugins.html /extend/plugins/introduction.html
 Redirect Permanent /guides/introduction/introduction-to-profiles.html /docs/configure/profiles.html

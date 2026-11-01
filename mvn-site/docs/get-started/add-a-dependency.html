@@ -157,7 +157,7 @@
 [INFO] BUILD SUCCESS
 </code></pre>
 <p>If the compiler reports <code>package org.apache.commons.lang3 does not exist</code>, the dependency is in the wrong <code>&lt;dependencies&gt;</code> element: move it out of <code>&lt;dependencyManagement&gt;</code>.</p>
-<p>Commons Lang needs no other libraries. When a library does, its own POM says so, and Maven downloads those libraries as well; <a href="../dependencies/how-dependencies-work.html">How dependencies work</a> explains these transitive dependencies.</p></section><section><a id="a5._Run_the_program_with_its_dependency"></a>
+<p>Commons Lang needs no other libraries. When a library does, its own POM says so, and Maven downloads those libraries as well; <a href="../dependencies/how-dependencies-work.html">How Maven resolves dependencies</a> explains these transitive dependencies.</p></section><section><a id="a5._Run_the_program_with_its_dependency"></a>
 <h2>5. Run the program with its dependency</h2>
 <p>Run the program from the JAR as before:</p>
 

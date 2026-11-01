@@ -3,7 +3,10 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Optional dependencies and exclusions – Apache Maven</title>
+  <title>Dependency scopes – Apache Maven</title>
+  <meta name="description" content="Which classpaths each scope puts a dependency on, which scopes reach the projects that depend on yours, and the scopes Maven 4 adds.">
+  <meta name="keywords" content="classpath, compile classpath, test classpath, runtime classpath, transitive scope, not transitive, servlet api, junit, jdbc driver, compile only, WEB-INF/lib, packaged dependencies">
+  <meta name="terms" content="&lt;scope&gt; | compile | provided | runtime | test | system | import | &lt;systemPath&gt; | compile-only | test-only | test-runtime">
   <link rel="stylesheet" href="../../css/maven.css">
   <link rel="stylesheet" href="../../css/print.css" media="print">
   <link rel="icon" href="../../images/favicon.ico">
@@ -49,11 +52,16 @@
   <div class="frame has-group">
     <nav class="group-nav" aria-labelledby="group-nav-title">
       <p class="up"><a href="../../docs/index.html"><svg aria-hidden="true" viewBox="0 0 16 16" width="14" height="14"><path d="M10 3.5L5.5 8l4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" /></svg>All of Docs</a></p>
-      <p class="steps"><a class="step step--prev" href="../../docs/dependencies/how-dependencies-work.html" rel="prev"><span class="step-dir">Previous</span> How dependencies work</a><a class="step step--next" href="../../docs/dependencies/repositories.html" rel="next"><span class="step-dir">Next</span> Repositories explained</a></p>
+      <p class="steps"><a class="step step--prev" href="../../docs/dependencies/how-dependencies-work.html" rel="prev"><span class="step-dir">Previous</span> How Maven resolves dependencies</a><a class="step step--next" href="../../docs/dependencies/trace-a-dependency.html" rel="next"><span class="step-dir">Next</span> Find out where a dependency comes from</a></p>
       <h2 id="group-nav-title"><a href="../../docs/dependencies/index.html">Dependencies and repositories</a></h2>
       <ul class="page-list">
-  <li><a href="../../docs/dependencies/how-dependencies-work.html">How dependencies work</a></li>
-  <li><a href="../../docs/dependencies/optional-and-exclusions.html" aria-current="page">Optional dependencies and exclusions</a></li>
+  <li><a href="../../docs/dependencies/how-dependencies-work.html">How Maven resolves dependencies</a></li>
+  <li><a href="../../docs/dependencies/scopes.html" aria-current="page">Dependency scopes</a></li>
+  <li><a href="../../docs/dependencies/trace-a-dependency.html">Find out where a dependency comes from</a></li>
+  <li><a href="../../docs/dependencies/control-a-transitive-version.html">Control the version of a transitive dependency</a></li>
+  <li><a href="../../docs/dependencies/exclude-a-dependency.html">Exclude a transitive dependency</a></li>
+  <li><a href="../../docs/dependencies/use-a-bom.html">Use a BOM, and publish one</a></li>
+  <li><a href="../../docs/dependencies/make-a-dependency-optional.html">Make a dependency optional</a></li>
   <li><a href="../../docs/dependencies/repositories.html">Repositories explained</a></li>
   <li><a href="../../docs/dependencies/mirror-settings.html">Use a mirror or repository manager (Nexus, Artifactory)</a></li>
   <li><a href="../../docs/dependencies/repository-manager.html">Why use a repository manager</a></li>
@@ -70,200 +78,183 @@
   <li><a href="../../docs/dependencies/naming-coordinates.html">Naming your coordinates</a></li>
 </ul>
     </nav>
-    <main id="content">
+    <main id="content" data-kind="reference" data-since="3.9">
       <p class="crumbs"><a href="../../docs/index.html">Docs</a> <span aria-hidden="true">›</span> <a href="../../docs/dependencies/index.html">Dependencies and repositories</a></p>
       <div class="prose">
+        <h1>Dependency scopes</h1>
+        <p class="lead">Which classpaths each scope puts a dependency on, which scopes reach the projects that depend on yours, and the scopes Maven 4 adds.</p>
 
 <section class="facts facts--inline" aria-label="About this page">
   <dl>
     <dt>Holds for</dt>
-    <dd><span class="unchecked">Not yet checked against Maven 3.9, 3.10 and 4.0</span></dd>
+    <dd><span class="versions"><span class="version">3.9</span><span class="version">3.10</span><span class="version version--upcoming" title="Maven 4.0 is not released yet">4.0</span></span></dd>
+    <dt>Kind</dt>
+    <dd>Reference</dd>
     <dt>Source</dt>
-    <dd><a href="https://github.com/dashorst/maven-site/edit/doxia-demo/content/markdown/docs/dependencies/optional-and-exclusions.md">Edit this page</a></dd>
+    <dd><a href="https://github.com/dashorst/maven-site/edit/doxia-demo/content/markdown/docs/dependencies/scopes.md">Edit this page</a></dd>
     <dt>Wrong?</dt>
-    <dd><a href="https://github.com/apache/maven-site/issues/new?title=Page%3A+Optional+dependencies+and+exclusions&amp;body=About+https%3A%2F%2Fmaven.apache.org%2Fdocs%2Fdependencies%2Foptional-and-exclusions.html">Report a problem</a></dd>
+    <dd><a href="https://github.com/apache/maven-site/issues/new?title=Page%3A+Dependency+scopes&amp;body=About+https%3A%2F%2Fmaven.apache.org%2Fdocs%2Fdependencies%2Fscopes.html">Report a problem</a></dd>
   </dl>
 </section>
- <section><a id="Introduction"></a>
-<h1>Introduction</h1>
-<p>This section discusses optional dependencies and dependency exclusions. This will help users to understand what they are and when and how to use them. It also explains why exclusions are made on a per dependency basis instead of at the POM level.</p><section><a id="Optional_Dependencies"></a>
-<h2>Optional Dependencies</h2>
-<p>Optional dependencies are used when it's not possible (for whatever reason) to split a project into sub-modules. The idea is that some of the dependencies are only used for certain features in the project and will not be needed if that feature isn't used. Ideally, such a feature would be split into a sub-module that depends on the core functionality project. This new subproject would have only non-optional dependencies, since you'd need them all if you decided to use the subproject's functionality.</p>
-<p>However, since the project cannot be split up (again, for whatever reason), these dependencies are declared optional. If a user wants to use functionality related to an optional dependency, they have to redeclare that optional dependency in their own project. This is not the clearest way to handle this situation, but both optional dependencies and dependency exclusions are stop-gap solutions.</p><section><a id="Why_use_optional_dependencies.3F"></a>
-<h3>Why use optional dependencies?</h3>
-<p>Optional dependencies save space and memory. They prevent problematic jars that violate a license agreement or cause classpath issues from being bundled into a WAR, EAR, fat jar, or the like.</p></section><section><a id="How_do_I_use_the_optional_tag.3F"></a>
-<h3>How do I use the optional tag?</h3>
-<p>A dependency is declared optional by setting the <code>&lt;optional&gt;</code> element to true in its dependency declaration:</p>
-
-<pre tabindex="0" class="highlight"><code class="language-xml">
-<span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span><span class="nt">&gt;</span>
-  ...
-  <span class="nt">&lt;dependencies</span><span class="nt">&gt;</span>
-    <span class="c">&lt;!-- declare the dependency to be set as optional --&gt;</span>
-    <span class="nt">&lt;dependency</span><span class="nt">&gt;</span>
-      <span class="nt">&lt;groupId</span><span class="nt">&gt;</span>sample.ProjectA<span class="nt">&lt;/groupId</span><span class="nt">&gt;</span>
-      <span class="nt">&lt;artifactId</span><span class="nt">&gt;</span>Project-A<span class="nt">&lt;/artifactId</span><span class="nt">&gt;</span>
-      <span class="nt">&lt;version</span><span class="nt">&gt;</span>1.0<span class="nt">&lt;/version</span><span class="nt">&gt;</span>
-      <span class="nt">&lt;scope</span><span class="nt">&gt;</span>compile<span class="nt">&lt;/scope</span><span class="nt">&gt;</span>
-      <span class="nt">&lt;optional</span><span class="nt">&gt;</span>true<span class="nt">&lt;/optional</span><span class="nt">&gt;</span> <span class="c">&lt;!-- value will be true or false only --&gt;</span>
-    <span class="nt">&lt;/dependency</span><span class="nt">&gt;</span>
-  <span class="nt">&lt;/dependencies</span><span class="nt">&gt;</span>
-<span class="nt">&lt;/project</span><span class="nt">&gt;</span>
-
-</code></pre></section><section><a id="How_do_optional_dependencies_work.3F"></a>
-<h3>How do optional dependencies work?</h3>
-
-<pre tabindex="0"><code class="nohighlight nocode">
-Project-A -&gt; Project-B
-
-</code></pre>
-<p>The diagram above says that Project-A depends on Project-B. When A declares B as an optional dependency in its POM, this relationship remains unchanged. It's just like a normal build where Project-B will be added in Project-A's classpath.</p>
-
-<pre tabindex="0"><code class="nohighlight nocode">
-Project-X -&gt; Project-A
-
-</code></pre>
-<p>When another project (Project-X) declares Project-A as a dependency in its POM, the optional nature of the dependency takes effect. Project-B is not included in the classpath of Project-X. You need to declare it directly in the POM of Project X for B to be included in X's classpath.</p></section><section><a id="Example"></a>
-<h3>Example</h3>
-<p>Suppose there is a project named <em>X2</em> that has similar functionality to <em>Hibernate</em>. It supports many databases such as MySQL, PostgreSQL, and several versions of Oracle. Each supported database requires an additional dependency on a driver jar. All of these dependencies are needed at compile time to build X2. However your project only uses one specific database and doesn't need drivers for the others. X2 can declare these dependencies as optional, so that when your project declares X2 as a direct dependency in its POM, all the drivers supported by the X2 are not automatically included in your project's classpath. Your project will have to include an explicit dependency on the specific driver for the one database it does use.</p></section></section><section><a id="Dependency_Exclusions"></a>
-<h2>Dependency Exclusions</h2>
-<p>Since Maven resolves dependencies transitively, it is possible for unwanted dependencies to be included in your project's classpath. For example, a certain older jar may have security issues or be incompatible with the Java version you're using. To address this, Maven allows you to exclude specific dependencies. Exclusions are set on a specific dependency in your POM, and are targeted at a specific groupId and artifactId. When you build your project, that artifact will not be added to your project's classpath <em>by way of the dependency in which the exclusion was declared</em>.</p><section><a id="How_to_use_dependency_exclusions"></a>
-<h3>How to use dependency exclusions</h3>
-<p>Add an <code>&lt;exclusions&gt;</code> element in the <code>&lt;dependency&gt;</code> element by which the problematic jar is included.</p>
-
-<pre tabindex="0" class="highlight"><code class="language-xml">
-<span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span><span class="nt">&gt;</span>
-  ...
-  <span class="nt">&lt;dependencies</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;dependency</span><span class="nt">&gt;</span>
-      <span class="nt">&lt;groupId</span><span class="nt">&gt;</span>sample.ProjectA<span class="nt">&lt;/groupId</span><span class="nt">&gt;</span>
-      <span class="nt">&lt;artifactId</span><span class="nt">&gt;</span>Project-A<span class="nt">&lt;/artifactId</span><span class="nt">&gt;</span>
-      <span class="nt">&lt;version</span><span class="nt">&gt;</span>1.0<span class="nt">&lt;/version</span><span class="nt">&gt;</span>
-      <span class="nt">&lt;scope</span><span class="nt">&gt;</span>compile<span class="nt">&lt;/scope</span><span class="nt">&gt;</span>
-      <span class="nt">&lt;exclusions</span><span class="nt">&gt;</span>
-        <span class="nt">&lt;exclusion</span><span class="nt">&gt;</span>  <span class="c">&lt;!-- declare the exclusion here --&gt;</span>
-          <span class="nt">&lt;groupId</span><span class="nt">&gt;</span>sample.ProjectB<span class="nt">&lt;/groupId</span><span class="nt">&gt;</span>
-          <span class="nt">&lt;artifactId</span><span class="nt">&gt;</span>Project-B<span class="nt">&lt;/artifactId</span><span class="nt">&gt;</span>
-        <span class="nt">&lt;/exclusion</span><span class="nt">&gt;</span>
-      <span class="nt">&lt;/exclusions</span><span class="nt">&gt;</span> 
-    <span class="nt">&lt;/dependency</span><span class="nt">&gt;</span>
-  <span class="nt">&lt;/dependencies</span><span class="nt">&gt;</span>
-<span class="nt">&lt;/project</span><span class="nt">&gt;</span>
-
-</code></pre></section><section><a id="How_dependency_exclusion_works_and_when_to_use_it_.28_as_a_last_resort.21_.29"></a>
-<h3>How dependency exclusion works and when to use it <strong>( as a last resort! )</strong></h3>
-
-<pre tabindex="0"><code class="nohighlight nocode">
-Project-A
-   -&gt; Project-B
-        -&gt; Project-D &lt;! -- This dependency should be excluded --&gt;
-              -&gt; Project-E
-              -&gt; Project-F
-   -&gt; Project C
-
-</code></pre>
-<p>The diagram shows that Project-A depends on both Project-B and C. Project-B depends on Project-D. Project-D depends on both Project-E and F. By default, Project A's classpath will include:</p>
-
-<pre tabindex="0"><code class="nohighlight nocode">B, C, D, E, F
-</code></pre>
-<p>Suppose you don't want project D and its dependencies to be added to Project A's classpath because some of Project-D's dependencies are missing from the repository, and you don't need the functionality in Project-B that depends on Project-D anyway. Project-B's developers could have marked the dependency on Project-D <code>&lt;optional&gt;true&lt;/optional&gt;</code>:</p>
+ 
+<p>The <code>&lt;scope&gt;</code> of a dependency decides two things: on which classpaths of your project the dependency is, and whether projects that depend on yours get it too. A dependency without <code>&lt;scope&gt;</code> has scope <code>compile</code>.</p>
+<p><em>pom.xml</em></p>
 
 <pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;dependency</span><span class="nt">&gt;</span>
-  <span class="nt">&lt;groupId</span><span class="nt">&gt;</span>sample.ProjectD<span class="nt">&lt;/groupId</span><span class="nt">&gt;</span>
-  <span class="nt">&lt;artifactId</span><span class="nt">&gt;</span>ProjectD<span class="nt">&lt;/artifactId</span><span class="nt">&gt;</span>
-  <span class="nt">&lt;version</span><span class="nt">&gt;</span>1.0-SNAPSHOT<span class="nt">&lt;/version</span><span class="nt">&gt;</span>
-  <span class="nt">&lt;optional</span><span class="nt">&gt;</span>true<span class="nt">&lt;/optional</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;groupId</span><span class="nt">&gt;</span>jakarta.servlet<span class="nt">&lt;/groupId</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;artifactId</span><span class="nt">&gt;</span>jakarta.servlet-api<span class="nt">&lt;/artifactId</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;version</span><span class="nt">&gt;</span>6.1.0<span class="nt">&lt;/version</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;scope</span><span class="nt">&gt;</span>provided<span class="nt">&lt;/scope</span><span class="nt">&gt;</span>
+<span class="nt">&lt;/dependency</span><span class="nt">&gt;</span>
+</code></pre><section><section><a id="Classpaths"></a>
+<h2>Classpaths</h2>
+<p>A build uses three classpaths. The compiler uses the main classpath for <code>src/main/java</code>; the test classpath is used to compile and run the tests; the runtime classpath is what the code needs when it runs, and what the WAR plugin puts in <code>WEB-INF/lib</code>.</p>
+<div class="table-scroll" tabindex="0"><table class="bodyTable">
+<thead>
+<tr class="a">
+<th>Scope</th>
+<th>Main classpath</th>
+<th>Test classpath</th>
+<th>Runtime classpath</th>
+<th>Passed on to projects that depend on yours</th></tr></thead><tbody>
+<tr class="b">
+<td><code>compile</code></td>
+<td>yes</td>
+<td>yes</td>
+<td>yes</td>
+<td>yes</td></tr>
+<tr class="a">
+<td><code>provided</code></td>
+<td>yes</td>
+<td>yes</td>
+<td>no</td>
+<td>no</td></tr>
+<tr class="b">
+<td><code>runtime</code></td>
+<td>no</td>
+<td>yes</td>
+<td>yes</td>
+<td>yes</td></tr>
+<tr class="a">
+<td><code>test</code></td>
+<td>no</td>
+<td>yes</td>
+<td>no</td>
+<td>no</td></tr>
+<tr class="b">
+<td><code>system</code></td>
+<td>yes</td>
+<td>yes</td>
+<td>no</td>
+<td>yes, as <code>system</code></td></tr></tbody>
+</table></div>
+</section><section><a id="Scopes_of_transitive_dependencies"></a>
+<h2>Scopes of transitive dependencies</h2>
+<p>A dependency that your dependency brings in gets a scope in your project that depends on both scopes: the scope you gave your dependency (rows), and the scope your dependency's POM gives the library (columns).</p>
+<div class="table-scroll" tabindex="0"><table class="bodyTable">
+<thead>
+<tr class="a">
+<th>Your dependency's scope</th>
+<th><code>compile</code></th>
+<th><code>provided</code></th>
+<th><code>runtime</code></th>
+<th><code>test</code></th>
+<th>optional</th></tr></thead><tbody>
+<tr class="b">
+<td><code>compile</code></td>
+<td><code>compile</code></td>
+<td>left out</td>
+<td><code>runtime</code></td>
+<td>left out</td>
+<td>left out</td></tr>
+<tr class="a">
+<td><code>provided</code></td>
+<td><code>provided</code></td>
+<td>left out</td>
+<td><code>provided</code></td>
+<td>left out</td>
+<td>left out</td></tr>
+<tr class="b">
+<td><code>runtime</code></td>
+<td><code>runtime</code></td>
+<td>left out</td>
+<td><code>runtime</code></td>
+<td>left out</td>
+<td>left out</td></tr>
+<tr class="a">
+<td><code>test</code></td>
+<td><code>test</code></td>
+<td>left out</td>
+<td><code>test</code></td>
+<td>left out</td>
+<td>left out</td></tr></tbody>
+</table></div>
+
+<p>A library that the tree reaches through several paths gets the widest of the scopes those paths give it, unless you declare it yourself: the scope you declare always stays. <a href="how-dependencies-work.html#Declaring_a_library_yourself_fixes_its_scope">How Maven resolves dependencies</a> shows what that means for a library you declare with scope <code>test</code>.</p>
+<p>A scope in <code>&lt;dependencyManagement&gt;</code> also applies where the library arrives transitively, and replaces the scope the table gives it.</p></section><section><a id="compile"></a>
+<h2>compile</h2>
+<p>The default. For a library your main code uses: it is on every classpath and is passed on, so a project that depends on yours can run your code.</p></section><section><a id="provided"></a>
+<h2>provided</h2>
+<p>For a library your main code compiles against and the environment supplies at runtime, such as the Servlet API in a servlet container or an API a plugin host provides. Maven leaves it out of the runtime classpath, out of a WAR, and out of the projects that depend on yours.</p></section><section><a id="runtime"></a>
+<h2>runtime</h2>
+<p>For a library your code does not reference in its source but needs to run, such as a JDBC driver or a logging backend loaded by name. Keeping it off the main classpath stops your code from coming to depend on it by accident.</p></section><section><a id="test"></a>
+<h2>test</h2>
+<p>For a library only the tests use, such as JUnit or Mockito. It is on the test classpath only, and is never passed on.</p></section><section><a id="system"></a>
+<h2>system</h2>
+<p>Like <code>provided</code>, but Maven does not take the file from a repository: <code>&lt;systemPath&gt;</code> gives the path of the JAR on the build machine.</p>
+<p><em>pom.xml</em></p>
+
+<pre tabindex="0" class="highlight"><code class="language-xml"><span class="nt">&lt;dependency</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;groupId</span><span class="nt">&gt;</span>com.example.vendor<span class="nt">&lt;/groupId</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;artifactId</span><span class="nt">&gt;</span>vendor-sdk<span class="nt">&lt;/artifactId</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;version</span><span class="nt">&gt;</span>4.2<span class="nt">&lt;/version</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;scope</span><span class="nt">&gt;</span>system<span class="nt">&lt;/scope</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;systemPath</span><span class="nt">&gt;</span>${project.basedir}/lib/vendor-sdk-4.2.jar<span class="nt">&lt;/systemPath</span><span class="nt">&gt;</span>
 <span class="nt">&lt;/dependency</span><span class="nt">&gt;</span>
 </code></pre>
-<p>Unfortunately, they didn't. As a last resort, you can exclude it on your own POM for Project-A like this:</p>
+<p>The path must be absolute; with a relative path the build stops with <code>must specify an absolute path</code>. Start it with a property such as <code>${project.basedir}</code>. Maven 3 warns that a path inside the project <code>will be unresolvable by dependent projects</code>, and Maven 3.10 warns on every use that the <code>system</code> scope is deprecated.</p>
+<p>Unlike <code>provided</code>, a <code>system</code> dependency is passed on: a project that depends on yours gets it with scope <code>system</code> and the same path, which has to exist on that project's machine.</p>
+<p>The path ties the build to one machine. Install the JAR in a repository instead: <a href="third-party-jar-local.html">Install a third-party JAR locally</a> or <a href="third-party-jar-remote.html">deploy it to your repository manager</a>, and give it a normal scope. For classes of the JDK itself, which older guides declared with <code>system</code> scope and <code>${java.home}/lib/rt.jar</code>, add no dependency at all.</p></section><section><a id="import"></a>
+<h2>import</h2>
+<p>Only in <code>&lt;dependencyManagement&gt;</code>, on a dependency with <code>&lt;type&gt;pom&lt;/type&gt;</code>: the dependency is replaced by the managed dependencies of that POM. It does not add anything to a classpath. <a href="use-a-bom.html">Use a BOM, and publish one</a> shows how it is used.</p></section><section><a id="Maven_4_scopes"></a>
+<h2>Maven 4 scopes</h2>
+<p>With model version 4.1.0, Maven 4 accepts three more scopes, which split <code>provided</code> and <code>test</code> by classpath:</p>
+<div class="table-scroll" tabindex="0"><table class="bodyTable">
+<thead>
+<tr class="a">
+<th>Scope</th>
+<th>Main classpath</th>
+<th>Test compile classpath</th>
+<th>Test run classpath</th></tr></thead><tbody>
+<tr class="b">
+<td><code>compile-only</code></td>
+<td>yes</td>
+<td>no</td>
+<td>no</td></tr>
+<tr class="a">
+<td><code>test-only</code></td>
+<td>no</td>
+<td>yes</td>
+<td>no</td></tr>
+<tr class="b">
+<td><code>test-runtime</code></td>
+<td>no</td>
+<td>no</td>
+<td>yes</td></tr></tbody>
+</table></div>
 
-<pre tabindex="0" class="highlight"><code class="language-xml">
-<span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span><span class="nt">&gt;</span>
-  <span class="nt">&lt;modelVersion</span><span class="nt">&gt;</span>4.0.0<span class="nt">&lt;/modelVersion</span><span class="nt">&gt;</span>
-  <span class="nt">&lt;groupId</span><span class="nt">&gt;</span>sample.ProjectA<span class="nt">&lt;/groupId</span><span class="nt">&gt;</span>
-  <span class="nt">&lt;artifactId</span><span class="nt">&gt;</span>Project-A<span class="nt">&lt;/artifactId</span><span class="nt">&gt;</span>
-  <span class="nt">&lt;version</span><span class="nt">&gt;</span>1.0-SNAPSHOT<span class="nt">&lt;/version</span><span class="nt">&gt;</span>
-  <span class="nt">&lt;packaging</span><span class="nt">&gt;</span>jar<span class="nt">&lt;/packaging</span><span class="nt">&gt;</span>
-  ...
-  <span class="nt">&lt;dependencies</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;dependency</span><span class="nt">&gt;</span>
-      <span class="nt">&lt;groupId</span><span class="nt">&gt;</span>sample.ProjectB<span class="nt">&lt;/groupId</span><span class="nt">&gt;</span>
-      <span class="nt">&lt;artifactId</span><span class="nt">&gt;</span>Project-B<span class="nt">&lt;/artifactId</span><span class="nt">&gt;</span>
-      <span class="nt">&lt;version</span><span class="nt">&gt;</span>1.0-SNAPSHOT<span class="nt">&lt;/version</span><span class="nt">&gt;</span>
-      <span class="nt">&lt;exclusions</span><span class="nt">&gt;</span>
-        <span class="nt">&lt;exclusion</span><span class="nt">&gt;</span>
-          <span class="nt">&lt;groupId</span><span class="nt">&gt;</span>sample.ProjectD<span class="nt">&lt;/groupId</span><span class="nt">&gt;</span> <span class="c">&lt;!-- Exclude Project-D from Project-B --&gt;</span>
-          <span class="nt">&lt;artifactId</span><span class="nt">&gt;</span>Project-D<span class="nt">&lt;/artifactId</span><span class="nt">&gt;</span>
-        <span class="nt">&lt;/exclusion</span><span class="nt">&gt;</span>
-      <span class="nt">&lt;/exclusions</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;/dependency</span><span class="nt">&gt;</span>
-  <span class="nt">&lt;/dependencies</span><span class="nt">&gt;</span>
-<span class="nt">&lt;/project</span><span class="nt">&gt;</span>
-
-</code></pre>
-<p>If you deploy Project-A to a repository, and Project-X declares a normal dependency on Project-A, will Project-D still be excluded from the classpath?</p>
-
-<pre tabindex="0"><code class="nohighlight nocode">
-Project-X -&gt; Project-A
-
-</code></pre>
-<p>The answer is <strong>Yes</strong>. Project-A has declared that it doesn't need Project-D to run, so it won't be brought in as a transitive dependency of Project-A.</p>
-<p>Now, consider that Project-X depends on Project-Y, as in the diagram below:</p>
-
-<pre tabindex="0"><code class="nohighlight nocode">
-Project-X -&gt; Project-Y
-               -&gt; Project-B
-                    -&gt; Project-D
-                       ...
-
-</code></pre>
-<p>Project-Y also has a dependency on Project-B, and it does need the features supported by Project-D. Therefore, it will NOT place an exclusion on Project-D in its dependency list. It may also supply an additional repository, from which it can resolve Project-E. In this case, it's important that Project-D <strong>is not</strong> excluded globally, since it is a legitimate dependency of Project-Y.</p>
-<p>As another scenario, suppose the dependency you don't want is Project-E instead of Project-D. How do you exclude it? See the diagram below:</p>
-
-<pre tabindex="0"><code class="nohighlight nocode">
-Project-A
-   -&gt; Project-B
-        -&gt; Project-D 
-              -&gt; Project-E &lt;!-- Exclude this dependency --&gt;
-              -&gt; Project-F
-   -&gt; Project C
-
-</code></pre>
-<p>Exclusions work on the entire dependency graph below the point where they are declared. If you want to exclude Project-E instead of Project-D, simply change the exclusion to point at Project-E, but you don't move the exclusion down to Project-D. You cannot change Project-D's POM. If you could, you would use optional dependencies instead of exclusions, or split Project-D up into multiple subprojects, each with nothing but normal dependencies.</p>
-
-<pre tabindex="0" class="highlight"><code class="language-xml">
-<span class="nt">&lt;project</span> <span class="na">xmlns</span>=<span class="s">"http://maven.apache.org/POM/4.0.0"</span><span class="nt">&gt;</span>
-  <span class="nt">&lt;modelVersion</span><span class="nt">&gt;</span>4.0.0<span class="nt">&lt;/modelVersion</span><span class="nt">&gt;</span>
-  <span class="nt">&lt;groupId</span><span class="nt">&gt;</span>sample.ProjectA<span class="nt">&lt;/groupId</span><span class="nt">&gt;</span>
-  <span class="nt">&lt;artifactId</span><span class="nt">&gt;</span>Project-A<span class="nt">&lt;/artifactId</span><span class="nt">&gt;</span>
-  <span class="nt">&lt;version</span><span class="nt">&gt;</span>1.0-SNAPSHOT<span class="nt">&lt;/version</span><span class="nt">&gt;</span>
-  <span class="nt">&lt;packaging</span><span class="nt">&gt;</span>jar<span class="nt">&lt;/packaging</span><span class="nt">&gt;</span>
-  ...
-  <span class="nt">&lt;dependencies</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;dependency</span><span class="nt">&gt;</span>
-      <span class="nt">&lt;groupId</span><span class="nt">&gt;</span>sample.ProjectB<span class="nt">&lt;/groupId</span><span class="nt">&gt;</span>
-      <span class="nt">&lt;artifactId</span><span class="nt">&gt;</span>Project-B<span class="nt">&lt;/artifactId</span><span class="nt">&gt;</span>
-      <span class="nt">&lt;version</span><span class="nt">&gt;</span>1.0-SNAPSHOT<span class="nt">&lt;/version</span><span class="nt">&gt;</span>
-      <span class="nt">&lt;exclusions</span><span class="nt">&gt;</span>
-        <span class="nt">&lt;exclusion</span><span class="nt">&gt;</span>
-          <span class="nt">&lt;groupId</span><span class="nt">&gt;</span>sample.ProjectE<span class="nt">&lt;/groupId</span><span class="nt">&gt;</span> <span class="c">&lt;!-- Exclude Project-E from Project-B --&gt;</span>
-          <span class="nt">&lt;artifactId</span><span class="nt">&gt;</span>Project-E<span class="nt">&lt;/artifactId</span><span class="nt">&gt;</span>
-        <span class="nt">&lt;/exclusion</span><span class="nt">&gt;</span>
-      <span class="nt">&lt;/exclusions</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;/dependency</span><span class="nt">&gt;</span>
-  <span class="nt">&lt;/dependencies</span><span class="nt">&gt;</span>
-<span class="nt">&lt;/project</span><span class="nt">&gt;</span>
-
-</code></pre></section><section><a id="Why_exclusions_are_made_on_a_per-dependency_basis.2C_rather_than_at_the_POM_level"></a>
-<h3>Why exclusions are made on a per-dependency basis, rather than at the POM level</h3>
-<p>This is mainly to be sure the dependency graph is predictable, and to keep inheritance effects from excluding a dependency that should not be excluded. If you get to the method of last resort and have to put in an exclusion, you should be absolutely certain which of your dependencies is bringing in that unwanted transitive dependency.</p>
-<p>If you truly want to ensure that a particular dependency appears nowhere in your classpath, regardless of path, the <a href="../../enforcer/enforcer-rules/bannedDependencies.html">banned dependencies rule</a> can be configured to fail the build if a problematic dependency is found. When the build fails, you'll need to add specific exclusions on each path the enforcer finds.</p></section></section></section>
+<p>Only plugins built on the Maven 4 API keep to these classpaths. <code>maven-compiler-plugin</code> 4.0.0-beta-5 does; <code>maven-compiler-plugin</code> 3.16.0 and <code>maven-surefire-plugin</code> 3.6.1 put a dependency with one of these scopes on every classpath they build.</p></section></section>
       </div>
       <nav class="more" aria-labelledby="more-title">
         <h2 id="more-title">More in <a href="../../docs/dependencies/index.html">Dependencies and repositories</a></h2>
         <ul class="more-list">
-  <li><a href="../../docs/dependencies/how-dependencies-work.html">How dependencies work</a></li>
-  <li><a href="../../docs/dependencies/optional-and-exclusions.html" aria-current="page">Optional dependencies and exclusions</a></li>
+  <li><a href="../../docs/dependencies/how-dependencies-work.html">How Maven resolves dependencies</a></li>
+  <li><a href="../../docs/dependencies/scopes.html" aria-current="page">Dependency scopes</a></li>
+  <li><a href="../../docs/dependencies/trace-a-dependency.html">Find out where a dependency comes from</a></li>
+  <li><a href="../../docs/dependencies/control-a-transitive-version.html">Control the version of a transitive dependency</a></li>
+  <li><a href="../../docs/dependencies/exclude-a-dependency.html">Exclude a transitive dependency</a></li>
+  <li><a href="../../docs/dependencies/use-a-bom.html">Use a BOM, and publish one</a></li>
+  <li><a href="../../docs/dependencies/make-a-dependency-optional.html">Make a dependency optional</a></li>
   <li><a href="../../docs/dependencies/repositories.html">Repositories explained</a></li>
   <li><a href="../../docs/dependencies/mirror-settings.html">Use a mirror or repository manager (Nexus, Artifactory)</a></li>
   <li><a href="../../docs/dependencies/repository-manager.html">Why use a repository manager</a></li>
@@ -279,7 +270,7 @@ Project-A
   <li><a href="../../docs/dependencies/centralized-deployments.html">Large centralized deployments</a></li>
   <li><a href="../../docs/dependencies/naming-coordinates.html">Naming your coordinates</a></li>
 </ul>
-        <p class="steps"><a class="step step--prev" href="../../docs/dependencies/how-dependencies-work.html" rel="prev"><span class="step-dir">Previous</span> How dependencies work</a><a class="step step--next" href="../../docs/dependencies/repositories.html" rel="next"><span class="step-dir">Next</span> Repositories explained</a></p>
+        <p class="steps"><a class="step step--prev" href="../../docs/dependencies/how-dependencies-work.html" rel="prev"><span class="step-dir">Previous</span> How Maven resolves dependencies</a><a class="step step--next" href="../../docs/dependencies/trace-a-dependency.html" rel="next"><span class="step-dir">Next</span> Find out where a dependency comes from</a></p>
       </nav>
     </main>
     <aside class="rail">
@@ -287,11 +278,13 @@ Project-A
 <section class="facts" aria-label="About this page">
   <dl>
     <dt>Holds for</dt>
-    <dd><span class="unchecked">Not yet checked against Maven 3.9, 3.10 and 4.0</span></dd>
+    <dd><span class="versions"><span class="version">3.9</span><span class="version">3.10</span><span class="version version--upcoming" title="Maven 4.0 is not released yet">4.0</span></span></dd>
+    <dt>Kind</dt>
+    <dd>Reference</dd>
     <dt>Source</dt>
-    <dd><a href="https://github.com/dashorst/maven-site/edit/doxia-demo/content/markdown/docs/dependencies/optional-and-exclusions.md">Edit this page</a></dd>
+    <dd><a href="https://github.com/dashorst/maven-site/edit/doxia-demo/content/markdown/docs/dependencies/scopes.md">Edit this page</a></dd>
     <dt>Wrong?</dt>
-    <dd><a href="https://github.com/apache/maven-site/issues/new?title=Page%3A+Optional+dependencies+and+exclusions&amp;body=About+https%3A%2F%2Fmaven.apache.org%2Fdocs%2Fdependencies%2Foptional-and-exclusions.html">Report a problem</a></dd>
+    <dd><a href="https://github.com/apache/maven-site/issues/new?title=Page%3A+Dependency+scopes&amp;body=About+https%3A%2F%2Fmaven.apache.org%2Fdocs%2Fdependencies%2Fscopes.html">Report a problem</a></dd>
   </dl>
 </section>
       <nav id="on-this-page" aria-label="On this page"></nav>

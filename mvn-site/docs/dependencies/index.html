@@ -56,13 +56,23 @@
         <p class="lead">How Maven finds the libraries you use, and how to point it at your own repositories.</p>
  
 
-<section class="landing"><a id="How_dependencies_workOptional_dependencies_and_exclusionsRepositories_explainedUse_a_mirror_or_repository_manager_.28Nexus.2C_Artifactory.29Send_every_download_through_your_organisation.27s_repository_manager_instead_of_Maven_Central_and_the_repositories_projects_declare.Why_use_a_repository_managerUse_several_repositoriesInstall_a_third-party_JAR_locallyDeploy_a_third-party_JAR_to_a_remote_repositoryAuthenticated_HTTPS_repositoriesResolver_transportHTTP_options_of_the_Wagon_transportAlternative_Wagon_providersDeploy_over_HTTP.2C_FTP_and_SSHDependency_resolution_misconceptionsLarge_centralized_deploymentsNaming_your_coordinates"></a>
+<section class="landing"><a id="How_Maven_resolves_dependenciesWhy_your_project_gets_the_libraries_and_versions_it_gets.3A_transitive_dependencies.2C_which_version_wins.2C_managed_versions.2C_scopes_and_ranges.Dependency_scopesWhich_classpaths_each_scope_puts_a_dependency_on.2C_which_scopes_reach_the_projects_that_depend_on_yours.2C_and_the_scopes_Maven_4_adds.Find_out_where_a_dependency_comes_fromSee_which_of_your_dependencies_brings_in_a_library.2C_which_version_won_and_why.2C_and_which_libraries_you_use_without_declaring_them.Control_the_version_of_a_transitive_dependencyChoose_the_version_of_a_library_that_your_dependencies_bring_in.2C_and_make_the_build_fail_when_a_dependency_needs_a_newer_version_than_it_gets.Exclude_a_transitive_dependencyKeep_a_library_that_one_of_your_dependencies_brings_in_off_your_classpath.2C_and_make_sure_it_does_not_come_back_through_another_path.Use_a_BOM.2C_and_publish_oneImport_a_bill_of_materials_to_get_matching_versions_of_a_library_family.2C_override_one_of_its_versions.2C_and_publish_a_BOM_for_your_own_library.Make_a_dependency_optionalLet_your_library_use_a_dependency_for_one_feature_without_passing_it_on_to_every_project_that_uses_the_library.Repositories_explainedUse_a_mirror_or_repository_manager_.28Nexus.2C_Artifactory.29Send_every_download_through_your_organisation.27s_repository_manager_instead_of_Maven_Central_and_the_repositories_projects_declare.Why_use_a_repository_managerUse_several_repositoriesInstall_a_third-party_JAR_locallyDeploy_a_third-party_JAR_to_a_remote_repositoryAuthenticated_HTTPS_repositoriesResolver_transportHTTP_options_of_the_Wagon_transportAlternative_Wagon_providersDeploy_over_HTTP.2C_FTP_and_SSHDependency_resolution_misconceptionsLarge_centralized_deploymentsNaming_your_coordinates"></a>
 
 <ul class="page-list page-list--full">
 
-<li><a href="how-dependencies-work.html">How dependencies work</a></li>
+<li><a href="how-dependencies-work.html">How Maven resolves dependencies</a><span class="page-summary">Why your project gets the libraries and versions it gets: transitive dependencies, which version wins, managed versions, scopes and ranges.</span></li>
 
-<li><a href="optional-and-exclusions.html">Optional dependencies and exclusions</a></li>
+<li><a href="scopes.html">Dependency scopes</a><span class="page-summary">Which classpaths each scope puts a dependency on, which scopes reach the projects that depend on yours, and the scopes Maven 4 adds.</span></li>
+
+<li><a href="trace-a-dependency.html">Find out where a dependency comes from</a><span class="page-summary">See which of your dependencies brings in a library, which version won and why, and which libraries you use without declaring them.</span></li>
+
+<li><a href="control-a-transitive-version.html">Control the version of a transitive dependency</a><span class="page-summary">Choose the version of a library that your dependencies bring in, and make the build fail when a dependency needs a newer version than it gets.</span></li>
+
+<li><a href="exclude-a-dependency.html">Exclude a transitive dependency</a><span class="page-summary">Keep a library that one of your dependencies brings in off your classpath, and make sure it does not come back through another path.</span></li>
+
+<li><a href="use-a-bom.html">Use a BOM, and publish one</a><span class="page-summary">Import a bill of materials to get matching versions of a library family, override one of its versions, and publish a BOM for your own library.</span></li>
+
+<li><a href="make-a-dependency-optional.html">Make a dependency optional</a><span class="page-summary">Let your library use a dependency for one feature without passing it on to every project that uses the library.</span></li>
 
 <li><a href="repositories.html">Repositories explained</a></li>
 
