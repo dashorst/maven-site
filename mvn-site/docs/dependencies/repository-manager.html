@@ -4,6 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Why use a repository manager – Apache Maven</title>
+  <meta name="description" content="What a repository manager does for an organisation, and the open source and commercial products that serve Maven repositories.">
   <link rel="stylesheet" href="../../css/maven.css">
   <link rel="stylesheet" href="../../css/print.css" media="print">
   <link rel="icon" href="../../images/favicon.ico">
@@ -49,55 +50,59 @@
   <div class="frame has-group">
     <nav class="group-nav" aria-labelledby="group-nav-title">
       <p class="up"><a href="../../docs/index.html"><svg aria-hidden="true" viewBox="0 0 16 16" width="14" height="14"><path d="M10 3.5L5.5 8l4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" /></svg>All of Docs</a></p>
-      <p class="steps"><a class="step step--prev" href="../../docs/dependencies/repositories.html" rel="prev"><span class="step-dir">Previous</span> Repositories explained</a><a class="step step--next" href="../../docs/dependencies/mirror-settings.html" rel="next"><span class="step-dir">Next</span> Use a mirror or repository manager (Nexus, Artifactory)</a></p>
+      <p class="steps"><a class="step step--prev" href="../../docs/dependencies/repositories.html" rel="prev"><span class="step-dir">Previous</span> How Maven uses repositories</a><a class="step step--next" href="../../docs/dependencies/resolver-transport.html" rel="next"><span class="step-dir">Next</span> Choose how Maven connects to repositories</a></p>
       <h2 id="group-nav-title"><a href="../../docs/dependencies/index.html">Dependencies and repositories</a></h2>
       <ul class="page-list">
-  <li><a href="../../docs/dependencies/how-dependencies-work.html">How Maven resolves dependencies</a></li>
-  <li><a href="../../docs/dependencies/scopes.html">Dependency scopes</a></li>
   <li><a href="../../docs/dependencies/trace-a-dependency.html">Find out where a dependency comes from</a></li>
   <li><a href="../../docs/dependencies/control-a-transitive-version.html">Control the version of a transitive dependency</a></li>
   <li><a href="../../docs/dependencies/exclude-a-dependency.html">Exclude a transitive dependency</a></li>
   <li><a href="../../docs/dependencies/use-a-bom.html">Use a BOM, and publish one</a></li>
   <li><a href="../../docs/dependencies/make-a-dependency-optional.html">Make a dependency optional</a></li>
-  <li><a href="../../docs/dependencies/resolution-misconceptions.html">Dependency resolution misconceptions</a></li>
-  <li><a href="../../docs/dependencies/repositories.html">Repositories explained</a></li>
-  <li><a href="../../docs/dependencies/repository-manager.html" aria-current="page">Why use a repository manager</a></li>
-  <li><a href="../../docs/dependencies/mirror-settings.html">Use a mirror or repository manager (Nexus, Artifactory)</a></li>
+  <li><a href="../../docs/dependencies/scopes.html">Dependency scopes</a></li>
+  <li><a href="../../docs/dependencies/how-dependencies-work.html">How Maven resolves dependencies</a></li>
+  <li><a href="../../docs/dependencies/resolution-misconceptions.html">Common misconceptions about dependency resolution</a></li>
+  <li><a href="../../docs/dependencies/mirror-settings.html">Use a repository manager as a mirror</a></li>
   <li><a href="../../docs/dependencies/several-repositories.html">Use several repositories</a></li>
   <li><a href="../../docs/dependencies/third-party-jar-local.html">Install a third-party JAR locally</a></li>
   <li><a href="../../docs/dependencies/third-party-jar-remote.html">Deploy a third-party JAR to a remote repository</a></li>
-  <li><a href="../../docs/dependencies/https-repositories.html">Authenticated HTTPS repositories</a></li>
-  <li><a href="../../docs/dependencies/centralized-deployments.html">Large centralized deployments</a></li>
-  <li><a href="../../docs/dependencies/naming-coordinates.html">Naming your coordinates</a></li>
-  <li><a href="../../docs/dependencies/resolver-transport.html">Resolver transport</a></li>
-  <li><a href="../../docs/dependencies/wagon-http.html">HTTP options of the Wagon transport</a></li>
-  <li><a href="../../docs/dependencies/wagon-providers.html">Alternative Wagon providers</a></li>
+  <li><a href="../../docs/dependencies/https-repositories.html">Use an HTTPS repository that asks for a client certificate</a></li>
+  <li><a href="../../docs/dependencies/centralized-deployments.html">Run one repository manager for hundreds of projects</a></li>
+  <li><a href="../../docs/dependencies/naming-coordinates.html">Naming conventions for groupId, artifactId and version</a></li>
+  <li><a href="../../docs/dependencies/repositories.html">How Maven uses repositories</a></li>
+  <li><a href="../../docs/dependencies/repository-manager.html" aria-current="page">Why use a repository manager</a></li>
+  <li><a href="../../docs/dependencies/resolver-transport.html">Choose how Maven connects to repositories</a></li>
   <li><a href="../../docs/dependencies/deployment-transports.html">Deploy over HTTP, FTP and SSH</a></li>
+  <li><a href="../../docs/dependencies/wagon-http.html">HTTP settings for the transport Maven used before 3.9</a></li>
+  <li><a href="../../docs/dependencies/wagon-providers.html">Which protocols Maven supports out of the box</a></li>
 </ul>
     </nav>
-    <main id="content">
+    <main id="content" data-kind="explanation">
       <p class="crumbs"><a href="../../docs/index.html">Docs</a> <span aria-hidden="true">›</span> <a href="../../docs/dependencies/index.html">Dependencies and repositories</a></p>
       <div class="prose">
+        <h1>Why use a repository manager</h1>
+        <p class="lead">What a repository manager does for an organisation, and the open source and commercial products that serve Maven repositories.</p>
 
 <section class="facts facts--inline" aria-label="About this page">
   <dl>
     <dt>Holds for</dt>
-    <dd><span class="unchecked">Not yet checked against Maven 3.9, 3.10 and 4.0</span></dd>
+    <dd><span class="versions"><span class="version">3.9</span><span class="version">3.10</span><span class="version version--upcoming" title="Maven 4.0 is not released yet">4.0</span></span></dd>
+    <dt>Kind</dt>
+    <dd>Explanation</dd>
     <dt>Source</dt>
     <dd><a href="https://github.com/dashorst/maven-site/edit/doxia-demo/content/markdown/docs/dependencies/repository-manager.md">Edit this page</a></dd>
     <dt>Wrong?</dt>
     <dd><a href="https://github.com/apache/maven-site/issues/new?title=Page%3A+Why+use+a+repository+manager&amp;body=About+https%3A%2F%2Fmaven.apache.org%2Fdocs%2Fdependencies%2Frepository-manager.html">Report a problem</a></dd>
   </dl>
 </section>
-<section><a id="Best_Practice_-_Using_a_Repository_Manager"></a>
-<h1>Best Practice - Using a Repository Manager</h1> 
+ 
+<p><a id="Best_Practice_-_Using_a_Repository_Manager"></a></p>
 <p>A repository manager is a dedicated server application designed to manage repositories of binary components.</p>
-<p>The usage of a repository manager is considered an essential best practice for any significant usage of Maven.</p><section><a id="Purpose"></a>
+<p>The usage of a repository manager is considered an essential best practice for any significant usage of Maven.</p><section><section><a id="Purpose"></a>
 <h2>Purpose</h2>
 <p>A repository manager serves these essential purposes:</p>
 <ul>
 
-<li>act as dedicated proxy server for public Maven repositories (see <a href="mirror-settings.html">Maven Guide to Mirror Settings</a>)</li>
+<li>act as dedicated proxy server for public Maven repositories (see <a href="mirror-settings.html">Use a repository manager as a mirror</a>)</li>
 <li>provide repositories as a deployment destination for your Maven project outputs</li>
 </ul></section><section><a id="Benefits_and_Features"></a>
 <h2>Benefits and Features</h2>
@@ -137,29 +142,29 @@
       <nav class="more" aria-labelledby="more-title">
         <h2 id="more-title">More in <a href="../../docs/dependencies/index.html">Dependencies and repositories</a></h2>
         <ul class="more-list">
-  <li><a href="../../docs/dependencies/how-dependencies-work.html">How Maven resolves dependencies</a></li>
-  <li><a href="../../docs/dependencies/scopes.html">Dependency scopes</a></li>
   <li><a href="../../docs/dependencies/trace-a-dependency.html">Find out where a dependency comes from</a></li>
   <li><a href="../../docs/dependencies/control-a-transitive-version.html">Control the version of a transitive dependency</a></li>
   <li><a href="../../docs/dependencies/exclude-a-dependency.html">Exclude a transitive dependency</a></li>
   <li><a href="../../docs/dependencies/use-a-bom.html">Use a BOM, and publish one</a></li>
   <li><a href="../../docs/dependencies/make-a-dependency-optional.html">Make a dependency optional</a></li>
-  <li><a href="../../docs/dependencies/resolution-misconceptions.html">Dependency resolution misconceptions</a></li>
-  <li><a href="../../docs/dependencies/repositories.html">Repositories explained</a></li>
-  <li><a href="../../docs/dependencies/repository-manager.html" aria-current="page">Why use a repository manager</a></li>
-  <li><a href="../../docs/dependencies/mirror-settings.html">Use a mirror or repository manager (Nexus, Artifactory)</a></li>
+  <li><a href="../../docs/dependencies/scopes.html">Dependency scopes</a></li>
+  <li><a href="../../docs/dependencies/how-dependencies-work.html">How Maven resolves dependencies</a></li>
+  <li><a href="../../docs/dependencies/resolution-misconceptions.html">Common misconceptions about dependency resolution</a></li>
+  <li><a href="../../docs/dependencies/mirror-settings.html">Use a repository manager as a mirror</a></li>
   <li><a href="../../docs/dependencies/several-repositories.html">Use several repositories</a></li>
   <li><a href="../../docs/dependencies/third-party-jar-local.html">Install a third-party JAR locally</a></li>
   <li><a href="../../docs/dependencies/third-party-jar-remote.html">Deploy a third-party JAR to a remote repository</a></li>
-  <li><a href="../../docs/dependencies/https-repositories.html">Authenticated HTTPS repositories</a></li>
-  <li><a href="../../docs/dependencies/centralized-deployments.html">Large centralized deployments</a></li>
-  <li><a href="../../docs/dependencies/naming-coordinates.html">Naming your coordinates</a></li>
-  <li><a href="../../docs/dependencies/resolver-transport.html">Resolver transport</a></li>
-  <li><a href="../../docs/dependencies/wagon-http.html">HTTP options of the Wagon transport</a></li>
-  <li><a href="../../docs/dependencies/wagon-providers.html">Alternative Wagon providers</a></li>
+  <li><a href="../../docs/dependencies/https-repositories.html">Use an HTTPS repository that asks for a client certificate</a></li>
+  <li><a href="../../docs/dependencies/centralized-deployments.html">Run one repository manager for hundreds of projects</a></li>
+  <li><a href="../../docs/dependencies/naming-coordinates.html">Naming conventions for groupId, artifactId and version</a></li>
+  <li><a href="../../docs/dependencies/repositories.html">How Maven uses repositories</a></li>
+  <li><a href="../../docs/dependencies/repository-manager.html" aria-current="page">Why use a repository manager</a></li>
+  <li><a href="../../docs/dependencies/resolver-transport.html">Choose how Maven connects to repositories</a></li>
   <li><a href="../../docs/dependencies/deployment-transports.html">Deploy over HTTP, FTP and SSH</a></li>
+  <li><a href="../../docs/dependencies/wagon-http.html">HTTP settings for the transport Maven used before 3.9</a></li>
+  <li><a href="../../docs/dependencies/wagon-providers.html">Which protocols Maven supports out of the box</a></li>
 </ul>
-        <p class="steps"><a class="step step--prev" href="../../docs/dependencies/repositories.html" rel="prev"><span class="step-dir">Previous</span> Repositories explained</a><a class="step step--next" href="../../docs/dependencies/mirror-settings.html" rel="next"><span class="step-dir">Next</span> Use a mirror or repository manager (Nexus, Artifactory)</a></p>
+        <p class="steps"><a class="step step--prev" href="../../docs/dependencies/repositories.html" rel="prev"><span class="step-dir">Previous</span> How Maven uses repositories</a><a class="step step--next" href="../../docs/dependencies/resolver-transport.html" rel="next"><span class="step-dir">Next</span> Choose how Maven connects to repositories</a></p>
       </nav>
     </main>
     <aside class="rail">
@@ -167,7 +172,9 @@
 <section class="facts" aria-label="About this page">
   <dl>
     <dt>Holds for</dt>
-    <dd><span class="unchecked">Not yet checked against Maven 3.9, 3.10 and 4.0</span></dd>
+    <dd><span class="versions"><span class="version">3.9</span><span class="version">3.10</span><span class="version version--upcoming" title="Maven 4.0 is not released yet">4.0</span></span></dd>
+    <dt>Kind</dt>
+    <dd>Explanation</dd>
     <dt>Source</dt>
     <dd><a href="https://github.com/dashorst/maven-site/edit/doxia-demo/content/markdown/docs/dependencies/repository-manager.md">Edit this page</a></dd>
     <dt>Wrong?</dt>
