@@ -57,20 +57,20 @@
           <item name="Exclude a transitive dependency" href="/docs/dependencies/exclude-a-dependency.html"/>
           <item name="Use a BOM, and publish one" href="/docs/dependencies/use-a-bom.html"/>
           <item name="Make a dependency optional" href="/docs/dependencies/make-a-dependency-optional.html"/>
+          <item name="Dependency resolution misconceptions" href="/docs/dependencies/resolution-misconceptions.html"/>
           <item name="Repositories explained" href="/docs/dependencies/repositories.html"/>
-          <item name="Use a mirror or repository manager (Nexus, Artifactory)" href="/docs/dependencies/mirror-settings.html"/>
           <item name="Why use a repository manager" href="/docs/dependencies/repository-manager.html"/>
+          <item name="Use a mirror or repository manager (Nexus, Artifactory)" href="/docs/dependencies/mirror-settings.html"/>
           <item name="Use several repositories" href="/docs/dependencies/several-repositories.html"/>
           <item name="Install a third-party JAR locally" href="/docs/dependencies/third-party-jar-local.html"/>
           <item name="Deploy a third-party JAR to a remote repository" href="/docs/dependencies/third-party-jar-remote.html"/>
           <item name="Authenticated HTTPS repositories" href="/docs/dependencies/https-repositories.html"/>
+          <item name="Large centralized deployments" href="/docs/dependencies/centralized-deployments.html"/>
+          <item name="Naming your coordinates" href="/docs/dependencies/naming-coordinates.html"/>
           <item name="Resolver transport" href="/docs/dependencies/resolver-transport.html"/>
           <item name="HTTP options of the Wagon transport" href="/docs/dependencies/wagon-http.html"/>
           <item name="Alternative Wagon providers" href="/docs/dependencies/wagon-providers.html"/>
           <item name="Deploy over HTTP, FTP and SSH" href="/docs/dependencies/deployment-transports.html"/>
-          <item name="Dependency resolution misconceptions" href="/docs/dependencies/resolution-misconceptions.html"/>
-          <item name="Large centralized deployments" href="/docs/dependencies/centralized-deployments.html"/>
-          <item name="Naming your coordinates" href="/docs/dependencies/naming-coordinates.html"/>
         </item>
         <item name="Multi-module projects" href="/docs/multi-module/index.html">
           <item name="Tutorial: split your application into modules" href="/docs/get-started/first-modules.html"/>

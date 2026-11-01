@@ -62,7 +62,9 @@ mvn dependency:tree -Dverbose -Dincludes=commons-codec:commons-codec
 
 Both versions of Commons Codec are two steps away, and `httpclient` comes first, so the project gets 1.11, although `httpclient5` was built against 1.15. Change the order of the two dependencies and it gets 1.15.
 
-Maven does not pick the newest version. The rule gives a predictable result that you control from your own POM: whatever a dependency asks for, you overrule it by declaring or managing the library yourself. The price is that a dependency can get an older version than it was built for, and fail at runtime with a `NoSuchMethodError`. [Control the version of a transitive dependency](control-a-transitive-version.html) shows how to choose the version and how to make the build fail on such a downgrade.
+Maven does not pick the newest version. The rule gives a predictable result that you control from your own POM: whatever a dependency asks for, you overrule it by declaring or managing the library yourself. The price is that a dependency can get an older version than it was built for, and fail at runtime with a `NoSuchMethodError`.
+
+Two tools keep diverging versions in check. To choose the version yourself, [manage it](control-a-transitive-version.html#Set_the_version_in_dependencyManagement) in `<dependencyManagement>`. To make the build fail when versions diverge, add a rule of the Enforcer plugin: [`requireUpperBoundDeps`](control-a-transitive-version.html#Fail_the_build_when_a_dependency_gets_an_older_version) fails when a dependency gets an older version than it asks for, and `dependencyConvergence` fails on any difference.
 
 ## Managed versions come first
 

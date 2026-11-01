@@ -24,6 +24,8 @@ under the License.
 </head>
 <body>
 <section class="landing">
+<h2>Dependencies</h2>
+<p class="group-summary">Which libraries and versions your project gets, and how to change that.</p>
 <ul class="page-list page-list--full">
 <li><a href="how-dependencies-work.html">How Maven resolves dependencies</a><span class="page-summary">Why your project gets the libraries and versions it gets: transitive dependencies, which version wins, managed versions, scopes and ranges.</span></li>
 <li><a href="scopes.html">Dependency scopes</a><span class="page-summary">Which classpaths each scope puts a dependency on, which scopes reach the projects that depend on yours, and the scopes Maven 4 adds.</span></li>
@@ -32,20 +34,28 @@ under the License.
 <li><a href="exclude-a-dependency.html">Exclude a transitive dependency</a><span class="page-summary">Keep a library that one of your dependencies brings in off your classpath, and make sure it does not come back through another path.</span></li>
 <li><a href="use-a-bom.html">Use a BOM, and publish one</a><span class="page-summary">Import a bill of materials to get matching versions of a library family, override one of its versions, and publish a BOM for your own library.</span></li>
 <li><a href="make-a-dependency-optional.html">Make a dependency optional</a><span class="page-summary">Let your library use a dependency for one feature without passing it on to every project that uses the library.</span></li>
+<li><a href="resolution-misconceptions.html">Dependency resolution misconceptions</a></li>
+</ul>
+<h2>Repositories</h2>
+<p class="group-summary">Where Maven downloads libraries from and deploys them to: Maven Central, your own repository manager, and JARs that are in no repository.</p>
+<ul class="page-list page-list--full">
 <li><a href="repositories.html">Repositories explained</a></li>
-<li><a href="mirror-settings.html">Use a mirror or repository manager (Nexus, Artifactory)</a><span class="page-summary">Send every download through your organisation's repository manager instead of Maven Central and the repositories projects declare.</span></li>
 <li><a href="repository-manager.html">Why use a repository manager</a></li>
+<li><a href="mirror-settings.html">Use a mirror or repository manager (Nexus, Artifactory)</a><span class="page-summary">Send every download through your organisation's repository manager instead of Maven Central and the repositories projects declare.</span></li>
 <li><a href="several-repositories.html">Use several repositories</a></li>
 <li><a href="third-party-jar-local.html">Install a third-party JAR locally</a></li>
 <li><a href="third-party-jar-remote.html">Deploy a third-party JAR to a remote repository</a></li>
 <li><a href="https-repositories.html">Authenticated HTTPS repositories</a></li>
+<li><a href="centralized-deployments.html">Large centralized deployments</a></li>
+<li><a href="naming-coordinates.html">Naming your coordinates</a></li>
+</ul>
+<h2>Transports</h2>
+<p class="group-summary">How Maven connects to a repository to download and deploy, over HTTP and other protocols.</p>
+<ul class="page-list page-list--full">
 <li><a href="resolver-transport.html">Resolver transport</a></li>
 <li><a href="wagon-http.html">HTTP options of the Wagon transport</a></li>
 <li><a href="wagon-providers.html">Alternative Wagon providers</a></li>
 <li><a href="deployment-transports.html">Deploy over HTTP, FTP and SSH</a></li>
-<li><a href="resolution-misconceptions.html">Dependency resolution misconceptions</a></li>
-<li><a href="centralized-deployments.html">Large centralized deployments</a></li>
-<li><a href="naming-coordinates.html">Naming your coordinates</a></li>
 </ul>
 </section>
 </body>

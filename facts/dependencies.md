@@ -104,7 +104,7 @@ Example checks build the projects shown on the pages against Maven Central: Apac
 | 35 | An exclusion in a published POM holds for its users. | 3.9, 3.10, 4.0 | S2 | tested: x1 -> b excluding d: the user of x1 gets no d |
 | 36 | Maven has no switch to turn off transitive dependencies. | all | S6 | documented |
 | 37 | `bannedDependencies` fails the build and names the path. | Enforcer 3.7.0 | S2, S9 | tested on Commons Logging below HttpClient 4.5.14 |
-| 38 | `requireUpperBoundDeps` fails when a dependency gets an older version than it asks for; `dependencyConvergence` fails on any difference. | Enforcer 3.7.0 | S9 | tested: codec 1.11 against 1.15 fails both; 1.15 winning passes the first and fails the second |
+| 38 | `requireUpperBoundDeps` fails when a dependency gets an older version than it asks for; `dependencyConvergence` fails on any difference. A managed version satisfies `dependencyConvergence`. | Enforcer 3.7.0 | S9 | tested: codec 1.11 against 1.15 fails both; 1.15 winning passes the first and fails the second; codec managed at 1.15 passes `dependencyConvergence` on 3.9.16, 3.10.0 and 4.0.0-rc-7 |
 
 ## Tools
 

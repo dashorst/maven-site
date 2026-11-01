@@ -134,4 +134,4 @@ Without the managed version, the build of the example stops in the `validate` ph
 [ERROR]     +-commons-codec:commons-codec:1.15
 ```
 
-The stricter `dependencyConvergence` rule fails on any difference in version, also when the project gets the newer one.
+The stricter `dependencyConvergence` rule fails on any difference in version, also when the project gets the newer one. Choose it when every library should have one version throughout the graph. Each library that your dependencies ask for in different versions then needs an entry in `<dependencyManagement>`; a managed version satisfies the rule.
